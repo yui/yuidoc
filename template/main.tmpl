@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>API: $modulename #if $classname# $classname #end if# #if $filename# $filename #end if# (YUI Library)</title>
+	<link rel="stylesheet" type="text/css" href="assets/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/fonts.css">
+	<link rel="stylesheet" type="text/css" href="assets/grids.css">
+	<link rel="stylesheet" type="text/css" href="assets/api.css">
+</head>
+
+<body id="yahoo-com">
+<div id="doc" class="yui-t1">
+
+	<div id="hd">
+        <h1>$projectname</h1>
+        <h3>$modulename</h3>
+        <p>
+        <a href="./index.html">$projectname</a> &gt;
+        <a href="./${cleansedmodulename}.html">$modulename</a>
+            #if $classname# &gt; $classname #end if#
+            #if $filename# &gt; $filename (source view) #end if#
+        </p>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+                #if $filename
+                    <script src="assets/code.js" type="text/javascript"></script>
+                    <textarea id="srcin">
+                        #include $filepath
+                    </textarea>
+                    <pre id="srcout"></pre>
+                    <script type="text/javascript">
+                        var block = document.getElementById("srcin");
+                        var src = block.value.replace(/^\s*|\s*$/, "")
+                        src = JSHFast.parse(src, true);
+                        document.getElementById("srcout").innerHTML = src;
+                    </script>
+                #else if $classname 
+
+                    <h2>
+                        #if $static 
+                            <code>static</code> 
+                        #end if
+                            Class <b>$classname</b>
+                        <span class="extends">
+                        #if $extends
+                            extends <a href="${extends}.html">$extends</a>
+                        #end if
+                        </span>
+                        </code>
+                    </h2>
+                    <!-- class tree goes here -->
+                    
+                    #if $subclasses
+                        <dl class="subclasses">
+                            <dt>Known Subclasses:</dd>
+                            <dd>
+                                #for $subclass in $subclasses
+                                    <a href="${subclass}.html">$subclass</a>
+                                #end for
+                            </dd>
+                       </dl>
+                    #end if
+                
+                    #if $deprecated
+                        <div class="deprecated"><strong>Deprecated:</strong>$deprecated</div>
+                    #end if
+  
+                    #if $see
+                        <div class="deprecated"><strong>See also:</strong>$see</div>
+                    #end if
+
+                    <div class="summary description">
+                        $description
+                    </div>
+
+                    #if $constructor
+                        <div class="section constructor details">
+                        <h3><a name="constructor_detail">Constructor</a></h3>
+                        <div class="content">
+                            <div class="detail">
+                                <strong>$classname</strong>
+                                <code>
+                                    #if $constructor.params
+                                        (
+                                        #set $i=0
+  
+                                        #for $param in $constructor.params##if $i > 0#, #end if#
+                                            #set $i = $i + 1
+                                            &lt;$param.type&gt; $param.name#end for
+                                        )
+                                    #end if
+                                </code>
+                                <div class="description">
+                                    #if $constructor.params
+                                        <dl>
+                                            <dt>Parameters:</dt>
+                                            #for $param in $constructor.params
+                                                <dd>
+                                                    <code>$param.name</code> - 
+                                                    $param.description
+                                                </dd>
+                                            #end for
+                                        </dl>
+                                    #end if
+                                    
+                                    #if $constructor.return
+                                        <dl>
+                                            <dt>Returns:</dt>
+                                            <dd>
+                                                $constructor.return
+                                            </dd>
+                                        </dl>
+                                    #end if 
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    #end if
+
+                    #if $properties
+                        <div class="section field details">
+                            <h3><a name="field_detail">Properties</a></h3>
+                            <div class="content">
+                                #for $property in $properties
+                                    <h4><a name="$property.name">$property.name</a>
+                                        <code>&lt;#if $property.static#static #end if#$property.type&gt;</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            $property.description
+                                        </div>
+                                    </div>
+                                    <hr />
+                                #end for
+ 
+                                #if $property.deprecated
+                                <div class="deprecated">
+                                    <strong>Deprecated</strong>$property.deprecated
+                                </div>        
+                                #end if
+
+                            </div>
+                        </div>
+                    #end if
+
+                    #if $inherited.properties
+                        #for $superclassname in $inherited.properties
+                        <div class="section field inheritance">
+                            <h4>Properties inherited from <a href="${superclassname}.html">$superclassname</a>:</h4>
+                            <div class="content">
+                                <code>
+                                    #set i=0
+                                    #for $prop in $inherited.properties[$superclassname]##if i>0#,#end if#
+                                        #set i=i+1
+                                        <a href="${superclassname}.html#$prop">$prop</a>#end for
+                                </code>
+                            </div>
+                        </div>
+                        #end for
+                    #end if
+
+                    #if $methods
+                        <div class="section method details">
+                            <h3><a name="methodDetails">Methods</a></h3>
+                            <div class="content">
+                                #for $method in $methods
+                                    <h4>
+                                        <a name="$method.name">$method.name</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        #if $method.static# static #end if#
+                                        $method.return.type
+                                            <strong>$method.name</strong>
+                                            #if $method.params
+                                                (
+                                                #set $i=0
+                                                #for $param in $method.params##if $i > 0#, #end if#
+                                                    #set $i = $i + 1
+                                                    &lt;$param.type&gt; $param.name#end for
+                                                )
+                                            #end if
+                                        </code>
+                                        
+                                        <div class="description">
+                                            $method.description
+                                        </div>
+
+                                        <div class="description">
+                                            #if $method.params
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                    #for $param in $method.params
+                                                        <dd>
+                                                            <code>$param.name</code> - 
+                                                            $param.description
+                                                        </dd>
+                                                    #end for
+                                                </dl>
+                                            #end if
+
+                                            #if $method.return.description
+                                                <dl>
+                                                    <dt>Returns:
+                                                    <code>
+                                                        $method.return.type
+                                                    </code></dt>
+                                                    <dd>$method.return.description</dd>
+                                                </dl>
+                                            #end if
+             
+                                            #if $method.deprecated
+                                            <div class="deprecated">
+                                                <strong>Deprecated</strong> $method.deprecated
+                                            </div>        
+                                            #end if
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                #end for
+                            </div>
+                        </div>
+                    #end if
+
+                    #if $inherited.methods
+                        #for $superclassname in $inherited.methods
+                            <div class="section field inheritance">
+                                <h4>Methods inherited from <a href="${superclassname}.html">$superclassname</a>:</h4>
+                                <div class="content">
+                                    <code>
+                                        #set i=0
+                                        #for $method in $inherited.methods[$superclassname]##if i>0#,#end if#
+                                            #set i=i+1
+                                            <a href="${superclassname}.html#$method">$method</a>#end for
+                                    </code>
+                                </div>
+                            </div>
+                        #end for
+                    #end if
+
+                #else
+                    <h3>Module: $modulename</h3>
+                    <div class="description summary">
+                        $moduledesc
+                    </div>
+
+                #end if
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+                #if $classnames
+                    <div class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                            #for $classdef in $classnames
+                                <li><a href="${classdef}.html">$classdef</a></li>
+                            #end for
+                        </ul>
+                    </div>
+                #end if
+
+                #if $filenames
+                    <div class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                            #for $filedef in $filenames
+                                <li><a href="${filedef}.html">$filedef</a></li>
+                            #end for
+                        </ul>
+                    </div>
+                #end if
+
+                #if $properties
+                    <div class="module">
+                        <h4>Properties</h4>
+                        <ul class="content">        
+                            #for $prop in $properties
+                                <li><a href="#${prop.name}">$prop.name</a>
+                                        <!--<code>&lt;$property.type&gt;</code>-->
+                                </li>
+                            #end for
+                        </ul>
+                    </div>
+                #end if
+
+                #if $methods
+                    <div class="module">
+                        <h4>Methods</h4>
+                        <ul class="content">        
+                            #for $method in $methods
+                                <li><!--<code>$method.return.type</code>-->
+                                <a href="#${method.name}">$method.name</a>
+                                </li>
+                            #end for
+                        </ul>
+                    </div>
+                #end if
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2006 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+</body>
+</html>

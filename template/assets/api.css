@@ -1,0 +1,57 @@
+a:link { color: #00F; }
+a:visited { color: #003399;}
+
+#doc { width:70%; min-width:835px; } 
+
+#hd h1 { color: #545454; font:170%/50px arial Bold; padding: 8px 0 8px 70px; background: url(logo.gif) left center no-repeat; }
+#hd h3 { background: #947DB2; color: #FFF; font: 110%/1.22em arial; padding: 5px 10px; margin: 0 0 7px 0; }
+#hd h3 A { color: #FFF; text-decoration: none; }
+#hd .breadcrumbs { font-size: 85%; margin-bottom:10px;}
+
+#doc dl { margin: 2px 0; }
+#doc dd { margin-left: 20px; }
+#doc .requires dt { font-style: italic; }
+#doc .deprecated { margin-top:4px; padding:4px; background-color: #EFECCA }
+#doc .deprecated strong { color:#441054; }
+#doc code, pre {font-size:85%}
+
+/* undo reset.css styles for description block formatting */
+#doc .description ul { padding: 10px 0 10px 28px; font-size: 90%; list-style: disc}
+#doc pre { padding: 10px;}
+
+#doc .summary { margin: 10px 0 10px 0; padding:10px; border: 1px solid #cccccc; background-color: #eeeeee; }
+#doc .extends {font-weight: normal; font-size: 90%}
+
+#doc .nav .module { background: #EEEEEE; margin: 0 0 15px 0; padding: 0; overflow:hidden}
+#doc .nav .module h4 { padding: 3px 5px; border-bottom: #947DB2 1px solid; }
+#doc .nav .module h4 A { color: #000; text-decoration: none; }
+#doc .nav .module .content { padding: 7px; }
+#doc .nav .module UL.content LI { padding: 0 0 3px 0; font-size: 90%; }
+#doc .nav .module UL.content A { text-decoration: none; }
+
+#doc .section { margin: 0 0 16px 0; }
+#doc .section strong { font-weight: bold;}
+#doc .section hr { border: none 0; border-top: 1px solid #cccccc; }
+#doc .section h4 { font-size:110%;}
+#doc .section h3 { background: #947DB2; width: 100%; color: #FFF; padding: 3px; margin: 0 0 7px 0; }
+#doc .section h3 .top { font-size: 60%; font-weight: normal; width: 100%; font-family: verdana; padding-left: 20px; }
+#doc .section h3 .top A { color: #FFF; text-decoration: none;  }
+#doc .section table { overflow:auto; }
+
+#doc .section.details .content { padding: 0 0 0 10px; }
+#doc .section.details .description { padding: 10px 0 0 20px;  }
+#doc .section.details .description dt { font-weight: bold; }
+
+
+#doc .inheritance { padding:10px; background-color:#eeeeee }
+#doc .inheritance h4 { font-size: 100%;}
+
+#srcin { display:none }
+#srcout { padding: 4px; font-size: 85%; background-color: #fafafa; border: 1px solid silver; overflow: auto; } 
+span.jshcomments { color: green; }
+span.jshstrings { color: #800000; }
+span.jshnumbers { color: #F00; }
+span.jshoperators { color: blue; }
+span.jshglobals { color: #4040ff; }
+span.jshproperties { color: #000; }
+span.jshmethods { color: #00A; }

@@ -1,0 +1,30 @@
+yuidoc TODO
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Crosslink and index: copy all module docs into a single directory,
+    parse out class info from all json files and use to generate the
+    index, and links that could not be created when docs where generated
+    outside of this environment.  Or the program could accept a series
+    of output locations and not copy into a single directory. The problem
+    with this is that we don't know the relative path that needs to be
+    used for a module.
+
+    Inheritance data for YAHOO.augment
+
+    New comment block types for YAHOO.augment implementations ... 
+    EventPublish and Config.  Since these have properties that are not
+    directly discoverable by the doc tool, and because these properties
+    can't be accessed like a normal property, we need a way to document
+    these that describe how they are used.
+
+    Hide private classes and files
+
+    Consider changing the output format to use all arrays instead of
+    a mix of arrays and dictionaries.  For instance, the list of params
+    has to be an array to keep the order, whereas classes, properties
+    and methods get sorted so it doesn't matter.  Dictionaries are used
+    when possible because of cross-referencing I needed during the parse,
+    but this is no doubt more difficult to use than an all array format.
+
+    Documentation
+

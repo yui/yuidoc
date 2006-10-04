@@ -1,0 +1,111 @@
+
+General Notes:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+--General Notes:
+
+* All comment blocks should have one, and only one, of the following tags: 
+  module, class, property, method.  If one is not supplied, the parser will
+  complain and the block will likely be skipped.
+
+* The four block types require a description.  This description should appear
+  as the first thing in your comment block.
+
+  /**
+   * My method description.  Like other pieces of your comment blocks, 
+   * this can span multiple lines.
+   * @method methodName
+   */
+
+  This might work too, but I have not tried it.. I like the other convention:
+
+  /**
+   * @method       methodName
+   * @description  My method description.  Like other pieces of your 
+   * comment blocks, this can span multiple lines.
+   */
+
+* It will warn about any tag that does not contain a description, with the
+  exception of the following: constructor, public, private, static
+
+
+Supported Tags:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+@module modulename
+    Include one these blocks in one of your files for your util/widget. The
+    description will appear on the splash page.
+
+@namespace YAHOO.namespace
+    While it is optional to provide a namespace, it is recommended. This lets you
+    describe your class just with the name: YAHOO.util.Event -> Event.  It only
+    needs to be included one time as long as this is the first file that is parsed.
+    Probably safer to put it in each file.
+
+@class ClassName
+
+@extends YAHOO.namespace.ClassName
+
+@property propertyName
+
+@method methodName
+
+@constructor
+    Only put this if the class can be instantiated
+
+@static
+    Probably should have either @constructor or @static in the @class block
+
+@param {type} name description    -or-
+@param name {type} description
+    Supported in method blocks or class/constructor blocks.
+
+@for ClassName
+    Used to define an inner class:
+        /**
+         * An inner class
+         * @class foo
+         * @for OuterClass
+         */
+    After the class is done, you need to inform the parser to start working on
+    the outer class again:
+        /**
+         * Another method for the outer class
+         * @method bar
+         * @for OuterClass
+         */
+
+@return {type} description
+
+@type type
+
+@see
+    This is barely supported at this point
+
+@deprecated instructions
+    The instructions do not need to be provided, but the parser will warn if 
+    you do not provide it.
+
+@public
+    Allowed to exist as a singular tag, but does nothing.  Everthing is assumed 
+    public unless marked private
+
+
+Tentative list of future tags:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+@event name {type} description
+    Type is for the various types of events we support
+
+@config name {type} description
+
+@mixes YAHOO.namespace.ClassName [method1, method2]
+    I like that better than borrows or steals
+
+@instance
+    A field/method is either @static, @instance, or it belongs to the prototype
+
+@requires [module1, module2]
+    To be included in the module block. Not sure about the syntax.
+
+
