@@ -51,10 +51,16 @@ class YUIDocGen(object):
         self.projectname = "Yahoo! UI Library"
         self.modulename  = "Unknown"
         self.moduledesc  = "Please supply a module block somewhere in your code"
+        self.requires    = None
         if d["modules"]:
             for i in d["modules"]:
+                module = d["modules"][i]
                 self.modulename = i
-                self.moduledesc = str(d["modules"][i]["description"])
+                self.moduledesc = str(module["description"])
+                if "requires" in module:
+                    # self.requires = module["requires"].split(",")
+                    self.requires = module["requires"]
+                    
 
         self.cleansedmodulename = "module_" + cleanseStr(self.modulename)
     
@@ -93,8 +99,11 @@ class YUIDocGen(object):
             template.filemap      = self.filemap
             template.filenames    = self.filenames
             template.classname    = self.classname
+            template.requires     = self.requires
             template.properties = ""
             template.methods = ""
+            template.events  = ""
+            template.configs = ""
             template.extends = ""
 
         def transferToTemplate(prop, dict, template):
@@ -136,6 +145,22 @@ class YUIDocGen(object):
                     supermethod = superc["methods"][method]
                     if self.showprivate or "private" not in supermethod:
                         inhdef.append(method)
+            if "events" in superc:
+                inhdef = inherited["events"][supercname] = []
+                keys = superc["events"].keys()
+                keys.sort()
+                for event in keys:
+                    superevent = superc["events"][event]
+                    if self.showprivate or "private" not in superevent:
+                        inhdef.append(event)
+            if "configs" in superc:
+                inhdef = inherited["configs"][supercname] = []
+                keys = superc["configs"].keys()
+                keys.sort()
+                for config in keys:
+                    superconfig = superc["configs"][config]
+                    if self.showprivate or "private" not in superconfig:
+                        inhdef.append(config)
 
             if "extends" in superc:
                 supercname = superc["extends"]
@@ -173,6 +198,9 @@ class YUIDocGen(object):
             transferToTemplate( "description", c, t, )
             transferToTemplate( "static", c, t, )
             if "static" in c: t.static = "static"
+            transferToTemplate( "access", c, t, )
+            if "private" in c: t.access = "private"
+            elif "protected" in c: t.access = "protected"
 
 
             #subclasses
@@ -198,7 +226,30 @@ class YUIDocGen(object):
                         transferToDict( "see",         prop, propdata           )
                         transferToDict( "static",      prop, propdata           )
                         if "static" in prop: propdata["static"] = "static"
+                        transferToDict( "access",   prop, propdata           )
+                        if "private" in prop: propdata["access"] = "private"
+                        elif "protected" in prop: propdata["access"] = "protected"
                         props.append(propdata)
+
+            # configs
+            configs = t.configs = []
+            if "configs" in c:
+                keys = c["configs"].keys()
+                keys.sort()
+                for configkey in keys:
+                    config = c["configs"][configkey]
+                    if self.showprivate or "private" not in config:
+                        configdata = {"name": configkey}
+                        transferToDict( "type",        config, configdata, "Object" )
+                        transferToDict( "description", config, configdata           )
+                        transferToDict( "deprecated",  config, configdata, "&nbsp;", True )
+                        transferToDict( "see",         config, configdata           )
+                        transferToDict( "static",      config, configdata           )
+                        if "static" in config: configdata["static"] = "static"
+                        transferToDict( "access",   config, configdata           )
+                        if "private" in config: configdata["access"] = "private"
+                        elif "protected" in config: configdata["access"] = "protected"
+                        configs.append(configdata)
 
             # Methods
             methods = t.methods = []
@@ -214,6 +265,9 @@ class YUIDocGen(object):
                         transferToDict( "see",         method, methoddata )
                         transferToDict( "static",      method, methoddata )
                         if "static" in method: methoddata["static"] = "static"
+                        transferToDict( "access",      method, methoddata )
+                        if "private" in method: methoddata["access"] = "private"
+                        elif "protected" in method: methoddata["access"] = "protected"
 
                         ret = methoddata["return"] = {"name":"", "description":"", "type":"void"}
                         if "return" in method:
@@ -232,8 +286,39 @@ class YUIDocGen(object):
 
                         methods.append(methoddata)
 
+            # Events
+            events = t.events = []
+            if "events" in c:
+                keys = c["events"].keys()
+                keys.sort()
+                for eventkey in keys:
+                    event = c["events"][eventkey]
+                    if self.showprivate or "private" not in event:
+                        eventdata = {"name": eventkey}
+                        transferToDict( "description", event, eventdata )
+                        transferToDict( "deprecated",  event, eventdata, "&nbsp;", True )
+                        transferToDict( "see",         event, eventdata )
+                        transferToDict( "static",      event, eventdata )
+                        if "static" in event: eventdata["static"] = "static"
+                        transferToDict( "access",      event, eventdata )
+                        if "private" in event: eventdata["access"] = "private"
+                        elif "protected" in event: eventdata["access"] = "protected"
+
+                        params = eventdata["params"] = []
+                        if "params" in event:
+                            mp = event["params"]
+                            for p in mp:
+                                param = {}
+                                transferToDict( "name",        p, param, "Unknown" )
+                                transferToDict( "type",        p, param, "Object" )
+                                transferToDict( "description", p, param )
+                                params.append(param)
+
+                        events.append(eventdata)
+
+
             # get inherited data
-            inherited = t.inherited = {"properties":{}, "methods":{}}
+            inherited = t.inherited = {"properties":{}, "methods":{}, "events":{}, "configs":{}}
             if "extends" in c:
                 supercname = t.extends = str(c["extends"])
                 if supercname in classes:

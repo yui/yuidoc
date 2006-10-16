@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ''' A class to parse Javadoc style comments out of javascript to document 
     an API. It is designed to parse one module at a time ''' 
-import os, re, simplejson
+import os, re, simplejson, string
 import const
 from cStringIO import StringIO 
 from optparse import OptionParser
@@ -98,8 +98,8 @@ class YUIDoc(object):
     # the pattern to restore the string literals
     restore_pat  = re.compile('~~~(\d+)~~~')
     
-    # the pattern for extracting a documentation block
-    docBlock_pat = re.compile('(/\*\*)(.*?)(\*/)|(".*?")', re.S)
+    # the pattern for extracting a documentation block and the next line
+    docBlock_pat = re.compile('(/\*\*)(.*?)(\*/)([\s\n]*[^\/\n]*)?|(".*?")', re.S)
     
     # after extracting the comment, fix it up (remove *s and leading spaces)
     # blockFilter_pat = re.compile('^\s*\*', re.M)
@@ -119,7 +119,9 @@ class YUIDoc(object):
 
     # tags that do not require a description, used by the tokenizer so that these
     # tags can be used above the block description without breaking things
-    singleTags = "constructor public private static"
+    singleTags = "constructor public private protected static"
+
+    guess_pat = re.compile('\s*?(var|function)?\s*?(\w+)\s*?[=:]\s*?(function)?.*', re.S)
 
     # Extracts all of the documentation comment blocks from the script
     def extract(self):
@@ -137,16 +139,38 @@ class YUIDoc(object):
         def restore_sub(mo):
             return literals[int(mo.group(1))]
 
+        def guess_sub(mo):
+            type = "property"
+            print mo.group(2)
+            if mo.group(1) or mo.group(3):
+                type = "function"
+
+            self.guessedtype = type
+            self.guessedname = mo.group(2) 
+
         # extracts the comment blocks
         def match_sub(match):
-            if match.group(4):
-                return match.group(4)
+            if match.group(5):
+                return match.group(5)
             else:
                 # get the block and filter out unwanted chars
                 block = self.blockFilter_pat.sub("", match.group(2))
 
                 # restore string literals
                 block = self.restore_pat.sub(restore_sub, block)
+
+                # guess the name and type of the property/method based on the line
+                # after the comment
+                if match.group(4):
+                    nextline = match.group(4)
+                    mo = self.guess_pat.search(nextline)
+                    if mo:
+                        type = "property"
+                        if string.find(nextline, "function") > 0:
+                            type = "function"
+
+                        block += "@guessedtype " + type + "\n"
+                        block += "@guessedname " + mo.group(2) + "\n"
 
                 if len(block) > 0:
                     self.matches.append(block)
@@ -191,11 +215,11 @@ class YUIDoc(object):
             else:
                 return match.group(2), (match.group(1) + match.group(3)).strip()
 
-        def parseParams(tokenMap, dict):
-            if const.PARAM in tokenMap:
+        def parseParams(tokenMap, dict, srctag=const.PARAM, desttag=const.PARAMS):
+            if srctag in tokenMap:
                 # params must be an array because they need to stay in order
-                if not const.PARAMS in dict: dict[const.PARAMS] = []
-                for i in tokenMap[const.PARAM]:
+                if not desttag in dict: dict[desttag] = []
+                for i in tokenMap[srctag]:
                     try:
                         type, description = self.compound_pat.sub(compound_sub, i)
                     except:
@@ -206,7 +230,7 @@ class YUIDoc(object):
                     if mo:
                         name = mo.group(1)
                         description = mo.group(2)
-                        dict[const.PARAMS].append({  
+                        dict[desttag].append({  
                                 const.NAME:        name,
                                 const.TYPE:        type, 
                                 const.DESCRIPTION: description 
@@ -214,8 +238,7 @@ class YUIDoc(object):
                     else:
                         print "Error, could not parse param" + parsed
 
-                tokenMap.pop(const.PARAM)
-
+                tokenMap.pop(srctag)
             return dict 
  
         def parseReturn(tokenMap, dict):
@@ -295,11 +318,25 @@ it was empty" % token
                     
                 tokenMap.pop(const.FOR)
 
+
+        if const.CLASS not in tokenMap \
+            and const.METHOD not in tokenMap \
+            and const.PROPERTY not in tokenMap \
+            and const.CONSTRUCTOR not in tokenMap \
+            and const.EVENT not in tokenMap \
+            and const.CONFIG not in tokenMap \
+            and const.MODULE not in tokenMap:
+            if "guessedname" in tokenMap:
+                if "guessedtype" in tokenMap:
+                    if tokenMap["guessedtype"][0] == "function":
+                        tokenMap[const.METHOD] = tokenMap["guessedname"]
+                    else:
+                        tokenMap[const.PROPERTY] = tokenMap["guessedname"]
+        
         # The following tokens represent the core type of comment blocks that are
         # supported.  It is possible to have a comment block that does not fall into
         # one of these core categories.  It is assumed that these blocks are supplying
         # global or contextual metadata
- 
   
         if const.FILE_MARKER in tokenMap:
             if not const.FILE_MAP in self.data: self.data[const.FILE_MAP] = {}
@@ -372,6 +409,21 @@ it was empty" % token
 
             tokenMap.pop(const.METHOD)
 
+        elif const.EVENT in tokenMap:
+            c = self.data[const.CLASS_MAP][self.currentClass]
+            event = tokenMap[const.EVENT][0]
+
+            if not const.EVENTS in c: c[const.EVENTS] = {}
+            
+            if event in c[const.EVENTS]:
+                print "WARNING: %s - event %s was redefined" %(tokens, event)
+            else:
+                c[const.EVENTS][event] = parseParams(tokenMap, {})
+
+            target = c[const.EVENTS][event]
+
+            tokenMap.pop(const.EVENT)
+
         elif const.PROPERTY in tokenMap:
             c = self.data[const.CLASS_MAP][self.currentClass]
             property = tokenMap[const.PROPERTY][0]
@@ -385,14 +437,22 @@ it was empty" % token
 
             target = c[const.PROPERTIES][property]
 
-            #type = ""
-            #if const.TYPE in tokenMap:
-                #type = tokenMap[const.TYPE]
-                #tokenMap.pop(const.TYPE)
-
-            #target[const.TYPE] = type or "Object"
-
             tokenMap.pop(const.PROPERTY)
+
+        elif const.CONFIG in tokenMap:
+            c = self.data[const.CLASS_MAP][self.currentClass]
+            config = tokenMap[const.CONFIG][0]
+
+            if not const.CONFIGS in c: c[const.CONFIGS] = {}
+            
+            if config in c[const.CONFIGS]:
+                print "WARNING: %s - Property %s was redefined" %(tokens, config)
+            else:
+                c[const.CONFIGS][config] = {}
+
+            target = c[const.CONFIGS][config]
+
+            tokenMap.pop(const.CONFIG)
 
         # module blocks won't be picked up unless they are standalone
         elif const.MODULE in tokenMap:
@@ -423,7 +483,7 @@ or @property tag found.  This block may be skipped"
                     target[token] = tokenMap[token][0]
         else:
             msg = "WARNING no target, this block will be skipped"
-            print "\n" + self.currentFile + "\n" + msg + ":\n\n" + str(tokens) + "\n"
+            # print "\n" + self.currentFile + "\n" + msg + ":\n\n" + str(tokens) + "\n"
 
 def main():
     optparser = OptionParser("usage: %prog [options] inputdir1 inputdir2 etc")

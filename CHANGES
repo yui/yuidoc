@@ -1,6 +1,25 @@
 
 ChangeLog
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Version 0.0.2 (10/2/06, adamoore)
+-------------
+ - Supports @event blocks.  These blocks are similar to method blocks, but
+   they do not have @return values, and the @params refer to the signature
+   the event listeners will receive.
+
+ - Supports @config blocks.  These blocks are the same as @property blocks.
+   Configuration options are presented in a separate block from the
+   normal properties.
+
+ - @requires supported on the module splash page
+   
+ - If @method/@property is not provided in the comment block, the parser will
+   now try to guess the name and type by parsing the code following the block.
+
+ - Added @protected support.  Use for properties/methods that are intended to
+   be private for all except subclasses.
+
 Version 0.0.1 (10/2/06, adamoore)
 -------------
  - Initial revision

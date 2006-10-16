@@ -48,7 +48,14 @@ Supported Tags:
 
 @property propertyName
 
+@config configName
+    similar to @property, but separates config items from normal properties
+
 @method methodName
+
+@event
+    similar to @method, but no @return, and the @params define the signature
+    the listeners are executed with.
 
 @constructor
     Only put this if the class can be instantiated
@@ -76,8 +83,10 @@ Supported Tags:
          */
 
 @return {type} description
+    for methods
 
 @type type
+    for properties and configs
 
 @see
     This is barely supported at this point
@@ -90,14 +99,22 @@ Supported Tags:
     Allowed to exist as a singular tag, but does nothing.  Everthing is assumed 
     public unless marked private
 
+@private
+    Use to mark that the method/property should not be accessed by implementers
+    (even if it is accessible to them).  By default, privates are not present
+    in the api docs.
+
+@protected
+    Use to indicate the method/property should not be accessed by implementers
+    unless they are subclassing.
+
+@requires module1, module2
+    Supported in the @module declaration.  The comma separated list of module
+    short names will eventually be matched against a lookup table when
+    cross-linking is supported
 
 Tentative list of future tags:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-@event name {type} description
-    Type is for the various types of events we support
-
-@config name {type} description
 
 @mixes YAHOO.namespace.ClassName [method1, method2]
     I like that better than borrows or steals
@@ -105,7 +122,5 @@ Tentative list of future tags:
 @instance
     A field/method is either @static, @instance, or it belongs to the prototype
 
-@requires [module1, module2]
     To be included in the module block. Not sure about the syntax.
-
 

@@ -40,8 +40,12 @@
                 #else if $classname 
 
                     <h2>
+                        #if $access
+                            <code>$access</code> 
+                        #end if
+
                         #if $static 
-                            <code>static</code> 
+                            <code>$static</code> 
                         #end if
                             Class <b>$classname</b>
                         <span class="extends">
@@ -127,7 +131,7 @@
                             <div class="content">
                                 #for $property in $properties
                                     <h4><a name="$property.name">$property.name</a>
-                                        <code>&lt;#if $property.static#static #end if#$property.type&gt;</code>
+                                        <code>- #if $property.access#$property.access #end if##if $property.static#$property.static #end if#$property.type</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -172,7 +176,8 @@
                                         <a name="$method.name">$method.name</a></h4>
                                     <div class="detail">
                                         <code>
-                                        #if $method.static# static #end if#
+                                        #if $method.access# $method.access #end if#
+                                        #if $method.static# $method.static #end if#
                                         $method.return.type
                                             <strong>$method.name</strong>
                                             #if $method.params
@@ -242,11 +247,129 @@
                         #end for
                     #end if
 
+                    #if $events
+                        <div class="section method details">
+                            <h3><a name="methodDetails">Events</a></h3>
+                            <div class="content">
+                                #for $event in $events
+                                    <h4>
+                                        <a name="$event.name">$event.name</a></h4>
+                                    <div class="detail">
+                                        <code>
+                                        #if $event.access# $event.access #end if#
+                                        #if $event.static# $event.static #end if#
+                                            <strong>$method.name</strong>
+                                            #if $event.params
+                                                (
+                                                #set $i=0
+                                                #for $param in $event.params##if $i > 0#, #end if#
+                                                    #set $i = $i + 1
+                                                    &lt;$param.type&gt; $param.name#end for
+                                                )
+                                            #end if
+                                        </code>
+                                        
+                                        <div class="description">
+                                            $event.description
+                                        </div>
+
+                                        <div class="description">
+                                            #if $event.params
+                                                <dl>
+                                                    <dt>Parameters:</dt>
+                                                    #for $param in $event.params
+                                                        <dd>
+                                                            <code>$param.name</code> - 
+                                                            $param.description
+                                                        </dd>
+                                                    #end for
+                                                </dl>
+                                            #end if
+
+                                            #if $event.deprecated
+                                            <div class="deprecated">
+                                                <strong>Deprecated</strong> $event.deprecated
+                                            </div>        
+                                            #end if
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                #end for
+                            </div>
+                        </div>
+                    #end if
+
+
+                    #if $inherited.events
+                        #for $superclassname in $inherited.events
+                        <div class="section field inheritance">
+                            <h4>Events inherited from <a href="${superclassname}.html">$superclassname</a>:</h4>
+                            <div class="content">
+                                <code>
+                                    #set i=0
+                                    #for $event in $inherited.events[$superclassname]##if i>0#,#end if#
+                                        #set i=i+1
+                                        <a href="${superclassname}.html#$event">$event</a>#end for
+                                </code>
+                            </div>
+                        </div>
+                        #end for
+                    #end if
+
+                    #if $configs
+                        <div class="section field details">
+                            <h3><a name="field_detail">Configuration Options</a></h3>
+                            <div class="content">
+                                #for $config in $configs
+                                    <h4><a name="$config.name">$config.name</a>
+                                        <code>- #if $config.access#$config.access #end if##if $config.static#$config.static #end if#$config.type</code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description">
+                                            $config.description
+                                        </div>
+                                    </div>
+                                    <hr />
+                                #end for
+ 
+                                #if $config.deprecated
+                                <div class="deprecated">
+                                    <strong>Deprecated</strong>$config.deprecated
+                                </div>        
+                                #end if
+
+                            </div>
+                        </div>
+                    #end if
+
+                    #if $inherited.configs
+                        #for $superclassname in $inherited.configs
+                        <div class="section field inheritance">
+                            <h4>Configs inherited from <a href="${superclassname}.html">$superclassname</a>:</h4>
+                            <div class="content">
+                                <code>
+                                    #set i=0
+                                    #for $config in $inherited.configs[$superclassname]##if i>0#,#end if#
+                                        #set i=i+1
+                                        <a href="${superclassname}.html#$config">$config</a>#end for
+                                </code>
+                            </div>
+                        </div>
+                        #end for
+                    #end if
+
+
                 #else
                     <h3>Module: $modulename</h3>
                     <div class="description summary">
                         $moduledesc
                     </div>
+                    #if $requires
+                    <div class="content">
+                        Requires: $requires
+                    </div>
+                    #end if
 
                 #end if
 			</div>
@@ -295,6 +418,32 @@
                             #for $method in $methods
                                 <li><!--<code>$method.return.type</code>-->
                                 <a href="#${method.name}">$method.name</a>
+                                </li>
+                            #end for
+                        </ul>
+                    </div>
+                #end if
+
+                #if $events
+                    <div class="module">
+                        <h4>Events</h4>
+                        <ul class="content">        
+                            #for $event in $events
+                                <li>
+                                <a href="#${event.name}">$event.name</a>
+                                </li>
+                            #end for
+                        </ul>
+                    </div>
+                #end if
+
+                #if $configs
+                    <div class="module">
+                        <h4>Configuration Options</h4>
+                        <ul class="content">        
+                            #for $config in $configs
+                                <li>
+                                <a href="#${config.name}">$config.name</a>
                                 </li>
                             #end for
                         </ul>
