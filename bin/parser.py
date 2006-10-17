@@ -119,8 +119,9 @@ class YUIDoc(object):
 
     # tags that do not require a description, used by the tokenizer so that these
     # tags can be used above the block description without breaking things
-    singleTags = "constructor public private protected static"
+    singleTags = "constructor public private protected static final"
 
+    # guess the name and type of a block based upon the code following it
     guess_pat = re.compile('\s*?(var|function)?\s*?(\w+)\s*?[=:]\s*?(function)?.*', re.S)
 
     # Extracts all of the documentation comment blocks from the script
@@ -139,6 +140,7 @@ class YUIDoc(object):
         def restore_sub(mo):
             return literals[int(mo.group(1))]
 
+        # guesses name and type
         def guess_sub(mo):
             type = "property"
             print mo.group(2)
@@ -319,6 +321,7 @@ it was empty" % token
                 tokenMap.pop(const.FOR)
 
 
+        # use the guessed name and type if a block type was not found
         if const.CLASS not in tokenMap \
             and const.METHOD not in tokenMap \
             and const.PROPERTY not in tokenMap \
@@ -383,6 +386,11 @@ it was empty" % token
                 shortName, longName = self.getClassName(tokenMap["extends"][0], self.currentNamespace)
                 target["superclass"] = longName
                 
+            if "uses" in tokenMap:
+                target["uses"] = [];
+                for i in tokenMap["uses"]:
+                    shortName, longName = self.getClassName(i, self.currentNamespace)
+                    target["uses"].append(longName)
 
             ###############
             # if not const.CLASS_LIST in self.data:

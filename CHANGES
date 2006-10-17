@@ -2,7 +2,22 @@
 ChangeLog
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version 0.0.2 (10/2/06, adamoore)
+Version 0.0.4 (10/17/06, adamoore)
+-------------
+ - Added @final for constants and read-only configs
+
+ - Added @default to highlight default values for properties and configs
+
+ - Added @uses for generating YAHOO.augment inheritance info
+
+Version 0.0.3 (10/16/06, adamoore)
+-------------
+ - Method return values now show up even if you do not provide a description
+   for the return
+
+ - CSS fix for IE code view
+
+Version 0.0.2 (10/16/06, adamoore)
 -------------
  - Supports @event blocks.  These blocks are similar to method blocks, but
    they do not have @return values, and the @params refer to the signature
@@ -12,7 +27,7 @@ Version 0.0.2 (10/2/06, adamoore)
    Configuration options are presented in a separate block from the
    normal properties.
 
- - @requires supported on the module splash page
+ - @requires is supported on the module splash page
    
  - If @method/@property is not provided in the comment block, the parser will
    now try to guess the name and type by parsing the code following the block.

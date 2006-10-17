@@ -170,18 +170,114 @@ function SourceMap() {
 };
 
 
-/* JSHighLighter with JavaScriptCompressor 0.8 [www.devpro.it], thanks to Dean Edwards for idea [dean.edwards.name] */
-eval(function(A,G){return A.replace(/(\w+)/g,function(a,b){return G[parseInt(b,36)]})}("0 1(2,3){4.5=0(6,7){8 9=a,b=\n\"\"\n,c=[],d=[];6=6.e(\n/</f,\n\"&g;\"\n).e(\n/>/f,\n\"&h;\"\n);9=6.i;d=j.k(6,l);m(8 n=a,o=d.i;n<o;n++){b=6.p(d[n].q,d[n].r-d[n].q);s(d[n].t){u\n\"v\"\n:u\n\"w\"\n:b=\n\"<b x=\\\"\"\n+2.y+\n\"\\\">\"\n+b+\n\"</b>\"\n;z;u\n\"10\"\n:u\n\"11\"\n:b=\n\"<b x=\\\"\"\n+2.12+\n\"\\\">\"\n+b+\n\"</b>\"\n;z;u\n\"13\"\n:b=14(b);z;};c.15(b);};16(c.i===a)\nc.15(14(6));6=c.17(\n\"\"\n);18 !7?6:19(6,7);};0 19(6,1a){8 1b=\n\"\"\n;16(!1a||1a.1c !==1d)\n1a=1e;m(8 n=a;n<1a;n++)\n1b+=\n\"&1f;\"\n;16(\n/\\1g\\1h/.1i(6))\n6=6.e(\n/\\1g\\1h/f,\n\"\\1h\"\n);1j 16(\n/\\1g/.1i(6))\n6=6.e(\n/\\1g/f,\n\"\\1h\"\n);18 6.e(\n/\\1h/f,\n\"<1k />\"\n).e(\n/\\1l/f,1b);};0 14(6){6=6.e(\n/([\\+\\-\\*\\/=\\?!]{1m,1n}|[\\-\\+]{1m,1o})/f,\n\"<b x=\\\"\"\n+2.1p+\n\"\\\">$1m</b>\"\n).e(\n/\\o([a-1q]+)\\o/f,\n\"<b x=\\\"\"\n+2.1r+\n\"\\\">$1m</b>\"\n);16(3){m(8 n=a,o=1s.i;n<o;n++)\n6=6.e(1t 1u(1v[n],\n\"f\"\n),\n\"<b x=\\\"\"\n+1s[n]+\n\"\\\">$1m</b>\"\n);};18 6;};8 1s=[2.1w,2.1x,2.1y],l=[\n{t:\n\'11\'\n,q:\n\'\"\'\n,r:\n\'\"\'\n,1z:20},{t:\n\'10\'\n,q:\n\"\'\"\n,r:\n\"\'\"\n,1z:20},{t:\n\'v\'\n,q:\n\'//\'\n,r:[\n\'\\1h\'\n,\n\'\\1g\'\n]},{t:\n\'w\'\n,q:\n\'/*\'\n,r:\n\'*/\'\n},{t:\n\'21\'\n,q:\n\'/\'\n,r:\n\'/\'\n,22:\n/^\\/[^\\1h\\1g]+\\/$/,1z:20}\n],1v=[\n\"23|24|25|26|27|28|29|2a|2b|2c|2d|2e|2f|0|2g|2h|1t|4|2i|2j|2k|z|2l|2m|2n|2o|2p|m|16|1j|2q|2r|18|s|2s|2t|2u|8|2v|1u|2w|2x|2y|2z|30|31|1d|32|33|34\"\n,\n\"1c|35|36|37|38|39|3a|3b|3c|3d|3e|3f|3g|3h|3i|3j|3k|3l|3m|3n|3o|3p|3q|t|3r|3s|3t|3u|i|3v|3w|24|3x|3y|3z|40|41\"\n,\n\"42|1i|43|44|45|46|47|48|49|4a|4b|4c|4d|4e|4f|4g|4h|4i|4j|4k|4l|4m|4n|5|4o|4p|4q|4r|4s|4t|4u|4v|4w|4x|4y|4z|50|51|52|53|54|55|56|57|58|59|5a|5b|5c|5d|5e|5f|5g|5h|5i|5j|5k|5l|5m|5n|5o|5p|5q|5r|5s|5t|5u|15|5v|5w|5x|5y|5z|60|61|17|62|63|64|65|66|d|67|68|69|6a|6b|6c|2a|6d|6e|6f|6g|6h|6i|6j|6k|6l|6m|6n|6o|22|e|6p|6q|p|6r|6s|6t|6u|6v|6w|6x|6y|6z|70|71|72|73|74|75|76\"\n],77=[],j=1t 78();16(1s.67(0(6){18 6===25})) 1s=[];1v=1v.d(0(6){18 6.6q(\n\"|\"\n).d(0(6){18\n\"\\\\o\"\n+6+\n\"\\\\o\"\n})}).d(0(6){18\n\"(\"\n+6.17(\n\"|\"\n)+\n\")\"\n});};","function,JSHighLighter,theme,fullHighlight,this,parse,str,moreHtml,var,len,0,span,highlightSource,map,replace,g,lt,gt,length,sourceMap,getMap,jsRules,for,a,b,substr,start,end,switch,name,case,singlelinecomment,multilinecomment,class,comments,break,singlequote,doublequote,strings,code,highlightSintax,push,if,join,return,addHtml,tabs,tabchar,constructor,Number,8,nbsp,r,n,test,else,br,t,1,3,2,operators,9,numbers,jsColors,new,RegExp,jsSyntax,globals,properties,methods,noslash,true,regexp,match,Infinity,NaN,undefined,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,eval,isFinite,isNaN,parseFloat,parseInt,delete,in,instanceof,typeof,void,block,const,continue,do,while,export,import,label,throw,try,catch,with,Packages,Math,Error,Date,Array,Boolean,Object,Function,String,global,ignoreCase,lastIndex,multiline,prototype,source,className,java,netscape,sun,E,LN2,LN10,LOG2E,LOG10E,PI,SQRT1_2,SQRT2,description,fileName,lineNumber,message,number,stack,index,input,MAX_VALUE,MIN_VALUE,NEGATIVE_INFINITY,POSITIVE_INFINITY,arguments,arity,caller,exec,toSource,toString,abs,acos,asin,atan,atan2,ceil,cos,exp,floor,log,max,min,pow,random,round,sin,sqrt,tan,now,UTC,getDate,getDay,getFullYear,getHours,getMilliseconds,getMinutes,getMonth,getSeconds,getTime,getTimezoneOffset,getUTCDate,getUTCDay,getUTCFullYear,getUTCHours,getUTCMilliseconds,getUTCMinutes,getUTCMonth,getUTCSeconds,getYear,setDate,setFullYear,setHours,setMilliseconds,setMinutes,setMonth,setSeconds,setTime,setUTCDate,setUTCFullYear,setUTCHours,setUTCMilliseconds,setUTCMinutes,setUTCMonth,setUTCSeconds,setYear,toGMTString,toLocaleString,toLocaleDateString,toLocaleTimeString,toUTCString,valueOf,pop,reverse,shift,sort,splice,unshift,concat,indexOf,lastIndexOf,slice,filter,forEach,every,some,toExponential,toFixed,toPrecision,__defineGetter__,__defineSetter__,hasOwnProperty,isPrototypeOf,__lookupGetter__,__lookupSetter__,propertyIsEnumerable,unwatch,watch,apply,call,fromCharCode,charAt,charCodeAt,search,split,substring,toLowerCase,toUpperCase,anchor,big,blink,bold,fixed,fontcolor,fontsize,italics,link,small,strike,sub,sup,reminder,SourceMap".split(",")));
+// (C) Andrea Giammarchi - JSHighLighter 0.2 - http://www.devpro.it/jshighlighter/
+
+/* public constructor,
+ *	new JSHighLighter(theme:Object[, fullHighlight:Boolean])
+ * @param	Object		theme object with these keys:
+ * 					comments	// single or multiline comments span class name
+ *					strings		// strings span class name
+ *					numbers		// numbers span class name
+ *					operators	// operators span class name
+ *					globals		// OPTIONAL: global top level functions or some reserved words name
+ *					properties	// OPTIONAL: Objects properties (i.e. str.length ) name
+ *					methods		// OPTIONAL: Objects methods (i.e. str.charAt(... )
+ * @param	Boolean		if true, use full highlight
+ */
+function JSHighLighter(	// requires SourceMap.js
+	theme,
+	fullHighlight
+) {
+	/* public method,
+	 *	self.parse(source:String[, withHtml:Mixed]):String
+	 * @param	String		javascript source code to parse
+	 * @param	Mixed		Optional,
+	 * 					use <br /> and &nbsp; instead of \n, \r or \t chars
+	 * 				Boolean			use 8 &nbsp; chars for each tab
+	 *                              Unsigned Integer	use N &nbsp; chars
+	 * @return	String		Highlighted javascript source code
+	 */
+	this.parse = function(str, moreHtml) {
+		var 	len = 0, span = "", highlightSource = [], map = [];
+		str = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+		len = str.length;
+		map = sourceMap.getMap(str, jsRules);
+		for(var a = 0, b = map.length; a < b; a++) {
+			span = str.substr(map[a].start, map[a].end - map[a].start);
+			switch(map[a].name) {
+				case "singlelinecomment":
+				case "multilinecomment":
+					span = "<span class=\"" + theme.comments + "\">" + span + "</span>";
+					break;
+				case "singlequote":
+				case "doublequote":	
+					span = "<span class=\"" + theme.strings + "\">" + span + "</span>";
+					break;
+				case "code":
+					span = highlightSintax(span);
+					break;
+				
+			};
+			highlightSource.push(span);
+		};
+		if(highlightSource.length === 0)
+			highlightSource.push(highlightSintax(str));
+		str = highlightSource.join("");
+		return !moreHtml ? str : addHtml(str, moreHtml);
+	};
+	
+	/** list of all private methods */
+	function addHtml(str, tabs) {
+		var tabchar = "";
+		if(!tabs || tabs.constructor !== Number)
+			tabs = 8;
+		for(var a = 0; a < tabs; a++)
+			tabchar += "&nbsp;";
+		if(/\r\n/.test(str))
+			str = str.replace(/\r\n/g, "\n");
+		else if(/\r/.test(str))
+			str = str.replace(/\r/g, "\n");
+		return str.replace(/\n/g, "<br />").replace(/\t/g, tabchar);
+	};
+	function highlightSintax(str) {
+		str = str.replace(/([\+\-\*\/=\?!]{1,3}|[\-\+]{1,2})/g, "<span class=\"" + theme.operators + "\">$1</span>").replace(/\b([0-9]+)\b/g, "<span class=\"" + theme.numbers + "\">$1</span>");
+		if(fullHighlight) {
+			for(var a = 0, b = jsColors.length; a < b; a++)
+				str = str.replace(new RegExp(jsSyntax[a], "g"), "<span class=\"" + jsColors[a] + "\">$1</span>");
+		};
+		return str;
+	};
+	
+	/** list of all private variables */
+	var 	jsColors = [theme.globals, theme.properties, theme.methods],
+		jsRules = [
+			{name:'doublequote', start:'"', end:'"', noslash:true},
+			{name:'singlequote', start:"'", end:"'", noslash:true},
+			{name:'singlelinecomment', start:'//', end:['\n', '\r']},
+			{name:'multilinecomment', start:'/*', end:'*/'},
+			{name:'regexp', start:'/', end:'/', match:/^\/[^\n\r]+\/$/, noslash:true}
+		],
+		jsSyntax = [
+			"Infinity|NaN|undefined|decodeURI|decodeURIComponent|encodeURI|encodeURIComponent|eval|isFinite|isNaN|parseFloat|parseInt|delete|function|in|instanceof|new|this|typeof|void|block|break|const|continue|do|while|export|for|if|else|import|label|return|switch|throw|try|catch|var|with|RegExp|Packages|Math|Error|Date|Array|Boolean|Number|Object|Function|String",
+			"constructor|global|ignoreCase|lastIndex|multiline|prototype|source|className|java|netscape|sun|E|LN2|LN10|LOG2E|LOG10E|PI|SQRT1_2|SQRT2|description|fileName|lineNumber|message|name|number|stack|index|input|length|MAX_VALUE|MIN_VALUE|NaN|NEGATIVE_INFINITY|POSITIVE_INFINITY|arguments|arity|caller",
+			"exec|test|toSource|toString|abs|acos|asin|atan|atan2|ceil|cos|exp|floor|log|max|min|pow|random|round|sin|sqrt|tan|now|parse|UTC|getDate|getDay|getFullYear|getHours|getMilliseconds|getMinutes|getMonth|getSeconds|getTime|getTimezoneOffset|getUTCDate|getUTCDay|getUTCFullYear|getUTCHours|getUTCMilliseconds|getUTCMinutes|getUTCMonth|getUTCSeconds|getYear|setDate|setFullYear|setHours|setMilliseconds|setMinutes|setMonth|setSeconds|setTime|setUTCDate|setUTCFullYear|setUTCHours|setUTCMilliseconds|setUTCMinutes|setUTCMonth|setUTCSeconds|setYear|toGMTString|toLocaleString|toLocaleDateString|toLocaleTimeString|toUTCString|valueOf|pop|push|reverse|shift|sort|splice|unshift|concat|indexOf|join|lastIndexOf|slice|filter|forEach|every|map|some|toExponential|toFixed|toPrecision|__defineGetter__|__defineSetter__|eval|hasOwnProperty|isPrototypeOf|__lookupGetter__|__lookupSetter__|propertyIsEnumerable|unwatch|watch|apply|call|fromCharCode|charAt|charCodeAt|match|replace|search|split|substr|substring|toLowerCase|toUpperCase|anchor|big|blink|bold|fixed|fontcolor|fontsize|italics|link|small|strike|sub|sup"
+		],
+		reminder = [],
+		sourceMap = new SourceMap();
+	
+	if(jsColors.some(function(str){return str === undefined})) jsColors = [];
+	jsSyntax = jsSyntax.map(function(str){return str.split("|").map(function(str){return "\\b" + str + "\\b"})}).map(function(str){return  "(" + str.join("|") + ")"});
+};
 
 // theme Object defines wich classes parser should use
 var theme = {
-	"comments":"jshcomments",	// single or multiline comments span class
-	"strings":"jshstrings",		// strings span class
-	"numbers":"jshnumbers",		// numbers span class
-	"operators":"jshoperators",	// operators span class
-	"globals":"jshglobals",		// OPTIONAL: global top level functions or some reserved words
-	"properties":"jshproperties",	// OPTIONAL: Objects properties (i.e. str.length )
-	"methods":"jshmethods"		// OPTIONAL: Objects methods (i.e. str.charAt(... )
+	"comments":"apicomments",	// single or multiline comments span class
+	"strings":"apistrings",		// strings span class
+	"numbers":"apinumbers",		// numbers span class
+	"operators":"apioperators",	// operators span class
+	"globals":"apiglobals",		// OPTIONAL: global top level functions or some reserved words
+	"properties":"apiproperties",	// OPTIONAL: Objects properties (i.e. str.length )
+	"methods":"apimethods"		// OPTIONAL: Objects methods (i.e. str.charAt(... )
 },
 
 // JSHighLighter with full sintax (strings, numbers, operators, comments, globals, properties, methods)
@@ -189,4 +285,5 @@ JSHFull = new JSHighLighter(theme, true),
 
 // JSHighLighter with basic highlight (strings, numbers, operators, comments)
 JSHFast = new JSHighLighter(theme);
+
 

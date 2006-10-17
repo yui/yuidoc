@@ -61,7 +61,11 @@ Supported Tags:
     Only put this if the class can be instantiated
 
 @static
+    For classes, methods, properties, etc ...
     Probably should have either @constructor or @static in the @class block
+
+@final
+    for constants (properties and read-only configs)
 
 @param {type} name description    -or-
 @param name {type} description
@@ -91,9 +95,9 @@ Supported Tags:
 @see
     This is barely supported at this point
 
-@deprecated instructions
-    The instructions do not need to be provided, but the parser will warn if 
-    you do not provide it.
+@deprecated explaination
+    The explaination does not need to be provided, but the parser will warn if 
+    you don't.  Usually you'll want to say what to use instead
 
 @public
     Allowed to exist as a singular tag, but does nothing.  Everthing is assumed 
@@ -113,11 +117,15 @@ Supported Tags:
     short names will eventually be matched against a lookup table when
     cross-linking is supported
 
+@default
+    The default value of a property or config
+
+@uss YAHOO.namespace.ClassName [method1, method2]
+    For classes that use YAHOO.augment
+    The optional method/properties are not supported yet
+
 Tentative list of future tags:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-@mixes YAHOO.namespace.ClassName [method1, method2]
-    I like that better than borrows or steals
 
 @instance
     A field/method is either @static, @instance, or it belongs to the prototype

@@ -11,6 +11,7 @@ a:visited { color: #003399;}
 #doc dl { margin: 2px 0; }
 #doc dd { margin-left: 20px; }
 #doc .requires dt { font-style: italic; }
+#doc .default { margin-top:6px; }
 #doc .deprecated { margin-top:4px; padding:4px; background-color: #EFECCA }
 #doc .deprecated strong { color:#441054; }
 #doc code, pre {font-size:85%}
@@ -47,11 +48,13 @@ a:visited { color: #003399;}
 #doc .inheritance h4 { font-size: 100%;}
 
 #srcin { display:none }
-#srcout { padding: 4px; font-size: 85%; background-color: #fafafa; border: 1px solid silver; overflow: auto; } 
-span.jshcomments { color: green; }
-span.jshstrings { color: #800000; }
-span.jshnumbers { color: #F00; }
-span.jshoperators { color: blue; }
-span.jshglobals { color: #4040ff; }
-span.jshproperties { color: #000; }
-span.jshmethods { color: #00A; }
+#srcout {padding: 4px; font-size: 85%; background-color: #fafafa; border: 1px solid silver; overflow: auto; } 
+*html #srcout { width: 540px} 
+span.apicomments { color: green; }
+span.apistrings { color: #800000; }
+span.apinumbers { color: #F00; }
+span.apioperators { color: blue; }
+span.apiglobals { color: #4040ff; }
+span.apiproperties { color: #000; }
+span.apimethods { color: #00A; }
+

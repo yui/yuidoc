@@ -105,6 +105,7 @@ class YUIDocGen(object):
             template.events  = ""
             template.configs = ""
             template.extends = ""
+            template.uses   = ""
 
         def transferToTemplate(prop, dict, template):
             val = ""
@@ -130,7 +131,7 @@ class YUIDocGen(object):
             # get inherited data
             supercname = superc["name"]
             if "properties" in superc:
-                inhdef = inherited["properties"][supercname] = []
+                inhdef = dict["properties"][supercname] = []
                 keys = superc["properties"].keys()
                 keys.sort()
                 for prop in keys:
@@ -138,7 +139,7 @@ class YUIDocGen(object):
                     if self.showprivate or "private" not in superprop:
                         inhdef.append(prop)
             if "methods" in superc:
-                inhdef = inherited["methods"][supercname] = []
+                inhdef = dict["methods"][supercname] = []
                 keys = superc["methods"].keys()
                 keys.sort()
                 for method in keys:
@@ -146,7 +147,7 @@ class YUIDocGen(object):
                     if self.showprivate or "private" not in supermethod:
                         inhdef.append(method)
             if "events" in superc:
-                inhdef = inherited["events"][supercname] = []
+                inhdef = dict["events"][supercname] = []
                 keys = superc["events"].keys()
                 keys.sort()
                 for event in keys:
@@ -154,7 +155,7 @@ class YUIDocGen(object):
                     if self.showprivate or "private" not in superevent:
                         inhdef.append(event)
             if "configs" in superc:
-                inhdef = inherited["configs"][supercname] = []
+                inhdef = dict["configs"][supercname] = []
                 keys = superc["configs"].keys()
                 keys.sort()
                 for config in keys:
@@ -166,6 +167,11 @@ class YUIDocGen(object):
                 supercname = superc["extends"]
                 if supercname in classes:
                     getPropsFromSuperclass(classes[supercname], classes, dict)
+
+            if "uses" in superc:
+                for supercname in superc["uses"]:
+                    if supercname in classes:
+                        getPropsFromSuperclass(classes[supercname], classes, dict)
 
         # copy the json file
         jsonname = self.cleansedmodulename + ".json"
@@ -193,12 +199,14 @@ class YUIDocGen(object):
             c = classes[i]
 
             # template items that need default vaules even if not included
-            transferToTemplate( "see", c, t, )
-            transferToTemplate( "deprecated", c, t, )
-            transferToTemplate( "description", c, t, )
-            transferToTemplate( "static", c, t, )
+            transferToTemplate( "see", c, t )
+            transferToTemplate( "deprecated", c, t )
+            transferToTemplate( "description", c, t )
+            transferToTemplate( "static", c, t )
             if "static" in c: t.static = "static"
-            transferToTemplate( "access", c, t, )
+            transferToTemplate( "final", c, t )
+            if "final" in c: t.final = "final"
+            transferToTemplate( "access", c, t )
             if "private" in c: t.access = "private"
             elif "protected" in c: t.access = "protected"
 
@@ -222,10 +230,14 @@ class YUIDocGen(object):
                         propdata = {"name": propertykey}
                         transferToDict( "type",        prop, propdata, "Object" )
                         transferToDict( "description", prop, propdata           )
+                        transferToDict( "default",     prop, propdata           )
+                        transferToDict( "deprecated",  prop, propdata, "&nbsp;", True )
                         transferToDict( "deprecated",  prop, propdata, "&nbsp;", True )
                         transferToDict( "see",         prop, propdata           )
                         transferToDict( "static",      prop, propdata           )
                         if "static" in prop: propdata["static"] = "static"
+                        transferToDict( "final",      prop, propdata           )
+                        if "final" in prop: propdata["final"] = "final"
                         transferToDict( "access",   prop, propdata           )
                         if "private" in prop: propdata["access"] = "private"
                         elif "protected" in prop: propdata["access"] = "protected"
@@ -242,10 +254,13 @@ class YUIDocGen(object):
                         configdata = {"name": configkey}
                         transferToDict( "type",        config, configdata, "Object" )
                         transferToDict( "description", config, configdata           )
+                        transferToDict( "default", config, configdata           )
                         transferToDict( "deprecated",  config, configdata, "&nbsp;", True )
                         transferToDict( "see",         config, configdata           )
                         transferToDict( "static",      config, configdata           )
                         if "static" in config: configdata["static"] = "static"
+                        transferToDict( "final",      config, configdata           )
+                        if "final" in config: configdata["final"] = "final"
                         transferToDict( "access",   config, configdata           )
                         if "private" in config: configdata["access"] = "private"
                         elif "protected" in config: configdata["access"] = "protected"
@@ -265,6 +280,8 @@ class YUIDocGen(object):
                         transferToDict( "see",         method, methoddata )
                         transferToDict( "static",      method, methoddata )
                         if "static" in method: methoddata["static"] = "static"
+                        transferToDict( "final",      method, methoddata )
+                        if "final" in method: methoddata["final"] = "final"
                         transferToDict( "access",      method, methoddata )
                         if "private" in method: methoddata["access"] = "private"
                         elif "protected" in method: methoddata["access"] = "protected"
@@ -300,6 +317,8 @@ class YUIDocGen(object):
                         transferToDict( "see",         event, eventdata )
                         transferToDict( "static",      event, eventdata )
                         if "static" in event: eventdata["static"] = "static"
+                        transferToDict( "final",      event, eventdata )
+                        if "final" in event: eventdata["final"] = "final"
                         transferToDict( "access",      event, eventdata )
                         if "private" in event: eventdata["access"] = "private"
                         elif "protected" in event: eventdata["access"] = "protected"
@@ -324,7 +343,13 @@ class YUIDocGen(object):
                 if supercname in classes:
                     superc = classes[supercname]
                     getPropsFromSuperclass(superc, classes, inherited)
-                
+
+            if "uses" in c:
+                for supercname in c["uses"]:
+                    t.uses = c["uses"]
+                    if supercname in classes:
+                        superc = classes[supercname]
+                        getPropsFromSuperclass(superc, classes, inherited)
 
             # Constructor -- technically the parser can take multiple constructors
             # but that does't help here

@@ -33,26 +33,40 @@
                     <pre id="srcout"></pre>
                     <script type="text/javascript">
                         var block = document.getElementById("srcin");
-                        var src = block.value.replace(/^\s*|\s*$/, "")
+                        var src = block.value;
+                        //src = src.replace(/^\s*|\s*$/, "")
                         src = JSHFast.parse(src, true);
-                        document.getElementById("srcout").innerHTML = src;
+                        var el = document.getElementById("srcout");
+                        if (el.outerHTML) {
+                            el.outerHTML = "<pre id=\"srcout\">" + src + "</pre>";
+                        } else {
+                            el.innerHTML = src;
+                        }
                     </script>
                 #else if $classname 
 
                     <h2>
-                        #if $access
-                            <code>$access</code> 
-                        #end if
+                        #if $access#<code>$access</code>#end if#
 
-                        #if $static 
-                            <code>$static</code> 
-                        #end if
+                        #if $static#<code>$static</code>#end if#
+                        #if $final#<code>$final</code>#end if#
                             Class <b>$classname</b>
                         <span class="extends">
                         #if $extends
-                            extends <a href="${extends}.html">$extends</a>
+                           - extends <a href="${extends}.html">$extends</a>
                         #end if
                         </span>
+
+                        <span class="extends">
+                        #if $uses
+                          - uses 
+                            #set $i=0
+                            #for $provider in $uses##if $i > 0#, #end if#
+                                <a href="${provider}.html">$provider</a>#set $i=$i+1##end for#
+                            
+                        #end if
+                        </span>
+                        
                         </code>
                     </h2>
                     <!-- class tree goes here -->
@@ -131,21 +145,30 @@
                             <div class="content">
                                 #for $property in $properties
                                     <h4><a name="$property.name">$property.name</a>
-                                        <code>- #if $property.access#$property.access #end if##if $property.static#$property.static #end if#$property.type</code>
+                                        <code>- #if $property.access#$property.access #end if##if $property.static#$property.static #end if##if $property.final#$property.final #end if#$property.type</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
                                             $property.description
                                         </div>
                                     </div>
+     
+                                        
+                                    #if $property.default
+                                    <div class="default">
+                                        Default Value: $property.default
+                                    </div>        
+                                    #end if
+
+                                     #if $property.deprecated
+                                    <div class="deprecated">
+                                        <strong>Deprecated: </strong>$property.deprecated
+                                    </div>        
+                                    #end if
+
                                     <hr />
                                 #end for
- 
-                                #if $property.deprecated
-                                <div class="deprecated">
-                                    <strong>Deprecated</strong>$property.deprecated
-                                </div>        
-                                #end if
+
 
                             </div>
                         </div>
@@ -178,6 +201,7 @@
                                         <code>
                                         #if $method.access# $method.access #end if#
                                         #if $method.static# $method.static #end if#
+                                        #if $method.final# $method.final #end if#
                                         $method.return.type
                                             <strong>$method.name</strong>
                                             #if $method.params
@@ -207,7 +231,7 @@
                                                 </dl>
                                             #end if
 
-                                            #if $method.return.description
+                                            #if $method.return.type
                                                 <dl>
                                                     <dt>Returns:
                                                     <code>
@@ -258,6 +282,7 @@
                                         <code>
                                         #if $event.access# $event.access #end if#
                                         #if $event.static# $event.static #end if#
+                                        #if $event.final# $event.final #end if#
                                             <strong>$method.name</strong>
                                             #if $event.params
                                                 (
@@ -323,7 +348,7 @@
                             <div class="content">
                                 #for $config in $configs
                                     <h4><a name="$config.name">$config.name</a>
-                                        <code>- #if $config.access#$config.access #end if##if $config.static#$config.static #end if#$config.type</code>
+                                        <code>- #if $config.access#$config.access #end if##if $config.static#$config.static #end if##if $config.final#$config.final #end if#$config.type</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">
@@ -336,6 +361,12 @@
                                 #if $config.deprecated
                                 <div class="deprecated">
                                     <strong>Deprecated</strong>$config.deprecated
+                                </div>        
+                                #end if
+ 
+                                #if $config.default
+                                <div class="default">
+                                    Default Value: $config.default
                                 </div>        
                                 #end if
 
