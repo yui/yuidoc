@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ''' A class to parse Javadoc style comments out of javascript to document 
     an API. It is designed to parse one module at a time ''' 
-import os, re, simplejson, string
+import os, re, simplejson, string, sys
 import const
 from cStringIO import StringIO 
 from optparse import OptionParser
@@ -50,7 +50,6 @@ class YUIDoc(object):
             return dircontent
 
         # An array containing each comment block
-        self.matches = []
         
         # the remainder of the file with the comment blocks removed
         # self.stripped = ""
@@ -58,24 +57,29 @@ class YUIDoc(object):
         # Dictionary of parsed data
         self.data = { const.CLASS_MAP: {}, const.MODULES: {} }
 
-        self.currentNamespace = ""
-        self.currentModule    = ""
-        self.currentFile      = ""
-        self.blocks = []
         self.inputdirs = inputdirs
         self.outputdir = os.path.abspath(outputdir)
         _mkdir(self.outputdir)
         self.extension = extension
         self.script=""
+        self.deferredModuleClasses=[]
+        self.deferredModuleFiles=[]
+
+        print "-------------------------------------------------------"
 
         for i in inputdirs: 
+            self.currentClass     = ""
+            self.currentNamespace = ""
+            self.currentModule    = ""
+            self.currentFile      = ""
+            self.blocks = []
+            self.matches = []
             path = os.path.abspath(i)
-            self.script += parseDir(path)
+            self.script = parseDir(path)
+            self.extract()
 
-        self.extract()
-
-        for match in self.matches:
-            self.parse(self.tokenize(match))
+            for match in self.matches:
+                self.parse(self.tokenize(match))
             
 
         out = open(os.path.join(self.outputdir, outputfile), "w")
@@ -283,7 +287,11 @@ it was empty" % token
 
                 # There are key pieces of info we need to have before we 
                 # can properly set up the documemtation for this block
-                if token == const.MODULE: self.currentModule    = desc
+                if token == const.MODULE: 
+                    if desc:
+                        self.currentModule = desc
+                    else:
+                        print "no name for module"
 
             else:
                 # the first block without a description should be the description
@@ -343,12 +351,20 @@ it was empty" % token
   
         if const.FILE_MARKER in tokenMap:
             if not const.FILE_MAP in self.data: self.data[const.FILE_MAP] = {}
-            #if not const.FILE_LIST in self.data: self.data[const.FILE_LIST] = []
             self.currentFile = desc
             file_name = tokenMap[const.FILE_MARKER][0]
             target = { "name": file_name, const.CLASS_LIST:[] }
             self.data[const.FILE_MAP][file_name] = target
-            # self.data[const.FILE_LIST].append(target)
+
+ 
+            if self.currentModule:
+                target[const.MODULE] = self.currentModule
+                self.data[const.MODULES][self.currentModule][const.FILE_LIST].append(file_name)
+            else:
+                """ defer the module assignment until we find the token """
+                self.deferredModuleFiles.append(file_name);
+
+
             tokenMap.pop(const.FILE_MARKER)
 
         elif const.CLASS in tokenMap:
@@ -374,8 +390,12 @@ it was empty" % token
                 target["innerClasses"].append(currentFor)
  
             if self.currentModule:
+                
                 target[const.MODULE] = self.currentModule
                 self.data[const.MODULES][self.currentModule][const.CLASS_LIST].append(longName)
+            else:
+                """ defer the module assignment until we find the token """
+                self.deferredModuleClasses.append(longName);
 
             if self.currentFile:
                 target[const.FILE] = self.currentFile
@@ -402,6 +422,10 @@ it was empty" % token
             tokenMap.pop(const.CLASS)
                 
         elif const.METHOD in tokenMap:
+            if not self.currentClass:
+                print "Error: @method tag found before @class was found.\n****\n"
+                sys.exit()
+
             c = self.data[const.CLASS_MAP][self.currentClass]
             method = tokenMap[const.METHOD][0]
 
@@ -418,6 +442,10 @@ it was empty" % token
             tokenMap.pop(const.METHOD)
 
         elif const.EVENT in tokenMap:
+            if not self.currentClass:
+                print "Error: @event tag found before @class was found.\n****\n"
+                sys.exit()
+
             c = self.data[const.CLASS_MAP][self.currentClass]
             event = tokenMap[const.EVENT][0]
 
@@ -433,6 +461,11 @@ it was empty" % token
             tokenMap.pop(const.EVENT)
 
         elif const.PROPERTY in tokenMap:
+
+            if not self.currentClass:
+                print "Error: @property tag found before @class was found.\n****\n"
+                sys.exit()
+
             c = self.data[const.CLASS_MAP][self.currentClass]
             property = tokenMap[const.PROPERTY][0]
 
@@ -448,6 +481,11 @@ it was empty" % token
             tokenMap.pop(const.PROPERTY)
 
         elif const.CONFIG in tokenMap:
+
+            if not self.currentClass:
+                print "Error: @config tag found before @class was found.\n****\n"
+                sys.exit()
+
             c = self.data[const.CLASS_MAP][self.currentClass]
             config = tokenMap[const.CONFIG][0]
 
@@ -464,9 +502,27 @@ it was empty" % token
 
         # module blocks won't be picked up unless they are standalone
         elif const.MODULE in tokenMap:
-            module = tokenMap[const.MODULE][0]
             if not const.MODULES in self.data: self.data[const.MODULES] = {}
-            target = self.data[const.MODULES][module] = { "name": module, const.CLASS_LIST: []}
+            for module in tokenMap[const.MODULE]:
+                target = self.data[const.MODULES][module] = { "name": module, const.CLASS_LIST: [], const.FILE_LIST: []}
+
+            if len(self.deferredModuleFiles) > 0:
+                for i in self.deferredModuleFiles:
+                    self.data[const.FILE_MAP][i][const.MODULE] = self.currentModule
+                    self.data[const.MODULES][self.currentModule][const.FILE_LIST].append(i)
+
+                self.deferredModuleFiles = []
+
+            if len(self.deferredModuleClasses) > 0:
+                for i in self.deferredModuleClasses:
+                    self.data[const.CLASS_MAP][i][const.MODULE] = self.currentModule
+                    self.data[const.MODULES][self.currentModule][const.CLASS_LIST].append(i)
+
+                self.deferredModuleClasses = []
+
+            # if "title" in tokenMap:
+                # target["title"] = tokenMap["title"][0]
+                
             tokenMap.pop(const.MODULE)
 
         else:
@@ -478,6 +534,11 @@ or @property tag found.  This block may be skipped"
         # multiple constructors can be supported even though that is out of scope
         # for documenting javascript
         if const.CONSTRUCTOR in tokenMap:
+
+            if not self.currentClass:
+                print "Error: @constructor tag found but @class was not found.\n****\n"
+                sys.exit(1)
+
             c = self.data[const.CLASS_MAP][self.currentClass]
             if not const.CONSTRUCTORS in c: c[const.CONSTRUCTORS] = []
             constructor = parseParams(tokenMap, { const.DESCRIPTION: tokenMap[const.DESCRIPTION][0] })

@@ -2,6 +2,40 @@
 ChangeLog
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Version 0.0.5 (10/23/06, adamoore)
+-------------
+ - Now supports multiple source trees.  Each source tree is treated as a separate
+   module, and as long as each tree has a @module block, it will generate
+   the docs correctly for each block and handle inheritance info across modules.
+   Note: if you do not include a module block, the class documentation won't be
+   generated.
+
+ - index.html is now a landing page for the documentation for the entire library.
+   The current landing page is a placeholder until we come up with something
+   good.
+
+ - The module name is now expected to be the short name corresponding to the
+   directory your module lives in.  @module now has an additional @title
+   tag that you can use to specify the friendly name for the module that shows
+   in the documentation.  For example:
+
+    /**
+     * The Slider component is a UI control that enables the user to adjust 
+     * values in a finite range along one or two axes.
+     *
+     * @module    slider
+     * @title     Slider Widget
+     * @namespace YAHOO.widget
+     * @requires  yahoo,dom,dragdrop,event
+     * @optional  animation
+     */
+
+ - generator.py now accepts a -s option for showing privates.
+
+ - static properties/methods/etc no longer show up in the inheritance sections
+
+ - Fixed the output for events
+
 Version 0.0.4 (10/17/06, adamoore)
 -------------
  - Added @final for constants and read-only configs

@@ -18,11 +18,14 @@ a:visited { color: #003399;}
 
 /* undo reset.css styles for description block formatting */
 #doc .description ul { padding: 10px 0 10px 28px; font-size: 90%; list-style: disc}
+#doc .description p { padding-bottom: 10px}
+#doc .description strong { font-weight: bold;}
 #doc pre { padding: 10px;}
 
-#doc .summary { margin: 10px 0 10px 0; padding:10px; border: 1px solid #cccccc; background-color: #eeeeee; }
+#doc .summary { margin: 0px 0 10px 0; padding:10px; border: 1px solid #cccccc; background-color: #eeeeee; }
 #doc .extends {font-weight: normal; font-size: 90%}
 
+#doc .nav {min-height: 400px;}
 #doc .nav .module { background: #EEEEEE; margin: 0 0 15px 0; padding: 0; overflow:hidden}
 #doc .nav .module h4 { padding: 3px 5px; border-bottom: #947DB2 1px solid; }
 #doc .nav .module h4 A { color: #000; text-decoration: none; }
