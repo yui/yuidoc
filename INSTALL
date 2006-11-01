@@ -16,6 +16,12 @@ setuptools
     cd setuptools-0.6c3
     sudo python setup.py install
 
+pygments
+    cd ext
+    tar xfvz pygments.tar.gz
+    cd pygments
+    sudo python setup.py install
+
 simplejson
     cd ext
     tar xfvz simplejson-1.4.tar.gz
@@ -26,10 +32,10 @@ cheetah
     cd ext
     tar xfvz Cheetah-2.0rc7.tar.gz
     cd Cheetah-2.0rc7
-    sudo setup.py install
+    sudo python setup.py install
 
-Get yuidoc: http://produce.yahoo.com/adamoore/yuidoc_0.0.1.zip
-Extract yuidoc_0.0.1.zip
+Get yuidoc: http://produce.yahoo.com/adamoore/yuidoc_0.0.6.zip
+Extract yuidoc_0.0.6.zip
 
 Make a copy of yuidoc/bin/example.sh and modify the paths to suit your needs.
 
@@ -58,8 +64,8 @@ OR
 
 In either case, add C:\python24 to your PATH
 
-Get yuidoc: http://produce.yahoo.com/adamoore/yuidoc_0.0.1.zip
-Extract yuidoc_0.0.1.zip
+Get yuidoc: http://produce.yahoo.com/adamoore/yuidoc_0.0.6.zip
+Extract yuidoc_0.0.6.zip
 
 Copy yuidoc\bin\example.bat and modify the paths to suit your needs
 

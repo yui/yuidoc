@@ -22,42 +22,5 @@ REM The location of the template files.  Any subdirectories here will be copied
 REM verbatim to the destination directory.
 SET template="%yuidoc_home%\template"
 
-REM The location of the crosslink data (not currently used)
-SET crosslink="%yuidoc_home%\crosslink"
+%yuidoc_home%\bin\yuidoc.py %parser_in% -p %parser_out% -o %generator_out% -t %template%
 
-REM ##########################################################################
-REM # usage: parser.py [options] inputdir1 inputdir2 etc
-REM #
-REM # options:
-REM # -oOUTPUTDIR, --outputdir=OUTPUTDIR
-REM #       Directory to write the parser results
-REM # -fOUTPUTFILE, --file=OUTPUTFILE
-REM #       The name of the file to write the JSON output
-REM # -eEXTENSION, --extension=EXTENSION
-REM #       The extension for the files that should be parsed
-REM ##########################################################################
-
-%yuidoc_home%\bin\parser.py %parser_in% -o %parser_out%
-
-IF ERRORLEVEL 1 GOTO END
-
-REM ##########################################################################
-REM # usage: generator.py inputdir [options]
-REM # 
-REM # options:
-REM # -oOUTPUTDIR, --outputdir=OUTPUTDIR
-REM #       Directory to write the html documentation
-REM # -fINPUTFILE, --file=INPUTFILE
-REM #       The name of the file that contains the JSON doc info
-REM # -tTEMPLATEDIR, --temlate=TEMPLATEDIR
-REM #       The directory containing the html tmplate
-REM # -cCROSSLINKDIR, --crosslink=CROSSLINKDIR
-REM #       The directory containing json data for other modules to crosslink
-REM # -s, --showprivate     
-REM #       Should private properties/methods be in the docs?
-REM ##########################################################################
-
-%yuidoc_home%\bin\generator.py %parser_out% -o %generator_out% -t %template% -c %crosslink%
-
-
-:END

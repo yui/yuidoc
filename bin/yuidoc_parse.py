@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 ''' A class to parse Javadoc style comments out of javascript to document 
     an API. It is designed to parse one module at a time ''' 
-import os, re, simplejson, string, sys
+import os, re, simplejson, string, sys, pprint
 import const
 from cStringIO import StringIO 
 from optparse import OptionParser
 
-class YUIDoc(object):
+class DocParser(object):
 
     def __init__(self, inputdirs, outputdir, outputfile, extension):
 
@@ -112,14 +112,15 @@ class YUIDoc(object):
     # the pattern used to split a comment block to create our token stream
     # this will currently break if there are ampersands in the comments if there
     # is a space before it
-    tokenize_pat = re.compile('^\s?(@\w\w\w*)', re.M);
+    tokenize_pat = re.compile('^\s?(@\w\w*)', re.M);
 
     # separates compound descriptions: @param foo {int} a foo -> int, foo a foo
     # also:                            @param {int} foo a foo -> int, foo a foo
     compound_pat = re.compile('^\s*?(.*?)\{(.*)\}(.*)|^\s*?(\w+)(.*)', re.S);
 
     # pulls out the first word of the description parsed by compound_pat: foo, a foo
-    param_pat = re.compile('^\s*?(\w+)(.*)', re.S);
+    # param_pat = re.compile('^\s*?(\w+)(.*)', re.S);
+    param_pat = re.compile('^\s*?([^\s]+)(.*)', re.S);
 
     # tags that do not require a description, used by the tokenizer so that these
     # tags can be used above the block description without breaking things
@@ -146,10 +147,10 @@ class YUIDoc(object):
 
         # guesses name and type
         def guess_sub(mo):
-            type = "property"
-            print mo.group(2)
+            type = const.PROPERTY
+            #print mo.group(2)
             if mo.group(1) or mo.group(3):
-                type = "function"
+                type = const.FUNCTION
 
             self.guessedtype = type
             self.guessedname = mo.group(2) 
@@ -171,12 +172,12 @@ class YUIDoc(object):
                     nextline = match.group(4)
                     mo = self.guess_pat.search(nextline)
                     if mo:
-                        type = "property"
-                        if string.find(nextline, "function") > 0:
-                            type = "function"
+                        type = const.PROPERTY
+                        if string.find(nextline, const.FUNCTION) > 0:
+                            type = const.FUNCTION
 
-                        block += "@guessedtype " + type + "\n"
-                        block += "@guessedname " + mo.group(2) + "\n"
+                        block += "@" + const.GUESSEDTYPE + " " + type + "\n"
+                        block += "@" + const.GUESSEDNAME + " " + mo.group(2) + "\n"
 
                 if len(block) > 0:
                     self.matches.append(block)
@@ -229,8 +230,8 @@ class YUIDoc(object):
                     try:
                         type, description = self.compound_pat.sub(compound_sub, i)
                     except:
-                        print i, tokenMap[i]
-                        raise 
+                        print "\nError, a parameter could not be parsed:\n\n %s\n\n %s\n" %(i, pprint.pformat(tokenMap))
+                        sys.exit()
 
                     mo = self.param_pat.match(description)
                     if mo:
@@ -242,14 +243,20 @@ class YUIDoc(object):
                                 const.DESCRIPTION: description 
                             })
                     else:
-                        print "Error, could not parse param" + parsed
+                        print "Error, could not parse param -- %s, %s --" %(type, description)
 
                 tokenMap.pop(srctag)
             return dict 
  
         def parseReturn(tokenMap, dict):
             if const.RETURN in tokenMap:
-                type, description = self.compound_pat.sub(compound_sub, tokenMap[const.RETURN][0])
+                ret = tokenMap[const.RETURN][0]
+                try:
+                    type, description = self.compound_pat.sub(compound_sub, ret)
+                except:
+                    print "\nError, a return statement could not be parsed:\n\n %s\n\n %s\n" %(ret, pprint.pformat(tokenMap))
+                    sys.exit()
+
                 dict[const.RETURN] = { const.TYPE: type , const.DESCRIPTION: description }
                 tokenMap.pop(const.RETURN)
             return dict
@@ -337,23 +344,51 @@ it was empty" % token
             and const.EVENT not in tokenMap \
             and const.CONFIG not in tokenMap \
             and const.MODULE not in tokenMap:
-            if "guessedname" in tokenMap:
-                if "guessedtype" in tokenMap:
-                    if tokenMap["guessedtype"][0] == "function":
-                        tokenMap[const.METHOD] = tokenMap["guessedname"]
+            if const.GUESSEDNAME in tokenMap:
+                if const.GUESSEDTYPE in tokenMap:
+                    if tokenMap[const.GUESSEDTYPE][0] == const.FUNCTION:
+                        tokenMap[const.METHOD] = tokenMap[const.GUESSEDNAME]
                     else:
-                        tokenMap[const.PROPERTY] = tokenMap["guessedname"]
+                        tokenMap[const.PROPERTY] = tokenMap[const.GUESSEDNAME]
         
         # The following tokens represent the core type of comment blocks that are
         # supported.  It is possible to have a comment block that does not fall into
         # one of these core categories.  It is assumed that these blocks are supplying
         # global or contextual metadata
-  
+
+        def parseModule(tokenMap):
+            target = None
+            if not const.MODULES in self.data: self.data[const.MODULES] = {}
+            for module in tokenMap[const.MODULE]:
+                self.data[const.MODULES][module] = { const.NAME: module, const.CLASS_LIST: [], const.FILE_LIST: []}
+                target = self.data[const.MODULES][module]
+
+            if const.DESCRIPTION in tokenMap:
+                target[const.DESCRIPTION] = tokenMap[const.DESCRIPTION][0]
+
+            if len(self.deferredModuleFiles) > 0:
+                for i in self.deferredModuleFiles:
+                    self.data[const.FILE_MAP][i][const.MODULE] = self.currentModule
+                    self.data[const.MODULES][self.currentModule][const.FILE_LIST].append(i)
+
+                self.deferredModuleFiles = []
+
+            if len(self.deferredModuleClasses) > 0:
+                for i in self.deferredModuleClasses:
+                    self.data[const.CLASS_MAP][i][const.MODULE] = self.currentModule
+                    self.data[const.MODULES][self.currentModule][const.CLASS_LIST].append(i)
+
+                self.deferredModuleClasses = []
+
+            tokenMap.pop(const.MODULE)
+
+            return target, tokenMap
+
         if const.FILE_MARKER in tokenMap:
             if not const.FILE_MAP in self.data: self.data[const.FILE_MAP] = {}
             self.currentFile = desc
             file_name = tokenMap[const.FILE_MARKER][0]
-            target = { "name": file_name, const.CLASS_LIST:[] }
+            target = { const.NAME: file_name, const.CLASS_LIST:[] }
             self.data[const.FILE_MAP][file_name] = target
 
  
@@ -368,16 +403,22 @@ it was empty" % token
             tokenMap.pop(const.FILE_MARKER)
 
         elif const.CLASS in tokenMap:
+
             name = tokenMap[const.CLASS][0]
+
+            if const.MODULE in tokenMap:
+                target, tokenMap = parseModule(tokenMap)
+
             if self.currentNamespace:
                 shortName, longName = self.getClassName(name, self.currentNamespace)
             else:
                 shortName = longName = name
-            c = { "shortname": shortName, "name": longName, const.NAMESPACE: self.currentNamespace }
+            c = { const.SHORTNAME: shortName, const.NAME: longName, const.NAMESPACE: self.currentNamespace }
             self.currentClass = longName
                
             if longName in self.data[const.CLASS_MAP]:
-                print "WARNING: %s - Class %s was redefined" %(tokens, longName)
+                # print "WARNING: %s - Class %s was redefined" %(tokens, longName)
+                print "WARNING: Class %s was redefined" %(longName)
             else:
                 self.data[const.CLASS_MAP][longName] = c
 
@@ -432,7 +473,8 @@ it was empty" % token
             if not const.METHODS in c: c[const.METHODS] = {}
             
             if method in c[const.METHODS]:
-                print "WARNING: %s - method %s was redefined (method overloading is not supported)" %(tokens, method)
+                # print "WARNING: %s - method %s was redefined (method overloading is not supported)" %(tokens, method)
+                print "WARNING: method %s was redefined" %(method)
             else:
                 c[const.METHODS][method] = parseParams(tokenMap, {})
                 c[const.METHODS][method] = parseReturn(tokenMap, c[const.METHODS][method])
@@ -452,7 +494,8 @@ it was empty" % token
             if not const.EVENTS in c: c[const.EVENTS] = {}
             
             if event in c[const.EVENTS]:
-                print "WARNING: %s - event %s was redefined" %(tokens, event)
+                #print "WARNING: %s - event %s was redefined" %(tokens, event)
+                print "WARNING: event %s was redefined" %(event)
             else:
                 c[const.EVENTS][event] = parseParams(tokenMap, {})
 
@@ -472,7 +515,8 @@ it was empty" % token
             if not const.PROPERTIES in c: c[const.PROPERTIES] = {}
             
             if property in c[const.PROPERTIES]:
-                print "WARNING: %s - Property %s was redefined" %(tokens, property)
+                # print "WARNING: %s - Property %s was redefined" %(tokens, property)
+                print "WARNING: Property %s was redefined" %(property)
             else:
                 c[const.PROPERTIES][property] = {}
 
@@ -492,7 +536,8 @@ it was empty" % token
             if not const.CONFIGS in c: c[const.CONFIGS] = {}
             
             if config in c[const.CONFIGS]:
-                print "WARNING: %s - Property %s was redefined" %(tokens, config)
+                # print "WARNING: %s - Property %s was redefined" %(tokens, config)
+                print "WARNING: Property %s was redefined" %(config)
             else:
                 c[const.CONFIGS][config] = {}
 
@@ -502,28 +547,7 @@ it was empty" % token
 
         # module blocks won't be picked up unless they are standalone
         elif const.MODULE in tokenMap:
-            if not const.MODULES in self.data: self.data[const.MODULES] = {}
-            for module in tokenMap[const.MODULE]:
-                target = self.data[const.MODULES][module] = { "name": module, const.CLASS_LIST: [], const.FILE_LIST: []}
-
-            if len(self.deferredModuleFiles) > 0:
-                for i in self.deferredModuleFiles:
-                    self.data[const.FILE_MAP][i][const.MODULE] = self.currentModule
-                    self.data[const.MODULES][self.currentModule][const.FILE_LIST].append(i)
-
-                self.deferredModuleFiles = []
-
-            if len(self.deferredModuleClasses) > 0:
-                for i in self.deferredModuleClasses:
-                    self.data[const.CLASS_MAP][i][const.MODULE] = self.currentModule
-                    self.data[const.MODULES][self.currentModule][const.CLASS_LIST].append(i)
-
-                self.deferredModuleClasses = []
-
-            # if "title" in tokenMap:
-                # target["title"] = tokenMap["title"][0]
-                
-            tokenMap.pop(const.MODULE)
+            target, tokenMap = parseModule(tokenMap)
 
         else:
             msg = "WARNING: doc block type ambiguous, no @class, @module, @method, \
@@ -570,7 +594,7 @@ def main():
                           help="The extension for the files that should be parsed" )
     (opts, inputdirs) = optparser.parse_args()
     if len(inputdirs) > 0:
-        docparser = YUIDoc( inputdirs, 
+        docparser = DocParser( inputdirs, 
                             opts.outputdir, 
                             opts.outputfile, 
                             opts.extension   )

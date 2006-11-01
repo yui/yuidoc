@@ -30,46 +30,36 @@
                 #if $index
 
                     <div class="summary description">
-                    <p>The Yahoo! User Interface (YUI) Library is a set of utilities and controls,
-          written in JavaScript, for building richly interactive web
-          applications using techniques such as DOM scripting, DHTML and AJAX.
-          The YUI Library also includes several core CSS resources. All
-          components in the YUI Library have been released as open source under
-          a <a href="http://developer.yahoo.com/yui/license.txt">BSD
-          license</a> and are free for all uses. <a
-          href="http://sourceforge.net/projects/yui">Download</a> the entire
-          library, its documentation and examples from Sourceforge. </p> <p>The
-          library's developers blog <a href="http://yuiblog.com">at the YUI
-          Blog</a> and the YUI Library community exchanges ideas at <a
-          href="http://groups.yahoo.com/group/ydn-javascript">ydn-javaScript on
-          Yahoo! Groups</a>.</p>
-
+                      This is the API documentation for the 
+                      <a href="http://developer.yahoo.com/yui/">Yahoo! User Interface Library</a>
                     </div>
-                    <div class="description">
-            <strong>Click the links to the left to view the API documentation for
-               the selected YUI utility or widget</strong>
-               </div>
+                    <form>
+                        <div id="propertysearch">
+                            <input autocomplete="off" id="searchinput">
+                            <div id="searchresults">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </form>
+
+                    <script type="text/javascript" src="assets/yahoo-min.js"></script>
+                    <script type="text/javascript" src="assets/event-min.js"></script>
+                    <script type="text/javascript" src="assets/dom-min.js"></script>
+                    <script type="text/javascript" src="assets/autocomplete-min.js"></script>
+
+                    <script type="text/javascript">
+                        YAHOO.ALL_YUI_PROPS = $allprops;
+                    </script>
+
+
+                    <script type="text/javascript" src="assets/search.js"></script>
 
                 #end if
 
                 #if $filename
-                    <script src="assets/code.js" type="text/javascript"></script>
-                    <textarea id="srcin">
-                        #include $filepath
-                    </textarea>
-                    <pre id="srcout"></pre>
-                    <script type="text/javascript">
-                        var block = document.getElementById("srcin");
-                        var src = block.value;
-                        //src = src.replace(/^\s*|\s*$/, "")
-                        src = JSHFast.parse(src, true);
-                        var el = document.getElementById("srcout");
-                        if (el.outerHTML) {
-                            el.outerHTML = "<pre id=\"srcout\">" + src + "</pre>";
-                        } else {
-                            el.innerHTML = src;
-                        }
-                    </script>
+                    <div id="srcout">
+                        #include $filepath_highlighted
+                    </div>
                 #else if $classname 
 
                     <h2>
@@ -382,20 +372,21 @@
                                             $config.description
                                         </div>
                                     </div>
+ 
+                                    #if $config.deprecated
+                                    <div class="deprecated">
+                                        <strong>Deprecated</strong>$config.deprecated
+                                    </div>        
+                                    #end if
+     
+                                    #if $config.default
+                                    <div class="default">
+                                        Default Value: $config.default
+                                    </div>        
+                                    #end if
+
                                     <hr />
                                 #end for
- 
-                                #if $config.deprecated
-                                <div class="deprecated">
-                                    <strong>Deprecated</strong>$config.deprecated
-                                </div>        
-                                #end if
- 
-                                #if $config.default
-                                <div class="default">
-                                    Default Value: $config.default
-                                </div>        
-                                #end if
 
                             </div>
                         </div>

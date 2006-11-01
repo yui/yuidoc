@@ -3,7 +3,7 @@ yuidoc README
 
 yuidoc is a set of tools to generate the API documentation for the JavaScript
 in the YUI library.  The docs are derived completely from JavaDoc style
-comment blocks; no attempt to understand the javascript itself.
+comment blocks; no attempt is made to understand the javascript itself.
 
 The tools are written in python, and should work for version 2.3 and up.  
 To date, it has only been tested in version 2.3 on a unix system.  Although
@@ -12,6 +12,7 @@ untested, it should work in MS windows as well.
 The following python libraries are required:
     simplejson - for reading and writing json
     cheetah    - for generating the html docs
+    pygments   - for colorizing the source
 
 Files:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -31,16 +32,25 @@ TAGS
 TODO
     Things that need to be done
 
-bin/parser.py
+bin/yuidoc_parse.py
     The comment block parser.  Parses all javascript files in the the specified 
     directories and outputs a single file containing a json structure of the 
     parsed documentation.
 
-bin/generator.py
+bin/yuidoc_highlight.py
+    Colorizes the script source
+
+bin/yuidoc_generate.py
     Reads the json output from parser.py and generates HTML docs.
+
+bin/yuidoc.py
+    wraps the calss to yuidoc_parse, yuidoc_highlight, and yuidoc_generate
 
 bin/example.sh 
     An example shell script to run both the parser and generator on a src tree
+
+bin/example.bat
+    An example batch for for DOS/Windows
 
 ext
     External required packages, provided for convenience

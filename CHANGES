@@ -2,6 +2,34 @@
 ChangeLog
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Version 0.0.7 
+-------------
+ - Fixed a crash that happened when punctuation was encountered where the
+   parameter name was expected.
+
+ - The module definition can be combined with a class definition, although
+   it is generally preferred to have it separate.
+
+ - style updates
+
+Version 0.0.6 (10/30/06, adamoore)
+-------------
+ - Syntax highlighting now is incorporated in the generated file instead of
+   being applied at render time on the client.  This requires the installation
+   of a new python library, and an update to the script file used to generate
+   your documentation.
+
+ - The index page now uses autocomplete to provide an instant search feature.
+
+ - Classes marked private should not show in the docs.
+
+ - Duplicate class and property declarations now show a simple warning rather
+   than a dump of the current comment block.
+
+ - fixed a crash that occurred when parsing param and returns blocks with
+   mismatched {}
+
+
 Version 0.0.5 (10/23/06, adamoore)
 -------------
  - Now supports multiple source trees.  Each source tree is treated as a separate
