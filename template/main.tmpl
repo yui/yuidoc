@@ -9,7 +9,7 @@
 </head>
 
 <body id="yahoo-com">
-<div id="doc" class="yui-t1">
+<div id="doc3" class="yui-t2">
 
 	<div id="hd">
         <h1>$projectname</h1>
@@ -35,30 +35,23 @@
                     </div>
                     <form>
                         <div id="propertysearch">
-                            <input autocomplete="off" id="searchinput">
+                            <input autocomplete="off" id="searchinput" />
                             <div id="searchresults">
                                 &nbsp;
                             </div>
                         </div>
                     </form>
 
-                    <script type="text/javascript" src="assets/yahoo-min.js"></script>
-                    <script type="text/javascript" src="assets/event-min.js"></script>
-                    <script type="text/javascript" src="assets/dom-min.js"></script>
-                    <script type="text/javascript" src="assets/autocomplete-min.js"></script>
-
                     <script type="text/javascript">
-                        YAHOO.ALL_YUI_PROPS = $allprops;
+                        ALL_YUI_PROPS = $allprops;
                     </script>
-
-
-                    <script type="text/javascript" src="assets/search.js"></script>
+                    <script type="text/javascript" src="assets/api-js"></script>
 
                 #end if
 
                 #if $filename
                     <div id="srcout">
-                        #include $filepath_highlighted
+                        #include raw $filepath_highlighted
                     </div>
                 #else if $classname 
 
@@ -121,10 +114,16 @@
                                     #if $constructor.params
                                         (
                                         #set $i=0
+                                        #set $current=""
   
-                                        #for $param in $constructor.params##if $i > 0#, #end if#
-                                            #set $i = $i + 1
-                                            &lt;$param.type&gt; $param.name#end for
+                                        #for $param in $constructor.params#
+                                            #if $current != $param.name
+                                                #if $i > 0#, #end if#
+                                                #set $i = $i + 1
+                                                #set $current = $param.name
+                                                $param.name
+                                            #end if
+                                        #end for
                                         )
                                     #end if
                                 </code>
@@ -134,7 +133,9 @@
                                             <dt>Parameters:</dt>
                                             #for $param in $constructor.params
                                                 <dd>
-                                                    <code>$param.name</code> - 
+                                                    <code>$param.name
+                                                    &lt;$param.type&gt; 
+                                                    </code>
                                                     $param.description
                                                 </dd>
                                             #end for
@@ -224,9 +225,15 @@
                                             #if $method.params
                                                 (
                                                 #set $i=0
-                                                #for $param in $method.params##if $i > 0#, #end if#
-                                                    #set $i = $i + 1
-                                                    &lt;$param.type&gt; $param.name#end for
+                                                #set $current = ""
+                                                #for $param in $method.params#
+                                                    #if $current != $param.name
+                                                        #if $i > 0#, #end if#
+                                                        #set $i = $i + 1
+                                                        #set $current = $param.name
+                                                         $param.name
+                                                    #end if#
+                                                #end for#
                                                 )
                                             #end if
                                         </code>
@@ -241,7 +248,7 @@
                                                     <dt>Parameters:</dt>
                                                     #for $param in $method.params
                                                         <dd>
-                                                            <code>$param.name</code> - 
+                                                            <code>$param.name &lt;$param.type&gt;</code>
                                                             $param.description
                                                         </dd>
                                                     #end for

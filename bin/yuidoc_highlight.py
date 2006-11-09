@@ -21,7 +21,10 @@ class DocHighlighter(object):
                 if tail: os.mkdir(newdir)
 
         def highlightString(src):
-            return highlight(src, JavascriptLexer(), HtmlFormatter())
+            try:
+                return highlight(src, JavascriptLexer(), HtmlFormatter())
+            except: 
+                return "File could not be highlighted"
 
         def highlightFile(path, file):
             #print path + ", " + file

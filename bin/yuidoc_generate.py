@@ -463,7 +463,7 @@ class DocGenerator(object):
         self.classnames = []
 
         for i in self.data["classmap"].keys():
-            if shouldShowClass(classes[i]):
+            if shouldShowClass(self.data["classmap"][i]):
                 self.classnames.append(i)
         self.classnames.sort()
 

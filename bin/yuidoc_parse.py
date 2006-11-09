@@ -261,6 +261,22 @@ class DocParser(object):
                 tokenMap.pop(const.RETURN)
             return dict
 
+        def defineClass(name):
+            if self.currentNamespace:
+                shortName, longName = self.getClassName(name, self.currentNamespace)
+            else:
+                shortName = longName = name
+            c = { const.SHORTNAME: shortName, const.NAME: longName, const.NAMESPACE: self.currentNamespace }
+            self.currentClass = longName
+               
+            if longName in self.data[const.CLASS_MAP]:
+                # print "WARNING: %s - Class %s was redefined" %(tokens, longName)
+                print "WARNING: Class %s was redefined" %(longName)
+            else:
+                self.data[const.CLASS_MAP][longName] = c
+
+            return shortName, longName 
+
         token = next()
         tokenMap = {}
         blockInfo = {}
@@ -324,14 +340,16 @@ it was empty" % token
         # class definition is complete and we need to resume processing the remainder of the
         # outer class
         if const.FOR in tokenMap:
-            shortName, longName = self.getClassName(tokenMap[const.FOR][0], self.currentNamespace)
+            name = tokenMap[const.FOR][0]
+            shortName, longName = self.getClassName(name, self.currentNamespace)
             currentFor = longName
             if const.CLASS not in tokenMap:
                 if longName in self.data[const.CLASS_MAP]:
                     self.currentClass = longName
                 else:
-                    msg = "@for tag references a class that has not been defined"
-                    raise ValueError, str(tokens) + " " + msg
+                    # msg = "@for tag references a class that has not been defined"
+                    # raise ValueError, str(tokens) + " " + msg
+                    defineClass(name)
                     
                 tokenMap.pop(const.FOR)
 
@@ -350,6 +368,8 @@ it was empty" % token
                         tokenMap[const.METHOD] = tokenMap[const.GUESSEDNAME]
                     else:
                         tokenMap[const.PROPERTY] = tokenMap[const.GUESSEDNAME]
+
+
         
         # The following tokens represent the core type of comment blocks that are
         # supported.  It is possible to have a comment block that does not fall into
@@ -406,21 +426,10 @@ it was empty" % token
 
             name = tokenMap[const.CLASS][0]
 
+            shortName, longName = defineClass(name)
+
             if const.MODULE in tokenMap:
                 target, tokenMap = parseModule(tokenMap)
-
-            if self.currentNamespace:
-                shortName, longName = self.getClassName(name, self.currentNamespace)
-            else:
-                shortName = longName = name
-            c = { const.SHORTNAME: shortName, const.NAME: longName, const.NAMESPACE: self.currentNamespace }
-            self.currentClass = longName
-               
-            if longName in self.data[const.CLASS_MAP]:
-                # print "WARNING: %s - Class %s was redefined" %(tokens, longName)
-                print "WARNING: Class %s was redefined" %(longName)
-            else:
-                self.data[const.CLASS_MAP][longName] = c
 
             target = self.data[const.CLASS_MAP][longName]
 

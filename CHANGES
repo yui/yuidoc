@@ -2,13 +2,23 @@
 ChangeLog
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version 0.0.7 
+Version 0.0.7 (11/09/06, adamoore)
 -------------
+ - The javascript included with the template has been combined into a single
+   file called api-js.  This protects against having these files parsed
+   if the user chooses to output docs in the same directory as the source.
+
+ - Syntax highlighter errors no longer crash the app.
+
  - Fixed a crash that happened when punctuation was encountered where the
    parameter name was expected.
 
  - The module definition can be combined with a class definition, although
    it is generally preferred to have it separate.
+
+ - Source code is no longer parsed by the template engine, preventing problems
+   with code marked up with preprocessor info in a format similar to the
+   templating language.  It is also faster.
 
  - style updates
 
