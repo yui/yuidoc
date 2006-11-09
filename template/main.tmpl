@@ -111,8 +111,8 @@
                             <div class="detail">
                                 <strong>$classname</strong>
                                 <code>
+                                    (
                                     #if $constructor.params
-                                        (
                                         #set $i=0
                                         #set $current=""
   
@@ -124,8 +124,8 @@
                                                 $param.name
                                             #end if
                                         #end for
-                                        )
                                     #end if
+                                    )
                                 </code>
                                 <div class="description">
                                     #if $constructor.params
@@ -222,8 +222,8 @@
                                         #if $method.final# $method.final #end if#
                                         $method.return.type
                                             <strong>$method.name</strong>
+                                           (
                                             #if $method.params
-                                                (
                                                 #set $i=0
                                                 #set $current = ""
                                                 #for $param in $method.params#
@@ -234,8 +234,8 @@
                                                          $param.name
                                                     #end if#
                                                 #end for#
-                                                )
                                             #end if
+                                            )
                                         </code>
                                         
                                         <div class="description">
@@ -243,6 +243,7 @@
                                         </div>
 
                                         <div class="description">
+
                                             #if $method.params
                                                 <dl>
                                                     <dt>Parameters:</dt>
@@ -308,14 +309,22 @@
                                         #if $event.static# $event.static #end if#
                                         #if $event.final# $event.final #end if#
                                             <strong>$event.name</strong>
+
+                                            (
                                             #if $event.params
-                                                (
                                                 #set $i=0
-                                                #for $param in $event.params##if $i > 0#, #end if#
-                                                    #set $i = $i + 1
-                                                    &lt;$param.type&gt; $param.name#end for
-                                                )
+                                                #set $current = ""
+                                                #for $param in $event.params#
+                                                    #if $current != $param.name
+                                                        #if $i > 0#, #end if#
+                                                        #set $i = $i + 1
+                                                        #set $current = $param.name
+                                                         $param.name
+                                                    #end if#
+                                                #end for#
                                             #end if
+                                            )
+
                                         </code>
                                         
                                         <div class="description">
@@ -323,17 +332,20 @@
                                         </div>
 
                                         <div class="description">
+
+
                                             #if $event.params
                                                 <dl>
-                                                    <dt>Arguments:</dt>
+                                                    <dt>Parameters:</dt>
                                                     #for $param in $event.params
                                                         <dd>
-                                                            <code>$param.name</code> - 
+                                                            <code>$param.name &lt;$param.type&gt;</code>
                                                             $param.description
                                                         </dd>
                                                     #end for
                                                 </dl>
                                             #end if
+
 
                                             #if $event.deprecated
                                             <div class="deprecated">
