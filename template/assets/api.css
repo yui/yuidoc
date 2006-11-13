@@ -54,7 +54,6 @@ a:visited { color: #003399;}
 #doc3 .inheritance h4 { font-size: 100%;}
 
 
-#srcout {border: 1px solid silver; overflow: auto; } 
 
 /* index page autocomplete */
 
@@ -70,12 +69,8 @@ a:visited { color: #003399;}
 #searchresults li span { position:relative; left:46% }
 
 /* source code view */
-
-/*
-*html #srcout { width: 540px} 
-*/
-
-*html #srcout { width: 98%} 
+#srcout {border: 1px solid silver; overflow: auto; min-width: 580px; padding-bottom: 1em; overflow-y: hidden} 
+*html #srcout { width: 100%} 
 
 .highlight { background-color: #f7f7f7; }
 .highlight .c { color: #60a0b0; font-style: italic } /* Comment */

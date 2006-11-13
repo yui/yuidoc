@@ -55,7 +55,7 @@ class DocGenerator(object):
         # self.requires    = None
         self.modules = d["modules"]
         self.modulenames = self.modules.keys()
-        self.modulenames.sort()
+        self.modulenames.sort(lambda x,y: cmp(x.lower(), y.lower()))
 
         self.cleansedmodulename = self.cleanseStr(self.modulename)
     
@@ -139,6 +139,13 @@ class DocGenerator(object):
             else:
                 return False
 
+        def soft_sort(x, y):
+            # pat = re.compile(r"[\_\-\.]")
+            # return cmp(pat.sub('', x.lower()), pat.sub('', y.lower()))
+            # pat = re.compile(r"[\_\-\.]")
+            return cmp(x.lower(), y.lower())
+
+
         def getPropsFromSuperclass(superc, classes, dict):
             # get inherited data
             if shouldShowClass(superc):
@@ -146,7 +153,7 @@ class DocGenerator(object):
                 if "properties" in superc:
                     inhdef = dict["properties"][supercname] = []
                     keys = superc["properties"].keys()
-                    keys.sort()
+                    keys.sort(soft_sort)
                     for prop in keys:
                         superprop = superc["properties"][prop]
                         if shouldShow(superprop):
@@ -154,7 +161,7 @@ class DocGenerator(object):
                 if "methods" in superc:
                     inhdef = dict["methods"][supercname] = []
                     keys = superc["methods"].keys()
-                    keys.sort()
+                    keys.sort(soft_sort)
                     for method in keys:
                         supermethod = superc["methods"][method]
                         if shouldShow(supermethod):
@@ -162,7 +169,7 @@ class DocGenerator(object):
                 if "events" in superc:
                     inhdef = dict["events"][supercname] = []
                     keys = superc["events"].keys()
-                    keys.sort()
+                    keys.sort(soft_sort)
                     for event in keys:
                         superevent = superc["events"][event]
                         if shouldShow(superevent):
@@ -170,7 +177,7 @@ class DocGenerator(object):
                 if "configs" in superc:
                     inhdef = dict["configs"][supercname] = []
                     keys = superc["configs"].keys()
-                    keys.sort()
+                    keys.sort(soft_sort)
                     for config in keys:
                         superconfig = superc["configs"][config]
                         if shouldShow(superconfig):
@@ -210,7 +217,7 @@ class DocGenerator(object):
                 if shouldShowClass(classes[i]):
                     self.classnames.append(i)
 
-            self.classnames.sort()
+            self.classnames.sort(soft_sort)
 
             t = Template(file=os.path.join(self.templatepath, "main.tmpl"))
 
@@ -222,7 +229,7 @@ class DocGenerator(object):
             self.moduledesc   = m["description"]
 
             self.filenames = m["filelist"]
-            self.filenames.sort()
+            self.filenames.sort(soft_sort)
 
             assignGlobalProperties(t)
 
@@ -265,7 +272,7 @@ class DocGenerator(object):
                     props = t.properties = []
                     if "properties" in c:
                         keys = c["properties"].keys()
-                        keys.sort()
+                        keys.sort(soft_sort)
                         for propertykey in keys:
                             prop     = c["properties"][propertykey]
                             if self.showprivate or "private" not in prop:
@@ -290,7 +297,7 @@ class DocGenerator(object):
                     configs = t.configs = []
                     if "configs" in c:
                         keys = c["configs"].keys()
-                        keys.sort()
+                        keys.sort(soft_sort)
                         for configkey in keys:
                             config = c["configs"][configkey]
                             if self.showprivate or "private" not in config:
@@ -314,7 +321,7 @@ class DocGenerator(object):
                     methods = t.methods = []
                     if "methods" in c:
                         keys = c["methods"].keys()
-                        keys.sort()
+                        keys.sort(soft_sort)
                         for methodkey in keys:
                             method = c["methods"][methodkey]
                             if self.showprivate or "private" not in method:
@@ -352,7 +359,7 @@ class DocGenerator(object):
                     events = t.events = []
                     if "events" in c:
                         keys = c["events"].keys()
-                        keys.sort()
+                        keys.sort(soft_sort)
                         for eventkey in keys:
                             event = c["events"][eventkey]
                             if self.showprivate or "private" not in event:
@@ -441,7 +448,7 @@ class DocGenerator(object):
                 allprops.append(i)
                 propmap[url] = True
 
-        def propsort(x, y):
+        def allprop_sort(x, y):
             pat = re.compile(r"[\_\-\.]")
             cx = x["name"].lower()
             cy = y["name"].lower()
@@ -449,7 +456,7 @@ class DocGenerator(object):
             cy = pat.sub('', cy)
             return cmp(cx, cy)
 
-        allprops.sort(propsort)
+        allprops.sort(allprop_sort)
                                             
         allprops =  simplejson.dumps(allprops)
         self.write("index.json",allprops)
@@ -465,10 +472,10 @@ class DocGenerator(object):
         for i in self.data["classmap"].keys():
             if shouldShowClass(self.data["classmap"][i]):
                 self.classnames.append(i)
-        self.classnames.sort()
+        self.classnames.sort(soft_sort)
 
         self.filenames  = self.data["filemap"].keys()
-        self.filenames.sort()
+        self.filenames.sort(soft_sort)
         self.filename   = ""
         assignGlobalProperties(t)
         t.allprops = allprops
