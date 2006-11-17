@@ -31,7 +31,7 @@
                       This is the API documentation for the 
                       <a href="http://developer.yahoo.com/yui/">Yahoo! User Interface Library</a>
                     </div>
-                    <form>
+                    <form onsubmit="return false">
                         <div id="propertysearch">
                             <input autocomplete="off" id="searchinput" />
                             <div id="searchresults">
@@ -448,7 +448,12 @@
                         <h4>Modules</h4>
                         <ul class="content">
                             #for $moduledef in $modulenames
-                                <li><a href="module_${moduledef}.html">$moduledef</a></li>
+                                #set $css = ""
+                                #if $moduledef == $modulename
+                                    #set $css = "selected"
+                                #end if
+
+                                <li class="$css"><a href="module_${moduledef}.html">$moduledef</a></li>
                             #end for
                         </ul>
                     </div>
@@ -459,7 +464,11 @@
                         <h4>Classes</h4>
                         <ul class="content">
                             #for $classdef in $classnames
-                                <li><a href="${classdef}.html">$classdef</a></li>
+                                #set $css = ""
+                                #if $classdef == $classname
+                                    #set $css = "selected"
+                                #end if
+                                <li class="$css"><a href="${classdef}.html">$classdef</a></li>
                             #end for
                         </ul>
                     </div>
@@ -470,7 +479,11 @@
                         <h4>Files</h4>
                         <ul class="content">        
                             #for $filedef in $filenames
-                                <li><a href="${filedef}.html">$filedef</a></li>
+                                #set $css = ""
+                                #if $filedef == $filename
+                                    #set $css = "selected"
+                                #end if
+                                <li class="$css"><a href="${filedef}.html">$filedef</a></li>
                             #end for
                         </ul>
                     </div>

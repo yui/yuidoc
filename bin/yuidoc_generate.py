@@ -69,7 +69,7 @@ class DocGenerator(object):
 
     def cleanseStr(self, str):
             cleanregex= re.compile(r"[^\w]")
-            return self.moduleprefix + cleanregex.sub('', str)
+            return self.moduleprefix + cleanregex.sub('', str.lower())
 
     def write(self, filename, data):
         out = open(os.path.join(self.outpath, filename), "w")
