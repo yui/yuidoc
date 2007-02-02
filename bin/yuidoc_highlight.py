@@ -1,10 +1,19 @@
 #!/usr/bin/env python
-import os, re, string
+import os, re, string, logging, logging.config
+import const
 from cStringIO import StringIO 
 from optparse import OptionParser
 from pygments import highlight
 from pygments.lexers import JavascriptLexer
 from pygments.formatters import HtmlFormatter
+
+try:
+    logging.config.fileConfig(os.path.join(sys.path[0], const.LOGCONFIG))
+except:
+    pass
+
+log = logging.getLogger('yuidoc.highlight')
+
 
 class DocHighlighter(object):
 
@@ -27,11 +36,10 @@ class DocHighlighter(object):
                 return "File could not be highlighted"
 
         def highlightFile(path, file):
-            #print path + ", " + file
             f=open(os.path.join(path, file))
             fileStr=StringIO(f.read()).getvalue()
             f.close()
-            print "highlighting " + file
+            log.info("highlighting " + file)
 
             highlighted = highlightString(fileStr)
 
@@ -58,7 +66,7 @@ class DocHighlighter(object):
         self.ext = ext
         self.newext = newext
 
-        print "-------------------------------------------------------"
+        log.info("-------------------------------------------------------")
 
         for i in inputdirs: 
             highlightDir(os.path.abspath(i))

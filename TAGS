@@ -120,7 +120,7 @@ Supported Tags:
 @default
     The default value of a property or config
 
-@uss YAHOO.namespace.ClassName [method1, method2]
+@uses YAHOO.namespace.ClassName [method1, method2]
     For classes that use YAHOO.augment
     The optional method/properties are not supported yet
 

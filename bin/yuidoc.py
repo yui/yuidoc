@@ -5,7 +5,15 @@ import yuidoc_parse, yuidoc_highlight, yuidoc_generate
 def main():
     from optparse import OptionParser
     optparser = OptionParser("usage: %prog inputdir [options] inputdir")
-    optparser.set_defaults(extension=".js", newext=".highlighted", parseroutdir="/tmp", outputdir="docs", parserfile="parsed.json", showprivate=False)
+    optparser.set_defaults(extension=".js", 
+                           newext=".highlighted", 
+                           parseroutdir="/tmp", 
+                           outputdir="docs", 
+                           parserfile="parsed.json", 
+                           showprivate=False,
+                           project="Yahoo! UI Library",
+                           version=""
+                           )
     optparser.add_option( "-p", "--parseroutdir",
         action="store", dest="parseroutdir", type="string",
         help="Directory to write the parser temp data" )
@@ -30,6 +38,12 @@ def main():
     optparser.add_option( "-n", "--newextension",
                           action="store", dest="newext", type="string",
                           help="The extension to append to the yuisyntax highlighted output file" )
+    optparser.add_option( "-m", "--project",
+                          action="store", dest="project", type="string",
+                          help="The name of the project" )
+    optparser.add_option( "-v", "--version",
+                          action="store", dest="version", type="string",
+                          help="The version of the project" )
 
     (opts, inputdirs) = optparser.parse_args()
 
@@ -49,7 +63,10 @@ def main():
                                opts.outputdir,
                                opts.templatedir,
                                opts.newext,
-                               opts.showprivate )
+                               opts.showprivate,
+                               opts.project,
+                               opts.version
+                               )
         gen.process()
     else:
         optparser.error("Incorrect number of arguments")

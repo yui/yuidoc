@@ -1,14 +1,24 @@
 #!/usr/bin/env python
 ''' A class to parse Javadoc style comments out of javascript to document 
     an API. It is designed to parse one module at a time ''' 
-import os, re, simplejson, string, sys, pprint
+import os, re, simplejson, string, sys, pprint, logging, logging.config
 import const
 from cStringIO import StringIO 
 from optparse import OptionParser
 
+try:
+    logging.config.fileConfig(os.path.join(sys.path[0], const.LOGCONFIG))
+except:
+    pass
+
+log = logging.getLogger('yuidoc.parse')
+
+
 class DocParser(object):
 
     def __init__(self, inputdirs, outputdir, outputfile, extension):
+
+
 
         def _mkdir(newdir):
             if os.path.isdir(newdir): pass
@@ -23,7 +33,7 @@ class DocParser(object):
         def parseFile(path, file):
             f=open(os.path.join(path, file))
             fileStr=StringIO(f.read()).getvalue()
-            print "parsing " + file
+            log.info("parsing " + file)
             # add a file marker token so the parser can keep track of what is in what file
             content = "\n/** @%s %s \n*/" % (const.FILE_MARKER, file)
 
@@ -65,7 +75,7 @@ class DocParser(object):
         self.deferredModuleClasses=[]
         self.deferredModuleFiles=[]
 
-        print "-------------------------------------------------------"
+        log.info("-------------------------------------------------------")
 
         for i in inputdirs: 
             self.currentClass     = ""
@@ -90,6 +100,10 @@ class DocParser(object):
 
     def getClassName(self, classString, namespace):
         shortName = classString.replace(namespace + ".", "")
+        #nss = self.data[const.NAMESPACES]
+        #for i in nss:
+            # log.warn('asdf ' + i);
+            #shortName = shortName.replace(i + ".", "")
         longName  = namespace + "." + shortName
         return shortName, longName
         
@@ -124,7 +138,7 @@ class DocParser(object):
 
     # tags that do not require a description, used by the tokenizer so that these
     # tags can be used above the block description without breaking things
-    singleTags = "constructor public private protected static final"
+    singleTags = "constructor public private protected static final beta experimental"
 
     # guess the name and type of a block based upon the code following it
     guess_pat = re.compile('\s*?(var|function)?\s*?(\w+)\s*?[=:]\s*?(function)?.*', re.S)
@@ -148,7 +162,7 @@ class DocParser(object):
         # guesses name and type
         def guess_sub(mo):
             type = const.PROPERTY
-            #print mo.group(2)
+            #log.debug(mo.group(2))
             if mo.group(1) or mo.group(3):
                 type = const.FUNCTION
 
@@ -230,7 +244,7 @@ class DocParser(object):
                     try:
                         type, description = self.compound_pat.sub(compound_sub, i)
                     except:
-                        print "\nError, a parameter could not be parsed:\n\n %s\n\n %s\n" %(i, pprint.pformat(tokenMap))
+                        log.error("\nError, a parameter could not be parsed:\n\n %s\n\n %s\n" %(i, pprint.pformat(tokenMap)))
                         sys.exit()
 
                     mo = self.param_pat.match(description)
@@ -243,7 +257,7 @@ class DocParser(object):
                                 const.DESCRIPTION: description 
                             })
                     else:
-                        print "Error, could not parse param -- %s, %s --" %(type, description)
+                        log.error("Error, could not parse param -- %s, %s --" %(type, description))
 
                 tokenMap.pop(srctag)
             return dict 
@@ -254,7 +268,7 @@ class DocParser(object):
                 try:
                     type, description = self.compound_pat.sub(compound_sub, ret)
                 except:
-                    print "\nError, a return statement could not be parsed:\n\n %s\n\n %s\n" %(ret, pprint.pformat(tokenMap))
+                    log.error("\nError, a return statement could not be parsed:\n\n %s\n\n %s\n" %(ret, pprint.pformat(tokenMap)))
                     sys.exit()
 
                 dict[const.RETURN] = { const.TYPE: type , const.DESCRIPTION: description }
@@ -271,7 +285,7 @@ class DocParser(object):
                
             if longName in self.data[const.CLASS_MAP]:
                 # print "WARNING: %s - Class %s was redefined" %(tokens, longName)
-                print "WARNING: Class %s was redefined" %(longName)
+                log.warn("WARNING: Class %s was redefined" %(longName))
             else:
                 self.data[const.CLASS_MAP][longName] = c
 
@@ -298,7 +312,7 @@ found another tag @%s" % (token, desc)
                             msg = "WARNING: expected a description block for tag @%s but \
 it was empty" % token
 
-                        print "\n" + self.currentFile + "\n" + msg + ":\n\n" + str(tokens) + "\n"
+                        log.warn("\n" + self.currentFile + "\n" + msg + ":\n\n" + str(tokens) + "\n")
 
 
                 # keep a map of the different tags we have found, with an
@@ -314,7 +328,7 @@ it was empty" % token
                     if desc:
                         self.currentModule = desc
                     else:
-                        print "no name for module"
+                        log.warn('no name for module')
 
             else:
                 # the first block without a description should be the description
@@ -341,7 +355,8 @@ it was empty" % token
         # outer class
         if const.FOR in tokenMap:
             name = tokenMap[const.FOR][0]
-            shortName, longName = self.getClassName(name, self.currentNamespace)
+            #shortName, longName = self.getClassName(name, self.currentNamespace)
+            longName = name
             currentFor = longName
             if const.CLASS not in tokenMap:
                 if longName in self.data[const.CLASS_MAP]:
@@ -453,13 +468,15 @@ it was empty" % token
 
             # if "mixes" in tokenMap:
             if "extends" in tokenMap:
-                shortName, longName = self.getClassName(tokenMap["extends"][0], self.currentNamespace)
+                # shortName, longName = self.getClassName(tokenMap["extends"][0], self.currentNamespace)
+                longName = tokenMap["extends"][0]
                 target["superclass"] = longName
                 
             if "uses" in tokenMap:
-                target["uses"] = [];
+                target["uses"] = []
                 for i in tokenMap["uses"]:
-                    shortName, longName = self.getClassName(i, self.currentNamespace)
+                    # shortName, longName = self.getClassName(i, self.currentNamespace)
+                    longName = i
                     target["uses"].append(longName)
 
             ###############
@@ -473,7 +490,7 @@ it was empty" % token
                 
         elif const.METHOD in tokenMap:
             if not self.currentClass:
-                print "Error: @method tag found before @class was found.\n****\n"
+                log.error("Error: @method tag found before @class was found.\n****\n")
                 sys.exit()
 
             c = self.data[const.CLASS_MAP][self.currentClass]
@@ -483,7 +500,7 @@ it was empty" % token
             
             if method in c[const.METHODS]:
                 # print "WARNING: %s - method %s was redefined (method overloading is not supported)" %(tokens, method)
-                print "WARNING: method %s was redefined" %(method)
+                log.warn("WARNING: method %s was redefined" %(method))
             else:
                 c[const.METHODS][method] = parseParams(tokenMap, {})
                 c[const.METHODS][method] = parseReturn(tokenMap, c[const.METHODS][method])
@@ -494,7 +511,7 @@ it was empty" % token
 
         elif const.EVENT in tokenMap:
             if not self.currentClass:
-                print "Error: @event tag found before @class was found.\n****\n"
+                log.error("Error: @event tag found before @class was found.\n****\n")
                 sys.exit()
 
             c = self.data[const.CLASS_MAP][self.currentClass]
@@ -504,7 +521,7 @@ it was empty" % token
             
             if event in c[const.EVENTS]:
                 #print "WARNING: %s - event %s was redefined" %(tokens, event)
-                print "WARNING: event %s was redefined" %(event)
+                log.warn("WARNING: event %s was redefined" %(event))
             else:
                 c[const.EVENTS][event] = parseParams(tokenMap, {})
 
@@ -515,7 +532,7 @@ it was empty" % token
         elif const.PROPERTY in tokenMap:
 
             if not self.currentClass:
-                print "Error: @property tag found before @class was found.\n****\n"
+                log.error("Error: @property tag found before @class was found.\n****\n")
                 sys.exit()
 
             c = self.data[const.CLASS_MAP][self.currentClass]
@@ -525,7 +542,7 @@ it was empty" % token
             
             if property in c[const.PROPERTIES]:
                 # print "WARNING: %s - Property %s was redefined" %(tokens, property)
-                print "WARNING: Property %s was redefined" %(property)
+                log.warn("WARNING: Property %s was redefined" %(property))
             else:
                 c[const.PROPERTIES][property] = {}
 
@@ -536,7 +553,7 @@ it was empty" % token
         elif const.CONFIG in tokenMap:
 
             if not self.currentClass:
-                print "Error: @config tag found before @class was found.\n****\n"
+                log.error("Error: @config tag found before @class was found.\n****\n")
                 sys.exit()
 
             c = self.data[const.CLASS_MAP][self.currentClass]
@@ -546,7 +563,7 @@ it was empty" % token
             
             if config in c[const.CONFIGS]:
                 # print "WARNING: %s - Property %s was redefined" %(tokens, config)
-                print "WARNING: Property %s was redefined" %(config)
+                log.warn("WARNING: Property %s was redefined" %(config))
             else:
                 c[const.CONFIGS][config] = {}
 
@@ -561,7 +578,7 @@ it was empty" % token
         else:
             msg = "WARNING: doc block type ambiguous, no @class, @module, @method, \
 or @property tag found.  This block may be skipped"
-            print "\n" + self.currentFile + "\n" + msg + ":\n\n" + str(tokens) + "\n"
+            log.warn("\n" + self.currentFile + "\n" + msg + ":\n\n" + str(tokens) + "\n")
 
         # constructors are added as an array to the currentClass.  This makes it so
         # multiple constructors can be supported even though that is out of scope
@@ -569,7 +586,7 @@ or @property tag found.  This block may be skipped"
         if const.CONSTRUCTOR in tokenMap:
 
             if not self.currentClass:
-                print "Error: @constructor tag found but @class was not found.\n****\n"
+                log.error("Error: @constructor tag found but @class was not found.\n****\n")
                 sys.exit(1)
 
             c = self.data[const.CLASS_MAP][self.currentClass]

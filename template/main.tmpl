@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title>API: $modulename #if $classname# $classname #end if# #if $filename# $filename #end if# (YUI Library)</title>
-	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css">
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
 </head>
 
@@ -11,7 +10,7 @@
 
 	<div id="hd">
         <h1>$projectname</h1>
-        <h3>$moduletitle&nbsp;</h3>
+        <h3>$moduletitle&nbsp; <span class="subtitle">$version</span></h3>
         <p>
         <a href="./index.html">$projectname</a> 
         #if $modulename
@@ -436,6 +435,19 @@
                         Requires: $requires
                     </div>
                     #end if
+                    #if $optional
+                    <div class="content">
+                        Optional: $optional
+                    </div>
+                    #end if
+
+                    #if $beta
+                    <div class="description"><em>Beta</em></div>
+                    #end if
+
+                    #if $experimental
+                    <div class="description"><em>Experimental</em></div>
+                    #end if
 
                 #end if
 			</div>
@@ -546,7 +558,7 @@
 	</div>
 	<div id="ft">
         <hr />
-        Copyright &copy; 2006 Yahoo! Inc. All rights reserved.
+        Copyright &copy; 2007 Yahoo! Inc. All rights reserved.
 	</div>
 </div>
 </body>

@@ -2,6 +2,12 @@
 ChangeLog
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Version 0.0.8 (12/05/05, adamoore)
+ - No longer attempts to apply the current namespace to class names in extends,
+   uses, etc.  This prevents accidental munging of the name, but requires that
+   the full classname including namespace is used.
+ - added logger config file
+
 Version 0.0.7 (11/09/06, adamoore)
 -------------
  - The javascript included with the template has been combined into a single
