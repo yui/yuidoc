@@ -12,7 +12,7 @@ a:visited { color: #003399;}
 #hd h3 { background: #947DB2; color: #FFF; font: 110%/1.22em arial; padding: 5px 10px; margin: 0 0 7px 0; }
 #hd h3 A { color: #FFF; text-decoration: none; }
 #hd .breadcrumbs { font-size: 85%; margin-bottom:10px;}
-#hd .subtitle { float: right}
+#hd .subtitle {position: absolute; right:1em; padding: 0px;margin:0px}
 
 #doc3 dl { margin: 2px 0; }
 #doc3 dd { margin-left: 20px; }
