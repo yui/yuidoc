@@ -211,6 +211,15 @@ class DocGenerator(object):
         def getUrl(c, p):
             return "%s.html#%s" %(c,p)
 
+        #sort is case insensitive and ignores puctuation for the search json file
+        def allprop_sort(x, y):
+            pat = re.compile(r"[\_\-\.]")
+            cx = x[const.NAME].lower()
+            cy = y[const.NAME].lower()
+            cx = pat.sub('', cx)
+            cy = pat.sub('', cy)
+            return cmp(cx, cy)
+
         log.info("-------------------------------------------------------")
  
         # copy the json file
@@ -263,7 +272,8 @@ class DocGenerator(object):
             # if const.EXPERIMENTAL in m:
                 # t[const.EXPERIMENTAL] = "Experimental"
 
-            self.write( t.cleansedmodulename + ".html", t)
+
+            moduleprops = []
 
             # class API view
             #for i in classes:
@@ -306,6 +316,7 @@ class DocGenerator(object):
                             if self.showprivate or const.PRIVATE not in prop:
                                 propdata = {const.NAME: propertykey, const.HOST: i, const.URL:getUrl(i, propertykey)}
                                 self.allprops.append(propdata.copy())
+                                moduleprops.append(propdata.copy())
                                 transferToDict( const.TYPE,        prop, propdata, const.OBJECT )
                                 transferToDict( const.DESCRIPTION, prop, propdata           )
                                 transferToDict( const.DEFAULT,     prop, propdata           )
@@ -331,6 +342,7 @@ class DocGenerator(object):
                             if self.showprivate or const.PRIVATE not in config:
                                 configdata = {const.NAME: configkey, const.HOST: i, const.URL:getUrl(i, configkey)}
                                 self.allprops.append(configdata.copy())
+                                moduleprops.append(configdata.copy())
                                 transferToDict( const.TYPE,        config, configdata, const.OBJECT )
                                 transferToDict( const.DESCRIPTION, config, configdata           )
                                 transferToDict( const.DEFAULT, config, configdata           )
@@ -355,6 +367,7 @@ class DocGenerator(object):
                             if self.showprivate or const.PRIVATE not in method:
                                 methoddata = {const.NAME: methodkey, const.HOST: i, const.URL:getUrl(i, methodkey)}
                                 self.allprops.append(methoddata.copy())
+                                moduleprops.append(methoddata.copy())
                                 transferToDict( const.DESCRIPTION, method, methoddata )
                                 transferToDict( const.DEPRECATED,  method, methoddata, const.NBWS, True )
                                 transferToDict( const.SEE,         method, methoddata )
@@ -393,6 +406,7 @@ class DocGenerator(object):
                             if self.showprivate or const.PRIVATE not in event:
                                 eventdata = {const.NAME: eventkey, const.HOST: i, const.URL:getUrl(i, eventkey)}
                                 self.allprops.append(eventdata.copy())
+                                moduleprops.append(eventdata.copy())
                                 transferToDict( const.DESCRIPTION, event, eventdata )
                                 transferToDict( const.DEPRECATED,  event, eventdata, const.NBWS, True )
                                 transferToDict( const.SEE,         event, eventdata )
@@ -458,6 +472,20 @@ class DocGenerator(object):
         
             # clear out class name
             self.classname   = ""
+            t.classname = ""
+            t.filename = ""
+            t.properties = ""
+            t.methods = ""
+            t.events  = ""
+            t.configs = ""
+
+
+            # write module splash
+            moduleprops.sort(allprop_sort)
+            moduleprops_json =  simplejson.dumps(moduleprops)
+            t.allprops = moduleprops_json
+            self.write( t.cleansedmodulename + ".html", t)
+
 
             # class source view
             for i in m[const.FILE_LIST]:
@@ -476,19 +504,10 @@ class DocGenerator(object):
                 allprops.append(i)
                 propmap[url] = True
 
-        #sort is case insensitive and ignores puctuation for the search json file
-        def allprop_sort(x, y):
-            pat = re.compile(r"[\_\-\.]")
-            cx = x[const.NAME].lower()
-            cy = y[const.NAME].lower()
-            cx = pat.sub('', cx)
-            cy = pat.sub('', cy)
-            return cmp(cx, cy)
-
         allprops.sort(allprop_sort)
                                             
-        allprops =  simplejson.dumps(allprops)
-        self.write("index.json",allprops)
+        allprops_json =  simplejson.dumps(allprops)
+        self.write("index.json",allprops_json)
 
         # index
         log.info("Generating index")
@@ -507,7 +526,7 @@ class DocGenerator(object):
         self.filenames.sort(soft_sort)
         self.filename   = ""
         assignGlobalProperties(t)
-        t.allprops = allprops
+        t.allprops = allprops_json
         t.index = True
         self.write("index.html", t)
 

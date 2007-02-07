@@ -1,0 +1,89 @@
+(function() {
+    var oACDS;
+    var oAutoComp;
+
+    var propsort = function(a, b) {
+            //return (a.url > b.url) ? 1 : ((a.url < b.url) ? -1  : 0);
+            return (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((a.name.toLowerCase() < b.name.toLowerCase()) ? -1  : 0);
+    }
+
+    var allprops = ALL_YUI_PROPS;
+
+    // allprops.sort(propsort);
+
+    var getResults = function(query) {
+        var results = [];
+        if(query && query.length > 0) {
+            for (var i=0, len=allprops.length; i<len; ++i) {
+                var prop = allprops[i];
+                //var searchStr = prop.host.toLowerCase() + '.' + prop.name.toLowerCase();
+                var searchStr = prop.url.toLowerCase();
+                if (searchStr.indexOf(query.toLowerCase()) > -1) {
+                    results.push([query,prop]);
+                }
+            }
+        }
+
+        return results;
+    };
+
+    // Define Custom Event handlers
+    var myOnDataReturn = function(sType, aArgs) {
+        var oAutoComp = aArgs[0];
+        var query = aArgs[1];
+        var aResults = aArgs[2];
+
+        if(aResults.length == 0) {
+            if (query.length > 0) {
+                oAutoComp.setBody("<div id=\"resultsdefault\">Not found</div>");
+            } else {
+                oAutoComp.setBody("<div id=\"resultsdefault\">Start typing to find a property/method/event/config " +
+                                   " or browse a module by clicking a link on the left.</div>");
+            }
+        }
+    };
+
+    var myOnContainerCollapse = function(sType, aArgs) {
+        var oAutoComp = aArgs[0];
+        oAutoComp.setBody("<div id=\"resultsdefault\">Start typing to find a property/method/event/config</div>");
+    };
+
+    var myOnItemSelect = function(sType, aArgs) {
+        var ac = aArgs[0];
+        var item = aArgs[2];
+        location.href = item[1].url;
+    };
+
+
+    var init = function() {
+
+        // Instantiate JS Function DataSource
+        oACDS = new YAHOO.widget.DS_JSFunction(getResults);
+        oACDS.maxCacheEntries = 30;
+
+        // Instantiate AutoComplete
+        oAutoComp = new YAHOO.widget.AutoComplete('searchinput','searchresults', oACDS);
+        oAutoComp.alwaysShowContainer = true;
+        oAutoComp.queryDelay = 0.2;
+        oAutoComp.maxResultsDisplayed = 200;
+        oAutoComp.formatResult = function(oResultItem, query) {
+            var sMarkup = "<em>" + oResultItem[1].host + '</em> <span>' + oResultItem[1].name + '</span>';
+            return sMarkup;
+        };
+
+        // Subscribe to Custom Events
+        oAutoComp.dataReturnEvent.subscribe(myOnDataReturn);
+        oAutoComp.containerCollapseEvent.subscribe(myOnContainerCollapse);
+        oAutoComp.itemSelectEvent.subscribe(myOnItemSelect);
+        
+        // Set initial content in the container
+        oAutoComp.sendQuery(document.getElementById("searchinput").value);
+    };
+
+    var validateForm = function() {
+        return false;
+    };
+
+    init();
+
+})();
