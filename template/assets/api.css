@@ -22,6 +22,17 @@ a:visited { color: #003399;}
 #doc3 .deprecated strong { color:#441054; }
 #doc3 code, pre {font-size:85%}
 
+#doc3 .private {
+    display:none;
+}
+
+#doc3 .protected {
+    display:none;
+}
+
+#doc3 #classopts { float:right; margin:2px; padding: 2px; background-color:#cdc6d5;border: 1px solid #947db2;}
+#doc3 #classopts #showprivate { padding-bottom: 1em;}
+
 /* undo reset.css styles for description block formatting */
 #doc3 .description ul { padding: 10px 0 10px 28px; font-size: 90%; list-style: disc}
 #doc3 .description p { padding-bottom: 10px}
@@ -44,7 +55,7 @@ a:visited { color: #003399;}
 
 #doc3 .section { margin: 0 0 16px 0; }
 #doc3 .section strong { font-weight: bold;}
-#doc3 .section hr { border: none 0; border-top: 1px solid #cccccc; }
+#doc3 .section hr { border: none 0; border-top: 1px solid #ccc; }
 #doc3 .section h4 { font-size:110%;}
 #doc3 .section h3 { background: #947DB2; width: 100%; color: #FFF; padding: 3px; margin: 0 0 7px 0; }
 #doc3 .section h3 .top { font-size: 60%; font-weight: normal; width: 100%; font-family: verdana; padding-left: 20px; }
@@ -62,8 +73,8 @@ a:visited { color: #003399;}
 #propertysearch {;position:absolute;margin:1em;width:35em;}/* set width of widget here*/
 #searchinput {position:absolute;width:100%;height:1.4em;}
 #searchresults {position:absolute;top:1.7em;width:100%;}
-#searchresults .yui-ac-content {position:absolute;top:4px; left:0px; width:100%;height:20em;border:1px solid #404040;background:#fff;overflow:auto;overflow-x:hidden;z-index:9050;}
-/*#searchresults .yui-ac-shadow {position:absolute;margin:.3em;width:100%;background:#a0a0a0;z-index:9049;}*/
+#searchresults .yui-ac-content {position:absolute;top:4px; left:0px; width:100%;height:20em;border:1px solid #aaa;background:#fff;overflow:auto;overflow-x:hidden;z-index:9050;}
+#searchresults .yui-ac-shadow {position:absolute;margin:.3em;width:100%;background:#a0a0a0;z-index:9049;}:
 #searchresults ul {padding:5px 0;width:100%;}
 #searchresults li {padding:0 5px;cursor:default;white-space:nowrap;}
 #searchresults li.yui-ac-highlight {background:#D1C6DA;}

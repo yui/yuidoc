@@ -6,6 +6,10 @@
 </head>
 
 <body id="yahoo-com">
+
+<script type="text/javascript" src="assets/api-js"></script>
+<script type="text/javascript" src="assets/ac-js"></script>
+
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
@@ -19,11 +23,16 @@
                 #if $filename# &gt; $filename (source view) #end if#
             </p>
         #end if
+
 	</div>
 
 	<div id="bd">
 		<div id="yui-main">
 			<div class="yui-b">
+            <form name="yui-classopts-form">
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+            </form>
                 #if $index
 
                     <div class="summary description">
@@ -43,17 +52,17 @@
                     <script type="text/javascript">
                         ALL_YUI_PROPS = $allprops;
                     </script>
-                    <script type="text/javascript" src="assets/api-js"></script>
-                    <script type="text/javascript" src="assets/ac-js"></script>
 
                 #end if
 
                 #if $filename
                     <div id="srcout">
+                        <style>
+                            #doc3 #classopts { display:none; }
+                        </style>
                         #include raw $filepath_highlighted
                     </div>
                 #else if $classname 
-
                     <h2>
                         #if $access#<code>$access</code>#end if#
 
@@ -161,6 +170,7 @@
                             <h3><a name="field_detail">Properties</a></h3>
                             <div class="content">
                                 #for $property in $properties
+                                    <div class="$property.access">
                                     <h4><a name="$property.name">$property.name</a>
                                         <code>- #if $property.access#$property.access #end if##if $property.static#$property.static #end if##if $property.final#$property.final #end if#$property.type</code>
                                     </h4>
@@ -184,6 +194,7 @@
                                     #end if
 
                                     <hr />
+                                    </div>
                                 #end for
 
 
@@ -198,9 +209,9 @@
                             <div class="content">
                                 <code>
                                     #set i=0
-                                    #for $prop in $inherited.properties[$superclassname]##if i>0#,#end if#
-                                        #set i=i+1
-                                        <a href="${superclassname}.html#$prop">$prop</a>#end for
+                                    #set l=len($inherited.properties[$superclassname])-1
+                                    #for $prop in $inherited.properties[$superclassname]#
+                                        <a class="$prop.access" href="${superclassname}.html#$prop.name">$prop.name</a>#if $i<$l#<span class="$prop.access">,</span>#end if##set i=i+1##end for#
                                 </code>
                             </div>
                         </div>
@@ -212,6 +223,7 @@
                             <h3><a name="methodDetails">Methods</a></h3>
                             <div class="content">
                                 #for $method in $methods
+                                    <div class="$method.access">
                                     <h4>
                                         <a name="$method.name">$method.name</a></h4>
                                     <div class="detail">
@@ -274,6 +286,7 @@
 
                                     </div>
                                     <hr />
+                                    </div>
                                 #end for
                             </div>
                         </div>
@@ -286,9 +299,9 @@
                                 <div class="content">
                                     <code>
                                         #set i=0
-                                        #for $method in $inherited.methods[$superclassname]##if i>0#,#end if#
-                                            #set i=i+1
-                                            <a href="${superclassname}.html#$method">$method</a>#end for
+                                        #set l=len($inherited.methods[$superclassname])-1
+                                        #for $method in $inherited.methods[$superclassname]
+                                            <a class="$method.access" href="${superclassname}.html#$method.name">$method.name</a>#if $i<$l#<span class="$method.access">,</span>#end if##set i=i+1##end for#
                                     </code>
                                 </div>
                             </div>
@@ -300,6 +313,7 @@
                             <h3><a name="methodDetails">Events</a></h3>
                             <div class="content">
                                 #for $event in $events
+                                    <div class="$event.access">
                                     <h4>
                                         <a name="$event.name">$event.name</a></h4>
                                     <div class="detail">
@@ -355,6 +369,7 @@
 
                                     </div>
                                     <hr />
+                                    </div>
                                 #end for
                             </div>
                         </div>
@@ -368,9 +383,10 @@
                             <div class="content">
                                 <code>
                                     #set i=0
-                                    #for $event in $inherited.events[$superclassname]##if i>0#,#end if#
+                                    #set l=len($inherited.methods[$superclassname])-1
+                                    #for $event in $inherited.events[$superclassname]
                                         #set i=i+1
-                                        <a href="${superclassname}.html#$event">$event</a>#end for
+                                        <a class="$event.access" href="${superclassname}.html#$event.name">$event.name</a>#if $i<$l#<span class="$event.access">,</span>#end if##set i=i+1##end for#
                                 </code>
                             </div>
                         </div>
@@ -382,6 +398,7 @@
                             <h3><a name="field_detail">Configuration Attributes</a></h3>
                             <div class="content">
                                 #for $config in $configs
+                                    <div class="$config.access">
                                     <h4><a name="$config.name">$config.name</a>
                                         <code>- #if $config.access#$config.access #end if##if $config.static#$config.static #end if##if $config.final#$config.final #end if#$config.type</code>
                                     </h4>
@@ -404,6 +421,7 @@
                                     #end if
 
                                     <hr />
+                                    </div>        
                                 #end for
 
                             </div>
@@ -417,9 +435,10 @@
                             <div class="content">
                                 <code>
                                     #set i=0
-                                    #for $config in $inherited.configs[$superclassname]##if i>0#,#end if#
+                                    #set l=len($inherited.methods[$superclassname])-1
+                                    #for $config in $inherited.configs[$superclassname]
                                         #set i=i+1
-                                        <a href="${superclassname}.html#$config">$config</a>#end for
+                                        <a class="$config.access" href="${superclassname}.html#$config.name">$config.name</a>#if $i<$l#<span class="$config.access">,</span>#end if##set i=i+1##end for#
                                 </code>
                             </div>
                         </div>
@@ -466,8 +485,6 @@
                         ALL_YUI_PROPS = $allprops;
                     </script>
 
-                    <script type="text/javascript" src="assets/api-js"></script>
-                    <script type="text/javascript" src="assets/ac-js"></script>
 
                 #end if
 			</div>
@@ -526,7 +543,7 @@
                         <h4>Properties</h4>
                         <ul class="content">        
                             #for $prop in $properties
-                                <li><a href="#${prop.name}">$prop.name</a>
+                                <li class="${prop.access}"><a href="#${prop.name}">$prop.name</a>
                                         <!--<code>&lt;$property.type&gt;</code>-->
                                 </li>
                             #end for
@@ -539,7 +556,7 @@
                         <h4>Methods</h4>
                         <ul class="content">        
                             #for $method in $methods
-                                <li><!--<code>$method.return.type</code>-->
+                                <li class="${method.access}"><!--<code>$method.return.type</code>-->
                                 <a href="#${method.name}">$method.name</a>
                                 </li>
                             #end for
@@ -552,7 +569,7 @@
                         <h4>Events</h4>
                         <ul class="content">        
                             #for $event in $events
-                                <li>
+                                <li class="${event.access}">
                                 <a href="#${event.name}">$event.name</a>
                                 </li>
                             #end for
@@ -565,7 +582,7 @@
                         <h4>Configuration Attributes</h4>
                         <ul class="content">        
                             #for $config in $configs
-                                <li>
+                                <li class="${config.access}">
                                 <a href="#${config.name}">$config.name</a>
                                 </li>
                             #end for

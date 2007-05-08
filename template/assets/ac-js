@@ -1,24 +1,136 @@
 (function() {
-    var oACDS;
-    var oAutoComp;
+    var Event=YAHOO.util.Event,Dom=YAHOO.util.Dom,oACDS,oAutoComp;
+       
+    Cookie = {
+
+        set: function(key, val, o){
+            o = o||{};
+            val = encodeURIComponent(val);
+            if (o.domain) {
+                val += '; domain=' + o.domain;
+            }
+            if (o.path) {
+                val += '; path=' + o.path;
+            }
+            if (YAHOO.lang.isNumber(o.duration)) {
+                var date = new Date();
+                date.setTime(date.getTime() + o.duration*24*60*60*1000);
+                val += '; expires=' + date.toGMTString();
+            }
+            if (o.secure) {
+                val += '; secure';
+            }
+            document.cookie = key + '=' + val;
+        },
+
+        get: function(key){
+            var m = document.cookie.match('(?:^|;)\\s*?' + key + '=([^;]*)');
+            return (m) ? decodeURIComponent(m[1]) : null;
+        },	
+        
+        remove: function(key){
+            return this.set(key, "", {expires: -1});
+        }
+    }
+
+    var showPrivate=(Cookie.get("showPrivate")=="true");
+    var showProtected=(Cookie.get("showProtected")=="true");
+    //alert(Cookie.get("showPrivate"));
+    //alert(Cookie.get("showProtected"));
+    var s=null;
+
+    if (showPrivate) {
+        s='#doc3 .private { display:inherit; }';
+    }
+
+    if (showProtected) {
+        s+='#doc3 .protected { display:inherit; }';
+    }
+
+    if (s) {
+        var el=document.createElement("style");
+        el.innerHTML=s;
+        document.body.insertBefore(el,document.body.firstChild);
+    }
+
+    function showHidePrivate(show) {
+        showHide("private", show);
+        showPrivate=show;
+        Cookie.set("showPrivate", show, 2);
+    }
+
+    function showHideProtected(show) {
+        showHide("protected", show);
+        showProtected=show;
+        Cookie.set("showProtected", show, 2);
+    }
+
+    function showHide(type, show) {
+        var className=(show) ? "inherit": "none";
+        var els=Dom.getElementsByClassName(type);
+        for (var i=0,l=els.length;i<l;i=i+1) {
+            Dom.setStyle(els[i], "display", className);
+            Dom.setStyle(els[i], "visibility", "inherit");
+        }
+    }
+
+    Event.onAvailable("showprivate", function() {
+            var el = Dom.get("showprivate");
+            if (el) {
+
+                if (showPrivate) {
+                    el.checked=true;
+                    Cookie.set("showPrivate", true, 2);
+                }
+
+                // get cookie state, show private if needed
+                showHidePrivate(el.checked);
+
+
+                // set up handler
+                Event.on(el, "click", function(e) {
+                        showHidePrivate(this.checked);
+                    });
+            }
+
+            var el = Dom.get("showprotected");
+            if (el) {
+
+                if (showProtected) {
+                    el.checked=true;
+                    Cookie.set("showProtected", true, 2);
+                }
+
+                // get cookie state, show private if needed
+                showHideProtected(el.checked);
+
+                // set up handler
+                Event.on(el, "click", function(e) {
+                        showHideProtected(this.checked);
+                    });
+            }
+        });
 
     var propsort = function(a, b) {
             //return (a.url > b.url) ? 1 : ((a.url < b.url) ? -1  : 0);
             return (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((a.name.toLowerCase() < b.name.toLowerCase()) ? -1  : 0);
     }
 
-    var allprops = ALL_YUI_PROPS;
-
+    //var allprops = ALL_YUI_PROPS;
     // allprops.sort(propsort);
 
     var getResults = function(query) {
         var results = [];
         if(query && query.length > 0) {
-            for (var i=0, len=allprops.length; i<len; ++i) {
-                var prop = allprops[i];
+            for (var i=0, len=ALL_YUI_PROPS.length; i<len; ++i) {
+                var prop = ALL_YUI_PROPS[i];
                 //var searchStr = prop.host.toLowerCase() + '.' + prop.name.toLowerCase();
                 var searchStr = prop.url.toLowerCase();
-                if (searchStr.indexOf(query.toLowerCase()) > -1) {
+                if (!showProtected && prop.access == "protected") {
+                    // skip
+                } else if (!showPrivate && prop.access == "private") {
+                    // skip
+                } else if (searchStr.indexOf(query.toLowerCase()) > -1) {
                     results.push([query,prop]);
                 }
             }
@@ -37,8 +149,9 @@
             if (query.length > 0) {
                 oAutoComp.setBody("<div id=\"resultsdefault\">Not found</div>");
             } else {
-                oAutoComp.setBody("<div id=\"resultsdefault\">Start typing to find a property/method/event/config " +
-                                   " or browse a module by clicking a link on the left.</div>");
+                //oAutoComp.setBody("<div id=\"resultsdefault\">Start typing to find a property/method/event/config " +
+                                   //" or browse a module by clicking a link on the left.</div>");
+                oAutoComp.setBody("<div id=\"resultsdefault\">Start typing to find a property/method/event/config</div>");
             }
         }
     };
@@ -55,7 +168,7 @@
     };
 
 
-    var init = function() {
+    Event.onAvailable("searchresults", function() {
 
         // Instantiate JS Function DataSource
         oACDS = new YAHOO.widget.DS_JSFunction(getResults);
@@ -66,6 +179,7 @@
         oAutoComp.alwaysShowContainer = true;
         oAutoComp.queryDelay = 0.2;
         oAutoComp.maxResultsDisplayed = 200;
+        oAutoComp.minQueryLength = 0;
         oAutoComp.formatResult = function(oResultItem, query) {
             var sMarkup = "<em>" + oResultItem[1].host + '</em> <span>' + oResultItem[1].name + '</span>';
             return sMarkup;
@@ -77,13 +191,12 @@
         oAutoComp.itemSelectEvent.subscribe(myOnItemSelect);
         
         // Set initial content in the container
-        oAutoComp.sendQuery(document.getElementById("searchinput").value);
-    };
+        oAutoComp.sendQuery(Dom.get("searchinput").value);
+
+    });
 
     var validateForm = function() {
         return false;
     };
-
-    init();
 
 })();

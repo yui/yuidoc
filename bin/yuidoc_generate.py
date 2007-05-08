@@ -172,7 +172,11 @@ class DocGenerator(object):
                     for prop in keys:
                         superprop = superc[const.PROPERTIES][prop]
                         if shouldShow(superprop):
-                            inhdef.append(prop)
+                            if const.PRIVATE in superprop: access = const.PRIVATE
+                            elif const.PROTECTED in superprop: access = const.PROTECTED
+                            else:access = ""
+                            inhdef.append({const.NAME: prop, const.ACCESS: access})
+                            #inhdef.append(superprop)
                 if const.METHODS in superc:
                     inhdef = dict[const.METHODS][supercname] = []
                     keys = superc[const.METHODS].keys()
@@ -180,7 +184,11 @@ class DocGenerator(object):
                     for method in keys:
                         supermethod = superc[const.METHODS][method]
                         if shouldShow(supermethod):
-                            inhdef.append(method)
+                            #inhdef.append(method)
+                            if const.PRIVATE in supermethod: access = const.PRIVATE
+                            elif const.PROTECTED in supermethod: access = const.PROTECTED
+                            else:access = ""
+                            inhdef.append({const.NAME: method, const.ACCESS: access})
                 if const.EVENTS in superc:
                     inhdef = dict[const.EVENTS][supercname] = []
                     keys = superc[const.EVENTS].keys()
@@ -188,7 +196,11 @@ class DocGenerator(object):
                     for event in keys:
                         superevent = superc[const.EVENTS][event]
                         if shouldShow(superevent):
-                            inhdef.append(event)
+                            # inhdef.append(event)
+                            if const.PRIVATE in superevent: access = const.PRIVATE
+                            elif const.PROTECTED in superevent: access = const.PROTECTED
+                            else:access = ""
+                            inhdef.append({const.NAME: event, const.ACCESS: access})
                 if const.CONFIGS in superc:
                     inhdef = dict[const.CONFIGS][supercname] = []
                     keys = superc[const.CONFIGS].keys()
@@ -196,7 +208,11 @@ class DocGenerator(object):
                     for config in keys:
                         superconfig = superc[const.CONFIGS][config]
                         if shouldShow(superconfig):
-                            inhdef.append(config)
+                            #inhdef.append(config)
+                            if const.PRIVATE in superconfig: access = const.PRIVATE
+                            elif const.PROTECTED in superconfig: access = const.PROTECTED
+                            else:access = ""
+                            inhdef.append({const.NAME: config, const.ACCESS: access})
 
                 if const.EXTENDS in superc:
                     supercname = superc[const.EXTENDS]
@@ -315,8 +331,14 @@ class DocGenerator(object):
                             prop     = c[const.PROPERTIES][propertykey]
                             if self.showprivate or const.PRIVATE not in prop:
                                 propdata = {const.NAME: propertykey, const.HOST: i, const.URL:getUrl(i, propertykey)}
+
+                                transferToDict( const.ACCESS,   prop, propdata           )
+                                if const.PRIVATE in prop: propdata[const.ACCESS] = const.PRIVATE
+                                elif const.PROTECTED in prop: propdata[const.ACCESS] = const.PROTECTED
+
                                 self.allprops.append(propdata.copy())
                                 moduleprops.append(propdata.copy())
+
                                 transferToDict( const.TYPE,        prop, propdata, const.OBJECT )
                                 transferToDict( const.DESCRIPTION, prop, propdata           )
                                 transferToDict( const.DEFAULT,     prop, propdata           )
@@ -327,9 +349,6 @@ class DocGenerator(object):
                                 if const.STATIC in prop: propdata[const.STATIC] = const.STATIC
                                 transferToDict( const.FINAL,      prop, propdata           )
                                 if const.FINAL in prop: propdata[const.FINAL] = const.FINAL
-                                transferToDict( const.ACCESS,   prop, propdata           )
-                                if const.PRIVATE in prop: propdata[const.ACCESS] = const.PRIVATE
-                                elif const.PROTECTED in prop: propdata[const.ACCESS] = const.PROTECTED
                                 props.append(propdata)
 
                     # configs
@@ -341,8 +360,14 @@ class DocGenerator(object):
                             config = c[const.CONFIGS][configkey]
                             if self.showprivate or const.PRIVATE not in config:
                                 configdata = {const.NAME: configkey, const.HOST: i, const.URL:getUrl(i, configkey)}
+
+                                transferToDict( const.ACCESS,   config, configdata           )
+                                if const.PRIVATE in config: configdata[const.ACCESS] = const.PRIVATE
+                                elif const.PROTECTED in config: configdata[const.ACCESS] = const.PROTECTED
+
                                 self.allprops.append(configdata.copy())
                                 moduleprops.append(configdata.copy())
+
                                 transferToDict( const.TYPE,        config, configdata, const.OBJECT )
                                 transferToDict( const.DESCRIPTION, config, configdata           )
                                 transferToDict( const.DEFAULT, config, configdata           )
@@ -352,9 +377,6 @@ class DocGenerator(object):
                                 if const.STATIC in config: configdata[const.STATIC] = const.STATIC
                                 transferToDict( const.FINAL,      config, configdata           )
                                 if const.FINAL in config: configdata[const.FINAL] = const.READONLY
-                                transferToDict( const.ACCESS,   config, configdata           )
-                                if const.PRIVATE in config: configdata[const.ACCESS] = const.PRIVATE
-                                elif const.PROTECTED in config: configdata[const.ACCESS] = const.PROTECTED
                                 configs.append(configdata)
 
                     # Methods
@@ -366,8 +388,14 @@ class DocGenerator(object):
                             method = c[const.METHODS][methodkey]
                             if self.showprivate or const.PRIVATE not in method:
                                 methoddata = {const.NAME: methodkey, const.HOST: i, const.URL:getUrl(i, methodkey)}
+
+                                transferToDict( const.ACCESS,      method, methoddata )
+                                if const.PRIVATE in method: methoddata[const.ACCESS] = const.PRIVATE
+                                elif const.PROTECTED in method: methoddata[const.ACCESS] = const.PROTECTED
+
                                 self.allprops.append(methoddata.copy())
                                 moduleprops.append(methoddata.copy())
+
                                 transferToDict( const.DESCRIPTION, method, methoddata )
                                 transferToDict( const.DEPRECATED,  method, methoddata, const.NBWS, True )
                                 transferToDict( const.SEE,         method, methoddata )
@@ -375,9 +403,6 @@ class DocGenerator(object):
                                 if const.STATIC in method: methoddata[const.STATIC] = const.STATIC
                                 transferToDict( const.FINAL,      method, methoddata )
                                 if const.FINAL in method: methoddata[const.FINAL] = const.FINAL
-                                transferToDict( const.ACCESS,      method, methoddata )
-                                if const.PRIVATE in method: methoddata[const.ACCESS] = const.PRIVATE
-                                elif const.PROTECTED in method: methoddata[const.ACCESS] = const.PROTECTED
 
                                 ret = methoddata[const.RETURN] = {const.NAME:"", const.DESCRIPTION:"", const.TYPE:const.VOID}
                                 if const.RETURN in method:
@@ -405,8 +430,14 @@ class DocGenerator(object):
                             event = c[const.EVENTS][eventkey]
                             if self.showprivate or const.PRIVATE not in event:
                                 eventdata = {const.NAME: eventkey, const.HOST: i, const.URL:getUrl(i, eventkey)}
+
+                                transferToDict( const.ACCESS,      event, eventdata )
+                                if const.PRIVATE in event: eventdata[const.ACCESS] = const.PRIVATE
+                                elif const.PROTECTED in event: eventdata[const.ACCESS] = const.PROTECTED
+
                                 self.allprops.append(eventdata.copy())
                                 moduleprops.append(eventdata.copy())
+
                                 transferToDict( const.DESCRIPTION, event, eventdata )
                                 transferToDict( const.DEPRECATED,  event, eventdata, const.NBWS, True )
                                 transferToDict( const.SEE,         event, eventdata )
@@ -414,9 +445,6 @@ class DocGenerator(object):
                                 if const.STATIC in event: eventdata[const.STATIC] = const.STATIC
                                 transferToDict( const.FINAL,      event, eventdata )
                                 if const.FINAL in event: eventdata[const.FINAL] = const.FINAL
-                                transferToDict( const.ACCESS,      event, eventdata )
-                                if const.PRIVATE in event: eventdata[const.ACCESS] = const.PRIVATE
-                                elif const.PROTECTED in event: eventdata[const.ACCESS] = const.PROTECTED
 
                                 params = eventdata[const.PARAMS] = []
                                 if const.PARAMS in event:
