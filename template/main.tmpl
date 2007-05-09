@@ -3,12 +3,11 @@
 <head>
 	<title>API: $modulename #if $classname# $classname #end if# #if $filename# $filename #end if# (YUI Library)</title>
 	<link rel="stylesheet" type="text/css" href="assets/api.css">
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
 </head>
 
 <body id="yahoo-com">
-
-<script type="text/javascript" src="assets/api-js"></script>
-<script type="text/javascript" src="assets/ac-js"></script>
 
 <div id="doc3" class="yui-t2">
 
@@ -582,7 +581,7 @@
                         <h4>Configuration Attributes</h4>
                         <ul class="content">        
                             #for $config in $configs
-                                <li class="${config.access}>
+                                <li class="${config.access}">
                                 <a href="#${config.name}">$config.name</a>
                                 </li>
                             #end for

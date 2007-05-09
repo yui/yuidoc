@@ -37,20 +37,33 @@
     var showProtected=(Cookie.get("showProtected")=="true");
     //alert(Cookie.get("showPrivate"));
     //alert(Cookie.get("showProtected"));
-    var s=null;
+    //var s="",style=(YAHOO.lang.ua.ie)?"":"inherit";
+    var s="",style;
 
-    if (showPrivate) {
-        s='#doc3 .private { display:inherit; }';
-    }
+    style=(showPrivate) ? "inherit" : "none";
 
-    if (showProtected) {
-        s+='#doc3 .protected { display:inherit; }';
-    }
+    //if (!Event.isIE) {
+        s='#doc3 .private { display:' + style + '; }';
+    //}
 
-    if (s) {
+    style=(showProtected) ? "inherit" : "none";
+    //if (!Event.isIE) {
+        s+='\n#doc3 .protected { display:' + style + '; }';
+    //}
+
+    if (s.length > 0) {
         var el=document.createElement("style");
-        el.innerHTML=s;
-        document.body.insertBefore(el,document.body.firstChild);
+        //el.innerHTML=s;
+
+        el.setAttribute("type", "text/css");
+        if(el.styleSheet) {
+            el.styleSheet.cssText = s;
+        } else {
+            var txt = document.createTextNode(s);
+            el.appendChild(txt);
+        }
+
+        document.getElementsByTagName("head")[0].appendChild(el);
     }
 
     function showHidePrivate(show) {
@@ -66,11 +79,12 @@
     }
 
     function showHide(type, show) {
-        var className=(show) ? "inherit": "none";
+        var className=(show) ? "": "none";
         var els=Dom.getElementsByClassName(type);
         for (var i=0,l=els.length;i<l;i=i+1) {
-            Dom.setStyle(els[i], "display", className);
-            Dom.setStyle(els[i], "visibility", "inherit");
+            //try {
+                Dom.setStyle(els[i], "display", className);
+            //} catch(e) {}
         }
     }
 
