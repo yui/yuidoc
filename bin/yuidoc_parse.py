@@ -16,7 +16,7 @@ log = logging.getLogger('yuidoc.parse')
 
 class DocParser(object):
 
-    def __init__(self, inputdirs, outputdir, outputfile, extension):
+    def __init__(self, inputdirs, outputdir, outputfile, extension, version):
 
 
 
@@ -64,8 +64,9 @@ class DocParser(object):
         # the remainder of the file with the comment blocks removed
         # self.stripped = ""
 
+
         # Dictionary of parsed data
-        self.data = { const.CLASS_MAP: {}, const.MODULES: {} }
+        self.data = { const.VERSION: version, const.CLASS_MAP: {}, const.MODULES: {} }
 
         self.inputdirs = inputdirs
         self.outputdir = os.path.abspath(outputdir)
@@ -608,7 +609,9 @@ def main():
     optparser = OptionParser("usage: %prog [options] inputdir1 inputdir2 etc")
     optparser.set_defaults(outputdir="out",
                            outputfile="parsed.json", 
-                           extension=".js")
+                           extension=".js",
+                           version=""
+                           )
     optparser.add_option( "-o", "--outputdir",
                           action="store", dest="outputdir", type="string",
                           help="Directory to write the parser results" )
@@ -618,12 +621,17 @@ def main():
     optparser.add_option( "-e", "--extension",
                           action="store", dest="extension", type="string",
                           help="The extension for the files that should be parsed" )
+    optparser.add_option( "-v", "--version",
+                          action="store", dest="version", type="string",
+                          help="The version of the project" )
     (opts, inputdirs) = optparser.parse_args()
     if len(inputdirs) > 0:
         docparser = DocParser( inputdirs, 
                             opts.outputdir, 
                             opts.outputfile, 
-                            opts.extension   )
+                            opts.extension,
+                            opts.version
+                            )
     else:
         optparser.error("Incorrect number of arguments")
            

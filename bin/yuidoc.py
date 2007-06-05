@@ -51,7 +51,9 @@ def main():
         docparser = yuidoc_parse.DocParser( inputdirs, 
                             opts.parseroutdir, 
                             opts.parserfile, 
-                            opts.extension   )
+                            opts.extension,
+                            opts.version
+                            )
 
         highlighter = yuidoc_highlight.DocHighlighter( [opts.parseroutdir], 
                             opts.parseroutdir, 

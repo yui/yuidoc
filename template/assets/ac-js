@@ -29,7 +29,7 @@
         },	
         
         remove: function(key){
-            return this.set(key, "", {expires: -1});
+            return this.set(key, "", {duration: -1});
         }
     }
 
@@ -136,16 +136,22 @@
     var getResults = function(query) {
         var results = [];
         if(query && query.length > 0) {
+
+            var q = query.toLowerCase();
+
             for (var i=0, len=ALL_YUI_PROPS.length; i<len; ++i) {
+
                 var prop = ALL_YUI_PROPS[i];
-                //var searchStr = prop.host.toLowerCase() + '.' + prop.name.toLowerCase();
-                var searchStr = prop.url.toLowerCase();
+
                 if (!showProtected && prop.access == "protected") {
                     // skip
                 } else if (!showPrivate && prop.access == "private") {
                     // skip
-                } else if (searchStr.indexOf(query.toLowerCase()) > -1) {
-                    results.push([query,prop]);
+                } else {
+                    var s = (prop.host + "." + prop.name).toLowerCase();
+                    if (s.indexOf(q) > -1 ) {
+                        results.push([query, prop]);
+                    }
                 }
             }
         }
