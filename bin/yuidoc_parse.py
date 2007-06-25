@@ -313,7 +313,7 @@ found another tag @%s" % (token, desc)
                             msg = "WARNING: expected a description block for tag @%s but \
 it was empty" % token
 
-                        log.warn("\n" + self.currentFile + "\n" + msg + ":\n\n" + str(tokens) + "\n")
+                        log.warn("\n" + self.currentFile + "\n" + msg + ":\n\n" + unicode(tokens) + "\n")
 
 
                 # keep a map of the different tags we have found, with an
@@ -364,7 +364,7 @@ it was empty" % token
                     self.currentClass = longName
                 else:
                     # msg = "@for tag references a class that has not been defined"
-                    # raise ValueError, str(tokens) + " " + msg
+                    # raise ValueError, unicode(tokens) + " " + msg
                     defineClass(name)
                     
                 tokenMap.pop(const.FOR)
@@ -579,7 +579,7 @@ it was empty" % token
         else:
             msg = "WARNING: doc block type ambiguous, no @class, @module, @method, \
 or @property tag found.  This block may be skipped"
-            log.warn("\n" + self.currentFile + "\n" + msg + ":\n\n" + str(tokens) + "\n")
+            log.warn("\n" + self.currentFile + "\n" + msg + ":\n\n" + unicode(tokens) + "\n")
 
         # constructors are added as an array to the currentClass.  This makes it so
         # multiple constructors can be supported even though that is out of scope
@@ -603,7 +603,7 @@ or @property tag found.  This block may be skipped"
                     target[token] = tokenMap[token][0]
         else:
             msg = "WARNING no target, this block will be skipped"
-            # print "\n" + self.currentFile + "\n" + msg + ":\n\n" + str(tokens) + "\n"
+            # print "\n" + self.currentFile + "\n" + msg + ":\n\n" + unicode(tokens) + "\n"
 
 def main():
     optparser = OptionParser("usage: %prog [options] inputdir1 inputdir2 etc")
