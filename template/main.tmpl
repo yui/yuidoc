@@ -12,7 +12,7 @@
 <div id="doc3" class="yui-t2">
 
 	<div id="hd">
-        <h1>$projectname</h1>
+        <a href="$projecturl"><h1>$projectname</h1></a>
         <h3>$moduletitle&nbsp; <span class="subtitle">$version</span></h3>
         <p>
         <a href="./index.html">$projectname</a> 
@@ -597,5 +597,10 @@
         Copyright &copy; 2007 Yahoo! Inc. All rights reserved.
 	</div>
 </div>
+#if $ydn
+<!--MyBlogLog instrumentation-->
+<script type="text/javascript"
+src="http://track2.mybloglog.com/js/jsserv.php?mblID=2007020704011645"></script>
+#end if
 </body>
 </html>

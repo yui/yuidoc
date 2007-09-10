@@ -12,7 +12,9 @@ def main():
                            parserfile="parsed.json", 
                            showprivate=False,
                            project="Yahoo! UI Library",
-                           version=""
+                           version="",
+                           projecturl="http://developer.yahoo.com/yui/",
+                           ydn=False
                            )
     optparser.add_option( "-p", "--parseroutdir",
         action="store", dest="parseroutdir", type="string",
@@ -45,6 +47,13 @@ def main():
                           action="store", dest="version", type="string",
                           help="The version of the project" )
 
+    optparser.add_option( "-u", "--projecturl",
+                          action="store", dest="projecturl", type="string",
+                          help="The project url" )
+    optparser.add_option( "-y", "--ydn",
+        action="store_true", dest="ydn",
+        help="Add YDN MyBlogLog intrumentation?" )
+
     (opts, inputdirs) = optparser.parse_args()
 
     if len(inputdirs) > 0:
@@ -67,7 +76,9 @@ def main():
                                opts.newext,
                                opts.showprivate,
                                opts.project,
-                               opts.version
+                               opts.version,
+                               opts.projecturl,
+                               opts.ydn
                                )
         gen.process()
     else:

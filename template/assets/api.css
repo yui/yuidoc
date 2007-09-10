@@ -7,12 +7,13 @@
 a:link { color: #00F; }
 a:visited { color: #003399;}
 
-#hd {margin-bottom:1em}
-#hd h1 { color: #545454; font:170%/50px arial Bold; padding: 8px 0 8px 70px; background: url(logo.gif) left center no-repeat; }
-#hd h3 { background: #947DB2; color: #FFF; font: 110%/1.22em arial; padding: 5px 10px; margin: 0 0 7px 0; }
-#hd h3 A { color: #FFF; text-decoration: none; }
-#hd .breadcrumbs { font-size: 85%; margin-bottom:10px;}
-#hd .subtitle {position: absolute; right:1em; padding: 0px;margin:0px}
+#doc3 #hd {margin-bottom:1em}
+#doc3 #hd a { text-decoration: none; }
+#doc3 #hd h1 { color: #545454; font:170%/50px arial Bold; padding: 8px 0 8px 70px; background: url(logo.gif) left center no-repeat; }
+#doc3 #hd h3 { background: #947DB2; color: #FFF; font: 110%/1.22em arial; padding: 5px 10px; margin: 0 0 7px 0; }
+#doc3 #hd h3 A { color: #FFF; text-decoration: none; }
+#doc3 #hd .breadcrumbs { font-size: 85%; margin-bottom:10px;}
+#doc3 #hd .subtitle {position: absolute; right:1em; padding: 0px;margin:0px}
 
 #doc3 dl { margin: 2px 0; }
 #doc3 dd { margin-left: 20px; }

@@ -16,7 +16,11 @@ log = logging.getLogger('yuidoc.generate')
 
 class DocGenerator(object):
 
-    def __init__(self, inpath, datafile, outpath, templatepath, newext, showprivate=False, projectname='Yahoo! UI Library', version=''):
+    def __init__(self, inpath, datafile, outpath, templatepath, newext, showprivate=False, 
+                 projectname='Yahoo! UI Library', 
+                 version='', 
+                 projecturl='http://developer.yahoo.com/yui/', 
+                 ydn=False):
 
         def _mkdir(newdir):
             if os.path.isdir(newdir): pass
@@ -58,6 +62,8 @@ class DocGenerator(object):
         d = self.data = simplejson.loads(self.rawdata)
 
         self.projectname = projectname
+        self.projecturl = projecturl
+        self.ydn = ydn
         self.version = version 
         self.modulename  = ""
         self.moduletitle  = ""
@@ -90,6 +96,8 @@ class DocGenerator(object):
 
         def assignGlobalProperties(template):
             template.projectname  = self.projectname
+            template.projecturl   = self.projecturl
+            template.ydn          = self.ydn
             template.version      = self.version
             template.modules      = self.modules
             template.modulenames  = self.modulenames
@@ -597,6 +605,14 @@ def main():
                           action="store", dest="version", type="string",
                           help="The version of the project" )
 
+    optparser.add_option( "-u", "--projecturl",
+                          action="store", dest="projecturl", type="string",
+                          help="The project url" )
+    optparser.add_option( "-y", "--ydn",
+        action="store_true", dest="ydn",
+        help="Add YDN MyBlogLog intrumentation?" )
+
+
     (options, inputdirs) = optparser.parse_args()
 
     if len(inputdirs) > 0:
@@ -606,7 +622,9 @@ def main():
                                options.templatedir,
                                options.showprivate,
                                options.project,
-                               options.version
+                               options.version,
+                               options.projecturl,
+                               options.ydn
                                )
         generator.process()
     else:
