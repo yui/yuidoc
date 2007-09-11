@@ -359,36 +359,6 @@ class DocGenerator(object):
                                 if const.FINAL in prop: propdata[const.FINAL] = const.FINAL
                                 props.append(propdata)
 
-                    # configs
-                    configs = t.configs = []
-                    if const.CONFIGS in c:
-                        keys = c[const.CONFIGS].keys()
-                        keys.sort(soft_sort)
-                        for configkey in keys:
-                            config = c[const.CONFIGS][configkey]
-                            if self.showprivate or const.PRIVATE not in config:
-                                configdata = {const.NAME: configkey, const.HOST: i, const.URL:getUrl(i, configkey)}
-
-                                transferToDict( const.ACCESS,   config, configdata           )
-                                if const.PRIVATE in config: configdata[const.ACCESS] = const.PRIVATE
-                                elif const.PROTECTED in config: configdata[const.ACCESS] = const.PROTECTED
-
-                                self.allprops.append(configdata.copy())
-                                moduleprops.append(configdata.copy())
-
-                                transferToDict( const.TYPE,        config, configdata, const.OBJECT )
-                                transferToDict( const.DESCRIPTION, config, configdata           )
-                                transferToDict( const.DEFAULT, config, configdata           )
-                                transferToDict( const.DEPRECATED,  config, configdata, const.NBWS, True )
-                                transferToDict( const.SEE,         config, configdata           )
-                                transferToDict( const.STATIC,      config, configdata           )
-                                if const.STATIC in config: configdata[const.STATIC] = const.STATIC
-                                transferToDict( const.FINAL,      config, configdata           )
-                                if const.FINAL in config: configdata[const.FINAL] = const.READONLY
-                                transferToDict( const.WRITEONCE,      config, configdata           )
-                                if const.WRITEONCE in config: configdata[const.WRITEONCE] = const.WRITEONCE
-                                configs.append(configdata)
-
                     # Methods
                     methods = t.methods = []
                     if const.METHODS in c:
@@ -468,6 +438,35 @@ class DocGenerator(object):
 
                                 events.append(eventdata)
 
+                    # configs
+                    configs = t.configs = []
+                    if const.CONFIGS in c:
+                        keys = c[const.CONFIGS].keys()
+                        keys.sort(soft_sort)
+                        for configkey in keys:
+                            config = c[const.CONFIGS][configkey]
+                            if self.showprivate or const.PRIVATE not in config:
+                                configdata = {const.NAME: configkey, const.HOST: i, const.URL:getUrl(i, configkey)}
+
+                                transferToDict( const.ACCESS,   config, configdata           )
+                                if const.PRIVATE in config: configdata[const.ACCESS] = const.PRIVATE
+                                elif const.PROTECTED in config: configdata[const.ACCESS] = const.PROTECTED
+
+                                self.allprops.append(configdata.copy())
+                                moduleprops.append(configdata.copy())
+
+                                transferToDict( const.TYPE,        config, configdata, const.OBJECT )
+                                transferToDict( const.DESCRIPTION, config, configdata           )
+                                transferToDict( const.DEFAULT, config, configdata           )
+                                transferToDict( const.DEPRECATED,  config, configdata, const.NBWS, True )
+                                transferToDict( const.SEE,         config, configdata           )
+                                transferToDict( const.STATIC,      config, configdata           )
+                                if const.STATIC in config: configdata[const.STATIC] = const.STATIC
+                                transferToDict( const.FINAL,      config, configdata           )
+                                if const.FINAL in config: configdata[const.FINAL] = const.READONLY
+                                transferToDict( const.WRITEONCE,      config, configdata           )
+                                if const.WRITEONCE in config: configdata[const.WRITEONCE] = const.WRITEONCE
+                                configs.append(configdata)
 
                     # get inherited data
                     inherited = t.inherited = {const.PROPERTIES:{}, const.METHODS:{}, const.EVENTS:{}, const.CONFIGS:{}}

@@ -377,6 +377,7 @@ it was empty" % token
             and const.CONSTRUCTOR not in tokenMap \
             and const.EVENT not in tokenMap \
             and const.CONFIG not in tokenMap \
+            and const.ATTRIBUTE not in tokenMap \
             and const.MODULE not in tokenMap:
             if const.GUESSEDNAME in tokenMap:
                 if const.GUESSEDTYPE in tokenMap:
@@ -551,14 +552,19 @@ it was empty" % token
 
             tokenMap.pop(const.PROPERTY)
 
-        elif const.CONFIG in tokenMap:
-
+        elif const.CONFIG in tokenMap or const.ATTRIBUTE in tokenMap:
+        
             if not self.currentClass:
                 log.error("Error: @config tag found before @class was found.\n****\n")
                 sys.exit()
 
             c = self.data[const.CLASS_MAP][self.currentClass]
-            config = tokenMap[const.CONFIG][0]
+            if const.ATTRIBUTE in tokenMap:
+                config = tokenMap[const.ATTRIBUTE][0]
+                # config.hasEvents = True;
+            else:
+                config = tokenMap[const.CONFIG][0]
+
 
             if not const.CONFIGS in c: c[const.CONFIGS] = {}
             
@@ -570,7 +576,40 @@ it was empty" % token
 
             target = c[const.CONFIGS][config]
 
-            tokenMap.pop(const.CONFIG)
+            if const.ATTRIBUTE in tokenMap:
+                tokenMap.pop(const.ATTRIBUTE)
+                # target[const.HASEVENTS] = True;
+
+                if not const.EVENTS in c: c[const.EVENTS] = {}
+
+                # auto-document '[configname]ChangeEvent' and 'before[Configname]ChangeEvent'
+                eventname = config + const.CHANGEEVENT
+                
+                c[const.EVENTS][eventname] = {
+                    const.NAME: eventname,
+                    const.DESCRIPTION: "Fires when the value for the configuration attribute '" + config + "' changes.",
+                    const.PARAMS: [{
+                        const.NAME: "eventInfo",
+                        const.TYPE: "{oldValue: any, newValue: any}",
+                        const.DESCRIPTION: "An object containing the previous attribute value and the new value."
+                    }]
+                }
+
+                eventname = const.BEFORE + config.capitalize() + const.CHANGEEVENT
+
+                c[const.EVENTS][eventname] = {
+                    const.NAME: eventname,
+                    const.DESCRIPTION: "Fires before the value for the configuration attribute '" + config + "' changes." +
+                                       " Return false to cancel the attribute change.",
+                    const.PARAMS: [{
+                        const.NAME: "eventInfo",
+                        const.TYPE: "{oldValue: any, newValue: any}",
+                        const.DESCRIPTION: "An object containing the current attribute value and the new value.",
+                        # const.RETURN: "Return false to cancel the attribute change"
+                    }]
+                }
+            else:
+                tokenMap.pop(const.CONFIG)
 
         # module blocks won't be picked up unless they are standalone
         elif const.MODULE in tokenMap:
