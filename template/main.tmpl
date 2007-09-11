@@ -399,7 +399,7 @@
                                 #for $config in $configs
                                     <div class="$config.access">
                                     <h4><a name="$config.name">$config.name</a>
-                                        <code>- #if $config.access#$config.access #end if##if $config.static#$config.static #end if##if $config.final#$config.final #end if#$config.type</code>
+                                        <code>- #if $config.access#$config.access #end if##if $config.static#$config.static #end if##if $config.writeonce#$config.writeonce #end if##if $config.final#$config.final #end if#$config.type</code>
                                     </h4>
                                     <div class="detail">
                                         <div class="description">

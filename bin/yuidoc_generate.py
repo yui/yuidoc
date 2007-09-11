@@ -385,6 +385,8 @@ class DocGenerator(object):
                                 if const.STATIC in config: configdata[const.STATIC] = const.STATIC
                                 transferToDict( const.FINAL,      config, configdata           )
                                 if const.FINAL in config: configdata[const.FINAL] = const.READONLY
+                                transferToDict( const.WRITEONCE,      config, configdata           )
+                                if const.WRITEONCE in config: configdata[const.WRITEONCE] = const.WRITEONCE
                                 configs.append(configdata)
 
                     # Methods
