@@ -34,8 +34,8 @@ cheetah
     cd Cheetah-2.0rc7
     sudo python setup.py install
 
-Get yuidoc: http://produce.yahoo.com/adamoore/yuidoc_0.0.6.zip
-Extract yuidoc_0.0.6.zip
+
+Get yuidoc: cvs co yahoo/presentation/tools/yuidoc
 
 Make a copy of yuidoc/bin/example.sh and modify the paths to suit your needs.
 
@@ -64,8 +64,7 @@ OR
 
 In either case, add C:\python24 to your PATH
 
-Get yuidoc: http://produce.yahoo.com/adamoore/yuidoc_0.0.6.zip
-Extract yuidoc_0.0.6.zip
+Get yuidoc: cvs co yahoo/presentation/tools/yuidoc
 
 Copy yuidoc\bin\example.bat and modify the paths to suit your needs
 
