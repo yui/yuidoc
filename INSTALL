@@ -39,6 +39,15 @@ Get yuidoc: cvs co yahoo/presentation/tools/yuidoc
 
 Make a copy of yuidoc/bin/example.sh and modify the paths to suit your needs.
 
+See TAGS for a brief description of the supported tags.  Checking out the
+source for the YUI library is a good way to get to know how it works. Ex:
+http://developer.yahoo.com/yui/docs/Event.js.html
+
+NOTE: This tool will generally work with code that has been commented for
+jsdoc, with one exception:  you must have at least one @module block defined
+somewhere in your source.  If you don't, the program will run but won't
+generate anything.
+
 
 DOS/Windows:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -68,3 +77,11 @@ Get yuidoc: cvs co yahoo/presentation/tools/yuidoc
 
 Copy yuidoc\bin\example.bat and modify the paths to suit your needs
 
+See TAGS for a brief description of the supported tags.  Checking out the
+source for the YUI library is a good way to get to know how it works. Ex:
+http://developer.yahoo.com/yui/docs/Event.js.html
+
+NOTE: This tool will generally work with code that has been commented for
+jsdoc, with one exception:  you must have at least one @module block defined
+somewhere in your source.  If you don't, the program will run but won't
+generate anything.

@@ -2,7 +2,19 @@
 ChangeLog
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Version 0.0.8 (12/05/05, adamoore)
+Most recent updates
+
+ Parser:
+ - Added support for YUI-specific constructs (custom events, 
+   configuration attributes).
+ - @config generates property info for old Config-style properies
+ - @attribute generates AttributeProvider docs, and includes the events
+   that are automatically created.
+ - Private/protected members are hidden by default.
+ - Added a flag to support YDN's stat instrumentation
+
+Version 0.0.8 (12/05/06, adamoore)
+-------------
  - No longer attempts to apply the current namespace to class names in extends,
    uses, etc.  This prevents accidental munging of the name, but requires that
    the full classname including namespace is used.

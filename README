@@ -7,7 +7,7 @@ comment blocks; no attempt is made to understand the javascript itself.
 
 The tools are written in python, and should work for version 2.3 and up.  
 To date, it has only been tested in version 2.3 on a unix system.  Although
-untested, it should work in MS windows as well.
+largely untested, it should work in MS windows as well.
 
 The following python libraries are required:
     simplejson - for reading and writing json
