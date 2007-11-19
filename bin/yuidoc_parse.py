@@ -89,6 +89,8 @@ class DocParser(object):
             self.script = parseDir(path)
             self.extract()
 
+            # log.info("\n\n%s:\n\n%s\n" %("matches", unicode(self.matches)))
+
             for match in self.matches:
                 self.parse(self.tokenize(match))
             
@@ -110,6 +112,10 @@ class DocParser(object):
         
     # extract string literals in case they contain the documentation pattern
     literals_pat = re.compile(r'(\'.*?(?<=[^\\])\')|(\".*?(?<=[^\\])\")')
+
+    # extract regex literals in case they contain 
+    #regex_pat = re.compile(r'(\/.*?(?<=[^\\])\/)')
+    regex_pat = re.compile(r'(\/[^\/\*].*?(?<=[^\\])\/)')
     
     # the token we will use to restore the string literals
     replaceToken = '~~~%s~~~'
@@ -153,6 +159,7 @@ class DocParser(object):
 
         # removes string literals and puts in a placeholder
         def insertToken_sub(mo):
+            # log.info("\n\n%s:\n\n%s\n" %("extracted", unicode(mo.groups())))
             literals.append(mo.group())
             return self.replaceToken % (len(literals) - 1)
     
@@ -173,10 +180,13 @@ class DocParser(object):
         # extracts the comment blocks
         def match_sub(match):
             if match.group(5):
+                # log.info("\n\n%s:\n\n%s\n" %("group5", unicode(match.group(5))))
                 return match.group(5)
             else:
                 # get the block and filter out unwanted chars
                 block = self.blockFilter_pat.sub("", match.group(2))
+
+                # log.info("\n\n%s:\n\n%s\n" %("block", unicode(block)))
 
                 # restore string literals
                 block = self.restore_pat.sub(restore_sub, block)
@@ -199,8 +209,15 @@ class DocParser(object):
 
                 return ''
 
+        # remove regex literals
+        script = self.regex_pat.sub(insertToken_sub, self.script)
+
+        # log.info("\n\n%s:\n\n%s\n" %("after regex extraction", unicode(script)))
+
         # remove string literals
-        script = self.literals_pat.sub(insertToken_sub, self.script)
+        script = self.literals_pat.sub(insertToken_sub, script)
+
+        # log.info("\n\n%s:\n\n%s\n" %("after string extraction", unicode(script)))
     
         # extract comment blocks
         self.docBlock_pat.sub(match_sub, script)
@@ -213,6 +230,8 @@ class DocParser(object):
 
     # Parse the token stream for a single comment block
     def parse(self, tokens):
+
+        # log.info("\n\n%s:\n\n%s\n" %("tokens", unicode(tokens)))
 
         tokensCopy = tokens[:] # shallow copy, we keep the orig for error msgs
 
@@ -394,6 +413,9 @@ it was empty" % token
         # global or contextual metadata
 
         def parseModule(tokenMap):
+
+            # log.info("\n\n%s:\n\n%s\n" %("tokenMap", unicode(tokenMap)))
+
             target = None
             if not const.MODULES in self.data: self.data[const.MODULES] = {}
             for module in tokenMap[const.MODULE]:
@@ -491,12 +513,16 @@ it was empty" % token
             tokenMap.pop(const.CLASS)
                 
         elif const.METHOD in tokenMap:
+
+
             if not self.currentClass:
                 log.error("Error: @method tag found before @class was found.\n****\n")
                 sys.exit()
 
             c = self.data[const.CLASS_MAP][self.currentClass]
             method = tokenMap[const.METHOD][0]
+
+            # log.info(" @method "  + method)
 
             if not const.METHODS in c: c[const.METHODS] = {}
             
@@ -617,7 +643,7 @@ it was empty" % token
 
         else:
             msg = "WARNING: doc block type ambiguous, no @class, @module, @method, \
-or @property tag found.  This block may be skipped"
+@event, @property, or @config tag found.  This block may be skipped"
             log.warn("\n" + self.currentFile + "\n" + msg + ":\n\n" + unicode(tokens) + "\n")
 
         # constructors are added as an array to the currentClass.  This makes it so
