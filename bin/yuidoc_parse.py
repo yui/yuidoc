@@ -115,7 +115,7 @@ class DocParser(object):
 
     # extract regex literals in case they contain 
     #regex_pat = re.compile(r'(\/.*?(?<=[^\\])\/)')
-    regex_pat = re.compile(r'(\/[^\/\*].*?(?<=[^\\])\/)')
+    regex_pat = re.compile(r'(\/[^\s\/\*][^\n]*?(?<=[^\\])\/)')
     
     # the token we will use to restore the string literals
     replaceToken = '~~~%s~~~'
