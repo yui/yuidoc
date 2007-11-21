@@ -115,7 +115,8 @@ class DocParser(object):
 
     # extract regex literals in case they contain 
     #regex_pat = re.compile(r'(\/.*?(?<=[^\\])\/)')
-    regex_pat = re.compile(r'(\/[^\s\/\*][^\n]*?(?<=[^\\])\/)')
+    #regex_pat = re.compile(r'(\/[^\s\/\*][^\n]*?(?<=[^\\])\/)')
+    regex_pat = re.compile(r'(\/[^\s\/\*][^\n]*\/)')
     
     # the token we will use to restore the string literals
     replaceToken = '~~~%s~~~'
@@ -159,12 +160,13 @@ class DocParser(object):
 
         # removes string literals and puts in a placeholder
         def insertToken_sub(mo):
-            # log.info("\n\n%s:\n\n%s\n" %("extracted", unicode(mo.groups())))
+            # log.info("\n\n%s: %s\n" %("extracted", unicode(mo.groups())))
             literals.append(mo.group())
             return self.replaceToken % (len(literals) - 1)
     
         # restores string literals
         def restore_sub(mo):
+            # log.info("\n\n%s: %s\n" %("restore", unicode(literals[int(mo.group(1))])))
             return literals[int(mo.group(1))]
 
         # guesses name and type
@@ -189,6 +191,9 @@ class DocParser(object):
                 # log.info("\n\n%s:\n\n%s\n" %("block", unicode(block)))
 
                 # restore string literals
+                block = self.restore_pat.sub(restore_sub, block)
+
+                # twice
                 block = self.restore_pat.sub(restore_sub, block)
 
                 # guess the name and type of the property/method based on the line
