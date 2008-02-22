@@ -567,44 +567,6 @@ class DocGenerator(object):
         t.index = True
         self.write("index.html", t)
 
-
-        # map all classes to the corresponding module for external loaders
-        t = Template(file=os.path.join(self.templatepath, "classmap.tmpl"))
-        pkgMap = {}
-        keys = self.data[const.CLASS_MAP].keys()
-        keys.sort()
-        for i in keys:
-            pkgMap[i] = self.data[const.CLASS_MAP][i]['module']
-
-        # log.info(" ")
-        # log.info(unicode(keys))
-        # log.info(" ")
-        #     for i in keys:
-        #     ns = i.split('.')
-        #     log.info("processing: " + unicode(ns))
-        #     cn = ns[len(ns) - 1]
-        #     log.info("target class: " + cn)
-        #     current = pkgMap
-        #     for j in ns:
-        #         if cn == j:
-        #             if j in current:
-        #                 log.info("already defined: " + j)
-        #             else:
-        #                 log.info("class: " + j + ", full class: " + i)
-        #                 current[j] = self.data[const.CLASS_MAP][i]['module']
-        #         else:
-        #             if j not in current:
-        #                 current[j] = {}
-        #             current = current[j]
-
-        # # log.info(" ")
-        # log.info(unicode(pkgMap))
-        # classjson = "YAHOO.env.classMap = " + simplejson.dumps(pkgMap)
-        # log.info(classjson)
-        t.pkgmap = simplejson.dumps(pkgMap)
-        self.write("classmap.js", t)
-
-
         log.info(" ")
         log.info("Done\n")
 
