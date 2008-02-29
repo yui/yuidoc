@@ -170,7 +170,7 @@
                             <div class="content">
                                 #for $property in $properties
                                     <div class="$property.access">
-                                    <h4><a name="$property.name">$property.name</a>
+                                    <h4><a name="property_$property.name">$property.name</a>
                                         <code>- #if $property.access#$property.access #end if##if $property.static#$property.static #end if##if $property.final#$property.final #end if#$property.type</code>
                                     </h4>
                                     <div class="detail">
@@ -210,7 +210,7 @@
                                     #set i=0
                                     #set l=len($inherited.properties[$superclassname])-1
                                     #for $prop in $inherited.properties[$superclassname]#
-                                        <a class="$prop.access" href="${superclassname}.html#$prop.name">$prop.name</a>#if $i<$l#<span class="$prop.access">,</span>#end if##set i=i+1##end for#
+                                        <a class="$prop.access" href="${superclassname}.html#property_$prop.name">$prop.name</a>#if $i<$l#<span class="$prop.access">,</span>#end if##set i=i+1##end for#
                                 </code>
                             </div>
                         </div>
@@ -224,7 +224,7 @@
                                 #for $method in $methods
                                     <div class="$method.access">
                                     <h4>
-                                        <a name="$method.name">$method.name</a></h4>
+                                        <a name="method_$method.name">$method.name</a></h4>
                                     <div class="detail">
                                         <code>
                                         #if $method.access# $method.access #end if#
@@ -300,7 +300,7 @@
                                         #set i=0
                                         #set l=len($inherited.methods[$superclassname])-1
                                         #for $method in $inherited.methods[$superclassname]
-                                            <a class="$method.access" href="${superclassname}.html#$method.name">$method.name</a>#if $i<$l#<span class="$method.access">,</span>#end if##set i=i+1##end for#
+                                            <a class="$method.access" href="${superclassname}.html#method_$method.name">$method.name</a>#if $i<$l#<span class="$method.access">,</span>#end if##set i=i+1##end for#
                                     </code>
                                 </div>
                             </div>
@@ -314,7 +314,7 @@
                                 #for $event in $events
                                     <div class="$event.access">
                                     <h4>
-                                        <a name="$event.name">$event.name</a></h4>
+                                        <a name="event_$event.name">$event.name</a></h4>
                                     <div class="detail">
                                         <code>
                                         #if $event.access# $event.access #end if#
@@ -385,7 +385,7 @@
                                     #set l=len($inherited.methods[$superclassname])-1
                                     #for $event in $inherited.events[$superclassname]
                                         #set i=i+1
-                                        <a class="$event.access" href="${superclassname}.html#$event.name">$event.name</a>#if $i<$l#<span class="$event.access">,</span>#end if##set i=i+1##end for#
+                                        <a class="$event.access" href="${superclassname}.html#event_$event.name">$event.name</a>#if $i<$l#<span class="$event.access">,</span>#end if##set i=i+1##end for#
                                 </code>
                             </div>
                         </div>
@@ -398,7 +398,7 @@
                             <div class="content">
                                 #for $config in $configs
                                     <div class="$config.access">
-                                    <h4><a name="$config.name">$config.name</a>
+                                    <h4><a name="config_$config.name">$config.name</a>
                                         <code>- #if $config.access#$config.access #end if##if $config.static#$config.static #end if##if $config.writeonce#$config.writeonce #end if##if $config.final#$config.final #end if#$config.type</code>
                                     </h4>
                                     <div class="detail">
@@ -437,7 +437,7 @@
                                     #set l=len($inherited.methods[$superclassname])-1
                                     #for $config in $inherited.configs[$superclassname]
                                         #set i=i+1
-                                        <a class="$config.access" href="${superclassname}.html#$config.name">$config.name</a>#if $i<$l#<span class="$config.access">,</span>#end if##set i=i+1##end for#
+                                        <a class="$config.access" href="${superclassname}.html#config_$config.name">$config.name</a>#if $i<$l#<span class="$config.access">,</span>#end if##set i=i+1##end for#
                                 </code>
                             </div>
                         </div>
@@ -542,7 +542,7 @@
                         <h4>Properties</h4>
                         <ul class="content">        
                             #for $prop in $properties
-                                <li class="${prop.access}"><a href="#${prop.name}">$prop.name</a>
+                                <li class="${prop.access}"><a href="#property_${prop.name}">$prop.name</a>
                                         <!--<code>&lt;$property.type&gt;</code>-->
                                 </li>
                             #end for
@@ -556,7 +556,7 @@
                         <ul class="content">        
                             #for $method in $methods
                                 <li class="${method.access}"><!--<code>$method.return.type</code>-->
-                                <a href="#${method.name}">$method.name</a>
+                                <a href="#method_${method.name}">$method.name</a>
                                 </li>
                             #end for
                         </ul>
@@ -569,7 +569,7 @@
                         <ul class="content">        
                             #for $event in $events
                                 <li class="${event.access}">
-                                <a href="#${event.name}">$event.name</a>
+                                <a href="#event_${event.name}">$event.name</a>
                                 </li>
                             #end for
                         </ul>
@@ -582,7 +582,7 @@
                         <ul class="content">        
                             #for $config in $configs
                                 <li class="${config.access}">
-                                <a href="#${config.name}">$config.name</a>
+                                <a href="#config_${config.name}">$config.name</a>
                                 </li>
                             #end for
                         </ul>

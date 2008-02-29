@@ -232,8 +232,9 @@ class DocGenerator(object):
                         if supercname in classes:
                             getPropsFromSuperclass(classes[supercname], classes, dict)
 
-        def getUrl(c, p):
-            return "%s.html#%s" %(c,p)
+        # build url: class, property, type
+        def getUrl(c, p, t=''):
+            return "%s.html#%s_%s" %(c, t, p)
 
         #sort is case insensitive and ignores puctuation for the search json file
         def allprop_sort(x, y):
@@ -338,7 +339,7 @@ class DocGenerator(object):
                         for propertykey in keys:
                             prop     = c[const.PROPERTIES][propertykey]
                             if self.showprivate or const.PRIVATE not in prop:
-                                propdata = {const.NAME: propertykey, const.HOST: i, const.URL:getUrl(i, propertykey)}
+                                propdata = {const.NAME: propertykey, const.HOST: i, const.URL:getUrl(i, propertykey, const.PROPERTY)}
 
                                 transferToDict( const.ACCESS,   prop, propdata           )
                                 if const.PRIVATE in prop: propdata[const.ACCESS] = const.PRIVATE
@@ -367,7 +368,7 @@ class DocGenerator(object):
                         for methodkey in keys:
                             method = c[const.METHODS][methodkey]
                             if self.showprivate or const.PRIVATE not in method:
-                                methoddata = {const.NAME: methodkey, const.HOST: i, const.URL:getUrl(i, methodkey)}
+                                methoddata = {const.NAME: methodkey, const.HOST: i, const.URL:getUrl(i, methodkey, const.METHOD)}
 
                                 transferToDict( const.ACCESS,      method, methoddata )
                                 if const.PRIVATE in method: methoddata[const.ACCESS] = const.PRIVATE
@@ -409,7 +410,7 @@ class DocGenerator(object):
                         for eventkey in keys:
                             event = c[const.EVENTS][eventkey]
                             if self.showprivate or const.PRIVATE not in event:
-                                eventdata = {const.NAME: eventkey, const.HOST: i, const.URL:getUrl(i, eventkey)}
+                                eventdata = {const.NAME: eventkey, const.HOST: i, const.URL:getUrl(i, eventkey, const.EVENT)}
 
                                 transferToDict( const.ACCESS,      event, eventdata )
                                 if const.PRIVATE in event: eventdata[const.ACCESS] = const.PRIVATE
@@ -446,7 +447,7 @@ class DocGenerator(object):
                         for configkey in keys:
                             config = c[const.CONFIGS][configkey]
                             if self.showprivate or const.PRIVATE not in config:
-                                configdata = {const.NAME: configkey, const.HOST: i, const.URL:getUrl(i, configkey)}
+                                configdata = {const.NAME: configkey, const.HOST: i, const.URL:getUrl(i, configkey, const.CONFIG)}
 
                                 transferToDict( const.ACCESS,   config, configdata           )
                                 if const.PRIVATE in config: configdata[const.ACCESS] = const.PRIVATE
