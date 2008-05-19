@@ -10,6 +10,8 @@ Unix (including cygwin):
 Extract each of the archives in ext and install the package
 sudo python setup.py install (no sudo needed for cygwin or windows)
 
+NOTE: extract these to a local volume, not a volume that is NFS mounted.
+
 setuptools
     cd ext
     tar xfvz setuptools-0.6c3.tar.gz

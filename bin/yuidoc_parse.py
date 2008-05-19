@@ -519,13 +519,13 @@ it was empty" % token
                 
         elif const.METHOD in tokenMap:
 
+            method = tokenMap[const.METHOD][0]
 
             if not self.currentClass:
-                log.error("Error: @method tag found before @class was found.\n****\n")
+                log.error("Error: @method tag found before @class was found.\n****\n" + method)
                 sys.exit()
 
             c = self.data[const.CLASS_MAP][self.currentClass]
-            method = tokenMap[const.METHOD][0]
 
             # log.info(" @method "  + method)
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 ''' Prints documentation with htmltmpl from the json data outputted by parser.py  ''' 
-import os, re, simplejson, shutil, logging, logging.config
+import os, re, simplejson, shutil, logging, logging.config, time, datetime
 import const
 from cStringIO import StringIO 
 from Cheetah.Template import Template
@@ -105,6 +105,8 @@ class DocGenerator(object):
             template.moduletitle = self.moduletitle
             template.cleansedmodulename = self.cleansedmodulename 
             template.moduledesc   = self.moduledesc
+
+            template.year         = datetime.date.today().strftime('%Y')
 
             template.filename     = self.filename
             if self.filename:
@@ -351,8 +353,7 @@ class DocGenerator(object):
                                 transferToDict( const.TYPE,        prop, propdata, const.OBJECT )
                                 transferToDict( const.DESCRIPTION, prop, propdata           )
                                 transferToDict( const.DEFAULT,     prop, propdata           )
-                                transferToDict( const.DEPRECATED,  prop, propdata, const.NBWS, True )
-                                transferToDict( const.DEPRECATED,  prop, propdata, const.NBWS, True )
+                                transferToDict( const.DEPRECATED,  prop, propdata, const.NBWS, const.DEPRECATED )
                                 transferToDict( const.SEE,         prop, propdata           )
                                 transferToDict( const.STATIC,      prop, propdata           )
                                 if const.STATIC in prop: propdata[const.STATIC] = const.STATIC
@@ -378,7 +379,7 @@ class DocGenerator(object):
                                 moduleprops.append(methoddata.copy())
 
                                 transferToDict( const.DESCRIPTION, method, methoddata )
-                                transferToDict( const.DEPRECATED,  method, methoddata, const.NBWS, True )
+                                transferToDict( const.DEPRECATED,  method, methoddata, const.NBWS, const.DEPRECATED )
                                 transferToDict( const.SEE,         method, methoddata )
                                 transferToDict( const.STATIC,      method, methoddata )
                                 if const.STATIC in method: methoddata[const.STATIC] = const.STATIC
@@ -420,7 +421,7 @@ class DocGenerator(object):
                                 moduleprops.append(eventdata.copy())
 
                                 transferToDict( const.DESCRIPTION, event, eventdata )
-                                transferToDict( const.DEPRECATED,  event, eventdata, const.NBWS, True )
+                                transferToDict( const.DEPRECATED,  event, eventdata, const.NBWS, const.DEPRECATED )
                                 transferToDict( const.SEE,         event, eventdata )
                                 transferToDict( const.STATIC,      event, eventdata )
                                 if const.STATIC in event: eventdata[const.STATIC] = const.STATIC
@@ -459,7 +460,7 @@ class DocGenerator(object):
                                 transferToDict( const.TYPE,        config, configdata, const.OBJECT )
                                 transferToDict( const.DESCRIPTION, config, configdata           )
                                 transferToDict( const.DEFAULT, config, configdata           )
-                                transferToDict( const.DEPRECATED,  config, configdata, const.NBWS, True )
+                                transferToDict( const.DEPRECATED,  config, configdata, const.NBWS, const.DEPRECATED )
                                 transferToDict( const.SEE,         config, configdata           )
                                 transferToDict( const.STATIC,      config, configdata           )
                                 if const.STATIC in config: configdata[const.STATIC] = const.STATIC

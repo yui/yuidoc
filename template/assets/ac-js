@@ -35,21 +35,21 @@
 
     var showPrivate=(Cookie.get("showPrivate")=="true");
     var showProtected=(Cookie.get("showProtected")=="true");
+    var showDeprecated=(Cookie.get("showDeprecated")=="true");
+
     //alert(Cookie.get("showPrivate"));
     //alert(Cookie.get("showProtected"));
     //var s="",style=(YAHOO.lang.ua.ie)?"":"inherit";
-    var s="",style;
+    var s="", style;
 
     style=(showPrivate) ? "inherit" : "none";
-
-    //if (!Event.isIE) {
-        s='#doc3 .private { display:' + style + '; }';
-    //}
+    s='#doc3 .private { display:' + style + '; }';
 
     style=(showProtected) ? "inherit" : "none";
-    //if (!Event.isIE) {
-        s+='\n#doc3 .protected { display:' + style + '; }';
-    //}
+    s+='\n#doc3 .protected { display:' + style + '; }';
+
+    style=(showDeprecated) ? "inherit" : "none";
+        s+='\n#doc3 .deprecated { display:' + style + '; }';
 
     if (s.length > 0) {
         var el=document.createElement("style");
@@ -78,9 +78,18 @@
         Cookie.set("showProtected", show, 2);
     }
 
+    function showHideDeprecated(show) {
+        showHide("deprecated", show);
+        showDeprecated=show;
+        Cookie.set("showDeprecated", show, 2);
+    }
+
     function showHide(type, show) {
         var className=(show) ? "": "none";
         var els=Dom.getElementsByClassName(type);
+
+        console.log('showhide ' + type + ', ' + els.length);
+
         for (var i=0,l=els.length;i<l;i=i+1) {
             //try {
                 Dom.setStyle(els[i], "display", className);
@@ -107,7 +116,7 @@
                     });
             }
 
-            var el = Dom.get("showprotected");
+            el = Dom.get("showprotected");
             if (el) {
 
                 if (showProtected) {
@@ -121,6 +130,23 @@
                 // set up handler
                 Event.on(el, "click", function(e) {
                         showHideProtected(this.checked);
+                    });
+            }
+
+            el = Dom.get("showdeprecated");
+            if (el) {
+
+                if (showDeprecated) {
+                    el.checked=true;
+                    Cookie.set("showDeprecated", true, 2);
+                }
+
+                // get cookie state, show private if needed
+                showHideDeprecated(el.checked);
+
+                // set up handler
+                Event.on(el, "click", function(e) {
+                        showHideDeprecated(this.checked);
                     });
             }
         });
@@ -146,6 +172,8 @@
                 if (!showProtected && prop.access == "protected") {
                     // skip
                 } else if (!showPrivate && prop.access == "private") {
+                    // skip
+                } else if (!showDeprecated && prop.deprecated) {
                     // skip
                 } else {
                     var s = (prop.host + "." + prop.name).toLowerCase();
