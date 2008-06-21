@@ -44,7 +44,7 @@ bin/yuidoc_generate.py
     Reads the json output from parser.py and generates HTML docs.
 
 bin/yuidoc.py
-    wraps the calss to yuidoc_parse, yuidoc_highlight, and yuidoc_generate
+    wraps the calls to yuidoc_parse, yuidoc_highlight, and yuidoc_generate
 
 bin/example.sh 
     An example shell script to run both the parser and generator on a src tree
