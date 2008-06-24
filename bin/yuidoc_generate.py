@@ -84,8 +84,10 @@ class DocGenerator(object):
         self.allprops = []
 
     def cleanseStr(self, str):
-            cleanregex= re.compile(r"[^\w]")
-            return self.moduleprefix + cleanregex.sub('', str.lower())
+        cleanregex= re.compile(r"[^\w\-]")
+        cleansed = cleanregex.sub('', str.lower())
+        # log.warn('cleansed module: %s' %(cleansed));
+        return self.moduleprefix + cleansed
 
     def write(self, filename, data):
         out = open(os.path.join(self.outpath, filename), "w")
@@ -185,7 +187,7 @@ class DocGenerator(object):
                             if const.PRIVATE in superprop: access = const.PRIVATE
                             elif const.PROTECTED in superprop: access = const.PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: prop, const.ACCESS: access})
+                            inhdef.append({const.NAME: prop, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in supermethod})
                             #inhdef.append(superprop)
                 if const.METHODS in superc:
                     inhdef = dict[const.METHODS][supercname] = []
@@ -198,7 +200,7 @@ class DocGenerator(object):
                             if const.PRIVATE in supermethod: access = const.PRIVATE
                             elif const.PROTECTED in supermethod: access = const.PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: method, const.ACCESS: access})
+                            inhdef.append({const.NAME: method, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in supermethod})
                 if const.EVENTS in superc:
                     inhdef = dict[const.EVENTS][supercname] = []
                     keys = superc[const.EVENTS].keys()
@@ -210,7 +212,7 @@ class DocGenerator(object):
                             if const.PRIVATE in superevent: access = const.PRIVATE
                             elif const.PROTECTED in superevent: access = const.PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: event, const.ACCESS: access})
+                            inhdef.append({const.NAME: event, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in supermethod})
                 if const.CONFIGS in superc:
                     inhdef = dict[const.CONFIGS][supercname] = []
                     keys = superc[const.CONFIGS].keys()
@@ -222,7 +224,7 @@ class DocGenerator(object):
                             if const.PRIVATE in superconfig: access = const.PRIVATE
                             elif const.PROTECTED in superconfig: access = const.PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: config, const.ACCESS: access})
+                            inhdef.append({const.NAME: config, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in supermethod})
 
                 if const.EXTENDS in superc:
                     supercname = superc[const.EXTENDS]
@@ -256,7 +258,7 @@ class DocGenerator(object):
         self.write(jsonname, self.rawdata)
 
         for mname in self.modules:
-            log.info("Generating module splash")
+            log.info("Generating module splash for %s" %(mname))
 
             m = self.modules[mname]
             self.filename   = ""
@@ -523,6 +525,8 @@ class DocGenerator(object):
             moduleprops.sort(allprop_sort)
             moduleprops_json =  simplejson.dumps(moduleprops)
             t.allprops = moduleprops_json
+
+            # log.warn('cleansed module file name: %s' %(t.cleansedmodulename));
             self.write( t.cleansedmodulename + ".html", t)
 
 
@@ -576,7 +580,11 @@ class DocGenerator(object):
         keys = self.data[const.CLASS_MAP].keys()
         keys.sort()
         for i in keys:
-            pkgMap[i] = self.data[const.CLASS_MAP][i]['module']
+
+            try:
+                pkgMap[i] = self.data[const.CLASS_MAP][i][const.MODULE]
+            except:
+                log.warn('class map ' + i + ' failure (no module declaration?)')
 
         # log.info(" ")
         # log.info(unicode(keys))
