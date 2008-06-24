@@ -146,7 +146,7 @@ class DocParser(object):
 
     # tags that do not require a description, used by the tokenizer so that these
     # tags can be used above the block description without breaking things
-    singleTags = "constructor public private protected static final beta experimental writeonce preventable"
+    singleTags = "constructor public private protected static final beta experimental writeonce"
 
     # guess the name and type of a block based upon the code following it
     guess_pat = re.compile('\s*?(var|function)?\s*?(\w+)\s*?[=:]\s*?(function)?.*', re.S)
@@ -663,12 +663,7 @@ it was empty" % token
 
             c = self.data[const.CLASS_MAP][self.currentClass]
             if not const.CONSTRUCTORS in c: c[const.CONSTRUCTORS] = []
-            desc = ''
-            if const.DESCRIPTION in tokenMap:
-                desc = tokenMap[const.DESCRIPTION][0]
-            else:
-                log.warn('The class "%s" does not have a description, and it should' %(self.currentClass))
-            constructor = parseParams(tokenMap, { const.DESCRIPTION: desc })
+            constructor = parseParams(tokenMap, { const.DESCRIPTION: tokenMap[const.DESCRIPTION][0] })
             c[const.CONSTRUCTORS].append(constructor)
             tokenMap.pop(const.CONSTRUCTOR)
 
