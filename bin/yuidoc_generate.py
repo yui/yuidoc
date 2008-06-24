@@ -187,7 +187,7 @@ class DocGenerator(object):
                             if const.PRIVATE in superprop: access = const.PRIVATE
                             elif const.PROTECTED in superprop: access = const.PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: prop, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in supermethod})
+                            inhdef.append({const.NAME: prop, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in superprop})
                             #inhdef.append(superprop)
                 if const.METHODS in superc:
                     inhdef = dict[const.METHODS][supercname] = []
@@ -212,7 +212,7 @@ class DocGenerator(object):
                             if const.PRIVATE in superevent: access = const.PRIVATE
                             elif const.PROTECTED in superevent: access = const.PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: event, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in supermethod})
+                            inhdef.append({const.NAME: event, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in superevent})
                 if const.CONFIGS in superc:
                     inhdef = dict[const.CONFIGS][supercname] = []
                     keys = superc[const.CONFIGS].keys()
@@ -224,7 +224,7 @@ class DocGenerator(object):
                             if const.PRIVATE in superconfig: access = const.PRIVATE
                             elif const.PROTECTED in superconfig: access = const.PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: config, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in supermethod})
+                            inhdef.append({const.NAME: config, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in superconfig})
 
                 if const.EXTENDS in superc:
                     supercname = superc[const.EXTENDS]
