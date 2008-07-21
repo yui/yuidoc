@@ -301,6 +301,7 @@ class DocParser(object):
             return dict
 
         def defineClass(name):
+            log.info("\nDefine Class: " + name + ", " + self.currentModule)
             if self.currentNamespace:
                 shortName, longName = self.getClassName(name, self.currentNamespace)
             else:
@@ -351,6 +352,8 @@ it was empty" % token
                 # can properly set up the documemtation for this block
                 if token == const.MODULE: 
                     if desc:
+
+                        log.info("\nModule: " + desc)
                         self.currentModule = desc
                     else:
                         log.warn('no name for module')
@@ -419,12 +422,15 @@ it was empty" % token
 
         def parseModule(tokenMap):
 
-            # log.info("\n\n%s:\n\n%s\n" %("tokenMap", unicode(tokenMap)))
+            log.info("\n\n%s:\n\n%s\n" %("tokenMap", unicode(tokenMap)))
 
             target = None
             if not const.MODULES in self.data: self.data[const.MODULES] = {}
             for module in tokenMap[const.MODULE]:
-                self.data[const.MODULES][module] = { const.NAME: module, const.CLASS_LIST: [], const.FILE_LIST: []}
+
+                if module not in self.data[const.MODULES]:
+                    self.data[const.MODULES][module] = { const.NAME: module, const.CLASS_LIST: [], const.FILE_LIST: []}
+
                 target = self.data[const.MODULES][module]
 
             if const.DESCRIPTION in tokenMap:
@@ -461,6 +467,7 @@ it was empty" % token
                 self.data[const.MODULES][self.currentModule][const.FILE_LIST].append(file_name)
             else:
                 """ defer the module assignment until we find the token """
+                log.info('deferred module file: ' + file_name)
                 self.deferredModuleFiles.append(file_name);
 
 
@@ -489,6 +496,7 @@ it was empty" % token
                 self.data[const.MODULES][self.currentModule][const.CLASS_LIST].append(longName)
             else:
                 """ defer the module assignment until we find the token """
+                log.info('deferred module CLASS: ' + longName)
                 self.deferredModuleClasses.append(longName);
 
             if self.currentFile:
