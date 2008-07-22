@@ -75,6 +75,8 @@ class DocParser(object):
         self.script=""
         self.deferredModuleClasses=[]
         self.deferredModuleFiles=[]
+        self.globals={}
+        self.currentGlobal=""
 
         log.info("-------------------------------------------------------")
 
@@ -146,7 +148,7 @@ class DocParser(object):
 
     # tags that do not require a description, used by the tokenizer so that these
     # tags can be used above the block description without breaking things
-    singleTags = "constructor public private protected static final beta experimental writeonce"
+    singleTags = "constructor public private protected static final beta experimental writeonce global"
 
     # guess the name and type of a block based upon the code following it
     guess_pat = re.compile('\s*?(var|function)?\s*?(\w+)\s*?[=:]\s*?(function)?.*', re.S)
@@ -301,7 +303,7 @@ class DocParser(object):
             return dict
 
         def defineClass(name):
-            log.info("\nDefine Class: " + name + ", " + self.currentModule)
+            # log.info("\nDefine Class: " + name + ", " + self.currentModule)
             if self.currentNamespace:
                 shortName, longName = self.getClassName(name, self.currentNamespace)
             else:
@@ -353,7 +355,7 @@ it was empty" % token
                 if token == const.MODULE: 
                     if desc:
 
-                        log.info("\nModule: " + desc)
+                        # log.info("\nModule: " + desc)
                         self.currentModule = desc
                     else:
                         log.warn('no name for module')
@@ -482,6 +484,10 @@ it was empty" % token
             if const.MODULE in tokenMap:
                 target, tokenMap = parseModule(tokenMap)
 
+            if const.GLOBAL in tokenMap:
+                self.globals[longName] = True
+                self.currentGlobal = longName
+
             target = self.data[const.CLASS_MAP][longName]
 
             if currentFor and currentFor != longName: # this is an inner class
@@ -530,8 +536,11 @@ it was empty" % token
             method = tokenMap[const.METHOD][0]
 
             if not self.currentClass:
-                log.error("Error: @method tag found before @class was found.\n****\n" + method)
-                sys.exit()
+                log.warn("WARNING: @method tag found before @class was found.\n****\n" + method + ", making global " + self.currentGlobal + " current class")
+                self.currentClass = self.currentGlobal
+                #sys.exit()
+                # if const.FOR in tokenMap:
+                    # self.currentClass = tokenMap[const.FOR][0]
 
             c = self.data[const.CLASS_MAP][self.currentClass]
 
