@@ -301,6 +301,10 @@ class DocGenerator(object):
             # if const.EXPERIMENTAL in m:
                 # t[const.EXPERIMENTAL] = "Experimental"
 
+            
+            str = ', '.join(m[const.SUBMODULES])
+            transferToTemplate(const.SUBMODULES, m, t, str)
+
 
             moduleprops = []
 
@@ -324,6 +328,8 @@ class DocGenerator(object):
                     transferToTemplate( const.ACCESS, c, t )
                     if const.PRIVATE in c: t.access = const.PRIVATE
                     elif const.PROTECTED in c: t.access = const.PROTECTED
+
+
 
                     #subclasses
                     subclasses = self.subclasses = []
@@ -388,6 +394,9 @@ class DocGenerator(object):
                                 transferToDict( const.FINAL,      method, methoddata )
                                 if const.FINAL in method: methoddata[const.FINAL] = const.FINAL
 
+                                transferToDict( const.CHAINABLE,      method, methoddata )
+                                if const.CHAINABLE in method: methoddata[const.CHAINABLE] = const.CHAINABLE
+
                                 ret = methoddata[const.RETURN] = {const.NAME:"", const.DESCRIPTION:"", const.TYPE:const.VOID}
                                 if const.RETURN in method:
                                     transferToDict( const.TYPE,        method[const.RETURN], ret, const.VOID )
@@ -429,6 +438,17 @@ class DocGenerator(object):
                                 if const.STATIC in event: eventdata[const.STATIC] = const.STATIC
                                 transferToDict( const.FINAL,      event, eventdata )
                                 if const.FINAL in event: eventdata[const.FINAL] = const.FINAL
+
+                                transferToDict( const.BUBBLES,      event, eventdata )
+                                if const.BUBBLES in method: eventdata[const.BUBBLES] = const.BUBBLES
+
+                                transferToDict( const.PREVENTABLE,      event, eventdata )
+                                if const.PREVENTABLE in method: eventdata[const.PREVENTABLE] = const.PREVENTABLE
+
+                                transferToDict( const.CANCELABLE,      event, eventdata )
+                                if const.CANCELABLE in method: eventdata[const.CANCELABLE] = const.CANCELABLE
+
+
 
                                 params = eventdata[const.PARAMS] = []
                                 if const.PARAMS in event:

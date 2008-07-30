@@ -148,7 +148,7 @@ class DocParser(object):
 
     # tags that do not require a description, used by the tokenizer so that these
     # tags can be used above the block description without breaking things
-    singleTags = "constructor public private protected static final beta experimental writeonce global"
+    singleTags = "constructor public private protected static final beta experimental writeonce global chainable"
 
     # guess the name and type of a block based upon the code following it
     guess_pat = re.compile('\s*?(var|function)?\s*?(\w+)\s*?[=:]\s*?(function)?.*', re.S)
@@ -431,9 +431,14 @@ it was empty" % token
             for module in tokenMap[const.MODULE]:
 
                 if module not in self.data[const.MODULES]:
-                    self.data[const.MODULES][module] = { const.NAME: module, const.CLASS_LIST: [], const.FILE_LIST: []}
+                    self.data[const.MODULES][module] = { const.NAME: module, const.CLASS_LIST: [], const.CLASS_MODS: {}, const.FILE_LIST: [], const.SUBMODULES: [] }
 
                 target = self.data[const.MODULES][module]
+
+            if const.SUBMODULE in tokenMap:
+                target[const.SUBMODULES].append(tokenMap[const.SUBMODULE][0]);
+                target[const.CLASS_MODS][tokenMap[const.SUBMODULE][0]] = 'something';
+                tokenMap.pop(const.SUBMODULE)
 
             if const.DESCRIPTION in tokenMap:
                 target[const.DESCRIPTION] = tokenMap[const.DESCRIPTION][0]
