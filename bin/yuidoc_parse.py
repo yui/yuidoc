@@ -370,7 +370,7 @@ it was empty" % token
             token = next()
 
         self.blocks.append(tokenMap);
-    
+        
         if const.NAMESPACE in tokenMap:
             if not const.NAMESPACES in self.data: self.data[const.NAMESPACES] = []
             ns = tokenMap[const.NAMESPACE][0]
@@ -440,12 +440,12 @@ it was empty" % token
                 target[const.SUBMODULES].append(tokenMap[const.SUBMODULE][0]);
                 self.subModName = tokenMap[const.SUBMODULE][0];
                 target[const.SUBDATA][self.subModName] = { const.NAME: self.currentClass }
+
                 if const.DESCRIPTION in tokenMap:
                     target[const.SUBDATA][self.subModName][const.DESCRIPTION] = tokenMap[const.DESCRIPTION][0]
-
-                log.warn('DAV:: ' + self.currentClass);
                     
                 tokenMap.pop(const.SUBMODULE)
+                
 
             if const.DESCRIPTION in tokenMap:
                 target[const.DESCRIPTION] = tokenMap[const.DESCRIPTION][0]
@@ -496,6 +496,9 @@ it was empty" % token
             if const.MODULE in tokenMap:
                 target, tokenMap = parseModule(tokenMap)
             
+            if not self.subModName:
+                self.subModName = None
+
             if self.subModName:
                 self.data[const.MODULES][self.currentModule][const.SUBDATA][self.subModName][const.NAME] = longName
                 if const.DESCRIPTION in tokenMap:
