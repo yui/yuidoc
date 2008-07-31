@@ -30,9 +30,9 @@
 		<div id="yui-main">
 			<div class="yui-b">
             <form name="yui-classopts-form">
-    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
-    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
-    <span id="classopts"><input type="checkbox" name="showdeprecated" id="showdeprecated" /> Show Deprecated</span>
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> <label for="showprivate">Show Private</label></span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> <label for="showprotected">Show Protected</label></span>
+    <span id="classopts"><input type="checkbox" name="showdeprecated" id="showdeprecated" /> <label for="showdeprecated">Show Deprecated</label></span>
             </form>
                 #if $index
 
@@ -477,11 +477,6 @@
                     #end if
 
                     </h3>
-                    #if $submodules
-                    <div class="content">
-                        Submodules: $submodules
-                    </div>
-                    #end if
                     <div class="description summary">
                         $moduledesc
                     </div>
@@ -498,6 +493,8 @@
                     </div>
                     #end if
 
+<div class="yui-gc">
+    <div class="yui-u first">
                     <form onsubmit="return false">
                         <p>Search ${modulename}:
                         <div id="propertysearch">
@@ -510,7 +507,32 @@
                     <script type="text/javascript">
                         ALL_YUI_PROPS = $allprops;
                     </script>
+	    </div>
+    <div class="yui-u">
+            #set count = 0;
+            #for $info in $submodules
+                #set count = count + 1
+            #end for
+                    #if count != 0 
+                    <style>
+                        .submodules dd {
+                            font-size: 93%;
+                            font-weight: italic;
+                        }
+                    </style>
+                    <div class="submodules">
+                        <h4>Submodules:</h4> 
+                        <dl>
+                        #for $info in $submodules
+                            <dt><code><a href="${$subdata[$info].name}.html">$info</a></code></dt>
+                            <dd>$subdata[$info].description</dd>
+                        #end for
+                        </dl>
+                    </div>
+                    #end if
 
+	    </div>
+</div>
 
                 #end if
 			</div>
