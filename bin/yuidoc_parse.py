@@ -431,13 +431,12 @@ it was empty" % token
             for module in tokenMap[const.MODULE]:
 
                 if module not in self.data[const.MODULES]:
-                    self.data[const.MODULES][module] = { const.NAME: module, const.CLASS_LIST: [], const.CLASS_MODS: {}, const.FILE_LIST: [], const.SUBMODULES: [] }
+                    self.data[const.MODULES][module] = { const.NAME: module, const.CLASS_LIST: [], const.FILE_LIST: [], const.SUBMODULES: [] }
 
                 target = self.data[const.MODULES][module]
 
             if const.SUBMODULE in tokenMap:
                 target[const.SUBMODULES].append(tokenMap[const.SUBMODULE][0]);
-                target[const.CLASS_MODS][tokenMap[const.SUBMODULE][0]] = 'something';
                 tokenMap.pop(const.SUBMODULE)
 
             if const.DESCRIPTION in tokenMap:

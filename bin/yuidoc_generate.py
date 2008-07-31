@@ -302,7 +302,11 @@ class DocGenerator(object):
                 # t[const.EXPERIMENTAL] = "Experimental"
 
             
-            str = ', '.join(m[const.SUBMODULES])
+            if len(m[const.SUBMODULES]) > 0:
+                str = ', '.join(m[const.SUBMODULES])
+            else:
+                str = 'none'
+                
             transferToTemplate(const.SUBMODULES, m, t, str)
 
 
