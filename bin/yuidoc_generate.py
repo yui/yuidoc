@@ -308,6 +308,10 @@ class DocGenerator(object):
                 str = 'none'
                 
             transferToTemplate(const.SUBMODULES, m, t, str)
+            t.submodules = m[const.SUBMODULES]
+
+            transferToTemplate(const.SUBDATA, m, t, '')
+            t.subdata = m[const.SUBDATA]
 
 
             moduleprops = []

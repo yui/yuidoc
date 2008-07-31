@@ -427,16 +427,24 @@ it was empty" % token
             log.info("\n\n%s:\n\n%s\n" %("tokenMap", unicode(tokenMap)))
 
             target = None
+            self.subModName = False
             if not const.MODULES in self.data: self.data[const.MODULES] = {}
             for module in tokenMap[const.MODULE]:
 
                 if module not in self.data[const.MODULES]:
-                    self.data[const.MODULES][module] = { const.NAME: module, const.CLASS_LIST: [], const.FILE_LIST: [], const.SUBMODULES: [] }
+                    self.data[const.MODULES][module] = { const.NAME: module, const.CLASS_LIST: [], const.FILE_LIST: [], const.SUBMODULES: [], const.SUBDATA: {} }
 
                 target = self.data[const.MODULES][module]
 
             if const.SUBMODULE in tokenMap:
                 target[const.SUBMODULES].append(tokenMap[const.SUBMODULE][0]);
+                self.subModName = tokenMap[const.SUBMODULE][0];
+                target[const.SUBDATA][self.subModName] = { const.NAME: self.currentClass }
+                if const.DESCRIPTION in tokenMap:
+                    target[const.SUBDATA][self.subModName][const.DESCRIPTION] = tokenMap[const.DESCRIPTION][0]
+
+                log.warn('DAV:: ' + self.currentClass);
+                    
                 tokenMap.pop(const.SUBMODULE)
 
             if const.DESCRIPTION in tokenMap:
@@ -487,6 +495,11 @@ it was empty" % token
 
             if const.MODULE in tokenMap:
                 target, tokenMap = parseModule(tokenMap)
+            
+            if self.subModName:
+                self.data[const.MODULES][self.currentModule][const.SUBDATA][self.subModName][const.NAME] = longName
+                if const.DESCRIPTION in tokenMap:
+                    self.data[const.MODULES][self.currentModule][const.SUBDATA][self.subModName][const.DESCRIPTION] = tokenMap[const.DESCRIPTION][0]
 
             if const.GLOBAL in tokenMap:
                 self.globals[longName] = True
