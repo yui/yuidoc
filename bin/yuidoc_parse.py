@@ -64,9 +64,18 @@ class DocParser(object):
         # the remainder of the file with the comment blocks removed
         # self.stripped = ""
 
+        majorVersion = version[:1]
+        try:
+            majorVersion = int(majorVersion)
+        except:
+            majorVersion = 3
 
         # Dictionary of parsed data
-        self.data = { const.VERSION: version, const.CLASS_MAP: {}, const.MODULES: {} }
+        self.data = { 
+            const.VERSION: version, 
+            const.MAJOR_VERSION: majorVersion, 
+            const.CLASS_MAP: {}, 
+            const.MODULES: {} }
 
         self.inputdirs = inputdirs
         self.outputdir = os.path.abspath(outputdir)
@@ -653,33 +662,63 @@ it was empty" % token
 
                 if not const.EVENTS in c: c[const.EVENTS] = {}
 
+                def getAttEvt(eventname, desc):
+
+                    return {
+                        const.NAME: eventname,
+                        const.DESCRIPTION: desc,
+                        const.PARAMS: [{
+                            const.NAME: const.EVENT,
+                            const.TYPE: "{oldValue: any, newValue: any}",
+                            const.DESCRIPTION: "An object containing the previous attribute value and the new value."
+                        }]
+                    }
+
+                def get3xAttEvt(eventname, config):
+
+                    return {
+                        const.NAME: eventname,
+                        const.DESCRIPTION: 'Fires when the value for the configuration attribute \'%s\' is \
+changed. You can listen for the event using the <a href="Attribute.html#method_on>on</a> \
+method if you wish to be notified before the attribute\'s value has changed, or using the \
+<a href="Event.Target.html#method_after>after</a> method if you wish to be notified after \
+the attribute\'s value has changed.' %(config),
+                        const.PARAMS: [{
+                            const.NAME: const.EVENT,
+                            const.TYPE: "Event.Facade",
+                            const.DESCRIPTION: 'An Event Facade object with \
+     the following attribute specific properties added:\
+	<dl>\
+		<dt>prevVal</dt>\
+		<dd>The value of the attribute, prior to it being set</dd>\
+		<dt>newVal</dt>\
+		<dd>The value the attribute is to be set to</dd>\
+		<dt>attrName</dt>\
+		<dd>The name of the attribute being set</dd>\
+		<dt>subAttrName</dt>\
+		<dd>If setting a property within the attribute\'s value,\
+           the name of the sub-attribute property being set</dd>\
+	</dl>'
+                        }]
+                    }
+
                 # auto-document '[configname]ChangeEvent' and 'before[Configname]ChangeEvent'
-                eventname = config + const.CHANGEEVENT
+                if self.data[const.MAJOR_VERSION] > 2:
+
+                    eventname = config + const.CHANGEEVENT
+                    c[const.EVENTS][eventname] = get3xAttEvt(eventname, config)
+
+                else:
+
+                    eventname = config + const.CHANGEEVENT
+                    desc = "Fires when the value for the configuration attribute '" + config + "' changes."
+                    c[const.EVENTS][eventname] = getAttEvt(eventname, desc)
+
+                    eventname = const.BEFORE + config[0].upper() + config[1:] + const.CHANGEEVENT
+                    desc = "Fires before the value for the configuration attribute '" + config + "' changes." + " Return false to cancel the attribute change."
+                    c[const.EVENTS][eventname] = getAttEvt(eventname, desc)
+
                 
-                c[const.EVENTS][eventname] = {
-                    const.NAME: eventname,
-                    const.DESCRIPTION: "Fires when the value for the configuration attribute '" + config + "' changes.",
-                    const.PARAMS: [{
-                        const.NAME: "eventInfo",
-                        const.TYPE: "{oldValue: any, newValue: any}",
-                        const.DESCRIPTION: "An object containing the previous attribute value and the new value."
-                    }]
-                }
-
-                # eventname = const.BEFORE + config.capitalize() + const.CHANGEEVENT
-                eventname = const.BEFORE + config[0].upper() + config[1:] + const.CHANGEEVENT
-
-                c[const.EVENTS][eventname] = {
-                    const.NAME: eventname,
-                    const.DESCRIPTION: "Fires before the value for the configuration attribute '" + config + "' changes." +
-                                       " Return false to cancel the attribute change.",
-                    const.PARAMS: [{
-                        const.NAME: "eventInfo",
-                        const.TYPE: "{oldValue: any, newValue: any}",
-                        const.DESCRIPTION: "An object containing the current attribute value and the new value.",
-                        # const.RETURN: "Return false to cancel the attribute change"
-                    }]
-                }
             else:
                 tokenMap.pop(const.CONFIG)
 

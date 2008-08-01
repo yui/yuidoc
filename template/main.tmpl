@@ -21,7 +21,6 @@
                 #if $classname# &gt; $classname #end if#
                 #if $filename# &gt; $filename (source view) #end if#
             </p>
-
         #end if
 
 	</div>
@@ -30,9 +29,9 @@
 		<div id="yui-main">
 			<div class="yui-b">
             <form name="yui-classopts-form">
-    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> <label for="showprivate">Show Private</label></span>
-    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> <label for="showprotected">Show Protected</label></span>
-    <span id="classopts"><input type="checkbox" name="showdeprecated" id="showdeprecated" /> <label for="showdeprecated">Show Deprecated</label></span>
+    <span id="classopts"><input type="checkbox" name="showprivate" id="showprivate" /> Show Private</span>
+    <span id="classopts"><input type="checkbox" name="showprotected" id="showprotected" /> Show Protected</span>
+    <span id="classopts"><input type="checkbox" name="showdeprecated" id="showdeprecated" /> Show Deprecated</span>
             </form>
                 #if $index
 
@@ -277,20 +276,12 @@
                                                     <dd>$method.return.description</dd>
                                                 </dl>
                                             #end if
-
-                                            #if $method.chainable
-                                            <div class="chainable">
-                                                <strong>Chainable:</strong> This method is chainable.
-                                            </div>        
-                                            #end if
-
              
                                             #if $method.deprecated
                                             <div class="deprecated">
                                                 <strong>Deprecated</strong> $method.deprecated
                                             </div>        
                                             #end if
-
                                         </div>
 
                                     </div>
@@ -368,16 +359,6 @@
                                                 </dl>
                                             #end if
 
-                                            #if $event.bubbles
-                                            <div class="bubbles">
-                                                <strong>Bubbles:</strong> This event bubbles to <a href="${event.bubbles}.html">$event.bubbles</a>.
-                                            </div>        
-                                            #end if
-                                            #if $event.preventable
-                                            <div class="preventable">
-                                                <strong>Preventable:</strong> This event is preventable by method: $event.preventable.
-                                            </div>        
-                                            #end if
 
                                             #if $event.deprecated
                                             <div class="deprecated">
@@ -480,8 +461,6 @@
                     <div class="description summary">
                         $moduledesc
                     </div>
-
-
                     #if $requires
                     <div class="content">
                         Requires: $requires
@@ -493,8 +472,6 @@
                     </div>
                     #end if
 
-<div class="yui-gc">
-    <div class="yui-u first">
                     <form onsubmit="return false">
                         <p>Search ${modulename}:
                         <div id="propertysearch">
@@ -507,32 +484,7 @@
                     <script type="text/javascript">
                         ALL_YUI_PROPS = $allprops;
                     </script>
-	    </div>
-    <div class="yui-u">
-            #set count = 0;
-            #for $info in $submodules
-                #set count = count + 1
-            #end for
-                    #if count != 0 
-                    <style>
-                        .submodules dd {
-                            font-size: 93%;
-                            font-weight: italic;
-                        }
-                    </style>
-                    <div class="submodules">
-                        <h4>Submodules:</h4> 
-                        <dl>
-                        #for $info in $submodules
-                            <dt><code><a href="${$subdata[$info].name}.html">$info</a></code></dt>
-                            <dd>$subdata[$info].description</dd>
-                        #end for
-                        </dl>
-                    </div>
-                    #end if
 
-	    </div>
-</div>
 
                 #end if
 			</div>
