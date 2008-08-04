@@ -407,7 +407,7 @@ class DocGenerator(object):
 
                                 ret = methoddata[const.RETURN] = {const.NAME:"", const.DESCRIPTION:"", const.TYPE:const.VOID}
                                 if const.RETURN in method:
-                                    transferToDict( const.TYPE,        method[const.RETURN], ret, const.VOID )
+                                    transferToDict( const.TYPE,        method[const.RETURN], ret, "" )
                                     transferToDict( const.DESCRIPTION, method[const.RETURN], ret )
                                     
                                 params = methoddata[const.PARAMS] = []
