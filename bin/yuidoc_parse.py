@@ -455,8 +455,7 @@ it was empty" % token
                     
                 tokenMap.pop(const.SUBMODULE)
                 
-
-            if const.DESCRIPTION in tokenMap:
+            elif const.DESCRIPTION in tokenMap:
                 target[const.DESCRIPTION] = tokenMap[const.DESCRIPTION][0]
 
             if len(self.deferredModuleFiles) > 0:

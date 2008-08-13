@@ -11,7 +11,7 @@ a:visited { color: #003399;}
 
 #doc3 #hd {margin-bottom:1em}
 #doc3 #hd a { text-decoration: none; }
-#doc3 #hd h1 { color: #545454; font:170%/50px arial Bold; padding: 8px 0 8px 70px; background: url(logo.gif) left center no-repeat; }
+#doc3 #hd h1 { color: #545454; font:170%/50px arial Bold; padding: 0px 0 8px 130px; background: url(yui.png) left center no-repeat; }
 #doc3 #hd h3 { background: #947DB2; color: #FFF; font: 110%/1.22em arial; padding: 5px 10px; margin: 0 0 7px 0; }
 #doc3 #hd h3 A { color: #FFF; text-decoration: none; }
 #doc3 #hd .breadcrumbs { font-size: 85%; margin-bottom:10px;}
