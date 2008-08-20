@@ -448,13 +448,13 @@ class DocGenerator(object):
                                 if const.FINAL in event: eventdata[const.FINAL] = const.FINAL
 
                                 transferToDict( const.BUBBLES,      event, eventdata )
-                                if const.BUBBLES in method: eventdata[const.BUBBLES] = const.BUBBLES
+                                if const.BUBBLES in event: eventdata[const.BUBBLES] = const.BUBBLES
 
                                 transferToDict( const.PREVENTABLE,      event, eventdata )
-                                if const.PREVENTABLE in method: eventdata[const.PREVENTABLE] = const.PREVENTABLE
+                                if const.PREVENTABLE in event: eventdata[const.PREVENTABLE] = const.PREVENTABLE
 
                                 transferToDict( const.CANCELABLE,      event, eventdata )
-                                if const.CANCELABLE in method: eventdata[const.CANCELABLE] = const.CANCELABLE
+                                if const.CANCELABLE in event: eventdata[const.CANCELABLE] = const.CANCELABLE
 
 
 
