@@ -282,7 +282,7 @@ class DocParser(object):
 
                         match = self.compound_pat.match(i)
 
-                        if match and match.group(3):
+                        if match:
                             if match.group(4):
                                 type, description = "", match.group(4) + match.group(5)
                             else:
@@ -318,7 +318,7 @@ class DocParser(object):
 
                     match = self.compound_pat.match(ret)
 
-                    if match and match.group(3):
+                    if match:
                         if match.group(4):
                             type, description = "", match.group(4) + match.group(5)
                         else:
