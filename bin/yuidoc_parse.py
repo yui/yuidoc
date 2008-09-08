@@ -282,10 +282,14 @@ class DocParser(object):
 
                         match = self.compound_pat.match(i)
 
-                        if match.group(4):
-                            type, description = "", match.group(4) + match.group(5)
+                        if match and match.group(1):
+                            if match.group(4):
+                                type, description = "", match.group(4) + match.group(5)
+                            else:
+                                type, description = match.group(2), (match.group(1) + match.group(3)).strip()
                         else:
-                            type, description = match.group(2), (match.group(1) + match.group(3)).strip()
+                            type, description = "", ""
+
 
                     except:
                         log.error("\nError, a parameter could not be parsed:\n\n %s\n\n %s\n" %(i, pprint.pformat(tokenMap)))
@@ -314,10 +318,14 @@ class DocParser(object):
 
                     match = self.compound_pat.match(ret)
 
-                    if match.group(4):
-                        type, description = "", match.group(4) + match.group(5)
+                    if match and match.group(1):
+                        if match.group(4):
+                            type, description = "", match.group(4) + match.group(5)
+                        else:
+                            type, description = match.group(2), (match.group(1) + match.group(3)).strip()
                     else:
-                        type, description = match.group(2), (match.group(1) + match.group(3)).strip()
+                        type, description = "", ""
+
                 except:
                     log.error("\nError, a return statement could not be parsed:\n\n %s\n\n %s\n" %(ret, pprint.pformat(tokenMap)))
                     sys.exit()
