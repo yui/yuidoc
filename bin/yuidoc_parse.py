@@ -266,11 +266,11 @@ class DocParser(object):
             return token.strip()[:1] == "@"
 
         # extracts compound comment blocks .. like {type}
-        def compound_sub(match):
-            if match.group(4):
-                return "", match.group(4) + match.group(5)
-            else:
-                return match.group(2), (match.group(1) + match.group(3)).strip()
+        # def compound_sub(match):
+        #     if match.group(4):
+        #         return "", match.group(4) + match.group(5)
+        #     else:
+        #         return match.group(2), (match.group(1) + match.group(3)).strip()
 
         def parseParams(tokenMap, dict, srctag=const.PARAM, desttag=const.PARAMS):
             if srctag in tokenMap:
@@ -278,7 +278,15 @@ class DocParser(object):
                 if not desttag in dict: dict[desttag] = []
                 for i in tokenMap[srctag]:
                     try:
-                        type, description = self.compound_pat.sub(compound_sub, i)
+                        # type, description = self.compound_pat.sub(compound_sub, i)
+
+                        match = self.compound_pat.match(i)
+
+                        if match.group(4):
+                            type, description = "", match.group(4) + match.group(5)
+                        else:
+                            type, description = match.group(2), (match.group(1) + match.group(3)).strip()
+
                     except:
                         log.error("\nError, a parameter could not be parsed:\n\n %s\n\n %s\n" %(i, pprint.pformat(tokenMap)))
                         sys.exit()
@@ -302,7 +310,14 @@ class DocParser(object):
             if const.RETURN in tokenMap:
                 ret = tokenMap[const.RETURN][0]
                 try:
-                    type, description = self.compound_pat.sub(compound_sub, ret)
+                    # type, description = self.compound_pat.sub(compound_sub, ret)
+
+                    match = self.compound_pat.match(ret)
+
+                    if match.group(4):
+                        type, description = "", match.group(4) + match.group(5)
+                    else:
+                        type, description = match.group(2), (match.group(1) + match.group(3)).strip()
                 except:
                     log.error("\nError, a return statement could not be parsed:\n\n %s\n\n %s\n" %(ret, pprint.pformat(tokenMap)))
                     sys.exit()
@@ -508,7 +523,7 @@ it was empty" % token
                 self.subModName = None
 
 
-            log.warn("Here");
+            # log.warn("Here");
 
             if self.subModName:
                 self.data[const.MODULES][self.currentModule][const.SUBDATA][self.subModName][const.NAME] = longName
