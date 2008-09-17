@@ -22,5 +22,5 @@ REM The location of the template files.  Any subdirectories here will be copied
 REM verbatim to the destination directory.
 SET template="%yuidoc_home%\template"
 
-python %yuidoc_home%\bin\yuidoc.py %parser_in% -p %parser_out% -o %generator_out% -t %template%
+%yuidoc_home%\bin\yuidoc.py %parser_in% -p %parser_out% -o %generator_out% -t %template%
 
