@@ -460,6 +460,7 @@ it was empty" % token
             log.info("\n\n%s:\n\n%s\n" %("tokenMap", unicode(tokenMap)))
 
             target = None
+            self.subModName = False
             if not const.MODULES in self.data: self.data[const.MODULES] = {}
             for module in tokenMap[const.MODULE]:
 
