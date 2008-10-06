@@ -702,9 +702,9 @@ it was empty" % token
                     return {
                         const.NAME: eventname,
                         const.DESCRIPTION: 'Fires when the value for the configuration attribute \'%s\' is \
-changed. You can listen for the event using the <a href="Attribute.html#method_on>on</a> \
+changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> \
 method if you wish to be notified before the attribute\'s value has changed, or using the \
-<a href="Event.Target.html#method_after>after</a> method if you wish to be notified after \
+<a href="Event.Target.html#method_after">after</a> method if you wish to be notified after \
 the attribute\'s value has changed.' %(config),
                         const.PARAMS: [{
                             const.NAME: const.EVENT,
