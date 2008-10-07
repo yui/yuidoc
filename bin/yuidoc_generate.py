@@ -315,6 +315,7 @@ class DocGenerator(object):
 
 
             moduleprops = []
+            classList = []
 
             # class API view
             #for i in classes:
@@ -337,6 +338,9 @@ class DocGenerator(object):
                     if const.PRIVATE in c: t.access = const.PRIVATE
                     elif const.PROTECTED in c: t.access = const.PROTECTED
 
+                    desc = ''
+                    if const.DESCRIPTION in c:
+                        desc = c[const.DESCRIPTION]
 
 
                     #subclasses
@@ -347,6 +351,9 @@ class DocGenerator(object):
 
                     t.subclasses = subclasses
 
+                    gName = i.replace('YAHOO.widget.', '');
+                    gName = gName.replace('YAHOO.util.', '');
+                    classInfo = { const.DESCRIPTION: desc, const.NAME: i, const.GUESSEDNAME: gName, const.EXTENDS: [] }
 
 
                     # Properties/fields
@@ -357,7 +364,7 @@ class DocGenerator(object):
                         for propertykey in keys:
                             prop     = c[const.PROPERTIES][propertykey]
                             if self.showprivate or const.PRIVATE not in prop:
-                                propdata = {const.NAME: propertykey, const.HOST: i, const.URL:getUrl(i, propertykey, const.PROPERTY)}
+                                propdata = {const.NAME: propertykey, const.HOST: i, const.TYPE: 'property', const.URL:getUrl(i, propertykey, const.PROPERTY)}
 
                                 transferToDict( const.ACCESS,   prop, propdata           )
                                 if const.PRIVATE in prop: propdata[const.ACCESS] = const.PRIVATE
@@ -385,7 +392,7 @@ class DocGenerator(object):
                         for methodkey in keys:
                             method = c[const.METHODS][methodkey]
                             if self.showprivate or const.PRIVATE not in method:
-                                methoddata = {const.NAME: methodkey, const.HOST: i, const.URL:getUrl(i, methodkey, const.METHOD)}
+                                methoddata = {const.NAME: methodkey, const.HOST: i, const.TYPE: 'method', const.URL:getUrl(i, methodkey, const.METHOD)}
 
                                 transferToDict( const.ACCESS,      method, methoddata )
                                 if const.PRIVATE in method: methoddata[const.ACCESS] = const.PRIVATE
@@ -430,7 +437,7 @@ class DocGenerator(object):
                         for eventkey in keys:
                             event = c[const.EVENTS][eventkey]
                             if self.showprivate or const.PRIVATE not in event:
-                                eventdata = {const.NAME: eventkey, const.HOST: i, const.URL:getUrl(i, eventkey, const.EVENT)}
+                                eventdata = {const.NAME: eventkey, const.HOST: i, const.TYPE: 'event', const.URL:getUrl(i, eventkey, const.EVENT)}
 
                                 transferToDict( const.ACCESS,      event, eventdata )
                                 if const.PRIVATE in event: eventdata[const.ACCESS] = const.PRIVATE
@@ -478,7 +485,7 @@ class DocGenerator(object):
                         for configkey in keys:
                             config = c[const.CONFIGS][configkey]
                             if self.showprivate or const.PRIVATE not in config:
-                                configdata = {const.NAME: configkey, const.HOST: i, const.URL:getUrl(i, configkey, const.CONFIG)}
+                                configdata = {const.NAME: configkey, const.HOST: i, const.TYPE: 'config', const.URL:getUrl(i, configkey, const.CONFIG)}
 
                                 transferToDict( const.ACCESS,   config, configdata           )
                                 if const.PRIVATE in config: configdata[const.ACCESS] = const.PRIVATE
@@ -501,7 +508,7 @@ class DocGenerator(object):
                                 configs.append(configdata)
 
                     # get inherited data
-                    inherited = t.inherited = {const.PROPERTIES:{}, const.METHODS:{}, const.EVENTS:{}, const.CONFIGS:{}}
+                    inherited = t.inherited = {const.PROPERTIES:{}, const.METHODS:{}, const.EVENTS:{}, const.CONFIGS:{}, const.SUPERCLASS: {} }
                     if const.EXTENDS in c:
                         supercname = t.extends = unicode(c[const.EXTENDS])
                         if supercname in classes:
@@ -514,6 +521,16 @@ class DocGenerator(object):
                             if supercname in classes:
                                 superc = classes[supercname]
                                 getPropsFromSuperclass(superc, classes, inherited)
+                    
+                    #Create the superclass chain and attach it to the classInfo Object
+                    extends = {}
+                    for i in inherited:
+                        for a in inherited[i]:
+                            extends[a] = a
+                    
+                    inherited[const.SUPERCLASS] = extends
+                    classInfo[const.EXTENDS] = inherited
+                    classList.append(classInfo)
 
                     # Constructor -- technically the parser can take multiple constructors
                     # but that does't help here
@@ -537,6 +554,14 @@ class DocGenerator(object):
                                 params.append(param)
 
 
+                    # write module splash
+                    moduleprops.sort(allprop_sort)
+                    t.allprops_raw = moduleprops
+                    moduleprops_json =  simplejson.dumps(moduleprops)
+                    t.allprops = moduleprops_json
+                    classList.sort(allprop_sort)
+                    t.classList_raw = classList
+                    t.classList = simplejson.dumps(classList)
                     self.write("%s.html" %(self.classname), t)
         
             # clear out class name
@@ -551,6 +576,7 @@ class DocGenerator(object):
 
             # write module splash
             moduleprops.sort(allprop_sort)
+            t.allprops_raw = moduleprops
             moduleprops_json =  simplejson.dumps(moduleprops)
             t.allprops = moduleprops_json
 
