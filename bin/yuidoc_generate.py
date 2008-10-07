@@ -4,7 +4,7 @@ import os, re, simplejson, shutil, logging, logging.config, time, datetime
 import const
 from cStringIO import StringIO 
 from Cheetah.Template import Template
-from sets import Set 
+from sets import Set
 
 try:
     logging.config.fileConfig(os.path.join(sys.path[0], const.LOGCONFIG))
@@ -273,6 +273,7 @@ class DocGenerator(object):
             self.classnames.sort(soft_sort)
 
             t = Template(file=os.path.join(self.templatepath, "main.tmpl"))
+            t.timestamp = time.time()
 
             self.modulename   = mname
             self.moduletitle = mname
@@ -609,6 +610,7 @@ class DocGenerator(object):
         # index
         log.info("Generating index")
         t = Template(file=os.path.join(self.templatepath, "main.tmpl"))
+        t.timestamp = time.time()
         self.modulename   = ""
         self.moduletitle = ""
         self.classname   = ""
@@ -630,6 +632,7 @@ class DocGenerator(object):
 
         # map all classes to the corresponding module for external loaders
         t = Template(file=os.path.join(self.templatepath, "classmap.tmpl"))
+        t.timestamp = time.time()
         pkgMap = {}
         keys = self.data[const.CLASS_MAP].keys()
         keys.sort()

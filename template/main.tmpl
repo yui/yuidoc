@@ -4,11 +4,11 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title>API: $modulename #if $classname# $classname #end if# #if $filename# $filename #end if# (YUI Library)</title>
 
-	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
-	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css?stamp=$timestamp" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css?stamp=$timestamp" />
 
-    <script type="text/javascript" src="assets/api-js"></script>
-    <script type="text/javascript" src="assets/ac-js"></script>
+    <script type="text/javascript" src="assets/api-js?stamp=$timestamp"></script>
+    <script type="text/javascript" src="assets/ac-js?stamp=$timestamp"></script>
 </head>
 
 <body id="yahoo-com">
@@ -144,7 +144,7 @@
                                             #for $param in $constructor.params
                                                 <dd rel="yui:parameter">
                                                     <code><span property="yui:name">$param.name</span>
-                                                    <span property="yui:type">&lt;$param.type&gt;</span>
+                                                    &lt;<span property="yui:type">$param.type</span>&gt;
                                                     </code>
                                                     <span property="yui:description">$param.description</span>
                                                 </dd>
@@ -270,7 +270,7 @@
                                                     #for $param in $method.params
                                                         <dd rel="yui:parameter">
                                                         <code><span property="yui:name">$param.name</span>
-                                                        <span property="yui:type">&lt;$param.type&gt;</span>
+                                                        &lt;<span property="yui:type">$param.type</span>&gt;
                                                         </code>
                                                         <span property="yui:description">$param.description</span>
                                                         </dd>
@@ -380,7 +380,7 @@
                                                     #for $param in $event.params
                                                         <dd rel="yui:parameter">
                                                             <code><span property="yui:name">$param.name</span>
-                                                                <span property="yui:type">&lt;$param.type&gt;</span>
+                                                                &lt;<span property="yui:type">$param.type</span>&gt;
                                                             </code>
                                                             <span property="yui:description">$param.description</span>
                                                         </dd>
