@@ -35,20 +35,37 @@ Event.onAvailable('yui-classopts-form', function() {
 
     var checkCookie = function(id) {
         var value = YAHOO.util.Cookie.getSub('yuidoc', id),
-            el = Dom.get(id);
+            el = Dom.get(id), checked = (value === 'checked');;
+
+        /*
         if (value === 'checked') {
             el.checked = true;
         } else {
             el.checked = false;
         }
+        */
+
+        el.checked = checked;
+        return checked;
     };
 
-    var els = ['show_deprecated', 'show_protected', 'show_private'];
+    var els = ['show_deprecated', 'show_protected', 'show_private'],
+        reapplyHash = false;
 
     for (var i = 0; i < els.length; i++) {
         Event.on(els[i], 'click', handleClick);
-        checkCookie(els[i]);
+        reapplyHash = checkCookie(els[i]) || reapplyHash;
         handleClick(els[i]);
+    }
+
+    // If we dynamically show private/protected/etc items during
+    // load, we need to reapply anchors so that the search feature
+    // works correctly for items that are initially hidden.
+    if (reapplyHash) {
+        var dl = document.location, hash = dl.hash;
+        if (hash) {
+            dl.hash = hash;
+        }
     }
     
 });
