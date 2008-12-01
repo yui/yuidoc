@@ -1,66 +1,41 @@
 One-time setup for python:
 
-If simplejson and/or cheetah are not installed, unarchive the files in
-the ext directory and follow the supplied instructions to install the
-packages.
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Unix (including cygwin):
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Extract each of the archives in ext and install the package
-sudo python setup.py install (no sudo needed for cygwin or windows)
-
-NOTE: extract these to a local volume, not a volume that is NFS mounted.
-
-setuptools
-    cd ext
-    tar xfvz setuptools-0.6c3.tar.gz
-    cd setuptools-0.6c3
-    sudo python setup.py install
-
-pygments
-    cd ext
-    tar xfvz pygments.tar.gz
-    cd pygments
-    sudo python setup.py install
-
-simplejson
-    cd ext
-    tar xfvz simplejson-1.4.tar.gz
-    cd simplejson-1.4
-    sudo python setup.py install
-
-cheetah
-    cd ext
-    tar xfvz Cheetah-2.0rc7.tar.gz
-    cd Cheetah-2.0rc7
-    sudo python setup.py install
+1. Check to see if setuptools is installed.
+    Execute this command:
+        which easy_install
+    
+    If it returns something, it's installed skip to step #3.
 
 
-Get yuidoc: cvs co yahoo/presentation/tools/yuidoc
+2. Install Setup Tools:
+    Extract the archive in ext and install the package
+    sudo python setup.py install (no sudo needed for cygwin or windows)
 
-Make a copy of yuidoc/bin/example.sh and modify the paths to suit your needs.
+    setuptools
+        cd ext
+        tar xfvz setuptools-0.6c3.tar.gz
+        cd setuptools-0.6c3
+        sudo python setup.py install
 
-See TAGS for a brief description of the supported tags.  Checking out the
-source for the YUI library is a good way to get to know how it works. Ex:
-http://developer.yahoo.com/yui/docs/Event.js.html
+3. Install the dependencies
 
-NOTE: This tool will generally work with code that has been commented for
-jsdoc, with one exception:  you must have at least one @module block defined
-somewhere in your source.  If you don't, the program will run but won't
-generate anything.
+    easy_install pygments
+    easy_install Cheetah
+    easy_install simplejson
 
 
+4. Make a copy of yuidoc/bin/example.sh and modify the paths to suit your needs.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 DOS/Windows:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-EITHER
-
-Extract my version of python that has all of the needed support libs to C:\
-
-  * http://produce.yahoo.com/adamoore/Python24.zip
-
-OR
+1. Install Python
 
   * Use Python 2.4.3 as 2.5 generates warnings because the json parser has 
     not been updated yet:
@@ -73,11 +48,13 @@ OR
   * Copy _namemapper.pyd to C:\Python24\Lib\site-packages\Cheetah
 
 
-In either case, add C:\python24 to your PATH
+2,3. Same as above 
 
-Get yuidoc: cvs co yahoo/presentation/tools/yuidoc
+4. Add C:\python24 to your PATH
 
-Copy yuidoc\bin\example.bat and modify the paths to suit your needs
+5. Copy yuidoc\bin\example.bat and modify the paths to suit your needs
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 See TAGS for a brief description of the supported tags.  Checking out the
 source for the YUI library is a good way to get to know how it works. Ex:
