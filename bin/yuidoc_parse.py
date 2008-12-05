@@ -554,7 +554,10 @@ it was empty" % token
                 self.data[const.MODULES][self.currentModule][const.SUBDATA][self.subModName][const.NAME] = longName
                 if const.DESCRIPTION in tokenMap:
                     d = tokenMap[const.DESCRIPTION][0]
-                    d= unicode(d, 'utf-8', 'xmlcharrefreplace')
+                    try: 
+                        encoded = unicode(d, 'utf-8', 'xmlcharrefreplace')
+                        d = encoded
+                    except: pass
                     self.data[const.MODULES][self.currentModule][const.SUBDATA][self.subModName][const.DESCRIPTION] = d
 
             if const.GLOBAL in tokenMap:
