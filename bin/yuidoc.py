@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: et sw=4 ts=4
 
 import yuidoc_parse, yuidoc_highlight, yuidoc_generate
 

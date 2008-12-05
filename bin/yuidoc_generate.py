@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: et sw=4 ts=4
 ''' Prints documentation with htmltmpl from the json data outputted by parser.py  ''' 
 import os, re, simplejson, shutil, logging, logging.config, time, datetime
 import const
@@ -83,15 +85,19 @@ class DocGenerator(object):
         self.filenames   = ""
         self.allprops = []
 
-    def cleanseStr(self, str):
+    def cleanseStr(self, strg):
         cleanregex= re.compile(r"[^\w\-]")
-        cleansed = cleanregex.sub('', str.lower())
+        cleansed = cleanregex.sub('', strg.lower())
         # log.warn('cleansed module: %s' %(cleansed));
         return self.moduleprefix + cleansed
 
     def write(self, filename, data):
         out = open(os.path.join(self.outpath, filename), "w")
-        out.writelines(unicode(data))
+        # log.info(data);
+        # out.writelines(unicode(data, errors='strict'))
+        # out.writelines(unicode(data, 'utf-8', 'xmlcharrefreplace'))
+        out.writelines(str(data))
+        # out.writelines(unicode(data))
         out.close()
 
     def process(self):
@@ -134,6 +140,13 @@ class DocGenerator(object):
             val = ""
             if prop in dict:
                 val = unicode(dict[prop])
+                # val = str(dict[prop])
+                # val = dict[prop]
+                # if 'encode' in val:
+                # log.info(val)
+                # val.encode('ascii', 'xmlcharrefreplace')
+                # log.info(val)
+
                 if valOverride:
                     val = valOverride
 
@@ -304,11 +317,11 @@ class DocGenerator(object):
 
             
             if len(m[const.SUBMODULES]) > 0:
-                str = ', '.join(m[const.SUBMODULES])
+                strg = ', '.join(m[const.SUBMODULES])
             else:
-                str = 'none'
+                strg = 'none'
                 
-            transferToTemplate(const.SUBMODULES, m, t, str)
+            transferToTemplate(const.SUBMODULES, m, t, strg)
             t.submodules = m[const.SUBMODULES]
 
             transferToTemplate(const.SUBDATA, m, t, '')

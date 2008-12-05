@@ -17,8 +17,8 @@ Unix (including cygwin):
 
     setuptools
         cd ext
-        tar xfvz setuptools-0.6c3.tar.gz
-        cd setuptools-0.6c3
+        tar xfvz setuptools-0.6c9.tar.gz
+        cd setuptools-0.6c9
         sudo python setup.py install
 
 3. Install the dependencies

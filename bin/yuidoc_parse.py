@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: et sw=4 ts=4
 ''' A class to parse Javadoc style comments out of javascript to document 
     an API. It is designed to parse one module at a time ''' 
 import os, re, simplejson, string, sys, pprint, logging, logging.config
@@ -17,8 +19,6 @@ log = logging.getLogger('yuidoc.parse')
 class DocParser(object):
 
     def __init__(self, inputdirs, outputdir, outputfile, extension, version):
-
-
 
         def _mkdir(newdir):
             if os.path.isdir(newdir): pass
@@ -285,9 +285,10 @@ class DocParser(object):
 
                         if match:
                             if match.group(4):
-                                type, description = "", match.group(4) + match.group(5)
+                                type, description = "", unicode(match.group(4) + match.group(5), 'utf-8', 'xmlcharrefreplace')
                             else:
-                                type, description = match.group(2), (match.group(1) + match.group(3)).strip()
+                                type, description = unicode(match.group(2), 'utf-8', 'xmlcharrefreplace'), unicode((match.group(1) + match.group(3)).strip(), 'utf-8', 'xmlcharrefreplace')
+
                         else:
                             type, description = "", ""
 
@@ -296,10 +297,16 @@ class DocParser(object):
                         log.error("\nError, a parameter could not be parsed:\n\n %s\n\n %s\n" %(i, pprint.pformat(tokenMap)))
                         sys.exit()
 
+                    # description.encode('utf-8', 'xmlcharrefreplace')
+                    # description = unicode(description, 'utf-8', 'xmlcharrefreplace')
+
+
                     mo = self.param_pat.match(description)
                     if mo:
                         name = mo.group(1)
                         description = mo.group(2)
+                        description.encode('utf-8', 'xmlcharrefreplace')
+
                         dict[desttag].append({  
                                 const.NAME:        name,
                                 const.TYPE:        type, 
@@ -321,9 +328,9 @@ class DocParser(object):
 
                     if match:
                         if match.group(4):
-                            type, description = "", match.group(4) + match.group(5)
+                            type, description = "", unicode(match.group(4) + match.group(5), 'utf-8', 'xmlcharrefreplace')
                         else:
-                            type, description = match.group(2), (match.group(1) + match.group(3)).strip()
+                            type, description = unicode(match.group(2), 'utf-8', 'xmlcharrefreplace'), unicode((match.group(1) + match.group(3)).strip(), 'utf-8', 'xmlcharrefreplace')
                     else:
                         type, description = "", ""
 
@@ -376,10 +383,16 @@ it was empty" % token
                         log.warn("\n" + self.currentFile + "\n" + msg + ":\n\n" + unicode(tokens) + "\n")
 
 
+
+
                 # keep a map of the different tags we have found, with an
                 # array to keep track of each occurrance
                 if token not in tokenMap:
                     tokenMap[token] = []
+
+
+                # if desc:
+#                    desc = unicode(desc, 'utf-8', 'xmlcharrefreplace')
 
                 tokenMap[token].append(desc)
 
@@ -397,6 +410,9 @@ it was empty" % token
                 # the first block without a description should be the description
                 # for the block
                 if token and const.DESCRIPTION not in tokenMap:
+
+                    token = unicode(token, 'utf-8', 'xmlcharrefreplace')
+                    # token.encode('utf-8', 'xmlcharrefreplace')
                     tokenMap[const.DESCRIPTION] = [token]
                 else: pass # I don't think this can happen any longer
 
@@ -537,7 +553,9 @@ it was empty" % token
             if self.subModName:
                 self.data[const.MODULES][self.currentModule][const.SUBDATA][self.subModName][const.NAME] = longName
                 if const.DESCRIPTION in tokenMap:
-                    self.data[const.MODULES][self.currentModule][const.SUBDATA][self.subModName][const.DESCRIPTION] = tokenMap[const.DESCRIPTION][0]
+                    d = tokenMap[const.DESCRIPTION][0]
+                    d= unicode(d, 'utf-8', 'xmlcharrefreplace')
+                    self.data[const.MODULES][self.currentModule][const.SUBDATA][self.subModName][const.DESCRIPTION] = d
 
             if const.GLOBAL in tokenMap:
                 self.globals[longName] = True
