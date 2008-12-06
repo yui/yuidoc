@@ -266,13 +266,6 @@ class DocParser(object):
             """ identify an attribute tag vs a description block """
             return token.strip()[:1] == "@"
 
-        # extracts compound comment blocks .. like {type}
-        # def compound_sub(match):
-        #     if match.group(4):
-        #         return "", match.group(4) + match.group(5)
-        #     else:
-        #         return match.group(2), (match.group(1) + match.group(3)).strip()
-
         def parseParams(tokenMap, dict, srctag=const.PARAM, desttag=const.PARAMS):
             if srctag in tokenMap:
                 # params must be an array because they need to stay in order
@@ -391,9 +384,6 @@ it was empty" % token
                     tokenMap[token] = []
 
 
-                # if desc:
-#                    desc = unicode(desc, 'utf-8', 'xmlcharrefreplace')
-
                 tokenMap[token].append(desc)
 
                 # There are key pieces of info we need to have before we 
@@ -434,15 +424,12 @@ it was empty" % token
         # outer class
         if const.FOR in tokenMap:
             name = tokenMap[const.FOR][0]
-            #shortName, longName = self.getClassName(name, self.currentNamespace)
             longName = name
             currentFor = longName
             if const.CLASS not in tokenMap:
                 if longName in self.data[const.CLASS_MAP]:
                     self.currentClass = longName
                 else:
-                    # msg = "@for tag references a class that has not been defined"
-                    # raise ValueError, unicode(tokens) + " " + msg
                     defineClass(name)
                     
                 tokenMap.pop(const.FOR)
@@ -544,12 +531,6 @@ it was empty" % token
             if const.MODULE in tokenMap:
                 target, tokenMap = parseModule(tokenMap)
             
-            # if not 'subModName' in self:
-                # self.subModName = None
-
-
-            # log.warn("Here");
-
             if self.subModName:
                 self.data[const.MODULES][self.currentModule][const.SUBDATA][self.subModName][const.NAME] = longName
                 if const.DESCRIPTION in tokenMap:
@@ -625,7 +606,6 @@ it was empty" % token
             if not const.METHODS in c: c[const.METHODS] = {}
             
             if method in c[const.METHODS]:
-                # print "WARNING: %s - method %s was redefined (method overloading is not supported)" %(tokens, method)
                 log.warn("WARNING: method %s was redefined" %(method))
             else:
                 c[const.METHODS][method] = parseParams(tokenMap, {})
@@ -646,7 +626,6 @@ it was empty" % token
             if not const.EVENTS in c: c[const.EVENTS] = {}
             
             if event in c[const.EVENTS]:
-                #print "WARNING: %s - event %s was redefined" %(tokens, event)
                 log.warn("WARNING: event %s was redefined" %(event))
             else:
                 c[const.EVENTS][event] = parseParams(tokenMap, {})
@@ -667,7 +646,6 @@ it was empty" % token
             if not const.PROPERTIES in c: c[const.PROPERTIES] = {}
             
             if property in c[const.PROPERTIES]:
-                # print "WARNING: %s - Property %s was redefined" %(tokens, property)
                 log.warn("WARNING: Property %s was redefined" %(property))
             else:
                 c[const.PROPERTIES][property] = {}
@@ -685,7 +663,6 @@ it was empty" % token
             c = self.data[const.CLASS_MAP][self.currentClass]
             if const.ATTRIBUTE in tokenMap:
                 config = tokenMap[const.ATTRIBUTE][0]
-                # config.hasEvents = True;
             else:
                 config = tokenMap[const.CONFIG][0]
 
@@ -693,7 +670,6 @@ it was empty" % token
             if not const.CONFIGS in c: c[const.CONFIGS] = {}
             
             if config in c[const.CONFIGS]:
-                # print "WARNING: %s - Property %s was redefined" %(tokens, config)
                 log.warn("WARNING: Property %s was redefined" %(config))
             else:
                 c[const.CONFIGS][config] = {}
@@ -702,7 +678,6 @@ it was empty" % token
 
             if const.ATTRIBUTE in tokenMap:
                 tokenMap.pop(const.ATTRIBUTE)
-                # target[const.HASEVENTS] = True;
 
                 if not const.EVENTS in c: c[const.EVENTS] = {}
 
@@ -795,9 +770,6 @@ the attribute\'s value has changed.' %(config),
             for token in tokenMap:
                 if token not in target:
                     target[token] = tokenMap[token][0]
-        else:
-            msg = "WARNING no target, this block will be skipped"
-            # print "\n" + self.currentFile + "\n" + msg + ":\n\n" + unicode(tokens) + "\n"
 
 def main():
     optparser = OptionParser("usage: %prog [options] inputdir1 inputdir2 etc")

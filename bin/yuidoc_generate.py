@@ -93,11 +93,7 @@ class DocGenerator(object):
 
     def write(self, filename, data):
         out = open(os.path.join(self.outpath, filename), "w")
-        # log.info(data);
-        # out.writelines(unicode(data, errors='strict'))
-        # out.writelines(unicode(data, 'utf-8', 'xmlcharrefreplace'))
         out.writelines(str(data))
-        # out.writelines(unicode(data))
         out.close()
 
     def process(self):
@@ -140,12 +136,6 @@ class DocGenerator(object):
             val = ""
             if prop in dict:
                 val = unicode(dict[prop])
-                # val = str(dict[prop])
-                # val = dict[prop]
-                # if 'encode' in val:
-                # log.info(val)
-                # val.encode('ascii', 'xmlcharrefreplace')
-                # log.info(val)
 
                 if valOverride:
                     val = valOverride
@@ -180,9 +170,6 @@ class DocGenerator(object):
                 return False
 
         def soft_sort(x, y):
-            # pat = re.compile(r"[\_\-\.]")
-            # return cmp(pat.sub('', x.lower()), pat.sub('', y.lower()))
-            # pat = re.compile(r"[\_\-\.]")
             return cmp(x.lower(), y.lower())
 
 
@@ -201,7 +188,6 @@ class DocGenerator(object):
                             elif const.PROTECTED in superprop: access = const.PROTECTED
                             else:access = ""
                             inhdef.append({const.NAME: prop, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in superprop})
-                            #inhdef.append(superprop)
                 if const.METHODS in superc:
                     inhdef = dict[const.METHODS][supercname] = []
                     keys = superc[const.METHODS].keys()
@@ -209,7 +195,6 @@ class DocGenerator(object):
                     for method in keys:
                         supermethod = superc[const.METHODS][method]
                         if shouldShow(supermethod):
-                            #inhdef.append(method)
                             if const.PRIVATE in supermethod: access = const.PRIVATE
                             elif const.PROTECTED in supermethod: access = const.PROTECTED
                             else:access = ""
@@ -309,12 +294,7 @@ class DocGenerator(object):
             transferToTemplate(const.OPTIONAL, m, t)
 
             transferToTemplate(const.BETA, m, t, "Beta")
-            # if const.BETA in m:
-                # t[const.BETA] = "Beta"
             transferToTemplate(const.EXPERIMENTAL, m, t, "Experimental")
-            # if const.EXPERIMENTAL in m:
-                # t[const.EXPERIMENTAL] = "Experimental"
-
             
             if len(m[const.SUBMODULES]) > 0:
                 strg = ', '.join(m[const.SUBMODULES])
@@ -654,33 +634,10 @@ class DocGenerator(object):
             try:
                 pkgMap[i] = self.data[const.CLASS_MAP][i][const.MODULE]
             except:
-                log.warn('class map ' + i + ' failure (no module declaration?)')
+                try:
+                    log.warn('class map ' + i + ' failure (no module declaration?)')
+                except: pass
 
-        # log.info(" ")
-        # log.info(unicode(keys))
-        # log.info(" ")
-        #     for i in keys:
-        #     ns = i.split('.')
-        #     log.info("processing: " + unicode(ns))
-        #     cn = ns[len(ns) - 1]
-        #     log.info("target class: " + cn)
-        #     current = pkgMap
-        #     for j in ns:
-        #         if cn == j:
-        #             if j in current:
-        #                 log.info("already defined: " + j)
-        #             else:
-        #                 log.info("class: " + j + ", full class: " + i)
-        #                 current[j] = self.data[const.CLASS_MAP][i]['module']
-        #         else:
-        #             if j not in current:
-        #                 current[j] = {}
-        #             current = current[j]
-
-        # # log.info(" ")
-        # log.info(unicode(pkgMap))
-        # classjson = "YAHOO.env.classMap = " + simplejson.dumps(pkgMap)
-        # log.info(classjson)
         t.pkgmap = simplejson.dumps(pkgMap)
         self.write("classmap.js", t)
 
