@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: et sw=4 ts=4
+
+'''
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.html
+version: 1.0.0b1
+'''
+
 ''' A class to parse Javadoc style comments out of javascript to document 
     an API. It is designed to parse one module at a time ''' 
 import os, re, simplejson, string, sys, pprint, logging, logging.config

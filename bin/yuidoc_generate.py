@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: et sw=4 ts=4
+
+'''
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.html
+version: 1.0.0b1
+'''
+
 ''' Prints documentation with htmltmpl from the json data outputted by parser.py  ''' 
 import os, re, simplejson, shutil, logging, logging.config, time, datetime
 import const
