@@ -22,5 +22,11 @@ REM The location of the template files.  Any subdirectories here will be copied
 REM verbatim to the destination directory.
 SET template="%yuidoc_home%\template"
 
-%yuidoc_home%\bin\yuidoc.py %parser_in% -p %parser_out% -o %generator_out% -t %template%
+REM The project version that will be displayed in the documentation.
+SET version="1.0.0"
+
+REM The version of YUI the project uses.
+SET yuiversion="2"
+
+%yuidoc_home%\bin\yuidoc.py %parser_in% -p %parser_out% -o %generator_out% -t %template% -v %version% -Y %yuiversion%
 
