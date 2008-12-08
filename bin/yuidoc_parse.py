@@ -18,7 +18,7 @@ log = logging.getLogger('yuidoc.parse')
 
 class DocParser(object):
 
-    def __init__(self, inputdirs, outputdir, outputfile, extension, version):
+    def __init__(self, inputdirs, outputdir, outputfile, extension, version, yuiversion):
 
         def _mkdir(newdir):
             if os.path.isdir(newdir): pass
@@ -64,7 +64,21 @@ class DocParser(object):
         # the remainder of the file with the comment blocks removed
         # self.stripped = ""
 
-        majorVersion = version[:1]
+        # We auto-generate documentation for events that are exposed by
+        # attributes.  The signature for these events are different between
+        # YUI2 and YUI3.  Specifying the YUI version that is in use will
+        # generate the appropriate documentation.  This currently only
+        # differentiates between version 2 and 3 of the library, so the
+        # 'yuiversion' parameter should start with one or the other.  If the
+        # 'yuiversion' parameter is not provided, the 'version' parameter is
+        # used instead, which is generally approprate for generating docs for
+        # the YUI library.  If neither parameter is provided or valid, the
+        # default is the latest YUI major version, currently YUI3.
+        if yuiversion:
+            majorVersion = yuiversion[:1]
+        else:
+            majorVersion = version[:1]
+
         try:
             majorVersion = int(majorVersion)
         except:

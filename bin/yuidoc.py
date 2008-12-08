@@ -16,6 +16,7 @@ def main():
                            project="Yahoo! UI Library",
                            version="",
                            projecturl="http://developer.yahoo.com/yui/",
+                           yuiversion=False,
                            ydn=False
                            )
     optparser.add_option( "-p", "--parseroutdir",
@@ -52,6 +53,11 @@ def main():
     optparser.add_option( "-u", "--projecturl",
                           action="store", dest="projecturl", type="string",
                           help="The project url" )
+
+    optparser.add_option( "-Y", "--yuiversion",
+                          action="store", dest="yuiversion", type="string",
+                          help="The version of YUI library used in the project.  This parameter applies to the output for attributes, which differs between YUI2 and YUI3." )
+
     optparser.add_option( "-y", "--ydn",
         action="store_true", dest="ydn",
         help="Add YDN MyBlogLog intrumentation?" )
@@ -63,7 +69,8 @@ def main():
                             opts.parseroutdir, 
                             opts.parserfile, 
                             opts.extension,
-                            opts.version
+                            opts.version,
+                            opts.yuiversion
                             )
 
         highlighter = yuidoc_highlight.DocHighlighter( [opts.parseroutdir], 
