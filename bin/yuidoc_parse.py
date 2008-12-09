@@ -59,11 +59,13 @@ class DocParser(object):
                 # Checking for directories that start with a '.'
                 # Windows doesn't hide these directories by default
                 if not i.startswith('.'):
-                    fullname = os.path.join(path, i)
-                    if os.path.isdir(fullname):
-                        subdirs.append(fullname)
-                    elif i.lower().endswith(self.extension):
-                        dircontent += parseFile(path, i)
+                    # Checking for known bad directory: CVS
+                    if i != 'CVS':
+                        fullname = os.path.join(path, i)
+                        if os.path.isdir(fullname):
+                            subdirs.append(fullname)
+                        elif i.lower().endswith(self.extension):
+                            dircontent += parseFile(path, i)
 
             for i in subdirs:
                 dircontent += parseDir(i)
