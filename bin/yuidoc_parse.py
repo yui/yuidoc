@@ -487,7 +487,7 @@ it was empty" % token
 
         def parseModule(tokenMap):
 
-            log.info("\n\n%s:\n\n%s\n" %("tokenMap", unicode(tokenMap)))
+            log.debug("\n\n%s:\n\n%s\n" %("tokenMap", unicode(tokenMap)))
 
             target = None
             self.subModName = False
