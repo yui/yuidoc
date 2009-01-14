@@ -591,7 +591,11 @@ it was empty" % token
 
             if self.currentFile:
                 target[const.FILE] = self.currentFile
+
+            try:
                 self.data[const.FILE_MAP][self.currentFile][const.CLASS_LIST].append(longName)
+            except:
+                pass
 
             # if "mixes" in tokenMap:
             if "extends" in tokenMap:
