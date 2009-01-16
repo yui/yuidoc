@@ -284,7 +284,6 @@ class DocGenerator(object):
             # @TODO add command line option for timestamp
             # timestamp = time.time()
             timestamp = ""
-
             t.timestamp = timestamp 
 
             transferToTemplate(const.REQUIRES, m, t)
@@ -622,7 +621,10 @@ class DocGenerator(object):
         # index
         log.info("Generating index")
         t = Template(file=os.path.join(self.templatepath, "main.tmpl"))
-        t.timestamp = time.time()
+        # @TODO add command line option for timestamp
+        # timestamp = time.time()
+        timestamp = ""
+        t.timestamp = timestamp 
         self.modulename   = ""
         self.moduletitle = ""
         self.classname   = ""
@@ -644,7 +646,10 @@ class DocGenerator(object):
 
         # map all classes to the corresponding module for external loaders
         t = Template(file=os.path.join(self.templatepath, "classmap.tmpl"))
-        t.timestamp = time.time()
+        # @TODO add command line option for timestamp
+        # timestamp = time.time()
+        timestamp = ""
+        t.timestamp = timestamp 
         pkgMap = {}
         keys = self.data[const.CLASS_MAP].keys()
         keys.sort()
