@@ -76,6 +76,7 @@ class DocGenerator(object):
         self.ydn = ydn
         self.version = version 
         self.modulename  = ""
+        self.timestamp = "" # if supplied, linked script and css will have a timestamp appended to the url for cache busting
         self.moduletitle  = ""
         self.moduledesc  = "Please supply a module block somewhere in your code"
         # self.requires    = None
@@ -279,7 +280,14 @@ class DocGenerator(object):
             self.classnames.sort(soft_sort)
 
             t = Template(file=os.path.join(self.templatepath, "main.tmpl"))
-            t.timestamp = time.time()
+            
+            # @TODO add command line option for timestamp
+            # timestamp = time.time()
+            timestamp = ""
+
+            t.timestamp = timestamp 
+
+            transferToTemplate(const.REQUIRES, m, t)
 
             self.modulename   = mname
             self.moduletitle = mname

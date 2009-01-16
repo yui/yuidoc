@@ -9,7 +9,7 @@ yuidoc_home=..
 
 src=~/src/yui3/src
 
-parser_in="$src/event"
+parser_in="$src/event/js"
  
 # The location to output the parser data.  This output is a file containing a 
 # json string, and copies of the parsed files.
