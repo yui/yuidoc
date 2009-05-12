@@ -3,7 +3,7 @@
 # vim: et sw=4 ts=4
 
 '''
-Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.html
 version: 1.0.0b1
@@ -649,7 +649,8 @@ it was empty" % token
         elif const.EVENT in tokenMap:
             if not self.currentClass:
                 log.error("Error: @event tag found before @class was found.\n****\n")
-                sys.exit()
+                self.currentClass = self.currentGlobal
+                # sys.exit()
 
             c = self.data[const.CLASS_MAP][self.currentClass]
             event = tokenMap[const.EVENT][0]
@@ -668,8 +669,9 @@ it was empty" % token
         elif const.PROPERTY in tokenMap:
 
             if not self.currentClass:
-                log.error("Error: @property tag found before @class was found.\n****\n")
-                sys.exit()
+                log.warn("Error: @property tag found before @class was found.\n****\n")
+                self.currentClass = self.currentGlobal
+                #sys.exit()
 
             c = self.data[const.CLASS_MAP][self.currentClass]
             property = tokenMap[const.PROPERTY][0]
@@ -688,8 +690,9 @@ it was empty" % token
         elif const.CONFIG in tokenMap or const.ATTRIBUTE in tokenMap:
         
             if not self.currentClass:
-                log.error("Error: @config tag found before @class was found.\n****\n")
-                sys.exit()
+                log.warn("Error: @config tag found before @class was found.\n****\n")
+                # sys.exit()
+                self.currentClass = self.currentGlobal
 
             c = self.data[const.CLASS_MAP][self.currentClass]
             if const.ATTRIBUTE in tokenMap:

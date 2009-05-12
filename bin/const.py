@@ -1,5 +1,5 @@
 '''
-Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.html
 version: 1.0.0b1
