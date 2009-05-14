@@ -40,6 +40,7 @@ GUESSEDNAME='guessedname'
 GUESSEDTYPE='guessedtype'
 HASEVENTS='hasevents'
 HOST='host'
+IGNORE_PATTERNS = ('*.pyc','CVS','^.git','.svn')
 LONGNAME='longname'
 LOGCONFIG='yuidoclog.conf'
 METHOD='method'

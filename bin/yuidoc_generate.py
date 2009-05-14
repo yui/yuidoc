@@ -62,8 +62,9 @@ class DocGenerator(object):
                 try:
                     shutil.rmtree(targetdir)
                 except: pass
+                # requires 2.6
+                # shutil.copytree(fullname, targetdir, ignore=shutil.ignore_patterns(const.IGNORE_PATTERNS))
                 shutil.copytree(fullname, targetdir)
-
 
         self.showprivate  = showprivate
 

@@ -676,9 +676,14 @@
     ALL_YUI_PROPS = $allprops;
 </script>
 #if $ydn
-<!--MyBlogLog instrumentation-->
-<script type="text/javascript"
-src="http://track2.mybloglog.com/js/jsserv.php?mblID=2007020704011645"></script>
+<!-- Yahoo! Web Analytics - All rights reserved -->
+<script type="text/javascript" src="http://d.yimg.com/mi/ywa.js"></script>
+<script type="text/javascript">
+YWA.getTracker("10001025849223").submit();
+</script>
+<noscript>
+<div><img src="http://a.analytics.yahoo.com/p.pl?a=10001025849223&amp;js=no" width="1" height="1" alt="" /></div>
+</noscript>
 #end if
 </body>
 </html>
