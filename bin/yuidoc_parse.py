@@ -500,12 +500,16 @@ it was empty" % token
                 target = self.data[MODULES][module]
 
             if SUBMODULE in tokenMap:
-                target[SUBMODULES].append(tokenMap[SUBMODULE][0]);
-                self.subModName = tokenMap[SUBMODULE][0];
-                target[SUBDATA][self.subModName] = { NAME: self.currentClass }
+
+                subname = tokenMap[SUBMODULE][0]
+
+                target[SUBMODULES].append(subname);
+                self.subModName = subname;
+                target[SUBDATA][subname] = { NAME: self.currentClass }
 
                 if DESCRIPTION in tokenMap:
-                    target[SUBDATA][self.subModName][DESCRIPTION] = tokenMap[DESCRIPTION][0]
+                    log.debug("\n\nSubmodule: %s, description: %s\n" %(self.subModName, tokenMap[DESCRIPTION][0]))
+                    target[SUBDATA][subname][DESCRIPTION] = tokenMap[DESCRIPTION][0]
                     
                 tokenMap.pop(SUBMODULE)
                 
@@ -560,13 +564,13 @@ it was empty" % token
             
             if self.subModName:
                 self.data[MODULES][self.currentModule][SUBDATA][self.subModName][NAME] = longName
-                if DESCRIPTION in tokenMap:
-                    d = tokenMap[DESCRIPTION][0]
-                    try: 
-                        encoded = unicode(d, 'utf-8', 'xmlcharrefreplace')
-                        d = encoded
-                    except: pass
-                    self.data[MODULES][self.currentModule][SUBDATA][self.subModName][DESCRIPTION] = d
+                # if DESCRIPTION in tokenMap:
+                #     d = tokenMap[DESCRIPTION][0]
+                #     try: 
+                #         encoded = unicode(d, 'utf-8', 'xmlcharrefreplace')
+                #         d = encoded
+                #     except: pass
+                #     self.data[MODULES][self.currentModule][SUBDATA][self.subModName][DESCRIPTION] = d
 
             if GLOBAL in tokenMap:
                 self.globals[longName] = True
