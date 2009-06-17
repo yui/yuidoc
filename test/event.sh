@@ -9,7 +9,7 @@ yuidoc_home=..
 
 src=~/src/yui3/src
 
-parser_in="$src/event/js"
+parser_in="$src/yui/js $src/event-custom/js $src/event/js $src/dump/js $src/substitute/js"
  
 # The location to output the parser data.  This output is a file containing a 
 # json string, and copies of the parsed files.
@@ -22,7 +22,7 @@ generator_out=build_tmp/api
 # verbatim to the destination directory.
 template=$yuidoc_home/template
 
-version=`cat version.txt`
+version=test
 
 ##############################################################################
 
