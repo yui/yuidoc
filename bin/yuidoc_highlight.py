@@ -10,7 +10,7 @@ version: 1.0.0b1
 '''
 
 import os, re, string, logging, logging.config
-import const
+from const import *
 from cStringIO import StringIO 
 from optparse import OptionParser
 from pygments import highlight
@@ -18,7 +18,7 @@ from pygments.lexers import JavascriptLexer
 from pygments.formatters import HtmlFormatter
 
 try:
-    logging.config.fileConfig(os.path.join(sys.path[0], const.LOGCONFIG))
+    logging.config.fileConfig(os.path.join(sys.path[0], LOGCONFIG))
 except:
     pass
 

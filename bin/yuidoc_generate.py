@@ -11,13 +11,13 @@ version: 1.0.0b1
 
 ''' Prints documentation with htmltmpl from the json data outputted by parser.py  ''' 
 import os, re, simplejson, shutil, logging, logging.config, time, datetime
-import const
+from const import *
 from cStringIO import StringIO 
 from Cheetah.Template import Template
 from sets import Set
 
 try:
-    logging.config.fileConfig(os.path.join(sys.path[0], const.LOGCONFIG))
+    logging.config.fileConfig(os.path.join(sys.path[0], LOGCONFIG))
 except:
     pass
 
@@ -43,7 +43,7 @@ class DocGenerator(object):
                 if tail: os.mkdir(newdir)
 
        
-        self.moduleprefix = const.MODULE_PREFIX
+        self.moduleprefix = MODULE_PREFIX
         self.inpath       = os.path.abspath(inpath)
 
         # set and output path, create if needed
@@ -63,7 +63,7 @@ class DocGenerator(object):
                     shutil.rmtree(targetdir)
                 except: pass
                 # requires 2.6
-                # shutil.copytree(fullname, targetdir, ignore=shutil.ignore_patterns(const.IGNORE_PATTERNS))
+                # shutil.copytree(fullname, targetdir, ignore=shutil.ignore_patterns(IGNORE_PATTERNS))
                 shutil.copytree(fullname, targetdir)
 
         self.showprivate  = showprivate
@@ -81,7 +81,7 @@ class DocGenerator(object):
         self.moduletitle  = ""
         self.moduledesc  = "Please supply a module block somewhere in your code"
         # self.requires    = None
-        self.modules = d[const.MODULES]
+        self.modules = d[MODULES]
         self.modulenames = self.modules.keys()
         self.modulenames.sort(lambda x,y: cmp(x.lower(), y.lower()))
 
@@ -90,7 +90,7 @@ class DocGenerator(object):
         self.classname   = ""
         self.filename    = ""
         self.pagetype    = ""
-        self.classmap    = d[const.CLASS_MAP]
+        self.classmap    = d[CLASS_MAP]
         self.classnames  = ""
         self.filenames   = ""
         self.allprops = []
@@ -167,14 +167,14 @@ class DocGenerator(object):
             dict2[prop] = val
 
         def shouldShow(item):
-            if const.STATIC not in item and \
-                    (self.showprivate or const.PRIVATE not in item):
+            if STATIC not in item and \
+                    (self.showprivate or PRIVATE not in item):
                 return True
             else:
                  return False
 
         def shouldShowClass(item):
-            if self.showprivate or const.PRIVATE not in item:
+            if self.showprivate or PRIVATE not in item:
                 return True
             else:
                 return False
@@ -186,61 +186,61 @@ class DocGenerator(object):
         def getPropsFromSuperclass(superc, classes, dict):
             # get inherited data
             if shouldShowClass(superc):
-                supercname = superc[const.NAME]
-                if const.PROPERTIES in superc:
-                    inhdef = dict[const.PROPERTIES][supercname] = []
-                    keys = superc[const.PROPERTIES].keys()
+                supercname = superc[NAME]
+                if PROPERTIES in superc:
+                    inhdef = dict[PROPERTIES][supercname] = []
+                    keys = superc[PROPERTIES].keys()
                     keys.sort(soft_sort)
                     for prop in keys:
-                        superprop = superc[const.PROPERTIES][prop]
+                        superprop = superc[PROPERTIES][prop]
                         if shouldShow(superprop):
-                            if const.PRIVATE in superprop: access = const.PRIVATE
-                            elif const.PROTECTED in superprop: access = const.PROTECTED
+                            if PRIVATE in superprop: access = PRIVATE
+                            elif PROTECTED in superprop: access = PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: prop, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in superprop})
-                if const.METHODS in superc:
-                    inhdef = dict[const.METHODS][supercname] = []
-                    keys = superc[const.METHODS].keys()
+                            inhdef.append({NAME: prop, ACCESS: access, DEPRECATED: DEPRECATED in superprop})
+                if METHODS in superc:
+                    inhdef = dict[METHODS][supercname] = []
+                    keys = superc[METHODS].keys()
                     keys.sort(soft_sort)
                     for method in keys:
-                        supermethod = superc[const.METHODS][method]
+                        supermethod = superc[METHODS][method]
                         if shouldShow(supermethod):
-                            if const.PRIVATE in supermethod: access = const.PRIVATE
-                            elif const.PROTECTED in supermethod: access = const.PROTECTED
+                            if PRIVATE in supermethod: access = PRIVATE
+                            elif PROTECTED in supermethod: access = PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: method, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in supermethod})
-                if const.EVENTS in superc:
-                    inhdef = dict[const.EVENTS][supercname] = []
-                    keys = superc[const.EVENTS].keys()
+                            inhdef.append({NAME: method, ACCESS: access, DEPRECATED: DEPRECATED in supermethod})
+                if EVENTS in superc:
+                    inhdef = dict[EVENTS][supercname] = []
+                    keys = superc[EVENTS].keys()
                     keys.sort(soft_sort)
                     for event in keys:
-                        superevent = superc[const.EVENTS][event]
+                        superevent = superc[EVENTS][event]
                         if shouldShow(superevent):
                             # inhdef.append(event)
-                            if const.PRIVATE in superevent: access = const.PRIVATE
-                            elif const.PROTECTED in superevent: access = const.PROTECTED
+                            if PRIVATE in superevent: access = PRIVATE
+                            elif PROTECTED in superevent: access = PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: event, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in superevent})
-                if const.CONFIGS in superc:
-                    inhdef = dict[const.CONFIGS][supercname] = []
-                    keys = superc[const.CONFIGS].keys()
+                            inhdef.append({NAME: event, ACCESS: access, DEPRECATED: DEPRECATED in superevent})
+                if CONFIGS in superc:
+                    inhdef = dict[CONFIGS][supercname] = []
+                    keys = superc[CONFIGS].keys()
                     keys.sort(soft_sort)
                     for config in keys:
-                        superconfig = superc[const.CONFIGS][config]
+                        superconfig = superc[CONFIGS][config]
                         if shouldShow(superconfig):
                             #inhdef.append(config)
-                            if const.PRIVATE in superconfig: access = const.PRIVATE
-                            elif const.PROTECTED in superconfig: access = const.PROTECTED
+                            if PRIVATE in superconfig: access = PRIVATE
+                            elif PROTECTED in superconfig: access = PROTECTED
                             else:access = ""
-                            inhdef.append({const.NAME: config, const.ACCESS: access, const.DEPRECATED: const.DEPRECATED in superconfig})
+                            inhdef.append({NAME: config, ACCESS: access, DEPRECATED: DEPRECATED in superconfig})
 
-                if const.EXTENDS in superc:
-                    supercname = superc[const.EXTENDS]
+                if EXTENDS in superc:
+                    supercname = superc[EXTENDS]
                     if supercname in classes:
                         getPropsFromSuperclass(classes[supercname], classes, dict)
 
-                if const.USES in superc:
-                    for supercname in superc[const.USES]:
+                if USES in superc:
+                    for supercname in superc[USES]:
                         if supercname in classes:
                             getPropsFromSuperclass(classes[supercname], classes, dict)
 
@@ -251,8 +251,8 @@ class DocGenerator(object):
         #sort is case insensitive and ignores puctuation for the search json file
         def allprop_sort(x, y):
             pat = re.compile(r"[\_\-\.]")
-            cx = x[const.NAME].lower()
-            cy = y[const.NAME].lower()
+            cx = x[NAME].lower()
+            cy = y[NAME].lower()
             cx = pat.sub('', cx)
             cy = pat.sub('', cy)
             return cmp(cx, cy)
@@ -271,10 +271,10 @@ class DocGenerator(object):
             m = self.modules[mname]
             self.filename   = ""
             self.classname   = ""
-            classes = self.data[const.CLASS_MAP]
+            classes = self.data[CLASS_MAP]
             self.classnames = []
 
-            for i in m[const.CLASS_LIST]:
+            for i in m[CLASS_LIST]:
                 if shouldShowClass(classes[i]):
                     self.classnames.append(i)
 
@@ -287,41 +287,41 @@ class DocGenerator(object):
             timestamp = ""
             t.timestamp = timestamp 
 
-            transferToTemplate(const.REQUIRES, m, t)
+            transferToTemplate(REQUIRES, m, t)
 
             self.modulename   = mname
             self.moduletitle = mname
-            if const.TITLE in m:
-                self.moduletitle = m[const.TITLE]
+            if TITLE in m:
+                self.moduletitle = m[TITLE]
             self.cleansedmodulename = self.cleanseStr(mname)
 
-            if const.DESCRIPTION in m:
-                self.moduledesc   = m[const.DESCRIPTION]
+            if DESCRIPTION in m:
+                self.moduledesc   = m[DESCRIPTION]
             else: 
                 log.warn("Missing module description for " + mname)
                 self.moduledesc   = ''
 
-            self.filenames = m[const.FILE_LIST]
+            self.filenames = m[FILE_LIST]
             self.filenames.sort(soft_sort)
 
             assignGlobalProperties(t)
 
-            transferToTemplate(const.REQUIRES, m, t)
-            transferToTemplate(const.OPTIONAL, m, t)
+            transferToTemplate(REQUIRES, m, t)
+            transferToTemplate(OPTIONAL, m, t)
 
-            transferToTemplate(const.BETA, m, t, "Beta")
-            transferToTemplate(const.EXPERIMENTAL, m, t, "Experimental")
+            transferToTemplate(BETA, m, t, "Beta")
+            transferToTemplate(EXPERIMENTAL, m, t, "Experimental")
             
-            if len(m[const.SUBMODULES]) > 0:
-                strg = ', '.join(m[const.SUBMODULES])
+            if len(m[SUBMODULES]) > 0:
+                strg = ', '.join(m[SUBMODULES])
             else:
                 strg = 'none'
                 
-            transferToTemplate(const.SUBMODULES, m, t, strg)
-            t.submodules = m[const.SUBMODULES]
+            transferToTemplate(SUBMODULES, m, t, strg)
+            t.submodules = m[SUBMODULES]
 
-            transferToTemplate(const.SUBDATA, m, t, '')
-            t.subdata = m[const.SUBDATA]
+            transferToTemplate(SUBDATA, m, t, '')
+            t.subdata = m[SUBDATA]
 
 
             moduleprops = []
@@ -329,7 +329,7 @@ class DocGenerator(object):
 
             # class API view
             #for i in classes:
-            for i in m[const.CLASS_LIST]:
+            for i in m[CLASS_LIST]:
                 self.classname = unicode(i)
                 c = classes[i]
                 if shouldShowClass(c):
@@ -337,200 +337,200 @@ class DocGenerator(object):
                     assignGlobalProperties(t)
 
                     # template items that need default vaules even if not included
-                    transferToTemplate( const.SEE, c, t )
-                    transferToTemplate( const.DEPRECATED, c, t )
-                    transferToTemplate( const.DESCRIPTION, c, t )
-                    transferToTemplate( const.STATIC, c, t )
-                    if const.STATIC in c: t.static = const.STATIC
-                    transferToTemplate( const.FINAL, c, t )
-                    if const.FINAL in c: t.final = const.FINAL
-                    transferToTemplate( const.ACCESS, c, t )
-                    if const.PRIVATE in c: t.access = const.PRIVATE
-                    elif const.PROTECTED in c: t.access = const.PROTECTED
+                    transferToTemplate( SEE, c, t )
+                    transferToTemplate( DEPRECATED, c, t )
+                    transferToTemplate( DESCRIPTION, c, t )
+                    transferToTemplate( STATIC, c, t )
+                    if STATIC in c: t.static = STATIC
+                    transferToTemplate( FINAL, c, t )
+                    if FINAL in c: t.final = FINAL
+                    transferToTemplate( ACCESS, c, t )
+                    if PRIVATE in c: t.access = PRIVATE
+                    elif PROTECTED in c: t.access = PROTECTED
 
                     desc = ''
-                    if const.DESCRIPTION in c:
-                        desc = c[const.DESCRIPTION]
+                    if DESCRIPTION in c:
+                        desc = c[DESCRIPTION]
 
 
                     #subclasses
                     subclasses = self.subclasses = []
                     for j in classes:
-                        if const.SUPERCLASS in classes[j] and classes[j][const.SUPERCLASS] == i:
+                        if SUPERCLASS in classes[j] and classes[j][SUPERCLASS] == i:
                             subclasses.append(j)
 
                     t.subclasses = subclasses
 
                     gName = i.replace('YAHOO.widget.', '');
                     gName = gName.replace('YAHOO.util.', '');
-                    classInfo = { const.DESCRIPTION: desc, const.NAME: i, const.GUESSEDNAME: gName, const.EXTENDS: [] }
+                    classInfo = { DESCRIPTION: desc, NAME: i, GUESSEDNAME: gName, EXTENDS: [] }
 
 
                     # Properties/fields
                     props = t.properties = []
-                    if const.PROPERTIES in c:
-                        keys = c[const.PROPERTIES].keys()
+                    if PROPERTIES in c:
+                        keys = c[PROPERTIES].keys()
                         keys.sort(soft_sort)
                         for propertykey in keys:
-                            prop     = c[const.PROPERTIES][propertykey]
-                            if self.showprivate or const.PRIVATE not in prop:
-                                propdata = {const.NAME: propertykey, const.HOST: i, const.TYPE: 'property', const.URL:getUrl(i, propertykey, const.PROPERTY)}
+                            prop     = c[PROPERTIES][propertykey]
+                            if self.showprivate or PRIVATE not in prop:
+                                propdata = {NAME: propertykey, HOST: i, TYPE: 'property', URL:getUrl(i, propertykey, PROPERTY)}
 
-                                transferToDict( const.ACCESS,   prop, propdata           )
-                                if const.PRIVATE in prop: propdata[const.ACCESS] = const.PRIVATE
-                                elif const.PROTECTED in prop: propdata[const.ACCESS] = const.PROTECTED
+                                transferToDict( ACCESS,   prop, propdata           )
+                                if PRIVATE in prop: propdata[ACCESS] = PRIVATE
+                                elif PROTECTED in prop: propdata[ACCESS] = PROTECTED
 
                                 self.allprops.append(propdata.copy())
                                 moduleprops.append(propdata.copy())
 
-                                transferToDict( const.TYPE,        prop, propdata, const.OBJECT )
-                                transferToDict( const.DESCRIPTION, prop, propdata           )
-                                transferToDict( const.DEFAULT,     prop, propdata           )
-                                transferToDict( const.DEPRECATED,  prop, propdata, const.NBWS, const.DEPRECATED )
-                                transferToDict( const.SEE,         prop, propdata           )
-                                transferToDict( const.STATIC,      prop, propdata           )
-                                if const.STATIC in prop: propdata[const.STATIC] = const.STATIC
-                                transferToDict( const.FINAL,      prop, propdata           )
-                                if const.FINAL in prop: propdata[const.FINAL] = const.FINAL
+                                transferToDict( TYPE,        prop, propdata, OBJECT )
+                                transferToDict( DESCRIPTION, prop, propdata           )
+                                transferToDict( DEFAULT,     prop, propdata           )
+                                transferToDict( DEPRECATED,  prop, propdata, NBWS, DEPRECATED )
+                                transferToDict( SEE,         prop, propdata           )
+                                transferToDict( STATIC,      prop, propdata           )
+                                if STATIC in prop: propdata[STATIC] = STATIC
+                                transferToDict( FINAL,      prop, propdata           )
+                                if FINAL in prop: propdata[FINAL] = FINAL
                                 props.append(propdata)
 
                     # Methods
                     methods = t.methods = []
-                    if const.METHODS in c:
-                        keys = c[const.METHODS].keys()
+                    if METHODS in c:
+                        keys = c[METHODS].keys()
                         keys.sort(soft_sort)
                         for methodkey in keys:
-                            method = c[const.METHODS][methodkey]
-                            if self.showprivate or const.PRIVATE not in method:
-                                methoddata = {const.NAME: methodkey, const.HOST: i, const.TYPE: 'method', const.URL:getUrl(i, methodkey, const.METHOD)}
+                            method = c[METHODS][methodkey]
+                            if self.showprivate or PRIVATE not in method:
+                                methoddata = {NAME: methodkey, HOST: i, TYPE: 'method', URL:getUrl(i, methodkey, METHOD)}
 
-                                transferToDict( const.ACCESS,      method, methoddata )
-                                if const.PRIVATE in method: methoddata[const.ACCESS] = const.PRIVATE
-                                elif const.PROTECTED in method: methoddata[const.ACCESS] = const.PROTECTED
+                                transferToDict( ACCESS,      method, methoddata )
+                                if PRIVATE in method: methoddata[ACCESS] = PRIVATE
+                                elif PROTECTED in method: methoddata[ACCESS] = PROTECTED
 
                                 self.allprops.append(methoddata.copy())
                                 moduleprops.append(methoddata.copy())
 
-                                transferToDict( const.DESCRIPTION, method, methoddata )
-                                transferToDict( const.DEPRECATED,  method, methoddata, const.NBWS, const.DEPRECATED )
-                                transferToDict( const.SEE,         method, methoddata )
-                                transferToDict( const.STATIC,      method, methoddata )
-                                if const.STATIC in method: methoddata[const.STATIC] = const.STATIC
-                                transferToDict( const.FINAL,      method, methoddata )
-                                if const.FINAL in method: methoddata[const.FINAL] = const.FINAL
+                                transferToDict( DESCRIPTION, method, methoddata )
+                                transferToDict( DEPRECATED,  method, methoddata, NBWS, DEPRECATED )
+                                transferToDict( SEE,         method, methoddata )
+                                transferToDict( STATIC,      method, methoddata )
+                                if STATIC in method: methoddata[STATIC] = STATIC
+                                transferToDict( FINAL,      method, methoddata )
+                                if FINAL in method: methoddata[FINAL] = FINAL
 
-                                transferToDict( const.CHAINABLE,      method, methoddata )
-                                if const.CHAINABLE in method: methoddata[const.CHAINABLE] = const.CHAINABLE
+                                transferToDict( CHAINABLE,      method, methoddata )
+                                if CHAINABLE in method: methoddata[CHAINABLE] = CHAINABLE
 
-                                ret = methoddata[const.RETURN] = {const.NAME:"", const.DESCRIPTION:"", const.TYPE:const.VOID}
-                                if const.RETURN in method:
-                                    transferToDict( const.TYPE,        method[const.RETURN], ret, "" )
-                                    transferToDict( const.DESCRIPTION, method[const.RETURN], ret )
+                                ret = methoddata[RETURN] = {NAME:"", DESCRIPTION:"", TYPE:VOID}
+                                if RETURN in method:
+                                    transferToDict( TYPE,        method[RETURN], ret, "" )
+                                    transferToDict( DESCRIPTION, method[RETURN], ret )
                                     
-                                params = methoddata[const.PARAMS] = []
-                                if const.PARAMS in method:
-                                    mp = method[const.PARAMS]
+                                params = methoddata[PARAMS] = []
+                                if PARAMS in method:
+                                    mp = method[PARAMS]
                                     for p in mp:
                                         param = {}
-                                        transferToDict( const.NAME,        p, param, const.UNKNOWN )
-                                        transferToDict( const.TYPE,        p, param, const.OBJECT )
-                                        transferToDict( const.DESCRIPTION, p, param )
+                                        transferToDict( NAME,        p, param, UNKNOWN )
+                                        transferToDict( TYPE,        p, param, OBJECT )
+                                        transferToDict( DESCRIPTION, p, param )
                                         params.append(param)
 
                                 methods.append(methoddata)
 
                     # Events
                     events = t.events = []
-                    if const.EVENTS in c:
-                        keys = c[const.EVENTS].keys()
+                    if EVENTS in c:
+                        keys = c[EVENTS].keys()
                         keys.sort(soft_sort)
                         for eventkey in keys:
-                            event = c[const.EVENTS][eventkey]
-                            if self.showprivate or const.PRIVATE not in event:
-                                eventdata = {const.NAME: eventkey, const.HOST: i, const.TYPE: 'event', const.URL:getUrl(i, eventkey, const.EVENT)}
+                            event = c[EVENTS][eventkey]
+                            if self.showprivate or PRIVATE not in event:
+                                eventdata = {NAME: eventkey, HOST: i, TYPE: 'event', URL:getUrl(i, eventkey, EVENT)}
 
-                                transferToDict( const.ACCESS,      event, eventdata )
-                                if const.PRIVATE in event: eventdata[const.ACCESS] = const.PRIVATE
-                                elif const.PROTECTED in event: eventdata[const.ACCESS] = const.PROTECTED
+                                transferToDict( ACCESS,      event, eventdata )
+                                if PRIVATE in event: eventdata[ACCESS] = PRIVATE
+                                elif PROTECTED in event: eventdata[ACCESS] = PROTECTED
 
                                 self.allprops.append(eventdata.copy())
                                 moduleprops.append(eventdata.copy())
 
-                                transferToDict( const.DESCRIPTION, event, eventdata )
-                                transferToDict( const.DEPRECATED,  event, eventdata, const.NBWS, const.DEPRECATED )
-                                transferToDict( const.SEE,         event, eventdata )
-                                transferToDict( const.STATIC,      event, eventdata )
-                                if const.STATIC in event: eventdata[const.STATIC] = const.STATIC
-                                transferToDict( const.FINAL,      event, eventdata )
-                                if const.FINAL in event: eventdata[const.FINAL] = const.FINAL
+                                transferToDict( DESCRIPTION, event, eventdata )
+                                transferToDict( DEPRECATED,  event, eventdata, NBWS, DEPRECATED )
+                                transferToDict( SEE,         event, eventdata )
+                                transferToDict( STATIC,      event, eventdata )
+                                if STATIC in event: eventdata[STATIC] = STATIC
+                                transferToDict( FINAL,      event, eventdata )
+                                if FINAL in event: eventdata[FINAL] = FINAL
 
-                                transferToDict( const.BUBBLES,      event, eventdata )
+                                transferToDict( BUBBLES,      event, eventdata )
                                 #Bubbles should contain a classname to bubble to
-                                #if const.BUBBLES in event: eventdata[const.BUBBLES] = const.BUBBLES
+                                #if BUBBLES in event: eventdata[BUBBLES] = BUBBLES
 
-                                transferToDict( const.PREVENTABLE,      event, eventdata )
+                                transferToDict( PREVENTABLE,      event, eventdata )
                                 #preventable should contain a default method
                                 #Bug #20
-                                #if const.PREVENTABLE in event: eventdata[const.PREVENTABLE] = const.PREVENTABLE
+                                #if PREVENTABLE in event: eventdata[PREVENTABLE] = PREVENTABLE
 
-                                transferToDict( const.CANCELABLE,      event, eventdata )
-                                if const.CANCELABLE in event: eventdata[const.CANCELABLE] = const.CANCELABLE
+                                transferToDict( CANCELABLE,      event, eventdata )
+                                if CANCELABLE in event: eventdata[CANCELABLE] = CANCELABLE
 
 
 
-                                params = eventdata[const.PARAMS] = []
-                                if const.PARAMS in event:
-                                    mp = event[const.PARAMS]
+                                params = eventdata[PARAMS] = []
+                                if PARAMS in event:
+                                    mp = event[PARAMS]
                                     for p in mp:
                                         param = {}
-                                        transferToDict( const.NAME,        p, param, const.UNKNOWN )
-                                        transferToDict( const.TYPE,        p, param, const.OBJECT )
-                                        transferToDict( const.DESCRIPTION, p, param )
+                                        transferToDict( NAME,        p, param, UNKNOWN )
+                                        transferToDict( TYPE,        p, param, OBJECT )
+                                        transferToDict( DESCRIPTION, p, param )
                                         params.append(param)
 
                                 events.append(eventdata)
 
                     # configs
                     configs = t.configs = []
-                    if const.CONFIGS in c:
-                        keys = c[const.CONFIGS].keys()
+                    if CONFIGS in c:
+                        keys = c[CONFIGS].keys()
                         keys.sort(soft_sort)
                         for configkey in keys:
-                            config = c[const.CONFIGS][configkey]
-                            if self.showprivate or const.PRIVATE not in config:
-                                configdata = {const.NAME: configkey, const.HOST: i, const.TYPE: 'config', const.URL:getUrl(i, configkey, const.CONFIG)}
+                            config = c[CONFIGS][configkey]
+                            if self.showprivate or PRIVATE not in config:
+                                configdata = {NAME: configkey, HOST: i, TYPE: 'config', URL:getUrl(i, configkey, CONFIG)}
 
-                                transferToDict( const.ACCESS,   config, configdata           )
-                                if const.PRIVATE in config: configdata[const.ACCESS] = const.PRIVATE
-                                elif const.PROTECTED in config: configdata[const.ACCESS] = const.PROTECTED
+                                transferToDict( ACCESS,   config, configdata           )
+                                if PRIVATE in config: configdata[ACCESS] = PRIVATE
+                                elif PROTECTED in config: configdata[ACCESS] = PROTECTED
 
                                 self.allprops.append(configdata.copy())
                                 moduleprops.append(configdata.copy())
 
-                                transferToDict( const.TYPE,        config, configdata, const.OBJECT )
-                                transferToDict( const.DESCRIPTION, config, configdata           )
-                                transferToDict( const.DEFAULT, config, configdata           )
-                                transferToDict( const.DEPRECATED,  config, configdata, const.NBWS, const.DEPRECATED )
-                                transferToDict( const.SEE,         config, configdata           )
-                                transferToDict( const.STATIC,      config, configdata           )
-                                if const.STATIC in config: configdata[const.STATIC] = const.STATIC
-                                transferToDict( const.FINAL,      config, configdata           )
-                                if const.FINAL in config: configdata[const.FINAL] = const.READONLY
-                                transferToDict( const.WRITEONCE,      config, configdata           )
-                                if const.WRITEONCE in config: configdata[const.WRITEONCE] = const.WRITEONCE
+                                transferToDict( TYPE,        config, configdata, OBJECT )
+                                transferToDict( DESCRIPTION, config, configdata           )
+                                transferToDict( DEFAULT, config, configdata           )
+                                transferToDict( DEPRECATED,  config, configdata, NBWS, DEPRECATED )
+                                transferToDict( SEE,         config, configdata           )
+                                transferToDict( STATIC,      config, configdata           )
+                                if STATIC in config: configdata[STATIC] = STATIC
+                                transferToDict( FINAL,      config, configdata           )
+                                if FINAL in config: configdata[FINAL] = READONLY
+                                transferToDict( WRITEONCE,      config, configdata           )
+                                if WRITEONCE in config: configdata[WRITEONCE] = WRITEONCE
                                 configs.append(configdata)
 
                     # get inherited data
-                    inherited = t.inherited = {const.PROPERTIES:{}, const.METHODS:{}, const.EVENTS:{}, const.CONFIGS:{}, const.SUPERCLASS: {} }
-                    if const.EXTENDS in c:
-                        supercname = t.extends = unicode(c[const.EXTENDS])
+                    inherited = t.inherited = {PROPERTIES:{}, METHODS:{}, EVENTS:{}, CONFIGS:{}, SUPERCLASS: {} }
+                    if EXTENDS in c:
+                        supercname = t.extends = unicode(c[EXTENDS])
                         if supercname in classes:
                             superc = classes[supercname]
                             getPropsFromSuperclass(superc, classes, inherited)
 
-                    if const.USES in c:
-                        for supercname in c[const.USES]:
-                            t.uses = c[const.USES]
+                    if USES in c:
+                        for supercname in c[USES]:
+                            t.uses = c[USES]
                             if supercname in classes:
                                 superc = classes[supercname]
                                 getPropsFromSuperclass(superc, classes, inherited)
@@ -541,29 +541,29 @@ class DocGenerator(object):
                         for a in inherited[i]:
                             extends[a] = a
                     
-                    inherited[const.SUPERCLASS] = extends
-                    classInfo[const.EXTENDS] = inherited
+                    inherited[SUPERCLASS] = extends
+                    classInfo[EXTENDS] = inherited
                     classList.append(classInfo)
 
                     # Constructor -- technically the parser can take multiple constructors
                     # but that does't help here
                     constructordata = t.constructor = {}
-                    if const.CONSTRUCTORS in c:
-                        constructor = c[const.CONSTRUCTORS][0]
-                        transferToDict( const.DESCRIPTION, constructor, constructordata )
-                        ret = constructordata[const.RETURN] = {}
-                        if const.RETURN in constructor:
-                            transferToDict( const.TYPE,        constructor[const.RETURN], ret, const.VOID )
-                            transferToDict( const.DESCRIPTION, constructor[const.RETURN], ret )
+                    if CONSTRUCTORS in c:
+                        constructor = c[CONSTRUCTORS][0]
+                        transferToDict( DESCRIPTION, constructor, constructordata )
+                        ret = constructordata[RETURN] = {}
+                        if RETURN in constructor:
+                            transferToDict( TYPE,        constructor[RETURN], ret, VOID )
+                            transferToDict( DESCRIPTION, constructor[RETURN], ret )
                             
-                        params = constructordata[const.PARAMS] = []
-                        if const.PARAMS in constructor:
-                            cp = constructor[const.PARAMS]
+                        params = constructordata[PARAMS] = []
+                        if PARAMS in constructor:
+                            cp = constructor[PARAMS]
                             for p in cp:
                                 param = {}
-                                transferToDict( const.NAME,        p, param, const.UNKNOWN )
-                                transferToDict( const.TYPE,        p, param, const.OBJECT )
-                                transferToDict( const.DESCRIPTION, p, param )
+                                transferToDict( NAME,        p, param, UNKNOWN )
+                                transferToDict( TYPE,        p, param, OBJECT )
+                                transferToDict( DESCRIPTION, p, param )
                                 params.append(param)
 
 
@@ -598,7 +598,7 @@ class DocGenerator(object):
 
 
             # class source view
-            for i in m[const.FILE_LIST]:
+            for i in m[FILE_LIST]:
                 log.info("Generating source view for " + i)
                 self.filename = unicode(i)
                 assignGlobalProperties(t)
@@ -609,7 +609,7 @@ class DocGenerator(object):
         allprops = []
         propmap = {}
         for i in self.allprops:
-            url = i[const.URL]
+            url = i[URL]
             if url not in propmap:
                 allprops.append(i)
                 propmap[url] = True
@@ -631,12 +631,12 @@ class DocGenerator(object):
         self.classname   = ""
         self.classnames = []
 
-        for i in self.data[const.CLASS_MAP].keys():
-            if shouldShowClass(self.data[const.CLASS_MAP][i]):
+        for i in self.data[CLASS_MAP].keys():
+            if shouldShowClass(self.data[CLASS_MAP][i]):
                 self.classnames.append(i)
         self.classnames.sort(soft_sort)
 
-        self.filenames  = self.data[const.FILE_MAP].keys()
+        self.filenames  = self.data[FILE_MAP].keys()
         self.filenames.sort(soft_sort)
         self.filename   = ""
         assignGlobalProperties(t)
@@ -652,12 +652,12 @@ class DocGenerator(object):
         timestamp = ""
         t.timestamp = timestamp 
         pkgMap = {}
-        keys = self.data[const.CLASS_MAP].keys()
+        keys = self.data[CLASS_MAP].keys()
         keys.sort()
         for i in keys:
 
             try:
-                pkgMap[i] = self.data[const.CLASS_MAP][i][const.MODULE]
+                pkgMap[i] = self.data[CLASS_MAP][i][MODULE]
             except:
                 try:
                     log.warn('class map ' + i + ' failure (no module declaration?)')
