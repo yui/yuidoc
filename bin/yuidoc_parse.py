@@ -563,7 +563,10 @@ it was empty" % token
                 target, tokenMap = parseModule(tokenMap)
             
             if self.subModName:
+                # provides a place to link to on the module landing page
                 self.data[MODULES][self.currentModule][SUBDATA][self.subModName][NAME] = longName
+
+                # this was overwriting the submodule description
                 # if DESCRIPTION in tokenMap:
                 #     d = tokenMap[DESCRIPTION][0]
                 #     try: 

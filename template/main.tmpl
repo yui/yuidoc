@@ -559,7 +559,11 @@
                                         <h4>Submodules:</h4> 
                                         <dl>
                                         #for $info in $submodules
+                                            #if $subdata[$info].name
                                             <dt><code><a href="${$subdata[$info].name}.html" title="$info">$info</a></code></dt>
+                                            #else
+                                            <dt><code>$info</code></dt>
+                                            #end if
                                             <dd>$subdata[$info].description</dd>
                                         #end for
                                         </dl>
