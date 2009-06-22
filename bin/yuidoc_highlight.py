@@ -15,6 +15,7 @@ from cStringIO import StringIO
 from optparse import OptionParser
 from pygments import highlight
 from pygments.lexers import JavascriptLexer
+from pygments.lexers import PhpLexer
 from pygments.formatters import HtmlFormatter
 
 try:
@@ -41,7 +42,10 @@ class DocHighlighter(object):
 
         def highlightString(src):
             try:
-                return highlight(src, JavascriptLexer(), HtmlFormatter())
+                if self.currentExt == 'php':
+                    return highlight(src, PhpLexer(), HtmlFormatter())
+                else:
+                    return highlight(src, JavascriptLexer(), HtmlFormatter())
             except: 
                 return "File could not be highlighted"
 
@@ -51,8 +55,9 @@ class DocHighlighter(object):
             f.close()
             log.info("highlighting " + file)
 
-            highlighted = highlightString(fileStr)
+            self.currentExt = os.path.splitext(file)[1].replace('.', '')
 
+            highlighted = highlightString(fileStr)
 
             out = open(os.path.join(self.outputdir, file + self.newext), "w")
             out.writelines(highlighted.encode('utf-8'))
@@ -65,7 +70,7 @@ class DocHighlighter(object):
                 fullname = os.path.join(path, i)
                 if os.path.isdir(fullname):
                     subdirs.append(fullname)
-                elif i.lower().endswith(self.ext):
+                elif i.lower().endswith(self.ext_check):
                     highlightFile(path, i)
 
             for i in subdirs:
@@ -75,6 +80,8 @@ class DocHighlighter(object):
         self.outputdir = os.path.abspath(outputdir)
         _mkdir(self.outputdir)
         self.ext = ext
+        self.currentExt = ''
+        self.ext_check = tuple(ext.split(','))
         self.newext = newext
 
         log.info("-------------------------------------------------------")

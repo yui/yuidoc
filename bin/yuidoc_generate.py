@@ -596,7 +596,6 @@ class DocGenerator(object):
             # log.warn('cleansed module file name: %s' %(t.cleansedmodulename));
             self.write( t.cleansedmodulename + ".html", t)
 
-
             # class source view
             for i in m[FILE_LIST]:
                 log.info("Generating source view for " + i)
@@ -635,7 +634,7 @@ class DocGenerator(object):
             if shouldShowClass(self.data[CLASS_MAP][i]):
                 self.classnames.append(i)
         self.classnames.sort(soft_sort)
-
+        
         self.filenames  = self.data[FILE_MAP].keys()
         self.filenames.sort(soft_sort)
         self.filename   = ""

@@ -27,7 +27,7 @@ log = logging.getLogger('yuidoc.parse')
 class DocParser(object):
 
     def __init__(self, inputdirs, outputdir, outputfile, extension, version, yuiversion):
-
+        
         def _mkdir(newdir):
             if os.path.isdir(newdir): pass
             elif os.path.isfile(newdir):
@@ -64,7 +64,7 @@ class DocParser(object):
                         fullname = os.path.join(path, i)
                         if os.path.isdir(fullname):
                             subdirs.append(fullname)
-                        elif i.lower().endswith(self.extension):
+                        elif i.lower().endswith(self.extension_check):
                             dircontent += parseFile(path, i)
 
             for i in subdirs:
@@ -108,6 +108,8 @@ class DocParser(object):
         self.outputdir = os.path.abspath(outputdir)
         _mkdir(self.outputdir)
         self.extension = extension
+        self.extension_check = tuple(extension.split(','))
+
         self.script=""
         self.subModName = False
         self.deferredModuleClasses=[]
@@ -127,13 +129,15 @@ class DocParser(object):
             path = os.path.abspath(i)
             self.script = parseDir(path)
             self.extract()
-
+            
             # log.info("\n\n%s:\n\n%s\n" %("matches", unicode(self.matches)))
 
             for match in self.matches:
                 self.parse(self.tokenize(match))
-            
 
+ 
+            
+        
         out = open(os.path.join(self.outputdir, outputfile), "w")
 
         out.writelines(simplejson.dumps(self.data))
@@ -541,7 +545,6 @@ it was empty" % token
             target = { NAME: file_name, CLASS_LIST:[] }
             self.data[FILE_MAP][file_name] = target
 
- 
             if self.currentModule:
                 target[MODULE] = self.currentModule
                 self.data[MODULES][self.currentModule][FILE_LIST].append(file_name)
