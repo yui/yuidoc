@@ -64,8 +64,10 @@ class DocParser(object):
                         fullname = os.path.join(path, i)
                         if os.path.isdir(fullname):
                             subdirs.append(fullname)
-                        elif i.lower().endswith(self.extension_check):
-                            dircontent += parseFile(path, i)
+                        else:
+                            for ext in self.extension_check:
+                                if i.lower().endswith(ext):
+                                    dircontent += parseFile(path, i)
 
             for i in subdirs:
                 dircontent += parseDir(i)
@@ -108,7 +110,7 @@ class DocParser(object):
         self.outputdir = os.path.abspath(outputdir)
         _mkdir(self.outputdir)
         self.extension = extension
-        self.extension_check = tuple(extension.split(','))
+        self.extension_check = extension.split(',')
 
         self.script=""
         self.subModName = False

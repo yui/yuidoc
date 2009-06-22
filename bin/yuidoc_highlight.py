@@ -70,8 +70,10 @@ class DocHighlighter(object):
                 fullname = os.path.join(path, i)
                 if os.path.isdir(fullname):
                     subdirs.append(fullname)
-                elif i.lower().endswith(self.ext_check):
-                    highlightFile(path, i)
+                else:
+                    for ext in self.ext_check:
+                        if i.lower().endswith(ext):
+                            highlightFile(path, i)
 
             for i in subdirs:
                 highlightDir(i)
@@ -81,7 +83,7 @@ class DocHighlighter(object):
         _mkdir(self.outputdir)
         self.ext = ext
         self.currentExt = ''
-        self.ext_check = tuple(ext.split(','))
+        self.ext_check = ext.split(',')
         self.newext = newext
 
         log.info("-------------------------------------------------------")
