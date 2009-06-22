@@ -31,7 +31,6 @@ parser_in="$src/yui \
            $src/console \
            $src/cookie \
            $src/dd \
-           $src/dd-plugin \
            $src/dom \
            $src/dump \
            $src/event \
@@ -54,7 +53,7 @@ parser_in="$src/yui \
            $src/widget-position-ext \
            $src/widget-stdmod \
            $src/widget-stack \
-	   $src/yuitest"
+	   $src/test"
  
 # The location to output the parser data.  This output is a file containing a 
 # json string, and copies of the parsed files.
