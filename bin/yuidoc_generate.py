@@ -30,7 +30,7 @@ class DocGenerator(object):
                  projectname='Yahoo! UI Library', 
                  version='', 
                  projecturl='http://developer.yahoo.com/yui/', 
-                 ydn=False):
+                 ydn=False, copyrighttag='Yahoo! Inc.'):
 
         def _mkdir(newdir):
             if os.path.isdir(newdir): pass
@@ -74,6 +74,7 @@ class DocGenerator(object):
 
         self.projectname = projectname
         self.projecturl = projecturl
+        self.copyrighttag = copyrighttag
         self.ydn = ydn
         self.version = version 
         self.modulename  = ""
@@ -111,6 +112,7 @@ class DocGenerator(object):
         def assignGlobalProperties(template):
             template.projectname  = self.projectname
             template.projecturl   = self.projecturl
+            template.copyrighttag = self.copyrighttag
             template.ydn          = self.ydn
             template.version      = self.version
             template.modules      = self.modules
@@ -692,6 +694,9 @@ def main():
     optparser.add_option( "-c", "--crosslink",
         action="store", dest="crosslinkdir", type="string",
         help="The directory containing json data for other modules to crosslink" )
+    optparser.add_option( "-C", "--copyright",
+        action="store", dest="copyrighttag", type="string",
+        help="The name to use in the copyright line at the bottom of the pages." )        
     optparser.add_option( "-s", "--showprivate",
         action="store_true", dest="showprivate",
         help="Should private properties/methods be in the docs?" )
@@ -724,7 +729,8 @@ def main():
                                options.project,
                                options.version,
                                options.projecturl,
-                               options.ydn
+                               options.ydn,
+                               options.copyrighttag
                                )
         generator.process()
     else:
