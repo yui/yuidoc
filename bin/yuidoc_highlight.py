@@ -15,6 +15,7 @@ from cStringIO import StringIO
 from optparse import OptionParser
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
+import codecs
 
 try:
     logging.config.fileConfig(os.path.join(sys.path[0], LOGCONFIG))
@@ -60,7 +61,8 @@ class DocHighlighter(object):
 
         def highlightFile(path, file):
             f=open(os.path.join(path, file))
-            fileStr=StringIO(f.read()).getvalue()
+            fileStr = codecs.open( os.path.join(path, file), "r", "utf-8" ).read()
+
             f.close()
             log.info("highlighting " + file)
 
