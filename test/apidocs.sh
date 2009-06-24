@@ -34,10 +34,8 @@ parser_in="$src/yui \
            $src/dom \
            $src/dump \
            $src/event \
-           $src/get \
            $src/io \
            $src/json \
-           $src/loader \
            $src/node \
            $src/node-menunav \
            $src/oop \
