@@ -14,8 +14,6 @@ from const import *
 from cStringIO import StringIO 
 from optparse import OptionParser
 from pygments import highlight
-from pygments.lexers import JavascriptLexer
-from pygments.lexers import PhpLexer
 from pygments.formatters import HtmlFormatter
 
 try:
@@ -43,8 +41,19 @@ class DocHighlighter(object):
         def highlightString(src):
             try:
                 if self.currentExt == 'php':
+                    from pygments.lexers import PhpLexer
                     return highlight(src, PhpLexer(), HtmlFormatter())
+                elif self.currentExt == 'py':
+                    from pygments.lexers import PythonLexer
+                    return highlight(src, PythonLexer(), HtmlFormatter())
+                elif self.currentExt == 'rb':
+                    from pygments.lexers import RubyLexer
+                    return highlight(src, RubyLexer(), HtmlFormatter())
+                elif self.currentExt == 'pl':
+                    from pygments.lexers import PerlLexer
+                    return highlight(src, PerlLexer(), HtmlFormatter())
                 else:
+                    from pygments.lexers import JavascriptLexer
                     return highlight(src, JavascriptLexer(), HtmlFormatter())
             except: 
                 return "File could not be highlighted"
