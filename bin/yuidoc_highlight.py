@@ -53,6 +53,9 @@ class DocHighlighter(object):
                 elif self.currentExt == 'pl':
                     from pygments.lexers import PerlLexer
                     return highlight(src, PerlLexer(), HtmlFormatter())
+                elif self.currentExt == 'java':
+                    from pygments.lexers import JavaLexer
+                    return highlight(src, JavaLexer(), HtmlFormatter())
                 else:
                     from pygments.lexers import JavascriptLexer
                     return highlight(src, JavascriptLexer(), HtmlFormatter())
