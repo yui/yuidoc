@@ -40,7 +40,9 @@ class DocParser(object):
 
         def parseFile(path, file):
             f=open(os.path.join(path, file))
-            fileStr=StringIO(f.read()).getvalue()
+            #adding a return to the beginning of the line allows for:
+            #  #!/usr/bin/foo
+            fileStr = StringIO("\n%s" % f.read()).getvalue()
             log.info("parsing " + file)
             # add a file marker token so the parser can keep track of what is in what file
             content = "\n/** @%s %s \n*/" % (FILE_MARKER, file)
@@ -499,7 +501,6 @@ it was empty" % token
             self.subModName = False
             if not MODULES in self.data: self.data[MODULES] = {}
             for module in tokenMap[MODULE]:
-
                 if module not in self.data[MODULES]:
                     self.data[MODULES][module] = { NAME: module, CLASS_LIST: [], FILE_LIST: [], SUBMODULES: [], SUBDATA: {} }
 
@@ -540,6 +541,7 @@ it was empty" % token
 
             return target, tokenMap
 
+        print "DAV: %s" % tokenMap
         if FILE_MARKER in tokenMap:
             if not FILE_MAP in self.data: self.data[FILE_MAP] = {}
             self.currentFile = desc

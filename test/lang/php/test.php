@@ -1,6 +1,6 @@
 <?php
 /**
- * General Module description
+ * General Module description for PHPTest
  * @module phptest
  */
 
