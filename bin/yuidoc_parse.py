@@ -42,10 +42,12 @@ class DocParser(object):
             f=open(os.path.join(path, file))
             #adding a return to the beginning of the line allows for:
             #  #!/usr/bin/foo
-            fileStr = StringIO("\n%s" % f.read()).getvalue()
+            #  MOVED to the fil marker
+            # fileStr = StringIO("\n%s" % f.read()).getvalue()
+            fileStr = StringIO("%s" % f.read()).getvalue()
             log.info("parsing " + file)
             # add a file marker token so the parser can keep track of what is in what file
-            content = "\n/** @%s %s \n*/" % (FILE_MARKER, file)
+            content = "\n/** @%s %s \n*/\n" % (FILE_MARKER, file)
 
             # copy
             out = open(os.path.join(self.outputdir, file), "w")
@@ -139,8 +141,6 @@ class DocParser(object):
             for match in self.matches:
                 self.parse(self.tokenize(match))
 
- 
-            
         
         out = open(os.path.join(self.outputdir, outputfile), "w")
 
