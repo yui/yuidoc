@@ -25,6 +25,20 @@ Unix (including cygwin):
 
     easy_install pygments
     easy_install Cheetah
+
+    *****************************************************************************
+    *****************************************************************************
+    ***
+    *** NOTE: recent versions of Cheetah are sometimes throwing errors when
+    *** encountering international characters.  Until this is resolved, you must
+    *** use Cheetah 2.1.0 or below if you are experiencing a unicode error
+    *** when parsing your files.
+    ***
+    *** easy_install http://downloads.sourceforge.net/sourceforge/cheetahtemplate/Cheetah-2.1.0.tar.gz?use_mirror=superb-west
+    ***
+    *****************************************************************************
+    *****************************************************************************
+
     easy_install simplejson
 
 

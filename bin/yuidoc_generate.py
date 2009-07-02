@@ -105,6 +105,8 @@ class DocGenerator(object):
     def write(self, filename, data):
         out = open(os.path.join(self.outpath, filename), "w")
         out.writelines(str(data))
+        # out.writelines(unicode(data))
+        # out.writelines(unicode(data, 'utf-8', 'xmlcharrefreplace'))
         out.close()
 
     def process(self):
@@ -147,7 +149,7 @@ class DocGenerator(object):
         def transferToTemplate(prop, dict, template, valOverride=''):
             val = ""
             if prop in dict:
-                val = unicode(dict[prop])
+                val = dict[prop]
 
                 if valOverride:
                     val = valOverride
@@ -157,7 +159,7 @@ class DocGenerator(object):
         def transferToDict(prop, dict1, dict2, default="", skipOverrideIfNoMatch=False):
             val = "" 
             if prop in dict1:
-                val = unicode(dict1[prop])
+                val = dict1[prop]
                 if not val: 
                     val = default
             else:
@@ -332,7 +334,7 @@ class DocGenerator(object):
             # class API view
             #for i in classes:
             for i in m[CLASS_LIST]:
-                self.classname = unicode(i)
+                self.classname = i
                 c = classes[i]
                 if shouldShowClass(c):
                     log.info("Generating API page for " + i)
@@ -525,7 +527,7 @@ class DocGenerator(object):
                     # get inherited data
                     inherited = t.inherited = {PROPERTIES:{}, METHODS:{}, EVENTS:{}, CONFIGS:{}, SUPERCLASS: {} }
                     if EXTENDS in c:
-                        supercname = t.extends = unicode(c[EXTENDS])
+                        supercname = t.extends = c[EXTENDS]
                         if supercname in classes:
                             superc = classes[supercname]
                             getPropsFromSuperclass(superc, classes, inherited)
@@ -601,7 +603,7 @@ class DocGenerator(object):
             # class source view
             for i in m[FILE_LIST]:
                 log.info("Generating source view for " + i)
-                self.filename = unicode(i)
+                self.filename = i
                 assignGlobalProperties(t)
                 self.write("%s.html" %(self.filename), t)
 

@@ -42,7 +42,7 @@ class DocParser(object):
             f=open(os.path.join(path, file))
             #adding a return to the beginning of the line allows for:
             #  #!/usr/bin/foo
-            #  MOVED to the fil marker
+            #  MOVED to the file marker
             # fileStr = StringIO("\n%s" % f.read()).getvalue()
             fileStr = StringIO("%s" % f.read()).getvalue()
             log.info("parsing " + file)
@@ -313,9 +313,9 @@ class DocParser(object):
 
                         if match:
                             if match.group(4):
-                                type, description = "", unicode(match.group(4) + match.group(5), 'utf-8', 'xmlcharrefreplace')
+                                type, description = "", match.group(4) + match.group(5)
                             else:
-                                type, description = unicode(match.group(2), 'utf-8', 'xmlcharrefreplace'), unicode((match.group(1) + match.group(3)).strip(), 'utf-8', 'xmlcharrefreplace')
+                                type, description = match.group(2), (match.group(1) + match.group(3)).strip()
 
                         else:
                             type, description = "", ""
@@ -356,9 +356,9 @@ class DocParser(object):
 
                     if match:
                         if match.group(4):
-                            type, description = "", unicode(match.group(4) + match.group(5), 'utf-8', 'xmlcharrefreplace')
+                            type, description = "", match.group(4) + match.group(5)
                         else:
-                            type, description = unicode(match.group(2), 'utf-8', 'xmlcharrefreplace'), unicode((match.group(1) + match.group(3)).strip(), 'utf-8', 'xmlcharrefreplace')
+                            type, description = match.group(2), (match.group(1) + match.group(3)).strip()
                     else:
                         type, description = "", ""
 
@@ -436,8 +436,8 @@ it was empty" % token
                 # for the block
                 if token and DESCRIPTION not in tokenMap:
 
-                    token = unicode(token, 'utf-8', 'xmlcharrefreplace')
-                    # token.encode('utf-8', 'xmlcharrefreplace')
+                    # token = unicode(token, 'utf-8', 'xmlcharrefreplace')
+                    ############################ token.encode('utf-8', 'xmlcharrefreplace')
                     tokenMap[DESCRIPTION] = [token]
                 else: pass # I don't think this can happen any longer
 
@@ -541,7 +541,7 @@ it was empty" % token
 
             return target, tokenMap
 
-        print "DAV: %s" % tokenMap
+        # print "DAV: %s" % tokenMap
         if FILE_MARKER in tokenMap:
             if not FILE_MAP in self.data: self.data[FILE_MAP] = {}
             self.currentFile = desc
