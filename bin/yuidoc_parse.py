@@ -13,8 +13,9 @@ version: 1.0.0b1
     an API. It is designed to parse one module at a time ''' 
 import os, re, simplejson, string, sys, pprint, logging, logging.config
 from const import *
-from cStringIO import StringIO 
+# from cStringIO import StringIO 
 from optparse import OptionParser
+import codecs
 
 try:
     logging.config.fileConfig(os.path.join(sys.path[0], LOGCONFIG))
@@ -39,18 +40,21 @@ class DocParser(object):
                 if tail: os.mkdir(newdir)
 
         def parseFile(path, file):
-            f=open(os.path.join(path, file))
+            # f=open(os.path.join(path, file))
+            f = codecs.open(os.path.join(path, file), "r", "utf-8" )
             #adding a return to the beginning of the line allows for:
             #  #!/usr/bin/foo
             #  MOVED to the file marker
             # fileStr = StringIO("\n%s" % f.read()).getvalue()
-            fileStr = StringIO("%s" % f.read()).getvalue()
+            # fileStr = StringIO("%s" % f.read()).getvalue()
+            fileStr = f.read()
             log.info("parsing " + file)
             # add a file marker token so the parser can keep track of what is in what file
             content = "\n/** @%s %s \n*/\n" % (FILE_MARKER, file)
 
             # copy
-            out = open(os.path.join(self.outputdir, file), "w")
+            # out = open(os.path.join(self.outputdir, file), "w")
+            out = codecs.open( os.path.join(self.outputdir, file), "w", "utf-8" )
             out.writelines(fileStr)
             out.close()
 
@@ -142,9 +146,9 @@ class DocParser(object):
                 self.parse(self.tokenize(match))
 
         
-        out = open(os.path.join(self.outputdir, outputfile), "w")
+        out = codecs.open( os.path.join(self.outputdir, outputfile), "w", "utf-8" )
 
-        out.writelines(simplejson.dumps(self.data))
+        out.writelines(simplejson.dumps(self.data, ensure_ascii=False))
         out.close()
 
 
@@ -325,15 +329,11 @@ class DocParser(object):
                         log.error("\nError, a parameter could not be parsed:\n\n %s\n\n %s\n" %(i, pprint.pformat(tokenMap)))
                         sys.exit()
 
-                    # description.encode('utf-8', 'xmlcharrefreplace')
-                    # description = unicode(description, 'utf-8', 'xmlcharrefreplace')
-
-
                     mo = self.param_pat.match(description)
                     if mo:
                         name = mo.group(1)
                         description = mo.group(2)
-                        description.encode('utf-8', 'xmlcharrefreplace')
+                        # description.encode('utf-8', 'xmlcharrefreplace')
 
                         dict[desttag].append({  
                                 NAME:        name,
@@ -436,8 +436,6 @@ it was empty" % token
                 # for the block
                 if token and DESCRIPTION not in tokenMap:
 
-                    # token = unicode(token, 'utf-8', 'xmlcharrefreplace')
-                    ############################ token.encode('utf-8', 'xmlcharrefreplace')
                     tokenMap[DESCRIPTION] = [token]
                 else: pass # I don't think this can happen any longer
 

@@ -11,7 +11,6 @@ version: 1.0.0b1
 
 import os, re, string, logging, logging.config
 from const import *
-from cStringIO import StringIO 
 from optparse import OptionParser
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
@@ -76,8 +75,8 @@ class DocHighlighter(object):
 
             highlighted = highlightString(fileStr)
 
-            out = open(os.path.join(self.outputdir, file + self.newext), "w")
-            out.writelines(highlighted.encode('utf-8'))
+            out = codecs.open( os.path.join(self.outputdir, file + self.newext), "w", "utf-8" )
+            out.write(highlighted)
             out.close()
 
         def highlightDir(path):

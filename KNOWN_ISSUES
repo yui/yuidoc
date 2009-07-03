@@ -1,14 +1,4 @@
 **************************************************************************
-Unicode Errors:
-
-Recent versions of Cheetah are sometimes throwing errors when
-encountering international characters.  Until this is resolved, you must
-use Cheetah 2.1.0 or below if you are experiencing unicode errors
-when parsing your files.
-
-easy_install http://downloads.sourceforge.net/sourceforge/cheetahtemplate/Cheetah-2.1.0.tar.gz?use_mirror=superb-west
-
-**************************************************************************
 Mapping Files to Modules:
 
 Because a single @module is supported for a set of files, the parser expects that all files in 

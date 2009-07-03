@@ -12,9 +12,10 @@ version: 1.0.0b1
 ''' Prints documentation with htmltmpl from the json data outputted by parser.py  ''' 
 import os, re, simplejson, shutil, logging, logging.config, time, datetime
 from const import *
-from cStringIO import StringIO 
+# from cStringIO import StringIO 
 from Cheetah.Template import Template
 from sets import Set
+import codecs
 
 try:
     logging.config.fileConfig(os.path.join(sys.path[0], LOGCONFIG))
@@ -68,8 +69,11 @@ class DocGenerator(object):
 
         self.showprivate  = showprivate
 
-        f=open(os.path.join(inpath, datafile))
-        self.rawdata = StringIO(f.read()).getvalue()
+        f = codecs.open(os.path.join(inpath, datafile), "r", "utf-8" )
+        self.rawdata = f.read()
+
+        # log.info('INPUT DATA: ' + self.rawdata)
+
         d = self.data = simplejson.loads(self.rawdata)
 
         self.projectname = projectname
@@ -102,11 +106,15 @@ class DocGenerator(object):
         # log.warn('cleansed module: %s' %(cleansed));
         return self.moduleprefix + cleansed
 
-    def write(self, filename, data):
-        out = open(os.path.join(self.outpath, filename), "w")
-        out.writelines(str(data))
-        # out.writelines(unicode(data))
-        # out.writelines(unicode(data, 'utf-8', 'xmlcharrefreplace'))
+    def write(self, filename, data, template=True):
+        out = codecs.open( os.path.join(self.outpath, filename), "w", "utf-8" )
+
+        if template:
+            datastr = data.respond()
+            out.write(datastr)
+        else:
+            out.write(data)
+
         out.close()
 
     def process(self):
@@ -129,7 +137,7 @@ class DocGenerator(object):
             template.filename     = self.filename
             if self.filename:
                 template.filepath = os.path.join(self.inpath, self.filename)
-                template.filepath_highlighted = template.filepath + self.newext
+                template.highlightcontent = codecs.open(os.path.join(self.inpath, self.filename + self.newext), "r", "utf-8" ).read()
 
             template.pagetype     = self.pagetype
             template.classmap     = self.classmap
@@ -267,7 +275,7 @@ class DocGenerator(object):
         # jsonname = self.cleansedmodulename + ".json"
         jsonname = "raw.json"
         log.info("Writing " + jsonname)
-        self.write(jsonname, self.rawdata)
+        self.write(jsonname, self.rawdata, False)
 
         for mname in self.modules:
             log.info("Generating module splash for %s" %(mname))
@@ -380,6 +388,7 @@ class DocGenerator(object):
                             if self.showprivate or PRIVATE not in prop:
                                 propdata = {NAME: propertykey, HOST: i, TYPE: 'property', URL:getUrl(i, propertykey, PROPERTY)}
 
+
                                 transferToDict( ACCESS,   prop, propdata           )
                                 if PRIVATE in prop: propdata[ACCESS] = PRIVATE
                                 elif PROTECTED in prop: propdata[ACCESS] = PROTECTED
@@ -397,6 +406,7 @@ class DocGenerator(object):
                                 transferToDict( FINAL,      prop, propdata           )
                                 if FINAL in prop: propdata[FINAL] = FINAL
                                 props.append(propdata)
+
 
                     # Methods
                     methods = t.methods = []
@@ -574,11 +584,11 @@ class DocGenerator(object):
                     # write module splash
                     moduleprops.sort(allprop_sort)
                     t.allprops_raw = moduleprops
-                    moduleprops_json =  simplejson.dumps(moduleprops)
+                    moduleprops_json =  simplejson.dumps(moduleprops, ensure_ascii=False)
                     t.allprops = moduleprops_json
                     classList.sort(allprop_sort)
                     t.classList_raw = classList
-                    t.classList = simplejson.dumps(classList)
+                    t.classList = simplejson.dumps(classList, ensure_ascii=False)
                     self.write("%s.html" %(self.classname), t)
         
             # clear out class name
@@ -594,7 +604,7 @@ class DocGenerator(object):
             # write module splash
             moduleprops.sort(allprop_sort)
             t.allprops_raw = moduleprops
-            moduleprops_json =  simplejson.dumps(moduleprops)
+            moduleprops_json =  simplejson.dumps(moduleprops, ensure_ascii=False)
             t.allprops = moduleprops_json
 
             # log.warn('cleansed module file name: %s' %(t.cleansedmodulename));
@@ -619,8 +629,8 @@ class DocGenerator(object):
 
         allprops.sort(allprop_sort)
                                             
-        allprops_json =  simplejson.dumps(allprops)
-        self.write("index.json",allprops_json)
+        allprops_json =  simplejson.dumps(allprops, ensure_ascii=False)
+        self.write("index.json", allprops_json, False)
 
         # index
         log.info("Generating index")
@@ -666,7 +676,7 @@ class DocGenerator(object):
                     log.warn('class map ' + i + ' failure (no module declaration?)')
                 except: pass
 
-        t.pkgmap = simplejson.dumps(pkgMap)
+        t.pkgmap = simplejson.dumps(pkgMap, ensure_ascii=False)
         self.write("classmap.js", t)
 
 
