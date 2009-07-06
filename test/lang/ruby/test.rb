@@ -3,7 +3,7 @@
 =begin
 /**
 * Module Info for test Ruby File
-* @module rubytest
+* @module lang.rubytest
 */
 =end
 

@@ -583,7 +583,8 @@
                                 #if $moduledef == $modulename
                                     #set $css = "selected"
                                 #end if
-                                <li class="$css"><a href="module_${moduledef}.html" title="$moduledef">$moduledef</a></li>
+                                #set $cleansedname = $cleansedmodulenames[$moduledef]
+                                <li class="$css"><a href="${cleansedname}.html" title="$moduledef">$moduledef</a></li>
                             #end for
                         </ul>
                     </div>

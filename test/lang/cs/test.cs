@@ -1,7 +1,7 @@
 using System;
 /**
 * C# Module Description
-* @module csharp
+* @module lang.csharp
 */
 
 /**

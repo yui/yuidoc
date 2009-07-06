@@ -1,7 +1,7 @@
 <?php
 /**
  * General Module description for PHPTest
- * @module phptest
+ * @module lang.phptest
  */
 
 

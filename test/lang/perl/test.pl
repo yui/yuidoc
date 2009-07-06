@@ -2,7 +2,7 @@
 =begin
 /**
 * Test Perl File
-* @module perltest
+* @module lang.perltest
 */
 =cut
 use strict;

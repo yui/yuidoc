@@ -89,6 +89,10 @@ class DocGenerator(object):
         self.modules = d[MODULES]
         self.modulenames = self.modules.keys()
         self.modulenames.sort(lambda x,y: cmp(x.lower(), y.lower()))
+        self.cleansedmodulenames = {} 
+
+        for mod in self.modulenames:
+            self.cleansedmodulenames[mod] = self.cleanseStr(mod)
 
         self.cleansedmodulename = self.cleanseStr(self.modulename)
     
@@ -127,6 +131,7 @@ class DocGenerator(object):
             template.version      = self.version
             template.modules      = self.modules
             template.modulenames  = self.modulenames
+            template.cleansedmodulenames  = self.cleansedmodulenames
             template.modulename   = self.modulename
             template.moduletitle = self.moduletitle
             template.cleansedmodulename = self.cleansedmodulename 

@@ -20,7 +20,8 @@ yuidoc_home=..
 #          $src/node \
 #          $src/queue \
 #          $src/yui"
-#parser_in="$src"
+
+# parser_in="lang"
 parser_in="lang/java lang/python lang/perl lang/ruby"
  
 # The location to output the parser data.  This output is a file containing a 

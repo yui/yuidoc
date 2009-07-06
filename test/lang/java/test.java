@@ -1,6 +1,6 @@
 /**
 * Test Java Module Description
-* @module javatest
+* @module lang.javatest
 */
 import java.util.*;
 
