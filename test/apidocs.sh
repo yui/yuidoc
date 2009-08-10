@@ -23,36 +23,48 @@ src=~/src/yui3/src
 #          $src/queue \
 #          $src/yui"
 #parser_in="$src"
+
 parser_in="$src/yui \
            $src/anim \
            $src/attribute \
            $src/base \
+           $src/cache \
            $src/classnamemanager \
+           $src/collection \
            $src/console \
+           $src/console-filters \
            $src/cookie \
+           $src/dataschema \
+           $src/datasource \
+           $src/datatype \
            $src/dd \
            $src/dom \
            $src/dump \
            $src/event \
+           $src/event-custom \
+           $src/event-simulate \
+           $src/history \
+           $src/imageloader \
            $src/io \
            $src/json \
            $src/node \
+           $src/node-focusmanager \
            $src/node-menunav \
            $src/oop \
            $src/overlay \
-           $src/profiler \
            $src/plugin \
+           $src/profiler \
            $src/queue \
            $src/slider \
            $src/stylesheet \
            $src/substitute \
+           $src/test \
            $src/widget \
            $src/widget-position \
            $src/widget-position-ext \
            $src/widget-stdmod \
-           $src/widget-stack \
-	   $src/test"
- 
+           $src/widget-stack"
+
 # The location to output the parser data.  This output is a file containing a 
 # json string, and copies of the parsed files.
 parser_out=build_tmp/yuidoc_tmp

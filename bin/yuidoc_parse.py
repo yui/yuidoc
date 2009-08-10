@@ -508,7 +508,9 @@ it was empty" % token
 
                 subname = tokenMap[SUBMODULE][0]
 
-                target[SUBMODULES].append(subname);
+                if not target[SUBMODULES].count(subname):
+                    target[SUBMODULES].append(subname)
+
                 self.subModName = subname;
                 target[SUBDATA][subname] = { NAME: self.currentClass }
 
@@ -524,14 +526,16 @@ it was empty" % token
             if len(self.deferredModuleFiles) > 0:
                 for i in self.deferredModuleFiles:
                     self.data[FILE_MAP][i][MODULE] = self.currentModule
-                    self.data[MODULES][self.currentModule][FILE_LIST].append(i)
+                    if not self.data[MODULES][self.currentModule][FILE_LIST].count(i):
+                        self.data[MODULES][self.currentModule][FILE_LIST].append(i)
 
                 self.deferredModuleFiles = []
 
             if len(self.deferredModuleClasses) > 0:
                 for i in self.deferredModuleClasses:
                     self.data[CLASS_MAP][i][MODULE] = self.currentModule
-                    self.data[MODULES][self.currentModule][CLASS_LIST].append(i)
+                    if not self.data[MODULES][self.currentModule][CLASS_LIST].count(i):
+                        self.data[MODULES][self.currentModule][CLASS_LIST].append(i)
 
                 self.deferredModuleClasses = []
 
@@ -549,11 +553,13 @@ it was empty" % token
 
             if self.currentModule:
                 target[MODULE] = self.currentModule
-                self.data[MODULES][self.currentModule][FILE_LIST].append(file_name)
+                if not self.data[MODULES][self.currentModule][FILE_LIST].count(file_name):
+                    self.data[MODULES][self.currentModule][FILE_LIST].append(file_name)
             else:
                 """ defer the module assignment until we find the token """
                 log.info('deferred module file: ' + file_name)
-                self.deferredModuleFiles.append(file_name);
+                if not self.deferredModuleFiles.count(file_name):
+                    self.deferredModuleFiles.append(file_name)
 
 
             tokenMap.pop(FILE_MARKER)
@@ -569,7 +575,10 @@ it was empty" % token
             
             if self.subModName:
                 # provides a place to link to on the module landing page
-                self.data[MODULES][self.currentModule][SUBDATA][self.subModName][NAME] = longName
+                try:
+                    self.data[MODULES][self.currentModule][SUBDATA][self.subModName][NAME] = longName
+                except:
+                    pass
 
                 # this was overwriting the submodule description
                 # if DESCRIPTION in tokenMap:
@@ -589,23 +598,26 @@ it was empty" % token
             if currentFor and currentFor != longName: # this is an inner class
                 if "innerClasses" not in target:
                     target["innerClasses"] = []
-
-                target["innerClasses"].append(currentFor)
+                if not target["innerClasses"].count(currentFor):
+                    target["innerClasses"].append(currentFor)
  
             if self.currentModule:
                 
                 target[MODULE] = self.currentModule
-                self.data[MODULES][self.currentModule][CLASS_LIST].append(longName)
+                if not self.data[MODULES][self.currentModule][CLASS_LIST].count(longName):
+                    self.data[MODULES][self.currentModule][CLASS_LIST].append(longName)
             else:
                 """ defer the module assignment until we find the token """
                 log.info('deferred module CLASS: ' + longName)
-                self.deferredModuleClasses.append(longName);
+                if not self.deferredModuleClasses.count(longName):
+                    self.deferredModuleClasses.append(longName)
 
             if self.currentFile:
                 target[FILE] = self.currentFile
 
             try:
-                self.data[FILE_MAP][self.currentFile][CLASS_LIST].append(longName)
+                if not self.data[FILE_MAP][self.currentFile][CLASS_LIST].count(longName):
+                    self.data[FILE_MAP][self.currentFile][CLASS_LIST].append(longName)
             except:
                 pass
 
@@ -620,7 +632,8 @@ it was empty" % token
                 for i in tokenMap["uses"]:
                     # shortName, longName = self.getClassName(i, self.currentNamespace)
                     longName = i
-                    target["uses"].append(longName)
+                    if not target["uses"].count(longName):
+                        target["uses"].append(longName)
 
             ###############
             # if not CLASS_LIST in self.data:
@@ -808,7 +821,8 @@ the attribute\'s value has changed.' %(config),
             c = self.data[CLASS_MAP][self.currentClass]
             if not CONSTRUCTORS in c: c[CONSTRUCTORS] = []
             constructor = parseParams(tokenMap, { DESCRIPTION: tokenMap[DESCRIPTION][0] })
-            c[CONSTRUCTORS].append(constructor)
+            if not c[CONSTRUCTORS].count(constructor):
+                c[CONSTRUCTORS].append(constructor)
             tokenMap.pop(CONSTRUCTOR)
 
         # process the rest of the tags
