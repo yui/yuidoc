@@ -279,11 +279,13 @@
                                                 </dl>
                                             #end if
 
-                                            #if $method.return.type
+                                            #if $method.return.description
                                                 <dl>
                                                     <dt>Returns:
                                                     <code property="yui:return">
-                                                        $method.return.type
+                                                        #if $method.return.type
+                                                            $method.return.type
+                                                        #end if
                                                     </code></dt>
                                                     <dd property="yui:returnInfo">$method.return.description</dd>
                                                 </dl>
