@@ -1,3 +1,11 @@
+**********************************************************************
+NOTE: 2009-10-27 -- there have been reports of easy_install trying
+to pull Cheetah 2.4.0 and failing.  If this occurs, download and
+install version 2.2.2 (which is the current stable version):
+
+http://pypi.python.org/packages/source/C/Cheetah/Cheetah-2.2.2.tar.gz#md5=e0d89113ab6bb0935d2b67395960264c
+**********************************************************************
+
 One-time setup for python:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
