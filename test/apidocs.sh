@@ -54,7 +54,6 @@ parser_in="$src/yui \
            $src/overlay \
            $src/plugin \
            $src/profiler \
-           $src/queue \
            $src/slider \
            $src/stylesheet \
            $src/substitute \

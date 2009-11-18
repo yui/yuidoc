@@ -63,7 +63,9 @@ class DocParser(object):
         def parseDir(path):
             subdirs = []
             dircontent = ""
-            for i in os.listdir(path):
+            dirfiles = os.listdir(path)
+            dirfiles.sort()
+            for i in dirfiles:
                 # Checking for directories that start with a '.'
                 # Windows doesn't hide these directories by default
                 if not i.startswith('.'):
