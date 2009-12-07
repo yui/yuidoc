@@ -486,7 +486,7 @@
                             <div class="content" rel="yui:attributes">
                                 <code>
                                     #set i=0
-                                    #set l=len($inherited.methods[$superclassname])-1
+                                    #set l=len($inherited.configs[$superclassname])-1
                                     #for $config in $inherited.configs[$superclassname]
                                         #set i=i+1
                                         <span rel="yui:attribute" resource="${superclassname}.html#config_$config.name">                                        
@@ -675,7 +675,8 @@
 	</div>
 </div>
 <script type="text/javascript">
-    ALL_YUI_PROPS = $allprops;
+    var ALL_YUI_PROPS = $allprops;
+    YAHOO.yuidoc.init();
 </script>
 #if $ydn
 <!-- Yahoo! Web Analytics - All rights reserved -->
