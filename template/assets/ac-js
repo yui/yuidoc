@@ -15,6 +15,10 @@
         yuidoc = YAHOO.namespace('yuidoc');
 
 yuidoc.init = function() {
+
+};
+
+yuidoc.initUI = function() {
     //Checkboxes are available..
     var handleClick = function(e) {
         var id, checked = false;
@@ -158,5 +162,9 @@ yuidoc.init = function() {
         tree1.render();    
     });
     */
+
+    YAHOO.util.Event.onAvailable('showprivate', function() {
+        YAHOO.yuidoc.initUI();
+    });
 
 })();
