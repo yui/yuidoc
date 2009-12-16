@@ -163,7 +163,7 @@ yuidoc.initUI = function() {
     });
     */
 
-    YAHOO.util.Event.onAvailable('showprivate', function() {
+    YAHOO.util.Event.onAvailable('show_private', function() {
         YAHOO.yuidoc.initUI();
     });
 
