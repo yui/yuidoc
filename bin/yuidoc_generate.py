@@ -3,7 +3,7 @@
 # vim: et sw=4 ts=4
 
 '''
-Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.html
 version: 1.0.0b1
@@ -103,6 +103,8 @@ class DocGenerator(object):
         self.classnames  = ""
         self.filenames   = ""
         self.allprops = []
+        self.allprops_ext = []
+
 
     def cleanseStr(self, strg):
         cleanregex= re.compile(r"[^\w\-]")
@@ -274,6 +276,31 @@ class DocGenerator(object):
             cy = pat.sub('', cy)
             return cmp(cx, cy)
 
+        def completeProp(main, ext):
+            data = main.copy()
+            if DESCRIPTION in ext:
+                data[DESCRIPTION] = ext[DESCRIPTION]
+            else:
+                data[DESCRIPTION] = ''
+
+            if PARAMS in ext:
+                params = ext[PARAMS]
+                count = 0
+                result = []
+                itemtemplate = '%s <%s> %s'
+                for p in params:
+                    if count > 0:
+                        result.append(', ')
+                    result.append(itemtemplate % (p[NAME] or 'unknown', p[TYPE] or 'Object', p[DESCRIPTION] or ''))
+                    count+=1
+
+                data[PARAMS] = ''.join(result)
+            else:
+                data[PARAMS] = ''
+
+            return data
+
+
         log.info("-------------------------------------------------------")
  
         # copy the json file
@@ -391,14 +418,21 @@ class DocGenerator(object):
                         for propertykey in keys:
                             prop     = c[PROPERTIES][propertykey]
                             if self.showprivate or PRIVATE not in prop:
-                                propdata = {NAME: propertykey, HOST: i, TYPE: 'property', URL:getUrl(i, propertykey, PROPERTY)}
-
+                                propdata = {
+                                    NAME: propertykey, 
+                                    HOST: i, 
+                                    TYPE: 'property', 
+                                    URL: getUrl(i, propertykey, PROPERTY)
+                                }
 
                                 transferToDict( ACCESS,   prop, propdata           )
                                 if PRIVATE in prop: propdata[ACCESS] = PRIVATE
                                 elif PROTECTED in prop: propdata[ACCESS] = PROTECTED
 
                                 self.allprops.append(propdata.copy())
+                                # completeProp(propdata, prop)
+                                self.allprops_ext.append(completeProp(propdata, prop))
+
                                 moduleprops.append(propdata.copy())
 
                                 transferToDict( TYPE,        prop, propdata, OBJECT )
@@ -428,6 +462,8 @@ class DocGenerator(object):
                                 elif PROTECTED in method: methoddata[ACCESS] = PROTECTED
 
                                 self.allprops.append(methoddata.copy())
+                                # completeProp(methodData, method)
+                                self.allprops_ext.append(completeProp(methoddata, method))
                                 moduleprops.append(methoddata.copy())
 
                                 transferToDict( DESCRIPTION, method, methoddata )
@@ -466,13 +502,21 @@ class DocGenerator(object):
                         for eventkey in keys:
                             event = c[EVENTS][eventkey]
                             if self.showprivate or PRIVATE not in event:
-                                eventdata = {NAME: eventkey, HOST: i, TYPE: 'event', URL:getUrl(i, eventkey, EVENT)}
+                                eventdata = {
+                                    NAME: eventkey, 
+                                    HOST: i, 
+                                    TYPE: 'event', 
+                                    URL: getUrl(i, eventkey, EVENT)
+                                }
 
                                 transferToDict( ACCESS,      event, eventdata )
                                 if PRIVATE in event: eventdata[ACCESS] = PRIVATE
                                 elif PROTECTED in event: eventdata[ACCESS] = PROTECTED
 
                                 self.allprops.append(eventdata.copy())
+                                # completeProp(eventdata, event)
+                                self.allprops_ext.append(completeProp(eventdata, event))
+
                                 moduleprops.append(eventdata.copy())
 
                                 transferToDict( DESCRIPTION, event, eventdata )
@@ -494,8 +538,6 @@ class DocGenerator(object):
 
                                 transferToDict( CANCELABLE,      event, eventdata )
                                 if CANCELABLE in event: eventdata[CANCELABLE] = CANCELABLE
-
-
 
                                 params = eventdata[PARAMS] = []
                                 if PARAMS in event:
@@ -524,6 +566,10 @@ class DocGenerator(object):
                                 elif PROTECTED in config: configdata[ACCESS] = PROTECTED
 
                                 self.allprops.append(configdata.copy())
+
+                                # completeProp(configdata, config)
+                                self.allprops_ext.append(completeProp(configdata, config))
+
                                 moduleprops.append(configdata.copy())
 
                                 transferToDict( TYPE,        config, configdata, OBJECT )
@@ -626,13 +672,16 @@ class DocGenerator(object):
         #remove dups
         allprops = []
         propmap = {}
-        for i in self.allprops:
+        # for i in self.allprops:
+        for i in self.allprops_ext:
             url = i[URL]
             if url not in propmap:
                 allprops.append(i)
                 propmap[url] = True
 
         allprops.sort(allprop_sort)
+
+        # self.allprops_ext.sort(allprop_sort)
                                             
         allprops_json =  simplejson.dumps(allprops, ensure_ascii=False)
         self.write("index.json", allprops_json, False)
