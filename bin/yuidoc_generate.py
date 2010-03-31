@@ -10,7 +10,14 @@ version: 1.0.0b1
 '''
 
 ''' Prints documentation with htmltmpl from the json data outputted by parser.py  ''' 
-import os, re, simplejson, shutil, logging, logging.config, time, datetime
+
+try:
+   import json as simplejson
+except:
+   import simplejson
+
+import os, re, shutil, logging, logging.config, time, datetime
+
 from const import *
 # from cStringIO import StringIO 
 from Cheetah.Template import Template
@@ -672,8 +679,8 @@ class DocGenerator(object):
         #remove dups
         allprops = []
         propmap = {}
-        # for i in self.allprops:
-        for i in self.allprops_ext:
+        for i in self.allprops:
+        # for i in self.allprops_ext:
             url = i[URL]
             if url not in propmap:
                 allprops.append(i)

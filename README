@@ -5,7 +5,7 @@ in the YUI library.  The docs are derived completely from JavaDoc style
 comment blocks; no attempt is made to understand the javascript itself.
 
 yuidoc requires Python 2.3+ with the following extensions:
-    simplejson - for reading and writing json
+    simplejson - for reading and writing json (required for Python versions below 2.6.0)
     cheetah    - for generating the html docs
     pygments   - for colorizing the source
 

@@ -33,6 +33,8 @@ Unix (including cygwin):
 
     easy_install pygments
     easy_install Cheetah
+
+    * For Python version below 2.6.0, also install simplejson *
     easy_install simplejson
 
 

@@ -11,7 +11,14 @@ version: 1.0.0b1
 
 ''' A class to parse Javadoc style comments out of javascript to document 
     an API. It is designed to parse one module at a time ''' 
-import os, re, simplejson, string, sys, pprint, logging, logging.config
+
+
+try:
+   import json as simplejson
+except:
+   import simplejson
+
+import os, re, string, sys, pprint, logging, logging.config
 from const import *
 # from cStringIO import StringIO 
 from optparse import OptionParser
@@ -40,13 +47,7 @@ class DocParser(object):
                 if tail: os.mkdir(newdir)
 
         def parseFile(path, file):
-            # f=open(os.path.join(path, file))
             f = codecs.open(os.path.join(path, file), "r", "utf-8" )
-            #adding a return to the beginning of the line allows for:
-            #  #!/usr/bin/foo
-            #  MOVED to the file marker
-            # fileStr = StringIO("\n%s" % f.read()).getvalue()
-            # fileStr = StringIO("%s" % f.read()).getvalue()
             fileStr = f.read()
             log.info("parsing " + file)
             # add a file marker token so the parser can keep track of what is in what file
@@ -163,12 +164,10 @@ class DocParser(object):
         longName  = namespace + "." + shortName
         return shortName, longName
         
-    # extract string literals in case they contain the documentation pattern
+    # extract string literals in case they contain the doc comment pattern
     literals_pat = re.compile(r'(\'.*?(?<=[^\\])\')|(\".*?(?<=[^\\])\")')
 
-    # extract regex literals in case they contain 
-    #regex_pat = re.compile(r'(\/.*?(?<=[^\\])\/)')
-    #regex_pat = re.compile(r'(\/[^\s\/\*][^\n]*?(?<=[^\\])\/)')
+    # extract regex literals in case they contain the doc comment pattern
     regex_pat = re.compile(r'(\/[^\s\/\*][^\n]*\/)')
     
     # the token we will use to restore the string literals
