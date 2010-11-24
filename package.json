@@ -1,0 +1,31 @@
+{
+    "name": "yuidocjs",
+    "version": "0.1.0",
+    "description": "YUI Doc, JavaScript port",
+    "author": "Adam Moore <amoore@gmail.com>",
+    "bugs": { "web" : "http://github.com/apm/yuidocjs/issues" },
+    "os": ["darwin", "linux"],
+    "contributors": [
+    ],
+    "engines": {
+        "node" : ">=0.1.100"
+    },
+    "directories": {
+        "lib" : "lib"
+    },
+    "main": "./lib/yuidoc",
+    "bin" : { "yuidocdocs" : "./cli.js" },
+    "dependencies": {
+        "yui3-core": ">=3.2.0"
+    },
+    "licenses":[
+        {
+            "type" : "BSD",
+            "url" : "http://developer.yahoo.com/yui/license.html"
+        }
+    ],
+    "repository": {
+        "type":"git",
+        "url":"http://github.com/apm/yuidocjs.git"
+    }
+}
