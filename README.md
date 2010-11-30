@@ -3,8 +3,15 @@
 Updated yuidoc parser, written in js -- *early work in progress*
 
 ## Usage
+    
+Clone this repo, then:
 
-    lib/yuidoc.js ../yui3/src
+    cd yuidocjs
+    npm install .
+
+    yuidoc /path/to/yui3/src/
+    yuidoc /path/to/yui2/src/
+    yuidoc ./test/
 
 This will produce a data structure in `out/data.json` by default.
 

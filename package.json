@@ -6,6 +6,7 @@
     "bugs": { "web" : "http://github.com/apm/yuidocjs/issues" },
     "os": ["darwin", "linux"],
     "contributors": [
+        { "name": "Dav Glass", "email": "davglass@gmail.com" }
     ],
     "engines": {
         "node" : ">=0.1.100"
@@ -14,7 +15,7 @@
         "lib" : "lib"
     },
     "main": "./lib/yuidoc",
-    "bin" : { "yuidocdocs" : "./cli.js" },
+    "bin" : { "yuidoc" : "./lib/yuidoc.js" },
     "dependencies": {
         "yui3-core": ">=3.2.0"
     },
