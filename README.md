@@ -3,7 +3,7 @@
 Updated yuidoc parser, written in js -- *early work in progress*
 
 ## Usage
-    
+
 Clone this repo, then:
 
     cd yuidocjs
@@ -33,6 +33,9 @@ also help up when building the new YUILibrary.com site and importing all this da
         module2/
             data.json
 
+AM - sounds good -- had in mind a schema system to define different parser outputs, but
+that might be overkill.
+
 ### Parse only what we need to parse.
 
 Keep a *state* file somewhere that shows the last time this doc tree was parsed
@@ -40,8 +43,13 @@ This way, we can do a stat on the file to see if it's mtime is greater than the
 last parse time and only parse it if it is. This will allow us, in the future, to not reparse files
 that have not changed. It should speed up the parse process for a large file set.
 
+AM - the parse process is very quick, maybe as fast as verifying the state.  We
+may want to do this when rendering the templates.
+
 ### Module Structure
 
 I moved docparser into a module of it's own. The YUIDoc module should also be a standalone module.
-We should make `cli.js` instantiate that class and run it. We also need to add a way to `export` 
+We should make `cli.js` instantiate that class and run it. We also need to add a way to `export`
 these modules so they can be *required* in a script and coded against.
+
+AM - Yep
