@@ -43,8 +43,8 @@ This way, we can do a stat on the file to see if it's mtime is greater than the
 last parse time and only parse it if it is. This will allow us, in the future, to not reparse files
 that have not changed. It should speed up the parse process for a large file set.
 
-AM - the parse process is very quick, maybe as fast as verifying the state.  We
-may want to do this when rendering the templates.
+AM - the parse process is super fast.  We may want to do this when rendering
+the templates.
 
 ### Module Structure
 
