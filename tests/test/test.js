@@ -61,3 +61,16 @@
  * @return {string} something with a type
  */
 
+/**
+ * test 0..n param
+ * @method test0ton
+ * @param {string} [optionalandmultiple]* my desc
+ * @returns something without a type
+ */
+
+/**
+ * test 1..n param
+ * @method test1ton
+ * @param {string} multiple* my desc
+ * @returns something without a type
+ */
