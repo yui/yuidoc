@@ -15,9 +15,9 @@ Clone this repo, then:
 
 This will produce a data structure in `out/data.json` by default.
 
+TODO:
 
 ## Dav's Thoughts:
-
 
 ### Out dir formatting
 
@@ -53,3 +53,6 @@ We should make `cli.js` instantiate that class and run it. We also need to add a
 these modules so they can be *required* in a script and coded against.
 
 AM - Yep
+
+### Templates
+
