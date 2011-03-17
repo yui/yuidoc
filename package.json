@@ -9,15 +9,13 @@
         { "name": "Dav Glass", "email": "davglass@gmail.com" }
     ],
     "engines": {
-        "node" : ">=0.1.100"
-    },
-    "directories": {
-        "lib" : "lib"
+        "node" : ">=0.4.0"
     },
     "main": "./lib/yuidoc",
-    "bin" : { "yuidoc" : "./lib/yuidoc.js" },
+    "bin" : { "yuidoc" : "./lib/cli.js" },
     "dependencies": {
-        "yui3-core": ">=3.2.0"
+        "yui3-core": ">=3.3.0",
+        "mustache": "0.3.x"        
     },
     "licenses":[
         {
