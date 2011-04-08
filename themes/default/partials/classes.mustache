@@ -1,0 +1,29 @@
+<h4>{{moduleName}}</h4>
+<div class="intro">{{{classDescription}}}</div>
+
+<div id="classdocs">
+    <ul>
+        {{#if methods}}
+        <li><a href="#methods">Methods</a></li>
+        {{/if}}
+        {{#if properties}}
+        <li><a href="#props">Properties</a></li>
+        {{/if}}
+    </ul>
+    <div>
+        {{#if methods}}
+            <div id="methods">
+            {{#methods}}
+                {{>method}}
+            {{/methods}}
+            </div>
+        {{/if}}
+        {{#if properties}}
+            <div id="props">
+            {{#properties}}
+                {{>props}}
+            {{/properties}}
+            </div>
+        {{/if}}
+    </div>
+</div>

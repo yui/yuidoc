@@ -1,0 +1,36 @@
+<a name="method_{{name}}"></a>
+<div class="method item">
+    {{#if returnType}}`{{returnType}}` {{/if}}<strong>`{{name}}`</strong> ( `{{paramsList}} ` ) {{#if access}}<em>`/* {{access}} method */`</em>{{/if}}<br>
+        <span class="foundat">`{{file}}:{{line}}`</span>
+    <p>{{{methodDescription}}}</p>
+    {{#if params}}
+    <strong>Parameters:</strong>
+    <ul>
+    {{#params}}
+        <li>
+        {{#if optional}}
+            `[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]` <strong>&lt;`{{type}}`&gt;</strong>
+        {{else}}
+            `{{name}}` <strong>&lt;`{{type}}`&gt;</strong>
+        {{/if}}
+        {{#if multiple}}
+            <abbr title="Denotes that this argument can contain (n) number">(*..n)</abbr>
+        {{/if}}
+        {{{description}}}
+            {{#if props}}
+            <ul>
+            {{#props}}
+                <li>`{{name}}` <strong>&lt;`{{type}}`&gt;</strong> {{{description}}}
+            {{/props}}
+            </ul>
+            {{/if}}
+        </li>
+    {{/params}}
+    </ul>
+    {{/if}}
+    {{#if return}}
+    {{#return}}
+    <br><strong>Returns:</strong> {{#if type}}&lt;`{{type}}`&gt; {{/if}}{{{description}}}
+    {{/return}}
+    {{/if}}
+</div>

@@ -1,0 +1,10 @@
+{
+    "name": "YUIDoc",
+    "description": "YUIDoc documentation tool written in Javascript",
+    "version": "0.1.0",
+    "url": "http://yuilibrary.com/projects/yuidoc",
+    "options": {
+        "paths": [ "./lib" ],
+        "outdir": "./out"
+    }
+}

@@ -1,0 +1,50 @@
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            {{#modules}}
+                <li><a href="{{../projectRoot}}modules/{{name}}.html">{{displayName}}</a>
+                {{#if submodules}}
+                    <ul>
+                        {{#submodules}}
+                            <li><a href="{{../../../projectRoot}}modules/{{../name}}.html#{{displayName}}">{{displayName}}</a></li>
+                        {{/submodules}}
+                    </ul>
+                {{/if}}
+                </li>
+            {{/modules}}
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            {{#classes}}
+                <li><a href="{{../projectRoot}}classes/{{name}}.html">{{displayName}}</a></li>
+            {{/classes}}
+        </ul>
+    </div>
+</div>
+
+{{#if files}}
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            {{#files}}
+                <li><a href="{{../projectRoot}}files/{{name}}.html">{{displayName}}</a></li>
+            {{/files}}
+        </ul>
+    </div>
+</div>
+{{/if}}
+
+

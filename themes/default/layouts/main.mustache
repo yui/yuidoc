@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{htmlTitle}}</title>
+    <link rel="stylesheet" href="{{yuiGridsUrl}}">
+    <link rel="stylesheet" href="{{projectAssets}}/css/main.css">
+    <link rel="stylesheet" href="{{projectAssets}}/vendor/prettify/prettify-min.css">
+    <script src="{{yuiSeedUrl}}"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <h1><a href="{{projectRoot}}index.html">{{title}}</a></h1>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            {{>sidebar}}
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content">{{>layout_content}}</div>
+        </div>
+    </div>
+</div>
+<script src="{{projectAssets}}/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="{{projectAssets}}/js/tabs.js"></script>
+</body>
+</html>
