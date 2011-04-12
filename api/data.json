@@ -39,7 +39,7 @@
             "name": "lib/docview.js",
             "modules": {},
             "classes": {
-                "View": 1
+                "DocView": 1
             },
             "fors": {},
             "namespaces": {}
@@ -67,7 +67,7 @@
             "modules": {
                 "yuidoc": 1
             },
-                "classes": {
+            "classes": {
                 "YUIDoc": 1
             },
             "fors": {
@@ -84,7 +84,7 @@
                 "Builder": 1,
                 "cli": 1,
                 "DocParser": 1,
-                "View": 1,
+                "DocView": 1,
                 "index": 1,
                 "utils": 1,
                 "YUIDoc": 1
@@ -150,9 +150,9 @@
                 }
             ]
         },
-        "View": {
-            "name": "View",
-            "shortname": "View",
+        "DocView": {
+            "name": "DocView",
+            "shortname": "DocView",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -170,8 +170,8 @@
                     "description": "Meta data to use in this template",
                     "type": "Object"
                 },
-                {
-                        "name": "templateName",
+                    {
+                    "name": "templateName",
                     "description": "The name of the template file to render.",
                     "type": "String"
                 }
@@ -268,7 +268,7 @@
         {
             "file": "lib/builder.js",
             "line": 57,
-            "description": "Populate the meta data for classes",
+                "description": "Populate the meta data for classes",
             "itemtype": "method",
             "name": "populateClasses",
             "params": [
@@ -400,7 +400,7 @@
             ],
             "return": {
                 "description": "The parsed HTML",
-                    "type": "HTML"
+                "type": "HTML"
             },
             "class": "Builder",
             "module": "yuidoc"
@@ -439,7 +439,7 @@
                 {
                     "name": "callback",
                     "description": "",
-                    "type": "Callback",
+                        "type": "Callback",
                     "props": [
                         {
                             "name": "err",
@@ -456,7 +456,7 @@
             ],
             "class": "Builder",
             "module": "yuidoc"
-            },
+        },
         {
             "file": "lib/builder.js",
             "line": 272,
@@ -629,7 +629,7 @@
         {
             "file": "lib/docparser.js",
             "line": 139,
-            "description": "A map of the default tag processors, keyed by the\n  tag name.  Multiple tags can use the same digester\n  by supplying the string name that points to the\n  implementation rather than a function.",
+                "description": "A map of the default tag processors, keyed by the\n  tag name.  Multiple tags can use the same digester\n  by supplying the string name that points to the\n  implementation rather than a function.",
             "itemtype": "property",
             "name": "DIGESTERS",
             "type": "Object",
@@ -717,7 +717,7 @@
             "file": "lib/docparser.js",
             "line": 663,
             "description": "The class currently being parsed",
-                "itemtype": "attribute",
+            "itemtype": "attribute",
             "name": "currentclass",
             "type": "String",
             "class": "DocParser",
@@ -786,7 +786,7 @@
             "class": "DocParser",
             "module": "yuidoc"
         },
-            {
+        {
             "file": "lib/docparser.js",
             "line": 996,
             "description": "Extracts and transforms the filemap provided to constructor",
@@ -802,7 +802,7 @@
                 "description": "this parser instance.  The total results",
                 "type": "DocParser"
             },
-            "class": "DocParser",
+                "class": "DocParser",
             "module": "yuidoc"
         },
         {
@@ -811,7 +811,7 @@
             "description": "**Mustache** `lambda` method for setting the HTML title",
             "itemtype": "method",
             "name": "htmlTitle",
-            "class": "View",
+            "class": "DocView",
             "module": "yuidoc"
         },
         {
@@ -820,7 +820,7 @@
             "description": "**Mustache** `lambda` method for setting the title",
             "itemtype": "method",
             "name": "title",
-            "class": "View",
+            "class": "DocView",
             "module": "yuidoc"
         },
         {
@@ -850,7 +850,7 @@
             "itemtype": "method",
             "name": "unindent",
             "params": [
-                    {
+                {
                     "name": "content",
                     "description": "Text to unindent.",
                     "type": "String"
@@ -889,7 +889,7 @@
             "file": "lib/utils.js",
             "line": 70,
             "description": "Loads and returns the content of the specified page file.",
-            "itemtype": "method",
+                "itemtype": "method",
             "name": "getPage",
             "params": [
                 {
@@ -925,7 +925,7 @@
             "class": "utils",
             "module": "yuidoc"
         },
-            {
+        {
             "file": "lib/utils.js",
             "line": 114,
             "description": "Like `getPages()`, but returns only the files under the `partial/` subdirectory\n of the specified _dir_.",
@@ -966,7 +966,7 @@
                     "name": "callback",
                     "description": "",
                     "type": "Callback",
-                    "props": [
+                        "props": [
                         {
                             "name": "err",
                             "description": "",
@@ -985,7 +985,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-                "line": 5,
+            "line": 5,
             "description": "This is the **module** description for the `YUIDoc` module.\n \n     var options = {\n         paths: [ './lib' ],\n         outdir: './out'\n     };\n \n     var Y = require('yuidoc');\n     var json = (new Y.YUIDoc(options)).run();",
             "name": "yuidoc",
             "tag": "main",
@@ -1151,7 +1151,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 203,
+                "line": 203,
             "description": "Timestamp holder so we know when YUIDoc started the parse process.",
             "itemtype": "property",
             "name": "starttime",
