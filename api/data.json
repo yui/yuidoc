@@ -35,6 +35,15 @@
             },
             "namespaces": {}
         },
+        "lib/docview.js": {
+            "name": "lib/docview.js",
+            "modules": {},
+            "classes": {
+                "View": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "lib/index.js": {
             "name": "lib/index.js",
             "modules": {},
@@ -53,21 +62,12 @@
             "fors": {},
             "namespaces": {}
         },
-        "lib/view.js": {
-            "name": "lib/view.js",
-            "modules": {},
-            "classes": {
-                "View": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
         "lib/yuidoc.js": {
             "name": "lib/yuidoc.js",
             "modules": {
                 "yuidoc": 1
             },
-            "classes": {
+                "classes": {
                 "YUIDoc": 1
             },
             "fors": {
@@ -84,9 +84,9 @@
                 "Builder": 1,
                 "cli": 1,
                 "DocParser": 1,
+                "View": 1,
                 "index": 1,
                 "utils": 1,
-                "View": 1,
                 "YUIDoc": 1
             },
             "fors": {
@@ -150,6 +150,33 @@
                 }
             ]
         },
+        "View": {
+            "name": "View",
+            "shortname": "View",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "yuidoc",
+            "namespace": "",
+            "file": "lib/docview.js",
+            "line": 10,
+            "description": "View class borrowed from [Selleck](https://github.com/rgrove/selleck)  \n     The view class is a **`mustache`** template helper.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Meta data to use in this template",
+                    "type": "Object"
+                },
+                {
+                        "name": "templateName",
+                    "description": "The name of the template file to render.",
+                    "type": "String"
+                }
+            ]
+        },
         "index": {
             "name": "index",
             "shortname": "index",
@@ -178,33 +205,6 @@
             "file": "lib/utils.js",
             "line": 5,
             "description": "Utilies Class"
-        },
-        "View": {
-            "name": "View",
-            "shortname": "View",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "yuidoc",
-            "namespace": "",
-            "file": "lib/view.js",
-            "line": 10,
-            "description": "View class borrowed from [Selleck](https://github.com/rgrove/selleck)  \n     The view class is a **`mustache`** template helper.",
-            "is_constructor": 1,
-            "params": [
-                {
-                    "name": "data",
-                    "description": "Meta data to use in this template",
-                    "type": "Object"
-                },
-                {
-                    "name": "templateName",
-                    "description": "The name of the template file to render.",
-                    "type": "String"
-                }
-            ]
         },
         "YUIDoc": {
             "name": "YUIDoc",
@@ -366,7 +366,7 @@
             "line": 192,
             "description": "Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them",
             "itemtype": "method",
-                "name": "_parseCode",
+            "name": "_parseCode",
             "access": "private",
             "tagname": "",
             "params": [
@@ -376,7 +376,7 @@
                     "type": "HTML"
                 }
             ],
-                "return": {
+            "return": {
                 "description": "The parsed HTML",
                 "type": "HTML"
             },
@@ -400,7 +400,7 @@
             ],
             "return": {
                 "description": "The parsed HTML",
-                "type": "HTML"
+                    "type": "HTML"
             },
             "class": "Builder",
             "module": "yuidoc"
@@ -456,7 +456,7 @@
             ],
             "class": "Builder",
             "module": "yuidoc"
-        },
+            },
         {
             "file": "lib/builder.js",
             "line": 272,
@@ -538,7 +538,7 @@
             "name": "writeFiles",
             "params": [
                 {
-                        "name": "cb",
+                    "name": "cb",
                     "description": "The callback to execute after it's completed",
                     "type": "Callback"
                 }
@@ -632,7 +632,7 @@
             "description": "A map of the default tag processors, keyed by the\n  tag name.  Multiple tags can use the same digester\n  by supplying the string name that points to the\n  implementation rather than a function.",
             "itemtype": "property",
             "name": "DIGESTERS",
-                "type": "Object",
+            "type": "Object",
             "final": "",
             "class": "DocParser",
             "module": "yuidoc"
@@ -717,7 +717,7 @@
             "file": "lib/docparser.js",
             "line": 663,
             "description": "The class currently being parsed",
-            "itemtype": "attribute",
+                "itemtype": "attribute",
             "name": "currentclass",
             "type": "String",
             "class": "DocParser",
@@ -786,7 +786,7 @@
             "class": "DocParser",
             "module": "yuidoc"
         },
-        {
+            {
             "file": "lib/docparser.js",
             "line": 996,
             "description": "Extracts and transforms the filemap provided to constructor",
@@ -795,7 +795,7 @@
             "params": [
                 {
                     "name": "filemap",
-                        "description": "a map of filenames to file content'"
+                    "description": "a map of filenames to file content'"
                 }
             ],
             "return": {
@@ -803,6 +803,24 @@
                 "type": "DocParser"
             },
             "class": "DocParser",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/docview.js",
+            "line": 24,
+            "description": "**Mustache** `lambda` method for setting the HTML title",
+            "itemtype": "method",
+            "name": "htmlTitle",
+            "class": "View",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/docview.js",
+            "line": 43,
+            "description": "**Mustache** `lambda` method for setting the title",
+            "itemtype": "method",
+            "name": "title",
+            "class": "View",
             "module": "yuidoc"
         },
         {
@@ -832,7 +850,7 @@
             "itemtype": "method",
             "name": "unindent",
             "params": [
-                {
+                    {
                     "name": "content",
                     "description": "Text to unindent.",
                     "type": "String"
@@ -907,14 +925,14 @@
             "class": "utils",
             "module": "yuidoc"
         },
-        {
+            {
             "file": "lib/utils.js",
             "line": 114,
             "description": "Like `getPages()`, but returns only the files under the `partial/` subdirectory\n of the specified _dir_.",
             "itemtype": "method",
             "name": "getPartials",
             "params": [
-                    {
+                {
                     "name": "dir",
                     "description": "Directory path.",
                     "type": "String"
@@ -966,26 +984,8 @@
             "module": "yuidoc"
         },
         {
-            "file": "lib/view.js",
-            "line": 24,
-            "description": "**Mustache** `lambda` method for setting the HTML title",
-            "itemtype": "method",
-            "name": "htmlTitle",
-            "class": "View",
-            "module": "yuidoc"
-        },
-        {
-            "file": "lib/view.js",
-            "line": 43,
-            "description": "**Mustache** `lambda` method for setting the title",
-            "itemtype": "method",
-            "name": "title",
-            "class": "View",
-            "module": "yuidoc"
-        },
-        {
             "file": "lib/yuidoc.js",
-            "line": 5,
+                "line": 5,
             "description": "This is the **module** description for the `YUIDoc` module.\n \n     var options = {\n         paths: [ './lib' ],\n         outdir: './out'\n     };\n \n     var Y = require('yuidoc');\n     var json = (new Y.YUIDoc(options)).run();",
             "name": "yuidoc",
             "tag": "main",
@@ -1017,7 +1017,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-                "line": 66,
+            "line": 66,
             "description": "Holder for the list of files we are processing.",
             "itemtype": "property",
             "name": "filemap",
@@ -1143,7 +1143,7 @@
             "itemtype": "method",
             "name": "run",
             "return": {
-                    "description": "The JSON data returned from the DocParser",
+                "description": "The JSON data returned from the DocParser",
                 "type": "Object"
             },
             "class": "YUIDoc",
