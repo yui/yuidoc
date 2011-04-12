@@ -1,4 +1,5 @@
 <h4>{{moduleName}}</h4>
+<span class="foundat">Class definition found: <a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span>
 <div class="intro">{{{classDescription}}}</div>
 
 <div id="classdocs">
@@ -8,6 +9,12 @@
         {{/if}}
         {{#if properties}}
         <li><a href="#props">Properties</a></li>
+        {{/if}}
+        {{#if attrs}}
+        <li><a href="#attrs">Attributes</a></li>
+        {{/if}}
+        {{#if events}}
+        <li><a href="#events">Events</a></li>
         {{/if}}
     </ul>
     <div>
@@ -23,6 +30,20 @@
             {{#properties}}
                 {{>props}}
             {{/properties}}
+            </div>
+        {{/if}}
+        {{#if attrs}}
+            <div id="attrs">
+            {{#attrs}}
+                {{>attrs}}
+            {{/attrs}}
+            </div>
+        {{/if}}
+        {{#if events}}
+            <div id="events">
+            {{#events}}
+                {{>events}}
+            {{/events}}
             </div>
         {{/if}}
     </div>

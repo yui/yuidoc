@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html">YUIDoc</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.1.0</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/yuidoc.html">yuidoc</a>
+                
+                    <ul>
+                        
+                    </ul>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Builder.html">Builder</a></li>
+            
+                <li><a href="../classes/cli.html">cli</a></li>
+            
+                <li><a href="../classes/DocParser.html">DocParser</a></li>
+            
+                <li><a href="../classes/index.html">index</a></li>
+            
+                <li><a href="../classes/utils.html">utils</a></li>
+            
+                <li><a href="../classes/View.html">View</a></li>
+            
+                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
+            
+                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
+            
+                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
+            
+                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
+            
+                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
+            
+                <li><a href="../files/lib_view.js.html">lib/view.js</a></li>
+            
+                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>utils</h4>
+<span class="foundat">Class definition found: <a href="../files/lib_utils.js.html#LINE_5"><code>lib&#x2F;utils.js:5</code></a></span>
+<div class="intro"><p>Utilies Class</p></div>
+
+<div id="classdocs">
+    <ul>
+        
+        <li><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+    <div>
+        
+            <div id="methods">
+            
+                <a name="method_escapeHTML"></a>
+<div class="method item">
+    <code>String</code> <strong><code>escapeHTML</code></strong> ( <code>html </code> ) <br>
+        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_23"><code>lib&#x2F;utils.js:23</code></a></span>
+    <p>Escapes HTML characters in <em>html</em>.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>html</code> <strong>&lt;<code>String</code>&gt;</strong>
+        
+        
+        String to escape.
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>String</code>&gt; Escaped string.
+    
+    
+</div>
+
+            
+                <a name="method_getLayouts"></a>
+<div class="method item">
+    <code>Object</code> <strong><code>getLayouts</code></strong> ( <code>dir </code> ) <br>
+        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_57"><code>lib&#x2F;utils.js:57</code></a></span>
+    <p>Like <code>getPages()</code>, but returns only the files under the <code>layout/</code> subdirectory
+ of the specified <em>dir</em>.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>dir</code> <strong>&lt;<code>String</code>&gt;</strong>
+        
+        
+        Directory path.
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; Mapping of layout names to layout content.
+    
+    
+</div>
+
+            
+                <a name="method_getPage"></a>
+<div class="method item">
+    <code>String|null</code> <strong><code>getPage</code></strong> ( <code>pagePath </code> ) <br>
+        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_70"><code>lib&#x2F;utils.js:70</code></a></span>
+    <p>Loads and returns the content of the specified page file.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>pagePath</code> <strong>&lt;<code>String</code>&gt;</strong>
+        
+        
+        Path to a single <code>.mustache</code> page.
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>String|null</code>&gt; Page content, or <code>null</code> if not found.
+    
+    
+</div>
+
+            
+                <a name="method_getPages"></a>
+<div class="method item">
+    <code>Object</code> <strong><code>getPages</code></strong> ( <code>dir </code> ) <br>
+        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_83"><code>lib&#x2F;utils.js:83</code></a></span>
+    <p>Loads pages (files with a <code>.mustache</code> extension) in the specified directory and
+ returns an object containing a mapping of page names (the part of the filename)
+ preceding the <code>.mustache</code> extension) to page content.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>dir</code> <strong>&lt;<code>String</code>&gt;</strong>
+        
+        
+        Directory path.
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; Mapping of page names to page content.
+    
+    
+</div>
+
+            
+                <a name="method_getPartials"></a>
+<div class="method item">
+    <code>Object</code> <strong><code>getPartials</code></strong> ( <code>dir </code> ) <br>
+        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_114"><code>lib&#x2F;utils.js:114</code></a></span>
+    <p>Like <code>getPages()</code>, but returns only the files under the <code>partial/</code> subdirectory
+ of the specified <em>dir</em>.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>dir</code> <strong>&lt;<code>String</code>&gt;</strong>
+        
+        
+        Directory path.
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; Mapping of partial names to partial content.
+    
+    
+</div>
+
+            
+                <a name="method_prepare"></a>
+<div class="method item">
+    <code> </code> <strong><code>prepare</code></strong> ( <code>inDir, options, callback </code> ) <br>
+        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_128"><code>lib&#x2F;utils.js:128</code></a></span>
+    <p>Mix/merge/munge data into the template.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>inDir</code> <strong>&lt;<code>String</code>&gt;</strong>
+        
+        
+        The starting directory
+            
+        </li>
+    
+        <li>
+        
+            <code>options</code> <strong>&lt;<code>Object</code>&gt;</strong>
+        
+        
+        The <code>options</code> for the meta data.
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+        
+        
+         
+            
+            <ul>
+            
+                <li><code>err</code> <strong>&lt;<code>Error</code>&gt;</strong> 
+            
+                <li><code>options</code> <strong>&lt;<code>Object</code>&gt;</strong> Merged options.
+            
+            </ul>
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+            
+                <a name="method_unindent"></a>
+<div class="method item">
+    <code>String</code> <strong><code>unindent</code></strong> ( <code>content </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
+        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_36"><code>lib&#x2F;utils.js:36</code></a></span>
+    <p>Normalizes the initial indentation of the given <em>content</em> so that the first line
+     is unindented, and all other lines are unindented to the same degree as the
+     first line. So if the first line has four spaces at the beginning, then all
+     lines will be unindented four spaces.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>content</code> <strong>&lt;<code>String</code>&gt;</strong>
+        
+        
+        Text to unindent.
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>String</code>&gt; Unindented text.
+    
+    
+</div>
+
+            
+            </div>
+        
+        
+        
+        
+    </div>
+</div>
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <div class="props item">
-    `{{name}}` &lt;<strong>`{{type}}`</strong>&gt;<br>
-    <span class="foundat">`{{file}}:{{line}}`</span>
-    <p>{{description}}</p>    
+    `{{name}}` &lt;<strong>`{{type}}`</strong>&gt;{{#if final}} <em>(final)</em>{{/if}}<br>
+    <span class="foundat"><a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span>
+    {{{propertyDescription}}}
 </div>

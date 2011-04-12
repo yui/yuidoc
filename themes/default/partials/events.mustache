@@ -1,10 +1,9 @@
-<a name="method_{{name}}"></a>
-<div class="method item">
-    {{#if final}}<code>final</code>{{/if}}{{#if returnType}}`{{returnType}}` {{/if}}<strong>`{{name}}`</strong> ( `{{paramsList}} ` ) {{#if access}}<em>`/* {{access}} method */`</em>{{/if}}<br>
-        <span class="foundat"><a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span>
-    {{{methodDescription}}}
+<div class="events item">
+    `{{name}}` {{#if type}}<strong>&lt;{{type}}&gt;</strong>{{/if}}<br>
+    <span class="foundat"><a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span>
+    {{{eventDescription}}}
     {{#if params}}
-    <strong>Parameters:</strong>
+    <strong>Extra event object properties:</strong>
     <ul>
     {{#params}}
         <li>
@@ -28,9 +27,5 @@
     {{/params}}
     </ul>
     {{/if}}
-    {{#if return}}
-    {{#return}}
-    <br><strong>Returns:</strong> {{#if type}}&lt;`{{type}}`&gt; {{/if}}{{{description}}}
-    {{/return}}
-    {{/if}}
 </div>
+

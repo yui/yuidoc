@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html">YUIDoc</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.1.0</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/yuidoc.html">yuidoc</a>
+                
+                    <ul>
+                        
+                    </ul>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Builder.html">Builder</a></li>
+            
+                <li><a href="../classes/cli.html">cli</a></li>
+            
+                <li><a href="../classes/DocParser.html">DocParser</a></li>
+            
+                <li><a href="../classes/index.html">index</a></li>
+            
+                <li><a href="../classes/utils.html">utils</a></li>
+            
+                <li><a href="../classes/View.html">View</a></li>
+            
+                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
+            
+                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
+            
+                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
+            
+                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
+            
+                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
+            
+                <li><a href="../files/lib_view.js.html">lib/view.js</a></li>
+            
+                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>Builder</h4>
+<span class="foundat">Class definition found: <a href="../files/lib_builder.js.html#LINE_8"><code>lib&#x2F;builder.js:8</code></a></span>
+<div class="intro"><p>Takes the <code>JSON</code> data from the <code>DocParser</code> class, creates and parses markdown and handlebars
+ based templates to generate static HTML content</p></div>
+
+<div id="classdocs">
+    <ul>
+        
+        <li><a href="#methods">Methods</a></li>
+        
+        
+        <li><a href="#props">Properties</a></li>
+        
+        
+        
+    </ul>
+    <div>
+        
+            <div id="methods">
+            
+                <a name="method__inlineCode"></a>
+<div class="method item">
+    <code>HTML</code> <strong><code>_inlineCode</code></strong> ( <code>html </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_203"><code>lib&#x2F;builder.js:203</code></a></span>
+    <p>Ported from <a href="https://github.com/rgrove/selleck">Selleck</a>, this handles <code>&#x60;</code>'s in fields
+         that are not parsed by the <strong>Markdown</strong> parser.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>html</code> <strong>&lt;<code>HTML</code>&gt;</strong>
+        
+        
+        The HTML to parse
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>HTML</code>&gt; The parsed HTML
+    
+    
+</div>
+
+            
+                <a name="method__parseCode"></a>
+<div class="method item">
+    <code>HTML</code> <strong><code>_parseCode</code></strong> ( <code>html </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_192"><code>lib&#x2F;builder.js:192</code></a></span>
+    <p>Parses <code>&lt;pre&gt;&lt;code&gt;</code> tags and adds the <strong>prettyprint</strong> <code>className</code> to them</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>html</code> <strong>&lt;<code>HTML</code>&gt;</strong>
+        
+        
+        The HTML to parse
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>HTML</code>&gt; The parsed HTML
+    
+    
+</div>
+
+            
+                <a name="method_augmentData"></a>
+<div class="method item">
+    <code>Object</code> <strong><code>augmentData</code></strong> ( <code>o </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_114"><code>lib&#x2F;builder.js:114</code></a></span>
+    <p>Augments the <strong>DocParser</strong> meta data to provide default values for certain keys as well as parses all descriptions
+  with the <code>Markdown Parser</code></p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>o</code> <strong>&lt;<code>Object</code>&gt;</strong>
+        
+        
+        The object to recurse and augment
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The augmented object
+    
+    
+</div>
+
+            
+                <a name="method_compile"></a>
+<div class="method item">
+    <code> </code> <strong><code>compile</code></strong> ( <code>cb </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_549"><code>lib&#x2F;builder.js:549</code></a></span>
+    <p>Compiles the templates from the meta-data provided by DocParser</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+        
+        
+        The callback to execute after it's completed
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+            
+                <a name="method_filterFileName"></a>
+<div class="method item">
+    <code>String</code> <strong><code>filterFileName</code></strong> ( <code>f </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_536"><code>lib&#x2F;builder.js:536</code></a></span>
+    <p>Normalizes a file path to a writable filename:</p>
+
+<pre class="code"><code class="prettyprint"> var path = 'lib/file.js';
+ returns 'lib_file.js';
+</code></pre>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>f</code> <strong>&lt;<code>String</code>&gt;</strong>
+        
+        
+        The filename to normalize
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>String</code>&gt; The filtered file path
+    
+    
+</div>
+
+            
+                <a name="method_getProjectMeta"></a>
+<div class="method item">
+    <code>Object</code> <strong><code>getProjectMeta</code></strong> ( <code>  </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_39"><code>lib&#x2F;builder.js:39</code></a></span>
+    <p>Prep the meta data to be fed to Selleck</p>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The project metadata
+    
+    
+</div>
+
+            
+                <a name="method_makeDirs"></a>
+<div class="method item">
+    <code> </code> <strong><code>makeDirs</code></strong> ( <code>cb </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_168"><code>lib&#x2F;builder.js:168</code></a></span>
+    <p>Makes the default directories needed</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+        
+        
+        The callback to execute after it's completed
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+            
+                <a name="method_nameSort"></a>
+<div class="method item">
+    <code>Number</code> <strong><code>nameSort</code></strong> ( <code>a, b </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_470"><code>lib&#x2F;builder.js:470</code></a></span>
+    <p>Sort method of array of objects with a property called <strong>name</strong></p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>a</code> <strong>&lt;<code>Object</code>&gt;</strong>
+        
+        
+        First object to compare
+            
+        </li>
+    
+        <li>
+        
+            <code>b</code> <strong>&lt;<code>Object</code>&gt;</strong>
+        
+        
+        Second object to compare
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>Number</code>&gt; 1, -1 or 0 for sorting.
+    
+    
+</div>
+
+            
+                <a name="method_populateClasses"></a>
+<div class="method item">
+    <code>Object</code> <strong><code>populateClasses</code></strong> ( <code>opts </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_57"><code>lib&#x2F;builder.js:57</code></a></span>
+    <p>Populate the meta data for classes</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>opts</code> <strong>&lt;<code>Object</code>&gt;</strong>
+        
+        
+        The original options
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The modified options
+    
+    
+</div>
+
+            
+                <a name="method_populateFiles"></a>
+<div class="method item">
+    <code>Object</code> <strong><code>populateFiles</code></strong> ( <code>opts </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_93"><code>lib&#x2F;builder.js:93</code></a></span>
+    <p>Populate the meta data for files</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>opts</code> <strong>&lt;<code>Object</code>&gt;</strong>
+        
+        
+        The original options
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The modified options
+    
+    
+</div>
+
+            
+                <a name="method_populateModules"></a>
+<div class="method item">
+    <code>Object</code> <strong><code>populateModules</code></strong> ( <code>opts </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_70"><code>lib&#x2F;builder.js:70</code></a></span>
+    <p>Populate the meta data for modules</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>opts</code> <strong>&lt;<code>Object</code>&gt;</strong>
+        
+        
+        The original options
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The modified options
+    
+    
+</div>
+
+            
+                <a name="method_render"></a>
+<div class="method item">
+    <code> </code> <strong><code>render</code></strong> ( <code>source, view, [layout=null], [partials={}], callback </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_222"><code>lib&#x2F;builder.js:222</code></a></span>
+    <p>Ported from <a href="https://github.com/rgrove/selleck">Selleck</a> 
+         Renders the handlebars templates with the default View class.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>source</code> <strong>&lt;<code>HTML</code>&gt;</strong>
+        
+        
+        The default template to parse
+            
+        </li>
+    
+        <li>
+        
+            <code>view</code> <strong>&lt;<code>Class</code>&gt;</strong>
+        
+        
+        The default view handler
+            
+        </li>
+    
+        <li>
+        
+            <code>[layout=null]</code> <strong>&lt;<code>HTML</code>&gt;</strong>
+        
+        
+        The HTML from the layout to use.
+            
+        </li>
+    
+        <li>
+        
+            <code>[partials={}]</code> <strong>&lt;<code>Object</code>&gt;</strong>
+        
+        
+        List of partials to include in this template
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+        
+        
+         
+            
+            <ul>
+            
+                <li><code>err</code> <strong>&lt;<code>Error</code>&gt;</strong> 
+            
+                <li><code>html</code> <strong>&lt;<code>HTML</code>&gt;</strong> The assembled template markup
+            
+            </ul>
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+            
+                <a name="method_writeClasses"></a>
+<div class="method item">
+    <code> </code> <strong><code>writeClasses</code></strong> ( <code>cb </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_352"><code>lib&#x2F;builder.js:352</code></a></span>
+    <p>Generates the class files under "out"/classes/</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+        
+        
+        The callback to execute after it's completed
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+            
+                <a name="method_writeFiles"></a>
+<div class="method item">
+    <code> </code> <strong><code>writeFiles</code></strong> ( <code>cb </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_490"><code>lib&#x2F;builder.js:490</code></a></span>
+    <p>Generates the syntax files under <code>"out"/files/</code></p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+        
+        
+        The callback to execute after it's completed
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+            
+                <a name="method_writeIndex"></a>
+<div class="method item">
+    <code> </code> <strong><code>writeIndex</code></strong> ( <code>cb </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_272"><code>lib&#x2F;builder.js:272</code></a></span>
+    <p>Generates the index.html file</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+        
+        
+        The callback to execute after it's completed
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+            
+                <a name="method_writeModules"></a>
+<div class="method item">
+    <code> </code> <strong><code>writeModules</code></strong> ( <code>cb </code> ) <br>
+        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_298"><code>lib&#x2F;builder.js:298</code></a></span>
+    <p>Generates the module files under "out"/modules/</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+        
+        
+        The callback to execute after it's completed
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+            
+            </div>
+        
+        
+            <div id="props">
+            
+                <div class="props item">
+    <code>defaultTags</code> &lt;<strong><code>String</code></strong>&gt;<br>
+    <span class="foundat"><a href="../files/lib_builder.js.html#LINE_27"><code>lib&#x2F;builder.js:27</code></a></span>
+    <p>The default tags to use in params descriptions (for Markdown).</p>
+</div>
+
+            
+                <div class="props item">
+    <code>files</code> &lt;<strong><code>Number</code></strong>&gt;<br>
+    <span class="foundat"><a href="../files/lib_builder.js.html#LINE_33"><code>lib&#x2F;builder.js:33</code></a></span>
+    <p>File counter</p>
+</div>
+
+            
+            </div>
+        
+        
+        
+    </div>
+</div>
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

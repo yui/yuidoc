@@ -1,3 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html">YUIDoc</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.1.0</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/yuidoc.html">yuidoc</a>
+                
+                    <ul>
+                        
+                    </ul>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Builder.html">Builder</a></li>
+            
+                <li><a href="../classes/cli.html">cli</a></li>
+            
+                <li><a href="../classes/DocParser.html">DocParser</a></li>
+            
+                <li><a href="../classes/index.html">index</a></li>
+            
+                <li><a href="../classes/utils.html">utils</a></li>
+            
+                <li><a href="../classes/View.html">View</a></li>
+            
+                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
+            
+                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
+            
+                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
+            
+                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
+            
+                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
+            
+                <li><a href="../files/lib_view.js.html">lib/view.js</a></li>
+            
+                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>lib/docparser.js</h4>
+
+<pre class="code prettyprint linenums">
 YUI.add('docparser', function(Y) {
 
     var Lang = Y.Lang,
@@ -5,7 +108,7 @@ YUI.add('docparser', function(Y) {
     stringify = Y.JSON.stringify,
     /**
     * Parses the JSON data and formats it into a nice log string for filename and line number:  
-    `/file/name.js:123`
+    <code>&#x2F;file&#x2F;name.js:123</code>
     * @method stringlog
     * @private
     * @param {Object} data The data block from the parser
@@ -94,11 +197,11 @@ YUI.add('docparser', function(Y) {
         "param", // member param
         "plugin", // this is a plugin for [entityl]
         "preventable", // YUI custom events can be preventable ala DOM events
-        "private", // > access
+        "private", // &gt; access
         "project", // project definition, one per source tree allowed
         "property", // a regular-ole property
-        "protected", // > access
-        "public", // > access
+        "protected", // &gt; access
+        "public", // &gt; access
         "queuable",  // bool, events
         "readonly", // YUI attribute config
         "requires", // YUI module requirements
@@ -204,7 +307,7 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
             }
 
             if (!name) {
-                if (value && value.match(/callback/i)) {
+                if (value &amp;&amp; value.match(/callback/i)) {
                     Y.log('Fixing missing name for callback:' + stringlog(block), 'warn', 'docparser');
                     name = 'callback';
                     type = 'Callback';
@@ -222,14 +325,14 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
             }
 
             // extract [name], optional param
-            if (name.indexOf('[') > -1) {
+            if (name.indexOf('[') &gt; -1) {
                 match = REGEX_OPTIONAL.exec(name);
                 if (match) {
                     optional = true;
                     name = trim(match[1]);
                     // extract optional=defaultvalue
                     parts = name.split('=');
-                    if (parts.length > 1) {
+                    if (parts.length &gt; 1) {
                         name = parts[0];
                         optdefault = parts[1];
                         //Add some shortcuts for object/array defaults
@@ -244,7 +347,7 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
             }
 
             // parse object.prop, indicating a child property for object
-            if (name.indexOf('.') > -1) {
+            if (name.indexOf('.') &gt; -1) {
                 match = name.split('.');
                 parent = trim(match[0]);
 
@@ -373,7 +476,7 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
                 if (parent) {
                     host.module = parent;
                 }
-                if (clazz && this.classes[clazz]) {
+                if (clazz &amp;&amp; this.classes[clazz]) {
                     //console.log('Adding submodule', value , 'to class', clazz, ' it has submodule', this.classes[clazz].submodule);
                     //if (!this.classes[clazz].submodule) {
                         //console.log('REALLY Adding submodule', value , 'to class', clazz);
@@ -489,8 +592,8 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
 
     /**
      * The doc parser accepts a **map** of files to file content.
-     * Once `parse()` is called, various properties will be populated
-     * with the parsers data (aggregated in the `'data'` property).
+     * Once <code>parse()</code> is called, various properties will be populated
+     * with the parsers data (aggregated in the <code>&#x27;data&#x27;</code> property).
      * @class DocParser
      * @extends Base
      * @constructor
@@ -766,7 +869,7 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
                 linefix = /^\s*\*\s?/;
 
 // trim leading space and *, preserve the rest of the white space
-            for (i = 0; i < len; i++) {
+            for (i = 0; i &lt; len; i++) {
                 lines[i] = lines[i].replace(linefix, ' ');
                 //TODO This needs to be fixed. This assumes that a ' ' preceeds all @ tags
                 if (lines[i].substring(1) !== ' ') {
@@ -778,13 +881,13 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
             comment = lines.join('\n');
             parts = comment.split(/ (@\w*)/);
             len = parts.length;
-            for (i = 0; i < len; i++) {
+            for (i = 0; i &lt; len; i++) {
                 value = '';
                 part = parts[i];
                 skip = false;
 
 // the first token may be the description, otherwise it should be a tag
-                if (i === 0 && part.substr(0, 1) !== '@') {
+                if (i === 0 &amp;&amp; part.substr(0, 1) !== '@') {
                     if (part) {
                         tag = '@description';
                         value = part;
@@ -801,7 +904,7 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
                     }
                 }
 
-                if (!skip && tag) {
+                if (!skip &amp;&amp; tag) {
                     results.push({
                         tag: tag.substr(1).toLowerCase(),
                         value: value
@@ -834,14 +937,14 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
                     lines = code.split(REGEX_LINES),
                     len = lines.length, i, linenum;
 
-                for (i = 0; i < len; i++) {
+                for (i = 0; i &lt; len; i++) {
                     line = lines[i];
                     if(REGEX_START_COMMENT.test(line)) {
                         commentlines = [];
 
                         linenum = i + 1;
 
-                        while (i < len && (!REGEX_END_COMMENT.test(line))) {
+                        while (i &lt; len &amp;&amp; (!REGEX_END_COMMENT.test(line))) {
                             commentlines.push(line);
                             i++;
                             line = lines[i];
@@ -883,7 +986,7 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
                     value = trim(tag.value),
                     parent, ret;
 
-                if (tag && tag.tag) {
+                if (tag &amp;&amp; tag.tag) {
 
                     if (!(name in this.knowntags)) {
                         if (name in CORRECTIONS) {
@@ -1012,3 +1115,16 @@ Y.log('unknown tag: ' + name + ',' + stringlog(block), 'warn', 'docparser');
 
 }, '0.1.0', { requires: ['base-base', 'json-stringify'] });
 
+
+</pre>
+
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

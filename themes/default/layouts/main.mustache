@@ -4,14 +4,21 @@
     <meta charset="utf-8">
     <title>{{htmlTitle}}</title>
     <link rel="stylesheet" href="{{yuiGridsUrl}}">
-    <link rel="stylesheet" href="{{projectAssets}}/css/main.css">
     <link rel="stylesheet" href="{{projectAssets}}/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="{{projectAssets}}/css/main.css">
     <script src="{{yuiSeedUrl}}"></script>
 </head>
 <body class="yui3-skin-sam">
 
 <div id="doc">
-    <h1><a href="{{projectRoot}}index.html">{{title}}</a></h1>
+    <div class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="{{projectRoot}}index.html">{{title}}</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: {{projectVersion}}</em>
+        </div>
+    </div>
     <div class="yui3-g">
 
         <div id="sidebar" class="yui3-u">
@@ -25,6 +32,7 @@
 </div>
 <script src="{{projectAssets}}/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
+<script src="{{projectAssets}}/js/yui-prettify.js"></script>
 <script src="{{projectAssets}}/js/tabs.js"></script>
 </body>
 </html>

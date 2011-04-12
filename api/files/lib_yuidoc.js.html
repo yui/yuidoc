@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html">YUIDoc</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.1.0</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/yuidoc.html">yuidoc</a>
+                
+                    <ul>
+                        
+                    </ul>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Builder.html">Builder</a></li>
+            
+                <li><a href="../classes/cli.html">cli</a></li>
+            
+                <li><a href="../classes/DocParser.html">DocParser</a></li>
+            
+                <li><a href="../classes/index.html">index</a></li>
+            
+                <li><a href="../classes/utils.html">utils</a></li>
+            
+                <li><a href="../classes/View.html">View</a></li>
+            
+                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
+            
+                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
+            
+                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
+            
+                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
+            
+                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
+            
+                <li><a href="../files/lib_view.js.html">lib/view.js</a></li>
+            
+                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>lib/yuidoc.js</h4>
+
+<pre class="code prettyprint linenums">
+var fs = require("fs"),
+    sys = require("sys"),
+    path = require("path");
+
+/**
+This is the **module** description for the <code>YUIDoc</code> module.
+
+    var options = {
+        paths: [ './lib' ],
+        outdir: './out'
+    };
+
+    var Y = require('yuidoc');
+    var json = (new Y.YUIDoc(options)).run();
+
+* @main yuidoc
+*/
+
+
+YUI.add('yuidoc', function(Y) {
+
+
+    /**
+     * The default list of configuration options
+     * @property OPTIONS
+     * @type Object
+     * @final
+     * @for YUIDoc
+     */
+
+    var OPTIONS = {
+        writeJSON: true,
+        outdir: path.join(process.cwd(),  'out'),
+        extension: '.js',
+        exclude: '.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp',
+        norecurse: false,
+        version: '0.1.0',
+        paths: []
+    };
+
+    /**
+     * YUIDoc main class
+
+    var options = {
+        paths: [ './lib' ],
+        outdir: './out'
+    };
+
+    var Y = require('yuidoc');
+    var json = (new Y.YUIDoc(options)).run();
+     
+     * @uses DocParser
+     * @class YUIDoc
+     * @module yuidoc
+     * @constructor
+     * @param config The config object
+     */
+    Y.YUIDoc = function(config) {
+        /**
+         * Holds the number of files that we are processing.
+         * @property filecount
+         * @type Boolean
+         * @private
+         */
+        this.filecount = 0;
+        /**
+         * Holder for the list of files we are processing.
+         * @property filemap
+         * @type Object
+         * @private
+         */
+        this.filemap = {};
+        /**
+         * Holder for the list of directories we are processing.
+         * @property dirmap
+         * @type Object
+         * @private
+         */
+        this.dirmap = {};
+
+        /**
+         * Internal holder for configuration options.
+         * @property options
+         * @type Object
+         * @private
+         */
+        this.options = Y.merge(OPTIONS, config);
+
+    };
+
+    Y.YUIDoc.prototype = {
+        /**
+         * Does post process on self.options.
+         * @method _processConfig
+         * @private
+         */
+        _processConfig: function() {
+            this.options.extensions = Y.Array.hash(this.options.extension.split(','));
+            this.options.excludes = Y.Array.hash(this.options.exclude.split(','));
+        },
+        /**
+         * Walks the paths and parses the directory contents
+         * @method walk
+         * @private
+         */
+        walk: function() {
+            Y.each(this.options.paths, function(dir) {
+                this.parsedir(dir);
+            }, this);
+        },
+        /**
+         * Walks the passed directory and grabs all the files recursively.
+         * @method parsedir
+         * @param {String} dir The directory to parse the contents of.
+         * @private
+         */
+        parsedir: function(dir) {
+            var allfiles = fs.readdirSync(dir), stats,
+                files = [], fullpath, self = this;
+
+            Y.each(allfiles, function(filename) {
+                if (!(filename in self.options.excludes)) {
+                    fullpath = path.join(dir, filename);
+
+                    stats = fs.statSync(fullpath);
+
+                    if (stats.isDirectory() &amp;&amp; !self.options.norecurse) {
+                        self.parsedir(fullpath);
+                    } else {
+                        files.push(filename);
+                    }
+                }
+            });
+
+            this.parsefiles(dir, files);
+        },
+        /**
+         * Gathers all the file data and populates the filemap and dirmap hashes.
+         * @method parsefiles
+         * @param {String} dir The directory to start from.
+         * @param {Array} files List of files to parse.
+         * @private
+         */
+        parsefiles: function(dir, files) {
+            var self = this;
+
+            Y.each(files, function(filename) {
+                var ext = path.extname(filename), text, fullpath;
+
+                if (ext) {
+                    if (ext in self.options.extensions) {
+                        fullpath = path.join(dir, filename);
+
+                        if (path.existsSync(fullpath)) {
+                            self.filecount++;
+                            text = fs.readFileSync(fullpath, "utf8");
+
+                            self.filemap[fullpath] = text;
+                            self.dirmap[fullpath] = dir;
+                        } else {
+                            Y.log('File skipped: ' + fullpath, 'warn', 'yuidoc');
+                        }
+                    }
+                }
+            });
+        },
+        /**
+         * Writes the parser JSON data to disk.
+         * @method writeJSON
+         * @param {Object} parser The DocParser instance to use
+         * @private
+         * @return {Object} The JSON data returned from the DocParser
+         */
+        writeJSON: function(parser) {
+            var self = this;
+            if (self.options.writeJSON) {
+                // Y.log(Y.JSON.stringify(parser.data, null, 4));
+                var file = path.join(self.options.outdir, 'data.json'), out;
+                if (!path.existsSync(self.options.outdir)) {
+                    Y.log('Making out dir: ' + self.options.outdir, 'warn', 'yuidoc');
+                    fs.mkdirSync(self.options.outdir, 0777);
+                } else {
+                    Y.log('Using output directory: ' + self.options.outdir, 'info', 'yuidoc');
+                }
+                if (self.options.project) {
+                    parser.data.project = self.options.project;
+                }
+                out = fs.createWriteStream(file, {
+                        flags: "w", encoding: "utf8", mode: 0644
+                });
+                out.write(Y.JSON.stringify(parser.data, null, 4));
+                out.end();
+            }
+
+            return parser.data;
+        },
+        /**
+         * Process the config, walk the file tree and write out the JSON data.
+         * @method run
+         * @return {Object} The JSON data returned from the DocParser
+         */
+        run: function() {
+            /**
+             * Timestamp holder so we know when YUIDoc started the parse process.
+             * @property starttime
+             * @type Timestamp
+             */
+            Y.log('YUIDoc Starting from: ' + this.options.paths.join(','), 'info', 'yuidoc');
+            this.starttime = new Date().getTime();
+
+            var self = this;
+
+            this._processConfig();
+            this.walk();
+
+            var json = this.writeJSON(new Y.DocParser({
+                filemap: self.filemap,
+                dirmap: self.dirmap
+            }).parse());
+
+            /**
+             * Timestamp holder so we know when YUIDoc has finished the parse process.
+             * @property endtime
+             * @type Timestamp
+             */
+            this.endtime = new Date().getTime();
+
+            Y.log('Parsed ' + this.filecount + ' files in ' + ((this.endtime - this.starttime) / 1000) + ' seconds', 'info', 'yuidoc');
+
+            return json;
+        }
+    };
+
+});
+
+</pre>
+
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

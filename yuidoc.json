@@ -4,7 +4,8 @@
     "version": "0.1.0",
     "url": "http://yuilibrary.com/projects/yuidoc",
     "options": {
+        "attributesEmit": "true",
         "paths": [ "./lib" ],
-        "outdir": "./out"
+        "outdir": "./api"
     }
 }

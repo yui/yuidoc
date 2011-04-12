@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html">YUIDoc</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.1.0</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/yuidoc.html">yuidoc</a>
+                
+                    <ul>
+                        
+                    </ul>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Builder.html">Builder</a></li>
+            
+                <li><a href="../classes/cli.html">cli</a></li>
+            
+                <li><a href="../classes/DocParser.html">DocParser</a></li>
+            
+                <li><a href="../classes/index.html">index</a></li>
+            
+                <li><a href="../classes/utils.html">utils</a></li>
+            
+                <li><a href="../classes/View.html">View</a></li>
+            
+                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
+            
+                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
+            
+                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
+            
+                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
+            
+                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
+            
+                <li><a href="../files/lib_view.js.html">lib/view.js</a></li>
+            
+                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>DocParser</h4>
+<span class="foundat">Class definition found: <a href="../files/lib_docparser.js.html#LINE_490"><code>lib&#x2F;docparser.js:490</code></a></span>
+<div class="intro"><p>The doc parser accepts a <strong>map</strong> of files to file content.
+  Once <code>parse()</code> is called, various properties will be populated
+  with the parsers data (aggregated in the <code>'data'</code> property).</p></div>
+
+<div id="classdocs">
+    <ul>
+        
+        <li><a href="#methods">Methods</a></li>
+        
+        
+        <li><a href="#props">Properties</a></li>
+        
+        
+        <li><a href="#attrs">Attributes</a></li>
+        
+        
+    </ul>
+    <div>
+        
+            <div id="methods">
+            
+                <a name="method_extract"></a>
+<div class="method item">
+    <code>Object</code> <strong><code>extract</code></strong> ( <code>filemap </code> ) <br>
+        <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_815"><code>lib&#x2F;docparser.js:815</code></a></span>
+    <p>Accepts a map of filenames to file content.  Returns
+  a map of filenames to an array of API comment block
+  text.  This expects the comment to start with / **
+  on its own line, and end with &amp;/ on its own
+  line.  Override this function to provide an
+  alternative comment parser.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>filemap</code> <strong>&lt;<code>Object</code>&gt;</strong>
+        
+        
+        a map of filenames to file content'
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; a map of filenames to an array of extracted
+    
+    
+</div>
+
+            
+                <a name="method_parse"></a>
+<div class="method item">
+    <code>DocParser</code> <strong><code>parse</code></strong> ( <code>filemap </code> ) <br>
+        <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_996"><code>lib&#x2F;docparser.js:996</code></a></span>
+    <p>Extracts and transforms the filemap provided to constructor</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>filemap</code> <strong>&lt;<code>UNKOWN</code>&gt;</strong>
+        
+        
+        a map of filenames to file content'
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>DocParser</code>&gt; this parser instance.  The total results
+    
+    
+</div>
+
+            
+                <a name="method_processblock"></a>
+<div class="method item">
+    <code> </code> <strong><code>processblock</code></strong> ( <code>an </code> ) <br>
+        <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_867"><code>lib&#x2F;docparser.js:867</code></a></span>
+    <p>Processes all the tags in a single comment block</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>an</code> <strong>&lt;<code>Array</code>&gt;</strong>
+        
+        
+        array of the tag/text pairs
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+            
+                <a name="method_stringlog"></a>
+<div class="method item">
+    <code>String</code> <strong><code>stringlog</code></strong> ( <code>data </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
+        <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_6"><code>lib&#x2F;docparser.js:6</code></a></span>
+    <p>Parses the JSON data and formats it into a nice log string for filename and line number: 
+     <code>/file/name.js:123</code></p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>data</code> <strong>&lt;<code>Object</code>&gt;</strong>
+        
+        
+        The data block from the parser
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>String</code>&gt; The formatted string.
+    
+    
+</div>
+
+            
+                <a name="method_transform"></a>
+<div class="method item">
+    <code>object</code> <strong><code>transform</code></strong> ( <code>commentmap </code> ) <br>
+        <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_930"><code>lib&#x2F;docparser.js:930</code></a></span>
+    <p>Transforms a map of filenames to arrays of comment blocks into a
+  JSON structure that represents the entire processed API doc info
+  and relationships between elements for the entire project.</p>
+    
+    <strong>Parameters:</strong>
+    <ul>
+    
+        <li>
+        
+            <code>commentmap</code> <strong>&lt;<code>object</code>&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><strong>Returns:</strong> &lt;<code>object</code>&gt; the transformed data for the project
+    
+    
+</div>
+
+            
+            </div>
+        
+        
+            <div id="props">
+            
+                <div class="props item">
+    <code>CORRECTIONS</code> &lt;<strong><code>Object</code></strong>&gt; <em>(final)</em><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_120"><code>lib&#x2F;docparser.js:120</code></a></span>
+    <p>Common errors will get scrubbed instead of being ignored.</p>
+</div>
+
+            
+                <div class="props item">
+    <code>DIGESTERS</code> &lt;<strong><code>Object</code></strong>&gt; <em>(final)</em><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_139"><code>lib&#x2F;docparser.js:139</code></a></span>
+    <p>A map of the default tag processors, keyed by the
+  tag name.  Multiple tags can use the same digester
+  by supplying the string name that points to the
+  implementation rather than a function.</p>
+</div>
+
+            
+                <div class="props item">
+    <code>TAGLIST</code> &lt;<strong><code>Array</code></strong>&gt; <em>(final)</em><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_43"><code>lib&#x2F;docparser.js:43</code></a></span>
+    <p>A list of known tags.  This populates a member variable
+  during initialization, and will be updated if additional
+  digesters are added.</p>
+</div>
+
+            
+            </div>
+        
+        
+            <div id="attrs">
+            
+                <div class="attrs item">
+    <code>digesters</code> <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_510"><code>lib&#x2F;docparser.js:510</code></a></span>
+    <p>Digesters process the tag/text pairs found in a
+  comment block.  They are looked up by tag name.
+  The digester gets the tagname, the value, the
+  target object to apply values to, and the full
+  block that is being processed.  Digesters can
+  be declared as strings instead of a function --
+  in that case, the program will try to look up
+  the key listed and use the function there instead
+  (it is an alias).  Digesters can return a host
+  object in the case the tag defines a new key
+  block type (modules/classes/methods/events/properties)</p>
+    
+    <div class="emits">
+        Emits: <strong><code>digestersChange(e)</code></strong>
+        <p>Fires when the value for the configuration attribute <code>digesters</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
+        <strong>Parameters:</strong><br>
+        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
+        <ul>
+            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
+            <li><code>newVal</code> The value the attribute is to be set to</li>
+            <li><code>attrName</code> The name of the attribute being set</li>
+            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
+        </ul>
+    </div>
+    
+</div>
+
+            
+                <div class="attrs item">
+    <code>emitters</code> <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_532"><code>lib&#x2F;docparser.js:532</code></a></span>
+    <p>Emitters will be schemas for the types of payloads
+  the parser will emit.  Not implemented.</p>
+    
+    <div class="emits">
+        Emits: <strong><code>emittersChange(e)</code></strong>
+        <p>Fires when the value for the configuration attribute <code>emitters</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
+        <strong>Parameters:</strong><br>
+        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
+        <ul>
+            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
+            <li><code>newVal</code> The value the attribute is to be set to</li>
+            <li><code>attrName</code> The name of the attribute being set</li>
+            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
+        </ul>
+    </div>
+    
+</div>
+
+            
+                <div class="attrs item">
+    <code>filemap</code> <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_543"><code>lib&#x2F;docparser.js:543</code></a></span>
+    <p>The map of file names to file content.</p>
+    
+    <div class="emits">
+        Emits: <strong><code>filemapChange(e)</code></strong>
+        <p>Fires when the value for the configuration attribute <code>filemap</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
+        <strong>Parameters:</strong><br>
+        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
+        <ul>
+            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
+            <li><code>newVal</code> The value the attribute is to be set to</li>
+            <li><code>attrName</code> The name of the attribute being set</li>
+            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
+        </ul>
+    </div>
+    
+</div>
+
+            
+                <div class="attrs item">
+    <code>dirmap</code> <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_551"><code>lib&#x2F;docparser.js:551</code></a></span>
+    <p>A map of file names to directory name.  Provided in
+  case this needs to be used to reset the module name
+  appropriately -- currently not used</p>
+    
+    <div class="emits">
+        Emits: <strong><code>dirmapChange(e)</code></strong>
+        <p>Fires when the value for the configuration attribute <code>dirmap</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
+        <strong>Parameters:</strong><br>
+        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
+        <ul>
+            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
+            <li><code>newVal</code> The value the attribute is to be set to</li>
+            <li><code>attrName</code> The name of the attribute being set</li>
+            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
+        </ul>
+    </div>
+    
+</div>
+
+            
+                <div class="attrs item">
+    <code>currentfile</code> <strong>&lt;String&gt;</strong><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_561"><code>lib&#x2F;docparser.js:561</code></a></span>
+    <p>The file currently being parsed</p>
+    
+    <div class="emits">
+        Emits: <strong><code>currentfileChange(e)</code></strong>
+        <p>Fires when the value for the configuration attribute <code>currentfile</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
+        <strong>Parameters:</strong><br>
+        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
+        <ul>
+            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
+            <li><code>newVal</code> The value the attribute is to be set to</li>
+            <li><code>attrName</code> The name of the attribute being set</li>
+            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
+        </ul>
+    </div>
+    
+</div>
+
+            
+                <div class="attrs item">
+    <code>mainmodule</code> <strong>&lt;String&gt;</strong><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_582"><code>lib&#x2F;docparser.js:582</code></a></span>
+    <p>The main documentation block for the module itself.</p>
+    
+    <div class="emits">
+        Emits: <strong><code>mainmoduleChange(e)</code></strong>
+        <p>Fires when the value for the configuration attribute <code>mainmodule</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
+        <strong>Parameters:</strong><br>
+        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
+        <ul>
+            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
+            <li><code>newVal</code> The value the attribute is to be set to</li>
+            <li><code>attrName</code> The name of the attribute being set</li>
+            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
+        </ul>
+    </div>
+    
+</div>
+
+            
+                <div class="attrs item">
+    <code>currentmodule</code> <strong>&lt;String&gt;</strong><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_605"><code>lib&#x2F;docparser.js:605</code></a></span>
+    <p>The module currently being parsed</p>
+    
+    <div class="emits">
+        Emits: <strong><code>currentmoduleChange(e)</code></strong>
+        <p>Fires when the value for the configuration attribute <code>currentmodule</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
+        <strong>Parameters:</strong><br>
+        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
+        <ul>
+            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
+            <li><code>newVal</code> The value the attribute is to be set to</li>
+            <li><code>attrName</code> The name of the attribute being set</li>
+            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
+        </ul>
+    </div>
+    
+</div>
+
+            
+                <div class="attrs item">
+    <code>currentsubmodule</code> <strong>&lt;String&gt;</strong><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_632"><code>lib&#x2F;docparser.js:632</code></a></span>
+    <p>The submodule currently being parsed</p>
+    
+    <div class="emits">
+        Emits: <strong><code>currentsubmoduleChange(e)</code></strong>
+        <p>Fires when the value for the configuration attribute <code>currentsubmodule</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
+        <strong>Parameters:</strong><br>
+        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
+        <ul>
+            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
+            <li><code>newVal</code> The value the attribute is to be set to</li>
+            <li><code>attrName</code> The name of the attribute being set</li>
+            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
+        </ul>
+    </div>
+    
+</div>
+
+            
+                <div class="attrs item">
+    <code>currentclass</code> <strong>&lt;String&gt;</strong><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_663"><code>lib&#x2F;docparser.js:663</code></a></span>
+    <p>The class currently being parsed</p>
+    
+    <div class="emits">
+        Emits: <strong><code>currentclassChange(e)</code></strong>
+        <p>Fires when the value for the configuration attribute <code>currentclass</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
+        <strong>Parameters:</strong><br>
+        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
+        <ul>
+            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
+            <li><code>newVal</code> The value the attribute is to be set to</li>
+            <li><code>attrName</code> The name of the attribute being set</li>
+            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
+        </ul>
+    </div>
+    
+</div>
+
+            
+            </div>
+        
+        
+    </div>
+</div>
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

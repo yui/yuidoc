@@ -1,3 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html">YUIDoc</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.1.0</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/yuidoc.html">yuidoc</a>
+                
+                    <ul>
+                        
+                    </ul>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Builder.html">Builder</a></li>
+            
+                <li><a href="../classes/cli.html">cli</a></li>
+            
+                <li><a href="../classes/DocParser.html">DocParser</a></li>
+            
+                <li><a href="../classes/index.html">index</a></li>
+            
+                <li><a href="../classes/utils.html">utils</a></li>
+            
+                <li><a href="../classes/View.html">View</a></li>
+            
+                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
+            
+                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
+            
+                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
+            
+                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
+            
+                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
+            
+                <li><a href="../files/lib_view.js.html">lib/view.js</a></li>
+            
+                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>lib/builder.js</h4>
+
+<pre class="code prettyprint linenums">
 var markdown = require("node-markdown").Markdown,
     fs = require('fs'),
     handlebars = require('./handlebars').Handlebars,
@@ -6,7 +109,7 @@ var markdown = require("node-markdown").Markdown,
     TEMPLATE;
 
 /**
-* Takes the `JSON` data from the `DocParser` class, creates and parses markdown and handlebars
+* Takes the <code>JSON</code> data from the <code>DocParser</code> class, creates and parses markdown and handlebars
 based templates to generate static HTML content
 * @class Builder
 * @module yuidoc
@@ -106,14 +209,14 @@ YUI.add('builder', function(Y) {
         },
         addFoundAt: function(a) {
             var self = this;
-            if (a.file && a.line) {
+            if (a.file &amp;&amp; a.line) {
                 a.foundAt = 'files/' + self.filterFileName(a.file) + '.html#LINE_' + a.line;
             }
             return a;
         },
         /**
         * Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions
-        * with the `Markdown Parser`
+        * with the <code>Markdown Parser</code>
         * @method augmentData
         * @param {Object} o The object to recurse and augment
         * @return {Object} The augmented object
@@ -190,18 +293,18 @@ YUI.add('builder', function(Y) {
             });
         },
         /**
-        * Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them
+        * Parses <code>&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;</code> tags and adds the __prettyprint__ <code>className</code> to them
         * @method _parseCode
         * @private
         * @param {HTML} html The HTML to parse
         * @return {HTML} The parsed HTML
         */
         _parseCode: function (html) {
-            html = html.replace(/<pre><code>/g, '<pre class="code"><code class="prettyprint">');
+            html = html.replace(/&lt;pre&gt;&lt;code&gt;/g, '&lt;pre class="code"&gt;&lt;code class="prettyprint"&gt;');
             return html;
         },
         /**
-        * Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields
+        * Ported from [Selleck](https://github.com/rgrove/selleck), this handles <code>&#x60;</code>'s in fields
         that are not parsed by the **Markdown** parser.
         * @method _inlineCode
         * @private
@@ -209,10 +312,10 @@ YUI.add('builder', function(Y) {
         * @return {HTML} The parsed HTML
         */
         _inlineCode: function(html) {
-            html = html.replace(/\\`/g, '__{{SELLECK_BACKTICK}}__');
+            html = html.replace(/\`/g, '`');
             
-            html = html.replace(/`(.+?)`/g, function (match, code) {
-                return '<code>' + Y.escapeHTML(code) + '</code>';
+            html = html.replace(/<code>(.+?)</code>/g, function (match, code) {
+                return '&lt;code&gt;' + Y.escapeHTML(code) + '&lt;/code&gt;';
             });
 
             html = html.replace(/__\{\{SELLECK_BACKTICK\}\}__/g, '`');
@@ -288,7 +391,7 @@ YUI.add('builder', function(Y) {
                 opts = self.populateModules(opts);
 
                 var view   = new Y.View(opts.meta);
-                self.render('{{>index}}', view, opts.layouts.main, opts.partials, function(err, html) {
+                self.render('{{&gt;index}}', view, opts.layouts.main, opts.partials, function(err, html) {
                     Y.log('Writing index.html', 'info', 'builder');
                     self.files++;
                     Y.Files.writeFile(path.join(self.options.outdir, 'index.html'), html, cb);
@@ -321,14 +424,14 @@ YUI.add('builder', function(Y) {
                     opts = self.populateModules(opts);
                     opts = self.populateFiles(opts);
 
-                    if (v.classes && Object.keys(v.classes).length) {
+                    if (v.classes &amp;&amp; Object.keys(v.classes).length) {
                         opts.meta.moduleClasses = [];
                         Y.each(Object.keys(v.classes), function(name) {
                             var i = self.data.classes[name];
                             opts.meta.moduleClasses.push({ name: i.name, displayName: i.name });
                         });
                     }
-                    if (v.submodules && Object.keys(v.submodules).length) {
+                    if (v.submodules &amp;&amp; Object.keys(v.submodules).length) {
                         opts.meta.subModules = [];
                         Y.each(Object.keys(v.submodules), function(name) {
                             var i = self.data.modules[name];
@@ -337,7 +440,7 @@ YUI.add('builder', function(Y) {
                     }
 
                     var view   = new Y.View(opts.meta);
-                    self.render('{{>module}}', view, opts.layouts.main, opts.partials, stack.add(function(err, html) {
+                    self.render('{{&gt;module}}', view, opts.layouts.main, opts.partials, stack.add(function(err, html) {
                         self.files++;
                         Y.Files.writeFile(path.join(self.options.outdir, 'modules', v.name + '.html'), html, stack.add(noop));
                     }));
@@ -455,7 +558,7 @@ YUI.add('builder', function(Y) {
                     }
 
                     var view   = new Y.View(opts.meta);
-                    self.render('{{>classes}}', view, opts.layouts.main, opts.partials, stack.add(function(err, html) {
+                    self.render('{{&gt;classes}}', view, opts.layouts.main, opts.partials, stack.add(function(err, html) {
                         self.files++;
                         Y.Files.writeFile(path.join(self.options.outdir, 'classes', v.name + '.html'), html, stack.add(noop));
                     }));
@@ -479,16 +582,16 @@ YUI.add('builder', function(Y) {
                 bn = b.name.toLowerCase(),
                 ret = 0;
 
-            if (an < bn) {
+            if (an &lt; bn) {
                 ret = -1;
             }
-            if (an > bn) {
+            if (an &gt; bn) {
                 ret =  1
             }
             return ret;
         },
         /**
-        * Generates the syntax files under `"out"/files/`
+        * Generates the syntax files under <code>&quot;out&quot;&#x2F;files&#x2F;</code>
         * @method writeFiles
         * @param {Callback} cb The callback to execute after it's completed
         */
@@ -519,7 +622,7 @@ YUI.add('builder', function(Y) {
                     Y.Files.readFile(v.name, encoding='utf8', stack.add(Y.rbind(function(err, data, opts, v) {
                         opts.meta.fileData = data;
                         var view   = new Y.View(opts.meta, 'index');
-                        self.render('{{>files}}', view, opts.layouts.main, opts.partials, function(err, html) {
+                        self.render('{{&gt;files}}', view, opts.layouts.main, opts.partials, function(err, html) {
                             self.files++;
                             Y.Files.writeFile(path.join(self.options.outdir, 'files', self.filterFileName(v.name) + '.html'), html, stack.add(noop));
                         });
@@ -576,3 +679,16 @@ YUI.add('builder', function(Y) {
         }
     }
 });
+
+</pre>
+
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>
