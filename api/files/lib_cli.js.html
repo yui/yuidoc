@@ -159,6 +159,9 @@ if (options.configfile) {
     project = Y.Files.getJSON(options.configfile);
 } else {
     project = Y.getProjectData();
+    if (!project) {
+        project = {};
+    }
 }
 
 if (project.options &amp;&amp; Object.keys(project.options).length) {
