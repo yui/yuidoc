@@ -311,6 +311,33 @@ function prepare(inDir, options, callback) {
 
 Y.prepare = prepare;
 
+
+var projectData;
+
+var getProjectData = function(dir) {
+    if (!dir) {
+        dir = process.cwd();
+    }
+    var dirs = fs.readdirSync(dir);
+    dirs.forEach(function(d) {
+        var p = path.join(dir, d);
+        if (projectData) {
+            return;
+        }
+        if (Y.Files.isFile(p)) {
+            if (d === 'yuidoc.json') {
+                projectData = Y.Files.getJSON(p);
+            }
+        }
+        if (!projectData &amp;&amp; Y.Files.isDirectory(p)) {
+            projectData = getProjectData(p);
+        }
+    });
+    return projectData;
+};
+
+Y.getProjectData = getProjectData;
+
 });
 
 </pre>

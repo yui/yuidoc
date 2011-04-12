@@ -114,9 +114,7 @@ var Y = require('yuidocjs'),
     path = require('path');
 
 var args = Y.Array(process.argv, 2),
-    options = {
-        outdir: 'out'
-    };
+    options = {};
 
 while (args.length &gt; 0) {
     var v = args.shift();
@@ -160,15 +158,19 @@ var project = {};
 if (options.configfile) {
     project = Y.Files.getJSON(options.configfile);
 } else {
-    var f = path.join(process.cwd(), 'yuidoc.json');
-    project = Y.Files.getJSON(f);
+    project = Y.getProjectData();
 }
 
 if (project.options &amp;&amp; Object.keys(project.options).length) {
-    options = Y.merge(options, project.options);
+    options = Y.merge(project.options, options);
     delete project.options;
     options.project = project;
 }
+
+if (!options.outdir) {
+    options.outdir = './out';
+}
+console.error(options);
 
 var json = (new Y.YUIDoc(options)).run();
 if (json.project) {
