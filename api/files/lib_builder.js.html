@@ -48,9 +48,9 @@
     <div class="bd">
         <ul>
             
-                <li><a href="../classes/Builder.html">Builder</a></li>
-            
                 <li><a href="../classes/cli.html">cli</a></li>
+            
+                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
             
                 <li><a href="../classes/DocParser.html">DocParser</a></li>
             
@@ -95,11 +95,11 @@ var markdown = require("node-markdown").Markdown,
 /**
 * Takes the <code>JSON</code> data from the <code>DocParser</code> class, creates and parses markdown and handlebars
 based templates to generate static HTML content
-* @class Builder
+* @class DocBuilder
 * @module yuidoc
 */
 
-YUI.add('builder', function(Y) {
+YUI.add('doc-builder', function(Y) {
 
     var print = function(items) {
         var out = '&lt;ul&gt;';
@@ -127,7 +127,7 @@ YUI.add('builder', function(Y) {
 
     var themeDir = path.join(__dirname, '../', 'themes', 'default');
 
-    Y.Builder = function(options, data) {
+    Y.DocBuilder = function(options, data) {
         this.options = options;
         if (options.themeDir) {
             themeDir = options.themeDir;
@@ -185,7 +185,7 @@ YUI.add('builder', function(Y) {
 
     };
 
-    Y.Builder.prototype = {
+    Y.DocBuilder.prototype = {
         NATIVES: {
             'Array': 1,
             'Boolean': 1,

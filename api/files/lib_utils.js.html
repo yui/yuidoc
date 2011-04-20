@@ -48,9 +48,9 @@
     <div class="bd">
         <ul>
             
-                <li><a href="../classes/Builder.html">Builder</a></li>
-            
                 <li><a href="../classes/cli.html">cli</a></li>
+            
+                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
             
                 <li><a href="../classes/DocParser.html">DocParser</a></li>
             
@@ -158,7 +158,7 @@ Y.getLayouts = getLayouts;
 Loads and returns the content of the specified page file.
 
 @method getPage
-@param {String} pagePath Path to a single <code>.mustache</code> page.
+@param {String} pagePath Path to a single <code>.handlebars</code> page.
 @return {String|null} Page content, or <code>null</code> if not found.
 **/
 function getPage(pagePath) {
@@ -168,9 +168,9 @@ function getPage(pagePath) {
 Y.getPage = getPage;
 
 /**
-Loads pages (files with a <code>.mustache</code> extension) in the specified directory and
+Loads pages (files with a <code>.handlebars</code> extension) in the specified directory and
 returns an object containing a mapping of page names (the part of the filename)
-preceding the <code>.mustache</code> extension) to page content.
+preceding the <code>.handlebars</code> extension) to page content.
 
 @method getPages
 @param {String} dir Directory path.
@@ -188,8 +188,8 @@ function getPages(dir) {
     fs.readdirSync(dir).forEach(function (filename) {
         var filePath = path.join(dir, filename);
 
-        if (path.extname(filename) === '.mustache' &amp;&amp; Y.Files.isFile(filePath)) {
-            pages[path.basename(filename, '.mustache')] = fs.readFileSync(filePath, 'utf8');
+        if (path.extname(filename) === '.handlebars' &amp;&amp; Y.Files.isFile(filePath)) {
+            pages[path.basename(filename, '.handlebars')] = fs.readFileSync(filePath, 'utf8');
         }
     });
     cache[dir] = pages;

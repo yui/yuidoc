@@ -10,7 +10,7 @@
             "name": "lib/builder.js",
             "modules": {},
             "classes": {
-                "Builder": 1
+                "DocBuilder": 1
             },
             "fors": {},
             "namespaces": {}
@@ -81,10 +81,10 @@
             "name": "yuidoc",
             "submodules": {},
             "classes": {
-                "Builder": 1,
+                "DocBuilder": 1,
                 "cli": 1,
                 "DocParser": 1,
-                "DocView": 1,
+                    "DocView": 1,
                 "index": 1,
                 "utils": 1,
                 "YUIDoc": 1
@@ -95,15 +95,15 @@
             },
             "namespaces": {},
             "tag": "main",
-            "file": "lib/yuidoc.js",
+            "    file": "lib/yuidoc.js",
             "line": 5,
             "description": "This is the **module** description for the `YUIDoc` module.\n \n     var options = {\n         paths: [ './lib' ],\n         outdir: './out'\n     };\n \n     var Y = require('yuidoc');\n     var json = (new Y.YUIDoc(options)).run();"
         }
     },
     "classes": {
-        "Builder": {
-            "name": "Builder",
-            "shortname": "Builder",
+        "DocBuilder": {
+            "name": "DocBuilder",
+            "shortname": "DocBuilder",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -163,7 +163,7 @@
             "namespace": "",
             "file": "lib/docview.js",
             "line": 10,
-            "description": "View class borrowed from [Selleck](https://github.com/rgrove/selleck)  \n     The view class is a **`mustache`** template helper.",
+            "description": "View class borrowed from [Selleck](https://github.com/rgrove/selleck)  \n     The view class is a **`handlebars`** template helper.",
             "is_constructor": 1,
             "params": [
                 {
@@ -171,8 +171,8 @@
                     "description": "Meta data to use in this template",
                     "type": "Object"
                 },
-                    {
-                        "name": "templateName",
+                {
+                    "name": "templateName",
                     "description": "The name of the template file to render.",
                     "type": "String"
                 }
@@ -237,7 +237,7 @@
             "itemtype": "property",
             "name": "defaultTags",
             "type": "String",
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -247,7 +247,7 @@
             "itemtype": "property",
             "name": "files",
             "type": "Number",
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -260,7 +260,7 @@
                 "description": "The project metadata",
                 "type": "Object"
             },
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -280,7 +280,7 @@
                 "description": "The modified options",
                 "type": "Object"
             },
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -300,7 +300,7 @@
                 "description": "The modified options",
                 "type": "Object"
             },
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -320,7 +320,7 @@
                 "description": "The modified options",
                 "type": "Object"
             },
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -340,7 +340,7 @@
                 "description": "The augmented object",
                 "type": "Object"
             },
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -354,9 +354,9 @@
                     "name": "cb",
                     "description": "The callback to execute after it's completed",
                     "type": "Callback"
-                }
+                    }
             ],
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -378,13 +378,13 @@
                 "description": "The parsed HTML",
                 "type": "HTML"
             },
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
             "file": "lib/builder.js",
             "line": 416,
-                "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n         that are not parsed by the **Markdown** parser.",
+            "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n         that are not parsed by the **Markdown** parser.",
             "itemtype": "method",
             "name": "_inlineCode",
             "access": "private",
@@ -395,12 +395,12 @@
                     "description": "The HTML to parse",
                     "type": "HTML"
                 }
-                ],
+            ],
             "return": {
                 "description": "The parsed HTML",
                 "type": "HTML"
             },
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -422,7 +422,7 @@
                 },
                 {
                     "name": "layout",
-                        "description": "The HTML from the layout to use.",
+                    "description": "The HTML from the layout to use.",
                     "type": "HTML",
                     "optional": true,
                     "optdefault": "null"
@@ -452,7 +452,7 @@
                     ]
                 }
             ],
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -468,7 +468,7 @@
                     "type": "Callback"
                 }
             ],
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -484,7 +484,7 @@
                     "type": "Callback"
                 }
             ],
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -492,7 +492,7 @@
             "line": 618,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
-                "name": "writeClasses",
+            "name": "writeClasses",
             "params": [
                 {
                     "name": "cb",
@@ -500,7 +500,7 @@
                     "type": "Callback"
                 }
             ],
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -525,7 +525,7 @@
                 "description": "1, -1 or 0 for sorting.",
                 "type": "Number"
             },
-                "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -541,7 +541,7 @@
                     "type": "Callback"
                 }
             ],
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -561,7 +561,7 @@
                 "description": "The filtered file path",
                 "type": "String"
             },
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -577,7 +577,7 @@
                     "type": "Callback"
                 }
             ],
-            "class": "Builder",
+            "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
@@ -620,7 +620,7 @@
             "return": {
                 "description": "The formatted string.",
                 "type": "String"
-                },
+            },
             "class": "DocParser",
             "module": "yuidoc"
         },
@@ -877,7 +877,7 @@
             "module": "yuidoc"
         },
         {
-            "file": "lib/utils.js",
+                "file": "lib/utils.js",
             "line": 24,
             "description": "Escapes HTML characters in _html_.",
             "itemtype": "method",
@@ -901,7 +901,7 @@
             "line": 37,
             "description": "Normalizes the initial indentation of the given _content_ so that the first line\n     is unindented, and all other lines are unindented to the same degree as the\n     first line. So if the first line has four spaces at the beginning, then all\n     lines will be unindented four spaces.",
             "itemtype": "method",
-                "name": "unindent",
+            "name": "unindent",
             "params": [
                 {
                     "name": "content",
@@ -947,7 +947,7 @@
             "params": [
                 {
                     "name": "pagePath",
-                    "description": "Path to a single `.mustache` page.",
+                    "description": "Path to a single `.handlebars` page.",
                     "type": "String"
                 }
             ],
@@ -961,7 +961,7 @@
         {
             "file": "lib/utils.js",
             "line": 84,
-            "description": "Loads pages (files with a `.mustache` extension) in the specified directory and\n returns an object containing a mapping of page names (the part of the filename)\n preceding the `.mustache` extension) to page content.",
+            "description": "Loads pages (files with a `.handlebars` extension) in the specified directory and\n returns an object containing a mapping of page names (the part of the filename)\n preceding the `.handlebars` extension) to page content.",
             "itemtype": "method",
             "name": "getPages",
             "params": [
@@ -1038,7 +1038,7 @@
         },
         {
             "file": "lib/utils.js",
-                "line": 214,
+            "line": 214,
             "description": "Walk the directory tree to locate the yuidoc.json file.",
             "itemtype": "method",
             "name": "getProjectData",
@@ -1053,7 +1053,7 @@
             ],
             "class": "utils",
             "module": "yuidoc"
-        },
+            },
         {
             "file": "lib/utils.js",
             "line": 244,
@@ -1080,7 +1080,7 @@
         {
             "file": "lib/yuidoc.js",
             "line": 5,
-                "description": "This is the **module** description for the `YUIDoc` module.\n \n     var options = {\n         paths: [ './lib' ],\n         outdir: './out'\n     };\n \n     var Y = require('yuidoc');\n     var json = (new Y.YUIDoc(options)).run();",
+            "description": "This is the **module** description for the `YUIDoc` module.\n \n     var options = {\n         paths: [ './lib' ],\n         outdir: './out'\n     };\n \n     var Y = require('yuidoc');\n     var json = (new Y.YUIDoc(options)).run();",
             "name": "yuidoc",
             "tag": "main",
             "class": "YUIDoc",
@@ -1189,7 +1189,7 @@
             "file": "lib/yuidoc.js",
             "line": 139,
             "description": "Gathers all the file data and populates the filemap and dirmap hashes.",
-            "itemtype": "method",
+                "itemtype": "method",
             "name": "parsefiles",
             "params": [
                 {

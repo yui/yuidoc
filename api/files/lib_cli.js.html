@@ -48,9 +48,9 @@
     <div class="bd">
         <ul>
             
-                <li><a href="../classes/Builder.html">Builder</a></li>
-            
                 <li><a href="../classes/cli.html">cli</a></li>
+            
+                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
             
                 <li><a href="../classes/DocParser.html">DocParser</a></li>
             
@@ -166,7 +166,7 @@ if (json.project) {
 if (options.title &amp;&amp; !options.name) {
     options.name = options.title;
 }
-var builder = new Y.Builder(options, json);
+var builder = new Y.DocBuilder(options, json);
 builder.compile(function() {
     var endtime = (new Date).getTime();
     Y.log('Completed in ' + ((endtime - starttime) / 1000) + ' seconds' , 'info', 'yuidoc');

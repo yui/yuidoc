@@ -14,8 +14,9 @@
     "main": "./lib/index",
     "bin" : { "yuidoc" : "./lib/cli.js" },
     "dependencies": {
-        "yui3-core": ">=3.3.0",
-        "mustache": "0.3.x"        
+        "yui3-core": "3.3.0",
+        "mustache": "0.3.x",
+        "glob": "2.0.6"
     },
     "licenses":[
         {

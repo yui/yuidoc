@@ -48,9 +48,9 @@
     <div class="bd">
         <ul>
             
-                <li><a href="../classes/Builder.html">Builder</a></li>
-            
                 <li><a href="../classes/cli.html">cli</a></li>
+            
+                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
             
                 <li><a href="../classes/DocParser.html">DocParser</a></li>
             
@@ -114,7 +114,7 @@ var Y = YUI({
         yuidoc: {
             fullpath: path.join(__dirname, 'yuidoc.js')
         },
-        builder: {
+        'doc-builder': {
             fullpath: path.join(__dirname, 'builder.js')
         },
         utils: {
@@ -129,7 +129,7 @@ var Y = YUI({
         get: true,
         loader: true
     }
-}).useSync('docparser', 'yuidoc', 'utils', 'builder', 'docview', 'files');
+}).useSync('docparser', 'yuidoc', 'utils', 'doc-builder', 'docview', 'files');
 
 module.exports = Y;
 

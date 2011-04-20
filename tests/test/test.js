@@ -75,3 +75,26 @@
  * @returns something without a type
  */
 
+    /**
+     * Testing really long param description paring
+     * @method reallyLongParamDesc
+     * @param {Object} config Object with configuration property name/value pairs. The object can be 
+     * used to provide default values for the objects published attributes.
+     *
+     * <p>
+     * The config object can also contain the following non-attribute properties, providing a convenient 
+     * way to configure events listeners and plugins for the instance, as part of the constructor call:
+     * </p>
+     *
+     * <dl>
+     *     <dt>on</dt>
+     *     <dd>An event name to listener function map, to register event listeners for the "on" moment of the event. A constructor convenience property for the <a href="Base.html#method_on">on</a> method.</dd>
+     *     <dt>after</dt>
+     *     <dd>An event name to listener function map, to register event listeners for the "after" moment of the event. A constructor convenience property for the <a href="Base.html#method_after">after</a> method.</dd>
+     *     <dt>bubbleTargets</dt>
+     *     <dd>An object, or array of objects, to register as bubble targets for bubbled events fired by this instance. A constructor convenience property for the <a href="EventTarget.html#method_addTarget">addTarget</a> method.</dd>
+     *     <dt>plugins</dt>
+     *     <dd>A plugin, or array of plugins to be plugged into the instance (see PluginHost's plug method for signature details). A constructor convenience property for the <a href="Plugin.Host.html#method_plug">plug</a> method.</dd>
+     * </dl>
+     *
+    */

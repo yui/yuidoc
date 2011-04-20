@@ -4,6 +4,11 @@
     "version": "0.1.0",
     "url": "http://yuilibrary.com/projects/yuidoc",
     "options": {
+        "external": {
+            "data": "../../local/3.x/api-js/data.json",
+            "merge": "mix"
+        },
+        "linkNatives": "true",
         "attributesEmit": "true",
         "paths": [ "./lib" ],
         "outdir": "./api"

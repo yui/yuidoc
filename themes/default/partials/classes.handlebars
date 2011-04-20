@@ -1,6 +1,22 @@
-<h4>{{moduleName}}</h4>
-<span class="foundat">Class definition found: <a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span>
+<h4>Class {{moduleName}}</h4>
+{{#if uses}}
+    Uses:
+    {{#each uses}}
+        <a href="{{this}}.html">{{this}}</a>
+    {{/each}}
+    <br>
+{{/if}}
+{{#if extends}}
+    Extends: {{#crossLink extends}}{{/crossLink}}<br>
+{{/if}}
+<span class="foundat">Class defined in: <a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span>
 <div class="intro">{{{classDescription}}}</div>
+
+{{#if is_constructor}}
+    {{#is_constructor}}
+    {{>method}}
+    {{/is_constructor}}
+{{/if}}
 
 <div id="classdocs">
     <ul>

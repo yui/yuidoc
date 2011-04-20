@@ -1,5 +1,8 @@
 <div class="attrs item">
-    `{{name}}` {{#if type}}<strong>&lt;{{type}}&gt;</strong>{{/if}}<br>
+    `{{name}}` {{#if type}}<strong>&lt;{{#crossLink type}}{{/crossLink}}&gt;</strong>{{/if}}
+    {{#if extended_from}}<em>`/* Extended from {{extended_from}} */`</em>{{/if}}
+    {{#if overwritten_from}}<em>`/* Overwritten from {{name}} */`</em>{{/if}}
+    <br>
     <span class="foundat"><a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span>
     {{{attrDescription}}}
     {{#if emit}}
