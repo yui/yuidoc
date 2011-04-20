@@ -90,7 +90,7 @@ h4 {
 h5, h6 { font-size: 107.692%; }
 
 /* -- Code and examples ----------------------------------------------------- */
-code, kbd, pre, samp {
+code, kbd, pre, samp, .comment {
     font-family: Menlo, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Consolas', 'Monaco', fixed;
     font-size: 92.308%;
     line-height: 1.35;
@@ -311,10 +311,31 @@ dt { font-weight: bold; }
     border: none;
 }
 
+a.external {
+    background-image: url(external-small.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    padding-left: 16px;
+}
+
 #classdocs .item {
     border-bottom: 1px solid #466899;
     margin: 1em 0;
     padding: 1.5em;
+}
+
+#classdocs .item .params p,
+    #classdocs .item .returns p,{
+    display: inline;
+}
+
+#classdocs .item em code, #classdocs .item em.comment {
+    color: green;
+}
+
+#classdocs .item em.comment a {
+    color: green;
+    text-decoration: underline;
 }
 
 #classdocs .foundat {

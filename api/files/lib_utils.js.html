@@ -22,7 +22,7 @@
     <div class="yui3-g">
 
         <div id="sidebar" class="yui3-u">
-            <div id="classes" class="sidebox">
+            <div id="modules" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Modules</h2>
     </div>
@@ -67,31 +67,14 @@
 </div>
 
 
-<div id="classes" class="sidebox">
+<div id="fileTree" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul>
-            
-                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
-            
-                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
-            
-                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
-            
-                <li><a href="../files/lib_docview.js.html">lib/docview.js</a></li>
-            
-                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
-            
-                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
-            
-                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
-            
-        </ul>
+        <ul><li>lib/<ul><li><a href="../files/lib_builder.js.html">builder.js</a></li><li><a href="../files/lib_cli.js.html">cli.js</a></li><li><a href="../files/lib_docparser.js.html">docparser.js</a></li><li><a href="../files/lib_docview.js.html">docview.js</a></li><li><a href="../files/lib_index.js.html">index.js</a></li><li><a href="../files/lib_utils.js.html">utils.js</a></li><li><a href="../files/lib_yuidoc.js.html">yuidoc.js</a></li></ul></li></ul>
     </div>
 </div>
-
 
 
 
@@ -103,10 +86,11 @@
 <pre class="code prettyprint linenums">
 var path = require('path'),
     util = require('util'),
+    glob = require('glob'),
     fs = require('fs');
 
 /**
-* Utilies Class
+* Utilities Class
 * @class utils
 * @module yuidoc
 */
@@ -313,7 +297,11 @@ Y.prepare = prepare;
 
 
 var projectData;
-
+/**
+* Walk the directory tree to locate the yuidoc.json file.
+* @method getProjectData
+* @param {Path} [dir=process.cwd()] The directory to start from
+*/
 var getProjectData = function(dir) {
     if (!dir) {
         dir = process.cwd();
@@ -337,6 +325,42 @@ var getProjectData = function(dir) {
 };
 
 Y.getProjectData = getProjectData;
+
+
+/**
+* Make sure all the paths passed are directories and that they are not in the ignore list.
+* @method validatePaths
+* @param {Array} paths The array of paths to validate
+* @param {String} [ignore=false] A string to call <code>.indexOf</code> on a path to determine if it should be ignored
+*/
+
+var validatePaths = function(paths, ignore) {
+    if (!paths || !paths.forEach) {
+        paths = glob.globSync(paths, process.cwd());
+    }
+    if (paths.forEach) {
+        paths.forEach(function(p) {
+            if (!Y.Files.isDirectory(p)) {
+                throw('Path not a direactory: ' + p);
+            }
+        });
+    }
+    if (!paths || !paths.forEach) {
+        throw('Paths should be an array of paths');
+    }
+    if (ignore) {
+        var p = [];
+        paths.forEach(function(v) {
+            if (v.indexOf(ignore) === -1) {
+                p.push(v);
+            }
+        });
+        paths = p;
+    }
+    return paths;
+};
+
+Y.validatePaths = validatePaths;
 
 });
 

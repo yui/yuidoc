@@ -22,7 +22,7 @@
     <div class="yui3-g">
 
         <div id="sidebar" class="yui3-u">
-            <div id="classes" class="sidebox">
+            <div id="modules" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Modules</h2>
     </div>
@@ -67,41 +67,28 @@
 </div>
 
 
-<div id="classes" class="sidebox">
+<div id="fileTree" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul>
-            
-                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
-            
-                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
-            
-                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
-            
-                <li><a href="../files/lib_docview.js.html">lib/docview.js</a></li>
-            
-                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
-            
-                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
-            
-                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
-            
-        </ul>
+        <ul><li>lib/<ul><li><a href="../files/lib_builder.js.html">builder.js</a></li><li><a href="../files/lib_cli.js.html">cli.js</a></li><li><a href="../files/lib_docparser.js.html">docparser.js</a></li><li><a href="../files/lib_docview.js.html">docview.js</a></li><li><a href="../files/lib_index.js.html">index.js</a></li><li><a href="../files/lib_utils.js.html">utils.js</a></li><li><a href="../files/lib_yuidoc.js.html">yuidoc.js</a></li></ul></li></ul>
     </div>
 </div>
-
 
 
 
         </div>
 
         <div id="main" class="yui3-u">
-            <div class="content"><h4>Builder</h4>
-<span class="foundat">Class definition found: <a href="../files/lib_builder.js.html#LINE_8"><code>lib&#x2F;builder.js:8</code></a></span>
+            <div class="content"><h4>Class Builder</h4>
+
+
+<span class="foundat">Class defined in: <a href="../files/lib_builder.js.html#LINE_9"><code>lib&#x2F;builder.js:9</code></a></span>
 <div class="intro"><p>Takes the <code>JSON</code> data from the <code>DocParser</code> class, creates and parses markdown and handlebars
  based templates to generate static HTML content</p></div>
+
+
 
 <div id="classdocs">
     <ul>
@@ -119,18 +106,24 @@
             <div id="methods">
             
                 <a name="method__inlineCode"></a>
-<div class="method item">
-    <code>HTML</code> <strong><code>_inlineCode</code></strong> ( <code>html </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_203"><code>lib&#x2F;builder.js:203</code></a></span>
+<div class="method item private">
+    HTML <strong><code>_inlineCode</code></strong> ( <code>html </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_416"><code>lib&#x2F;builder.js:416</code></a>
+    </span>
     <p>Ported from <a href="https://github.com/rgrove/selleck">Selleck</a>, this handles <code>&#x60;</code>'s in fields
          that are not parsed by the <strong>Markdown</strong> parser.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>html</code> <strong>&lt;<code>HTML</code>&gt;</strong>
+            <code>html</code> <strong>&lt;HTML&gt;</strong>
         
         
         The HTML to parse
@@ -141,24 +134,30 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>HTML</code>&gt; The parsed HTML
+    <br><div class="returns"><strong>Returns:</strong> &lt;HTML&gt; The parsed HTML</div>
     
     
 </div>
 
             
                 <a name="method__parseCode"></a>
-<div class="method item">
-    <code>HTML</code> <strong><code>_parseCode</code></strong> ( <code>html </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_192"><code>lib&#x2F;builder.js:192</code></a></span>
+<div class="method item private">
+    HTML <strong><code>_parseCode</code></strong> ( <code>html </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_405"><code>lib&#x2F;builder.js:405</code></a>
+    </span>
     <p>Parses <code>&lt;pre&gt;&lt;code&gt;</code> tags and adds the <strong>prettyprint</strong> <code>className</code> to them</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>html</code> <strong>&lt;<code>HTML</code>&gt;</strong>
+            <code>html</code> <strong>&lt;HTML&gt;</strong>
         
         
         The HTML to parse
@@ -169,7 +168,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>HTML</code>&gt; The parsed HTML
+    <br><div class="returns"><strong>Returns:</strong> &lt;HTML&gt; The parsed HTML</div>
     
     
 </div>
@@ -177,17 +176,23 @@
             
                 <a name="method_augmentData"></a>
 <div class="method item">
-    <code>Object</code> <strong><code>augmentData</code></strong> ( <code>o </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_114"><code>lib&#x2F;builder.js:114</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>augmentData</code></strong> ( <code>o </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_327"><code>lib&#x2F;builder.js:327</code></a>
+    </span>
     <p>Augments the <strong>DocParser</strong> meta data to provide default values for certain keys as well as parses all descriptions
   with the <code>Markdown Parser</code></p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>o</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>o</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
         The object to recurse and augment
@@ -198,7 +203,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The augmented object
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; The augmented object</div>
     
     
 </div>
@@ -206,16 +211,22 @@
             
                 <a name="method_compile"></a>
 <div class="method item">
-    <code> </code> <strong><code>compile</code></strong> ( <code>cb </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_549"><code>lib&#x2F;builder.js:549</code></a></span>
+      <strong><code>compile</code></strong> ( <code>cb </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_863"><code>lib&#x2F;builder.js:863</code></a>
+    </span>
     <p>Compiles the templates from the meta-data provided by DocParser</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+            <code>cb</code> <strong>&lt;Callback&gt;</strong>
         
         
         The callback to execute after it's completed
@@ -230,8 +241,14 @@
             
                 <a name="method_filterFileName"></a>
 <div class="method item">
-    <code>String</code> <strong><code>filterFileName</code></strong> ( <code>f </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_536"><code>lib&#x2F;builder.js:536</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>filterFileName</code></strong> ( <code>f </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_850"><code>lib&#x2F;builder.js:850</code></a>
+    </span>
     <p>Normalizes a file path to a writable filename:</p>
 
 <pre class="code"><code class="prettyprint"> var path = 'lib/file.js';
@@ -239,11 +256,11 @@
 </code></pre>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>f</code> <strong>&lt;<code>String</code>&gt;</strong>
+            <code>f</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
         The filename to normalize
@@ -254,7 +271,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>String</code>&gt; The filtered file path
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; The filtered file path</div>
     
     
 </div>
@@ -262,13 +279,19 @@
             
                 <a name="method_getProjectMeta"></a>
 <div class="method item">
-    <code>Object</code> <strong><code>getProjectMeta</code></strong> ( <code>  </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_39"><code>lib&#x2F;builder.js:39</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>getProjectMeta</code></strong> ( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_218"><code>lib&#x2F;builder.js:218</code></a>
+    </span>
     <p>Prep the meta data to be fed to Selleck</p>
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The project metadata
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; The project metadata</div>
     
     
 </div>
@@ -276,16 +299,22 @@
             
                 <a name="method_makeDirs"></a>
 <div class="method item">
-    <code> </code> <strong><code>makeDirs</code></strong> ( <code>cb </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_168"><code>lib&#x2F;builder.js:168</code></a></span>
+      <strong><code>makeDirs</code></strong> ( <code>cb </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_381"><code>lib&#x2F;builder.js:381</code></a>
+    </span>
     <p>Makes the default directories needed</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+            <code>cb</code> <strong>&lt;Callback&gt;</strong>
         
         
         The callback to execute after it's completed
@@ -300,16 +329,22 @@
             
                 <a name="method_nameSort"></a>
 <div class="method item">
-    <code>Number</code> <strong><code>nameSort</code></strong> ( <code>a, b </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_470"><code>lib&#x2F;builder.js:470</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> <strong><code>nameSort</code></strong> ( <code>a, b </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_781"><code>lib&#x2F;builder.js:781</code></a>
+    </span>
     <p>Sort method of array of objects with a property called <strong>name</strong></p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>a</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>a</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
         First object to compare
@@ -318,7 +353,7 @@
     
         <li>
         
-            <code>b</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>b</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
         Second object to compare
@@ -329,7 +364,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Number</code>&gt; 1, -1 or 0 for sorting.
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a>&gt; 1, -1 or 0 for sorting.</div>
     
     
 </div>
@@ -337,16 +372,22 @@
             
                 <a name="method_populateClasses"></a>
 <div class="method item">
-    <code>Object</code> <strong><code>populateClasses</code></strong> ( <code>opts </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_57"><code>lib&#x2F;builder.js:57</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>populateClasses</code></strong> ( <code>opts </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_236"><code>lib&#x2F;builder.js:236</code></a>
+    </span>
     <p>Populate the meta data for classes</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>opts</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>opts</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
         The original options
@@ -357,7 +398,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The modified options
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; The modified options</div>
     
     
 </div>
@@ -365,16 +406,22 @@
             
                 <a name="method_populateFiles"></a>
 <div class="method item">
-    <code>Object</code> <strong><code>populateFiles</code></strong> ( <code>opts </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_93"><code>lib&#x2F;builder.js:93</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>populateFiles</code></strong> ( <code>opts </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_273"><code>lib&#x2F;builder.js:273</code></a>
+    </span>
     <p>Populate the meta data for files</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>opts</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>opts</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
         The original options
@@ -385,7 +432,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The modified options
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; The modified options</div>
     
     
 </div>
@@ -393,16 +440,22 @@
             
                 <a name="method_populateModules"></a>
 <div class="method item">
-    <code>Object</code> <strong><code>populateModules</code></strong> ( <code>opts </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_70"><code>lib&#x2F;builder.js:70</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>populateModules</code></strong> ( <code>opts </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_250"><code>lib&#x2F;builder.js:250</code></a>
+    </span>
     <p>Populate the meta data for modules</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>opts</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>opts</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
         The original options
@@ -413,7 +466,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The modified options
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; The modified options</div>
     
     
 </div>
@@ -421,17 +474,23 @@
             
                 <a name="method_render"></a>
 <div class="method item">
-    <code> </code> <strong><code>render</code></strong> ( <code>source, view, [layout=null], [partials={}], callback </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_222"><code>lib&#x2F;builder.js:222</code></a></span>
+      <strong><code>render</code></strong> ( <code>source, view, [layout=null], [partials={}], callback </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_435"><code>lib&#x2F;builder.js:435</code></a>
+    </span>
     <p>Ported from <a href="https://github.com/rgrove/selleck">Selleck</a> 
          Renders the handlebars templates with the default View class.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>source</code> <strong>&lt;<code>HTML</code>&gt;</strong>
+            <code>source</code> <strong>&lt;HTML&gt;</strong>
         
         
         The default template to parse
@@ -440,7 +499,7 @@
     
         <li>
         
-            <code>view</code> <strong>&lt;<code>Class</code>&gt;</strong>
+            <code>view</code> <strong>&lt;Class&gt;</strong>
         
         
         The default view handler
@@ -449,7 +508,7 @@
     
         <li>
         
-            <code>[layout=null]</code> <strong>&lt;<code>HTML</code>&gt;</strong>
+            <code>[layout=null]</code> <strong>&lt;HTML&gt;</strong>
         
         
         The HTML from the layout to use.
@@ -458,7 +517,7 @@
     
         <li>
         
-            <code>[partials={}]</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>[partials={}]</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
         List of partials to include in this template
@@ -467,16 +526,16 @@
     
         <li>
         
-            <code>callback</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+            <code>callback</code> <strong>&lt;Callback&gt;</strong>
         
         
          
             
             <ul>
             
-                <li><code>err</code> <strong>&lt;<code>Error</code>&gt;</strong> 
+                <li><code>err</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error" class="crosslink external" target="_blank">Error</a>&gt;</strong> 
             
-                <li><code>html</code> <strong>&lt;<code>HTML</code>&gt;</strong> The assembled template markup
+                <li><code>html</code> <strong>&lt;HTML&gt;</strong> The assembled template markup
             
             </ul>
             
@@ -490,16 +549,22 @@
             
                 <a name="method_writeClasses"></a>
 <div class="method item">
-    <code> </code> <strong><code>writeClasses</code></strong> ( <code>cb </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_352"><code>lib&#x2F;builder.js:352</code></a></span>
+      <strong><code>writeClasses</code></strong> ( <code>cb </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_618"><code>lib&#x2F;builder.js:618</code></a>
+    </span>
     <p>Generates the class files under "out"/classes/</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+            <code>cb</code> <strong>&lt;Callback&gt;</strong>
         
         
         The callback to execute after it's completed
@@ -514,16 +579,22 @@
             
                 <a name="method_writeFiles"></a>
 <div class="method item">
-    <code> </code> <strong><code>writeFiles</code></strong> ( <code>cb </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_490"><code>lib&#x2F;builder.js:490</code></a></span>
+      <strong><code>writeFiles</code></strong> ( <code>cb </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_804"><code>lib&#x2F;builder.js:804</code></a>
+    </span>
     <p>Generates the syntax files under <code>"out"/files/</code></p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+            <code>cb</code> <strong>&lt;Callback&gt;</strong>
         
         
         The callback to execute after it's completed
@@ -538,16 +609,22 @@
             
                 <a name="method_writeIndex"></a>
 <div class="method item">
-    <code> </code> <strong><code>writeIndex</code></strong> ( <code>cb </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_272"><code>lib&#x2F;builder.js:272</code></a></span>
+      <strong><code>writeIndex</code></strong> ( <code>cb </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_485"><code>lib&#x2F;builder.js:485</code></a>
+    </span>
     <p>Generates the index.html file</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+            <code>cb</code> <strong>&lt;Callback&gt;</strong>
         
         
         The callback to execute after it's completed
@@ -562,16 +639,22 @@
             
                 <a name="method_writeModules"></a>
 <div class="method item">
-    <code> </code> <strong><code>writeModules</code></strong> ( <code>cb </code> ) <br>
-        <span class="foundat"><a href="../files/lib_builder.js.html#LINE_298"><code>lib&#x2F;builder.js:298</code></a></span>
+      <strong><code>writeModules</code></strong> ( <code>cb </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_builder.js.html#LINE_511"><code>lib&#x2F;builder.js:511</code></a>
+    </span>
     <p>Generates the module files under "out"/modules/</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>cb</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+            <code>cb</code> <strong>&lt;Callback&gt;</strong>
         
         
         The callback to execute after it's completed
@@ -590,15 +673,15 @@
             <div id="props">
             
                 <div class="props item">
-    <code>defaultTags</code> &lt;<strong><code>String</code></strong>&gt;<br>
-    <span class="foundat"><a href="../files/lib_builder.js.html#LINE_27"><code>lib&#x2F;builder.js:27</code></a></span>
+    <code>defaultTags</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></strong>&gt;<br>
+    <span class="foundat"><a href="../files/lib_builder.js.html#LINE_206"><code>lib&#x2F;builder.js:206</code></a></span>
     <p>The default tags to use in params descriptions (for Markdown).</p>
 </div>
 
             
                 <div class="props item">
-    <code>files</code> &lt;<strong><code>Number</code></strong>&gt;<br>
-    <span class="foundat"><a href="../files/lib_builder.js.html#LINE_33"><code>lib&#x2F;builder.js:33</code></a></span>
+    <code>files</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></strong>&gt;<br>
+    <span class="foundat"><a href="../files/lib_builder.js.html#LINE_212"><code>lib&#x2F;builder.js:212</code></a></span>
     <p>File counter</p>
 </div>
 

@@ -22,7 +22,7 @@
     <div class="yui3-g">
 
         <div id="sidebar" class="yui3-u">
-            <div id="classes" class="sidebox">
+            <div id="modules" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Modules</h2>
     </div>
@@ -67,39 +67,24 @@
 </div>
 
 
-<div id="classes" class="sidebox">
+<div id="fileTree" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul>
-            
-                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
-            
-                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
-            
-                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
-            
-                <li><a href="../files/lib_docview.js.html">lib/docview.js</a></li>
-            
-                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
-            
-                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
-            
-                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
-            
-        </ul>
+        <ul><li>lib/<ul><li><a href="../files/lib_builder.js.html">builder.js</a></li><li><a href="../files/lib_cli.js.html">cli.js</a></li><li><a href="../files/lib_docparser.js.html">docparser.js</a></li><li><a href="../files/lib_docview.js.html">docview.js</a></li><li><a href="../files/lib_index.js.html">index.js</a></li><li><a href="../files/lib_utils.js.html">utils.js</a></li><li><a href="../files/lib_yuidoc.js.html">yuidoc.js</a></li></ul></li></ul>
     </div>
 </div>
-
 
 
 
         </div>
 
         <div id="main" class="yui3-u">
-            <div class="content"><h4>YUIDoc</h4>
-<span class="foundat">Class definition found: <a href="../files/lib_yuidoc.js.html#LINE_41"><code>lib&#x2F;yuidoc.js:41</code></a></span>
+            <div class="content"><h4>Class YUIDoc</h4>
+
+
+<span class="foundat">Class defined in: <a href="../files/lib_yuidoc.js.html#LINE_41"><code>lib&#x2F;yuidoc.js:41</code></a></span>
 <div class="intro"><p>YUIDoc main class</p>
 
 <pre class="code"><code class="prettyprint"> var options = {
@@ -110,6 +95,40 @@
  var Y = require('yuidoc');
  var json = (new Y.YUIDoc(options)).run();
 </code></pre></div>
+
+
+    
+    <a name="method_YUIDoc"></a>
+<div class="method item">
+      <strong><code>YUIDoc</code></strong> ( <code>config </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_yuidoc.js.html#LINE_41"><code>lib&#x2F;yuidoc.js:41</code></a>
+    </span>
+    
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>config</code> <strong>&lt;UNKOWN&gt;</strong>
+        
+        
+        The config object
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+    
+
 
 <div id="classdocs">
     <ul>
@@ -127,9 +146,15 @@
             <div id="methods">
             
                 <a name="method__processConfig"></a>
-<div class="method item">
-    <code> </code> <strong><code>_processConfig</code></strong> ( <code>  </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
-        <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_92"><code>lib&#x2F;yuidoc.js:92</code></a></span>
+<div class="method item private">
+      <strong><code>_processConfig</code></strong> ( <code>  </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_yuidoc.js.html#LINE_91"><code>lib&#x2F;yuidoc.js:91</code></a>
+    </span>
     <p>Does post process on self.options.</p>
     
     
@@ -137,17 +162,23 @@
 
             
                 <a name="method_parsedir"></a>
-<div class="method item">
-    <code> </code> <strong><code>parsedir</code></strong> ( <code>dir </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
-        <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_111"><code>lib&#x2F;yuidoc.js:111</code></a></span>
+<div class="method item private">
+      <strong><code>parsedir</code></strong> ( <code>dir </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_yuidoc.js.html#LINE_110"><code>lib&#x2F;yuidoc.js:110</code></a>
+    </span>
     <p>Walks the passed directory and grabs all the files recursively.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>dir</code> <strong>&lt;<code>String</code>&gt;</strong>
+            <code>dir</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
         The directory to parse the contents of.
@@ -161,17 +192,23 @@
 
             
                 <a name="method_parsefiles"></a>
-<div class="method item">
-    <code> </code> <strong><code>parsefiles</code></strong> ( <code>dir, files </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
-        <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_137"><code>lib&#x2F;yuidoc.js:137</code></a></span>
+<div class="method item private">
+      <strong><code>parsefiles</code></strong> ( <code>dir, files </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_yuidoc.js.html#LINE_139"><code>lib&#x2F;yuidoc.js:139</code></a>
+    </span>
     <p>Gathers all the file data and populates the filemap and dirmap hashes.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>dir</code> <strong>&lt;<code>String</code>&gt;</strong>
+            <code>dir</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
         The directory to start from.
@@ -180,7 +217,7 @@
     
         <li>
         
-            <code>files</code> <strong>&lt;<code>Array</code>&gt;</strong>
+            <code>files</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a>&gt;</strong>
         
         
         List of files to parse.
@@ -195,22 +232,34 @@
             
                 <a name="method_run"></a>
 <div class="method item">
-    <code>Object</code> <strong><code>run</code></strong> ( <code>  </code> ) <br>
-        <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_197"><code>lib&#x2F;yuidoc.js:197</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>run</code></strong> ( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_yuidoc.js.html#LINE_199"><code>lib&#x2F;yuidoc.js:199</code></a>
+    </span>
     <p>Process the config, walk the file tree and write out the JSON data.</p>
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The JSON data returned from the DocParser
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; The JSON data returned from the DocParser</div>
     
     
 </div>
 
             
                 <a name="method_walk"></a>
-<div class="method item">
-    <code> </code> <strong><code>walk</code></strong> ( <code>  </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
-        <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_101"><code>lib&#x2F;yuidoc.js:101</code></a></span>
+<div class="method item private">
+      <strong><code>walk</code></strong> ( <code>  </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_yuidoc.js.html#LINE_100"><code>lib&#x2F;yuidoc.js:100</code></a>
+    </span>
     <p>Walks the paths and parses the directory contents</p>
     
     
@@ -218,17 +267,23 @@
 
             
                 <a name="method_writeJSON"></a>
-<div class="method item">
-    <code>Object</code> <strong><code>writeJSON</code></strong> ( <code>parser </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
-        <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_167"><code>lib&#x2F;yuidoc.js:167</code></a></span>
+<div class="method item private">
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>writeJSON</code></strong> ( <code>parser </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_yuidoc.js.html#LINE_169"><code>lib&#x2F;yuidoc.js:169</code></a>
+    </span>
     <p>Writes the parser JSON data to disk.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>parser</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>parser</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
         The DocParser instance to use
@@ -239,7 +294,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; The JSON data returned from the DocParser
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; The JSON data returned from the DocParser</div>
     
     
 </div>
@@ -251,50 +306,50 @@
             <div id="props">
             
                 <div class="props item">
-    <code>dirmap</code> &lt;<strong><code>Object</code></strong>&gt;<br>
-    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_73"><code>lib&#x2F;yuidoc.js:73</code></a></span>
+    <code>dirmap</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></strong>&gt;<br>
+    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_72"><code>lib&#x2F;yuidoc.js:72</code></a></span>
     <p>Holder for the list of directories we are processing.</p>
 </div>
 
             
                 <div class="props item">
-    <code>endtime</code> &lt;<strong><code>Timestamp</code></strong>&gt;<br>
-    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_221"><code>lib&#x2F;yuidoc.js:221</code></a></span>
+    <code>endtime</code> &lt;<strong>Timestamp</strong>&gt;<br>
+    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_223"><code>lib&#x2F;yuidoc.js:223</code></a></span>
     <p>Timestamp holder so we know when YUIDoc has finished the parse process.</p>
 </div>
 
             
                 <div class="props item">
-    <code>filecount</code> &lt;<strong><code>Boolean</code></strong>&gt;<br>
-    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_59"><code>lib&#x2F;yuidoc.js:59</code></a></span>
+    <code>filecount</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></strong>&gt;<br>
+    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_58"><code>lib&#x2F;yuidoc.js:58</code></a></span>
     <p>Holds the number of files that we are processing.</p>
 </div>
 
             
                 <div class="props item">
-    <code>filemap</code> &lt;<strong><code>Object</code></strong>&gt;<br>
-    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_66"><code>lib&#x2F;yuidoc.js:66</code></a></span>
+    <code>filemap</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></strong>&gt;<br>
+    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_65"><code>lib&#x2F;yuidoc.js:65</code></a></span>
     <p>Holder for the list of files we are processing.</p>
 </div>
 
             
                 <div class="props item">
-    <code>OPTIONS</code> &lt;<strong><code>Object</code></strong>&gt; <em>(final)</em><br>
+    <code>OPTIONS</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></strong>&gt; <em>(final)</em><br>
     <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_23"><code>lib&#x2F;yuidoc.js:23</code></a></span>
     <p>The default list of configuration options</p>
 </div>
 
             
                 <div class="props item">
-    <code>options</code> &lt;<strong><code>Object</code></strong>&gt;<br>
-    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_81"><code>lib&#x2F;yuidoc.js:81</code></a></span>
+    <code>options</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></strong>&gt;<br>
+    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_80"><code>lib&#x2F;yuidoc.js:80</code></a></span>
     <p>Internal holder for configuration options.</p>
 </div>
 
             
                 <div class="props item">
-    <code>starttime</code> &lt;<strong><code>Timestamp</code></strong>&gt;<br>
-    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_203"><code>lib&#x2F;yuidoc.js:203</code></a></span>
+    <code>starttime</code> &lt;<strong>Timestamp</strong>&gt;<br>
+    <span class="foundat"><a href="../files/lib_yuidoc.js.html#LINE_205"><code>lib&#x2F;yuidoc.js:205</code></a></span>
     <p>Timestamp holder so we know when YUIDoc started the parse process.</p>
 </div>
 

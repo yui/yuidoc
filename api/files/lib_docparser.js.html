@@ -22,7 +22,7 @@
     <div class="yui3-g">
 
         <div id="sidebar" class="yui3-u">
-            <div id="classes" class="sidebox">
+            <div id="modules" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Modules</h2>
     </div>
@@ -67,31 +67,14 @@
 </div>
 
 
-<div id="classes" class="sidebox">
+<div id="fileTree" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul>
-            
-                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
-            
-                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
-            
-                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
-            
-                <li><a href="../files/lib_docview.js.html">lib/docview.js</a></li>
-            
-                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
-            
-                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
-            
-                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
-            
-        </ul>
+        <ul><li>lib/<ul><li><a href="../files/lib_builder.js.html">builder.js</a></li><li><a href="../files/lib_cli.js.html">cli.js</a></li><li><a href="../files/lib_docparser.js.html">docparser.js</a></li><li><a href="../files/lib_docview.js.html">docview.js</a></li><li><a href="../files/lib_index.js.html">index.js</a></li><li><a href="../files/lib_utils.js.html">utils.js</a></li><li><a href="../files/lib_yuidoc.js.html">yuidoc.js</a></li></ul></li></ul>
     </div>
 </div>
-
 
 
 
@@ -106,6 +89,19 @@ YUI.add('docparser', function(Y) {
     var Lang = Y.Lang,
     trim = Lang.trim,
     stringify = Y.JSON.stringify,
+    /**
+    * Takes a type string and converts it to a "First letter upper cased" type. e.g. <code>(string -&amp;gt; String, object -&amp;gt; Object)</code>
+    * @method fixType
+    * @private
+    * @param {String} t The type string to convert
+    * @return {String} The fixed string
+    */
+    fixType = function(t) {
+        if (t.substring(0, 1) !== t.substring(0, 1).toUpperCase()) {
+            t = t.substring(0, 1).toUpperCase() + t.substring(1);
+        }
+        return t;
+    },
     /**
     * Parses the JSON data and formats it into a nice log string for filename and line number:  
     <code>&#x2F;file&#x2F;name.js:123</code>
@@ -128,7 +124,26 @@ YUI.add('docparser', function(Y) {
         });
         return ' ' + file + ':' + line;
     },
-
+    /*
+    * Flatted a string, remove all line breaks and replace them with a token
+    * @method implodeString
+    * @private
+    * @param {String} str The string to operate on
+    * @return {String} The modified string
+    */
+    implodeString = function(str) {
+        return str.replace(REGEX_GLOBAL_LINES, '!~YUIDOC_LINE~!')
+    },
+    /*
+    * Un-flatted a string, replace tokens injected with <code>implodeString</code>
+    * @method implodeString
+    * @private
+    * @param {String} str The string to operate on
+    * @return {String} The modified string
+    */
+    explodeString = function(str) {
+        return str.replace(/!~YUIDOC_LINE~!/g, '\n')
+    },
     CURRENT_NAMESPACE = 'currentnamespace',
     CURRENT_MODULE = 'currentmodule',
     MAIN_MODULE = 'mainmodule',
@@ -142,6 +157,14 @@ YUI.add('docparser', function(Y) {
     REGEX_START_COMMENT = /^\s*\/\*\*/,
     REGEX_END_COMMENT = /\*\/\s*$/,
     REGEX_LINES = /\r\n|\n/,
+    REGEX_GLOBAL_LINES = /\r\n|\n/g,
+
+    SHORT_TAGS = {
+        'final': 1,
+        'static': 1,
+        'extends': 1,
+        'beta': 1
+    },
 
     /**
      * A list of known tags.  This populates a member variable
@@ -289,13 +312,13 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
             }
 
             var type, name, optional, optdefault, parent, multiple, len,
-                desc = trim(value),
+                desc = implodeString(trim(value)),
                 match = REGEX_TYPE.exec(desc),
                 host = target.params;
 
             // Extract {type}
             if (match) {
-                type = trim(match[2]);
+                type = fixType(trim(match[2]));
                 desc = trim(match[1] + match[3]);
             }
 
@@ -363,7 +386,7 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
 
             result = {
                 name: name,
-                description: desc
+                description: explodeString(desc)
             };
 
             if (type) {
@@ -394,7 +417,7 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
             var desc = value, type, match = REGEX_TYPE.exec(desc),
                 result = {};
             if (match) {
-                type = trim(match[2]);
+                type = fixType(trim(match[2]));
                 desc = trim(match[1] + match[3]);
             }
 
@@ -554,6 +577,10 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
         // updates the current namespace
         'namespace': function(tagname, value, target, block) {
             this.set(CURRENT_NAMESPACE, value);
+            if (value === '') {
+                //Shortcut this if namespace is an empty string.
+                return;
+            }
             var file = this.get(CURRENT_FILE);
             if (file) {
                 this.files[file].namespaces[value] = 1;
@@ -567,12 +594,41 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
             if (mod) {
                 this.modules[mod].namespaces[value] = 1;
             }
+
+            var mod = this.get(CURRENT_CLASS);
+            if (mod) {
+                if (this.classes[mod]) {
+                    this.classes[mod].namespace = value;
+                    if (mod.indexOf(value + '.') === -1) {
+                        if (mod.indexOf('.') === -1) {
+                            var m = this.classes[mod];
+                            delete this.classes[mod];
+                            var name = m.namespace + '.' + m.name;
+                            m.name = name;
+                            this.classes[name] = m;
+                            this.set(CURRENT_CLASS, name);
+                        } else {
+                            if (mod.indexOf(this.classes[mod].namespace + '.') === -1) {
+                                var m = this.classes[mod];
+                                delete this.classes[mod];
+                                var name = m.namespace + '.' + m.shortname;
+                                m.name = name;
+                                this.classes[name] = m;
+                                this.set(CURRENT_CLASS, name);
+                            }
+                        }
+                    }
+                }
+            }
         },
 
         // updates the current class only (doesn't create
         // a new class definition)
         'for': function(tagname, value, target, block) {
+            value = this._resolveFor(value);
             this.set(CURRENT_CLASS, value);
+            var ns = ((this.classes[value]) ? this.classes[value].namespace : '');
+            this.set(CURRENT_NAMESPACE, ns);
             var file = this.get(CURRENT_FILE);
             if (file) {
                 this.files[file].fors[value] = 1;
@@ -597,7 +653,7 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
      * @class DocParser
      * @extends Base
      * @constructor
-     * @param o the config object
+     * @param {Object} o the config object
      * @module yuidoc
      */
     DocParser = function(o) {
@@ -777,7 +833,7 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
                 val = trim(val);
                 if (!(val in this.classes)) {
                     var ns = this.get(CURRENT_NAMESPACE),
-                        name = (ns) ? ns + '.' + val : val,
+                        name = (ns &amp;&amp; ns !== '') ? ns + '.' + val : val,
                         clazz = this.classes[name] = {
                             name: name,
                             shortname: val,
@@ -799,6 +855,25 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
     };
 
     Y.extend(DocParser, Y.Base, {
+        /**
+        * Takes a non-namespaced classname and resolves it to a namespace (to support <code>@for</code>)
+        * @private
+        * @method _resolveFor
+        * @param {String} value The classname to resolve
+        * @return {String} The resolved namespace + classname
+        */
+        _resolveFor: function(value) {
+            if (value.indexOf('.') === -1) {
+                Y.each(this.classes, function(i) {
+                    if (i.shortname === value) {
+                        if (i.namespace !== '') {
+                            value = i.namespace + '.' + i.shortname;
+                        }
+                    }
+                });
+            }
+            return value;
+        },
 
         initializer: function() {
 
@@ -919,12 +994,13 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
          * Accepts a map of filenames to file content.  Returns
          * a map of filenames to an array of API comment block
          * text.  This expects the comment to start with / **
-         * on its own line, and end with &amp;/ on its own
+         * on its own line, and end with * / on its own
          * line.  Override this function to provide an
          * alternative comment parser.
          * @method extract
-         * @param {Object} filemap a map of filenames to file content'
-         * @return {Object} a map of filenames to an array of extracted
+         * @param {Object} filemap A map of filenames to file content
+         * @param {Array} dirmap A map of file names to directory name
+         * @return {Object} A map of filenames to an array of extracted
          * comment text.
          */
         extract: function(filemap, dirmap) {
@@ -986,6 +1062,11 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
                     value = trim(tag.value),
                     parent, ret;
 
+                //Convert empty values to a 1 for JSON data parsing later
+                if (SHORT_TAGS[name] &amp;&amp; value === '') {
+                    value = 1;
+                }
+
                 if (tag &amp;&amp; tag.tag) {
 
                     if (!(name in this.knowntags)) {
@@ -1035,8 +1116,8 @@ Y.log('unknown tag: ' + name + ',' + stringlog(block), 'warn', 'docparser');
          * JSON structure that represents the entire processed API doc info
          * and relationships between elements for the entire project.
          * @method transform
-         * @param {object} commentmap
-         * @return {object} the transformed data for the project
+         * @param {object} commentmap The hash of files and parsed comment blocks
+         * @return {object} The transformed data for the project
          */
         transform: function(commentmap) {
             var self = this,
@@ -1099,7 +1180,8 @@ Y.log('unknown tag: ' + name + ',' + stringlog(block), 'warn', 'docparser');
         /**
          * Extracts and transforms the filemap provided to constructor
          * @method parse
-         * @param filemap a map of filenames to file content'
+         * @param {Array} filemap A map of filenames to file content
+         * @param {Array} dirmap A map of file names to directory name
          * @return {DocParser} this parser instance.  The total results
          * are available in parser.data.
          */

@@ -22,7 +22,7 @@
     <div class="yui3-g">
 
         <div id="sidebar" class="yui3-u">
-            <div id="classes" class="sidebox">
+            <div id="modules" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Modules</h2>
     </div>
@@ -67,42 +67,63 @@
 </div>
 
 
-<div id="classes" class="sidebox">
+<div id="fileTree" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul>
-            
-                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
-            
-                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
-            
-                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
-            
-                <li><a href="../files/lib_docview.js.html">lib/docview.js</a></li>
-            
-                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
-            
-                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
-            
-                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
-            
-        </ul>
+        <ul><li>lib/<ul><li><a href="../files/lib_builder.js.html">builder.js</a></li><li><a href="../files/lib_cli.js.html">cli.js</a></li><li><a href="../files/lib_docparser.js.html">docparser.js</a></li><li><a href="../files/lib_docview.js.html">docview.js</a></li><li><a href="../files/lib_index.js.html">index.js</a></li><li><a href="../files/lib_utils.js.html">utils.js</a></li><li><a href="../files/lib_yuidoc.js.html">yuidoc.js</a></li></ul></li></ul>
     </div>
 </div>
-
 
 
 
         </div>
 
         <div id="main" class="yui3-u">
-            <div class="content"><h4>DocParser</h4>
-<span class="foundat">Class definition found: <a href="../files/lib_docparser.js.html#LINE_490"><code>lib&#x2F;docparser.js:490</code></a></span>
+            <div class="content"><h4>Class DocParser</h4>
+
+
+    Extends: <a href="/Users/davglass/src/local/3.x/api-js/classes/Base.html" class="crosslink external" target="_blank">Base</a><br>
+
+<span class="foundat">Class defined in: <a href="../files/lib_docparser.js.html#LINE_563"><code>lib&#x2F;docparser.js:563</code></a></span>
 <div class="intro"><p>The doc parser accepts a <strong>map</strong> of files to file content.
   Once <code>parse()</code> is called, various properties will be populated
   with the parsers data (aggregated in the <code>'data'</code> property).</p></div>
+
+
+    
+    <a name="method_DocParser"></a>
+<div class="method item">
+      <strong><code>DocParser</code></strong> ( <code>o </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_docparser.js.html#LINE_563"><code>lib&#x2F;docparser.js:563</code></a>
+    </span>
+    
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>o</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
+        
+        
+        the config object
+            
+        </li>
+    
+    </ul>
+    
+    
+</div>
+
+    
+
 
 <div id="classdocs">
     <ul>
@@ -121,26 +142,27 @@
         
             <div id="methods">
             
-                <a name="method_extract"></a>
-<div class="method item">
-    <code>Object</code> <strong><code>extract</code></strong> ( <code>filemap </code> ) <br>
-        <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_815"><code>lib&#x2F;docparser.js:815</code></a></span>
-    <p>Accepts a map of filenames to file content.  Returns
-  a map of filenames to an array of API comment block
-  text.  This expects the comment to start with / **
-  on its own line, and end with &amp;/ on its own
-  line.  Override this function to provide an
-  alternative comment parser.</p>
+                <a name="method__resolveFor"></a>
+<div class="method item private">
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>_resolveFor</code></strong> ( <code>value </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_docparser.js.html#LINE_772"><code>lib&#x2F;docparser.js:772</code></a>
+    </span>
+    <p>Takes a non-namespaced classname and resolves it to a namespace (to support <code>@for</code>)</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>filemap</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>value</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
-        a map of filenames to file content'
+        The classname to resolve
             
         </li>
     
@@ -148,7 +170,89 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; a map of filenames to an array of extracted
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; The resolved namespace + classname</div>
+    
+    
+</div>
+
+            
+                <a name="method_extract"></a>
+<div class="method item">
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>extract</code></strong> ( <code>filemap, dirmap </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_docparser.js.html#LINE_907"><code>lib&#x2F;docparser.js:907</code></a>
+    </span>
+    <p>Accepts a map of filenames to file content.  Returns
+  a map of filenames to an array of API comment block
+  text.  This expects the comment to start with / **
+  on its own line, and end with * / on its own
+  line.  Override this function to provide an
+  alternative comment parser.</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>filemap</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
+        
+        
+        A map of filenames to file content
+            
+        </li>
+    
+        <li>
+        
+            <code>dirmap</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a>&gt;</strong>
+        
+        
+        A map of file names to directory name
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; A map of filenames to an array of extracted</div>
+    
+    
+</div>
+
+            
+                <a name="method_fixType"></a>
+<div class="method item private">
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>fixType</code></strong> ( <code>t </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_docparser.js.html#LINE_6"><code>lib&#x2F;docparser.js:6</code></a>
+    </span>
+    <p>Takes a type string and converts it to a "First letter upper cased" type. e.g. <code>(string -&gt; String, object -&gt; Object)</code></p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>t</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
+        
+        
+        The type string to convert
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; The fixed string</div>
     
     
 </div>
@@ -156,19 +260,34 @@
             
                 <a name="method_parse"></a>
 <div class="method item">
-    <code>DocParser</code> <strong><code>parse</code></strong> ( <code>filemap </code> ) <br>
-        <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_996"><code>lib&#x2F;docparser.js:996</code></a></span>
+    <a href="../classes/DocParser.html" class="crosslink">DocParser</a> <strong><code>parse</code></strong> ( <code>filemap, dirmap </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_docparser.js.html#LINE_1094"><code>lib&#x2F;docparser.js:1094</code></a>
+    </span>
     <p>Extracts and transforms the filemap provided to constructor</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>filemap</code> <strong>&lt;<code>UNKOWN</code>&gt;</strong>
+            <code>filemap</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a>&gt;</strong>
         
         
-        a map of filenames to file content'
+        A map of filenames to file content
+            
+        </li>
+    
+        <li>
+        
+            <code>dirmap</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a>&gt;</strong>
+        
+        
+        A map of file names to directory name
             
         </li>
     
@@ -176,7 +295,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>DocParser</code>&gt; this parser instance.  The total results
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="../classes/DocParser.html" class="crosslink">DocParser</a>&gt; this parser instance.  The total results</div>
     
     
 </div>
@@ -184,16 +303,22 @@
             
                 <a name="method_processblock"></a>
 <div class="method item">
-    <code> </code> <strong><code>processblock</code></strong> ( <code>an </code> ) <br>
-        <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_867"><code>lib&#x2F;docparser.js:867</code></a></span>
+      <strong><code>processblock</code></strong> ( <code>an </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_docparser.js.html#LINE_960"><code>lib&#x2F;docparser.js:960</code></a>
+    </span>
     <p>Processes all the tags in a single comment block</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>an</code> <strong>&lt;<code>Array</code>&gt;</strong>
+            <code>an</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a>&gt;</strong>
         
         
         array of the tag/text pairs
@@ -207,18 +332,24 @@
 
             
                 <a name="method_stringlog"></a>
-<div class="method item">
-    <code>String</code> <strong><code>stringlog</code></strong> ( <code>data </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
-        <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_6"><code>lib&#x2F;docparser.js:6</code></a></span>
+<div class="method item private">
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>stringlog</code></strong> ( <code>data </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_docparser.js.html#LINE_19"><code>lib&#x2F;docparser.js:19</code></a>
+    </span>
     <p>Parses the JSON data and formats it into a nice log string for filename and line number: 
      <code>/file/name.js:123</code></p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>data</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>data</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
         The data block from the parser
@@ -229,7 +360,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>String</code>&gt; The formatted string.
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; The formatted string.</div>
     
     
 </div>
@@ -237,21 +368,27 @@
             
                 <a name="method_transform"></a>
 <div class="method item">
-    <code>object</code> <strong><code>transform</code></strong> ( <code>commentmap </code> ) <br>
-        <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_930"><code>lib&#x2F;docparser.js:930</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>transform</code></strong> ( <code>commentmap </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_docparser.js.html#LINE_1028"><code>lib&#x2F;docparser.js:1028</code></a>
+    </span>
     <p>Transforms a map of filenames to arrays of comment blocks into a
   JSON structure that represents the entire processed API doc info
   and relationships between elements for the entire project.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>commentmap</code> <strong>&lt;<code>object</code>&gt;</strong>
+            <code>commentmap</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
-         
+        The hash of files and parsed comment blocks
             
         </li>
     
@@ -259,7 +396,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>object</code>&gt; the transformed data for the project
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; The transformed data for the project</div>
     
     
 </div>
@@ -271,15 +408,15 @@
             <div id="props">
             
                 <div class="props item">
-    <code>CORRECTIONS</code> &lt;<strong><code>Object</code></strong>&gt; <em>(final)</em><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_120"><code>lib&#x2F;docparser.js:120</code></a></span>
+    <code>CORRECTIONS</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></strong>&gt; <em>(final)</em><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_160"><code>lib&#x2F;docparser.js:160</code></a></span>
     <p>Common errors will get scrubbed instead of being ignored.</p>
 </div>
 
             
                 <div class="props item">
-    <code>DIGESTERS</code> &lt;<strong><code>Object</code></strong>&gt; <em>(final)</em><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_139"><code>lib&#x2F;docparser.js:139</code></a></span>
+    <code>DIGESTERS</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></strong>&gt; <em>(final)</em><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_179"><code>lib&#x2F;docparser.js:179</code></a></span>
     <p>A map of the default tag processors, keyed by the
   tag name.  Multiple tags can use the same digester
   by supplying the string name that points to the
@@ -288,8 +425,8 @@
 
             
                 <div class="props item">
-    <code>TAGLIST</code> &lt;<strong><code>Array</code></strong>&gt; <em>(final)</em><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_43"><code>lib&#x2F;docparser.js:43</code></a></span>
+    <code>TAGLIST</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a></strong>&gt; <em>(final)</em><br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_83"><code>lib&#x2F;docparser.js:83</code></a></span>
     <p>A list of known tags.  This populates a member variable
   during initialization, and will be updated if additional
   digesters are added.</p>
@@ -302,8 +439,11 @@
             <div id="attrs">
             
                 <div class="attrs item">
-    <code>digesters</code> <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_510"><code>lib&#x2F;docparser.js:510</code></a></span>
+    <code>digesters</code> 
+    
+    
+    <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_583"><code>lib&#x2F;docparser.js:583</code></a></span>
     <p>Digesters process the tag/text pairs found in a
   comment block.  They are looked up by tag name.
   The digester gets the tagname, the value, the
@@ -333,8 +473,11 @@
 
             
                 <div class="attrs item">
-    <code>emitters</code> <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_532"><code>lib&#x2F;docparser.js:532</code></a></span>
+    <code>emitters</code> 
+    
+    
+    <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_605"><code>lib&#x2F;docparser.js:605</code></a></span>
     <p>Emitters will be schemas for the types of payloads
   the parser will emit.  Not implemented.</p>
     
@@ -355,8 +498,11 @@
 
             
                 <div class="attrs item">
-    <code>filemap</code> <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_543"><code>lib&#x2F;docparser.js:543</code></a></span>
+    <code>filemap</code> 
+    
+    
+    <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_616"><code>lib&#x2F;docparser.js:616</code></a></span>
     <p>The map of file names to file content.</p>
     
     <div class="emits">
@@ -376,8 +522,11 @@
 
             
                 <div class="attrs item">
-    <code>dirmap</code> <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_551"><code>lib&#x2F;docparser.js:551</code></a></span>
+    <code>dirmap</code> 
+    
+    
+    <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_624"><code>lib&#x2F;docparser.js:624</code></a></span>
     <p>A map of file names to directory name.  Provided in
   case this needs to be used to reset the module name
   appropriately -- currently not used</p>
@@ -399,8 +548,11 @@
 
             
                 <div class="attrs item">
-    <code>currentfile</code> <strong>&lt;String&gt;</strong><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_561"><code>lib&#x2F;docparser.js:561</code></a></span>
+    <code>currentfile</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
+    
+    
+    <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_634"><code>lib&#x2F;docparser.js:634</code></a></span>
     <p>The file currently being parsed</p>
     
     <div class="emits">
@@ -420,8 +572,11 @@
 
             
                 <div class="attrs item">
-    <code>mainmodule</code> <strong>&lt;String&gt;</strong><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_582"><code>lib&#x2F;docparser.js:582</code></a></span>
+    <code>mainmodule</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
+    
+    
+    <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_655"><code>lib&#x2F;docparser.js:655</code></a></span>
     <p>The main documentation block for the module itself.</p>
     
     <div class="emits">
@@ -441,8 +596,11 @@
 
             
                 <div class="attrs item">
-    <code>currentmodule</code> <strong>&lt;String&gt;</strong><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_605"><code>lib&#x2F;docparser.js:605</code></a></span>
+    <code>currentmodule</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
+    
+    
+    <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_678"><code>lib&#x2F;docparser.js:678</code></a></span>
     <p>The module currently being parsed</p>
     
     <div class="emits">
@@ -462,8 +620,11 @@
 
             
                 <div class="attrs item">
-    <code>currentsubmodule</code> <strong>&lt;String&gt;</strong><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_632"><code>lib&#x2F;docparser.js:632</code></a></span>
+    <code>currentsubmodule</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
+    
+    
+    <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_705"><code>lib&#x2F;docparser.js:705</code></a></span>
     <p>The submodule currently being parsed</p>
     
     <div class="emits">
@@ -483,8 +644,11 @@
 
             
                 <div class="attrs item">
-    <code>currentclass</code> <strong>&lt;String&gt;</strong><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_663"><code>lib&#x2F;docparser.js:663</code></a></span>
+    <code>currentclass</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
+    
+    
+    <br>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_736"><code>lib&#x2F;docparser.js:736</code></a></span>
     <p>The class currently being parsed</p>
     
     <div class="emits">

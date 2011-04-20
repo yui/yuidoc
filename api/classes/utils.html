@@ -22,7 +22,7 @@
     <div class="yui3-g">
 
         <div id="sidebar" class="yui3-u">
-            <div id="classes" class="sidebox">
+            <div id="modules" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Modules</h2>
     </div>
@@ -67,40 +67,27 @@
 </div>
 
 
-<div id="classes" class="sidebox">
+<div id="fileTree" class="sidebox">
     <div class="hd">
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul>
-            
-                <li><a href="../files/lib_builder.js.html">lib/builder.js</a></li>
-            
-                <li><a href="../files/lib_cli.js.html">lib/cli.js</a></li>
-            
-                <li><a href="../files/lib_docparser.js.html">lib/docparser.js</a></li>
-            
-                <li><a href="../files/lib_docview.js.html">lib/docview.js</a></li>
-            
-                <li><a href="../files/lib_index.js.html">lib/index.js</a></li>
-            
-                <li><a href="../files/lib_utils.js.html">lib/utils.js</a></li>
-            
-                <li><a href="../files/lib_yuidoc.js.html">lib/yuidoc.js</a></li>
-            
-        </ul>
+        <ul><li>lib/<ul><li><a href="../files/lib_builder.js.html">builder.js</a></li><li><a href="../files/lib_cli.js.html">cli.js</a></li><li><a href="../files/lib_docparser.js.html">docparser.js</a></li><li><a href="../files/lib_docview.js.html">docview.js</a></li><li><a href="../files/lib_index.js.html">index.js</a></li><li><a href="../files/lib_utils.js.html">utils.js</a></li><li><a href="../files/lib_yuidoc.js.html">yuidoc.js</a></li></ul></li></ul>
     </div>
 </div>
-
 
 
 
         </div>
 
         <div id="main" class="yui3-u">
-            <div class="content"><h4>utils</h4>
-<span class="foundat">Class definition found: <a href="../files/lib_utils.js.html#LINE_5"><code>lib&#x2F;utils.js:5</code></a></span>
-<div class="intro"><p>Utilies Class</p></div>
+            <div class="content"><h4>Class utils</h4>
+
+
+<span class="foundat">Class defined in: <a href="../files/lib_utils.js.html#LINE_6"><code>lib&#x2F;utils.js:6</code></a></span>
+<div class="intro"><p>Utilities Class</p></div>
+
+
 
 <div id="classdocs">
     <ul>
@@ -117,16 +104,22 @@
             
                 <a name="method_escapeHTML"></a>
 <div class="method item">
-    <code>String</code> <strong><code>escapeHTML</code></strong> ( <code>html </code> ) <br>
-        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_23"><code>lib&#x2F;utils.js:23</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>escapeHTML</code></strong> ( <code>html </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_utils.js.html#LINE_24"><code>lib&#x2F;utils.js:24</code></a>
+    </span>
     <p>Escapes HTML characters in <em>html</em>.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>html</code> <strong>&lt;<code>String</code>&gt;</strong>
+            <code>html</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
         String to escape.
@@ -137,7 +130,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>String</code>&gt; Escaped string.
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; Escaped string.</div>
     
     
 </div>
@@ -145,17 +138,23 @@
             
                 <a name="method_getLayouts"></a>
 <div class="method item">
-    <code>Object</code> <strong><code>getLayouts</code></strong> ( <code>dir </code> ) <br>
-        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_57"><code>lib&#x2F;utils.js:57</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>getLayouts</code></strong> ( <code>dir </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_utils.js.html#LINE_58"><code>lib&#x2F;utils.js:58</code></a>
+    </span>
     <p>Like <code>getPages()</code>, but returns only the files under the <code>layout/</code> subdirectory
  of the specified <em>dir</em>.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>dir</code> <strong>&lt;<code>String</code>&gt;</strong>
+            <code>dir</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
         Directory path.
@@ -166,7 +165,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; Mapping of layout names to layout content.
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; Mapping of layout names to layout content.</div>
     
     
 </div>
@@ -174,16 +173,22 @@
             
                 <a name="method_getPage"></a>
 <div class="method item">
-    <code>String|null</code> <strong><code>getPage</code></strong> ( <code>pagePath </code> ) <br>
-        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_70"><code>lib&#x2F;utils.js:70</code></a></span>
+    String|null <strong><code>getPage</code></strong> ( <code>pagePath </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_utils.js.html#LINE_71"><code>lib&#x2F;utils.js:71</code></a>
+    </span>
     <p>Loads and returns the content of the specified page file.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>pagePath</code> <strong>&lt;<code>String</code>&gt;</strong>
+            <code>pagePath</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
         Path to a single <code>.mustache</code> page.
@@ -194,7 +199,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>String|null</code>&gt; Page content, or <code>null</code> if not found.
+    <br><div class="returns"><strong>Returns:</strong> &lt;String|null&gt; Page content, or <code>null</code> if not found.</div>
     
     
 </div>
@@ -202,18 +207,24 @@
             
                 <a name="method_getPages"></a>
 <div class="method item">
-    <code>Object</code> <strong><code>getPages</code></strong> ( <code>dir </code> ) <br>
-        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_83"><code>lib&#x2F;utils.js:83</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>getPages</code></strong> ( <code>dir </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_utils.js.html#LINE_84"><code>lib&#x2F;utils.js:84</code></a>
+    </span>
     <p>Loads pages (files with a <code>.mustache</code> extension) in the specified directory and
  returns an object containing a mapping of page names (the part of the filename)
  preceding the <code>.mustache</code> extension) to page content.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>dir</code> <strong>&lt;<code>String</code>&gt;</strong>
+            <code>dir</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
         Directory path.
@@ -224,7 +235,7 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; Mapping of page names to page content.
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; Mapping of page names to page content.</div>
     
     
 </div>
@@ -232,17 +243,23 @@
             
                 <a name="method_getPartials"></a>
 <div class="method item">
-    <code>Object</code> <strong><code>getPartials</code></strong> ( <code>dir </code> ) <br>
-        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_114"><code>lib&#x2F;utils.js:114</code></a></span>
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>getPartials</code></strong> ( <code>dir </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_utils.js.html#LINE_115"><code>lib&#x2F;utils.js:115</code></a>
+    </span>
     <p>Like <code>getPages()</code>, but returns only the files under the <code>partial/</code> subdirectory
  of the specified <em>dir</em>.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>dir</code> <strong>&lt;<code>String</code>&gt;</strong>
+            <code>dir</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
         Directory path.
@@ -253,7 +270,37 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>Object</code>&gt; Mapping of partial names to partial content.
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; Mapping of partial names to partial content.</div>
+    
+    
+</div>
+
+            
+                <a name="method_getProjectData"></a>
+<div class="method item">
+      <strong><code>getProjectData</code></strong> ( <code>[dir=process.cwd()] </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_utils.js.html#LINE_214"><code>lib&#x2F;utils.js:214</code></a>
+    </span>
+    <p>Walk the directory tree to locate the yuidoc.json file.</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>[dir=process.cwd()]</code> <strong>&lt;Path&gt;</strong>
+        
+        
+        The directory to start from
+            
+        </li>
+    
+    </ul>
     
     
 </div>
@@ -261,16 +308,22 @@
             
                 <a name="method_prepare"></a>
 <div class="method item">
-    <code> </code> <strong><code>prepare</code></strong> ( <code>inDir, options, callback </code> ) <br>
-        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_128"><code>lib&#x2F;utils.js:128</code></a></span>
+      <strong><code>prepare</code></strong> ( <code>inDir, options, callback </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_utils.js.html#LINE_129"><code>lib&#x2F;utils.js:129</code></a>
+    </span>
     <p>Mix/merge/munge data into the template.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>inDir</code> <strong>&lt;<code>String</code>&gt;</strong>
+            <code>inDir</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
         The starting directory
@@ -279,7 +332,7 @@
     
         <li>
         
-            <code>options</code> <strong>&lt;<code>Object</code>&gt;</strong>
+            <code>options</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
         
         
         The <code>options</code> for the meta data.
@@ -288,16 +341,16 @@
     
         <li>
         
-            <code>callback</code> <strong>&lt;<code>Callback</code>&gt;</strong>
+            <code>callback</code> <strong>&lt;Callback&gt;</strong>
         
         
          
             
             <ul>
             
-                <li><code>err</code> <strong>&lt;<code>Error</code>&gt;</strong> 
+                <li><code>err</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error" class="crosslink external" target="_blank">Error</a>&gt;</strong> 
             
-                <li><code>options</code> <strong>&lt;<code>Object</code>&gt;</strong> Merged options.
+                <li><code>options</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong> Merged options.
             
             </ul>
             
@@ -310,20 +363,26 @@
 
             
                 <a name="method_unindent"></a>
-<div class="method item">
-    <code>String</code> <strong><code>unindent</code></strong> ( <code>content </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em><br>
-        <span class="foundat"><a href="../files/lib_utils.js.html#LINE_36"><code>lib&#x2F;utils.js:36</code></a></span>
+<div class="method item private">
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>unindent</code></strong> ( <code>content </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_utils.js.html#LINE_37"><code>lib&#x2F;utils.js:37</code></a>
+    </span>
     <p>Normalizes the initial indentation of the given <em>content</em> so that the first line
      is unindented, and all other lines are unindented to the same degree as the
      first line. So if the first line has four spaces at the beginning, then all
      lines will be unindented four spaces.</p>
     
     <strong>Parameters:</strong>
-    <ul>
+    <ul class="params">
     
         <li>
         
-            <code>content</code> <strong>&lt;<code>String</code>&gt;</strong>
+            <code>content</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
         
         
         Text to unindent.
@@ -334,7 +393,46 @@
     
     
     
-    <br><strong>Returns:</strong> &lt;<code>String</code>&gt; Unindented text.
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; Unindented text.</div>
+    
+    
+</div>
+
+            
+                <a name="method_validatePaths"></a>
+<div class="method item">
+      <strong><code>validatePaths</code></strong> ( <code>paths, [ignore=false] </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_utils.js.html#LINE_244"><code>lib&#x2F;utils.js:244</code></a>
+    </span>
+    <p>Make sure all the paths passed are directories and that they are not in the ignore list.</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>paths</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a>&gt;</strong>
+        
+        
+        The array of paths to validate
+            
+        </li>
+    
+        <li>
+        
+            <code>[ignore=false]</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
+        
+        
+        A string to call <code>.indexOf</code> on a path to determine if it should be ignored
+            
+        </li>
+    
+    </ul>
     
     
 </div>
