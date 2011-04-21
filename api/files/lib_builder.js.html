@@ -138,12 +138,32 @@ YUI.add('doc-builder', function(Y) {
         var self = this;
 
         handlebars.registerHelper('crossLink', function(item, fn) {
-            var base = '../',
-                newWin = false,
-                className = 'crosslink';
+            var str = '';
             if (!item) {
                 item = '';
             }
+            if (item.indexOf('|') &gt; 0) {
+                var parts = item.split('|'),
+                p = [];
+                Y.each(parts, function(i) {
+                    p.push(self._parseCrossLink.call(self, i));
+                });
+                str = p.join('|');
+            } else {
+                str = self._parseCrossLink.call(self, item);
+            }
+            return str;
+        });
+
+    };
+
+    Y.DocBuilder.prototype = {
+        _parseCrossLink: function(item) {
+            var self = this;
+            var base = '../',
+                newWin = false,
+                className = 'crosslink';
+
             item = item.replace('{', '').replace('}', '');
             var link = false;
             if (self.data.classes[item]) {
@@ -181,11 +201,7 @@ YUI.add('doc-builder', function(Y) {
                 item = '&lt;a href="' + href + '" class="' + className + '"' + ((newWin) ? ' target="_blank"' : '') + '&gt;' + item + '&lt;/a&gt;';
             }
             return item;
-        });
-
-    };
-
-    Y.DocBuilder.prototype = {
+        },
         NATIVES: {
             'Array': 1,
             'Boolean': 1,
@@ -427,7 +443,7 @@ YUI.add('doc-builder', function(Y) {
                             return;
                         }
                         if (!a.type) {
-                            a.type = 'UNKOWN';
+                            a.type = 'Object'; //Default type is Object
                         }
                         if (a.final === '') {
                             a.final = true;

@@ -86,7 +86,7 @@
 
     Extends: <a href="/Users/davglass/src/local/3.x/api-js/classes/Base.html" class="crosslink external" target="_blank">Base</a><br>
 
-<span class="foundat">Class defined in: <a href="../files/lib_docparser.js.html#LINE_563"><code>lib&#x2F;docparser.js:563</code></a></span>
+<span class="foundat">Class defined in: <a href="../files/lib_docparser.js.html#LINE_567"><code>lib&#x2F;docparser.js:567</code></a></span>
 <div class="intro"><p>The doc parser accepts a <strong>map</strong> of files to file content.
   Once <code>parse()</code> is called, various properties will be populated
   with the parsers data (aggregated in the <code>'data'</code> property).</p></div>
@@ -101,7 +101,7 @@
     
         
     
-        <a href="../files/lib_docparser.js.html#LINE_563"><code>lib&#x2F;docparser.js:563</code></a>
+        <a href="../files/lib_docparser.js.html#LINE_567"><code>lib&#x2F;docparser.js:567</code></a>
     </span>
     
     
@@ -150,7 +150,7 @@
     
         
     
-        <a href="../files/lib_docparser.js.html#LINE_772"><code>lib&#x2F;docparser.js:772</code></a>
+        <a href="../files/lib_docparser.js.html#LINE_776"><code>lib&#x2F;docparser.js:776</code></a>
     </span>
     <p>Takes a non-namespaced classname and resolves it to a namespace (to support <code>@for</code>)</p>
     
@@ -184,7 +184,7 @@
     
         
     
-        <a href="../files/lib_docparser.js.html#LINE_907"><code>lib&#x2F;docparser.js:907</code></a>
+        <a href="../files/lib_docparser.js.html#LINE_911"><code>lib&#x2F;docparser.js:911</code></a>
     </span>
     <p>Accepts a map of filenames to file content.  Returns
   a map of filenames to an array of API comment block
@@ -266,7 +266,7 @@
     
         
     
-        <a href="../files/lib_docparser.js.html#LINE_1094"><code>lib&#x2F;docparser.js:1094</code></a>
+        <a href="../files/lib_docparser.js.html#LINE_1098"><code>lib&#x2F;docparser.js:1098</code></a>
     </span>
     <p>Extracts and transforms the filemap provided to constructor</p>
     
@@ -309,7 +309,7 @@
     
         
     
-        <a href="../files/lib_docparser.js.html#LINE_960"><code>lib&#x2F;docparser.js:960</code></a>
+        <a href="../files/lib_docparser.js.html#LINE_964"><code>lib&#x2F;docparser.js:964</code></a>
     </span>
     <p>Processes all the tags in a single comment block</p>
     
@@ -374,7 +374,7 @@
     
         
     
-        <a href="../files/lib_docparser.js.html#LINE_1028"><code>lib&#x2F;docparser.js:1028</code></a>
+        <a href="../files/lib_docparser.js.html#LINE_1032"><code>lib&#x2F;docparser.js:1032</code></a>
     </span>
     <p>Transforms a map of filenames to arrays of comment blocks into a
   JSON structure that represents the entire processed API doc info
@@ -443,7 +443,7 @@
     
     
     <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_583"><code>lib&#x2F;docparser.js:583</code></a></span>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_587"><code>lib&#x2F;docparser.js:587</code></a></span>
     <p>Digesters process the tag/text pairs found in a
   comment block.  They are looked up by tag name.
   The digester gets the tagname, the value, the
@@ -457,7 +457,7 @@
   block type (modules/classes/methods/events/properties)</p>
     
     <div class="emits">
-        Emits: <strong><code>digestersChange(e)</code></strong>
+        Fires: <strong><code>digestersChange(e)</code></strong>
         <p>Fires when the value for the configuration attribute <code>digesters</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
         <strong>Parameters:</strong><br>
         <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
@@ -477,12 +477,12 @@
     
     
     <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_605"><code>lib&#x2F;docparser.js:605</code></a></span>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_609"><code>lib&#x2F;docparser.js:609</code></a></span>
     <p>Emitters will be schemas for the types of payloads
   the parser will emit.  Not implemented.</p>
     
     <div class="emits">
-        Emits: <strong><code>emittersChange(e)</code></strong>
+        Fires: <strong><code>emittersChange(e)</code></strong>
         <p>Fires when the value for the configuration attribute <code>emitters</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
         <strong>Parameters:</strong><br>
         <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
@@ -502,11 +502,11 @@
     
     
     <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_616"><code>lib&#x2F;docparser.js:616</code></a></span>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_620"><code>lib&#x2F;docparser.js:620</code></a></span>
     <p>The map of file names to file content.</p>
     
     <div class="emits">
-        Emits: <strong><code>filemapChange(e)</code></strong>
+        Fires: <strong><code>filemapChange(e)</code></strong>
         <p>Fires when the value for the configuration attribute <code>filemap</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
         <strong>Parameters:</strong><br>
         <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
@@ -526,13 +526,13 @@
     
     
     <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_624"><code>lib&#x2F;docparser.js:624</code></a></span>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_628"><code>lib&#x2F;docparser.js:628</code></a></span>
     <p>A map of file names to directory name.  Provided in
   case this needs to be used to reset the module name
   appropriately -- currently not used</p>
     
     <div class="emits">
-        Emits: <strong><code>dirmapChange(e)</code></strong>
+        Fires: <strong><code>dirmapChange(e)</code></strong>
         <p>Fires when the value for the configuration attribute <code>dirmap</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
         <strong>Parameters:</strong><br>
         <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
@@ -552,11 +552,11 @@
     
     
     <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_634"><code>lib&#x2F;docparser.js:634</code></a></span>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_638"><code>lib&#x2F;docparser.js:638</code></a></span>
     <p>The file currently being parsed</p>
     
     <div class="emits">
-        Emits: <strong><code>currentfileChange(e)</code></strong>
+        Fires: <strong><code>currentfileChange(e)</code></strong>
         <p>Fires when the value for the configuration attribute <code>currentfile</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
         <strong>Parameters:</strong><br>
         <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
@@ -576,11 +576,11 @@
     
     
     <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_655"><code>lib&#x2F;docparser.js:655</code></a></span>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_659"><code>lib&#x2F;docparser.js:659</code></a></span>
     <p>The main documentation block for the module itself.</p>
     
     <div class="emits">
-        Emits: <strong><code>mainmoduleChange(e)</code></strong>
+        Fires: <strong><code>mainmoduleChange(e)</code></strong>
         <p>Fires when the value for the configuration attribute <code>mainmodule</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
         <strong>Parameters:</strong><br>
         <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
@@ -600,11 +600,11 @@
     
     
     <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_678"><code>lib&#x2F;docparser.js:678</code></a></span>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_682"><code>lib&#x2F;docparser.js:682</code></a></span>
     <p>The module currently being parsed</p>
     
     <div class="emits">
-        Emits: <strong><code>currentmoduleChange(e)</code></strong>
+        Fires: <strong><code>currentmoduleChange(e)</code></strong>
         <p>Fires when the value for the configuration attribute <code>currentmodule</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
         <strong>Parameters:</strong><br>
         <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
@@ -624,11 +624,11 @@
     
     
     <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_705"><code>lib&#x2F;docparser.js:705</code></a></span>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_709"><code>lib&#x2F;docparser.js:709</code></a></span>
     <p>The submodule currently being parsed</p>
     
     <div class="emits">
-        Emits: <strong><code>currentsubmoduleChange(e)</code></strong>
+        Fires: <strong><code>currentsubmoduleChange(e)</code></strong>
         <p>Fires when the value for the configuration attribute <code>currentsubmodule</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
         <strong>Parameters:</strong><br>
         <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
@@ -648,11 +648,11 @@
     
     
     <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_736"><code>lib&#x2F;docparser.js:736</code></a></span>
+    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_740"><code>lib&#x2F;docparser.js:740</code></a></span>
     <p>The class currently being parsed</p>
     
     <div class="emits">
-        Emits: <strong><code>currentclassChange(e)</code></strong>
+        Fires: <strong><code>currentclassChange(e)</code></strong>
         <p>Fires when the value for the configuration attribute <code>currentclass</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
         <strong>Parameters:</strong><br>
         <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
