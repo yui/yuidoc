@@ -2,11 +2,11 @@
     "name": "yuidocjs",
     "version": "0.1.0",
     "description": "YUI Doc, JavaScript port",
-    "author": "Adam Moore <amoore@gmail.com>",
+    "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "web" : "http://github.com/apm/yuidocjs/issues" },
     "os": ["darwin", "linux"],
     "contributors": [
-        { "name": "Dav Glass", "email": "davglass@gmail.com" }
+        { "name": "Adam Moore", "email": "amoore@gmail.com" }
     ],
     "engines": {
         "node" : ">=0.4.0"
@@ -14,10 +14,12 @@
     "main": "./lib/index",
     "bin" : { "yuidoc" : "./lib/cli.js" },
     "dependencies": {
+        "yui3": "*",
+        "node-markdown": "*",
         "yui3-core": "3.3.0",
-        "mustache": "0.3.x",
         "glob": "2.0.6"
     },
+    "preferGlobal": "true",
     "licenses":[
         {
             "type" : "BSD",
