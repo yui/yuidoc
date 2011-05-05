@@ -148,7 +148,7 @@ YUI.add('doc-builder', function(Y) {
                 Y.each(parts, function(i) {
                     p.push(self._parseCrossLink.call(self, i));
                 });
-                str = p.join('|');
+                str = p.join(' | ');
             } else {
                 str = self._parseCrossLink.call(self, item);
             }
@@ -164,7 +164,8 @@ YUI.add('doc-builder', function(Y) {
                 newWin = false,
                 className = 'crosslink';
 
-            item = item.replace('{', '').replace('}', '');
+
+            item = Y.Lang.trim(item.replace('{', '').replace('}', ''));
             var link = false;
             if (self.data.classes[item]) {
                 link = true;
@@ -187,6 +188,9 @@ YUI.add('doc-builder', function(Y) {
                 link = false;
             }
             var href = path.join(base, 'classes', item + '.html');
+            if (base.match(/^https?:\/\//)) {
+                href = base + path.join('classes', item + '.html');
+            }
             if (!link &amp;&amp; self.options.linkNatives) {
                 if (self.NATIVES &amp;&amp; self.NATIVES[item]) {
                     href = self.NATIVES_LINKER(item);
@@ -283,8 +287,8 @@ YUI.add('doc-builder', function(Y) {
                 Y.log('External config found but no data path defined, skipping import.', 'warn', 'builder');
                 return;
             }
-            info.base = path.dirname(path.resolve(info.data));
             if (info.data.match(/^https?:\/\//)) {
+                info.base = info.data.replace('data.json', '');
                 Y.use('io', function() {
                     Y.io(info.data, {
                         on: {
@@ -298,6 +302,7 @@ YUI.add('doc-builder', function(Y) {
                     });
                 });
             } else {
+                info.base = path.dirname(path.resolve(info.data));
                 Y.log('Local data mixing is not implemented yet', 'error', 'builder');
                 var data = Y.Files.getJSON(info.data);
                 data.base = info.base;
