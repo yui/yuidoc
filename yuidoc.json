@@ -5,8 +5,7 @@
     "url": "http://yuilibrary.com/projects/yuidoc",
     "options": {
         "external": {
-            "data": "../../local/3.x/api-js/data.json",
-            "merge": "mix"
+            "data": "http://yuilibrary.com/~davglass/3apidocs/data.json"
         },
         "linkNatives": "true",
         "attributesEmit": "true",
