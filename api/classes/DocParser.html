@@ -184,7 +184,7 @@
     
         
     
-        <a href="../files/lib_docparser.js.html#LINE_911"><code>lib&#x2F;docparser.js:911</code></a>
+        <a href="../files/lib_docparser.js.html#LINE_934"><code>lib&#x2F;docparser.js:934</code></a>
     </span>
     <p>Accepts a map of filenames to file content.  Returns
   a map of filenames to an array of API comment block
@@ -266,7 +266,7 @@
     
         
     
-        <a href="../files/lib_docparser.js.html#LINE_1098"><code>lib&#x2F;docparser.js:1098</code></a>
+        <a href="../files/lib_docparser.js.html#LINE_1121"><code>lib&#x2F;docparser.js:1121</code></a>
     </span>
     <p>Extracts and transforms the filemap provided to constructor</p>
     
@@ -309,7 +309,7 @@
     
         
     
-        <a href="../files/lib_docparser.js.html#LINE_964"><code>lib&#x2F;docparser.js:964</code></a>
+        <a href="../files/lib_docparser.js.html#LINE_987"><code>lib&#x2F;docparser.js:987</code></a>
     </span>
     <p>Processes all the tags in a single comment block</p>
     
@@ -342,7 +342,7 @@
         <a href="../files/lib_docparser.js.html#LINE_19"><code>lib&#x2F;docparser.js:19</code></a>
     </span>
     <p>Parses the JSON data and formats it into a nice log string for filename and line number: 
-     <code>/file/name.js:123</code></p>
+ <code>/file/name.js:123</code></p>
     
     <strong>Parameters:</strong>
     <ul class="params">
@@ -374,7 +374,7 @@
     
         
     
-        <a href="../files/lib_docparser.js.html#LINE_1032"><code>lib&#x2F;docparser.js:1032</code></a>
+        <a href="../files/lib_docparser.js.html#LINE_1055"><code>lib&#x2F;docparser.js:1055</code></a>
     </span>
     <p>Transforms a map of filenames to arrays of comment blocks into a
   JSON structure that represents the entire processed API doc info
@@ -397,6 +397,43 @@
     
     
     <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; The transformed data for the project</div>
+    
+    
+</div>
+
+            
+                <a name="method_unindent"></a>
+<div class="method item private">
+    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>unindent</code></strong> ( <code>content </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../files/lib_docparser.js.html#LINE_847"><code>lib&#x2F;docparser.js:847</code></a>
+    </span>
+    <p>Normalizes the initial indentation of the given <em>content</em> so that the first line
+ is unindented, and all other lines are unindented to the same degree as the
+ first line. So if the first line has four spaces at the beginning, then all
+ lines will be unindented four spaces. Ported from <a href="https://github.com/rgrove/selleck">Selleck</a></p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>content</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
+        
+        
+        Text to unindent.
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; Unindented text.</div>
     
     
 </div>
