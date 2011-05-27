@@ -7,7 +7,7 @@ Updated yuidoc parser, written in js -- *early work in progress*
 Clone this repo, then:
 
     cd yuidocjs
-    npm install .
+    npm -g install .
 
     yuidoc /path/to/yui3/src/
     yuidoc /path/to/yui2/src/
