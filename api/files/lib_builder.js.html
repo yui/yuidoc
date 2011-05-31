@@ -458,6 +458,9 @@ YUI.add('doc-builder', function(Y) {
                         } else {
                             a.description = markdown(a.description, true, self.defaultTags);
                         }
+                        if (a.example) {
+                            a.example = markdown(a.example, true, self.defaultTags);
+                        }
                         a = self.addFoundAt(a);
 
                         Y.each(a, function(c, d) {
@@ -475,11 +478,11 @@ YUI.add('doc-builder', function(Y) {
                         if (k === 'final') {
                             o[k1][k] = true;
                         }
-                        if (k === 'description') {
+                        if (k === 'description' || k === 'example') {
                             o[k1][k] = markdown(v, true, self.defaultTags);
                         }
                     });
-                } else if (k1 === 'description') {
+                } else if (k1 === 'description' || k1 === 'example') {
                     o[k1] = markdown(i, true, self.defaultTags);
                 }
             });
@@ -817,7 +820,17 @@ YUI.add('doc-builder', function(Y) {
                                     });
                                 }
                                 i.methodDescription = self._parseCode(markdown(i.description));
-                                //i.methodDescription = self._parseCode(i.description);
+                                if (i.example &amp;&amp; i.example.length) {
+                                    if (i.example.forEach) {
+                                        var e = '';
+                                        i.example.forEach(function(v) {
+                                            e += self._parseCode(markdown(v));
+                                        });
+                                        i.example = e;
+                                    } else {
+                                        i.example = self._parseCode(markdown(i.example));
+                                    }
+                                }
                                 i.hasAccessType = i.access;
                                 i.hasParams = i.paramsList.length;
                                 if (i.paramsList.length) {

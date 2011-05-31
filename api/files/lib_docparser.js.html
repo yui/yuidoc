@@ -563,9 +563,24 @@ Y.log('param name/type/descript missing: ' + stringlog(block), 'warn', 'docparse
             if (!Lang.isArray(target[tagname])) {
                 target[tagname] = [];
             }
+            
+            //target[tagname].push(this.unindent(trim(value)));
             target[tagname].push(value);
         },
-        'example': 'todo',
+        'example': function(tagname, value, target, block) {
+            if (!Lang.isArray(target[tagname])) {
+                target[tagname] = [];
+            }
+            
+            var e = value;
+            block.forEach(function(v) {
+                if (v.tag == 'example') {
+                    e = v.value;
+                }
+            });
+            
+            target[tagname].push(e);
+        },
         'author': 'todo',
         'contributor': 'todo',
         'url': 'todo',
