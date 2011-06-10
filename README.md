@@ -55,6 +55,7 @@ YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
 - **param**: Defined as @param {type} name description or @param name {type} description, params can be used with classes, methods and events.
 - **return**: Defined as @return {type} description.
 - **for**:  Used to define an inner class:
+
 	/**
 	 * An inner class
 	 * @class foo
@@ -66,6 +67,7 @@ YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
 	 * @method bar
 	 * @for OuterClass
 	 */
+
 - **type**: For properties, configs and attributes.
 - **private**: Privates by default are suppressed from the API docs. All methods and properties are assumed to be public unless marked as private.
 - **protected**: Used to designate members that should not be modified by implementers unless they are creating a subclass.
@@ -73,7 +75,7 @@ YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
 - **default**: The default value of a property, config or attribute.
 - **uses**: For classes that use YAHOO.lang.augmentProto or YAHOO.lang.augmentObject. Optional method/properties (supplied to augmentProto or augmentObject) are not parsed by YUI Doc.
 
-Example:
+Example:  
 	/**
 	* My method description.  Like other pieces of your comment blocks, 
 	* this can span multiple lines.
