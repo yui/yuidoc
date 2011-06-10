@@ -24,13 +24,17 @@ To log during a build:
 `Y.log("message", "console[method]", "module")`
 
 ## Command Line flags
-- -c, --config, --configfile     Path to your config file, based on ./package.json
-- -e, --extension                File extension(s) to search for, defaults to ".js"
+- -c, --config, --configfile  
+Path to your config file, based on ./package.json
+- -e, --extension  
+File extension(s) to search for, defaults to ".js"
 - -x, --exclude
 - -v, --version
 - -n, --norecurse
-- -o, --outdir                   Directory to output to, defaults to "./out"
-- -t, --themedir                 A custom theme directory
+- -o, --outdir  
+Directory to output to, defaults to "./out"
+- -t, --themedir  
+A custom theme directory
 
 ## Commenting Markup Guide
 YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
