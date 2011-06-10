@@ -59,9 +59,9 @@ YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
 Used to define an inner class:
 
 	/**  
-	 \* An inner class  
-	 \* @class foo  
-	 \* @for OuterClass  
+	 * An inner class  
+	 * @class foo  
+	 * @for OuterClass  
 	 */
 	
 After the class is done, you need to inform the parser to start working on the outer class again:
