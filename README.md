@@ -54,7 +54,9 @@ YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
 - **final**: For constants and for read-only configs and attributes.
 - **param**: Defined as @param {type} name description or @param name {type} description, params can be used with classes, methods and events.
 - **return**: Defined as @return {type} description.
-- **for**:  Used to define an inner class:
+- **for**:  
+
+Used to define an inner class:
 
 	/**  
 	 \* An inner class  
