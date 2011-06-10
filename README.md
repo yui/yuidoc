@@ -56,7 +56,7 @@ YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
 - **return**: Defined as @return {type} description.
 - **for**:  Used to define an inner class:
 
-	/**
+	/**  
 	 \* An inner class  
 	 \* @class foo  
 	 \* @for OuterClass  
