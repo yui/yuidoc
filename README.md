@@ -57,16 +57,18 @@ YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
 - **for**:  Used to define an inner class:
 
 	/**
-	 \* An inner class
-	 \* @class foo
-	 \* @for OuterClass
-	 \*/
-	After the class is done, you need to inform the parser to start working on the outer class again:
-	/**
-	 \* Another method for the outer class
-	 \* @method bar
-	 \* @for OuterClass
-	 \*/
+	 * An inner class  
+	 * @class foo  
+	 * @for OuterClass  
+	 */
+	
+After the class is done, you need to inform the parser to start working on the outer class again:
+
+	/**  
+	 * Another method for the outer class  
+	 * @method bar  
+	 * @for OuterClass  
+	 */
 
 - **type**: For properties, configs and attributes.
 - **private**: Privates by default are suppressed from the API docs. All methods and properties are assumed to be public unless marked as private.
@@ -78,10 +80,10 @@ YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
 Example:  
 
 	/**
-	 \* My method description.  Like other pieces of your comment blocks, 
-	 \* this can span multiple lines.
-	 \* @method methodName
-	 \*/
+	 * My method description.  Like other pieces of your comment blocks, 
+	 * this can span multiple lines.
+	 * @method methodName
+	 */
 
 ## Dav's Thoughts:
 
