@@ -5,15 +5,15 @@
     <title>{{htmlTitle}}</title>
     <link rel="stylesheet" href="{{yuiGridsUrl}}">
     <link rel="stylesheet" href="{{projectAssets}}/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="{{projectAssets}}/css/main.css">
+    <link rel="stylesheet" href="{{projectAssets}}/css/main.css" id="site_styles">
     <script src="{{yuiSeedUrl}}"></script>
 </head>
 <body class="yui3-skin-sam">
 
 <div id="doc">
-    <div class="yui3-g header">
+    <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
-            <h1><a href="{{projectRoot}}index.html">{{title}}</a></h1>
+            <h1><a href="{{projectRoot}}index.html"><img src="{{projectAssets}}/css/logo.png">{{title}}</a></h1>
         </div>
         <div class="yui3-u-1-4 version">
             <em>API Docs for: {{projectVersion}}</em>
