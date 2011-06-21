@@ -29,6 +29,14 @@
             <ul>
             {{#props}}
                 <li>`{{name}}` <strong>&lt;{{#crossLink type}}{{/crossLink}}&gt;</strong> {{{description}}}
+                {{#if props}}
+                    <ul>
+                        {{#props}}
+                            <li>`{{name}}` <strong>&lt;{{#crossLink type}}{{/crossLink}}&gt;</strong> {{{description}}} </li>
+                        {{/props}}
+                    </ul>
+                {{/if}}
+                </li>
             {{/props}}
             </ul>
             {{/if}}
