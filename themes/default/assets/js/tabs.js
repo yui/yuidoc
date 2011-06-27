@@ -1,7 +1,7 @@
-YUI().use('tabview', function(Y) {
-    var classdocs         = Y.one('#classdocs'),
-		tabviewIndexTable = { },
-		currentTab        = null;
+YUI({
+    insertBefore: 'site_styles'
+}).use('tabview', function(Y) {
+    var classdocs = Y.one('#classdocs');
     if (classdocs) {
         if (classdocs.all('li').size()) {
             var tabview = new Y.TabView({ srcNode: classdocs });

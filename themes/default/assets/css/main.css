@@ -56,49 +56,46 @@ dd p:first-child, td p:first-child { margin-top: 0; }
 
 /* -- Headings -------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 {
+    color: #D98527;/*was #f80*/
+    font-family: 'Trebuchet MS', sans-serif;
     font-weight: bold;
     line-height: 1.1;
-    margin: 1.5em 0 1em;
+    margin: 1.1em 0 0.5em;
 }
 
-h2, h3, h4, h5, h6 { color: #f80; }
-
 h1 {
-    font-family: Verdana, 'DejaVu Sans', 'Bitstream Vera Sans', Helvetica, sans-serif;
-    font-size: 261.538%; /* 34px */
-    margin: 25px 0 18px 25px;
-    -moz-text-shadow: 1px 1px 2px #999;
-    -webkit-text-shadow: 1px 1px 2px #999;
-    text-shadow: 1px 1px 2px #999;
+    font-size: 184.6%;
+    color: #30418C;
+    margin: 0.75em 0 0.5em;
 }
 
 h2 {
     font-size: 153.846%;
-    margin-top: 1.2em;
+    color: #E48A2B;
 }
 
 h3 { font-size: 138.462%; }
 
 h4 {
-    border-bottom: 1px solid #d9d9d9;
-    color: #555;
+    border-bottom: 1px solid #DBDFEA;
+    color: #E48A2B;
     font-size: 115.385%;
     font-weight: normal;
-    text-transform: uppercase;
+    padding-bottom: 2px;
 }
 
 h5, h6 { font-size: 107.692%; }
 
 /* -- Code and examples ----------------------------------------------------- */
-code, kbd, pre, samp, .comment {
-    font-family: Menlo, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Consolas', 'Monaco', fixed;
+code, kbd, pre, samp {
+    font-family: Menlo, Monaco, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', Courier, monospace;
     font-size: 92.308%;
     line-height: 1.35;
 }
 
 p code, p kbd, p samp {
-    background: #f6f6f6;
-    border: 1px solid #ededed;
+    background: #FCFBFA;
+    border: 1px solid #EFEEED;
     padding: 0 3px;
 }
 
@@ -112,18 +109,19 @@ table code, table kbd, table samp,
     padding: 0;
 }
 
-pre.code, pre.terminal {
+pre.code, pre.terminal, pre.cmd {
     overflow-x: auto;
+    *overflow-x: scroll;
     padding: 0.3em 0.6em;
 }
 
 pre.code {
-    background: #f8f8f8;
-    border: 1px solid #ececec;
-    border-left: 5px solid #e2e2e2;
+    background: #FCFBFA;
+    border: 1px solid #EFEEED;
+    border-left-width: 5px;
 }
 
-pre.terminal {
+pre.terminal, pre.cmd {
     background: #F0EFFC;
     border: 1px solid #D0CBFB;
     border-left: 5px solid #D0CBFB;
@@ -143,6 +141,11 @@ pre code, pre kbd, pre samp { font-size: 100%; }
     user-select: none;
 }
 
+/* -- Lists ----------------------------------------------------------------- */
+dd { margin: 0.2em 0 0.7em 1em; }
+dl { margin: 1em 0; }
+dt { font-weight: bold; }
+
 /* -- Tables ---------------------------------------------------------------- */
 caption, th { text-align: left; }
 
@@ -157,68 +160,72 @@ td, th {
     vertical-align: top;
 }
 
-td { background: #E5EDF1; }
+td { background: #E6E9F5; }
 td dl { margin: 0; }
 td dl dl { margin: 1em 0; }
 td pre:first-child { margin-top: 0; }
 
 th {
-    background: #6C8EA1;
-    color: #fff;
+    background: #D2D7E6;/*#97A0BF*/
+    border-bottom: none;
+    border-top: none;
+    color: #000;/*#FFF1D5*/
+    font-family: 'Trebuchet MS', sans-serif;
     font-weight: bold;
     line-height: 1.3;
-    text-transform: uppercase;
     white-space: nowrap;
 }
 
-/* -- Lists ----------------------------------------------------------------- */
-.spaced li { margin: 0.8em 0; }
-
-dd { margin: 0.2em 0 0.7em 1em; }
-dl { margin: 1em 0; }
-dt { font-weight: bold; }
 
 /* -- Layout and Content ---------------------------------------------------- */
 #doc {
     margin: auto;
-    width: 1024px;
+    min-width: 1024px;
 }
 
 #main { width: 754px; }
-#sidebar { width: 270px; }
+#sidebar { width: 270px; margin: 0 15px; }
 
 .content { padding: 0 20px 0 25px; }
 
 /* -- Sidebar --------------------------------------------------------------- */
 .sidebox {
+    background: #F9F9FC;/*E6E9F5*/
+    border: 1px solid #D4D8EB;
+
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    -moz-box-shadow: 0 0 3px #afafaf;
-    -webkit-box-shadow: 0 0 3px #afafaf;
-    box-shadow: 0 0 3px #afafaf;
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Helvetica', 'Arial', sans-serif;
-    margin: 0 20px 15px 5px;
-    padding: 2px;
+    margin: 0 0 15px 0;
+    padding-bottom: 1px;
 }
 
 .sidebox h2 {
-    background: #efefef;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    color: #333;
+    background: #E5E6F1;
+    -moz-border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    color: #5E6BA4;
+    font-weight: bold;
     font-size: 107.692%;
     margin: 0;
-    padding: 2px 6px 3px;
+    padding: 4px 7px 5px;
 }
 
-.sidebox .bd { font-size: 84.615%; }
-.sidebox li { list-style-type: square; }
+.sidebox .bd {
+    font-size: 84.615%;
+    padding: 0 5px 0 8px;
+}
+
+.sidebox li { list-style-type: disc; color:#D4D5E3; }
 
 .sidebox ol, .sidebox ul {
     margin-left: 0;
-    padding-left: 24px;
+    padding-left: 16px;
 }
 
 .sidebox ol ol, .sidebox ol ul,
@@ -250,9 +257,7 @@ dt { font-weight: bold; }
 }
 
 .intro {
-    background: #E2EEFB;
-    border: 1px solid #BDD6F4;
-    padding: 0em 1em;
+    background: none repeat scroll 0 0 #F0F1F8; border: 1px solid #D4D8EB; padding: 0 1em;
 }
 
 /* -- Other Styles ---------------------------------------------------------- */
@@ -311,6 +316,42 @@ dt { font-weight: bold; }
     border: none;
 }
 
+.yui3-skin-sam .yui3-tabview .yui3-tab,
+.yui3-skin-sam .yui3-tabview .yui3-tab-selected,
+.yui3-skin-sam .yui3-tabview .yui3-tab-hover {
+    background: -moz-linear-gradient(center top , #F4F0EC 0%, #D6D2CE 100%) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid #DEDCD9;
+    border-right: 1px solid #CDCBC8;
+    border-left: 1px solid #CDCBC8;
+    border-top: 1px solid #DADADA;
+    color: #333333;
+    text-decoration: none;
+}
+.yui3-skin-sam .yui3-tabview .yui3-tab-label,
+.yui3-skin-sam .yui3-tabview .yui3-tab-selected .yui3-tab-label {
+    border: none;
+    background: none;
+    font-size: 100%;
+    color: #000;
+}
+
+.yui3-skin-sam .yui3-tabview .yui3-tab-selected,
+.yui3-skin-sam .yui3-tabview .yui3-tab-hover {
+    background: none;
+    background-color: #fff;
+    border-bottom-color: #FFFFFF;
+    border-top: 2px solid #8193C9;
+    font-weight: bold;
+    color: #000;
+
+}
+
+.yui3-skin-sam .yui3-tabview-list {
+    border-color: #DFDFDF;
+    border-width: 0 0 1px; 
+}
+
+
 a.external {
     background-image: url(external-small.png);
     background-repeat: no-repeat;
@@ -339,8 +380,8 @@ a.external {
 }
 
 #classdocs .foundat {
-    font-size: 76.923%;
-    font-style: italic;
+    font-size: 11px;
+    font-style: normal;
 }
 
 .attrs .emits {
@@ -365,3 +406,24 @@ abbr {
 .prettyprint li.L8 {
     list-style: decimal;
 }
+
+ul li p {
+    margin-top: 0;
+}
+
+.method .name {
+    font-size: 110%;
+}
+
+#hd {
+    background: -moz-linear-gradient(center top , #DCDBD9 0%, #F6F5F3 100%) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid #DFDFDF;
+    padding: 0 15px 1px 20px;
+    margin-bottom: 15px;
+}
+
+#hd img {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
