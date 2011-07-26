@@ -47,9 +47,10 @@
  * @injects {HTML} uses a string parameter to populate innerHTML
  * @returns something without a type
  * @example
- *   This is code
+ *      This is code
  * @example
- *   This is more code
+ *      var = 'This is more code';
+ *      document.title = 'Test This';
  */
 
 /**
@@ -98,3 +99,14 @@
      * </dl>
      *
     */
+
+
+/**
+This is the description
+
+@method foo
+@example
+
+        var email = "lsmith@foo-truncated-here.com"
+
+**/
