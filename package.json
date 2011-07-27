@@ -17,8 +17,7 @@
     "dependencies": {
         "yui3": "*",
         "node-markdown": "*",
-        "yui3-core": "3.3.0",
-        "glob": "2.0.6"
+        "yui3-core": "3.3.0"
     },
     "preferGlobal": "true",
     "licenses":[
