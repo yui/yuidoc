@@ -1,6 +1,6 @@
 {
     "name": "yuidocjs",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "YUI Doc, JavaScript port",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "web" : "http://github.com/davglass/yuidocjs/issues" },
