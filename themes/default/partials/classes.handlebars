@@ -1,23 +1,31 @@
-<h4>Class {{moduleName}}</h4>
-{{#if uses}}
-    Uses:
-    {{#each uses}}
-        <a href="{{this}}.html">{{this}}</a>
-    {{/each}}
-    <br>
-{{/if}}
-{{#if extension_for}}
-    Extension For:
-    {{#each extension_for}}
-        <a href="{{this}}.html">{{this}}</a>
-    {{/each}}
-    <br>
-{{/if}}
-{{#if extends}}
-    Extends: {{#crossLink extends}}{{/crossLink}}<br>
-{{/if}}
-<span class="foundat">Class defined in: <a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span>
-<div class="intro">{{{classDescription}}}</div>
+<h1>{{moduleName}} Class</h1>
+<div class="box meta">
+    {{#if uses}}
+        <div class="uses">
+            Uses
+            <ul class="inline commas">
+                {{#uses}}
+                    <li><a href="{{.}}.html">{{.}}</a></li>
+                {{/uses}}
+            </ul>
+        </div>
+    {{/if}}
+    {{#if extension_for}}
+        <div class="uses">
+            Extension For
+            <ul class="inline commas">
+                {{#extension_for}}
+                    <li><a href="{{.}}.html">{{.}}</a></li>
+                {{/extension_for}}
+            </ul>
+        </div>
+    {{/if}}
+
+    {{#if extends}}
+        <div class="extends">
+            Extends {{#crossLink extends}}{{/crossLink}}
+        </div>
+    {{/if}}
 
     {{#if foundAt}}
         <div class="foundat">
