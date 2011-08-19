@@ -4,9 +4,6 @@
     "version": "0.1.0",
     "url": "http://yuilibrary.com/projects/yuidoc",
     "options": {
-        "external": {
-            "data": "http://yuilibrary.com/~davglass/3apidocs/data.json"
-        },
         "linkNatives": "true",
         "attributesEmit": "true",
         "paths": [ "./lib" ],
