@@ -4,17 +4,40 @@ YUI().use(
     'node-load', 'node-screen', 'node-style',
 function (Y) {
 
+// Autodetecting the URL we are serving from
+var parts = location.href.split('/'),
+    url = [],
+    baseNum = parts.length;
+
+Y.each(parts, function(v, k) {
+    switch (v) {
+        case 'classes':
+        case 'modules':
+        case 'files':
+            baseNum = k;
+            break;
+        default:
+            if (k < baseNum) {
+                url.push(v); 
+            }
+            break
+    }
+});
+
+url = url.join('/') + '/';
+
+
 var win = Y.config.win,
 
     bd           = Y.one('#bd'),
-    controller   = new Y.Controller({root: './'}),
+    controller   = new Y.Controller({ root: url }),
     contentNode  = Y.one('#docs-main'),
     localStorage = win.localStorage,
 
     classTabView,
     selectedTab;
 
-    Y.APIList.rootPath = './';
+    Y.APIList.rootPath = url;
 
 // Note: In the following routes, an ?xhr query string is appended to each URL
 // requested via XHR. This has no functional purpose, but works around a bug in
