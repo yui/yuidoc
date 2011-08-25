@@ -6,6 +6,13 @@
     {{/each}}
     <br>
 {{/if}}
+{{#if extension_for}}
+    Extension For:
+    {{#each extension_for}}
+        <a href="{{this}}.html">{{this}}</a>
+    {{/each}}
+    <br>
+{{/if}}
 {{#if extends}}
     Extends: {{#crossLink extends}}{{/crossLink}}<br>
 {{/if}}
