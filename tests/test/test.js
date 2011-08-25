@@ -110,3 +110,15 @@ This is the description
         var email = "lsmith@foo-truncated-here.com"
 
 **/
+
+/**
+Other Class
+@class OtherClass
+@extensionfor myclass
+*/
+
+/**
+Other Class 2
+@class OtherClass2
+@extension_for myclass
+*/
