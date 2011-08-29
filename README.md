@@ -1,4 +1,4 @@
-[yui-customevents]: http://developer.yahoo.com/yui/event/#customevent
+[yui-customevents]: http://yuilibrary.com/yui/docs/event-custom/
 [yui-element]: http://developer.yahoo.com/yui/element/
 
 # YUIDoc Doc parser
@@ -56,7 +56,7 @@ YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
 - **constructor**: The presence of this tag (which requires no description) indicates that this class is instantiable.
 - **static**: If a class does not have a constructor, then the static tag should be present to signal that it is a static class.
 - **final**: For constants and for read-only configs and attributes.
-- **param**: Defined as @param {type} name description or @param name {type} description, params can be used with classes, methods and events.
+- **param**: Defined as @param {type} name description or @param name {type} description, params can be used with classes, methods and events.  Use [name] to indicate the param is optional, name* to indicate it is a place holder for 1..n arguments, and [name*] for 0..n arguments.
 - **return**: Defined as @return {type} description.
 - **for**:  
 
