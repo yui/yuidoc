@@ -24,17 +24,29 @@ To log during a build:
 `Y.log("message", "console[method]", "module")`
 
 ## Command Line flags
-- -c, --config, --configfile  
-Path to your config file, based on ./package.json
-- -e, --extension  
-File extension(s) to search for, defaults to ".js"
-- -x, --exclude
-- -v, --version
-- -n, --norecurse
-- -o, --outdir  
-Directory to output to, defaults to "./out"
-- -t, --themedir  
-A custom theme directory
+    Usage: yuidoc <options> <input path>
+
+    Common Options:
+      -c, --config, --configfile <filename>  A JSON config file to provide configuration data.
+               You can also create a yuidoc.json file and place it
+               anywhere under your source tree and YUI Doc will find it
+               and use it.
+      -e, --extension <comma sep list of file extensions> The list of file extensions to parse 
+               for api documentation. (defaults to .js)
+      -x, --exclude <comma sep list of directorues> Directorys to exclude from parsing 
+               (defaults to '.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp')
+      -v, --version Show the current YUIDoc version
+      --project-version Set the doc version for the template
+      -N, --no-color Turn off terminal colors (for automation)
+      -n, --norecurse Do not recurse directories (default is to recurse)
+      -S, --selleck Look for Selleck component data and attach to API meta data
+      -V, --view Dump the Handlebars.js view data instead of writing template files
+      -p, --parse-only Only parse the API docs and create the JSON data, do not render templates
+      -o, --out <directory path> Path to put the generated files (defaults to ./out)
+      -t, --themedir <directory path> Path to a custom theme directory containing Handlebars templates
+      -h, --help Show this help
+      -T, --theme <simple|default> Choose one of the built in themes (default is default)
+      <input path> Supply a list of paths (shell globbing is handy here)
 
 ## Commenting Markup Guide
 YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
@@ -90,43 +102,4 @@ Example:
 	 * this can span multiple lines.
 	 * @method methodName
 	 */
-
-## Dav's Thoughts:
-
-### Out dir formatting
-
-Setting up the directory structure like this will help us build a nice templating system on
-top of this data. It will give us the ability to include just part of the structure. It will
-also help up when building the new YUILibrary.com site and importing all this data into MongoDB.
-
-`./out` needs to look like this instead:
-    ./out/
-        data.json //Rollup of all metadata
-        module1/
-            data.json //metadata for only this module
-        module2/
-            data.json
-
-AM - sounds good -- had in mind a schema system to define different parser outputs, but
-that might be overkill.
-
-### Parse only what we need to parse.
-
-Keep a *state* file somewhere that shows the last time this doc tree was parsed
-This way, we can do a stat on the file to see if it's mtime is greater than the
-last parse time and only parse it if it is. This will allow us, in the future, to not reparse files
-that have not changed. It should speed up the parse process for a large file set.
-
-AM - the parse process is super fast.  We may want to do this when rendering
-the templates.
-
-### Module Structure
-
-I moved docparser into a module of it's own. The YUIDoc module should also be a standalone module.
-We should make `cli.js` instantiate that class and run it. We also need to add a way to `export`
-these modules so they can be *required* in a script and coded against.
-
-AM - Yep
-
-### Templates
 
