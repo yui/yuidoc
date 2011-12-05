@@ -122,3 +122,18 @@ Other Class 2
 @class OtherClass2
 @extension_for myclass
 */
+
+/**
+Default options to use for all transactions.
+@static
+@protected
+@property {Object} options
+@property {Object} [options.attributes] HTML attribute name/value pairs that
+    should be added to inserted nodes.
+@property {Boolean} [options.autopurge=false] Whether or not to automatically
+    purge inserted nodes after the purge threshold is reached.
+@property {Document} [options.doc] Document into which nodes should be inserted.
+@property {Number} [options.pollInterval=50] Polling interval (in milliseconds)
+    for detecting CSS load completion in browsers that don't support the `load`
+    event on `<link>` nodes.
+**/
