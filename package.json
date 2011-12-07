@@ -15,9 +15,7 @@
     "main": "./lib/index",
     "bin" : { "yuidoc" : "./lib/cli.js" },
     "dependencies": {
-        "yui3": "*",
         "node-markdown": "*",
-        "yui3-core": "3.4.0",
         "minimatch": "0.0.4",
         "graceful-fs": "1.1.1"
     },
