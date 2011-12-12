@@ -1,6 +1,6 @@
 {
     "name": "yuidocjs",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "description": "YUI Doc, JavaScript port",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/davglass/yuidocjs/issues" },
@@ -15,6 +15,7 @@
     "main": "./lib/index",
     "bin" : { "yuidoc" : "./lib/cli.js" },
     "dependencies": {
+        "yui": "~3.5.0",
         "node-markdown": "*",
         "minimatch": "0.0.4",
         "graceful-fs": "1.1.1"
