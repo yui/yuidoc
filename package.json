@@ -1,13 +1,14 @@
 {
     "name": "yuidocjs",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "description": "YUI Doc, JavaScript port",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/davglass/yuidocjs/issues" },
     "os": ["darwin", "linux"],
     "contributors": [
         { "name": "Adam Moore", "email": "amoore@gmail.com" },
-        { "name": "Ryan Grove", "email": "ryan@wonko.com" }
+        { "name": "Ryan Grove", "email": "ryan@wonko.com" },
+        { "name": "Felipe Gasper", "email": "felipe@cpanel.net" }
     ],
     "engines": {
         "node" : ">=0.4.0"
