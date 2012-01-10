@@ -1,6 +1,9 @@
 [yui-customevents]: http://yuilibrary.com/yui/docs/event-custom/
 [yui-element]: http://developer.yahoo.com/yui/element/
 
+__This is a beta release, the offical release will be under the name `yuidoc`__
+
+
 # YUIDoc Doc parser
 
 Updated yuidoc parser, written in js -- *early work in progress*
