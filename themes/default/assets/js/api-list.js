@@ -106,7 +106,7 @@ function onFilterResults(e) {
         YArray.each(e.results, function (result) {
             frag.append(Lang.sub(LIST_ITEM_TEMPLATE, {
                 rootPath    : APIList.rootPath,
-                displayName : result.highlighted,
+                displayName : filter.getDisplayName(result.highlighted),
                 name        : result.text,
                 typePlural  : typePlural,
                 typeSingular: typeSingular

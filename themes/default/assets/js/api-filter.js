@@ -5,6 +5,16 @@ Y.APIFilter = Y.Base.create('apiFilter', Y.Base, [Y.AutoCompleteBase], {
     initializer: function () {
         this._bindUIACBase();
         this._syncUIACBase();
+    },
+    getDisplayName: function(name) {
+        
+        Y.each(Y.YUIDoc.meta.allModules, function(i) {
+            if (i.name === name && i.displayName) {
+                name = i.displayName;
+            }
+        });
+
+        return name;
     }
 
 }, {
