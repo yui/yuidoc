@@ -204,8 +204,8 @@ th {
 .toc li li { font-weight: normal; }
 
 /* -- Intro and Example Boxes ----------------------------------------------- */
+/*
 .intro, .example { margin-bottom: 2em; }
-
 .example {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -215,10 +215,10 @@ th {
     box-shadow: 0 0 5px #bfbfbf;
     padding: 1em;
 }
-
 .intro {
     background: none repeat scroll 0 0 #F0F1F8; border: 1px solid #D4D8EB; padding: 0 1em;
 }
+*/
 
 /* -- Other Styles ---------------------------------------------------------- */
 
