@@ -106,7 +106,7 @@ Example:
 	 * @method methodName
 	 */
 
-## Released under the YUI BSB License
+## Released under the YUI BSD License
 
 Copyright 2011 Yahoo! Inc.
 All rights reserved.
