@@ -19,7 +19,8 @@
         "yui": "~3.5.0",
         "node-markdown": "*",
         "minimatch": "0.0.4",
-        "graceful-fs": "1.1.1"
+        "graceful-fs": "1.1.1",
+        "express": ">=2.3.0 <2.6.0"
     },
     "preferGlobal": "true",
     "licenses":[
