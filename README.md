@@ -27,6 +27,7 @@ To log during a build:
 `Y.log("message", "console[method]", "module")`
 
 ## Command Line flags
+
     Usage: yuidoc <options> <input path>
 
     Common Options:
@@ -49,7 +50,24 @@ To log during a build:
       -t, --themedir <directory path> Path to a custom theme directory containing Handlebars templates
       -h, --help Show this help
       -T, --theme <simple|default> Choose one of the built in themes (default is default)
+      --server <port> Fire up the YUIDoc server for faster API doc developement. Pass optional port to listen on. (default is 3000)
+
       <input path> Supply a list of paths (shell globbing is handy here)
+
+## Server Mode
+
+YUIDoc can now run at dev time in server mode so that you don't need to render all your API docs to see
+changes as you make them.
+
+    yuidoc --server
+        or
+    yuidoc --server 5000
+
+Then visit:
+
+    http://127.0.0.1:3000/
+        or
+    http://127.0.0.1:5000/
 
 ## Commenting Markup Guide
 YUIDoc original Python build - http://developer.yahoo.com/yui/yuidoc/
