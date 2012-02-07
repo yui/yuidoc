@@ -1,8 +1,13 @@
-<h1>{{moduleName}} Module</h1>
 <div class="box clearfix meta">
+    {{#extra}}
+        {{#selleck}}
+            <a class="button link-docs" href="/yui/docs/{{name}}">User Guide &amp; Examples</a>
+        {{/selleck}}
+    {{/extra}}
+
     {{#if foundAt}}
         <div class="foundat">
-            Defined in: <a href="../{{foundAt}}">`{{file}}:{{line}}`</a>
+            Defined in: <a href="../{{foundAt}}">`{{{file}}}:{{{line}}}`</a>
         </div>
     {{/if}}
 

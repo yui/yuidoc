@@ -1,4 +1,4 @@
-<div id="event_{{name}}" class="events item{{#if access}} {{access}}{{/if}}{{#if deprecated}} deprecated{{/if}}{{#if overwritten_from}} inherited{{/if}}{{#if extended_from}} inherited{{/if}}">
+<div id="event_{{name}}" class="events item{{#if access}} {{access}}{{/if}}{{#if deprecated}} deprecated{{/if}}{{#if extended_from}} inherited{{/if}}">
     <h3 class="name"><code>{{name}}</code></h3>
     <span class="type">{{#crossLink type}}{{/crossLink}}</span>
 
@@ -36,7 +36,7 @@
                 <p>Defined in
             {{/if}}
         {{/if}}
-        <a href="../{{foundAt}}">`{{file}}:{{line}}`</a></p>
+        <a href="../{{foundAt}}">`{{{file}}}:{{{line}}}`</a></p>
 
         {{#if deprecationMessage}}
             <p>Deprecated: {{deprecationMessage}}</p>

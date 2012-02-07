@@ -1,4 +1,4 @@
-<div id="method_{{name}}" class="method item{{#if access}} {{access}}{{/if}}{{#if deprecated}} deprecated{{/if}}{{#if overwritten_from}} inherited{{/if}}{{#if extended_from}} inherited{{/if}}">
+<div id="method_{{name}}" class="method item{{#if access}} {{access}}{{/if}}{{#if deprecated}} deprecated{{/if}}{{#if extended_from}} inherited{{/if}}">
     <h3 class="name"><code>{{name}}</code></h3>
 
     {{#if params}}
@@ -63,7 +63,7 @@
                 <p>Defined in
             {{/if}}
         {{/if}}
-        <a href="../{{foundAt}}">`{{file}}:{{line}}`</a></p>
+        <a href="../{{foundAt}}">`{{{file}}}:{{{line}}}`</a></p>
 
         {{#if deprecationMessage}}
             <p>Deprecated: {{deprecationMessage}}</p>
@@ -106,8 +106,14 @@
                         <ul class="params-list">
                             {{#props}}
                             <li class="param">
-                                <code class="param-name">{{name}}</code>
-                                <span class="type">{{#crossLink type}}{{/crossLink}}</span>
+                                {{#if optional}}
+                                    <code class="param-name optional">[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]</code>
+                                    <span class="type">{{#crossLink type}}{{/crossLink}}</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                {{else}}
+                                    <code class="param-name">{{name}}</code>
+                                    <span class="type">{{#crossLink type}}{{/crossLink}}</span>
+                                {{/if}}
 
                                 <div class="param-description">
                                     {{{description}}}
@@ -117,8 +123,14 @@
                                     <ul class="params-list">
                                         {{#props}}
                                         <li class="param">
-                                            <code class="param-name">{{name}}</code>
-                                            <span class="type">{{#crossLink type}}{{/crossLink}}</span>
+                                            {{#if optional}}
+                                                <code class="param-name optional">[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]</code>
+                                                <span class="type">{{#crossLink type}}{{/crossLink}}</span>
+                                                <span class="flag optional" title="This parameter is optional.">optional</span>
+                                            {{else}}
+                                                <code class="param-name">{{name}}</code>
+                                                <span class="type">{{#crossLink type}}{{/crossLink}}</span>
+                                            {{/if}}
 
                                             <div class="param-description">
                                                 {{{description}}}
