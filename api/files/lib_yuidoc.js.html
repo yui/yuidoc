@@ -2,206 +2,233 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>YUIDoc</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
-    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
+    <title>lib&#x2F;yuidoc.js - YUIDoc</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
 
 <div id="doc">
-    <div class="yui3-g header">
+    <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
-            <h1><a href="../index.html">YUIDoc</a></h1>
+            <h1><img src="..&#x2F;assets/css/logo.png"></h1>
         </div>
         <div class="yui3-u-1-4 version">
             <em>API Docs for: 0.1.0</em>
         </div>
     </div>
-    <div class="yui3-g">
+    <div id="bd" class="yui3-g">
 
-        <div id="sidebar" class="yui3-u">
-            <div id="modules" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Modules</h2>
-    </div>
-    <div class="bd">
-        <ul>
-            
-                <li><a href="../modules/yuidoc.html">yuidoc</a>
-                
-                    <ul>
-                        
-                    </ul>
-                
-                </li>
-            
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
         </ul>
-    </div>
-</div>
 
-<div id="classes" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Classes</h2>
-    </div>
-    <div class="bd">
-        <ul>
-            
-                <li><a href="../classes/cli.html">cli</a></li>
-            
-                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
-            
-                <li><a href="../classes/DocParser.html">DocParser</a></li>
-            
-                <li><a href="../classes/DocView.html">DocView</a></li>
-            
-                <li><a href="../classes/index.html">index</a></li>
-            
-                <li><a href="../classes/utils.html">utils</a></li>
-            
-                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
-            
-        </ul>
-    </div>
-</div>
-
-
-<div id="fileTree" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Files</h2>
-    </div>
-    <div class="bd">
-        <ul><li>lib/<ul><li><a href="../files/lib_builder.js.html">builder.js</a></li><li><a href="../files/lib_cli.js.html">cli.js</a></li><li><a href="../files/lib_docparser.js.html">docparser.js</a></li><li><a href="../files/lib_docview.js.html">docview.js</a></li><li><a href="../files/lib_index.js.html">index.js</a></li><li><a href="../files/lib_utils.js.html">utils.js</a></li><li><a href="../files/lib_yuidoc.js.html">yuidoc.js</a></li></ul></li></ul>
-    </div>
-</div>
-
-
-
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
         </div>
 
-        <div id="main" class="yui3-u">
-            <div class="content"><h4>lib/yuidoc.js</h4>
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/cli.html">cli</a></li>
+            
+                <li><a href="..&#x2F;classes/DocBuilder.html">DocBuilder</a></li>
+            
+                <li><a href="..&#x2F;classes/DocParser.html">DocParser</a></li>
+            
+                <li><a href="..&#x2F;classes/DocView.html">DocView</a></li>
+            
+                <li><a href="..&#x2F;classes/Files.html">Files</a></li>
+            
+                <li><a href="..&#x2F;classes/index.html">index</a></li>
+            
+                <li><a href="..&#x2F;classes/Server.html">Server</a></li>
+            
+                <li><a href="..&#x2F;classes/utils.html">utils</a></li>
+            
+                <li><a href="..&#x2F;classes/YUIDoc.html">YUIDoc</a></li>
+            
+            </ul>
 
-<pre class="code prettyprint linenums">
-var fs = require("fs"),
-    sys = require("sys"),
-    path = require("path");
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/server.html">server</a></li>
+            
+                <li><a href="..&#x2F;modules/yuidoc.html">yuidoc</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
 
-/**
-This is the **module** description for the <code>YUIDoc</code> module.
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main" class="content">
+                    <h1 class="file-heading">File: lib&#x2F;yuidoc.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;*
+Copyright (c) 2011, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http:&#x2F;&#x2F;yuilibrary.com&#x2F;license&#x2F;
+*&#x2F;
+var fs = require(&quot;fs&quot;),
+    rimraf = require(&#x27;rimraf&#x27;),
+    path = require(&quot;path&quot;);
+
+&#x2F;**
+This is the __module__ description for the &#x60;YUIDoc&#x60; module.
 
     var options = {
-        paths: [ './lib' ],
-        outdir: './out'
+        paths: [ &#x27;.&#x2F;lib&#x27; ],
+        outdir: &#x27;.&#x2F;out&#x27;
     };
 
-    var Y = require('yuidoc');
+    var Y = require(&#x27;yuidoc&#x27;);
     var json = (new Y.YUIDoc(options)).run();
 
-* @main yuidoc
-*/
+@class YUIDoc
+@main yuidoc
+*&#x2F;
 
 
-YUI.add('yuidoc', function(Y) {
+YUI.add(&#x27;yuidoc&#x27;, function(Y) {
 
 
-    /**
+    &#x2F;**
      * The default list of configuration options
      * @property OPTIONS
      * @type Object
      * @final
      * @for YUIDoc
-     */
+     *&#x2F;
 
     var OPTIONS = {
         writeJSON: true,
-        outdir: path.join(process.cwd(),  'out'),
-        extension: '.js',
-        exclude: '.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp',
+        outdir: path.join(process.cwd(),  &#x27;out&#x27;),
+        extension: &#x27;.js&#x27;,
+        exclude: &#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp&#x27;,
         norecurse: false,
-        version: '0.1.0',
-        paths: []
+        version: &#x27;0.1.0&#x27;,
+        paths: [],
+        themedir: path.join(__dirname,  &#x27;themes&#x27;, &#x27;default&#x27;)
     };
 
-    /**
+    &#x2F;**
      * YUIDoc main class
 
-    var options = {
-        paths: [ './lib' ],
-        outdir: './out'
-    };
+        var options = {
+            paths: [ &#x27;.&#x2F;lib&#x27; ],
+            outdir: &#x27;.&#x2F;out&#x27;
+        };
 
-    var Y = require('yuidoc');
-    var json = (new Y.YUIDoc(options)).run();
+        var Y = require(&#x27;yuidoc&#x27;);
+        var json = (new Y.YUIDoc(options)).run();
      
      * @class YUIDoc
      * @module yuidoc
      * @constructor
      * @param config The config object
-     */
+     *&#x2F;
     Y.YUIDoc = function(config) {
-        /**
+        &#x2F;**
          * Holds the number of files that we are processing.
          * @property filecount
          * @type Boolean
          * @private
-         */
+         *&#x2F;
         this.filecount = 0;
-        /**
+        &#x2F;**
+         * Hash map of dirnames to selleck config options.
+         * @property selleck
+         * @type Object
+         * @private
+         *&#x2F;
+        this.selleck = {};
+        &#x2F;**
          * Holder for the list of files we are processing.
          * @property filemap
          * @type Object
          * @private
-         */
+         *&#x2F;
         this.filemap = {};
-        /**
+        &#x2F;**
          * Holder for the list of directories we are processing.
          * @property dirmap
          * @type Object
          * @private
-         */
+         *&#x2F;
         this.dirmap = {};
 
-        /**
+        &#x2F;**
          * Internal holder for configuration options.
          * @property options
          * @type Object
          * @private
-         */
+         *&#x2F;
         this.options = Y.merge(OPTIONS, config);
 
     };
 
     Y.YUIDoc.prototype = {
-        /**
+        &#x2F;**
          * Does post process on self.options.
          * @method _processConfig
          * @private
-         */
+         *&#x2F;
         _processConfig: function() {
-            this.options.extensions = Y.Array.hash(this.options.extension.split(','));
-            this.options.excludes = Y.Array.hash(this.options.exclude.split(','));
+            this.options.extensions = Y.Array.hash(this.options.extension.split(&#x27;,&#x27;));
+            this.options.excludes = Y.Array.hash(this.options.exclude.split(&#x27;,&#x27;));
         },
-        /**
+        &#x2F;**
          * Walks the paths and parses the directory contents
          * @method walk
          * @private
-         */
+         *&#x2F;
         walk: function() {
             Y.each(this.options.paths, function(dir) {
                 this.parsedir(dir);
             }, this);
         },
-        /**
+        &#x2F;**
          * Walks the passed directory and grabs all the files recursively.
          * @method parsedir
          * @param {String} dir The directory to parse the contents of.
          * @private
-         */
+         *&#x2F;
         parsedir: function(dir) {
             if (!Y.Files.isDirectory(dir)) {
-                throw('Can not find directory: ' + dir);
+                throw(&#x27;Can not find directory: &#x27; + dir);
             }
             var allfiles = fs.readdirSync(dir), stats,
                 files = [], fullpath, self = this;
@@ -222,13 +249,13 @@ YUI.add('yuidoc', function(Y) {
 
             this.parsefiles(dir, files);
         },
-        /**
+        &#x2F;**
          * Gathers all the file data and populates the filemap and dirmap hashes.
          * @method parsefiles
          * @param {String} dir The directory to start from.
          * @param {Array} files List of files to parse.
          * @private
-         */
+         *&#x2F;
         parsefiles: function(dir, files) {
             var self = this;
 
@@ -241,59 +268,109 @@ YUI.add('yuidoc', function(Y) {
 
                         if (path.existsSync(fullpath)) {
                             self.filecount++;
-                            text = fs.readFileSync(fullpath, "utf8");
+                            text = fs.readFileSync(fullpath, &quot;utf8&quot;);
 
                             self.filemap[fullpath] = text;
                             self.dirmap[fullpath] = dir;
+                            self.getSelleck(fullpath);
+
                         } else {
-                            Y.log('File skipped: ' + fullpath, 'warn', 'yuidoc');
+                            Y.log(&#x27;File skipped: &#x27; + fullpath, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
                         }
                     }
                 }
             });
         },
-        /**
+        getSelleck: function(fullpath) {
+            var self = this,
+                base, comp, json;
+
+            if (self.options.selleck) {
+                base = path.dirname(fullpath);
+                comp = path.join(base, &#x27;..&#x2F;&#x27;, &#x27;docs&#x27;, &#x27;component.json&#x27;);
+                if (path.existsSync(comp)) {
+                    try {
+                        var json = JSON.parse(fs.readFileSync(comp, &#x27;utf8&#x27;));
+                        delete json.examples; &#x2F;&#x2F;Remove the selleck example data, we only want the comp info
+                        self.selleck[fullpath] = json;
+                    } catch (e) {
+                        Y.log(&#x27;JSON parse failed on Selleck component.json file: &#x27; + comp, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
+                    }
+                }
+            }
+        },
+        &#x2F;**
          * Writes the parser JSON data to disk.
          * @method writeJSON
          * @param {Object} parser The DocParser instance to use
          * @private
          * @return {Object} The JSON data returned from the DocParser
-         */
+         *&#x2F;
         writeJSON: function(parser) {
-            var self = this;
-            if (self.options.writeJSON) {
-                // Y.log(Y.JSON.stringify(parser.data, null, 4));
-                var file = path.join(self.options.outdir, 'data.json'), out;
-                if (!path.existsSync(self.options.outdir)) {
-                    Y.log('Making out dir: ' + self.options.outdir, 'warn', 'yuidoc');
-                    fs.mkdirSync(self.options.outdir, 0777);
-                } else {
-                    Y.log('Using output directory: ' + self.options.outdir, 'info', 'yuidoc');
-                }
-                if (self.options.project) {
-                    parser.data.project = self.options.project;
-                }
-                out = fs.createWriteStream(file, {
-                        flags: "w", encoding: "utf8", mode: 0644
+            var self = this,
+            data;
+
+            data = parser.data;
+
+            if (self.selleck &amp;&amp; self.options.selleck &amp;&amp; data.files &amp;&amp; data.modules) {
+                Object.keys(self.selleck).forEach(function(file) {
+                    Object.keys(data.files).forEach(function(f) {
+                        if (file === f) {
+                            var mods = data.files[f].modules;
+                            if (mods) {
+                                Object.keys(mods).forEach(function(mod) {
+                                    if (data.modules[mod]) {
+                                        if (!data.modules[mod].extra) {
+                                            data.modules[mod].extra = {};
+                                        }
+                                        data.modules[mod].extra.selleck = self.selleck[file];
+                                    }
+                                });
+                            }
+                        }
+                    });
                 });
-                out.write(Y.JSON.stringify(parser.data, null, 4));
+            }
+
+            if (self.options.project) {
+                parser.data.project = self.options.project;
+            }
+
+            if (self.options.writeJSON) {
+                &#x2F;&#x2F; Y.log(Y.JSON.stringify(parser.data, null, 4));
+                var file = path.join(self.options.outdir, &#x27;data.json&#x27;), out;
+                if (path.existsSync(self.options.outdir)) {
+                    Y.log(&#x27;Found out dir, deleting: &#x27; + self.options.outdir, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
+                    rimraf.sync(self.options.outdir);
+                }
+                Y.log(&#x27;Making out dir: &#x27; + self.options.outdir, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
+                try {
+                    fs.mkdirSync(self.options.outdir, 0777);
+                } catch (e) {
+                    Y.log(&#x27;Outdir creation failed&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
+                }
+                
+                out = fs.createWriteStream(file, {
+                        flags: &quot;w&quot;, encoding: &quot;utf8&quot;, mode: 0644
+                });
+                out.write(JSON.stringify(data, null, 4));
                 out.end();
             }
 
-            return parser.data;
+            return data;
         },
-        /**
+        &#x2F;**
          * Process the config, walk the file tree and write out the JSON data.
          * @method run
-         * @return {Object} The JSON data returned from the DocParser
-         */
+         * @retdrn {Object} The JSON data returned from the DocParser
+         *&#x2F;
         run: function() {
-            /**
+            &#x2F;**
              * Timestamp holder so we know when YUIDoc started the parse process.
              * @property starttime
              * @type Timestamp
-             */
-            Y.log('YUIDoc Starting from: ' + this.options.paths.join(','), 'info', 'yuidoc');
+             *&#x2F;
+            Y.log(&#x27;YUIDoc Starting from: &#x27; + this.options.paths.join(&#x27;,&#x27;), &#x27;info&#x27;, &#x27;yuidoc&#x27;);
             this.starttime = new Date().getTime();
 
             var self = this;
@@ -306,14 +383,13 @@ YUI.add('yuidoc', function(Y) {
                 dirmap: self.dirmap
             }).parse());
 
-            /**
+            &#x2F;**
              * Timestamp holder so we know when YUIDoc has finished the parse process.
              * @property endtime
              * @type Timestamp
-             */
+             *&#x2F;
             this.endtime = new Date().getTime();
-
-            Y.log('Parsed ' + this.filecount + ' files in ' + ((this.endtime - this.starttime) / 1000) + ' seconds', 'info', 'yuidoc');
+            Y.log(&#x27;Parsed &#x27; + this.filecount + &#x27; files in &#x27; + ((this.endtime - this.starttime) &#x2F; 1000) + &#x27; seconds&#x27;, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
 
             return json;
         }
@@ -321,15 +397,24 @@ YUI.add('yuidoc', function(Y) {
 
 });
 
-</pre>
-
+    </pre>
 </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
-<script src="../assets/js/yui-prettify.js"></script>
-<script src="../assets/js/tabs.js"></script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<!--script src="..&#x2F;assets/js/tabs.js"></script-->
+<script src="..&#x2F;assets/../api.js"></script>
+
+
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
 </body>
 </html>

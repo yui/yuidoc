@@ -2,729 +2,2290 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>YUIDoc</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
-    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
+    <title>DocParser - YUIDoc</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
 
 <div id="doc">
-    <div class="yui3-g header">
+    <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
-            <h1><a href="../index.html">YUIDoc</a></h1>
+            <h1><img src="..&#x2F;assets/css/logo.png"></h1>
         </div>
         <div class="yui3-u-1-4 version">
             <em>API Docs for: 0.1.0</em>
         </div>
     </div>
-    <div class="yui3-g">
+    <div id="bd" class="yui3-g">
 
-        <div id="sidebar" class="yui3-u">
-            <div id="modules" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Modules</h2>
-    </div>
-    <div class="bd">
-        <ul>
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
             
-                <li><a href="../modules/yuidoc.html">yuidoc</a>
-                
-                    <ul>
-                        
-                    </ul>
-                
+                <li><a href="..&#x2F;classes/cli.html">cli</a></li>
+            
+                <li><a href="..&#x2F;classes/DocBuilder.html">DocBuilder</a></li>
+            
+                <li><a href="..&#x2F;classes/DocParser.html">DocParser</a></li>
+            
+                <li><a href="..&#x2F;classes/DocView.html">DocView</a></li>
+            
+                <li><a href="..&#x2F;classes/Files.html">Files</a></li>
+            
+                <li><a href="..&#x2F;classes/index.html">index</a></li>
+            
+                <li><a href="..&#x2F;classes/Server.html">Server</a></li>
+            
+                <li><a href="..&#x2F;classes/utils.html">utils</a></li>
+            
+                <li><a href="..&#x2F;classes/YUIDoc.html">YUIDoc</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/server.html">server</a></li>
+            
+                <li><a href="..&#x2F;modules/yuidoc.html">yuidoc</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main" class="content">
+                    <h1>DocParser Class</h1>
+<div class="box meta">
+    
+
+    
+        <div class="extends">
+            Extends Base
+        </div>
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files&#x2F;lib_docparser.js.html#l695"><code>lib&#x2F;docparser.js:695</code></a>
+        </div>
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>The doc parser accepts a <strong>map</strong> of files to file content.
+Once <code>parse()</code> is called, various properties will be populated
+with the parsers data (aggregated in the <code>'data'</code> property).</p>
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_DocParser" class="method item">
+    <h3 class="name"><code>DocParser</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>o</code>
+                    
                 </li>
             
-        </ul>
-    </div>
-</div>
-
-<div id="classes" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Classes</h2>
-    </div>
-    <div class="bd">
-        <ul>
-            
-                <li><a href="../classes/cli.html">cli</a></li>
-            
-                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
-            
-                <li><a href="../classes/DocParser.html">DocParser</a></li>
-            
-                <li><a href="../classes/DocView.html">DocView</a></li>
-            
-                <li><a href="../classes/index.html">index</a></li>
-            
-                <li><a href="../classes/utils.html">utils</a></li>
-            
-                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
-            
-        </ul>
-    </div>
-</div>
-
-
-<div id="fileTree" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Files</h2>
-    </div>
-    <div class="bd">
-        <ul><li>lib/<ul><li><a href="../files/lib_builder.js.html">builder.js</a></li><li><a href="../files/lib_cli.js.html">cli.js</a></li><li><a href="../files/lib_docparser.js.html">docparser.js</a></li><li><a href="../files/lib_docview.js.html">docview.js</a></li><li><a href="../files/lib_index.js.html">index.js</a></li><li><a href="../files/lib_utils.js.html">utils.js</a></li><li><a href="../files/lib_yuidoc.js.html">yuidoc.js</a></li></ul></li></ul>
-    </div>
-</div>
-
-
-
+            </ul><span class="paren">)</span>
         </div>
-
-        <div id="main" class="yui3-u">
-            <div class="content"><h4>Class DocParser</h4>
-
-
-    Extends: <a href="http://yuilibrary.com/~davglass/3apidocs/classes/Base.html" class="crosslink external" target="_blank">Base</a><br>
-
-<span class="foundat">Class defined in: <a href="../files/lib_docparser.js.html#LINE_582"><code>lib&#x2F;docparser.js:582</code></a></span>
-<div class="intro"><p>The doc parser accepts a <strong>map</strong> of files to file content.
-  Once <code>parse()</code> is called, various properties will be populated
-  with the parsers data (aggregated in the <code>'data'</code> property).</p></div>
-
+    
 
     
-    <a name="method_DocParser"></a>
-<div class="method item">
-     <strong><code>DocParser</code></strong> ( <code>o </code> ) 
-    <br>
-    <span class="foundat">
+
     
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
-        <a href="../files/lib_docparser.js.html#LINE_582"><code>lib&#x2F;docparser.js:582</code></a>
-    </span>
-    
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>o</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
-        
-        
-        the config object
             
-        </li>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l695"><code>lib&#x2F;docparser.js:695</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
     
-    </ul>
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">o</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the config object</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
+
     
+
     
 </div>
 
-    
+    </div>
 
 
-<div id="classdocs">
-    <ul>
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
         
-        <li><a href="#methods">Methods</a></li>
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
         
         
-        <li><a href="#props">Properties</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
         
         
-        <li><a href="#attrs">Attributes</a></li>
+            <li class="api-class-tab attrs"><a href="#attrs">Attributes</a></li>
         
         
     </ul>
+
     <div>
-        
-            <div id="methods">
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
             
-                <a name="method__resolveFor"></a>
-<div class="method item private">
-    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>_resolveFor</code></strong> ( <code>value </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../files/lib_docparser.js.html#LINE_791"><code>lib&#x2F;docparser.js:791</code></a>
-    </span>
-    <p>Takes a non-namespaced classname and resolves it to a namespace (to support <code>@for</code>)</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>value</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
-        
-        
-        The classname to resolve
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method private">
+                                <a href="#method__resolveFor">_resolveFor</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_extract">extract</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_fixType">fixType</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_handlecomment">handlecomment</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_parse">parse</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_processblock">processblock</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_stringlog">stringlog</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_transform">transform</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_unindent">unindent</a>
+
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
             
-        </li>
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property">
+                                <a href="#property_CORRECTIONS">CORRECTIONS</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_DIGESTERS">DIGESTERS</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_TAGLIST">TAGLIST</a>
+
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section attrs">
+                    <h3>Attributes</h3>
+
+                    <ul class="index-list attrs">
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_currentclass">currentclass</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_currentfile">currentfile</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_currentmodule">currentmodule</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_currentsubmodule">currentsubmodule</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_digesters">digesters</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_dirmap">dirmap</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_emitters">emitters</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_filemap">filemap</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_mainmodule">mainmodule</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method__resolveFor" class="method item private">
+    <h3 class="name"><code>_resolveFor</code></h3>
+
     
-    </ul>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; The resolved namespace + classname</div>
+
     
+
     
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l935"><code>lib&#x2F;docparser.js:935</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Takes a non-namespaced classname and resolves it to a namespace (to support <code>@for</code>)</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The classname to resolve</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    The resolved namespace + classname
+                
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="method_extract" class="method item">
+    <h3 class="name"><code>extract</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="method_extract"></a>
-<div class="method item">
-    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>extract</code></strong> ( <code>filemap, dirmap </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../files/lib_docparser.js.html#LINE_949"><code>lib&#x2F;docparser.js:949</code></a>
-    </span>
-    <p>Accepts a map of filenames to file content.  Returns
-  a map of filenames to an array of API comment block
-  text.  This expects the comment to start with / **
-  on its own line, and end with * / on its own
-  line.  Override this function to provide an
-  alternative comment parser.</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>filemap</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
-        
-        
-        A map of filenames to file content
+                <li class="arg">
+                    
+                        <code>filemap</code>
+                    
+                </li>
             
-        </li>
-    
-        <li>
-        
-            <code>dirmap</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a>&gt;</strong>
-        
-        
-        A map of file names to directory name
+                <li class="arg">
+                    
+                        <code>dirmap</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; A map of filenames to an array of extracted</div>
+
     
+
     
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l1098"><code>lib&#x2F;docparser.js:1098</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Accepts a map of filenames to file content.  Returns
+a map of filenames to an array of API comment block
+text.  This expects the comment to start with / **
+on its own line, and end with * / on its own
+line.  Override this function to provide an
+alternative comment parser.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">filemap</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A map of filenames to file content</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">dirmap</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A map of file names to directory name</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    A map of filenames to an array of extracted
+comment text.
+                
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="method_fixType" class="method item private">
+    <h3 class="name"><code>fixType</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="method_fixType"></a>
-<div class="method item private">
-    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>fixType</code></strong> ( <code>t </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../files/lib_docparser.js.html#LINE_6"><code>lib&#x2F;docparser.js:6</code></a>
-    </span>
-    <p>Takes a type string and converts it to a "First letter upper cased" type. e.g. <code>(string -&gt; String, object -&gt; Object)</code></p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>t</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
-        
-        
-        The type string to convert
+                <li class="arg">
+                    
+                        <code>t</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; The fixed string</div>
+
     
+        <span class="flag private">private</span>
     
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l11"><code>lib&#x2F;docparser.js:11</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Takes a type string and converts it to a "First letter upper cased" type. e.g. <code>(string -&gt; String, object -&gt; Object)</code></p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">t</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The type string to convert</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    The fixed string
+                
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="method_handlecomment" class="method item">
+    <h3 class="name"><code>handlecomment</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="method_parse"></a>
-<div class="method item">
-    <a href="../classes/DocParser.html" class="crosslink">DocParser</a> <strong><code>parse</code></strong> ( <code>filemap, dirmap </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../files/lib_docparser.js.html#LINE_1136"><code>lib&#x2F;docparser.js:1136</code></a>
-    </span>
-    <p>Extracts and transforms the filemap provided to constructor</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>filemap</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a>&gt;</strong>
-        
-        
-        A map of filenames to file content
+                <li class="arg">
+                    
+                        <code>comment</code>
+                    
+                </li>
             
-        </li>
-    
-        <li>
-        
-            <code>dirmap</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a>&gt;</strong>
-        
-        
-        A map of file names to directory name
+                <li class="arg">
+                    
+                        <code>file</code>
+                    
+                </li>
             
-        </li>
+                <li class="arg">
+                    
+                        <code>line</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="../classes/DocParser.html" class="crosslink">DocParser</a>&gt; this parser instance.  The total results</div>
+
     
+
     
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l1028"><code>lib&#x2F;docparser.js:1028</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Transforms a JavaDoc style comment block (less the start
+and end of it) into a list
+of tag/text pairs.  The leading space and '*' are removed,
+but the remaining whitespace is preserved so that the
+output should be friendly for both markdown and html
+parsers.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">comment</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The comment to parse</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">file</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The file it was parsed from</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">line</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The line number it was found on</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
     
 </div>
 
+                
+                    <div id="method_parse" class="method item">
+    <h3 class="name"><code>parse</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="method_processblock"></a>
-<div class="method item">
-     <strong><code>processblock</code></strong> ( <code>an </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../files/lib_docparser.js.html#LINE_1002"><code>lib&#x2F;docparser.js:1002</code></a>
-    </span>
-    <p>Processes all the tags in a single comment block</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>an</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a>&gt;</strong>
-        
-        
-        array of the tag/text pairs
+                <li class="arg">
+                    
+                        <code>filemap</code>
+                    
+                </li>
             
-        </li>
+                <li class="arg">
+                    
+                        <code>dirmap</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/DocParser.html" class="crosslink">DocParser</a></span>
+        </span>
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l1310"><code>lib&#x2F;docparser.js:1310</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Extracts and transforms the filemap provided to constructor</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">filemap</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A map of filenames to file content</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">dirmap</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A map of file names to directory name</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/DocParser.html" class="crosslink">DocParser</a></span>:
+                    
+                    this parser instance.  The total results
+are available in parser.data.
+                
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="method_processblock" class="method item">
+    <h3 class="name"><code>processblock</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="method_stringlog"></a>
-<div class="method item private">
-    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>stringlog</code></strong> ( <code>data </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../files/lib_docparser.js.html#LINE_19"><code>lib&#x2F;docparser.js:19</code></a>
-    </span>
-    <p>Parses the JSON data and formats it into a nice log string for filename and line number: 
- <code>/file/name.js:123</code></p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>data</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
-        
-        
-        The data block from the parser
+                <li class="arg">
+                    
+                        <code>an</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; The formatted string.</div>
+
     
+
     
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l1151"><code>lib&#x2F;docparser.js:1151</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Processes all the tags in a single comment block</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">an</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>array of the tag/text pairs</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
     
 </div>
 
+                
+                    <div id="method_stringlog" class="method item private">
+    <h3 class="name"><code>stringlog</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="method_transform"></a>
-<div class="method item">
-    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a> <strong><code>transform</code></strong> ( <code>commentmap </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../files/lib_docparser.js.html#LINE_1070"><code>lib&#x2F;docparser.js:1070</code></a>
-    </span>
-    <p>Transforms a map of filenames to arrays of comment blocks into a
-  JSON structure that represents the entire processed API doc info
-  and relationships between elements for the entire project.</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>commentmap</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt;</strong>
-        
-        
-        The hash of files and parsed comment blocks
+                <li class="arg">
+                    
+                        <code>data</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a>&gt; The transformed data for the project</div>
+
     
+        <span class="flag private">private</span>
     
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l29"><code>lib&#x2F;docparser.js:29</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Parses the JSON data and formats it into a nice log string for filename and line number:
+   <code>/file/name.js:123</code></p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The data block from the parser</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    The formatted string.
+                
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="method_transform" class="method item">
+    <h3 class="name"><code>transform</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="method_unindent"></a>
-<div class="method item private">
-    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> <strong><code>unindent</code></strong> ( <code>content </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../files/lib_docparser.js.html#LINE_862"><code>lib&#x2F;docparser.js:862</code></a>
-    </span>
-    <p>Normalizes the initial indentation of the given <em>content</em> so that the first line
- is unindented, and all other lines are unindented to the same degree as the
- first line. So if the first line has four spaces at the beginning, then all
- lines will be unindented four spaces. Ported from <a href="https://github.com/rgrove/selleck">Selleck</a></p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>content</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
-        
-        
-        Text to unindent.
+                <li class="arg">
+                    
+                        <code>commentmap</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt; Unindented text.</div>
+
     
+
     
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l1219"><code>lib&#x2F;docparser.js:1219</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Transforms a map of filenames to arrays of comment blocks into a
+JSON structure that represents the entire processed API doc info
+and relationships between elements for the entire project.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">commentmap</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The hash of files and parsed comment blocks</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    The transformed data for the project
+                
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="method_unindent" class="method item private">
+    <h3 class="name"><code>unindent</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
+                <li class="arg">
+                    
+                        <code>content</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l1006"><code>lib&#x2F;docparser.js:1006</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Normalizes the initial indentation of the given <em>content</em> so that the first line
+is unindented, and all other lines are unindented to the same degree as the
+first line. So if the first line has four spaces at the beginning, then all
+lines will be unindented four spaces. Ported from <a href="https://github.com/rgrove/selleck">Selleck</a></p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">content</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Text to unindent.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    Unindented text.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
             </div>
         
+
         
-            <div id="props">
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_CORRECTIONS" class="property item">
+    <h3 class="name"><code>CORRECTIONS</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="props item">
-    <code>CORRECTIONS</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></strong>&gt; <em>(final)</em><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_160"><code>lib&#x2F;docparser.js:160</code></a></span>
-    <p>Common errors will get scrubbed instead of being ignored.</p>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l179"><code>lib&#x2F;docparser.js:179</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Common errors will get scrubbed instead of being ignored.</p>
+    </div>
+
+    
+
+    
+
+    
 </div>
 
+                
+                    <div id="property_DIGESTERS" class="property item">
+    <h3 class="name"><code>DIGESTERS</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="props item">
-    <code>DIGESTERS</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></strong>&gt; <em>(final)</em><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_179"><code>lib&#x2F;docparser.js:179</code></a></span>
-    <p>A map of the default tag processors, keyed by the
-  tag name.  Multiple tags can use the same digester
-  by supplying the string name that points to the
-  implementation rather than a function.</p>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l199"><code>lib&#x2F;docparser.js:199</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A map of the default tag processors, keyed by the
+tag name.  Multiple tags can use the same digester
+by supplying the string name that points to the
+implementation rather than a function.</p>
+    </div>
+
+    
+
+    
+
+    
 </div>
 
+                
+                    <div id="property_TAGLIST" class="property item">
+    <h3 class="name"><code>TAGLIST</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="props item">
-    <code>TAGLIST</code> &lt;<strong><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a></strong>&gt; <em>(final)</em><br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_83"><code>lib&#x2F;docparser.js:83</code></a></span>
-    <p>A list of known tags.  This populates a member variable
-  during initialization, and will be updated if additional
-  digesters are added.</p>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l100"><code>lib&#x2F;docparser.js:100</code></a></p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A list of known tags.  This populates a member variable
+during initialization, and will be updated if additional
+digesters are added.</p>
+    </div>
+
+    
+
+    
+
+    
 </div>
 
-            
+                
             </div>
         
+
         
-            <div id="attrs">
+            <div id="attrs" class="api-class-tabpanel">
+                <h2 class="off-left">Attributes</h2>
+
+                
+                    <div id="attr_currentclass" class="attr item">
+    <a name="config_currentclass"></a> 
+    <h3 class="name"><code>currentclass</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="attrs item">
-    <code>digesters</code> 
-    
-    
-    <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_602"><code>lib&#x2F;docparser.js:602</code></a></span>
-    <p>Digesters process the tag/text pairs found in a
-  comment block.  They are looked up by tag name.
-  The digester gets the tagname, the value, the
-  target object to apply values to, and the full
-  block that is being processed.  Digesters can
-  be declared as strings instead of a function --
-  in that case, the program will try to look up
-  the key listed and use the function there instead
-  (it is an alias).  Digesters can return a host
-  object in the case the tag defines a new key
-  block type (modules/classes/methods/events/properties)</p>
-    
-    <div class="emits">
-        Fires: <strong><code>digestersChange(e)</code></strong>
-        <p>Fires when the value for the configuration attribute <code>digesters</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
-        <strong>Parameters:</strong><br>
-        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
-        <ul>
-            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
-            <li><code>newVal</code> The value the attribute is to be set to</li>
-            <li><code>attrName</code> The name of the attribute being set</li>
-            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
-        </ul>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l899"><code>lib&#x2F;docparser.js:899</code></a></p>
+
+        
+
+        
     </div>
+
+    <div class="description">
+        <p>The class currently being parsed</p>
+    </div>
+
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>currentclassChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>currentclass</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">EventFacade</span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="attr_currentfile" class="attr item">
+    <a name="config_currentfile"></a> 
+    <h3 class="name"><code>currentfile</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="attrs item">
-    <code>emitters</code> 
-    
-    
-    <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_624"><code>lib&#x2F;docparser.js:624</code></a></span>
-    <p>Emitters will be schemas for the types of payloads
-  the parser will emit.  Not implemented.</p>
-    
-    <div class="emits">
-        Fires: <strong><code>emittersChange(e)</code></strong>
-        <p>Fires when the value for the configuration attribute <code>emitters</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
-        <strong>Parameters:</strong><br>
-        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
-        <ul>
-            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
-            <li><code>newVal</code> The value the attribute is to be set to</li>
-            <li><code>attrName</code> The name of the attribute being set</li>
-            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
-        </ul>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l766"><code>lib&#x2F;docparser.js:766</code></a></p>
+
+        
+
+        
     </div>
+
+    <div class="description">
+        <p>The file currently being parsed</p>
+    </div>
+
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>currentfileChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>currentfile</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">EventFacade</span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="attr_currentmodule" class="attr item">
+    <a name="config_currentmodule"></a> 
+    <h3 class="name"><code>currentmodule</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="attrs item">
-    <code>filemap</code> 
-    
-    
-    <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_635"><code>lib&#x2F;docparser.js:635</code></a></span>
-    <p>The map of file names to file content.</p>
-    
-    <div class="emits">
-        Fires: <strong><code>filemapChange(e)</code></strong>
-        <p>Fires when the value for the configuration attribute <code>filemap</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
-        <strong>Parameters:</strong><br>
-        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
-        <ul>
-            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
-            <li><code>newVal</code> The value the attribute is to be set to</li>
-            <li><code>attrName</code> The name of the attribute being set</li>
-            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
-        </ul>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l810"><code>lib&#x2F;docparser.js:810</code></a></p>
+
+        
+
+        
     </div>
+
+    <div class="description">
+        <p>The module currently being parsed</p>
+    </div>
+
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>currentmoduleChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>currentmodule</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">EventFacade</span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="attr_currentsubmodule" class="attr item">
+    <a name="config_currentsubmodule"></a> 
+    <h3 class="name"><code>currentsubmodule</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="attrs item">
-    <code>dirmap</code> 
-    
-    
-    <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_643"><code>lib&#x2F;docparser.js:643</code></a></span>
-    <p>A map of file names to directory name.  Provided in
-  case this needs to be used to reset the module name
-  appropriately -- currently not used</p>
-    
-    <div class="emits">
-        Fires: <strong><code>dirmapChange(e)</code></strong>
-        <p>Fires when the value for the configuration attribute <code>dirmap</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
-        <strong>Parameters:</strong><br>
-        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
-        <ul>
-            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
-            <li><code>newVal</code> The value the attribute is to be set to</li>
-            <li><code>attrName</code> The name of the attribute being set</li>
-            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
-        </ul>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l859"><code>lib&#x2F;docparser.js:859</code></a></p>
+
+        
+
+        
     </div>
+
+    <div class="description">
+        <p>The submodule currently being parsed</p>
+    </div>
+
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>currentsubmoduleChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>currentsubmodule</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">EventFacade</span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="attr_digesters" class="attr item">
+    <a name="config_digesters"></a> 
+    <h3 class="name"><code>digesters</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="attrs item">
-    <code>currentfile</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
-    
-    
-    <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_653"><code>lib&#x2F;docparser.js:653</code></a></span>
-    <p>The file currently being parsed</p>
-    
-    <div class="emits">
-        Fires: <strong><code>currentfileChange(e)</code></strong>
-        <p>Fires when the value for the configuration attribute <code>currentfile</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
-        <strong>Parameters:</strong><br>
-        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
-        <ul>
-            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
-            <li><code>newVal</code> The value the attribute is to be set to</li>
-            <li><code>attrName</code> The name of the attribute being set</li>
-            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
-        </ul>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l715"><code>lib&#x2F;docparser.js:715</code></a></p>
+
+        
+
+        
     </div>
+
+    <div class="description">
+        <p>Digesters process the tag/text pairs found in a
+comment block.  They are looked up by tag name.
+The digester gets the tagname, the value, the
+target object to apply values to, and the full
+block that is being processed.  Digesters can
+be declared as strings instead of a function --
+in that case, the program will try to look up
+the key listed and use the function there instead
+(it is an alias).  Digesters can return a host
+object in the case the tag defines a new key
+block type (modules/classes/methods/events/properties)</p>
+    </div>
+
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>digestersChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>digesters</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">EventFacade</span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="attr_dirmap" class="attr item">
+    <a name="config_dirmap"></a> 
+    <h3 class="name"><code>dirmap</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="attrs item">
-    <code>mainmodule</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
-    
-    
-    <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_674"><code>lib&#x2F;docparser.js:674</code></a></span>
-    <p>The main documentation block for the module itself.</p>
-    
-    <div class="emits">
-        Fires: <strong><code>mainmoduleChange(e)</code></strong>
-        <p>Fires when the value for the configuration attribute <code>mainmodule</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
-        <strong>Parameters:</strong><br>
-        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
-        <ul>
-            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
-            <li><code>newVal</code> The value the attribute is to be set to</li>
-            <li><code>attrName</code> The name of the attribute being set</li>
-            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
-        </ul>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l756"><code>lib&#x2F;docparser.js:756</code></a></p>
+
+        
+
+        
     </div>
+
+    <div class="description">
+        <p>A map of file names to directory name.  Provided in
+case this needs to be used to reset the module name
+appropriately -- currently not used</p>
+    </div>
+
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>dirmapChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>dirmap</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">EventFacade</span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="attr_emitters" class="attr item">
+    <a name="config_emitters"></a> 
+    <h3 class="name"><code>emitters</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="attrs item">
-    <code>currentmodule</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
-    
-    
-    <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_697"><code>lib&#x2F;docparser.js:697</code></a></span>
-    <p>The module currently being parsed</p>
-    
-    <div class="emits">
-        Fires: <strong><code>currentmoduleChange(e)</code></strong>
-        <p>Fires when the value for the configuration attribute <code>currentmodule</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
-        <strong>Parameters:</strong><br>
-        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
-        <ul>
-            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
-            <li><code>newVal</code> The value the attribute is to be set to</li>
-            <li><code>attrName</code> The name of the attribute being set</li>
-            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
-        </ul>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l737"><code>lib&#x2F;docparser.js:737</code></a></p>
+
+        
+
+        
     </div>
+
+    <div class="description">
+        <p>Emitters will be schemas for the types of payloads
+the parser will emit.  Not implemented.</p>
+    </div>
+
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>emittersChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>emitters</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">EventFacade</span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="attr_filemap" class="attr item">
+    <a name="config_filemap"></a> 
+    <h3 class="name"><code>filemap</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="attrs item">
-    <code>currentsubmodule</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
-    
-    
-    <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_724"><code>lib&#x2F;docparser.js:724</code></a></span>
-    <p>The submodule currently being parsed</p>
-    
-    <div class="emits">
-        Fires: <strong><code>currentsubmoduleChange(e)</code></strong>
-        <p>Fires when the value for the configuration attribute <code>currentsubmodule</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
-        <strong>Parameters:</strong><br>
-        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
-        <ul>
-            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
-            <li><code>newVal</code> The value the attribute is to be set to</li>
-            <li><code>attrName</code> The name of the attribute being set</li>
-            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
-        </ul>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l748"><code>lib&#x2F;docparser.js:748</code></a></p>
+
+        
+
+        
     </div>
+
+    <div class="description">
+        <p>The map of file names to file content.</p>
+    </div>
+
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>filemapChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>filemap</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">EventFacade</span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
     
 </div>
 
+                
+                    <div id="attr_mainmodule" class="attr item">
+    <a name="config_mainmodule"></a> 
+    <h3 class="name"><code>mainmodule</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <div class="attrs item">
-    <code>currentclass</code> <strong>&lt;<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>&gt;</strong>
-    
-    
-    <br>
-    <span class="foundat"><a href="../files/lib_docparser.js.html#LINE_755"><code>lib&#x2F;docparser.js:755</code></a></span>
-    <p>The class currently being parsed</p>
-    
-    <div class="emits">
-        Fires: <strong><code>currentclassChange(e)</code></strong>
-        <p>Fires when the value for the configuration attribute <code>currentclass</code> is changed. You can listen for the event using the <code>on</code> method if you wish to be notified before the attribute's value has changed, or using the <code>after</code> method if you wish to be notified after the attribute's value has changed.</p>
-        <strong>Parameters:</strong><br>
-        <code>e</code> <strong>&lt;EventFacade&gt;</strong> An Event Facade object with the following attribute specific properties added:
-        <ul>
-            <li><code>prevVal</code> The value of the attribute, prior to it being set</li>
-            <li><code>newVal</code> The value the attribute is to be set to</li>
-            <li><code>attrName</code> The name of the attribute being set</li>
-            <li><code>subAttrName</code> If setting a property within the attribute's value, the name of the sub-attribute property being set</li>
-        </ul>
+                
+                <p>Defined in
+            
+        
+        <a href="../files&#x2F;lib_docparser.js.html#l787"><code>lib&#x2F;docparser.js:787</code></a></p>
+
+        
+
+        
     </div>
+
+    <div class="description">
+        <p>The main documentation block for the module itself.</p>
+    </div>
+
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>mainmoduleChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>mainmodule</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">EventFacade</span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
     
 </div>
 
-            
+                
             </div>
         
+
         
     </div>
 </div>
-</div>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
-<script src="../assets/js/yui-prettify.js"></script>
-<script src="../assets/js/tabs.js"></script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<!--script src="..&#x2F;assets/js/tabs.js"></script-->
+<script src="..&#x2F;assets/../api.js"></script>
+
+
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
 </body>
 </html>

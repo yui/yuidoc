@@ -44,11 +44,31 @@
             "fors": {},
             "namespaces": {}
         },
+        "lib/files.js": {
+            "name": "lib/files.js",
+            "modules": {},
+            "classes": {
+                "Files": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "lib/index.js": {
             "name": "lib/index.js",
             "modules": {},
             "classes": {
                 "index": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/server.js": {
+            "name": "lib/server.js",
+            "modules": {
+                "server": 1
+            },
+            "classes": {
+                "Server": 1
             },
             "fors": {},
             "namespaces": {}
@@ -79,14 +99,17 @@
     "modules": {
         "yuidoc": {
             "name": "yuidoc",
-            "submodules": {},
+            "submodules": {
+                "undefined": 1
+            },
             "classes": {
+                "utils": 1,
                 "DocBuilder": 1,
                 "cli": 1,
                 "DocParser": 1,
-                    "DocView": 1,
+                "DocView": 1,
+                "Files": 1,
                 "index": 1,
-                "utils": 1,
                 "YUIDoc": 1
             },
             "fors": {
@@ -95,9 +118,23 @@
             },
             "namespaces": {},
             "tag": "main",
-            "    file": "lib/yuidoc.js",
-            "line": 5,
-            "description": "This is the **module** description for the `YUIDoc` module.\n \n     var options = {\n         paths: [ './lib' ],\n         outdir: './out'\n     };\n \n     var Y = require('yuidoc');\n     var json = (new Y.YUIDoc(options)).run();"
+            "file": "lib/yuidoc.js",
+            "line": 10,
+            "description": "This is the __module__ description for the `YUIDoc` module.\n\n    var options = {\n        paths: [ './lib' ],\n        outdir: './out'\n    };\n\n    var Y = require('yuidoc');\n    var json = (new Y.YUIDoc(options)).run();",
+            "itemtype": "main"
+        },
+        "server": {
+            "name": "server",
+            "submodules": {},
+            "classes": {
+                "Server": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/server.js",
+            "line": 3,
+            "description": "Provides the `--server` server option for YUIDoc"
         }
     },
     "classes": {
@@ -111,8 +148,8 @@
             "extension_for": [],
             "module": "yuidoc",
             "file": "lib/builder.js",
-            "line": 9,
-            "description": "Takes the `JSON` data from the `DocParser` class, creates and parses markdown and handlebars\n based templates to generate static HTML content"
+            "line": 31,
+            "description": "Takes the `JSON` data from the `DocParser` class, creates and parses markdown and handlebars\nbased templates to generate static HTML content"
         },
         "cli": {
             "name": "cli",
@@ -125,7 +162,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/cli.js",
-            "line": 3,
+            "line": 8,
             "description": "Parses the arguments, creates the options and passes them to Y.YUIDoc."
         },
         "DocParser": {
@@ -139,8 +176,8 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/docparser.js",
-            "line": 582,
-            "description": "The doc parser accepts a **map** of files to file content.\n  Once `parse()` is called, various properties will be populated\n  with the parsers data (aggregated in the `'data'` property).",
+            "line": 695,
+            "description": "The doc parser accepts a **map** of files to file content.\nOnce `parse()` is called, various properties will be populated\nwith the parsers data (aggregated in the `'data'` property).",
             "extends": "Base",
             "is_constructor": 1,
             "params": [
@@ -162,8 +199,8 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/docview.js",
-            "line": 10,
-            "description": "View class borrowed from [Selleck](https://github.com/rgrove/selleck)  \n The view class is a **`handlebars`** template helper.",
+            "line": 15,
+            "description": "View class borrowed from [Selleck](https://github.com/rgrove/selleck)  \nThe view class is a **`handlebars`** template helper.",
             "is_constructor": 1,
             "params": [
                 {
@@ -176,7 +213,21 @@
                     "description": "The name of the template file to render.",
                     "type": "String"
                 }
-                ]
+            ]
+        },
+        "Files": {
+            "name": "Files",
+            "shortname": "Files",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "yuidoc",
+            "namespace": "",
+            "file": "lib/files.js",
+            "line": 3,
+            "description": "Ported fileutils methods from [Selleck](http://github.com/rgrove/selleck)"
         },
         "index": {
             "name": "index",
@@ -189,9 +240,23 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/index.js",
-            "line": 1,
-            "description": "Module creates the YUI instance with the required modules, uses them and exports the **Y** to be used\n  by the _CLI class_ or by extenders: `require('yuidocjs');`  \n  You can use it like this:  \n \n     var options = {\n         paths: [ './lib' ],\n         outdir: './out'\n     };\n \n     var Y = require('yuidoc');\n     var json = (new Y.YUIDoc(options)).run();",
+            "line": 6,
+            "description": "Module creates the YUI instance with the required modules, uses them and exports the **Y** to be used\nby the _CLI class_ or by extenders: `require('yuidocjs');`  \nYou can use it like this:  \n\n    var options = {\n        paths: [ './lib' ],\n        outdir: './out'\n    };\n\n    var Y = require('yuidoc');\n    var json = (new Y.YUIDoc(options)).run();",
             "exports": "{YUI} Y A YUI instance"
+        },
+        "Server": {
+            "name": "Server",
+            "shortname": "Server",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "namespace": "",
+            "file": "lib/server.js",
+            "line": 3,
+            "description": "Provides the `--server` server option for YUIDoc"
         },
         "utils": {
             "name": "utils",
@@ -204,7 +269,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/utils.js",
-            "line": 6,
+            "line": 11,
             "description": "Utilities Class"
         },
         "YUIDoc": {
@@ -218,8 +283,10 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/yuidoc.js",
-            "line": 41,
-            "description": "YUIDoc main class\n \n     var options = {\n    paths: [ './lib' ],\n    outdir: './out'\n     };\n \n     var Y = require('yuidoc');\n     var json = (new Y.YUIDoc(options)).run();",
+            "line": 48,
+            "description": "YUIDoc main class\n\n       var options = {\n           paths: [ './lib' ],\n           outdir: './out'\n       };\n\n       var Y = require('yuidoc');\n       var json = (new Y.YUIDoc(options)).run();",
+            "tag": "main",
+            "itemtype": "main",
             "is_constructor": 1,
             "params": [
                 {
@@ -232,17 +299,38 @@
     "classitems": [
         {
             "file": "lib/builder.js",
-            "line": 227,
+            "line": 13,
+            "description": "Takes a type string and converts it to a \"First letter upper cased\" type. e.g. `(string -> String, object -> Object)`",
+            "itemtype": "method",
+            "name": "fixType",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "t",
+                    "description": "The type string to convert",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The fixed string",
+                "type": "String"
+            },
+            "class": "DocBuilder"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 265,
             "description": "The default tags to use in params descriptions (for Markdown).",
             "itemtype": "property",
             "name": "defaultTags",
-                "type": "String",
+            "type": "String",
             "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
             "file": "lib/builder.js",
-            "line": 233,
+            "line": 272,
             "description": "File counter",
             "itemtype": "property",
             "name": "files",
@@ -252,7 +340,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 239,
+            "line": 278,
             "description": "Prep the meta data to be fed to Selleck",
             "itemtype": "method",
             "name": "getProjectMeta",
@@ -265,7 +353,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 257,
+            "line": 316,
             "description": "Populate the meta data for classes",
             "itemtype": "method",
             "name": "populateClasses",
@@ -274,7 +362,7 @@
                     "name": "opts",
                     "description": "The original options",
                     "type": "Object"
-                    }
+                }
             ],
             "return": {
                 "description": "The modified options",
@@ -285,7 +373,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 271,
+            "line": 330,
             "description": "Populate the meta data for modules",
             "itemtype": "method",
             "name": "populateModules",
@@ -294,7 +382,7 @@
                     "name": "opts",
                     "description": "The original options",
                     "type": "Object"
-                    }
+                }
             ],
             "return": {
                 "description": "The modified options",
@@ -305,7 +393,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 294,
+            "line": 366,
             "description": "Populate the meta data for files",
             "itemtype": "method",
             "name": "populateFiles",
@@ -325,8 +413,8 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 348,
-            "description": "Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions\n  with the `Markdown Parser`",
+            "line": 420,
+            "description": "Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions\nwith the `Markdown Parser`",
             "itemtype": "method",
             "name": "augmentData",
             "params": [
@@ -345,7 +433,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 405,
+            "line": 481,
             "description": "Makes the default directories needed",
             "itemtype": "method",
             "name": "makeDirs",
@@ -354,14 +442,14 @@
                     "name": "cb",
                     "description": "The callback to execute after it's completed",
                     "type": "Callback"
-                    }
+                }
             ],
             "class": "DocBuilder",
             "module": "yuidoc"
         },
         {
             "file": "lib/builder.js",
-            "line": 429,
+            "line": 522,
             "description": "Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them",
             "itemtype": "method",
             "name": "_parseCode",
@@ -371,7 +459,7 @@
                 {
                     "name": "html",
                     "description": "The HTML to parse",
-                        "type": "HTML"
+                    "type": "HTML"
                 }
             ],
             "return": {
@@ -383,8 +471,8 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 440,
-            "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n that are not parsed by the **Markdown** parser.",
+            "line": 534,
+            "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n       that are not parsed by the **Markdown** parser.",
             "itemtype": "method",
             "name": "_inlineCode",
             "access": "private",
@@ -405,8 +493,8 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 459,
-            "description": "Ported from [Selleck](https://github.com/rgrove/selleck)  \n Renders the handlebars templates with the default View class.",
+            "line": 553,
+            "description": "Ported from [Selleck](https://github.com/rgrove/selleck)\n       Renders the handlebars templates with the default View class.",
             "itemtype": "method",
             "name": "render",
             "params": [
@@ -457,7 +545,35 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 509,
+            "line": 603,
+            "description": "Render the index file",
+            "itemtype": "method",
+            "name": "renderIndex",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "The callback fired when complete",
+                    "type": "Function",
+                    "props": [
+                        {
+                            "name": "html",
+                            "description": "The HTML to render this view",
+                            "type": "String"
+                        }
+                    ]
+                },
+                {
+                    "name": "cv.view",
+                    "description": "The View Data",
+                    "type": "Object"
+                }
+            ],
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 628,
             "description": "Generates the index.html file",
             "itemtype": "method",
             "name": "writeIndex",
@@ -473,7 +589,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 535,
+            "line": 711,
             "description": "Generates the module files under \"out\"/modules/",
             "itemtype": "method",
             "name": "writeModules",
@@ -489,7 +605,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 642,
+            "line": 1050,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -505,7 +621,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 815,
+            "line": 1078,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -530,7 +646,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 838,
+            "line": 1101,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -546,11 +662,11 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 884,
-            "description": "Normalizes a file path to a writable filename:\n  \n     var path = 'lib/file.js';\n     returns 'lib_file.js';",
+            "line": 1200,
+            "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
-                "params": [
+            "params": [
                 {
                     "name": "f",
                     "description": "The filename to normalize",
@@ -566,7 +682,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 897,
+            "line": 1213,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
@@ -582,7 +698,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 6,
+            "line": 11,
             "description": "Takes a type string and converts it to a \"First letter upper cased\" type. e.g. `(string -> String, object -> Object)`",
             "itemtype": "method",
             "name": "fixType",
@@ -604,8 +720,8 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 19,
-            "description": "Parses the JSON data and formats it into a nice log string for filename and line number:  \n `/file/name.js:123`",
+            "line": 29,
+            "description": "Parses the JSON data and formats it into a nice log string for filename and line number:\n   `/file/name.js:123`",
             "itemtype": "method",
             "name": "stringlog",
             "access": "private",
@@ -626,8 +742,8 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 83,
-            "description": "A list of known tags.  This populates a member variable\n  during initialization, and will be updated if additional\n  digesters are added.",
+            "line": 100,
+            "description": "A list of known tags.  This populates a member variable\nduring initialization, and will be updated if additional\ndigesters are added.",
             "itemtype": "property",
             "name": "TAGLIST",
             "type": "Array",
@@ -637,7 +753,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 160,
+            "line": 179,
             "description": "Common errors will get scrubbed instead of being ignored.",
             "itemtype": "property",
             "name": "CORRECTIONS",
@@ -648,8 +764,8 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 179,
-            "description": "A map of the default tag processors, keyed by the\n  tag name.  Multiple tags can use the same digester\n  by supplying the string name that points to the\n  implementation rather than a function.",
+            "line": 199,
+            "description": "A map of the default tag processors, keyed by the\ntag name.  Multiple tags can use the same digester\nby supplying the string name that points to the\nimplementation rather than a function.",
             "itemtype": "property",
             "name": "DIGESTERS",
             "type": "Object",
@@ -659,17 +775,17 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 602,
-            "description": "Digesters process the tag/text pairs found in a\n  comment block.  They are looked up by tag name.\n  The digester gets the tagname, the value, the\n  target object to apply values to, and the full\n  block that is being processed.  Digesters can\n  be declared as strings instead of a function --\n  in that case, the program will try to look up\n  the key listed and use the function there instead\n  (it is an alias).  Digesters can return a host\n  object in the case the tag defines a new key\n  block type (modules/classes/methods/events/properties)",
+            "line": 715,
+            "description": "Digesters process the tag/text pairs found in a\ncomment block.  They are looked up by tag name.\nThe digester gets the tagname, the value, the\ntarget object to apply values to, and the full\nblock that is being processed.  Digesters can\nbe declared as strings instead of a function --\nin that case, the program will try to look up\nthe key listed and use the function there instead\n(it is an alias).  Digesters can return a host\nobject in the case the tag defines a new key\nblock type (modules/classes/methods/events/properties)",
             "itemtype": "attribute",
-                "name": "digesters",
+            "name": "digesters",
             "class": "DocParser",
             "module": "yuidoc"
         },
         {
             "file": "lib/docparser.js",
-            "line": 624,
-            "description": "Emitters will be schemas for the types of payloads\n  the parser will emit.  Not implemented.",
+            "line": 737,
+            "description": "Emitters will be schemas for the types of payloads\nthe parser will emit.  Not implemented.",
             "itemtype": "attribute",
             "name": "emitters",
             "class": "DocParser",
@@ -677,7 +793,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 635,
+            "line": 748,
             "description": "The map of file names to file content.",
             "itemtype": "attribute",
             "name": "filemap",
@@ -686,8 +802,8 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 643,
-            "description": "A map of file names to directory name.  Provided in\n  case this needs to be used to reset the module name\n  appropriately -- currently not used",
+            "line": 756,
+            "description": "A map of file names to directory name.  Provided in\ncase this needs to be used to reset the module name\nappropriately -- currently not used",
             "itemtype": "attribute",
             "name": "dirmap",
             "class": "DocParser",
@@ -695,7 +811,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 653,
+            "line": 766,
             "description": "The file currently being parsed",
             "itemtype": "attribute",
             "name": "currentfile",
@@ -705,17 +821,17 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 674,
+            "line": 787,
             "description": "The main documentation block for the module itself.",
             "itemtype": "attribute",
             "name": "mainmodule",
             "type": "String",
             "class": "DocParser",
-                "module": "yuidoc"
+            "module": "yuidoc"
         },
         {
             "file": "lib/docparser.js",
-            "line": 697,
+            "line": 810,
             "description": "The module currently being parsed",
             "itemtype": "attribute",
             "name": "currentmodule",
@@ -725,7 +841,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 724,
+            "line": 859,
             "description": "The submodule currently being parsed",
             "itemtype": "attribute",
             "name": "currentsubmodule",
@@ -735,7 +851,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 755,
+            "line": 899,
             "description": "The class currently being parsed",
             "itemtype": "attribute",
             "name": "currentclass",
@@ -745,7 +861,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 791,
+            "line": 935,
             "description": "Takes a non-namespaced classname and resolves it to a namespace (to support `@for`)",
             "access": "private",
             "tagname": "",
@@ -767,8 +883,8 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 862,
-            "description": "Normalizes the initial indentation of the given _content_ so that the first line\n is unindented, and all other lines are unindented to the same degree as the\n first line. So if the first line has four spaces at the beginning, then all\n lines will be unindented four spaces. Ported from [Selleck](https://github.com/rgrove/selleck)",
+            "line": 1006,
+            "description": "Normalizes the initial indentation of the given _content_ so that the first line\nis unindented, and all other lines are unindented to the same degree as the\nfirst line. So if the first line has four spaces at the beginning, then all\nlines will be unindented four spaces. Ported from [Selleck](https://github.com/rgrove/selleck)",
             "itemtype": "method",
             "name": "unindent",
             "params": [
@@ -789,15 +905,34 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 884,
-            "description": "Transforms a JavaDoc style comment block (less the start\n  and end of it) into a list\n  of tag/text pairs.  The leading space and '*' are removed,\n  but the remaining whitespace is preserved so that the\n  output should be friendly for both markdown and html\n  parsers.",
+            "line": 1028,
+            "description": "Transforms a JavaDoc style comment block (less the start\nand end of it) into a list\nof tag/text pairs.  The leading space and '*' are removed,\nbut the remaining whitespace is preserved so that the\noutput should be friendly for both markdown and html\nparsers.",
+            "itemtype": "method",
+            "name": "handlecomment",
+            "params": [
+                {
+                    "name": "comment",
+                    "description": "The comment to parse",
+                    "type": "String"
+                },
+                {
+                    "name": "file",
+                    "description": "The file it was parsed from",
+                    "type": "String"
+                },
+                {
+                    "name": "line",
+                    "description": "The line number it was found on",
+                    "type": "String"
+                }
+            ],
             "class": "DocParser",
             "module": "yuidoc"
         },
         {
             "file": "lib/docparser.js",
-            "line": 949,
-            "description": "Accepts a map of filenames to file content.  Returns\n  a map of filenames to an array of API comment block\n  text.  This expects the comment to start with / **\n  on its own line, and end with * / on its own\n  line.  Override this function to provide an\n  alternative comment parser.",
+            "line": 1098,
+            "description": "Accepts a map of filenames to file content.  Returns\na map of filenames to an array of API comment block\ntext.  This expects the comment to start with / **\non its own line, and end with * / on its own\nline.  Override this function to provide an\nalternative comment parser.",
             "itemtype": "method",
             "name": "extract",
             "params": [
@@ -809,11 +944,11 @@
                 {
                     "name": "dirmap",
                     "description": "A map of file names to directory name",
-                        "type": "Array"
+                    "type": "Array"
                 }
             ],
             "return": {
-                "description": "A map of filenames to an array of extracted",
+                "description": "A map of filenames to an array of extracted\ncomment text.",
                 "type": "Object"
             },
             "class": "DocParser",
@@ -821,7 +956,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1002,
+            "line": 1151,
             "description": "Processes all the tags in a single comment block",
             "itemtype": "method",
             "name": "processblock",
@@ -837,9 +972,9 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1070,
-            "description": "Transforms a map of filenames to arrays of comment blocks into a\n  JSON structure that represents the entire processed API doc info\n  and relationships between elements for the entire project.",
-            "    itemtype": "method",
+            "line": 1219,
+            "description": "Transforms a map of filenames to arrays of comment blocks into a\nJSON structure that represents the entire processed API doc info\nand relationships between elements for the entire project.",
+            "itemtype": "method",
             "name": "transform",
             "params": [
                 {
@@ -857,7 +992,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1136,
+            "line": 1310,
             "description": "Extracts and transforms the filemap provided to constructor",
             "itemtype": "method",
             "name": "parse",
@@ -874,7 +1009,7 @@
                 }
             ],
             "return": {
-                "description": "this parser instance.  The total results",
+                "description": "this parser instance.  The total results\nare available in parser.data.",
                 "type": "DocParser"
             },
             "class": "DocParser",
@@ -882,7 +1017,7 @@
         },
         {
             "file": "lib/docview.js",
-            "line": 24,
+            "line": 29,
             "description": "**Mustache** `lambda` method for setting the HTML title",
             "itemtype": "method",
             "name": "htmlTitle",
@@ -891,7 +1026,7 @@
         },
         {
             "file": "lib/docview.js",
-            "line": 43,
+            "line": 48,
             "description": "**Mustache** `lambda` method for setting the title",
             "itemtype": "method",
             "name": "title",
@@ -899,8 +1034,473 @@
             "module": "yuidoc"
         },
         {
+            "file": "lib/files.js",
+            "line": 21,
+            "description": "Copy a directory from one location to another",
+            "itemtype": "method",
+            "name": "copyDirectory",
+            "params": [
+                {
+                    "name": "source",
+                    "description": "The source directory",
+                    "type": "Path"
+                },
+                {
+                    "name": "dest",
+                    "description": "The destination directory",
+                    "type": "Path"
+                },
+                {
+                    "name": "overwrite",
+                    "description": "Whether or not to overwrite destination files\n if they already exist.",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                },
+                {
+                    "name": "callback",
+                    "description": "The callback to be executed when complete.",
+                    "type": "Function"
+                }
+            ],
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 96,
+            "description": "Copy a file from one location to another",
+            "itemtype": "method",
+            "name": "copyFile",
+            "params": [
+                {
+                    "name": "source",
+                    "description": "The source file",
+                    "type": "Path"
+                },
+                {
+                    "name": "dest",
+                    "description": "The destination file",
+                    "type": "Path"
+                },
+                {
+                    "name": "overwrite",
+                    "description": "Whether or not to overwrite destination files\n if they already exist.",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                },
+                {
+                    "name": "callback",
+                    "description": "The callback to be executed when complete.",
+                    "type": "Callback",
+                    "props": [
+                        {
+                            "name": "err",
+                            "description": "The Error returned from Node",
+                            "type": "Error"
+                        }
+                    ]
+                }
+            ],
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 139,
+            "description": "If _source_ is a file, copies it to _dest_. If it's a directory, recursively\ncopies it and all files and directories it contains to _dest_.\n\nNote that when attempting to copy a file into a directory, you should specify\nthe full path to the new file (including the new filename). Otherwise, it will\nbe interpreted as an attempt to copy the _source_ file *over* the _dest_\ndirectory instead of *into* it.\n\nKnown issues:\n- Doesn't preserve ownership or permissions on copied files/directories.",
+            "itemtype": "method",
+            "name": "copyPath",
+            "params": [
+                {
+                    "name": "source",
+                    "description": "Source path.",
+                    "type": "String"
+                },
+                {
+                    "name": "dest",
+                    "description": "Destination path.",
+                    "type": "String"
+                },
+                {
+                    "name": "overwrite",
+                    "description": "Whether or not to overwrite destination files\nif they already exist.",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                },
+                {
+                    "name": "callback",
+                    "description": "The callback to execute when completed.",
+                    "type": "Callback",
+                    "props": [
+                        {
+                            "name": "err",
+                            "description": "",
+                            "type": "Error"
+                        }
+                    ]
+                }
+            ],
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 186,
+            "description": "If _path_ is a file, deletes it. If _path_ is a directory, recursively deletes\nit and all files and directories it contains.\n\nThis method is synchronous.",
+            "itemtype": "method",
+            "name": "deletePath",
+            "params": [
+                {
+                    "name": "path",
+                    "description": "File or directory to delete.",
+                    "type": "String"
+                }
+            ],
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 210,
+            "description": "Check to see if this is a directory",
+            "itemtype": "method",
+            "name": "isDirectory",
+            "params": [
+                {
+                    "name": "path",
+                    "description": "The path to check",
+                    "type": "Path"
+                },
+                {
+                    "name": "link",
+                    "description": "Also validate a symlink",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                }
+            ],
+            "return": {
+                "description": "True if it is a directory",
+                "type": "Boolean"
+            },
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 237,
+            "description": "Check to see if this is a File",
+            "itemtype": "method",
+            "name": "isFile",
+            "params": [
+                {
+                    "name": "path",
+                    "description": "The path to check",
+                    "type": "Path"
+                },
+                {
+                    "name": "link",
+                    "description": "Also validate a symlink",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                }
+            ],
+            "return": {
+                "description": "True if it is a file",
+                "type": "Boolean"
+            },
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 263,
+            "description": "Check to see if this is a SymLink",
+            "itemtype": "method",
+            "name": "isSymbolicLink",
+            "params": [
+                {
+                    "name": "path",
+                    "description": "The path to check",
+                    "type": "Path"
+                }
+            ],
+            "return": {
+                "description": "True if it is a link",
+                "type": "Boolean"
+            },
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 275,
+            "description": "Like `fs.lstatSync()`, but returns `null` instead of throwing when _path_\ndoesn't exist. Will still throw on other types of errors.",
+            "itemtype": "method",
+            "name": "lstatSync",
+            "params": [
+                {
+                    "name": "path",
+                    "description": "Path to stat.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "`fs.Stats` object, or `null` if _path_ doesn't exist.",
+                "type": "Fs.Stats|null"
+            },
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 296,
+            "description": "Like `fs.statSync()`, but returns `null` instead of throwing when _path_\ndoesn't exist. Will still throw on other types of errors.",
+            "itemtype": "method",
+            "name": "statSync",
+            "params": [
+                {
+                    "name": "path",
+                    "description": "Path to stat.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "`fs.Stats` object, or `null` if _path_ doesn't exist.",
+                "type": "Fs.Stats|null"
+            },
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 317,
+            "description": "Copy the theme assets directory",
+            "itemtype": "method",
+            "name": "copyAssets",
+            "params": [
+                {
+                    "name": "from",
+                    "description": "The source directory",
+                    "type": "Path"
+                },
+                {
+                    "name": "dest",
+                    "description": "The destination directory",
+                    "type": "Path"
+                },
+                {
+                    "name": "deleteFirst",
+                    "description": "Should the directory be deleted if it exists",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "callback",
+                    "description": "The callback to be executed",
+                    "type": "Function"
+                }
+            ],
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 365,
+            "description": "Helper method for getting JSON data from a local file",
+            "itemtype": "method",
+            "name": "getJSON",
+            "params": [
+                {
+                    "name": "filename",
+                    "description": "The filename to parse JSON from",
+                    "type": "Path"
+                }
+            ],
+            "return": {
+                "description": "The JSON data",
+                "type": "Object"
+            },
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 379,
+            "description": "Helper method for writing files to disk. It wraps the NodeJS file API",
+            "itemtype": "method",
+            "name": "writeFile",
+            "params": [
+                {
+                    "name": "file",
+                    "description": "The filename to write to",
+                    "type": "Path"
+                },
+                {
+                    "name": "data",
+                    "description": "The data to write",
+                    "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Callback",
+                    "multiple": true
+                }
+            ],
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/server.js",
+            "line": 9,
+            "description": "Middleware to parse the API docs per request",
+            "itemtype": "method",
+            "name": "parse",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express request object",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express response object",
+                    "type": "Response"
+                },
+                {
+                    "name": "next",
+                    "description": "Express next callback",
+                    "type": "Function"
+                }
+            ],
+            "class": "Server",
+            "module": "server"
+        },
+        {
+            "file": "lib/server.js",
+            "line": 22,
+            "description": "Create the routes used to serve YUIDoc files dynamically",
+            "itemtype": "method",
+            "name": "routes",
+            "class": "Server",
+            "module": "server"
+        },
+        {
+            "file": "lib/server.js",
+            "line": 70,
+            "description": "`/files` endpoint",
+            "itemtype": "method",
+            "name": "files",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express request object",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express response object",
+                    "type": "Response"
+                }
+            ],
+            "class": "Server",
+            "module": "server"
+        },
+        {
+            "file": "lib/server.js",
+            "line": 90,
+            "description": "`/classes` endpoint",
+            "itemtype": "method",
+            "name": "clazz",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express request object",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express response object",
+                    "type": "Response"
+                }
+            ],
+            "class": "Server",
+            "module": "server"
+        },
+        {
+            "file": "lib/server.js",
+            "line": 103,
+            "description": "`/modules` endpoint",
+            "itemtype": "method",
+            "name": "modules",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express request object",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express response object",
+                    "type": "Response"
+                }
+            ],
+            "class": "Server",
+            "module": "server"
+        },
+        {
+            "file": "lib/server.js",
+            "line": 116,
+            "description": "`/` endpoint",
+            "itemtype": "method",
+            "name": "home",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express request object",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express response object",
+                    "type": "Response"
+                }
+            ],
+            "class": "Server",
+            "module": "server"
+        },
+        {
+            "file": "lib/server.js",
+            "line": 128,
+            "description": "Creates the Express server and prep's YUI for serving",
+            "itemtype": "method",
+            "name": "init",
+            "class": "Server",
+            "module": "server"
+        },
+        {
+            "file": "lib/server.js",
+            "line": 148,
+            "description": "Start the server with the supplied options.",
+            "itemtype": "method",
+            "name": "start",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Server options",
+                    "type": "Object"
+                }
+            ],
+            "class": "Server",
+            "module": "server"
+        },
+        {
             "file": "lib/utils.js",
-            "line": 24,
+            "line": 29,
             "description": "Escapes HTML characters in _html_.",
             "itemtype": "method",
             "name": "escapeHTML",
@@ -920,8 +1520,8 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 37,
-            "description": "Normalizes the initial indentation of the given _content_ so that the first line\n is unindented, and all other lines are unindented to the same degree as the\n first line. So if the first line has four spaces at the beginning, then all\n lines will be unindented four spaces.",
+            "line": 42,
+            "description": "Normalizes the initial indentation of the given _content_ so that the first line\nis unindented, and all other lines are unindented to the same degree as the\nfirst line. So if the first line has four spaces at the beginning, then all\nlines will be unindented four spaces.",
             "itemtype": "method",
             "name": "unindent",
             "params": [
@@ -930,7 +1530,7 @@
                     "description": "Text to unindent.",
                     "type": "String"
                 }
-                ],
+            ],
             "return": {
                 "description": "Unindented text.",
                 "type": "String"
@@ -942,8 +1542,8 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 58,
-            "description": "Like `getPages()`, but returns only the files under the `layout/` subdirectory\n of the specified _dir_.",
+            "line": 63,
+            "description": "Like `getPages()`, but returns only the files under the `layout/` subdirectory\nof the specified _dir_.",
             "itemtype": "method",
             "name": "getLayouts",
             "params": [
@@ -962,7 +1562,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 71,
+            "line": 76,
             "description": "Loads and returns the content of the specified page file.",
             "itemtype": "method",
             "name": "getPage",
@@ -982,8 +1582,8 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 84,
-            "description": "Loads pages (files with a `.handlebars` extension) in the specified directory and\n returns an object containing a mapping of page names (the part of the filename)\n preceding the `.handlebars` extension) to page content.",
+            "line": 89,
+            "description": "Loads pages (files with a `.handlebars` extension) in the specified directory and\nreturns an object containing a mapping of page names (the part of the filename)\npreceding the `.handlebars` extension) to page content.",
             "itemtype": "method",
             "name": "getPages",
             "params": [
@@ -1002,8 +1602,8 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 115,
-            "description": "Like `getPages()`, but returns only the files under the `partial/` subdirectory\n of the specified _dir_.",
+            "line": 120,
+            "description": "Like `getPages()`, but returns only the files under the `partial/` subdirectory\nof the specified _dir_.",
             "itemtype": "method",
             "name": "getPartials",
             "params": [
@@ -1015,14 +1615,14 @@
             ],
             "return": {
                 "description": "Mapping of partial names to partial content.",
-                    "type": "Object"
+                "type": "Object"
             },
             "class": "utils",
             "module": "yuidoc"
         },
         {
             "file": "lib/utils.js",
-            "line": 129,
+            "line": 134,
             "description": "Mix/merge/munge data into the template.",
             "itemtype": "method",
             "name": "prepare",
@@ -1056,11 +1656,11 @@
                 }
             ],
             "class": "utils",
-                "module": "yuidoc"
+            "module": "yuidoc"
         },
         {
             "file": "lib/utils.js",
-            "line": 214,
+            "line": 223,
             "description": "Walk the directory tree to locate the yuidoc.json file.",
             "itemtype": "method",
             "name": "getProjectData",
@@ -1078,7 +1678,27 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 244,
+            "line": 262,
+            "description": "Walks the tree from this dir and returns all the subdirs",
+            "itemtype": "method",
+            "name": "getDirs",
+            "params": [
+                {
+                    "name": "dir",
+                    "description": "The dir to begin at",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The array of directories..",
+                "type": "Array"
+            },
+            "class": "utils",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/utils.js",
+            "line": 289,
             "description": "Make sure all the paths passed are directories and that they are not in the ignore list.",
             "itemtype": "method",
             "name": "validatePaths",
@@ -1094,23 +1714,14 @@
                     "type": "String",
                     "optional": true,
                     "optdefault": "false"
-                    }
+                }
             ],
             "class": "utils",
             "module": "yuidoc"
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 5,
-            "description": "This is the **module** description for the `YUIDoc` module.\n \n     var options = {\n         paths: [ './lib' ],\n         outdir: './out'\n     };\n \n     var Y = require('yuidoc');\n     var json = (new Y.YUIDoc(options)).run();",
-            "name": "yuidoc",
-            "tag": "main",
-            "class": "YUIDoc",
-            "module": "yuidoc"
-        },
-        {
-            "file": "lib/yuidoc.js",
-            "line": 23,
+            "line": 29,
             "description": "The default list of configuration options",
             "itemtype": "property",
             "name": "OPTIONS",
@@ -1121,7 +1732,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 58,
+            "line": 65,
             "description": "Holds the number of files that we are processing.",
             "itemtype": "property",
             "name": "filecount",
@@ -1133,7 +1744,19 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 65,
+            "line": 72,
+            "description": "Hash map of dirnames to selleck config options.",
+            "itemtype": "property",
+            "name": "selleck",
+            "type": "Object",
+            "access": "private",
+            "tagname": "",
+            "class": "YUIDoc",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/yuidoc.js",
+            "line": 79,
             "description": "Holder for the list of files we are processing.",
             "itemtype": "property",
             "name": "filemap",
@@ -1145,7 +1768,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 72,
+            "line": 86,
             "description": "Holder for the list of directories we are processing.",
             "itemtype": "property",
             "name": "dirmap",
@@ -1157,7 +1780,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 80,
+            "line": 94,
             "description": "Internal holder for configuration options.",
             "itemtype": "property",
             "name": "options",
@@ -1169,7 +1792,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 91,
+            "line": 105,
             "description": "Does post process on self.options.",
             "itemtype": "method",
             "name": "_processConfig",
@@ -1180,7 +1803,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 100,
+            "line": 114,
             "description": "Walks the paths and parses the directory contents",
             "itemtype": "method",
             "name": "walk",
@@ -1191,7 +1814,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 110,
+            "line": 124,
             "description": "Walks the passed directory and grabs all the files recursively.",
             "itemtype": "method",
             "name": "parsedir",
@@ -1209,7 +1832,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 139,
+            "line": 153,
             "description": "Gathers all the file data and populates the filemap and dirmap hashes.",
             "itemtype": "method",
             "name": "parsefiles",
@@ -1232,7 +1855,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 169,
+            "line": 203,
             "description": "Writes the parser JSON data to disk.",
             "itemtype": "method",
             "name": "writeJSON",
@@ -1254,20 +1877,17 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 199,
+            "line": 263,
             "description": "Process the config, walk the file tree and write out the JSON data.",
             "itemtype": "method",
             "name": "run",
-            "return": {
-                "description": "The JSON data returned from the DocParser",
-                "type": "Object"
-            },
+            "retdrn": "{Object} The JSON data returned from the DocParser",
             "class": "YUIDoc",
             "module": "yuidoc"
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 205,
+            "line": 269,
             "description": "Timestamp holder so we know when YUIDoc started the parse process.",
             "itemtype": "property",
             "name": "starttime",
@@ -1277,7 +1897,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 223,
+            "line": 287,
             "description": "Timestamp holder so we know when YUIDoc has finished the parse process.",
             "itemtype": "property",
             "name": "endtime",
