@@ -1,6 +1,6 @@
 {
     "name": "yuidocjs",
-    "version": "0.2.25",
+    "version": "0.2.26",
     "description": "YUI Doc, JavaScript port - This is an alpha release, official releases will be under the yuidoc project name.",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/davglass/yuidocjs/issues" },
@@ -16,7 +16,7 @@
     "main": "./lib/index",
     "bin" : { "yuidoc" : "./lib/cli.js" },
     "dependencies": {
-        "yui": "~3.5.0",
+        "yui": "3.5.0pr2",
         "rimraf": "~2.0.0",
         "node-markdown": "~0.1.0",
         "minimatch": "~0.1.0",
