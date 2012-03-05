@@ -25,7 +25,9 @@
             <a href="{{overwritten_from/class}}.html#attr_{{overwritten_from/name}}">
                 {{overwritten_from/class}}
             </a>
+            {{#if foundAt}}
             but overwritten in
+            {{/if}}
         {{else}}
             {{#if extended_from}}
                 <p>Inherited from
@@ -34,10 +36,16 @@
                 {{#providedBy}}
                     <p>Provided by the <a href="../modules/{{.}}.html">{{.}}</a> module.</p>
                 {{/providedBy}}
-                <p>Defined in
+                <p>
+                {{#if foundAt}}
+                Defined in
+                {{/if}}
             {{/if}}
         {{/if}}
-        <a href="../{{foundAt}}">`{{{file}}}:{{{line}}}`</a></p>
+        {{#if foundAt}}
+        <a href="../{{foundAt}}">`{{{file}}}:{{{line}}}`</a>
+        {{/if}}
+        </p>
 
         {{#if deprecationMessage}}
             <p>Deprecated: {{deprecationMessage}}</p>
