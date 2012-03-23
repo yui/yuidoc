@@ -22,7 +22,7 @@
     <div class="meta">
         {{#if overwritten_from}}
             <p>Inherited from
-            <a href="{{overwritten_from/class}}.html#attr_{{overwritten_from/name}}">
+            <a href="{{crossLinkRaw overwritten_from/class}}#attr_{{overwritten_from/name}}">
                 {{overwritten_from/class}}
             </a>
             {{#if foundAt}}
@@ -31,7 +31,7 @@
         {{else}}
             {{#if extended_from}}
                 <p>Inherited from
-                <a href="{{extended_from}}.html#attr_{{name}}">{{extended_from}}</a>:
+                <a href="{{crossLinkRaw extended_from}}#attr_{{name}}">{{extended_from}}</a>:
             {{else}}
                 {{#providedBy}}
                     <p>Provided by the <a href="../modules/{{.}}.html">{{.}}</a> module.</p>
@@ -43,7 +43,7 @@
             {{/if}}
         {{/if}}
         {{#if foundAt}}
-        <a href="../{{foundAt}}">`{{{file}}}:{{{line}}}`</a>
+        <a href="{{foundAt}}">`{{{file}}}:{{{line}}}`</a>
         {{/if}}
         </p>
 
