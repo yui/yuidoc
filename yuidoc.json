@@ -4,6 +4,9 @@
     "version": "0.1.0",
     "url": "http://yuilibrary.com/projects/yuidoc",
     "options": {
+        "external": {
+            "data": "http://yuilibrary.com/yui/docs/api/data.json"
+        },
         "linkNatives": "true",
         "attributesEmit": "true",
         "paths": [ "./lib" ],
