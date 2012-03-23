@@ -148,7 +148,7 @@
             "extension_for": [],
             "module": "yuidoc",
             "file": "lib/builder.js",
-            "line": 31,
+            "line": 30,
             "description": "Takes the `JSON` data from the `DocParser` class, creates and parses markdown and handlebars\nbased templates to generate static HTML content"
         },
         "cli": {
@@ -299,7 +299,7 @@
     "classitems": [
         {
             "file": "lib/builder.js",
-            "line": 13,
+            "line": 12,
             "description": "Takes a type string and converts it to a \"First letter upper cased\" type. e.g. `(string -> String, object -> Object)`",
             "itemtype": "method",
             "name": "fixType",
@@ -320,7 +320,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 265,
+            "line": 303,
             "description": "The default tags to use in params descriptions (for Markdown).",
             "itemtype": "property",
             "name": "defaultTags",
@@ -330,7 +330,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 272,
+            "line": 310,
             "description": "File counter",
             "itemtype": "property",
             "name": "files",
@@ -340,7 +340,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 278,
+            "line": 316,
             "description": "Prep the meta data to be fed to Selleck",
             "itemtype": "method",
             "name": "getProjectMeta",
@@ -353,7 +353,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 316,
+            "line": 354,
             "description": "Populate the meta data for classes",
             "itemtype": "method",
             "name": "populateClasses",
@@ -373,7 +373,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 330,
+            "line": 369,
             "description": "Populate the meta data for modules",
             "itemtype": "method",
             "name": "populateModules",
@@ -393,7 +393,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 366,
+            "line": 406,
             "description": "Populate the meta data for files",
             "itemtype": "method",
             "name": "populateFiles",
@@ -413,7 +413,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 420,
+            "line": 465,
             "description": "Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions\nwith the `Markdown Parser`",
             "itemtype": "method",
             "name": "augmentData",
@@ -433,7 +433,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 481,
+            "line": 526,
             "description": "Makes the default directories needed",
             "itemtype": "method",
             "name": "makeDirs",
@@ -449,7 +449,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 522,
+            "line": 567,
             "description": "Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them",
             "itemtype": "method",
             "name": "_parseCode",
@@ -471,7 +471,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 534,
+            "line": 579,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n       that are not parsed by the **Markdown** parser.",
             "itemtype": "method",
             "name": "_inlineCode",
@@ -493,7 +493,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 553,
+            "line": 598,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck)\n       Renders the handlebars templates with the default View class.",
             "itemtype": "method",
             "name": "render",
@@ -545,7 +545,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 603,
+            "line": 648,
             "description": "Render the index file",
             "itemtype": "method",
             "name": "renderIndex",
@@ -573,7 +573,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 628,
+            "line": 673,
             "description": "Generates the index.html file",
             "itemtype": "method",
             "name": "writeIndex",
@@ -589,7 +589,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 711,
+            "line": 756,
             "description": "Generates the module files under \"out\"/modules/",
             "itemtype": "method",
             "name": "writeModules",
@@ -605,7 +605,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1050,
+            "line": 1096,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -621,7 +621,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1078,
+            "line": 1125,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -646,7 +646,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1101,
+            "line": 1148,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -662,7 +662,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1200,
+            "line": 1252,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -682,7 +682,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1213,
+            "line": 1265,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
@@ -1068,7 +1068,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 96,
+            "line": 98,
             "description": "Copy a file from one location to another",
             "itemtype": "method",
             "name": "copyFile",
@@ -1108,7 +1108,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 139,
+            "line": 141,
             "description": "If _source_ is a file, copies it to _dest_. If it's a directory, recursively\ncopies it and all files and directories it contains to _dest_.\n\nNote that when attempting to copy a file into a directory, you should specify\nthe full path to the new file (including the new filename). Otherwise, it will\nbe interpreted as an attempt to copy the _source_ file *over* the _dest_\ndirectory instead of *into* it.\n\nKnown issues:\n- Doesn't preserve ownership or permissions on copied files/directories.",
             "itemtype": "method",
             "name": "copyPath",
@@ -1148,7 +1148,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 186,
+            "line": 188,
             "description": "If _path_ is a file, deletes it. If _path_ is a directory, recursively deletes\nit and all files and directories it contains.\n\nThis method is synchronous.",
             "itemtype": "method",
             "name": "deletePath",
@@ -1164,7 +1164,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 210,
+            "line": 212,
             "description": "Check to see if this is a directory",
             "itemtype": "method",
             "name": "isDirectory",
@@ -1191,7 +1191,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 237,
+            "line": 239,
             "description": "Check to see if this is a File",
             "itemtype": "method",
             "name": "isFile",
@@ -1218,7 +1218,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 263,
+            "line": 265,
             "description": "Check to see if this is a SymLink",
             "itemtype": "method",
             "name": "isSymbolicLink",
@@ -1238,7 +1238,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 275,
+            "line": 277,
             "description": "Like `fs.lstatSync()`, but returns `null` instead of throwing when _path_\ndoesn't exist. Will still throw on other types of errors.",
             "itemtype": "method",
             "name": "lstatSync",
@@ -1258,7 +1258,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 296,
+            "line": 298,
             "description": "Like `fs.statSync()`, but returns `null` instead of throwing when _path_\ndoesn't exist. Will still throw on other types of errors.",
             "itemtype": "method",
             "name": "statSync",
@@ -1278,7 +1278,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 317,
+            "line": 319,
             "description": "Copy the theme assets directory",
             "itemtype": "method",
             "name": "copyAssets",
@@ -1309,7 +1309,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 365,
+            "line": 367,
             "description": "Helper method for getting JSON data from a local file",
             "itemtype": "method",
             "name": "getJSON",
@@ -1329,7 +1329,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 379,
+            "line": 381,
             "description": "Helper method for writing files to disk. It wraps the NodeJS file API",
             "itemtype": "method",
             "name": "writeFile",
@@ -1639,7 +1639,7 @@
                 },
                 {
                     "name": "callback",
-                    "description": "",
+                    "description": "The callback to excecute when complete",
                     "type": "Callback",
                     "props": [
                         {
@@ -1881,7 +1881,10 @@
             "description": "Process the config, walk the file tree and write out the JSON data.",
             "itemtype": "method",
             "name": "run",
-            "retdrn": "{Object} The JSON data returned from the DocParser",
+            "return": {
+                "description": "The JSON data returned from the DocParser",
+                "type": "Object"
+            },
             "class": "YUIDoc",
             "module": "yuidoc"
         },
