@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>lib&#x2F;builder.js - YUIDoc</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
-    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
 
@@ -104,7 +104,6 @@ http:&#x2F;&#x2F;yuilibrary.com&#x2F;license&#x2F;
 *&#x2F;
 var markdown = require(&quot;node-markdown&quot;).Markdown,
     fs = require(&#x27;graceful-fs&#x27;),
-    &#x2F;&#x2F;handlebars = require(&#x27;.&#x2F;handlebars&#x27;).Handlebars,
     noop = function() {},
     path = require(&#x27;path&#x27;),
     DEFAULT_RETURN_TAGS = &#x27;code|em|strong|span|a|pre|dl|dd|dt|ul|li|ol&#x27;,
@@ -189,6 +188,24 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             return str;
         });
 
+        Y.Handlebars.registerHelper(&#x27;crossLinkRaw&#x27;, function(item, fn) {
+            var str = &#x27;&#x27;;
+            if (!item) {
+                item = &#x27;&#x27;;
+            }
+            if (item.indexOf(&#x27;|&#x27;) &gt; 0) {
+                var parts = item.split(&#x27;|&#x27;),
+                p = [];
+                Y.each(parts, function(i) {
+                    p.push(self._parseCrossLink.call(self, i, true));
+                });
+                str = p.join(&#x27; | &#x27;);
+            } else {
+                str = self._parseCrossLink.call(self, item, true);
+            }
+            return str;
+        });
+
         this.cacheTemplates = true;
         if (options.cacheTemplates === false) {
             this.cacheTemplates = false;
@@ -197,7 +214,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
     };
 
     Y.DocBuilder.prototype = {
-        _parseCrossLink: function(item) {
+        _parseCrossLink: function(item, raw) {
             item = fixType(item);
             var self = this;
             var base = &#x27;..&#x2F;&#x27;,
@@ -209,7 +226,8 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             item = baseItem = Y.Lang.trim(item.replace(&#x27;{&#x27;, &#x27;&#x27;).replace(&#x27;}&#x27;, &#x27;&#x27;));
             &#x2F;&#x2F;Remove Cruft
             item = item.replace(&#x27;*&#x27;, &#x27;&#x27;).replace(&#x27;[&#x27;, &#x27;&#x27;).replace(&#x27;]&#x27;, &#x27;&#x27;);
-            var link = false;
+            var link = false,
+                href;
             if (self.data.classes[item]) {
                 link = true;
             } else {
@@ -218,21 +236,37 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     item = item.replace(&#x27;.&#x27;, &#x27;&#x27;);
                 }
             }
+            if (self.options.externalData) {
+                if (self.data.classes[item]) {
+                    if (self.data.classes[item].external) {
+                        href = self.data.classes[item].path;
+                        base = self.options.externalData.base;
+                        className += &#x27; external&#x27;;
+                        newWin = true;
+                        link = true;
+                    }
+                }
+            }
+            &#x2F;*
             if (!link &amp;&amp; self.options.externalData) {
                 var d = self.options.externalData;
                 if (d &amp;&amp; d.classes[item]) {
+                    href = d.classes[item].path;
                     base = d.base;
                     className += &#x27; external&#x27;;
                     newWin = true;
                     link = true;
                 }
             }
+            *&#x2F;
             if (item === &#x27;Object&#x27; || item === &#x27;Array&#x27;) {
                 link = false;
             }
-            var href = path.join(base, &#x27;classes&#x27;, item + &#x27;.html&#x27;);
-            if (base.match(&#x2F;^https?:\&#x2F;\&#x2F;&#x2F;)) {
-                href = base + path.join(&#x27;classes&#x27;, item + &#x27;.html&#x27;);
+            if (!href) {
+                href = path.join(base, &#x27;classes&#x27;, item + &#x27;.html&#x27;);
+                if (base.match(&#x2F;^https?:\&#x2F;\&#x2F;&#x2F;)) {
+                    href = base + path.join(&#x27;classes&#x27;, item + &#x27;.html&#x27;);
+                }
             }
             if (!link &amp;&amp; self.options.linkNatives) {
                 if (self.NATIVES &amp;&amp; self.NATIVES[item]) {
@@ -247,7 +281,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             if (link) {
                 item = &#x27;&lt;a href=&quot;&#x27; + href + &#x27;&quot; class=&quot;&#x27; + className + &#x27;&quot;&#x27; + ((newWin) ? &#x27; target=&quot;_blank&quot;&#x27; : &#x27;&#x27;) + &#x27;&gt;&#x27; + baseItem + &#x27;&lt;&#x2F;a&gt;&#x27;;
             }
-            return item;
+            return (raw) ? href : item;
         },
         NATIVES: {
             &#x27;Array&#x27;: 1,
@@ -290,44 +324,35 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             }
             return url + name;
         },
-        _mixExternal: function(err, data) {
+        _mixExternal: function() {
             var self = this;
-            Y.log(&#x27;External data received, mixing&#x27;, &#x27;warn&#x27;, &#x27;builder&#x27;);
-            self.options.externalData = data;
-            &#x2F;* TODO
-            var mixData = [];
-            Y.each(self.data.classes, function(i) {
-                if (i.extends) {
-                    console.error(i.name, &#x27;extends&#x27;, i.extends);
-                    if (!self.data.classes[i.extends]) {
-                        console.error(&#x27;Extended Class not found in local data, checking external&#x27;);
-                        if (data.classes[i.extends]) {
-                            console.error(&#x27;Found extended class in external data&#x27;);
-                            self.data.classes[i.extends] = data.classes[i.extends];
-                            Y.each(data.classitems, function(o, k) {
-                                if (o.class === i.extends) {
-                                    self.data.classitems.push(data.classitems[k]);
-                                }
-                            });
-                            Y.each(data.files, function(o, k) {
-                                if (i.extends in o.classes) {
-                                    o.path = path.join(data.base, o.name);
-                                    self.data.files[k] = o;
-                                }
-                            });
-                        }
+            Y.log(&#x27;External data received, mixing&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
+            var exData = self.options.externalData;
+            
+            [&#x27;files&#x27;, &#x27;classes&#x27;, &#x27;modules&#x27;].forEach(function(k) {
+                Y.each(exData[k], function(item, key) {
+                    item.external = true;
+                    var file = item.name;
+                    if (!item.file) {
+                        file = self.filterFileName(item.name);
                     }
-                }
+
+                    item.path = exData.base + path.join(k, file + &#x27;.html&#x27;);
+
+                    self.data[k][key] = item;
+                });
             });
-            *&#x2F;
+            Y.each(exData.classitems, function(item) {
+                item.external = true;
+                item.path = exData.base + path.join(&#x27;files&#x27;, self.filterFileName(item.file) + &#x27;.html&#x27;);
+                self.data.classitems.push(item);
+            });
         },
         mixExternal: function(cb) {
             var self = this,
                 info = self.options.external;
 
-            if (info) {
-                Y.log(&#x27;External data support is not implemented yet.&#x27;, &#x27;warn&#x27;, &#x27;builder&#x27;);
-            } else {
+            if (!info) {
                 cb();
                 return;
             }
@@ -336,30 +361,43 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             }
             if (!info.data) {
                 Y.log(&#x27;External config found but no data path defined, skipping import.&#x27;, &#x27;warn&#x27;, &#x27;builder&#x27;);
+                cb();
                 return;
             }
-            if (info.data.match(&#x2F;^https?:\&#x2F;\&#x2F;&#x2F;)) {
-                info.base = info.data.replace(&#x27;data.json&#x27;, &#x27;&#x27;);
-                Y.use(&#x27;io&#x27;, function() {
-                    Y.io(info.data, {
-                        on: {
-                            complete: function(id, e) {
-                                var data = JSON.parse(e.responseText);
-                                data.base = info.base;
-                                self._mixExternal(null, data);
-                                cb();
-                            }
-                        }
-                    });
-                });
-            } else {
-                info.base = path.dirname(path.resolve(info.data));
-                Y.log(&#x27;Local data mixing is not implemented yet&#x27;, &#x27;error&#x27;, &#x27;builder&#x27;);
-                var data = Y.Files.getJSON(info.data);
-                data.base = info.base;
-                self._mixExternal(null, data);
-                cb();
+            if (!Y.Lang.isArray(info.data)) {
+                info.data = [ info.data ];
             }
+            Y.log(&#x27;Importing external documentation data.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
+            
+            var stack = new Y.Parallel();
+            info.data.forEach(function(i) {
+                var base;
+                if (i.match(&#x2F;^https?:\&#x2F;\&#x2F;&#x2F;)) {
+                    base = i.replace(&#x27;data.json&#x27;, &#x27;&#x27;);
+                    Y.use(&#x27;io-base&#x27;, stack.add(function() {
+                        Y.io(i, {
+                            on: {
+                                complete: stack.add(function(id, e) {
+                                    var data = JSON.parse(e.responseText);
+                                    data.base = base;
+                                    self.options.externalData = Y.mix(self.options.externalData || {}, data);
+                                })
+                            }
+                        });
+                    }));
+                } else {
+                    base = path.dirname(path.resolve(i));
+                    var data = Y.Files.getJSON(i);
+                    data.base = base;
+                    self.options.externalData = Y.mix(self.options.externalData || {}, data);
+                }
+            });
+
+            stack.done(function() {
+                Y.log(&#x27;Finished fetching remote data&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
+                self._mixExternal();
+                cb();
+            });
         },
         &#x2F;**
         * The default tags to use in params descriptions (for Markdown).
@@ -383,8 +421,8 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         getProjectMeta: function() {
             var obj = {
                 meta: {
-                    yuiSeedUrl: &#x27;http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;yui&#x2F;yui-min.js&#x27;,
-                    yuiGridsUrl: &#x27;http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css&#x27;
+                    yuiSeedUrl: &#x27;http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;yui&#x2F;yui-min.js&#x27;,
+                    yuiGridsUrl: &#x27;http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css&#x27;
                 }
             };
             if (!this._meta) {
@@ -421,6 +459,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         populateClasses: function(opts) {
             opts.meta.classes = [];
             Y.each(this.data.classes, function(v) {
+                if (v.external) { return }
                 opts.meta.classes.push({ displayName: v.name, name: v.name});
             });
             opts.meta.classes.sort(this.nameSort);
@@ -437,6 +476,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             opts.meta.modules = [];
             opts.meta.allModules = [];
             Y.each(this.data.modules, function(v) {
+                if (v.external) { return }
                 opts.meta.allModules.push({ displayName: v.displayName || v.name, name: self.filterFileName(v.name), description: v.description });
                 if (!v.is_submodule) {
                     var o = { displayName: v.displayName || v.name, name: self.filterFileName(v.name) };
@@ -450,7 +490,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                                     description: moddef.description
                                 });
                             } else {
-                                Y.log(&#x27;Submodule data missing: &#x27; + k + &#x27; for &#x27; + v.name, &#x27;warn&#x27;, &#x27;builder&#x27;);
+                                &#x2F;&#x2F;Y.log(&#x27;Submodule data missing: &#x27; + k + &#x27; for &#x27; + v.name, &#x27;warn&#x27;, &#x27;builder&#x27;);
                             }
                         });
                         o.submodules.sort(self.nameSort);
@@ -472,12 +512,14 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             var self = this;
             opts.meta.files = [];
             Y.each(this.data.files, function(v) {
+                if (v.external) { return }
                 opts.meta.files.push({ displayName: v.name, name: self.filterFileName(v.name), path: v.path || v.name });
             });
 
             var tree = {};
             var files = [];
             Y.each(this.data.files, function(v) {
+                if (v.external) { return }
                 files.push(v.name);
             });
             files.sort();
@@ -511,8 +553,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         },
         addFoundAt: function(a) {
             var self = this;
-            if (a.file &amp;&amp; a.line) {
-                a.foundAt = &#x27;files&#x2F;&#x27; + self.filterFileName(a.file) + &#x27;.html#l&#x27; + a.line;
+            if (a.file &amp;&amp; a.line &amp;&amp; !self.options.nocode) {
+                a.foundAt = &#x27;..&#x2F;files&#x2F;&#x27; + self.filterFileName(a.file) + &#x27;.html#l&#x27; + a.line;
+                if (a.path) {
+                    a.foundAt = a.path + &#x27;#l&#x27; + a.line;   
+                }
             }
             return a;
         },
@@ -821,6 +866,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
             Y.log(&#x27;Rendering and writing &#x27; + Object.keys(self.data.modules).length + &#x27; modules pages.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
             Y.each(self.data.modules, function(v) {
+                if (v.external) { return }
                 self.renderModule(function(html, view) {
                     stack.html.push(html);
                     stack.view.push(view);
@@ -1160,6 +1206,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
             Y.log(&#x27;Rendering and writing &#x27; + Object.keys(self.data.classes).length + &#x27; class pages.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
             Y.each(self.data.classes, function(v) {
+                if (v.external) { return }
                 self.renderClass(stack.add(function(html, view) {
                     stack.html.push(html);
                     stack.view.push(view);
@@ -1211,7 +1258,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
             Y.log(&#x27;Rendering and writing &#x27; + Object.keys(self.data.files).length + &#x27; source files.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
             Y.each(self.data.files, function(v) {
+                if (v.external) { return }
                 self.renderFile(stack.add(function(html, view, data) {
+                    if (!view || !data) {
+                        return;
+                    }
                     stack.html.push(html);
                     stack.view.push(view);
                     if (self.options.dumpview) {
@@ -1251,6 +1302,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 fs.readFile(opts.meta.fileName, &#x27;utf8&#x27;, Y.rbind(function(err, str, opts, data) {
                     if (err) {
                         Y.log(err, &#x27;error&#x27;, &#x27;builder&#x27;);
+                        cb(err);
                         return;
                     }
                     opts.meta.fileData = str;
@@ -1328,9 +1380,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     Y.Files.copyAssets([path.join(DEFAULT_THEME, &#x27;assets&#x27;), path.join(themeDir, &#x27;assets&#x27;)], path.join(self.options.outdir, &#x27;assets&#x27;), false, function() {
                         var cstack = new Y.Parallel();
 
-                        self.writeModules(cstack.add(noop));
-                        self.writeClasses(cstack.add(noop));
-                        self.writeFiles(cstack.add(noop));
+                        self.writeModules(cstack.add(function() {
+                            self.writeClasses(cstack.add(function() {
+                                if (!self.options.nocode) {
+                                    self.writeFiles(cstack.add(noop));
+                                }
+                            }));
+                        }));
                         self.writeIndex(cstack.add(noop));
                         self.writeAPIMeta(cstack.add(noop));
 
