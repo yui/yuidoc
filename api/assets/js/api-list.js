@@ -91,7 +91,7 @@ inputNode.on('focus', function () {
 });
 
 // Update all tabview links to resolved URLs.
-tabview.get('contentBox').all('a').each(function (link) {
+tabview.get('panelNode').all('a').each(function (link) {
     link.setAttribute('href', link.get('href'));
 });
 
