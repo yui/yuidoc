@@ -13,11 +13,6 @@ var win          = Y.config.win,
     classTabView,
     selectedTab;
 
-// Kill pjax functionality unless serving over HTTP.
-if (!Y.getLocation().protocol.match(/^https?\:/)) {
-    Y.Router.html5 = false;
-}
-
 pjax = new Y.Pjax({
     container      : '#docs-main',
     contentSelector: '#docs-main > .content',
