@@ -90,6 +90,11 @@ inputNode.on('focus', function () {
     focusManager.set('activeDescendant', inputNode);
 });
 
+// Update all tabview links to resolved URLs.
+tabview.get('contentBox').all('a').each(function (link) {
+    link.setAttribute('href', link.get('href'));
+});
+
 // -- Private Functions --------------------------------------------------------
 function getFilterResultNode() {
     return filter.get('queryType') === 'classes' ? classesNode : modulesNode;

@@ -433,7 +433,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 526,
+            "line": 528,
             "description": "Makes the default directories needed",
             "itemtype": "method",
             "name": "makeDirs",
@@ -449,7 +449,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 567,
+            "line": 569,
             "description": "Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them",
             "itemtype": "method",
             "name": "_parseCode",
@@ -471,7 +471,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 579,
+            "line": 581,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n       that are not parsed by the **Markdown** parser.",
             "itemtype": "method",
             "name": "_inlineCode",
@@ -493,7 +493,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 598,
+            "line": 600,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck)\n       Renders the handlebars templates with the default View class.",
             "itemtype": "method",
             "name": "render",
@@ -545,7 +545,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 648,
+            "line": 650,
             "description": "Render the index file",
             "itemtype": "method",
             "name": "renderIndex",
@@ -573,7 +573,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 673,
+            "line": 675,
             "description": "Generates the index.html file",
             "itemtype": "method",
             "name": "writeIndex",
@@ -589,7 +589,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 756,
+            "line": 758,
             "description": "Generates the module files under \"out\"/modules/",
             "itemtype": "method",
             "name": "writeModules",
@@ -605,7 +605,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1096,
+            "line": 1098,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -621,7 +621,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1125,
+            "line": 1127,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -646,7 +646,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1148,
+            "line": 1150,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -662,7 +662,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1252,
+            "line": 1254,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -682,7 +682,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1265,
+            "line": 1267,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
