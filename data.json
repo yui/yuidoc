@@ -2,8 +2,9 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.1.0",
-        "url": "http://yuilibrary.com/projects/yuidoc"
+        "version": "0.2.34",
+        "url": "http://yuilibrary.com/projects/yuidoc",
+        "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
     "files": {
         "lib/builder.js": {
