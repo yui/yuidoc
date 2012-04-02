@@ -1,10 +1,10 @@
 {
     "name": "yuidocjs",
-    "version": "0.2.34",
+    "version": "0.2.35",
     "description": "YUI Doc, JavaScript port - This is an alpha release, official releases will be under the yuidoc project name.",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/davglass/yuidocjs/issues" },
-    "os": ["darwin", "linux"],
+    "os": ["darwin", "linux", "win32"],
     "contributors": [
         { "name": "Adam Moore", "email": "amoore@gmail.com" },
         { "name": "Ryan Grove", "email": "ryan@wonko.com" },
