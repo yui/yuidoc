@@ -24,7 +24,12 @@
     {{/if}}
 
     {{#if module}}
-        Module: {{#crossLinkModule module}}{{/crossLinkModule}}
+        {{#if submodule}}
+            Module: {{#crossLinkModule submodule}}{{/crossLinkModule}}<br>
+            Parent Module: {{#crossLinkModule module}}{{/crossLinkModule}}
+        {{else}}
+            Module: {{#crossLinkModule module}}{{/crossLinkModule}}
+        {{/if}}
     {{/if}}
 
     {{#if since}}
