@@ -23,6 +23,10 @@
         </div>
     {{/if}}
 
+    {{#if module}}
+        Module: {{#crossLinkModule module}}{{/crossLinkModule}}
+    {{/if}}
+
     {{#if since}}
         <p>Available since {{since}}</p>
     {{/if}}
