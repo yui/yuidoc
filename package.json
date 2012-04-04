@@ -24,6 +24,9 @@
         "graceful-fs": "1.1.1",
         "express": ">=2.3.0 <2.6.0"
     },
+    "devDependencies": {
+        "yuitest": "*"
+    },
     "preferGlobal": "true",
     "licenses":[
         {
