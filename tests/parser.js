@@ -2,37 +2,49 @@ var YUITest = require('yuitest'),
     Assert = YUITest.Assert,
     ArrayAssert = YUITest.ArrayAssert,
     path = require('path'),
+    fs = require('fs'),
     Y = require(path.join(__dirname, '../', 'lib', 'index'));
 
 //Move to the test dir before running the tests.
 process.chdir(__dirname);
 
-var json = (new Y.YUIDoc({
-    paths: [ 'input/' ],
-    outdir: './out'
-})).run();
+var suite = new YUITest.TestSuite({
+    name: 'Parser Test Suite',
+    setUp: function() {
+        this.davglass = true;
+        var json = (new Y.YUIDoc({
+            paths: [ 'input/' ],
+            outdir: './out'
+        })).run();
 
-var findByName = function(name, cl) {
-    var items = json.classitems,
-        ret;
-
-    items.forEach(function(i) {
-        if (i.name === name && i.class === cl) {
-            ret = i;
-        }
-    });
-
-    return ret;
-};
-
-
-var suite = new YUITest.TestSuite('Parser Test Suite');
+        this.project = json.project;
+        this.data = json;
+    }
+});
 
 suite.add(new YUITest.TestCase({
     name: "Project Data",
     setUp: function() {
-        this.project = json.project;
-        this.data = json;
+        this.project = suite.project;
+        this.data = suite.data;
+    },
+    findByName: function(name, cl) {
+        var items = this.data.classitems,
+            ret;
+
+        items.forEach(function(i) {
+            if (i.name === name && i.class === cl) {
+                ret = i;
+            }
+        });
+
+        return ret;
+    },
+    'test: out directory': function() {
+        Assert.isTrue(path.existsSync(path.join(__dirname, 'out')), 'Out directory was not created');
+    },
+    'test: data.json creation': function() {
+        Assert.isTrue(path.existsSync(path.join(__dirname, 'out', 'data.json')), 'data.json file was not created');
     },
     'test: parser': function() {
         var keys = Object.keys(this.data);
@@ -196,7 +208,7 @@ suite.add(new YUITest.TestCase({
     'test: classitems parsing': function() {
         Assert.isArray(this.data.classitems, 'Failed to populate classitems array');
         
-        var item = findByName('testoptional', 'myclass');
+        var item = this.findByName('testoptional', 'myclass');
         Assert.areSame('testoptional', item.name, 'Failed to find item: testoptional');
         Assert.areSame('myclass', item.class, 'Failed to find class: testoptional');
         Assert.areSame('mymodule', item.module, 'Failed to find module: testoptional');
@@ -213,11 +225,11 @@ suite.add(new YUITest.TestCase({
         Assert.isUndefined(item.return.type, 'Type should be missing');
         Assert.areSame(2, item.example.length, 'Should have 2 example snippets');
 
-        var item2 = findByName('testobjectparam', 'myclass');
+        var item2 = this.findByName('testobjectparam', 'myclass');
         Assert.areSame('String', item2.return.type, 'Type should not be missing');
     },
     'test: parameter parsing': function() {
-        var item = findByName('testoptional', 'myclass');
+        var item = this.findByName('testoptional', 'myclass');
         Assert.isArray(item.params, 'Params should be an array');
         Assert.areSame(5, item.params.length, 'Failed to parse all 5 parameters');
 
@@ -236,14 +248,14 @@ suite.add(new YUITest.TestCase({
         Assert.isTrue(item.params[4].optional, 'Parameter should be optional');
         Assert.areSame('"defaultval"', item.params[4].optdefault, 'Optional Default value is incorrect');
 
-        var item2 = findByName('test0ton', 'myclass');
+        var item2 = this.findByName('test0ton', 'myclass');
         Assert.isArray(item2.params, 'Params should be an array');
         Assert.areSame(1, item2.params.length, 'Failed to parse all 5 parameters');
         Assert.isTrue(item2.params[0].optional, 'Optional not set');
         Assert.isTrue(item2.params[0].multiple, 'Multiple not set');
         Assert.isUndefined(item2.return.type, 'Type should be missing');
 
-        var item2 = findByName('test1ton', 'myclass');
+        var item2 = this.findByName('test1ton', 'myclass');
         Assert.isArray(item2.params, 'Params should be an array');
         Assert.areSame(1, item2.params.length, 'Failed to parse all 5 parameters');
         Assert.isUndefined(item2.params[0].optional, 'Optional should not be set');
@@ -252,7 +264,7 @@ suite.add(new YUITest.TestCase({
 
     },
     'test: object parameters': function() {
-        var item = findByName('testobjectparam', 'myclass');
+        var item = this.findByName('testobjectparam', 'myclass');
 
         Assert.areSame('testobjectparam', item.name, 'Failed to find item: testobjectparam');
         Assert.areSame('myclass', item.class, 'Failed to find class: testobjectparam');
@@ -270,6 +282,12 @@ suite.add(new YUITest.TestCase({
         Assert.areSame('prop2', props[1].name, 'Invalid item');
         Assert.areSame('prop2', props[1].description, 'Invalid item');
         Assert.areSame('Bool', props[1].type, 'Invalid item');
+    },
+    'test: tag fixing': function() {
+        var item = this.findByName('testoptional', 'myclass');
+        
+        Assert.isObject(item, 'failed to find item');
+        Assert.isNotUndefined(item.return, 'Failed to replace returns with return');
     }
 }));
 
