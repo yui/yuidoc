@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.34</em>
+            <em>API Docs for: 0.2.38</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -567,7 +567,7 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
         &#x2F;&#x2F; A key bock type for declaring classes, subsequent
         &#x2F;&#x2F; member blocks will be assigned to this class
         &#x27;class&#x27;: function(tagname, value, target, block) {
-            var _namespace;
+            var _namespace, _value = value;
 
             block.forEach(function(def) {
                 if (def.tag === &#x27;namespace&#x27;) {
@@ -580,16 +580,21 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
                 }
             });
 
-            this.set(CURRENT_CLASS, value);
             if (_namespace) {
                 this.set(CURRENT_NAMESPACE, _namespace);
             }
+            this.set(CURRENT_CLASS, value);
             var fullname = this.get(CURRENT_CLASS);
             var host = this.classes[fullname],
                 parent = this.get(CURRENT_MODULE);
+
+            if (_namespace) {
+                host.namespace = _namespace;
+            }
             if (parent) {
                 host.module = parent;
             }
+
             &#x2F;&#x2F;Merge host and target in case the class was defined in a &quot;for&quot; tag
             &#x2F;&#x2F;before it was defined in a &quot;class&quot; tag
             host = Y.merge(host, target);
@@ -657,8 +662,17 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
             if (!Lang.isArray(target[tagname])) {
                 target[tagname] = [];
             }
-
-            target[tagname].push(value);
+            &#x2F;&#x2F;If the item is @tag one,two
+            if (value.indexOf(&#x27;,&#x27;) &gt; -1) {
+                value = value.split(&#x27;,&#x27;);
+            } else {
+                value = [value];
+            }
+            
+            value.forEach(function(v) {
+                v = trim(v);
+                target[tagname].push(v);
+            });
         },
         &#x27;extension_for&#x27;: &#x27;extensionfor&#x27;,
         &#x27;extensionfor&#x27;: function(tagname, value, target, block) {

@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.34</em>
+            <em>API Docs for: 0.2.38</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -187,6 +187,14 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 str = p.join(&#x27; | &#x27;);
             } else {
                 str = self._parseCrossLink.call(self, item);
+            }
+            return str;
+        });
+
+        Y.Handlebars.registerHelper(&#x27;crossLinkModule&#x27;, function(item, fn) {
+            var str = item;
+            if (self.data.modules[item]) {
+                str = &#x27;&lt;a href=&quot;..&#x2F;modules&#x2F;&#x27; + item + &#x27;.html&quot;&gt;&#x27; + item + &#x27;&lt;&#x2F;a&gt;&#x27;;
             }
             return str;
         });

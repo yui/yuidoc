@@ -1,0 +1,175 @@
+<p>YUIDoc parses a modified form of JSDoc tags, here we will list the most common tags used and how
+they are parsed.</p>
+
+<div class="intro">
+```
+/**
+* This is the description for my class
+* @class MyClass
+* @constructor
+*/
+
+/**
+* My method description.  Like other pieces of your comment blocks, 
+* this can span multiple lines.
+* @method methodName
+* @param {String} foo Argument 1
+* @param {Object} config A config object
+* @param {String} config.name The name on the config object
+* @param {Function} config.callback A callback function on the config object
+* @param {Boolean} [extra=false] Do extra, optional work
+* @return {Boolean} Returns true on success
+*/
+
+/**
+* My property description.  Like other pieces of your comment blocks, 
+* this can span multiple lines.
+* @property propertyName
+* @type {Object}
+*/
+```
+</div>
+
+
+<h2>Primary Tags</h2>
+<p>Each comment block must have one (and only one) of the following tags</p>
+
+<table>
+<tr>
+    <th>`module`</th>
+    <td>There must be one module per source tree. By convention, put your module declaration at the top of the file that contains the main class for your module.</td>
+</tr>
+<tr>
+    <th>`class`</th>
+    <td>The string identifying the functional class on its parent object; 
+        for example, the class for `Y.DD.Drag` would be `Drag` (and its `@namespace` would be `DD`).</td>
+</tr>
+<tr>
+    <th>`method`</th>
+    <td>The name of a method on the current class.</td>
+</tr>
+<tr>
+    <th>`event`</th>
+    <td>In YUI, events are `Custom Events` fired off programmatically at interesting moments in
+    a component's execution. The event tag is similar to method, but there is no return tag and i
+    ts params are arguments passed to the event listener.</td>
+</tr>
+<tr>
+    <th>`property`</th>
+    <td>The name of a property on the current class.</td>
+</tr>
+</table>
+
+<h2>Secondary tags</h2>
+<p>
+    After choosing one of the four primary tags, you can further document a module, 
+    class, method, event or property with one or more of the following secondary tags.
+</p>
+<table>
+<tr>
+    <th>`submodule`</th>
+    <td>YUIDoc supports the notion that a module is a submodule of a parent module. For 
+    example, in YUI 3 `anim-scroll` is a submodule of anim. A submodule encompasses a 
+    subset of the parent module's functionality. To use submodule designation, provide 
+    the parent module's name as the module property and the submodule's name in the submodule property.
+    </td>
+</tr>
+<tr>
+    <th>`namespace`</th>
+    <td>While it is optional to provide a namespace, it is recommended. This lets you describe 
+    your class just with the name: For example, `Y.DD.Drag` has a namespace of `Y.DD`
+    and a class of `Drag`.</td>
+</tr>
+<tr>
+    <th>`extends`</th>
+    <td>Sets up an inheritance relationship between the current class and a parent class; 
+    API docs will show and link to items inherited from the parent class.</td>
+</tr>
+<tr>
+    <th>`config`</th>
+    <td>A config is a managed configuration attribute. In YUI parlance, this is typically
+    an attribute created and managed with the Config class (part of the Container Family).</td>
+</tr>
+<tr>
+    <th>`attribute`</th>
+    <td>An attribute is a managed configuration attribute. In YUI parlance, this is 
+    typically an attribute created and managed with AttributeProvider 
+    (part of the [YUI Element Utility][[yui-element]]). An attribute is similar
+    to a config, but YUIDoc will autogenerate documentation for the change events 
+    associated with the attribute as provided by Element. (Note: Unless you're using 
+    YUI and referring to an attribute managed by AttributeProvider, you should avoid using this tag.)
+    </td>
+</tr>
+<tr>
+    <th>`constructor`</th>
+    <td>The presence of this tag (which requires no description) indicates that this class is instantiable.</td>
+</tr>
+<tr>
+    <th>`static`</th>
+    <td>If a class does not have a constructor, then the static tag should be present to signal 
+    that it is a static class.</td>
+</tr>
+<tr>
+    <th>`final`</th>
+    <td>For constants and for read-only configs and attributes.</td>
+</tr>
+<tr>
+    <th>`param`</th>
+    <td>Defined as `@param {type} name description` or `@param name {type} description`, params can be used 
+    with classes, methods and events.  Use `[name]` to indicate the param is optional, `name*` to
+    indicate it is a place holder for 1..n arguments, and `[name*]` for 0..n arguments.</td>
+</tr>
+<tr>
+    <th>`return`</th>
+    <td>Defined as `@return {type} description`.</td>
+</tr>
+<tr>
+    <th>`for`</th>
+    <td>Used to define an inner class:
+```
+/**  
+* An inner class  
+* @class foo  
+* @for OuterClass  
+*/
+```
+
+After the class is done, you need to inform the parser to start working on the outer class again:
+
+```
+/**  
+* Another method for the outer class  
+* @method bar  
+* @for OuterClass  
+*/
+```
+</td>
+</tr>
+<tr>
+    <th>`type`</th>
+    <td>For properties, configs and attributes.</td>
+</tr>
+<tr>
+    <th>`private`</th>
+    <td>Privates by default are suppressed from the API docs. All methods and properties are 
+    assumed to be public unless marked as private.</td>
+</tr>
+<tr>
+    <th>`protected`</th>
+    <td>Used to designate members that should not be modified by implementers unless they are creating a subclass.</td>
+</tr>
+<tr>
+    <th>`requires`</th>
+    <td>Used to identify dependencies in the module declaration.</td>
+</tr>
+<tr>
+    <th>`default`</th>
+    <td>The default value of a property, config or attribute.</td>
+</tr>
+<tr>
+    <th>`uses`</th>
+    <td>For classes that use some kind of Object augmentation. If this object is defined and YUIDoc
+    parses it, the properties from the "used" object will be deisplayed in the output.</td>
+</tr>
+</table>
+

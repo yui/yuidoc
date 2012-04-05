@@ -1,0 +1,21 @@
+<h2>Welcome to YUIDoc {{version}}!</h2>
+
+<p>
+YUIDoc is a <a href="http://nodejs.org/">Node.js</a> application used at build time to 
+generate API documentation for JavaScript code. YUIDoc is comment-driven and supports a wide 
+range of JavaScript coding styles. The output of YUI Doc is API documentation formatted as a 
+set of HTML pages including information about methods, properties, custom events and 
+inheritance for JavaScript objects. YUIDoc was orignally written for the YUI Project;
+it uses YUI JavaScript and CSS in the generated files and it supports common YUI 
+conventions like Custom Events. That said, it can be used easily and productively on non-YUI code.
+</p>
+
+<h2>User Guides</h2>
+
+<ul>
+  {{#components}}
+    {{#meta}}
+        <li><a href="{{name}}/index.html">{{displayName}}</a></li>
+    {{/meta}}
+  {{/components}}
+</ul>
