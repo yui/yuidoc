@@ -1,0 +1,7 @@
+{
+    "name"       : "themes",
+    "displayName": "Modifying the default theme",
+    "description": "Modifying the default theme",
+    "author"     : "davglass",
+    "projectBase": "../"
+}

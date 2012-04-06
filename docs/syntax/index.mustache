@@ -173,3 +173,82 @@ After the class is done, you need to inform the parser to start working on the o
 </tr>
 </table>
 
+<h2>Extra formatting</h2>
+
+<p>
+    YUIDoc supports 3 main forms of formatting your documentation. HTML,
+    <a href="http://daringfireball.net/projects/markdown/">Markdown</a> &amp; <a href="http://rgrove.github.com/selleck/">Selleck</a>.
+</p>
+
+<table>
+<tr>
+    <th>`HTML`</th>
+    <td>Doc comments may contain standard HTML markup and YUIDoc will display it as is.</td>
+</tr>
+<tr>
+    <th>`Markdown`</th>
+    <td>Full <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a>
+    is also supported.
+    </td>
+</tr>
+<tr>
+    <th>`Selleck`</th>
+    <td><a href="http://rgrove.github.com/selleck/">Selleck's</a> additional parsing is also supported.</td>
+</tr>
+</table>
+
+<h3>Examples</h3>
+
+```
+/**
+This is the __module__ description for the `YUIDoc` module.
+
+    var options = {
+        paths: [ './lib' ],
+        outdir: './out'
+    };
+
+    var Y = require('yuidoc');
+    var json = (new Y.YUIDoc(options)).run();
+
+@class YUIDoc
+@main yuidoc
+*/
+```
+
+<div class="intro">
+<p>This is the <strong>module</strong> description for the <code>YUIDoc</code> module.</p>
+```
+    var options = {
+        paths: [ './lib' ],
+        outdir: './out'
+    };
+
+    var Y = require('yuidoc');
+    var json = (new Y.YUIDoc(options)).run();
+```
+</div>
+
+<h3>Crosslinking</h3>
+
+<p>
+    We have also added a blockHelper in Handlebars that will allow you to "cross-link" your documentation together.
+</p>
+
+<p></p>
+
+```
+/**
+
+This module also uses \{{#crossLink Foo}}, where Foo is a class or module name.
+
+*/
+```
+
+<p>
+This will generate an internal link to the other's API document.
+</p>
+
+```
+This module also uses <a href="../classes/Foo.html" class="crosslink">Foo</a>, where Foo is a class or module name.
+```
