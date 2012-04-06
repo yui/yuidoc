@@ -24,7 +24,7 @@
     <h2>29 March 2007</h2>
     <ul>
       <li>Added <a href="tests/prettify_test.html#PHP">tests</a> for PHP support
-        to address
+        to address 
       <a href="http://code.google.com/p/google-code-prettify/issues/detail?id=3"
        >issue 3</a>.
       <li>Fixed
@@ -43,7 +43,7 @@
       <li>Fixed entity handling so that the caveat
         <blockquote>
           <p>Caveats: please properly escape less-thans.  <tt>x&amp;lt;y</tt>
-          instead of <tt>x&lt;y</tt>, and use <tt>&quot;</tt> instead of
+          instead of <tt>x&lt;y</tt>, and use <tt>&quot;</tt> instead of 
           <tt>&amp;quot;</tt> for string delimiters.</p>
         </blockquote>
         is no longer applicable.
@@ -125,31 +125,6 @@
         Bug
         <a href="http://code.google.com/p/google-code-prettify/issues/detail?id=108"
          >108</a>.</li>
-    </ul>
-    <h2>7 September 2010</h2>
-    <ul>
-      <li>Added support for coffeescript courtesy Cezary Bartoszuk.</li>
-    </ul>
-    <h2>4 March 2011</h2>
-    <ul>
-      <li>Added a <a href="http://google-code-prettify.googlecode.com/svn/trunk/styles/index.html">themes
-      gallery</a> to showcase contributed styles.</li>
-      <li>Added support for XQuery courtesy Patrick Wied, Nemerle
-      courtesy Zimin A.V., and Latex support courtesy Martin S.</li>
-    </ul>
-    <h2>29 March 2011</h2>
-    <ul>
-      <li>Fixed IE newline issues, and copying/pasting of prettified
-      source code from IE.  This required significant internal changes
-      but involves no API changes.
-      <b>Caveat:</b> <code>prettyPrintOne</code> injects the HTML
-      passed to it into a <code>&lt;pre&gt;</code> element.
-      If the HTML comes from a trusted source, this may allow XSS.
-      Do not do this.  This should not be a problem for existing apps
-      since the standard usage is to rewrite the HTML and then inject
-      it, so anyone doing that with untrusted HTML already has an XSS
-      vulnerability.  If you sanitize and prettify HTML from an
-      untrusted source, sanitize first.
     </ul>
   </body>
 </html>

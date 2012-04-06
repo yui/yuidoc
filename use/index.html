@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Using YUIDoc</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro:400,700">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <script src="http://yui.yahooapis.com/3.5.0pr4/build/yui/yui.js"></script>
+</head>
+<body>
+
+<div id="doc">
+    <h1>Using YUIDoc</h1>
+
+    
+        <a href="#toc" class="jump">Jump to Table of Contents</a>
+    
+
+    <div class="yui3-g">
+        <div class="yui3-u-3-4">
+            <div id="main">
+                <div class="content"><p>Using YUIDoc</p>
+
+<h2 id="json">YUIDoc Configuration</h2>
+
+<p>
+    YUIDoc supports 2 ways to configure it's output. Command line arguments and the <code>yuidoc.json</code> file.
+    You can see all of the available command line arguments <a href="../args/index.html">here</a>.
+</p>
+
+<h3 id="json-configuration">JSON Configuration</h3>
+
+<p>
+    Here is a sample <code>yuidoc.json</code> file that used in the <a href="http://yuilibrary.com/">YUI 3</a>
+    project.
+</p>
+
+<pre class="code prettyprint">{
+    &quot;name&quot;: &quot;YUI 3&quot;,
+    &quot;description&quot;: &quot;YUI 3 JavaScript Framework&quot;,
+    &quot;version&quot;: &quot;3.5.0&quot;,
+    &quot;url&quot;: &quot;http:&#x2F;&#x2F;yuilibrary.com&#x2F;&quot;,
+    &quot;options&quot;: {
+        &quot;linkNatives&quot;: &quot;true&quot;,        
+        &quot;attributesEmit&quot;: &quot;true&quot;,
+        &quot;selleck&quot;: &quot;true&quot;,
+        &quot;ignorePaths&quot;: [ &quot;simpleyui&quot; ],
+        &quot;paths&quot;: &quot;*&#x2F;js&quot;,
+        &quot;outdir&quot;: &quot;..&#x2F;api-js&quot;
+    }
+}</pre>
+
+
+<p>And the current YUIDoc <code>yuidoc.json</code> file:</p>
+
+<pre class="code prettyprint">{
+  &quot;name&quot;: &quot;YUIDoc&quot;,
+  &quot;description&quot;: &quot;YUIDoc documentation tool written in Javascript&quot;,
+  &quot;version&quot;: &quot;0.2.38&quot;,
+  &quot;url&quot;: &quot;http:&#x2F;&#x2F;yuilibrary.com&#x2F;projects&#x2F;yuidoc&quot;,
+  &quot;logo&quot;: &quot;http:&#x2F;&#x2F;yuilibrary.com&#x2F;img&#x2F;yui-logo.png&quot;,
+  &quot;options&quot;: {
+    &quot;external&quot;: {
+      &quot;data&quot;: &quot;http:&#x2F;&#x2F;yuilibrary.com&#x2F;yui&#x2F;docs&#x2F;api&#x2F;data.json&quot;
+    },
+    &quot;linkNatives&quot;: &quot;true&quot;,
+    &quot;attributesEmit&quot;: &quot;true&quot;,
+    &quot;paths&quot;: [
+      &quot;.&#x2F;lib&quot;
+    ],
+    &quot;outdir&quot;: &quot;.&#x2F;output&#x2F;api&quot;
+  }
+}</pre>
+
+
+<p>
+The <code>yuidoc.json</code> file needs to live in a directory somewhere under where you will be executing
+<code>yuidoc</code>. YUIDoc will scan the tree for this file before doing anything else.
+</p>
+
+<h3 id="json-options">JSON Options</h3>
+
+<p>Project Information</p>
+
+<table>
+<tr>
+    <th><code>name</code></th>
+    <td>The name of the project</td>
+</tr>
+<tr>
+    <th><code>description</code></th>
+    <td>Projects description</td>
+</tr>
+<tr>
+    <th><code>version</code></th>
+    <td>Current version of the documentation.</td>
+</tr>
+<tr>
+    <th><code>url</code></th>
+    <td>The URL of the project</td>
+</tr>
+<tr>
+    <th><code>logo</code></th>
+    <td>The logo to add to the header (defaults to the YUI logo).</td>
+</tr>
+</table>
+
+<p>
+    Below are a few of the options available.
+</p>
+
+<table>
+<tr>
+    <th><code>linkNatives</code></th>
+    <td>This will autolink native types (String, Object, Boolean, etc..) over to the Mozilla Developer Network. </td>
+</tr>
+<tr>
+    <th><code>attributesEmit</code></th>
+    <td>This will have YUIDoc autogenerate event docs for an attribute. YUI's Attribute system auto fires
+    change events, this setting turns on the documentation for this.</td>
+</tr>
+<tr>
+    <th><code>selleck</code></th>
+    <td>If true, YUIDoc will search for a <code>component.json</code> file above the source tree and attach that data
+    to the module data as extra information.</td>
+</tr>
+<tr>
+    <th><code>ignorePaths</code></th>
+    <td>A list of paths to ignore when scanning the source tree.</td>
+</tr>
+<tr>
+    <th><code>paths</code></th>
+    <td>A <code>glob</code> to use when searching the source tree for docs to parse.</td>
+</tr>
+<tr>
+    <th><code>outdir</code></th>
+    <td>The directory to place the rendered files</td>
+</tr>
+<tr>
+    <th><code>external.data</code></th>
+    <td>A link to an external <code>yuidoc.json</code> file to merge into the local api docs. <a href="../external/index.html">See the external data example for more info</a>.</td>
+</tr>
+</table>
+</div>
+            </div>
+        </div>
+
+        <div class="yui3-u-1-4">
+            <div class="sidebar">
+                
+                    <div id="toc" class="sidebox">
+                        <div class="hd">
+                            <h2 class="no-toc">Table of Contents</h2>
+                        </div>
+
+                        <div class="bd">
+                            <ul class="toc">
+<li>
+<a href="#json">YUIDoc Configuration</a>
+<ul class="toc">
+<li>
+<a href="#json-configuration">JSON Configuration</a>
+</li>
+<li>
+<a href="#json-options">JSON Options</a>
+</li>
+</ul>
+</li>
+</ul>
+                        </div>
+                    </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+
+</body>
+</html>
