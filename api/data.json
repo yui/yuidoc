@@ -1865,7 +1865,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 203,
+            "line": 204,
             "description": "Writes the parser JSON data to disk.",
             "itemtype": "method",
             "name": "writeJSON",
@@ -1887,7 +1887,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 263,
+            "line": 264,
             "description": "Process the config, walk the file tree and write out the JSON data.",
             "itemtype": "method",
             "name": "run",
@@ -1900,7 +1900,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 269,
+            "line": 270,
             "description": "Timestamp holder so we know when YUIDoc started the parse process.",
             "itemtype": "property",
             "name": "starttime",
@@ -1910,7 +1910,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 287,
+            "line": 288,
             "description": "Timestamp holder so we know when YUIDoc has finished the parse process.",
             "itemtype": "property",
             "name": "endtime",

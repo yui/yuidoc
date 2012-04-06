@@ -291,6 +291,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
             if (self.options.selleck) {
                 base = path.dirname(fullpath);
                 comp = path.join(base, &#x27;..&#x2F;&#x27;, &#x27;docs&#x27;, &#x27;component.json&#x27;);
+                Y.log(&#x27;Checking for Selleck data: &#x27; + comp, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
                 if (path.existsSync(comp)) {
                     try {
                         var json = JSON.parse(fs.readFileSync(comp, &#x27;utf8&#x27;));

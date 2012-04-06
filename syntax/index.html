@@ -13,7 +13,11 @@
 
 <div id="doc">
     <h1>YUIDoc Syntax</h1>
-
+    
+    <p>
+        <a href="../">Main Page</a> <a name="Arrow">&gt;</a> <a href="../syntax.html">YUIDoc Syntax</a>
+    </p>
+    
     
         <a href="#toc" class="jump">Jump to Table of Contents</a>
     
@@ -193,12 +197,88 @@ After the class is done, you need to inform the parser to start working on the o
 </tr>
 </table>
 
+<h2 id="extra-formatting">Extra formatting</h2>
+
+<p>
+    YUIDoc supports 3 main forms of formatting your documentation. HTML,
+    <a href="http://daringfireball.net/projects/markdown/">Markdown</a> &amp; <a href="http://rgrove.github.com/selleck/">Selleck</a>.
+</p>
+
+<table>
+<tr>
+    <th><code>HTML</code></th>
+    <td>Doc comments may contain standard HTML markup and YUIDoc will display it as is.</td>
+</tr>
+<tr>
+    <th><code>Markdown</code></th>
+    <td>Full <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a>
+    is also supported.
+    </td>
+</tr>
+<tr>
+    <th><code>Selleck</code></th>
+    <td><a href="http://rgrove.github.com/selleck/">Selleck's</a> additional parsing is also supported.</td>
+</tr>
+</table>
+
+<h3 id="examples">Examples</h3>
+
+<pre class="code prettyprint">&#x2F;**
+This is the __module__ description for the &#x60;YUIDoc&#x60; module.
+
+    var options = {
+        paths: [ &#x27;.&#x2F;lib&#x27; ],
+        outdir: &#x27;.&#x2F;out&#x27;
+    };
+
+    var Y = require(&#x27;yuidoc&#x27;);
+    var json = (new Y.YUIDoc(options)).run();
+
+@class YUIDoc
+@main yuidoc
+*&#x2F;</pre>
+
+
+<div class="intro">
+<p>This is the <strong>module</strong> description for the <code>YUIDoc</code> module.</p>
+<pre class="code prettyprint">var options = {
+    paths: [ &#x27;.&#x2F;lib&#x27; ],
+    outdir: &#x27;.&#x2F;out&#x27;
+};
+
+var Y = require(&#x27;yuidoc&#x27;);
+var json = (new Y.YUIDoc(options)).run();</pre>
+
+</div>
+
+<h3 id="crosslinking">Crosslinking</h3>
+
+<p>
+    We have also added a blockHelper in Handlebars that will allow you to "cross-link" your documentation together.
+</p>
+
+<p></p>
+
+<pre class="code prettyprint">&#x2F;**
+
+This module also uses {{#crossLink Foo}}, where Foo is a class or module name.
+
+*&#x2F;</pre>
+
+
+<p>
+This will generate an internal link to the other's API document.
+</p>
+
+<pre class="code prettyprint">This module also uses &lt;a href=&quot;..&#x2F;classes&#x2F;Foo.html&quot; class=&quot;crosslink&quot;&gt;Foo&lt;&#x2F;a&gt;, where Foo is a class or module name.</pre>
+
 </div>
             </div>
         </div>
 
         <div class="yui3-u-1-4">
             <div class="sidebar">
+                <p><a href="../api/" class="button">View API Documentation</a></p>
                 
                     <div id="toc" class="sidebox">
                         <div class="hd">
@@ -212,6 +292,17 @@ After the class is done, you need to inform the parser to start working on the o
 </li>
 <li>
 <a href="#secondary-tags">Secondary tags</a>
+</li>
+<li>
+<a href="#extra-formatting">Extra formatting</a>
+<ul class="toc">
+<li>
+<a href="#examples">Examples</a>
+</li>
+<li>
+<a href="#crosslinking">Crosslinking</a>
+</li>
+</ul>
 </li>
 </ul>
                         </div>
