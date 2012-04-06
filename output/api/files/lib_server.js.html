@@ -254,9 +254,6 @@ YUI.add(&#x27;server&#x27;, function(Y) {
         *&#x2F;
         start: function(options) {
             options = Y.Project.init(options);
-            if (options.selleck) {
-                delete options.selleck; &#x2F;&#x2F;Remove Selleck support for server
-            }
             Server.options = options;
             
             Server.options.cacheTemplates = false; &#x2F;&#x2F;Don&#x27;t cache the Handlebars templates

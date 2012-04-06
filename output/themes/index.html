@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Modifying the default theme</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro:400,700">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <script src="http://yui.yahooapis.com/3.5.0pr4/build/yui/yui.js"></script>
+</head>
+<body>
+
+<div id="doc">
+    <h1>Modifying the default theme</h1>
+    
+    <p>
+        <a href="../">Main Page</a> <a name="Arrow">&gt;</a> <a href="../themes.html">Modifying the default theme</a>
+    </p>
+    
+    
+        <a href="#toc" class="jump">Jump to Table of Contents</a>
+    
+
+    <div class="yui3-g">
+        <div class="yui3-u-3-4">
+            <div id="main">
+                <div class="content"><p>
+    Modifying the default theme is very easy, YUIDoc uses <a href="http://handlebarsjs.com/">Handlebars.js</a>
+    to render it's templates. It uses a default set of templates, but allows for specific template
+    file overides to allow for easy customization.
+</p>
+
+<h2 id="directories">Directories</h2>
+
+<p>
+    The default theme consists of <code>assets</code>, <code>layouts</code> and <code>partials</code> directories and a <code>theme.json</code>
+    file with theme related variables (JS and CSS to load, etc..)
+</p>
+
+<pre class="code terminal">themes&#x2F;
+    default&#x2F;
+        assets&#x2F;             &#x2F;&#x2F;Project assets, css, js
+        layouts&#x2F;
+            *.handlebars    &#x2F;&#x2F;Handlebars files for layouts
+        partials&#x2F;
+            *.handlebars    &#x2F;&#x2F;Handlebars files for partials
+        theme.json   &#x2F;&#x2F;JSON file with theme variables</pre>
+
+
+<h3 id="layouts">Layouts</h3>
+
+<p>
+    There are 2 main layout files: <code>main.handlebars</code> and <code>xhr.handlebars</code>
+</p>
+
+<table>
+<tr>
+    <th><code>main</code></th>
+    <td>The  basic wrapper around every rendered page. It contains
+        the fulll HTML markup, layout, css, js, etc..
+    </td>
+</tr>
+<tr>
+    <th><code>xhr</code></th>
+    <td>Is a smaller version that's returned by the <code>built-in server</code> when requesting 
+        a page via XHR. This way it on'y transfers the smaller data and not the entire page.
+    </td>
+</tr>
+</table>
+
+<h3 id="partials">Partials</h3>
+
+<p>
+    Partials are used to create all of the data driven portions of the layout. These partials include:
+    <code>attrs</code>, <code>classes</code>, <code>events</code>, <code>files</code>, <code>index</code>, <code>method</code>, <code>module</code>, <code>options</code>, <code>props</code>, <code>sidebar</code>
+</p>
+
+<table>
+<tr>
+    <th><code>index</code></th>
+    <td>Renders the main index content.</td>
+</tr>
+<tr>
+    <th><code>sidebar</code></th>
+    <td>Renders the tabview containing the lists of classes and modules.</td>
+</tr>
+<tr>
+    <th><code>options</code></th>
+    <td>Renders the filter options at the top of the page</td>
+</tr>
+<tr>
+    <th><code>attrs</code></th>
+    <td>Renders Attribute data</td>
+</tr>
+<tr>
+    <th><code>classes</code></th>
+    <td>Renders Class data</td>
+</tr>
+<tr>
+    <th><code>events</code></th>
+    <td>Renders Event data</td>
+</tr>
+<tr>
+    <th><code>files</code></th>
+    <td>Renders source files</td>
+</tr>
+<tr>
+    <th><code>method</code></th>
+    <td>Renders Method data</td>
+</tr>
+<tr>
+    <th><code>module</code></th>
+    <td>Renders Module data</td>
+</tr>
+<tr>
+    <th><code>props</code></th>
+    <td>Renders the property data</td>
+</tr>
+</table>
+
+
+<h2 id="overriding-a-partiallayout">Overriding a Partial/Layout</h2>
+
+<p>
+YUIDoc trys to make overriding it's templates very easy. When you need to make a change to
+a partial or layout file, you do not need to copy every file over into your
+template directory. YUIDoc will parse it's internal templates first, then apply your overrides
+to it afterward. This way if you only need to modify one template file, you only need to
+modify that one file.
+</p>
+
+<pre class="code terminal">mkdir -p mytheme&#x2F;partials
+vim mytheme&#x2F;partials&#x2F;method.handlebars
+&#x2F;&#x2F; Make it how you want
+
+yuidoc --theme .&#x2F;mytheme</pre>
+
+</div>
+            </div>
+        </div>
+
+        <div class="yui3-u-1-4">
+            <div class="sidebar">
+                <p><a href="../api/" class="button">View API Documentation</a></p>
+                
+                    <div id="toc" class="sidebox">
+                        <div class="hd">
+                            <h2 class="no-toc">Table of Contents</h2>
+                        </div>
+
+                        <div class="bd">
+                            <ul class="toc">
+<li>
+<a href="#directories">Directories</a>
+<ul class="toc">
+<li>
+<a href="#layouts">Layouts</a>
+</li>
+<li>
+<a href="#partials">Partials</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#overriding-a-partiallayout">Overriding a Partial/Layout</a>
+</li>
+</ul>
+                        </div>
+                    </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+
+</body>
+</html>
