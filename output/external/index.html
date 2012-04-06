@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>External Data</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro:400,700">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <script src="http://yui.yahooapis.com/3.5.0pr4/build/yui/yui.js"></script>
+</head>
+<body>
+
+<div id="doc">
+    <h1>External Data</h1>
+
+    
+        <a href="#toc" class="jump">Jump to Table of Contents</a>
+    
+
+    <div class="yui3-g">
+        <div class="yui3-u-3-4">
+            <div id="main">
+                <div class="content"><p>
+YUIDoc generates a <code>data.json</code> file after it parses your API documentation. Using the <code>external.data</code> config
+option, you can point it to another <code>data.json</code> file from another project and YUIDoc will import that data
+and mix it with your API documentation.
+</p>
+
+<p>This is very handy when you are extending another project and would like to link back
+to their API documentation.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>
+    Create an <code>external</code> object under the <code>options</code> object in your <code>yuidoc.json</code> file and give it
+    a property called <code>data</code> (can be an array) pointing to the URL of the external <code>data.json</code> file
+    you wish to import.
+</p>
+
+<pre class="code prettyprint">{
+  &quot;options&quot;: {
+    &quot;external&quot;: {
+      &quot;data&quot;: &quot;http:&#x2F;&#x2F;yuilibrary.com&#x2F;yui&#x2F;docs&#x2F;api&#x2F;data.json&quot;
+    }
+  }
+}</pre>
+
+
+<h2 id="merging-data">Merging Data</h2>
+
+<p>Currently, YUIDoc will merge the external data and flag it as <code>external</code>.
+Then, internally, YUIDoc will use that data when it see's a reference to it (in an <code>@extends</code> or <code>@use</code>
+documentation block. It will then link over to the external API docs just as if it was part of this
+documentation system.
+</p>
+
+<h2 id="future-plans">Future Plans</h2>
+
+<p>
+In the future, YUIDoc will allow you to specify that you want to mix the data natively instead if
+making it a special external link. This will allow you to pull in all of the remote data and render their
+docs along side your docs, instead of just linking to them.
+</p>
+
+<p>
+Also, the current external data is fetched on each run. This will eventually be cached as to not take so
+long to generate the docs.
+</p>
+</div>
+            </div>
+        </div>
+
+        <div class="yui3-u-1-4">
+            <div class="sidebar">
+                
+                    <div id="toc" class="sidebox">
+                        <div class="hd">
+                            <h2 class="no-toc">Table of Contents</h2>
+                        </div>
+
+                        <div class="bd">
+                            <ul class="toc">
+<li>
+<a href="#configuration">Configuration</a>
+</li>
+<li>
+<a href="#merging-data">Merging Data</a>
+</li>
+<li>
+<a href="#future-plans">Future Plans</a>
+</li>
+</ul>
+                        </div>
+                    </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+
+</body>
+</html>

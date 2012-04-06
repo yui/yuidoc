@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YUIDoc Syntax</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro:400,700">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <script src="http://yui.yahooapis.com/3.5.0pr4/build/yui/yui.js"></script>
+</head>
+<body>
+
+<div id="doc">
+    <h1>YUIDoc Syntax</h1>
+
+    
+        <a href="#toc" class="jump">Jump to Table of Contents</a>
+    
+
+    <div class="yui3-g">
+        <div class="yui3-u-3-4">
+            <div id="main">
+                <div class="content"><p>YUIDoc parses a modified form of JSDoc tags, here we will list the most common tags used and how
+they are parsed.</p>
+
+<div class="intro">
+<pre class="code prettyprint">&#x2F;**
+* This is the description for my class
+* @class MyClass
+* @constructor
+*&#x2F;
+
+&#x2F;**
+* My method description.  Like other pieces of your comment blocks, 
+* this can span multiple lines.
+* @method methodName
+* @param {String} foo Argument 1
+* @param {Object} config A config object
+* @param {String} config.name The name on the config object
+* @param {Function} config.callback A callback function on the config object
+* @param {Boolean} [extra=false] Do extra, optional work
+* @return {Boolean} Returns true on success
+*&#x2F;
+
+&#x2F;**
+* My property description.  Like other pieces of your comment blocks, 
+* this can span multiple lines.
+* @property propertyName
+* @type {Object}
+*&#x2F;</pre>
+
+</div>
+
+
+<h2 id="primary-tags">Primary Tags</h2>
+<p>Each comment block must have one (and only one) of the following tags</p>
+
+<table>
+<tr>
+    <th><code>module</code></th>
+    <td>There must be one module per source tree. By convention, put your module declaration at the top of the file that contains the main class for your module.</td>
+</tr>
+<tr>
+    <th><code>class</code></th>
+    <td>The string identifying the functional class on its parent object; 
+        for example, the class for <code>Y.DD.Drag</code> would be <code>Drag</code> (and its <code>@namespace</code> would be <code>DD</code>).</td>
+</tr>
+<tr>
+    <th><code>method</code></th>
+    <td>The name of a method on the current class.</td>
+</tr>
+<tr>
+    <th><code>event</code></th>
+    <td>In YUI, events are <code>Custom Events</code> fired off programmatically at interesting moments in
+    a component's execution. The event tag is similar to method, but there is no return tag and i
+    ts params are arguments passed to the event listener.</td>
+</tr>
+<tr>
+    <th><code>property</code></th>
+    <td>The name of a property on the current class.</td>
+</tr>
+</table>
+
+<h2 id="secondary-tags">Secondary tags</h2>
+<p>
+    After choosing one of the four primary tags, you can further document a module, 
+    class, method, event or property with one or more of the following secondary tags.
+</p>
+<table>
+<tr>
+    <th><code>submodule</code></th>
+    <td>YUIDoc supports the notion that a module is a submodule of a parent module. For 
+    example, in YUI 3 <code>anim-scroll</code> is a submodule of anim. A submodule encompasses a 
+    subset of the parent module's functionality. To use submodule designation, provide 
+    the parent module's name as the module property and the submodule's name in the submodule property.
+    </td>
+</tr>
+<tr>
+    <th><code>namespace</code></th>
+    <td>While it is optional to provide a namespace, it is recommended. This lets you describe 
+    your class just with the name: For example, <code>Y.DD.Drag</code> has a namespace of <code>Y.DD</code>
+    and a class of <code>Drag</code>.</td>
+</tr>
+<tr>
+    <th><code>extends</code></th>
+    <td>Sets up an inheritance relationship between the current class and a parent class; 
+    API docs will show and link to items inherited from the parent class.</td>
+</tr>
+<tr>
+    <th><code>config</code></th>
+    <td>A config is a managed configuration attribute. In YUI parlance, this is typically
+    an attribute created and managed with the Config class (part of the Container Family).</td>
+</tr>
+<tr>
+    <th><code>attribute</code></th>
+    <td>An attribute is a managed configuration attribute. In YUI parlance, this is 
+    typically an attribute created and managed with AttributeProvider 
+    (part of the [YUI Element Utility][[yui-element]]). An attribute is similar
+    to a config, but YUIDoc will autogenerate documentation for the change events 
+    associated with the attribute as provided by Element. (Note: Unless you're using 
+    YUI and referring to an attribute managed by AttributeProvider, you should avoid using this tag.)
+    </td>
+</tr>
+<tr>
+    <th><code>constructor</code></th>
+    <td>The presence of this tag (which requires no description) indicates that this class is instantiable.</td>
+</tr>
+<tr>
+    <th><code>static</code></th>
+    <td>If a class does not have a constructor, then the static tag should be present to signal 
+    that it is a static class.</td>
+</tr>
+<tr>
+    <th><code>final</code></th>
+    <td>For constants and for read-only configs and attributes.</td>
+</tr>
+<tr>
+    <th><code>param</code></th>
+    <td>Defined as <code>@param {type} name description</code> or <code>@param name {type} description</code>, params can be used 
+    with classes, methods and events.  Use <code>[name]</code> to indicate the param is optional, <code>name*</code> to
+    indicate it is a place holder for 1..n arguments, and <code>[name*]</code> for 0..n arguments.</td>
+</tr>
+<tr>
+    <th><code>return</code></th>
+    <td>Defined as <code>@return {type} description</code>.</td>
+</tr>
+<tr>
+    <th><code>for</code></th>
+    <td>Used to define an inner class:
+<pre class="code prettyprint">&#x2F;**  
+* An inner class  
+* @class foo  
+* @for OuterClass  
+*&#x2F;</pre>
+
+
+After the class is done, you need to inform the parser to start working on the outer class again:
+
+<pre class="code prettyprint">&#x2F;**  
+* Another method for the outer class  
+* @method bar  
+* @for OuterClass  
+*&#x2F;</pre>
+
+</td>
+</tr>
+<tr>
+    <th><code>type</code></th>
+    <td>For properties, configs and attributes.</td>
+</tr>
+<tr>
+    <th><code>private</code></th>
+    <td>Privates by default are suppressed from the API docs. All methods and properties are 
+    assumed to be public unless marked as private.</td>
+</tr>
+<tr>
+    <th><code>protected</code></th>
+    <td>Used to designate members that should not be modified by implementers unless they are creating a subclass.</td>
+</tr>
+<tr>
+    <th><code>requires</code></th>
+    <td>Used to identify dependencies in the module declaration.</td>
+</tr>
+<tr>
+    <th><code>default</code></th>
+    <td>The default value of a property, config or attribute.</td>
+</tr>
+<tr>
+    <th><code>uses</code></th>
+    <td>For classes that use some kind of Object augmentation. If this object is defined and YUIDoc
+    parses it, the properties from the "used" object will be deisplayed in the output.</td>
+</tr>
+</table>
+
+</div>
+            </div>
+        </div>
+
+        <div class="yui3-u-1-4">
+            <div class="sidebar">
+                
+                    <div id="toc" class="sidebox">
+                        <div class="hd">
+                            <h2 class="no-toc">Table of Contents</h2>
+                        </div>
+
+                        <div class="bd">
+                            <ul class="toc">
+<li>
+<a href="#primary-tags">Primary Tags</a>
+</li>
+<li>
+<a href="#secondary-tags">Secondary tags</a>
+</li>
+</ul>
+                        </div>
+                    </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+
+</body>
+</html>
