@@ -3,5 +3,6 @@
     "displayName": "The YUIDoc Server",
     "description": "The YUIDoc Server",
     "author"     : "davglass",
-    "hideTableOfContents": "true"
+    "hideTableOfContents": "true",
+    "projectBase": "../"
 }

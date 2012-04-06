@@ -3,5 +3,6 @@
     "displayName": "Command Line Arguments",
     "description": "Command Line Arguments",
     "author"     : "davglass",
-    "hideTableOfContents": "true"
+    "hideTableOfContents": "true",
+    "projectBase": "../"
 }
