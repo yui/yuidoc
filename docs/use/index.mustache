@@ -1,5 +1,124 @@
 <p>Using YUIDoc</p>
 
-<div class="intro">
-    
-</div>
+<h2 id="json">YUIDoc Configuration</h2>
+
+<p>
+    YUIDoc supports 2 ways to configure it's output. Command line arguments and the `yuidoc.json` file.
+    You can see all of the available command line arguments <a href="../args/index.html">here</a>.
+</p>
+
+<h3>JSON Configuration</h3>
+
+<p>
+    Here is a sample `yuidoc.json` file that used in the <a href="http://yuilibrary.com/">YUI 3</a>
+    project.
+</p>
+
+```
+{
+    "name": "YUI 3",
+    "description": "YUI 3 JavaScript Framework",
+    "version": "3.5.0",
+    "url": "http://yuilibrary.com/",
+    "options": {
+        "linkNatives": "true",        
+        "attributesEmit": "true",
+        "selleck": "true",
+        "ignorePaths": [ "simpleyui" ],
+        "paths": "*/js",
+        "outdir": "../api-js"
+    }
+}
+```
+
+<p>And the current YUIDoc `yuidoc.json` file:</p>
+
+```
+{
+  "name": "YUIDoc",
+  "description": "YUIDoc documentation tool written in Javascript",
+  "version": "0.2.38",
+  "url": "http://yuilibrary.com/projects/yuidoc",
+  "logo": "http://yuilibrary.com/img/yui-logo.png",
+  "options": {
+    "external": {
+      "data": "http://yuilibrary.com/yui/docs/api/data.json"
+    },
+    "linkNatives": "true",
+    "attributesEmit": "true",
+    "paths": [
+      "./lib"
+    ],
+    "outdir": "./output/api"
+  }
+}
+```
+
+<p>
+The `yuidoc.json` file needs to live in a directory somewhere under where you will be executing
+`yuidoc`. YUIDoc will scan the tree for this file before doing anything else.
+</p>
+
+<h3>JSON Options</h3>
+
+<p>Project Information</p>
+
+<table>
+<tr>
+    <th>`name`</th>
+    <td>The name of the project</td>
+</tr>
+<tr>
+    <th>`description`</th>
+    <td>Projects description</td>
+</tr>
+<tr>
+    <th>`version`</th>
+    <td>Current version of the documentation.</td>
+</tr>
+<tr>
+    <th>`url`</th>
+    <td>The URL of the project</td>
+</tr>
+<tr>
+    <th>`logo`</th>
+    <td>The logo to add to the header (defaults to the YUI logo).</td>
+</tr>
+</table>
+
+<p>
+    Below are a few of the options available.
+</p>
+
+<table>
+<tr>
+    <th>`linkNatives`</th>
+    <td>This will autolink native types (String, Object, Boolean, etc..) over to the Mozilla Developer Network. </td>
+</tr>
+<tr>
+    <th>`attributesEmit`</th>
+    <td>This will have YUIDoc autogenerate event docs for an attribute. YUI's Attribute system auto fires
+    change events, this setting turns on the documentation for this.</td>
+</tr>
+<tr>
+    <th>`selleck`</th>
+    <td>If true, YUIDoc will search for a `component.json` file above the source tree and attach that data
+    to the module data as extra information.</td>
+</tr>
+<tr>
+    <th>`ignorePaths`</th>
+    <td>A list of paths to ignore when scanning the source tree.</td>
+</tr>
+<tr>
+    <th>`paths`</th>
+    <td>A `glob` to use when searching the source tree for docs to parse.</td>
+</tr>
+<tr>
+    <th>`outdir`</th>
+    <td>The directory to place the rendered files</td>
+</tr>
+<tr>
+    <th>`external.data`</th>
+    <td>A link to an external `yuidoc.json` file to merge into the local api docs. <a href="../external/index.html">See the external data example for more info</a>.</td>
+</tr>
+</table>
