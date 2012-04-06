@@ -4,10 +4,15 @@ all:
 version:
 	./scripts/versions.js
 
-docs:
+doc:
 	rm -rRf ./output/*
+	./lib/cli.js --help &> ./docs/args/partials/help.mustache
 	./node_modules/.bin/selleck --out ./output/
+
+api:
 	yuidoc
+
+docs: doc api
 
 test:
 	./scripts/prep.sh
