@@ -114,7 +114,7 @@ they are parsed.</p>
     <td>For constants and for read-only configs and attributes.</td>
 </tr>
 <tr>
-    <th>`param`</th>
+    <th>`*param`</th>
     <td>Defined as `@param {type} name description` or `@param name {type} description`, params can be used 
     with classes, methods and events.  Use `[name]` to indicate the param is optional, `name*` to
     indicate it is a place holder for 1..n arguments, and `[name*]` for 0..n arguments.</td>
@@ -171,6 +171,59 @@ After the class is done, you need to inform the parser to start working on the o
     <td>For classes that use some kind of Object augmentation. If this object is defined and YUIDoc
     parses it, the properties from the "used" object will be deisplayed in the output.</td>
 </tr>
+<tr>
+    <th>`*example`</th>
+    <td>Items with this tag are automatically parsed with the Markdown and Code parser and 
+    displayed below the item. <em>The code is not included raw, only in highlight form</em></td>
+</tr>
+<tr>
+    <th>`chainable`</th>
+    <td>Method returns itself so you can chain it with other calls on this object.</td>
+</tr>
+<tr>
+    <th>`deprecated`</th>
+    <td>Item is deprecated and will be removed in a future release.</td>
+</tr>
+<tr>
+    <th>`since`</th>
+    <td>Item was added to the source in this version.</td>
+</tr>
+<tr>
+    <th>`async`</th>
+    <td>Method is async and requires a callback.</td>
+</tr>
+<tr>
+    <th>`beta`</th>
+    <td>Item should be marked as in beta.</td>
+</tr>
+<tr>
+    <th>`bubbles`</th>
+    <td>Event bubbles to another target</td>
+</tr>
+<tr>
+    <th>`extension`<br>`extensionfor`<br>`extension_for`</th>
+    <td>Item is an extension of passed Item.</td>
+</tr>
+</table>
+<em><strong>*</strong> Denotes that it supports multiple tags in the same doc block.</em>
+
+<h3>Parsed but not in the theme yet</h3>
+<p>
+    The following tags are parsed by the `DocParser` but are not in the default theme yet.
+</p>
+<table>
+<tr>
+    <th>`author`</th>
+    <td>Author information about this item</td>
+</tr>
+<tr>
+    <th>`broadcast`</th>
+    <td>Event broadcasts to a large audience than scoped</td>
+</tr>
+<tr>
+    <th>`*category`</th>
+    <td>Category to place this item into.</td>
+</tr>
 </table>
 
 <h2>Extra formatting</h2>
@@ -197,7 +250,12 @@ After the class is done, you need to inform the parser to start working on the o
 </tr>
 </table>
 
-<h3>Examples</h3>
+<h3>Markdown and Code Highlighting</h3>
+
+<p>
+Inside any documentation block you may use Markdown or Selleck based markup. If you indent your code snippets
+YUIDoc will automatically wrap them in a code block and syntax highlight them for you.
+</p>
 
 ```
 /**
@@ -215,6 +273,10 @@ This is the __module__ description for the `YUIDoc` module.
 @main yuidoc
 */
 ```
+
+<p>
+This is what the above would render to:
+</p>
 
 <div class="intro">
 <p>This is the <strong>module</strong> description for the <code>YUIDoc</code> module.</p>
@@ -250,5 +312,7 @@ This will generate an internal link to the other's API document.
 </p>
 
 ```
+<p>
 This module also uses <a href="../classes/Foo.html" class="crosslink">Foo</a>, where Foo is a class or module name.
+</p>
 ```
