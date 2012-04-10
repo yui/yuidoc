@@ -1,18 +1,33 @@
 <p>
-YUIDoc generates a `data.json` file after it parses your API documentation. Using the `external.data` config
-option, you can point it to another `data.json` file from another project and YUIDoc will import that data
-and mix it with your API documentation.
+YUIDoc generates a `data.json` file after it parses your API documentation. 
+The `external.data` config option enables you to import a YUIDoc `data.json` file 
+from another project and mix it into your own documentation. 
 </p>
 
-<p>This is very handy when you are extending another project and would like to link back
-to their API documentation.</p>
+<p>
+This feature is handy when you are extending another project and would like to link back
+to their API documentation. For example, importing YUI Library's `data.json`
+file would enable YUIDoc to automatically link back to `Base`, `EventTarget`, and
+other core YUI objects that your own API might be extending or mixing in. 
+</p>
+
+<p>
+Currently, importing external data enables YUIDoc to resolve HTML links `@extends` or `@use` keywords, 
+but does <em>not</em> cause YUIDoc to generate complete documentation for the external API.
+Future versions of YUIDoc may provide the option to mix in the data natively 
+and reproduce the external API right along with your own.
+</p>
+
+<p>
+YUIDoc currently fetches external data on each run with no caching. 
+</p>
 
 <h2>Configuration</h2>
 
 <p>
     Create an `external` object under the `options` object in your `yuidoc.json` file and give it
-    a property called `data` (can be an array) pointing to the URL of the external `data.json` file
-    you wish to import.
+    a property called `data` pointing to the URL of the external `data.json` file you wish to import. 
+    `data` can be a string or an array of strings. 
 </p>
 
 ```
@@ -24,24 +39,3 @@ to their API documentation.</p>
   }
 }
 ```
-
-<h2>Merging Data</h2>
-
-<p>Currently, YUIDoc will merge the external data and flag it as `external`.
-Then, internally, YUIDoc will use that data when it see's a reference to it (in an `@extends` or `@use`
-documentation block. It will then link over to the external API docs just as if it was part of this
-documentation system.
-</p>
-
-<h2>Future Plans</h2>
-
-<p>
-In the future, YUIDoc will allow you to specify that you want to mix the data natively instead if
-making it a special external link. This will allow you to pull in all of the remote data and render their
-docs along side your docs, instead of just linking to them.
-</p>
-
-<p>
-Also, the current external data is fetched on each run. This will eventually be cached as to not take so
-long to generate the docs.
-</p>
