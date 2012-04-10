@@ -10,7 +10,7 @@ doc:
 	./node_modules/.bin/selleck --out ./output/
 
 api:
-	yuidoc
+	./lib/cli.js
 
 docs: doc api
 
