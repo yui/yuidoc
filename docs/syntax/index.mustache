@@ -37,29 +37,79 @@ they are parsed.</p>
 <table>
 <tr>
     <th>Name</th>
+    <th>Example</th>
     <th>Description</th>
 </tr>
 <tr>
     <td>`module`</td>
+    <td>
+```
+/**
+Provides the base Widget class...
+@module widget
+*/
+```
+    </td>
     <td>There must be one module per source tree. By convention, put your module declaration at the top of the file that contains the main class for your module.</td>
 </tr>
 <tr>
     <td>`class`</td>
+    <td>
+```
+/**
+A utility that brokers HTTP requests...
+@class IO 
+@constructor
+*/
+function IO (config) { 
+```
+    </td>
     <td>The string identifying the functional class on its parent object; 
         for example, the class for `Y.DD.Drag` would be `Drag` (and its `@namespace` would be `DD`).</td>
 </tr>
 <tr>
     <td>`method`</td>
+    <td>
+```
+/**
+Returns this model's attributes as...
+@method toJSON
+@return {Object} Copy of ...
+*/
+toJSON: function () { 
+```
+    </td>
     <td>The name of a method on the current class.</td>
 </tr>
 <tr>
     <td>`event`</td>
+    <td>
+```
+/**
+Fired when an error occurs...
+@method error 
+@param {String} msg A description of...
+*/
+var EVT_ERROR = 'error',
+```
+    </td>
     <td>In YUI, events are `Custom Events` fired off programmatically at interesting moments in
     a component's execution. The event tag is similar to method, but there is no return tag and i
     ts params are arguments passed to the event listener.</td>
 </tr>
 <tr>
     <td>`property`</td>
+    <td>
+```
+/**
+Template for this view's container...
+@property containerTemplate 
+@type String
+@default "<div/>"
+*/
+containerTemplate: '<div/>',
+```
+    </td>
     <td>The name of a property on the current class.</td>
 </tr>
 </table>
