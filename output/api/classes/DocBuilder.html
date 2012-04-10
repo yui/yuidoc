@@ -104,7 +104,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;lib_builder.js.html#l30"><code>lib&#x2F;builder.js:30</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;lib_builder.js.html#l43"><code>lib&#x2F;builder.js:43</code></a>
         </div>
     
 
@@ -194,6 +194,12 @@ based templates to generate static HTML content</p>
                         
                             <li class="index-item method">
                                 <a href="#method_makeDirs">makeDirs</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_markdown">markdown</a>
 
                                 
                             </li>
@@ -340,7 +346,7 @@ based templates to generate static HTML content</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l589"><code>lib&#x2F;builder.js:589</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l602"><code>lib&#x2F;builder.js:602</code></a>
         
         </p>
 
@@ -445,7 +451,7 @@ based templates to generate static HTML content</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l577"><code>lib&#x2F;builder.js:577</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l590"><code>lib&#x2F;builder.js:590</code></a>
         
         </p>
 
@@ -547,7 +553,7 @@ based templates to generate static HTML content</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l473"><code>lib&#x2F;builder.js:473</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l486"><code>lib&#x2F;builder.js:486</code></a>
         
         </p>
 
@@ -646,7 +652,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1275"><code>lib&#x2F;builder.js:1275</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1288"><code>lib&#x2F;builder.js:1288</code></a>
         
         </p>
 
@@ -735,7 +741,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1262"><code>lib&#x2F;builder.js:1262</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1275"><code>lib&#x2F;builder.js:1275</code></a>
         
         </p>
 
@@ -934,7 +940,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l324"><code>lib&#x2F;builder.js:324</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l337"><code>lib&#x2F;builder.js:337</code></a>
         
         </p>
 
@@ -1009,7 +1015,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l536"><code>lib&#x2F;builder.js:536</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l549"><code>lib&#x2F;builder.js:549</code></a>
         
         </p>
 
@@ -1048,6 +1054,152 @@ with the <code>Markdown Parser</code></p>
         </div>
     
 
+    
+
+    
+</div>
+
+                
+                    <div id="method_markdown" class="method item private">
+    <h3 class="name"><code>markdown</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>md</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>def</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>tags</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">HTML</span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l29"><code>lib&#x2F;builder.js:29</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Wrapper around the Markdown parser so it can be normalized or even side stepped</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">md</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The Markdown string to parse</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">def</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Only allow default set of HTML tags</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">tags</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An array of tags to allow</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">HTML</span>:
+                    
+                    The rendered HTML
+                
+            </div>
+        </div>
     
 
     
@@ -1104,7 +1256,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1135"><code>lib&#x2F;builder.js:1135</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1148"><code>lib&#x2F;builder.js:1148</code></a>
         
         </p>
 
@@ -1221,7 +1373,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l362"><code>lib&#x2F;builder.js:362</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l375"><code>lib&#x2F;builder.js:375</code></a>
         
         </p>
 
@@ -1323,7 +1475,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l414"><code>lib&#x2F;builder.js:414</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l427"><code>lib&#x2F;builder.js:427</code></a>
         
         </p>
 
@@ -1425,7 +1577,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l377"><code>lib&#x2F;builder.js:377</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l390"><code>lib&#x2F;builder.js:390</code></a>
         
         </p>
 
@@ -1547,7 +1699,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l608"><code>lib&#x2F;builder.js:608</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l621"><code>lib&#x2F;builder.js:621</code></a>
         
         </p>
 
@@ -1731,7 +1883,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l658"><code>lib&#x2F;builder.js:658</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l671"><code>lib&#x2F;builder.js:671</code></a>
         
         </p>
 
@@ -1848,7 +2000,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1106"><code>lib&#x2F;builder.js:1106</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1119"><code>lib&#x2F;builder.js:1119</code></a>
         
         </p>
 
@@ -1933,7 +2085,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1158"><code>lib&#x2F;builder.js:1158</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1171"><code>lib&#x2F;builder.js:1171</code></a>
         
         </p>
 
@@ -2018,7 +2170,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l683"><code>lib&#x2F;builder.js:683</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l696"><code>lib&#x2F;builder.js:696</code></a>
         
         </p>
 
@@ -2103,7 +2255,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l766"><code>lib&#x2F;builder.js:766</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l779"><code>lib&#x2F;builder.js:779</code></a>
         
         </p>
 
@@ -2179,7 +2331,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l311"><code>lib&#x2F;builder.js:311</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l324"><code>lib&#x2F;builder.js:324</code></a>
         
         </p>
 
@@ -2223,7 +2375,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l318"><code>lib&#x2F;builder.js:318</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l331"><code>lib&#x2F;builder.js:331</code></a>
         
         </p>
 

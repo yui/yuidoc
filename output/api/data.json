@@ -148,9 +148,8 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "yuidoc",
-            "originalName": "DocBuilder",
             "file": "lib/builder.js",
-            "line": 30,
+            "line": 43,
             "description": "Takes the `JSON` data from the `DocParser` class, creates and parses markdown and handlebars\nbased templates to generate static HTML content"
         },
         "cli": {
@@ -163,7 +162,6 @@
             "extension_for": [],
             "module": "yuidoc",
             "namespace": "",
-            "originalName": "cli",
             "file": "lib/cli.js",
             "line": 8,
             "description": "Parses the arguments, creates the options and passes them to Y.YUIDoc."
@@ -178,7 +176,6 @@
             "extension_for": [],
             "module": "yuidoc",
             "namespace": "",
-            "originalName": "DocParser",
             "file": "lib/docparser.js",
             "line": 709,
             "description": "The doc parser accepts a **map** of files to file content.\nOnce `parse()` is called, various properties will be populated\nwith the parsers data (aggregated in the `'data'` property).",
@@ -202,7 +199,6 @@
             "extension_for": [],
             "module": "yuidoc",
             "namespace": "",
-            "originalName": "DocView",
             "file": "lib/docview.js",
             "line": 15,
             "description": "View class borrowed from [Selleck](https://github.com/rgrove/selleck)  \nThe view class is a **`handlebars`** template helper.",
@@ -230,7 +226,6 @@
             "extension_for": [],
             "module": "yuidoc",
             "namespace": "",
-            "originalName": "Files",
             "file": "lib/files.js",
             "line": 3,
             "description": "Ported fileutils methods from [Selleck](http://github.com/rgrove/selleck)"
@@ -245,7 +240,6 @@
             "extension_for": [],
             "module": "yuidoc",
             "namespace": "",
-            "originalName": "index",
             "file": "lib/index.js",
             "line": 6,
             "description": "Module creates the YUI instance with the required modules, uses them and exports the **Y** to be used\nby the _CLI class_ or by extenders: `require('yuidocjs');`  \nYou can use it like this:  \n\n    var options = {\n        paths: [ './lib' ],\n        outdir: './out'\n    };\n\n    var Y = require('yuidoc');\n    var json = (new Y.YUIDoc(options)).run();",
@@ -261,7 +255,6 @@
             "extension_for": [],
             "module": "server",
             "namespace": "",
-            "originalName": "Server",
             "file": "lib/server.js",
             "line": 3,
             "description": "Provides the `--server` server option for YUIDoc"
@@ -276,7 +269,6 @@
             "extension_for": [],
             "module": "yuidoc",
             "namespace": "",
-            "originalName": "utils",
             "file": "lib/utils.js",
             "line": 11,
             "description": "Utilities Class"
@@ -291,7 +283,6 @@
             "extension_for": [],
             "module": "yuidoc",
             "namespace": "",
-            "originalName": "YUIDoc",
             "file": "lib/yuidoc.js",
             "line": 48,
             "description": "YUIDoc main class\n\n       var options = {\n           paths: [ './lib' ],\n           outdir: './out'\n       };\n\n       var Y = require('yuidoc');\n       var json = (new Y.YUIDoc(options)).run();",
@@ -330,7 +321,38 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 311,
+            "line": 29,
+            "description": "Wrapper around the Markdown parser so it can be normalized or even side stepped",
+            "itemtype": "method",
+            "name": "markdown",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "md",
+                    "description": "The Markdown string to parse",
+                    "type": "String"
+                },
+                {
+                    "name": "def",
+                    "description": "Only allow default set of HTML tags",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "tags",
+                    "description": "An array of tags to allow",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "The rendered HTML",
+                "type": "HTML"
+            },
+            "class": "DocBuilder"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 324,
             "description": "The default tags to use in params descriptions (for Markdown).",
             "itemtype": "property",
             "name": "defaultTags",
@@ -340,7 +362,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 318,
+            "line": 331,
             "description": "File counter",
             "itemtype": "property",
             "name": "files",
@@ -350,7 +372,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 324,
+            "line": 337,
             "description": "Prep the meta data to be fed to Selleck",
             "itemtype": "method",
             "name": "getProjectMeta",
@@ -363,7 +385,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 362,
+            "line": 375,
             "description": "Populate the meta data for classes",
             "itemtype": "method",
             "name": "populateClasses",
@@ -383,7 +405,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 377,
+            "line": 390,
             "description": "Populate the meta data for modules",
             "itemtype": "method",
             "name": "populateModules",
@@ -403,7 +425,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 414,
+            "line": 427,
             "description": "Populate the meta data for files",
             "itemtype": "method",
             "name": "populateFiles",
@@ -423,7 +445,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 473,
+            "line": 486,
             "description": "Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions\nwith the `Markdown Parser`",
             "itemtype": "method",
             "name": "augmentData",
@@ -443,7 +465,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 536,
+            "line": 549,
             "description": "Makes the default directories needed",
             "itemtype": "method",
             "name": "makeDirs",
@@ -459,7 +481,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 577,
+            "line": 590,
             "description": "Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them",
             "itemtype": "method",
             "name": "_parseCode",
@@ -481,7 +503,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 589,
+            "line": 602,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n       that are not parsed by the **Markdown** parser.",
             "itemtype": "method",
             "name": "_inlineCode",
@@ -503,7 +525,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 608,
+            "line": 621,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck)\n       Renders the handlebars templates with the default View class.",
             "itemtype": "method",
             "name": "render",
@@ -555,7 +577,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 658,
+            "line": 671,
             "description": "Render the index file",
             "itemtype": "method",
             "name": "renderIndex",
@@ -583,7 +605,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 683,
+            "line": 696,
             "description": "Generates the index.html file",
             "itemtype": "method",
             "name": "writeIndex",
@@ -599,7 +621,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 766,
+            "line": 779,
             "description": "Generates the module files under \"out\"/modules/",
             "itemtype": "method",
             "name": "writeModules",
@@ -615,7 +637,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1106,
+            "line": 1119,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -631,7 +653,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1135,
+            "line": 1148,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -656,7 +678,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1158,
+            "line": 1171,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -672,7 +694,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1262,
+            "line": 1275,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -692,7 +714,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1275,
+            "line": 1288,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",

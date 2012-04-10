@@ -105,7 +105,7 @@ Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http:&#x2F;&#x2F;yuilibrary.com&#x2F;license&#x2F;
 *&#x2F;
-var markdown = require(&quot;node-markdown&quot;).Markdown,
+var MD = require(&quot;node-markdown&quot;).Markdown,
     fs = require(&#x27;graceful-fs&#x27;),
     noop = function() {},
     path = require(&#x27;path&#x27;),
@@ -127,6 +127,19 @@ var markdown = require(&quot;node-markdown&quot;).Markdown,
         }
 
         return t;
+    },
+    &#x2F;**
+    * Wrapper around the Markdown parser so it can be normalized or even side stepped
+    * @method markdown
+    * @private
+    * @param {String} md The Markdown string to parse
+    * @param {Boolean} def Only allow default set of HTML tags
+    * @param {Array} tags An array of tags to allow
+    * @return {HTML} The rendered HTML
+    *&#x2F;
+    markdown = function(md, def, tags) {
+        html = MD(md, def, tags);
+        return html;
     };
 
 &#x2F;**
