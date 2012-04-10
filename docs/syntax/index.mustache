@@ -46,8 +46,9 @@ they are parsed.</p>
 ```
 /**
 Provides the base Widget class...
+
 @module widget
-*/
+**/
 ```
     </td>
     <td>There must be one module per source tree. By convention, put your module declaration at the top of the file that contains the main class for your module.</td>
@@ -58,9 +59,10 @@ Provides the base Widget class...
 ```
 /**
 A utility that brokers HTTP requests...
+
 @class IO 
 @constructor
-*/
+**/
 function IO (config) { 
 ```
     </td>
@@ -73,9 +75,10 @@ function IO (config) {
 ```
 /**
 Returns this model's attributes as...
+
 @method toJSON
 @return {Object} Copy of ...
-*/
+**/
 toJSON: function () { 
 ```
     </td>
@@ -87,9 +90,10 @@ toJSON: function () {
 ```
 /**
 Fired when an error occurs...
+
 @method error 
 @param {String} msg A description of...
-*/
+**/
 var EVT_ERROR = 'error',
 ```
     </td>
@@ -103,10 +107,11 @@ var EVT_ERROR = 'error',
 ```
 /**
 Template for this view's container...
+
 @property containerTemplate 
 @type String
 @default "<div/>"
-*/
+**/
 containerTemplate: '<div/>',
 ```
     </td>
@@ -122,10 +127,19 @@ containerTemplate: '<div/>',
 <table>
 <tr>
     <th>Name</th>
+    <th>Example</th>
     <th>Description</th>
 </tr>
 <tr id="submodule">
     <td>`submodule`</td>
+    <td>
+```
+/**
+@module app
+@submodule view
+**/
+```
+    </td>
     <td>YUIDoc supports the notion that a module is a submodule of a parent module. For 
     example, in YUI 3 `anim-scroll` is a submodule of anim. A submodule encompasses a 
     subset of the parent module's functionality. To use submodule designation, provide 
@@ -134,22 +148,60 @@ containerTemplate: '<div/>',
 </tr>
 <tr id="namespace">
     <td>`namespace`</td>
+    <td>
+```
+/**
+@namespace Test.Mock
+**/
+```
+    </td>
     <td>While it is optional to provide a namespace, it is recommended. This lets you describe 
     your class just with the name: For example, `Y.DD.Drag` has a namespace of `Y.DD`
     and a class of `Drag`.</td>
 </tr>
 <tr id="extends">
     <td>`extends`</td>
+    <td>
+```
+/**
+@class View
+@constructor
+@extends Base
+**/
+```
+    </td>
     <td>Sets up an inheritance relationship between the current class and a parent class; 
     API docs will show and link to items inherited from the parent class.</td>
 </tr>
 <tr id="config">
     <td>`config`</td>
+    <td>
+```
+/**
+@config docScrollX 
+@type Number 
+**/
+```
+    </td>
     <td>A config is a managed configuration attribute. In YUI parlance, this is typically
     an attribute created and managed with the Config class (part of the Container Family).</td>
 </tr>
 <tr id="attribute">
     <td>`attribute`</td>
+    <td>
+```
+/**
+* Indicates whether this Widget
+* has been rendered...
+*
+* @attribute rendered
+* @readOnly
+* @default false
+* @type boolean
+*/
+ATTRS[RENDERED] = {
+```
+    </td>
     <td>An attribute is a managed configuration attribute. In YUI parlance, this is 
     typically an attribute created and managed with AttributeProvider 
     (part of the [YUI Element Utility][[yui-element]]). An attribute is similar
@@ -160,106 +212,298 @@ containerTemplate: '<div/>',
 </tr>
 <tr id="constructor">
     <td>`constructor`</td>
+    <td>
+```
+/**
+@class IO 
+@constructor
+**/
+```
+    </td>
     <td>The presence of this tag (which requires no description) indicates that this class is instantiable.</td>
 </tr>
 <tr id="static">
     <td>`static`</td>
+    <td>
+```
+/**
+YUI user agent detection...
+
+@class UA
+@static
+**/
+
+
+```
+    </td>
     <td>If a class does not have a constructor, then the static tag should be present to signal 
     that it is a static class.</td>
 </tr>
 <tr id="final">
     <td>`final`</td>
+    <td>
+```
+/**
+Identifies state changes originating...
+
+@property SRC_REPLACE
+@type String
+@static
+@final
+**/
+```
+    </td>
     <td>For constants and for read-only configs and attributes.</td>
 </tr>
 <tr id="param">
     <td>`*param`</td>
+    <td>
+```
+/**
+@param {String} name Attribute name 
+   or object property path.
+**/
+```
+
+```
+/**
+@param {Object} [options] Data to be 
+    mixed into the event facade of the
+    `change` event(s) for these 
+    attributes.
+  @param {Boolean} [options.silent=false] 
+      If `true`, no `change` event will 
+      be fired.
+**/
+```
+    </td>
     <td>Defined as `@param {type} name description` or `@param name {type} description`, params can be used 
     with classes, methods and events.  Use `[name]` to indicate the param is optional, `name*` to
     indicate it is a place holder for 1..n arguments, and `[name*]` for 0..n arguments.</td>
 </tr>
 <tr id="return">
     <td>`return`</td>
+    <td>
+```
+/**
+@method generateClientId
+@return {String} Unique clientId.
+**/
+```
+    </td>
     <td>Defined as `@return {type} description`.</td>
 </tr>
 <tr id="for">
     <td>`for`</td>
-    <td>Used to define an inner class:
+    <td>
 ```
 /**  
-* An inner class  
-* @class foo  
-* @for OuterClass  
-*/
+An inner class  
+@class foo  
+@for OuterClass  
+**/
 ```
-
+    </td>
+    <td>Used to define an inner class:
 After the class is done, you need to inform the parser to start working on the outer class again:
 
 ```
 /**  
-* Another method for the outer class  
-* @method bar  
-* @for OuterClass  
-*/
+Another method for the outer class  
+@method bar  
+@for OuterClass  
+**/
 ```
 </td>
 </tr>
 <tr id="type">
     <td>`type`</td>
-    <td>For properties, configs and attributes.</td>
+    <td>
+```
+/**
+@type String
+**/
+```
+```
+/**
+@type HTMLElement|Node|String 
+**/
+```
+    </td>
+    <td>For properties, configs and attributes. You can specify a single type, a list of legal types separated by vertical bars, or if you are lazy, "mixed".</td>
 </tr>
 <tr id="private">
     <td>`private`</td>
+    <td>
+```
+/**
+Reference to the internal JSONP 
+instance used to make the queries.
+
+@private
+@property _jsonp
+**/
+```
+    </td>
     <td>Privates by default are suppressed from the API docs. All methods and properties are 
-    assumed to be public unless marked as private.</td>
+    assumed to be public unless marked as private or protected.</td>
 </tr>
 <tr id="protected">
     <td>`protected`</td>
+    <td>
+```
+/**
+Removes the `container` from 
+the DOM and ...
+ 
+@method _destroyContainer
+@protected
+**/
+```
+    </td>
     <td>Used to designate members that should not be modified by implementers unless they are creating a subclass.</td>
 </tr>
 <tr id="requires">
     <td>`requires`</td>
+    <td>
+```
+/**
+@module event-simulate
+@requires event
+**/
+```
+    </td>
     <td>Used to identify dependencies in the module declaration.</td>
 </tr>
 <tr id="default">
     <td>`default`</td>
+    <td>
+```
+/**
+@default false
+**/
+```
+    </td>
     <td>The default value of a property, config or attribute.</td>
 </tr>
 <tr id="uses">
-    <td>`uses`</td>
+    <td>`*uses`</td>
+    <td>
+```
+/**
+@class Panel
+@constructor
+@extends Widget
+@uses WidgetAutohide
+@uses WidgetButtons
+...
+**/
+```
+    </td>
     <td>For classes that use some kind of Object augmentation. If this object is defined and YUIDoc
-    parses it, the properties from the "used" object will be deisplayed in the output.</td>
+    parses it, the properties from the "used" object will be displayed in the output.</td>
 </tr>
 <tr id="example">
     <td>`*example`</td>
+    <td>
+```
+/**
+@example
+    model.set('foo', 'bar');
+**/
+```
+    </td>
     <td>Items with this tag are automatically parsed with the Markdown and Code parser and 
     displayed below the item. <em>The code is not included raw, only in highlight form</em></td>
 </tr>
 <tr id="chainable">
     <td>`chainable`</td>
+    <td>
+```
+/**
+Renders this view ...
+
+@method render
+@chainable
+**/
+render: function () {
+    return this;
+},
+**/
+```
+    </td>
     <td>Method returns itself so you can chain it with other calls on this object.</td>
 </tr>
 <tr id="deprecated">
     <td>`deprecated`</td>
+    <td>
+```
+/**
+@property locale
+@type String
+@deprecated Use `config.lang` instead.
+**/
+```
+    </td>
     <td>Item is deprecated and will be removed in a future release.</td>
 </tr>
 <tr id="since">
     <td>`since`</td>
+    <td>
+```
+/**
+@since 3.4.0
+**/
+```
+    </td>
     <td>Item was added to the source in this version.</td>
 </tr>
 <tr id="async">
     <td>`async`</td>
-    <td>Method is async and requires a callback.</td>
+    <td>
+```
+/**
+@async
+**/
+```
+    </td>
+    <td>Method is async and requires a callback. Uncommon.</td>
 </tr>
 <tr id="beta">
     <td>`beta`</td>
-    <td>Item should be marked as in beta.</td>
+    <td>
+```
+/**
+@beta
+**/
+```
+    </td>
+    <td>Item should be marked as in beta. Uncommon.</td>
 </tr>
 <tr id="bubbles">
     <td>`bubbles`</td>
+    <td>
+```
+/**
+Handles the mouseup DOM event...
+
+@event drag:mouseup
+@bubbles DDM
+**/
+```
+    </td>
     <td>Event bubbles to another target</td>
 </tr>
 <tr id="extension">
     <td>`extension`<br>`extensionfor`<br>`extension_for`</td>
+    <td>
+```
+/**
+@class PjaxBase
+@extensionfor Router
+**/
+```
+    </td>
     <td>Item is an extension of passed Item.</td>
 </tr>
 </table>
@@ -272,14 +516,26 @@ After the class is done, you need to inform the parser to start working on the o
 <table>
 <tr id="author">
     <td>`author`</td>
+    <td>
+```
+```
+    </td>
     <td>Author information about this item</td>
 </tr>
 <tr id="broadcast">
     <td>`broadcast`</td>
+    <td>
+```
+```
+    </td>
     <td>Event broadcasts to a large audience than scoped</td>
 </tr>
 <tr id="category">
     <td>`*category`</td>
+    <td>
+```
+```
+    </td>
     <td>Category to place this item into.</td>
 </tr>
 </table>
