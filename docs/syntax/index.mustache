@@ -40,7 +40,7 @@ they are parsed.</p>
     <th>Example</th>
     <th>Description</th>
 </tr>
-<tr>
+<tr id="module">
     <td>`module`</td>
     <td>
 ```
@@ -52,7 +52,7 @@ Provides the base Widget class...
     </td>
     <td>There must be one module per source tree. By convention, put your module declaration at the top of the file that contains the main class for your module.</td>
 </tr>
-<tr>
+<tr id="class">
     <td>`class`</td>
     <td>
 ```
@@ -67,7 +67,7 @@ function IO (config) {
     <td>The string identifying the functional class on its parent object; 
         for example, the class for `Y.DD.Drag` would be `Drag` (and its `@namespace` would be `DD`).</td>
 </tr>
-<tr>
+<tr id="method">
     <td>`method`</td>
     <td>
 ```
@@ -81,7 +81,7 @@ toJSON: function () {
     </td>
     <td>The name of a method on the current class.</td>
 </tr>
-<tr>
+<tr id="event">
     <td>`event`</td>
     <td>
 ```
@@ -97,7 +97,7 @@ var EVT_ERROR = 'error',
     a component's execution. The event tag is similar to method, but there is no return tag and i
     ts params are arguments passed to the event listener.</td>
 </tr>
-<tr>
+<tr id="property">
     <td>`property`</td>
     <td>
 ```
@@ -116,7 +116,7 @@ containerTemplate: '<div/>',
 
 <h2>Secondary tags</h2>
 <p>
-    After choosing one of the four primary tags, you can further document a module, 
+    After choosing one of the five primary tags, you can further document a module, 
     class, method, event or property with one or more of the following secondary tags.
 </p>
 <table>
@@ -124,7 +124,7 @@ containerTemplate: '<div/>',
     <th>Name</th>
     <th>Description</th>
 </tr>
-<tr>
+<tr id="submodule">
     <td>`submodule`</td>
     <td>YUIDoc supports the notion that a module is a submodule of a parent module. For 
     example, in YUI 3 `anim-scroll` is a submodule of anim. A submodule encompasses a 
@@ -132,23 +132,23 @@ containerTemplate: '<div/>',
     the parent module's name as the module property and the submodule's name in the submodule property.
     </td>
 </tr>
-<tr>
+<tr id="namespace">
     <td>`namespace`</td>
     <td>While it is optional to provide a namespace, it is recommended. This lets you describe 
     your class just with the name: For example, `Y.DD.Drag` has a namespace of `Y.DD`
     and a class of `Drag`.</td>
 </tr>
-<tr>
+<tr id="extends">
     <td>`extends`</td>
     <td>Sets up an inheritance relationship between the current class and a parent class; 
     API docs will show and link to items inherited from the parent class.</td>
 </tr>
-<tr>
+<tr id="config">
     <td>`config`</td>
     <td>A config is a managed configuration attribute. In YUI parlance, this is typically
     an attribute created and managed with the Config class (part of the Container Family).</td>
 </tr>
-<tr>
+<tr id="attribute">
     <td>`attribute`</td>
     <td>An attribute is a managed configuration attribute. In YUI parlance, this is 
     typically an attribute created and managed with AttributeProvider 
@@ -158,30 +158,30 @@ containerTemplate: '<div/>',
     YUI and referring to an attribute managed by AttributeProvider, you should avoid using this tag.)
     </td>
 </tr>
-<tr>
+<tr id="constructor">
     <td>`constructor`</td>
     <td>The presence of this tag (which requires no description) indicates that this class is instantiable.</td>
 </tr>
-<tr>
+<tr id="static">
     <td>`static`</td>
     <td>If a class does not have a constructor, then the static tag should be present to signal 
     that it is a static class.</td>
 </tr>
-<tr>
+<tr id="final">
     <td>`final`</td>
     <td>For constants and for read-only configs and attributes.</td>
 </tr>
-<tr>
+<tr id="param">
     <td>`*param`</td>
     <td>Defined as `@param {type} name description` or `@param name {type} description`, params can be used 
     with classes, methods and events.  Use `[name]` to indicate the param is optional, `name*` to
     indicate it is a place holder for 1..n arguments, and `[name*]` for 0..n arguments.</td>
 </tr>
-<tr>
+<tr id="return">
     <td>`return`</td>
     <td>Defined as `@return {type} description`.</td>
 </tr>
-<tr>
+<tr id="for">
     <td>`for`</td>
     <td>Used to define an inner class:
 ```
@@ -203,62 +203,62 @@ After the class is done, you need to inform the parser to start working on the o
 ```
 </td>
 </tr>
-<tr>
+<tr id="type">
     <td>`type`</td>
     <td>For properties, configs and attributes.</td>
 </tr>
-<tr>
+<tr id="private">
     <td>`private`</td>
     <td>Privates by default are suppressed from the API docs. All methods and properties are 
     assumed to be public unless marked as private.</td>
 </tr>
-<tr>
+<tr id="protected">
     <td>`protected`</td>
     <td>Used to designate members that should not be modified by implementers unless they are creating a subclass.</td>
 </tr>
-<tr>
+<tr id="requires">
     <td>`requires`</td>
     <td>Used to identify dependencies in the module declaration.</td>
 </tr>
-<tr>
+<tr id="default">
     <td>`default`</td>
     <td>The default value of a property, config or attribute.</td>
 </tr>
-<tr>
+<tr id="uses">
     <td>`uses`</td>
     <td>For classes that use some kind of Object augmentation. If this object is defined and YUIDoc
     parses it, the properties from the "used" object will be deisplayed in the output.</td>
 </tr>
-<tr>
+<tr id="example">
     <td>`*example`</td>
     <td>Items with this tag are automatically parsed with the Markdown and Code parser and 
     displayed below the item. <em>The code is not included raw, only in highlight form</em></td>
 </tr>
-<tr>
+<tr id="chainable">
     <td>`chainable`</td>
     <td>Method returns itself so you can chain it with other calls on this object.</td>
 </tr>
-<tr>
+<tr id="deprecated">
     <td>`deprecated`</td>
     <td>Item is deprecated and will be removed in a future release.</td>
 </tr>
-<tr>
+<tr id="since">
     <td>`since`</td>
     <td>Item was added to the source in this version.</td>
 </tr>
-<tr>
+<tr id="async">
     <td>`async`</td>
     <td>Method is async and requires a callback.</td>
 </tr>
-<tr>
+<tr id="beta">
     <td>`beta`</td>
     <td>Item should be marked as in beta.</td>
 </tr>
-<tr>
+<tr id="bubbles">
     <td>`bubbles`</td>
     <td>Event bubbles to another target</td>
 </tr>
-<tr>
+<tr id="extension">
     <td>`extension`<br>`extensionfor`<br>`extension_for`</td>
     <td>Item is an extension of passed Item.</td>
 </tr>
@@ -270,15 +270,15 @@ After the class is done, you need to inform the parser to start working on the o
     The following tags are parsed by the `DocParser` but are not in the default theme yet.
 </p>
 <table>
-<tr>
+<tr id="author">
     <td>`author`</td>
     <td>Author information about this item</td>
 </tr>
-<tr>
+<tr id="broadcast">
     <td>`broadcast`</td>
     <td>Event broadcasts to a large audience than scoped</td>
 </tr>
-<tr>
+<tr id="category">
     <td>`*category`</td>
     <td>Category to place this item into.</td>
 </tr>
