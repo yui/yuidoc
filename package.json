@@ -9,7 +9,8 @@
         { "name": "Adam Moore", "email": "amoore@gmail.com" },
         { "name": "Ryan Grove", "email": "ryan@wonko.com" },
         { "name": "Eric Ferraiuolo", "email": "eferraiuolo@gmail.com" },
-        { "name": "Felipe Gasper", "email": "felipe@cpanel.net" }
+        { "name": "Felipe Gasper", "email": "felipe@cpanel.net" },
+        { "name": "Evan Goer", "email": "evan@goer.org" }
     ],
     "engines": {
         "node" : ">=0.4.0"
