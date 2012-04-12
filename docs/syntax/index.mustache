@@ -51,7 +51,23 @@ Provides the base Widget class...
 **/
 ```
     </td>
-    <td>There must be one module per source tree. By convention, put your module declaration at the top of the file that contains the main class for your module.</td>
+    <td>
+        <p>Indicates that the block describes a group of related classes. 
+        For example, YUI's `app` module includes classes such as `App.Base`, `Model`, and `Router`.
+        You can optionally break modules up into submodules.
+        
+        <p>YUIDoc requires you to provide at least one module per source tree. 
+        Since there isn't always an obvious place to insert module documentation in JavaScript source, 
+        the convention is to declare your module at the top of the file that contains your module's "primary" or "base" class.</p>
+
+        <p>
+            See also: 
+            <a href="#class">`@class`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#main">`@main`</a>,
+            <a href="#submodule">`@submodule`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="class">
     <td>`class`</td>
@@ -66,8 +82,31 @@ A utility that brokers HTTP requests...
 function IO (config) { 
 ```
     </td>
-    <td>The string identifying the functional class on its parent object; 
-        for example, the class for `Y.DD.Drag` would be `Drag` (and its `@namespace` would be `DD`).</td>
+    <td>
+        <p>Indicates that the block describes a class.
+        In JavaScript, this is generally an object with a constructor function. 
+        The value of `@class` should be the string that identifies the functional class on its parent object. 
+        For example, the `@class` for `Y.DD.Drag` would be `Drag` 
+        (and its <a href="#@namespace">`@namespace`</a> would be `DD`).</p>
+        
+        <p>YUIDoc expects methods, properties, attributes, and events to belong to a class, 
+        so in general you must provide at least one class for each module in your source tree. 
+        A `@class` block should reside just above the class's constructor function,
+        and above all methods, events, properties, and attributes that belong to the class.</p>
+
+        <p>
+            See also: 
+            <a href="#constructor">`@constructor`</a>,
+            <a href="#extends">`@extends`</a>,
+            <a href="#extensionfor">`@extensionfor`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#module">`@module`</a>,
+            <a href="#namespace">`@namespace`</a>,
+            <a href="#uses">`@uses`</a>.
+        </p>
+    </td>
+
+    </td>
 </tr>
 <tr id="method">
     <td>`method`</td>
@@ -82,7 +121,28 @@ Returns this model's attributes as...
 toJSON: function () { 
 ```
     </td>
-    <td>The name of a method on the current class.</td>
+    <td>
+        <p>Indicates that the block describes a method for the current class.
+        By default, the "current" class is the last class that YUIDoc parsed, but
+        you can reset this with the <a href="#for">`@for`</a> tag.</p>
+
+        <p>A `@method` block should always reside directly above the method's definition.
+        At a minimum, you should also document any 
+        parameters (<a href="#param">`@param`</a>) and
+        return values (<a href="#return">`@return`</a>).</p>
+
+        <p>
+            See also: 
+            <a href="#chainable">`@chainable`</a>,
+            <a href="#class">`@class`</a>,
+            <a href="#constructor">`@constructor`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#param">`@param`</a>,
+            <a href="#return">`@return`</a>.
+        </p>
+    </td>
+
+    </td>
 </tr>
 <tr id="event">
     <td>`event`</td>
@@ -97,9 +157,28 @@ Fired when an error occurs...
 var EVT_ERROR = 'error',
 ```
     </td>
-    <td>In YUI, events are `Custom Events` fired off programmatically at interesting moments in
-    a component's execution. The event tag is similar to method, but there is no return tag and i
-    ts params are arguments passed to the event listener.</td>
+    <td>
+        <p>Indicates that the block describes a custom event that the class can fire 
+        at some interesting moment of code execution. 
+        An `@event` block is somewhat similar to a (<a href="#param">`@method`</a>) block, 
+        except that <a href="#return">`@return`</a> is irrelevant, and  
+        <a href="#param">`@param`</a> is used to describe properties hanging off 
+        the event object that callbacks listening for the event receive. </p>
+
+        <p>Ideally, an `@event` block should reside above the code that defines the event, 
+        even if that code is just a simple string declaration.
+        If you find that your `@event` block is "floating in space,"
+        you should at least place it underneath the class that owns the event, 
+        grouped with any other events that the class can fire.</p>
+        
+        <p>
+            See also: 
+            <a href="#bubbles">`@bubbles`</a>,
+            <a href="#class">`@class`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#param">`@param`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="property">
     <td>`property`</td>
@@ -115,7 +194,62 @@ Template for this view's container...
 containerTemplate: '<div/>',
 ```
     </td>
-    <td>The name of a property on the current class.</td>
+    <td>
+        <p>Indicates that the block describes a property belonging to the current class.</p>
+
+        <p>As with methods, a `@property` block should always reside 
+        directly above the point where the property is defined.
+        At a minimum, you should also provide the property's `@type`, 
+        even if the value is `"any"` or `"mixed"`.</p>
+
+        <p>
+            See also: 
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#class">`@class`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#type">`@type`</a>.
+        </p>
+    </td>
+</tr>
+<tr id="attribute">
+    <td>`attribute`</td>
+    <td>
+```
+/**
+* Indicates whether this Widget
+* has been rendered...
+*
+* @attribute rendered
+* @readOnly
+* @default false
+* @type boolean
+*/
+ATTRS[RENDERED] = {
+```
+    </td>
+    <td>
+        <p>[YUI-specific] Indicates that the block describes a managed configuration attribute.  
+        An attribute is an object created and managed by the YUI
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html">`Attribute` API</a>.
+        It is a kind of "super-property", with getters, setters, and other nifty features, 
+        including the ability to automatically fire change events.</p>
+
+        <p>An `@attribute` block should reside directly above the definition of the attribute,
+        whether that is inside a `Y.Base` object's `ATTRS` property or elsewhere.
+        Note that if your `yuidoc.json` file sets `attributesEmit` to `true`, 
+        YUI will automatically generate documentation for the attribute's change events throughout the source tree, 
+        with no extra YUIDoc comments needed from you.</p>
+
+        <p>
+            See also: 
+            <a href="#property">`@property`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#class">`@class`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#type">`@type`</a>.
+        </p>
+    </td>
 </tr>
 </table>
 
@@ -185,30 +319,6 @@ containerTemplate: '<div/>',
     </td>
     <td>A config is a managed configuration attribute. In YUI parlance, this is typically
     an attribute created and managed with the Config class (part of the Container Family).</td>
-</tr>
-<tr id="attribute">
-    <td>`attribute`</td>
-    <td>
-```
-/**
-* Indicates whether this Widget
-* has been rendered...
-*
-* @attribute rendered
-* @readOnly
-* @default false
-* @type boolean
-*/
-ATTRS[RENDERED] = {
-```
-    </td>
-    <td>An attribute is a managed configuration attribute. In YUI parlance, this is 
-    typically an attribute created and managed with AttributeProvider 
-    (part of the [YUI Element Utility][[yui-element]]). An attribute is similar
-    to a config, but YUIDoc will autogenerate documentation for the change events 
-    associated with the attribute as provided by Element. (Note: Unless you're using 
-    YUI and referring to an attribute managed by AttributeProvider, you should avoid using this tag.)
-    </td>
 </tr>
 <tr id="constructor">
     <td>`constructor`</td>
@@ -494,7 +604,7 @@ Handles the mouseup DOM event...
     </td>
     <td>Event bubbles to another target</td>
 </tr>
-<tr id="extension">
+<tr id="extensionfor">
     <td>`extension`<br>`extensionfor`<br>`extension_for`</td>
     <td>
 ```
