@@ -274,10 +274,22 @@ ATTRS[RENDERED] = {
 **/
 ```
     </td>
-    <td>YUIDoc supports the notion that a module is a submodule of a parent module. For 
-    example, in YUI 3 `anim-scroll` is a submodule of anim. A submodule encompasses a 
-    subset of the parent module's functionality. To use submodule designation, provide 
-    the parent module's name as the module property and the submodule's name in the submodule property.
+    <td>
+        <p>Specifies that the module is actually a submodule of some parent module. 
+        For example, the `app-transitions` module is a submodule of the larger `app` module.</p>
+
+        <p>In YUI, submodules enable you to make very fine-grained choices about loading code.
+        For example, the `foo` module might have a minimal `foo-core` or `foo-base` submodule
+        that supplies `foo`'s basic functionality,
+        plus additional `foo-*` modules that carry optional features.
+        Using the YUI Loader, you can choose to load just `foo-core`, 
+        `foo-core` plus a couple of extra modules, 
+        or the entire `foo` "rollup".</p> 
+
+        <p>
+            See also:
+            <a href="#module">`@module`</a>.
+        </p>
     </td>
 </tr>
 <tr id="namespace">
@@ -289,9 +301,21 @@ ATTRS[RENDERED] = {
 **/
 ```
     </td>
-    <td>While it is optional to provide a namespace, it is recommended. This lets you describe 
-    your class just with the name: For example, `Y.DD.Drag` has a namespace of `Y.DD`
-    and a class of `Drag`.</td>
+    <td>
+        <p>Specifies a class's namespace.
+        The `@namespace` should <em>not</em> include the "root" or "global" object 
+        that your entire library hangs off of. 
+        For example, `Y.DD.Drag` has 
+        a <a href="#class">`@class`</a> of `Drag`
+        and a `@namespace` of `DD`, not `Y.DD`.</p> 
+
+        <p>Supplying a `@namespace` enables you to refer to the class in YUIDoc using just the simple class name.</p>
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="extends">
     <td>`extends`</td>
@@ -303,8 +327,11 @@ ATTRS[RENDERED] = {
 @extends Base
 **/
 ```
-    </td>
-    <td>Sets up an inheritance relationship between the current class and a parent class; 
+   </td>
+   <td>
+       <p>Specifies that the class inherents from a parent class. 
+       YUIDoc will generate 
+       Sets up an inheritance relationship between the current class and a parent class; 
     API docs will show and link to items inherited from the parent class.</td>
 </tr>
 <tr id="config">
