@@ -94,6 +94,9 @@ function IO (config) {
         A `@class` block should reside just above the class's constructor function,
         and above all methods, events, properties, and attributes that belong to the class.</p>
 
+        <p>A <a href="#class">`@class`</a> tag should be paired with 
+        either a `@constructor` tag or a `@static` tag.</p> 
+
         <p>
             See also: 
             <a href="#constructor">`@constructor`</a>,
@@ -102,6 +105,7 @@ function IO (config) {
             <a href="#for">`@for`</a>,
             <a href="#module">`@module`</a>,
             <a href="#namespace">`@namespace`</a>,
+            <a href="#static">`@static`</a>,
             <a href="#uses">`@uses`</a>.
         </p>
     </td>
@@ -138,7 +142,8 @@ toJSON: function () {
             <a href="#constructor">`@constructor`</a>,
             <a href="#for">`@for`</a>,
             <a href="#param">`@param`</a>,
-            <a href="#return">`@return`</a>.
+            <a href="#return">`@return`</a>,
+            <a href="#static">`@static`</a>.
         </p>
     </td>
 
@@ -329,10 +334,17 @@ ATTRS[RENDERED] = {
 ```
    </td>
    <td>
-       <p>Specifies that the class inherents from a parent class. 
-       YUIDoc will generate 
-       Sets up an inheritance relationship between the current class and a parent class; 
-    API docs will show and link to items inherited from the parent class.</td>
+        <p>Specifies that the class inherents from a parent class. 
+        YUIDoc will generate API documentation for 
+        methods, properties, events, and attributes inherited from the parent class,
+        and link back to the parent class's documentation.
+        In the default YUIDoc theme, users can toggle whether inherited items display.</p>
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>.
+        </p>
+   </td>
 </tr>
 <tr id="config">
     <td>`config`</td>
@@ -344,8 +356,12 @@ ATTRS[RENDERED] = {
 **/
 ```
     </td>
-    <td>A config is a managed configuration attribute. In YUI parlance, this is typically
-    an attribute created and managed with the Config class (part of the Container Family).</td>
+    <td>
+        <p>[YUI-specific] Alias for <a href="#attribute">`@attribute`</a>. 
+        In older versions of YUI, `@config` was a slightly different take on attributes, 
+        but the two concepts have merged.  
+        Modern YUIDoc comments should use `@attribute` instead.</p>
+    </td>
 </tr>
 <tr id="constructor">
     <td>`constructor`</td>
@@ -357,7 +373,17 @@ ATTRS[RENDERED] = {
 **/
 ```
     </td>
-    <td>The presence of this tag (which requires no description) indicates that this class is instantiable.</td>
+    <td>
+        <p>Indicates that the class is instantiable
+        (you can use it by calling `var foo = new Foo();`).
+        A <a href="#class">`@class`</a> tag should be paired with 
+        either a `@constructor` tag or a `@static` tag.</p> 
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#static">`@static`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="static">
     <td>`static`</td>
@@ -373,8 +399,26 @@ YUI user agent detection...
 
 ```
     </td>
-    <td>If a class does not have a constructor, then the static tag should be present to signal 
-    that it is a static class.</td>
+    <td>
+        <p>Indicates that the method or class is static:</p> 
+        <ul>
+            <li>For methods, indicates that the method is meant to be 
+            called without instantiating the class: 
+            `var node = Y.Node.create('<div/>');`</li>
+            <li>For classes, indicates that you should not 
+            instantiate the class with `new`. 
+            You can call all of the class's methods statically.
+        </ul>    
+        <p>A <a href="#class">`@class`</a> tag should be paired with 
+        either a `@constructor` tag or a `@static` tag.</p> 
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#constructor">`@constructor`</a>,
+            <a href="#method">`@method`</a>.
+        </p>
+    </td>
+</tr>
 </tr>
 <tr id="final">
     <td>`final`</td>
@@ -390,7 +434,16 @@ Identifies state changes originating...
 **/
 ```
     </td>
-    <td>For constants and for read-only configs and attributes.</td>
+    <td>
+        <p>Indicates that the property or attribute is a constant and should not be changed.</p>
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#property">`@property`</a>,
+            <a href="#readOnly">`@readOnly`</a>.
+            <a href="#writeOnce">`@writeOnce`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="param">
     <td>`*param`</td>
