@@ -198,12 +198,20 @@ while (args.length &gt; 0) {
             var theme = args.shift();
             options.themedir = path.join(__dirname, &#x27;..&#x2F;&#x27;, &#x27;themes&#x27;, theme);
             break;
+        case &quot;-q&quot;:
+        case &quot;--quiet&quot;:
+            options.quiet = true;
+            break;
         default:
             if (!options.paths) {
                 options.paths = [];
             }
             options.paths.push(v);
     }
+}
+
+if (options.quiet) {
+    Y.applyConfig({ debug: false });
 }
 
 Y.log(&#x27;Starting YUIDoc@&#x27; + Y.packageInfo.version + &#x27; using YUI@&#x27; + Y.version + &#x27; with NodeJS@&#x27; + process.versions.node, &#x27;info&#x27;, &#x27;yuidoc&#x27;);

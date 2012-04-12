@@ -120,7 +120,7 @@
             "namespaces": {},
             "tag": "main",
             "file": "lib/yuidoc.js",
-            "line": 48,
+            "line": 49,
             "description": "This is the __module__ description for the `YUIDoc` module.\n\n    var options = {\n        paths: [ './lib' ],\n        outdir: './out'\n    };\n\n    var Y = require('yuidoc');\n    var json = (new Y.YUIDoc(options)).run();",
             "itemtype": "main"
         },
@@ -284,7 +284,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/yuidoc.js",
-            "line": 48,
+            "line": 49,
             "description": "YUIDoc main class\n\n       var options = {\n           paths: [ './lib' ],\n           outdir: './out'\n       };\n\n       var Y = require('yuidoc');\n       var json = (new Y.YUIDoc(options)).run();",
             "mainName": "yuidoc",
             "tag": "main",
@@ -1766,7 +1766,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 65,
+            "line": 66,
             "description": "Holds the number of files that we are processing.",
             "itemtype": "property",
             "name": "filecount",
@@ -1778,7 +1778,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 72,
+            "line": 73,
             "description": "Hash map of dirnames to selleck config options.",
             "itemtype": "property",
             "name": "selleck",
@@ -1790,7 +1790,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 79,
+            "line": 80,
             "description": "Holder for the list of files we are processing.",
             "itemtype": "property",
             "name": "filemap",
@@ -1802,7 +1802,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 86,
+            "line": 87,
             "description": "Holder for the list of directories we are processing.",
             "itemtype": "property",
             "name": "dirmap",
@@ -1814,7 +1814,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 94,
+            "line": 95,
             "description": "Internal holder for configuration options.",
             "itemtype": "property",
             "name": "options",
@@ -1826,7 +1826,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 105,
+            "line": 112,
             "description": "Does post process on self.options.",
             "itemtype": "method",
             "name": "_processConfig",
@@ -1837,7 +1837,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 114,
+            "line": 121,
             "description": "Walks the paths and parses the directory contents",
             "itemtype": "method",
             "name": "walk",
@@ -1848,7 +1848,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 124,
+            "line": 131,
             "description": "Walks the passed directory and grabs all the files recursively.",
             "itemtype": "method",
             "name": "parsedir",
@@ -1866,7 +1866,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 155,
+            "line": 162,
             "description": "Gathers all the file data and populates the filemap and dirmap hashes.",
             "itemtype": "method",
             "name": "parsefiles",
@@ -1889,7 +1889,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 206,
+            "line": 213,
             "description": "Writes the parser JSON data to disk.",
             "itemtype": "method",
             "name": "writeJSON",
@@ -1911,7 +1911,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 266,
+            "line": 273,
             "description": "Process the config, walk the file tree and write out the JSON data.",
             "itemtype": "method",
             "name": "run",
@@ -1924,7 +1924,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 272,
+            "line": 279,
             "description": "Timestamp holder so we know when YUIDoc started the parse process.",
             "itemtype": "property",
             "name": "starttime",
@@ -1934,7 +1934,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 290,
+            "line": 297,
             "description": "Timestamp holder so we know when YUIDoc has finished the parse process.",
             "itemtype": "property",
             "name": "endtime",

@@ -132,7 +132,8 @@ var YUI = require(&#x27;yui&#x27;).YUI,
 process.on(&#x27;uncaughtException&#x27;, function(msg) {
     var Y = YUI(),
         meta = JSON.parse(fs.readFileSync(metaPath));
-
+    
+    Y.applyConfig({ debug: true });
     Y.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
     Y.log(&#x27;An uncaught YUIDoc error has occurred, stack trace given below&#x27;, &#x27;error&#x27;);
     Y.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
