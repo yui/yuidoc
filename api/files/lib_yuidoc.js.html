@@ -137,6 +137,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
      *&#x2F;
 
     var OPTIONS = {
+        quiet: false,
         writeJSON: true,
         outdir: path.join(process.cwd(),  &#x27;out&#x27;),
         extension: &#x27;.js&#x27;,
@@ -200,6 +201,12 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
          * @private
          *&#x2F;
         this.options = Y.merge(OPTIONS, config);
+
+        if (this.options.quiet) {
+            Y.applyConfig({
+                debug: false
+            });
+        }
 
     };
 
