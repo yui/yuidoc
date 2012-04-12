@@ -15,7 +15,7 @@
     <h1>YUIDoc Syntax</h1>
     
     <p>
-        <a href="../">Main Page</a> <a name="Arrow">&gt;</a> <a href="../syntax.html">YUIDoc Syntax</a>
+        <a href="../">Main Page</a> <a name="Arrow">&gt;</a> <a href="../syntax/index.html">YUIDoc Syntax</a>
     </p>
     
     
@@ -62,62 +62,162 @@ they are parsed.</p>
 
 <table>
 <tr>
-    <th><code>module</code></th>
+    <th>Name</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+<tr id="module">
+    <td><code>module</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+Provides the base Widget class...
+
+@module widget
+**&#x2F;</pre>
+
+    </td>
     <td>There must be one module per source tree. By convention, put your module declaration at the top of the file that contains the main class for your module.</td>
 </tr>
-<tr>
-    <th><code>class</code></th>
+<tr id="class">
+    <td><code>class</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+A utility that brokers HTTP requests...
+
+@class IO 
+@constructor
+**&#x2F;
+function IO (config) {</pre>
+
+    </td>
     <td>The string identifying the functional class on its parent object; 
         for example, the class for <code>Y.DD.Drag</code> would be <code>Drag</code> (and its <code>@namespace</code> would be <code>DD</code>).</td>
 </tr>
-<tr>
-    <th><code>method</code></th>
+<tr id="method">
+    <td><code>method</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+Returns this model&#x27;s attributes as...
+
+@method toJSON
+@return {Object} Copy of ...
+**&#x2F;
+toJSON: function () {</pre>
+
+    </td>
     <td>The name of a method on the current class.</td>
 </tr>
-<tr>
-    <th><code>event</code></th>
+<tr id="event">
+    <td><code>event</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+Fired when an error occurs...
+
+@method error 
+@param {String} msg A description of...
+**&#x2F;
+var EVT_ERROR = &#x27;error&#x27;,</pre>
+
+    </td>
     <td>In YUI, events are <code>Custom Events</code> fired off programmatically at interesting moments in
     a component's execution. The event tag is similar to method, but there is no return tag and i
     ts params are arguments passed to the event listener.</td>
 </tr>
-<tr>
-    <th><code>property</code></th>
+<tr id="property">
+    <td><code>property</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+Template for this view&#x27;s container...
+
+@property containerTemplate 
+@type String
+@default &quot;&lt;div&#x2F;&gt;&quot;
+**&#x2F;
+containerTemplate: &#x27;&lt;div&#x2F;&gt;&#x27;,</pre>
+
+    </td>
     <td>The name of a property on the current class.</td>
 </tr>
 </table>
 
 <h2 id="secondary-tags">Secondary tags</h2>
 <p>
-    After choosing one of the four primary tags, you can further document a module, 
+    After choosing one of the five primary tags, you can further document a module, 
     class, method, event or property with one or more of the following secondary tags.
 </p>
 <table>
 <tr>
-    <th><code>submodule</code></th>
+    <th>Name</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+<tr id="submodule">
+    <td><code>submodule</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@module app
+@submodule view
+**&#x2F;</pre>
+
+    </td>
     <td>YUIDoc supports the notion that a module is a submodule of a parent module. For 
     example, in YUI 3 <code>anim-scroll</code> is a submodule of anim. A submodule encompasses a 
     subset of the parent module's functionality. To use submodule designation, provide 
     the parent module's name as the module property and the submodule's name in the submodule property.
     </td>
 </tr>
-<tr>
-    <th><code>namespace</code></th>
+<tr id="namespace">
+    <td><code>namespace</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@namespace Test.Mock
+**&#x2F;</pre>
+
+    </td>
     <td>While it is optional to provide a namespace, it is recommended. This lets you describe 
     your class just with the name: For example, <code>Y.DD.Drag</code> has a namespace of <code>Y.DD</code>
     and a class of <code>Drag</code>.</td>
 </tr>
-<tr>
-    <th><code>extends</code></th>
+<tr id="extends">
+    <td><code>extends</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@class View
+@constructor
+@extends Base
+**&#x2F;</pre>
+
+    </td>
     <td>Sets up an inheritance relationship between the current class and a parent class; 
     API docs will show and link to items inherited from the parent class.</td>
 </tr>
-<tr>
-    <th><code>config</code></th>
+<tr id="config">
+    <td><code>config</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@config docScrollX 
+@type Number 
+**&#x2F;</pre>
+
+    </td>
     <td>A config is a managed configuration attribute. In YUI parlance, this is typically
     an attribute created and managed with the Config class (part of the Container Family).</td>
 </tr>
-<tr>
-    <th><code>attribute</code></th>
+<tr id="attribute">
+    <td><code>attribute</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+* Indicates whether this Widget
+* has been rendered...
+*
+* @attribute rendered
+* @readOnly
+* @default false
+* @type boolean
+*&#x2F;
+ATTRS[RENDERED] = {</pre>
+
+    </td>
     <td>An attribute is a managed configuration attribute. In YUI parlance, this is 
     typically an attribute created and managed with AttributeProvider 
     (part of the [YUI Element Utility][[yui-element]]). An attribute is similar
@@ -126,74 +226,308 @@ they are parsed.</p>
     YUI and referring to an attribute managed by AttributeProvider, you should avoid using this tag.)
     </td>
 </tr>
-<tr>
-    <th><code>constructor</code></th>
+<tr id="constructor">
+    <td><code>constructor</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@class IO 
+@constructor
+**&#x2F;</pre>
+
+    </td>
     <td>The presence of this tag (which requires no description) indicates that this class is instantiable.</td>
 </tr>
-<tr>
-    <th><code>static</code></th>
+<tr id="static">
+    <td><code>static</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+YUI user agent detection...
+
+@class UA
+@static
+**&#x2F;</pre>
+
+    </td>
     <td>If a class does not have a constructor, then the static tag should be present to signal 
     that it is a static class.</td>
 </tr>
-<tr>
-    <th><code>final</code></th>
+<tr id="final">
+    <td><code>final</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+Identifies state changes originating...
+
+@property SRC_REPLACE
+@type String
+@static
+@final
+**&#x2F;</pre>
+
+    </td>
     <td>For constants and for read-only configs and attributes.</td>
 </tr>
-<tr>
-    <th><code>param</code></th>
+<tr id="param">
+    <td><code>*param</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@param {String} name Attribute name 
+   or object property path.
+**&#x2F;</pre>
+
+
+<pre class="code prettyprint">&#x2F;**
+@param {Object} [options] Data to be 
+    mixed into the event facade of the
+    &#x60;change&#x60; event(s) for these 
+    attributes.
+  @param {Boolean} [options.silent=false] 
+      If &#x60;true&#x60;, no &#x60;change&#x60; event will 
+      be fired.
+**&#x2F;</pre>
+
+    </td>
     <td>Defined as <code>@param {type} name description</code> or <code>@param name {type} description</code>, params can be used 
     with classes, methods and events.  Use <code>[name]</code> to indicate the param is optional, <code>name*</code> to
     indicate it is a place holder for 1..n arguments, and <code>[name*]</code> for 0..n arguments.</td>
 </tr>
-<tr>
-    <th><code>return</code></th>
+<tr id="return">
+    <td><code>return</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@method generateClientId
+@return {String} Unique clientId.
+**&#x2F;</pre>
+
+    </td>
     <td>Defined as <code>@return {type} description</code>.</td>
 </tr>
-<tr>
-    <th><code>for</code></th>
-    <td>Used to define an inner class:
+<tr id="for">
+    <td><code>for</code></td>
+    <td>
 <pre class="code prettyprint">&#x2F;**  
-* An inner class  
-* @class foo  
-* @for OuterClass  
-*&#x2F;</pre>
+An inner class  
+@class foo  
+@for OuterClass  
+**&#x2F;</pre>
 
-
+    </td>
+    <td>Used to define an inner class:
 After the class is done, you need to inform the parser to start working on the outer class again:
 
 <pre class="code prettyprint">&#x2F;**  
-* Another method for the outer class  
-* @method bar  
-* @for OuterClass  
-*&#x2F;</pre>
+Another method for the outer class  
+@method bar  
+@for OuterClass  
+**&#x2F;</pre>
 
 </td>
 </tr>
-<tr>
-    <th><code>type</code></th>
-    <td>For properties, configs and attributes.</td>
+<tr id="type">
+    <td><code>type</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@type String
+**&#x2F;</pre>
+
+<pre class="code prettyprint">&#x2F;**
+@type HTMLElement|Node|String 
+**&#x2F;</pre>
+
+    </td>
+    <td>For properties, configs and attributes. You can specify a single type, a list of legal types separated by vertical bars, or if you are lazy, "mixed".</td>
 </tr>
-<tr>
-    <th><code>private</code></th>
+<tr id="private">
+    <td><code>private</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+Reference to the internal JSONP 
+instance used to make the queries.
+
+@private
+@property _jsonp
+**&#x2F;</pre>
+
+    </td>
     <td>Privates by default are suppressed from the API docs. All methods and properties are 
-    assumed to be public unless marked as private.</td>
+    assumed to be public unless marked as private or protected.</td>
 </tr>
-<tr>
-    <th><code>protected</code></th>
+<tr id="protected">
+    <td><code>protected</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+Removes the &#x60;container&#x60; from 
+the DOM and ...
+ 
+@method _destroyContainer
+@protected
+**&#x2F;</pre>
+
+    </td>
     <td>Used to designate members that should not be modified by implementers unless they are creating a subclass.</td>
 </tr>
-<tr>
-    <th><code>requires</code></th>
+<tr id="requires">
+    <td><code>requires</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@module event-simulate
+@requires event
+**&#x2F;</pre>
+
+    </td>
     <td>Used to identify dependencies in the module declaration.</td>
 </tr>
-<tr>
-    <th><code>default</code></th>
+<tr id="default">
+    <td><code>default</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@default false
+**&#x2F;</pre>
+
+    </td>
     <td>The default value of a property, config or attribute.</td>
 </tr>
-<tr>
-    <th><code>uses</code></th>
+<tr id="uses">
+    <td><code>*uses</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@class Panel
+@constructor
+@extends Widget
+@uses WidgetAutohide
+@uses WidgetButtons
+...
+**&#x2F;</pre>
+
+    </td>
     <td>For classes that use some kind of Object augmentation. If this object is defined and YUIDoc
-    parses it, the properties from the "used" object will be deisplayed in the output.</td>
+    parses it, the properties from the "used" object will be displayed in the output.</td>
+</tr>
+<tr id="example">
+    <td><code>*example</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@example
+    model.set(&#x27;foo&#x27;, &#x27;bar&#x27;);
+**&#x2F;</pre>
+
+    </td>
+    <td>Items with this tag are automatically parsed with the Markdown and Code parser and 
+    displayed below the item. <em>The code is not included raw, only in highlight form</em></td>
+</tr>
+<tr id="chainable">
+    <td><code>chainable</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+Renders this view ...
+
+@method render
+@chainable
+**&#x2F;
+render: function () {
+    return this;
+},
+**&#x2F;</pre>
+
+    </td>
+    <td>Method returns itself so you can chain it with other calls on this object.</td>
+</tr>
+<tr id="deprecated">
+    <td><code>deprecated</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@property locale
+@type String
+@deprecated Use &#x60;config.lang&#x60; instead.
+**&#x2F;</pre>
+
+    </td>
+    <td>Item is deprecated and will be removed in a future release.</td>
+</tr>
+<tr id="since">
+    <td><code>since</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@since 3.4.0
+**&#x2F;</pre>
+
+    </td>
+    <td>Item was added to the source in this version.</td>
+</tr>
+<tr id="async">
+    <td><code>async</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@async
+**&#x2F;</pre>
+
+    </td>
+    <td>Method is async and requires a callback. Uncommon.</td>
+</tr>
+<tr id="beta">
+    <td><code>beta</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@beta
+**&#x2F;</pre>
+
+    </td>
+    <td>Item should be marked as in beta. Uncommon.</td>
+</tr>
+<tr id="bubbles">
+    <td><code>bubbles</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+Handles the mouseup DOM event...
+
+@event drag:mouseup
+@bubbles DDM
+**&#x2F;</pre>
+
+    </td>
+    <td>Event bubbles to another target</td>
+</tr>
+<tr id="extension">
+    <td><code>extension</code><br><code>extensionfor</code><br><code>extension_for</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+@class PjaxBase
+@extensionfor Router
+**&#x2F;</pre>
+
+    </td>
+    <td>Item is an extension of passed Item.</td>
+</tr>
+</table>
+<em><strong>*</strong> Denotes that it supports multiple tags in the same doc block.</em>
+
+<h3 id="parsed-but-not-in-the-theme-yet">Parsed but not in the theme yet</h3>
+<p>
+    The following tags are parsed by the <code>DocParser</code> but are not in the default theme yet.
+</p>
+<table>
+<tr id="author">
+    <td><code>author</code></td>
+    <td>
+<pre class="code prettyprint"></pre>
+
+    </td>
+    <td>Author information about this item</td>
+</tr>
+<tr id="broadcast">
+    <td><code>broadcast</code></td>
+    <td>
+<pre class="code prettyprint"></pre>
+
+    </td>
+    <td>Event broadcasts to a large audience than scoped</td>
+</tr>
+<tr id="category">
+    <td><code>*category</code></td>
+    <td>
+<pre class="code prettyprint"></pre>
+
+    </td>
+    <td>Category to place this item into.</td>
 </tr>
 </table>
 
@@ -206,22 +540,27 @@ After the class is done, you need to inform the parser to start working on the o
 
 <table>
 <tr>
-    <th><code>HTML</code></th>
+    <td><code>HTML</code></td>
     <td>Doc comments may contain standard HTML markup and YUIDoc will display it as is.</td>
 </tr>
 <tr>
-    <th><code>Markdown</code></th>
+    <td><code>Markdown</code></td>
     <td>Full <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a>
     is also supported.
     </td>
 </tr>
 <tr>
-    <th><code>Selleck</code></th>
+    <td><code>Selleck</code></td>
     <td><a href="http://rgrove.github.com/selleck/">Selleck's</a> additional parsing is also supported.</td>
 </tr>
 </table>
 
-<h3 id="examples">Examples</h3>
+<h3 id="markdown-and-code-highlighting">Markdown and Code Highlighting</h3>
+
+<p>
+Inside any documentation block you may use Markdown or Selleck based markup. If you indent your code snippets
+YUIDoc will automatically wrap them in a code block and syntax highlight them for you.
+</p>
 
 <pre class="code prettyprint">&#x2F;**
 This is the __module__ description for the &#x60;YUIDoc&#x60; module.
@@ -238,6 +577,10 @@ This is the __module__ description for the &#x60;YUIDoc&#x60; module.
 @main yuidoc
 *&#x2F;</pre>
 
+
+<p>
+This is what the above would render to:
+</p>
 
 <div class="intro">
 <p>This is the <strong>module</strong> description for the <code>YUIDoc</code> module.</p>
@@ -270,7 +613,9 @@ This module also uses {{#crossLink Foo}}, where Foo is a class or module name.
 This will generate an internal link to the other's API document.
 </p>
 
-<pre class="code prettyprint">This module also uses &lt;a href=&quot;..&#x2F;classes&#x2F;Foo.html&quot; class=&quot;crosslink&quot;&gt;Foo&lt;&#x2F;a&gt;, where Foo is a class or module name.</pre>
+<pre class="code prettyprint">&lt;p&gt;
+This module also uses &lt;a href=&quot;..&#x2F;classes&#x2F;Foo.html&quot; class=&quot;crosslink&quot;&gt;Foo&lt;&#x2F;a&gt;, where Foo is a class or module name.
+&lt;&#x2F;p&gt;</pre>
 
 </div>
             </div>
@@ -292,12 +637,17 @@ This will generate an internal link to the other's API document.
 </li>
 <li>
 <a href="#secondary-tags">Secondary tags</a>
+<ul class="toc">
+<li>
+<a href="#parsed-but-not-in-the-theme-yet">Parsed but not in the theme yet</a>
+</li>
+</ul>
 </li>
 <li>
 <a href="#extra-formatting">Extra formatting</a>
 <ul class="toc">
 <li>
-<a href="#examples">Examples</a>
+<a href="#markdown-and-code-highlighting">Markdown and Code Highlighting</a>
 </li>
 <li>
 <a href="#crosslinking">Crosslinking</a>
