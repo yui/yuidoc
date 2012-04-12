@@ -440,8 +440,77 @@ Identifies state changes originating...
             See also:
             <a href="#attribute">`@attribute`</a>,
             <a href="#property">`@property`</a>,
-            <a href="#readOnly">`@readOnly`</a>.
+            <a href="#readOnly">`@readOnly`</a>,
             <a href="#writeOnce">`@writeOnce`</a>.
+        </p>
+    </td>
+</tr>
+<tr id="readOnly">
+    <td>`readOnly`</td>
+    <td>
+```
+/**
+The current default button as 
+configured through...
+
+@attribute defaultButton
+@type Node
+@default null
+@readOnly
+**/
+```
+    </td>
+    <td>
+        <p>[YUI-specific] Indicates that the attribute is configured with the 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html#method_addAttr">`readOnly`</a> property
+        and cannot be changed by calling the 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html#method_set">`set()`</a> method.
+        Read-only attributes should always document their <a href="#default">`@default`</a> value.</p>
+        
+        <p>Sometimes used with properties, as an alias for <a href="#final">`@final`</a>.</p>
+
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#final">`@final`</a>,
+            <a href="#property">`@property`</a>,
+            <a href="#writeOnce">`@writeOnce`</a>.
+        </p>
+    </td>
+</tr>
+<tr id="writeOnce">
+    <td>`writeOnce`</td>
+    <td>
+```
+/**
+Diameter of the circular background 
+object. Other objects scale accordingly.
+Set this only before rendering.
+
+@attribute diameter
+@type {Number} number of px in diameter
+@default 100
+@writeOnce
+**/
+```
+    </td>
+    <td>
+        <p>[YUI-specific] Indicates that the attribute is configured with the 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html#method_addAttr">`writeOnce`</a> property
+        and can only be set once --
+        by applying a <a href="#default">`@default`</a>, 
+        by setting the value in the constructior, 
+        or by calling the 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html#method_set">`set()`</a> method
+        for the first time.</p>
+        
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#final">`@final`</a>,
+            <a href="#readOnly">`@readOnly`</a>.
         </p>
     </td>
 </tr>
