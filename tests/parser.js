@@ -111,6 +111,15 @@ suite.add(new YUITest.TestCase({
         Assert.areSame('main', mods.anim.itemtype, 'Failed to parse @main itemtype');
         Assert.areSame('module', mods.anim.tag, 'Tag parse failed');
     },
+    'test: main module association': function() {
+        var mod = this.data.modules.charts,
+            d = 'The Charts widget provides an api for displaying data\ngraphically.';
+
+        Assert.isObject(mod, 'Failed to parse charts module');
+        Assert.areSame(d, mod.description, 'Incorrect description for charts module');
+        Assert.areSame('main', mod.tag, 'Tagname is not main');
+        Assert.areSame('main', mod.itemtype, 'ItemType should be main');
+    },
     'test: submodule parsing': function() {
         var mods = this.data.modules;
 
@@ -288,6 +297,10 @@ suite.add(new YUITest.TestCase({
         
         Assert.isObject(item, 'failed to find item');
         Assert.isNotUndefined(item.return, 'Failed to replace returns with return');
+
+        item = this.findByName('_positionChangeHandler', 'Axis');
+        Assert.isObject(item, 'failed to find item');
+        Assert.areEqual(1, item.params.length, 'Failed to replace parma with params');
     }
 }));
 
