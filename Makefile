@@ -18,6 +18,9 @@ api:
 
 docs: clean help doc api
 
+deploydocs:
+	./scripts/docs.sh
+
 test:
 	./scripts/prep.sh
 	./node_modules/.bin/yuitest ./tests/parser.js
