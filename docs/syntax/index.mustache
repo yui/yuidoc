@@ -536,9 +536,31 @@ Set this only before rendering.
 **/
 ```
     </td>
-    <td>Defined as `@param {type} name description` or `@param name {type} description`, params can be used 
-    with classes, methods and events.  Use `[name]` to indicate the param is optional, `name*` to
-    indicate it is a place holder for 1..n arguments, and `[name*]` for 0..n arguments.</td>
+    <td>
+        <p>Defines a parameter for an ordinary <a href="#method">`@method`</a>, 
+        a parameter for a <a href="#constructor">`@constructor`</a>
+        (generally defined inside a <a href="#class">`@class`</a> block),
+        <em>or</em> a property that resides on an <a href="#method">`@event`</a> object.</p>
+
+        <p>A `@param` tag can take either of the forms:</p>
+        <ul>
+            <li>`@param {type} name description`</li> 
+            <li>`@param name {type} description`</li>
+        </ul>
+
+        <p>The `{type}` is optional, but if you include it, 
+        you must surround it in curly braces so that YUIDoc 
+        can distinguish it from the `name`. The `name` also takes optional syntax:</p>
+        <ul>
+            <li>`[name]` &mdash; an optional parameter</li>
+            <li>`name*` &mdash; a placeholder for 1..n arguments</li>
+            <li>`[name*]` &mdash; a placeholder for 0..n arguments</li>
+        </ul>
+
+        <p>You can also nest `@param` tags as shown in the example.
+        This enables you to document object parameters that 
+        have their own particular nested structure.</p> 
+    </td>
 </tr>
 <tr id="return">
     <td>`return`</td>
