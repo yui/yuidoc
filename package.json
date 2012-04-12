@@ -29,6 +29,9 @@
         "yuitest": "*",
         "selleck": "~0.1"
     },
+    "scripts": {
+        "test": "make test"
+    },
     "preferGlobal": "true",
     "licenses":[
         {
