@@ -540,9 +540,9 @@ Set this only before rendering.
         <p>Defines a parameter for an ordinary <a href="#method">`@method`</a>, 
         a parameter for a <a href="#constructor">`@constructor`</a>
         (generally defined inside a <a href="#class">`@class`</a> block),
-        <em>or</em> a property that resides on an <a href="#method">`@event`</a> object.</p>
+        <em>or</em> a property that resides on an <a href="#method">`@event`</a> object.
+        Can take either of the forms:</p>
 
-        <p>A `@param` tag can take either of the forms:</p>
         <ul>
             <li>`@param {type} name description`</li> 
             <li>`@param name {type} description`</li>
@@ -550,16 +550,27 @@ Set this only before rendering.
 
         <p>The `{type}` is optional, but if you include it, 
         you must surround it in curly braces so that YUIDoc 
-        can distinguish it from the `name`. The `name` also takes optional syntax:</p>
+        can distinguish it from the `name`. 
+        The `name` also has optional syntax:</p>
         <ul>
-            <li>`[name]` &mdash; an optional parameter</li>
-            <li>`name*` &mdash; a placeholder for 1..n arguments</li>
-            <li>`[name*]` &mdash; a placeholder for 0..n arguments</li>
+            <li>`[name]` &mdash; optional parameter</li>
+            <li>`name=foo` &mdash; default value is foo</li>
+            <li>`name*` &mdash; placeholder for 1..n args</li>
+            <li>`[name*]` &mdash; placeholder for 0..n args</li>
         </ul>
 
-        <p>You can also nest `@param` tags as shown in the example.
+        <p>As shown in the example, you can also nest `@param` tags. 
         This enables you to document object parameters that 
         have their own particular nested structure.</p> 
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#constructor">`@constructor`</a>,
+            <a href="#event">`@event`</a>,
+            <a href="#method">`@method`</a>,
+            <a href="#return">`@return`</a>.
+        </p>
     </td>
 </tr>
 <tr id="return">
@@ -572,29 +583,73 @@ Set this only before rendering.
 **/
 ```
     </td>
-    <td>Defined as `@return {type} description`.</td>
+    <td>
+        <p>Specifies a method's return value. 
+        A `@return` tag has the structure `@return {type} description`.
+        The `{type}` is optional.</p>
+
+        <p>If a return value is an object with a complex structure,
+        you can <a href="#param">nest `@param` tags</a> 
+        underneath the `@return` value.</p>
+
+        <p>
+            See also:
+            <a href="#method">`@method`</a>,
+            <a href="#param">`@param`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="for">
     <td>`for`</td>
     <td>
 ```
 /**  
-An inner class  
+Some inner class 'foo'...  
+
 @class foo  
 @for OuterClass  
 **/
 ```
-    </td>
-    <td>Used to define an inner class:
-After the class is done, you need to inform the parser to start working on the outer class again:
-
 ```
 /**  
-Another method for the outer class  
+Some method 'bar' 
+disconnected from 
+its class 'FarawayClass'...
+
 @method bar  
-@for OuterClass  
+@for FarawayClass  
 **/
 ```
+    </td>
+    <td>
+        <p>Sets YUIDoc's class scope.</p> 
+
+        <p>Using `@for OuterClass` in a `@class` block creates an inner class.
+        YUIDoc will document methods and other items that follow that block 
+        as belonging to the inner class, but the inner class is correctly 
+        shown as belonging to its parent outer class.</p>
+
+        <p>To close an inner class, add `@for OuterClass` (again!) 
+        to the <em>last</em>
+        `@attribute`, `@event`, `@method`, or `@property` block 
+        in the inner class. 
+        This resets the YUIDoc parser to use `OuterClass` 
+        as the owner of subsequent items.</p>
+
+        <p>If you are not inside an inner class, 
+        using `@for FarawayClass` 
+        in an `@attribute`, `@event`, `@method`, or `@property` block
+        will attach all that item and subsequent items 
+        to the specified faraway class. 
+        This is useful when you have a module that attaches extra
+        methods to a class's prototype, 
+        but the main class definition is in some entirely different file.</p>
+
+        <p>
+            See also:
+            <a href="#class">`@method`</a>,
+            <a href="#method">`@class`</a>.
+        </p>
 </td>
 </tr>
 <tr id="type">
