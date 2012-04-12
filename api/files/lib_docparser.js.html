@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>lib&#x2F;docparser.js - YUIDoc</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
-    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
 
@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.38</em>
+            <em>API Docs for: 0.2.39</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -294,6 +294,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
         &#x27;member&#x27;: &#x27;method&#x27;, &#x2F;&#x2F; probably meant method
         &#x27;parm&#x27;: &#x27;param&#x27;, &#x2F;&#x2F; typo
         &#x27;pamra&#x27;: &#x27;param&#x27;, &#x2F;&#x2F; typo
+        &#x27;parma&#x27;: &#x27;param&#x27;, &#x2F;&#x2F; typo
         &#x27;propery&#x27;: &#x27;property&#x27;, &#x2F;&#x2F; typo
         &#x27;returns&#x27;: &#x27;return&#x27; &#x2F;&#x2F; need to standardize on one or the other
     },
@@ -505,16 +506,6 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
         &#x2F;&#x2F; to this module.
         &#x27;module&#x27;: function(tagname, value, target, block) {
             this.set(CURRENT_MODULE, value);
-            if (!this.get(MAIN_MODULE)) {
-                var o = {
-                    tag: tagname,
-                    name: value,
-                    file: target.file,
-                    line: target.line,
-                    description: target.description
-                };
-                this.set(MAIN_MODULE, o);
-            }
             var go = true;
             Y.some(block, function(o) {
                 if (trim(o.tag) == &#x27;submodule&#x27;) {
@@ -523,6 +514,16 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
                 }
             });
             if (go) {
+                if (!this.get(MAIN_MODULE)) {
+                    var o = {
+                        tag: tagname,
+                        name: value,
+                        file: target.file,
+                        line: target.line,
+                        description: target.description
+                    };
+                    this.set(MAIN_MODULE, o);
+                }
                 host = this.modules[value];
                 return host;
             }
@@ -532,9 +533,10 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
         &#x2F;&#x2F;Setting the description for the module..
         &#x27;main&#x27;: function(tagname, value, target, block) {
             var o = target;
-            o.name = value;
+            o.mainName = value;
             o.tag = tagname;
             o.itemtype = &#x27;main&#x27;;
+	        o._main = true;
             this.set(MAIN_MODULE, o);
         },
 
@@ -907,17 +909,30 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
         *&#x2F;
         mainmodule: {
             setter: function(o) {
-                var write = true;
-                if (this.get(CURRENT_MODULE) === o.name) {
-                    if (o.name in this.modules) {
-                        if (this.modules[o.name].tag) {
+                if (!o) {
+                    return;
+                }
+		        &#x2F;&#x2F;console.log(&#x27;Main Module Setter: &#x27;, o);
+                var write = true,
+                    name = o.mainName || o.name;
+               	if (this.get(CURRENT_MODULE) === name) {
+
+                    if (name in this.modules) {
+                        &#x2F;&#x2F;console.log(&#x27;In Global Modules&#x27;, this.modules[name]);
+                        if (this.modules[name].tag) {
                             &#x2F;&#x2F;The main module has already been added, don&#x27;t over write it.
-                            if (this.modules[o.name].tag === &#x27;main&#x27;) {
+                            if (this.modules[name].tag === &#x27;main&#x27;) {
                                 write = false;
                             }
                         }
                         if (write) {
-                            this.modules[o.name] = Y.merge(this.modules[o.name], o);
+			                &#x2F;&#x2F;console.log(&#x27;Writing&#x27;);
+                            this.modules[name] = Y.merge(this.modules[name], o);
+                        }
+                    } else {
+                        if (o._main) {
+			                &#x2F;&#x2F;console.log(&#x27;Writing&#x27;);
+                            this.modules[name] = o;
                         }
                     }
                 }
@@ -936,7 +951,10 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
                 val = trim(val);
                 this.set(CURRENT_SUBMODULE, &#x27;&#x27;);
                 this.set(CURRENT_NAMESPACE, &#x27;&#x27;);
-                this.set(MAIN_MODULE, &#x27;&#x27;);
+		        var m = this.get(MAIN_MODULE);
+		        if (m &amp;&amp; m.name !== val) {
+                	this.set(MAIN_MODULE, &#x27;&#x27;);
+		        }
                 var clazz = this.classes[this.get(CURRENT_CLASS)];
                 if (clazz) {
                     &#x2F;&#x2F;Handles case where @module comes after @class in a new directory of files 
@@ -1374,6 +1392,9 @@ Y.log(&#x27;unknown tag: &#x27; + name + &#x27;,&#x27; + stringlog(block), &#x27
                 if (module.is_submodule) {
                     modules[module.module].submodules[name] = 1;
                 }
+                &#x2F;&#x2F;Clean up processors
+                delete module.mainName;
+                delete module._main;
             });
 
             Y.each(classes, function(clazz, name) {
@@ -1390,8 +1411,17 @@ Y.log(&#x27;unknown tag: &#x27; + name + &#x27;,&#x27; + stringlog(block), &#x27
                         modules[clazz.submodule].description = clazz.description;
                     }
                 }
+
                 if (clazz.file) {
                     files[clazz.file].classes[name] = 1;
+                    if (modules[clazz.module]) {
+                        modules[clazz.module].file = clazz.file;
+                        modules[clazz.module].line = clazz.line;
+                    }
+                    if (modules[clazz.submodule]) {
+                        modules[clazz.submodule].file = clazz.file;
+                        modules[clazz.submodule].line = clazz.line;
+                    }
                 }
                 if (clazz.uses &amp;&amp; clazz.uses.length) {
                     clazz.uses.forEach(function(u) {
@@ -1418,7 +1448,13 @@ Y.log(&#x27;unknown tag: &#x27; + name + &#x27;,&#x27; + stringlog(block), &#x27
                     });
                     delete v.params;
                 }
-            })
+            });
+
+            Y.each(modules, function(mod) {
+                if (!mod.file || !mod.line || !mod.name) {
+                    console.log(&#x27;Failed to find lines for&#x27;, mod);
+                }
+            });
 
             return self;
         },

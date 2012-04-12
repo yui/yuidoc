@@ -15,7 +15,7 @@
     <h1>External Data</h1>
     
     <p>
-        <a href="../">Main Page</a> <a name="Arrow">&gt;</a> <a href="../external.html">External Data</a>
+        <a href="../">Main Page</a> <a name="Arrow">&gt;</a> <a href="../external/index.html">External Data</a>
     </p>
     
     
@@ -26,20 +26,31 @@
         <div class="yui3-u-3-4">
             <div id="main">
                 <div class="content"><p>
-YUIDoc generates a <code>data.json</code> file after it parses your API documentation. Using the <code>external.data</code> config
-option, you can point it to another <code>data.json</code> file from another project and YUIDoc will import that data
-and mix it with your API documentation.
+YUIDoc generates a <code>data.json</code> file after it parses your API documentation. 
+The <code>external.data</code> config option enables you to import a YUIDoc <code>data.json</code> file 
+from another project and mix it into your own documentation. 
 </p>
 
-<p>This is very handy when you are extending another project and would like to link back
-to their API documentation.</p>
+<p>
+This feature is handy when you are extending another project and would like to link back
+to their API documentation. For example, importing YUI Library's <code>data.json</code>
+file would enable YUIDoc to automatically link back to <code>Base</code>, <code>EventTarget</code>, and
+other core YUI objects that your own API might be extending or mixing in. 
+</p>
+
+<p>
+Currently, importing external data enables YUIDoc to resolve HTML links <code>@extends</code> or <code>@use</code> keywords, 
+but does <em>not</em> cause YUIDoc to generate complete documentation for the external API.
+Future versions of YUIDoc may provide the option to mix in the data natively 
+and reproduce the external API right along with your own.
+</p>
 
 <h2 id="configuration">Configuration</h2>
 
 <p>
     Create an <code>external</code> object under the <code>options</code> object in your <code>yuidoc.json</code> file and give it
-    a property called <code>data</code> (can be an array) pointing to the URL of the external <code>data.json</code> file
-    you wish to import.
+    a property called <code>data</code> pointing to the URL of the external <code>data.json</code> file you wish to import. 
+    <code>data</code> can be a string or an array of strings. 
 </p>
 
 <pre class="code prettyprint">{
@@ -51,25 +62,8 @@ to their API documentation.</p>
 }</pre>
 
 
-<h2 id="merging-data">Merging Data</h2>
-
-<p>Currently, YUIDoc will merge the external data and flag it as <code>external</code>.
-Then, internally, YUIDoc will use that data when it see's a reference to it (in an <code>@extends</code> or <code>@use</code>
-documentation block. It will then link over to the external API docs just as if it was part of this
-documentation system.
-</p>
-
-<h2 id="future-plans">Future Plans</h2>
-
 <p>
-In the future, YUIDoc will allow you to specify that you want to mix the data natively instead if
-making it a special external link. This will allow you to pull in all of the remote data and render their
-docs along side your docs, instead of just linking to them.
-</p>
-
-<p>
-Also, the current external data is fetched on each run. This will eventually be cached as to not take so
-long to generate the docs.
+<strong>NOTE:</strong> YUIDoc currently fetches external data on each run with no caching. 
 </p>
 </div>
             </div>
@@ -88,12 +82,6 @@ long to generate the docs.
                             <ul class="toc">
 <li>
 <a href="#configuration">Configuration</a>
-</li>
-<li>
-<a href="#merging-data">Merging Data</a>
-</li>
-<li>
-<a href="#future-plans">Future Plans</a>
 </li>
 </ul>
                         </div>

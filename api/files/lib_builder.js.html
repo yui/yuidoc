@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>lib&#x2F;builder.js - YUIDoc</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
-    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
 
@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.38</em>
+            <em>API Docs for: 0.2.39</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -105,7 +105,7 @@ Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http:&#x2F;&#x2F;yuilibrary.com&#x2F;license&#x2F;
 *&#x2F;
-var markdown = require(&quot;node-markdown&quot;).Markdown,
+var MD = require(&quot;node-markdown&quot;).Markdown,
     fs = require(&#x27;graceful-fs&#x27;),
     noop = function() {},
     path = require(&#x27;path&#x27;),
@@ -127,6 +127,19 @@ var markdown = require(&quot;node-markdown&quot;).Markdown,
         }
 
         return t;
+    },
+    &#x2F;**
+    * Wrapper around the Markdown parser so it can be normalized or even side stepped
+    * @method markdown
+    * @private
+    * @param {String} md The Markdown string to parse
+    * @param {Boolean} def Only allow default set of HTML tags
+    * @param {Array} tags An array of tags to allow
+    * @return {HTML} The rendered HTML
+    *&#x2F;
+    markdown = function(md, def, tags) {
+        html = MD(md, def, tags);
+        return html;
     };
 
 &#x2F;**
@@ -432,8 +445,8 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         getProjectMeta: function() {
             var obj = {
                 meta: {
-                    yuiSeedUrl: &#x27;http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;yui&#x2F;yui-min.js&#x27;,
-                    yuiGridsUrl: &#x27;http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css&#x27;
+                    yuiSeedUrl: &#x27;http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;yui&#x2F;yui-min.js&#x27;,
+                    yuiGridsUrl: &#x27;http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css&#x27;
                 }
             };
             if (!this._meta) {

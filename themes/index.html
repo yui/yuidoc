@@ -15,7 +15,7 @@
     <h1>Modifying the default theme</h1>
     
     <p>
-        <a href="../">Main Page</a> <a name="Arrow">&gt;</a> <a href="../themes.html">Modifying the default theme</a>
+        <a href="../">Main Page</a> <a name="Arrow">&gt;</a> <a href="../themes/index.html">Modifying the default theme</a>
     </p>
     
     
@@ -26,16 +26,16 @@
         <div class="yui3-u-3-4">
             <div id="main">
                 <div class="content"><p>
-    Modifying the default theme is very easy, YUIDoc uses <a href="http://handlebarsjs.com/">Handlebars.js</a>
-    to render it's templates. It uses a default set of templates, but allows for specific template
-    file overides to allow for easy customization.
+    YUIDoc uses <a href="http://handlebarsjs.com/">Handlebars.js</a> to render its templates. 
+    For easy customization, YUIDoc's default templates provide a specific set of file overrides.
 </p>
 
 <h2 id="directories">Directories</h2>
 
 <p>
-    The default theme consists of <code>assets</code>, <code>layouts</code> and <code>partials</code> directories and a <code>theme.json</code>
-    file with theme related variables (JS and CSS to load, etc..)
+    The default theme consists of <code>assets&#x2F;</code>, <code>layouts&#x2F;</code> and <code>partials&#x2F;</code> directories, 
+    along with a <code>theme.json</code> file that describes theme-related variables, 
+    such as the JS and CSS to load.
 </p>
 
 <pre class="code terminal">themes&#x2F;
@@ -51,20 +51,24 @@
 <h3 id="layouts">Layouts</h3>
 
 <p>
-    There are 2 main layout files: <code>main.handlebars</code> and <code>xhr.handlebars</code>
+    A YUIDoc template has two primary layout files: <code>main.handlebars</code> and <code>xhr.handlebars</code>.
 </p>
 
 <table>
 <tr>
     <th><code>main</code></th>
-    <td>The  basic wrapper around every rendered page. It contains
-        the fulll HTML markup, layout, css, js, etc..
+    <td>
+        Provides a complete wrapper around every rendered page. 
+        <code>main.handlebars</code> includes the full HTML header and footer markup, CSS, and JS
+        for every YUIDoc API page.
     </td>
 </tr>
 <tr>
     <th><code>xhr</code></th>
-    <td>Is a smaller version that's returned by the <code>built-in server</code> when requesting 
-        a page via XHR. This way it on'y transfers the smaller data and not the entire page.
+    <td>
+        Provides a smaller layout for the built-in doc server to use when requesting an individual page via XHR. 
+        This enables the browser to refresh just the content pane and avoid loading the complete  markup for the entire page.
+        The <code>xhr</code> template enables YUIDoc to progressively enhance the API documentation in an efficient manner.
     </td>
 </tr>
 </table>
@@ -72,8 +76,8 @@
 <h3 id="partials">Partials</h3>
 
 <p>
-    Partials are used to create all of the data driven portions of the layout. These partials include:
-    <code>attrs</code>, <code>classes</code>, <code>events</code>, <code>files</code>, <code>index</code>, <code>method</code>, <code>module</code>, <code>options</code>, <code>props</code>, <code>sidebar</code>
+    For each section of the layout that derives from parsed YUIDoc comment data, 
+    YUIDoc provides a Handlebars partial. 
 </p>
 
 <table>
@@ -87,35 +91,35 @@
 </tr>
 <tr>
     <th><code>options</code></th>
-    <td>Renders the filter options at the top of the page</td>
+    <td>Renders the filter options at the top of the page, which enable the user to hide and show private methods, inherited methods, and so on.</td>
 </tr>
 <tr>
     <th><code>attrs</code></th>
-    <td>Renders Attribute data</td>
+    <td>Renders documentation for an individual YUI Attribute.</td>
 </tr>
 <tr>
     <th><code>classes</code></th>
-    <td>Renders Class data</td>
+    <td>Renders documentation for an individual class.</td>
 </tr>
 <tr>
     <th><code>events</code></th>
-    <td>Renders Event data</td>
+    <td>Renders documentation for an individual event.</td>
 </tr>
 <tr>
     <th><code>files</code></th>
-    <td>Renders source files</td>
+    <td>Renders the API's source files.</td>
 </tr>
 <tr>
     <th><code>method</code></th>
-    <td>Renders Method data</td>
+    <td>Renders documentation for an individual method.</td>
 </tr>
 <tr>
     <th><code>module</code></th>
-    <td>Renders Module data</td>
+    <td>Renders documentation for an individual module.</td>
 </tr>
 <tr>
     <th><code>props</code></th>
-    <td>Renders the property data</td>
+    <td>Renders documentation for an individual property.</td>
 </tr>
 </table>
 
@@ -123,19 +127,20 @@
 <h2 id="overriding-a-partiallayout">Overriding a Partial/Layout</h2>
 
 <p>
-YUIDoc trys to make overriding it's templates very easy. When you need to make a change to
-a partial or layout file, you do not need to copy every file over into your
-template directory. YUIDoc will parse it's internal templates first, then apply your overrides
-to it afterward. This way if you only need to modify one template file, you only need to
-modify that one file.
+YUIDoc's <code>--theme</code> option specifies a directory containing 
+layouts and partials that override the default theme. For example:
 </p>
 
-<pre class="code terminal">mkdir -p mytheme&#x2F;partials
-vim mytheme&#x2F;partials&#x2F;method.handlebars
-&#x2F;&#x2F; Make it how you want
+<pre class="code terminal"><span class="noselect">$ </span>yuidoc --theme .&#x2F;mytheme</pre>
 
-yuidoc --theme .&#x2F;mytheme</pre>
 
+<p>
+causes YUIDoc to inspect the directory <code>.&#x2F;mytheme</code> for template overrides.
+If this directory contains an override such as <code>.&#x2F;mytheme&#x2F;partials&#x2F;method.handlebars</code>,
+YUI will parse its internal templates first, then apply the custom <code>method.handlebars</code> partial.
+If a theme has no explicit override for a given template file, 
+YUIDoc simply falls back to using the default layout or partial.
+</p>
 </div>
             </div>
         </div>
