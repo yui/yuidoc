@@ -8,6 +8,10 @@ __This is a beta release, the offical release will be under the name `yuidoc`__
 
 Updated yuidoc parser, written in js -- *early work in progress*
 
+## Current Build Status
+
+[![Build Status](https://secure.travis-ci.org/davglass/yuidocjs.png?branch=master)](http://travis-ci.org/davglass/yuidocjs)
+
 ## Usage
 
 Clone this repo, then:
