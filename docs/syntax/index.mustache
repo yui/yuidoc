@@ -1,8 +1,39 @@
 <div class="intro">
-[TODO overview of syntax]    
+    <p>YUIDoc's syntax should be familar if you've used 
+    Javadoc, JSDoc, Doxygen, or most other documentation generator tools. 
+    YUIDoc relies on <dfn>tags</dfn> such as `@param` or `@return` embedded in comments blocks 
+    that start with `/**` and end with `*/`. 
+    It includes a small number of tags for documenting specific YUI features, 
+    but most tags are generic enough to use with any object-oriented language.</p>
+
+    <p><b>IMPORTANT:</b> YUIDoc only parses YUIDoc comment blocks, not source code.
+    That this keeps YUIDoc relatively simple and light, 
+    and enables YUIDoc to be language agnostic. 
+    However, it also means you must declare everything to YUIDoc explicitly.
+    YUIDoc cannot determine that a code snippet is
+    a "method" or "class" until you add a comment block
+    and explicitly tag it as such. 
+    A corollary is that YUIDoc will never generate empty, "stub" doc entries
+    for API members that lack comment blocks.</p>
 </div>
 
-<h2>Primary Tags</h2>
+<h2>Basic Requirements</h2>
+
+<p>A given comment block must contain one (and only one) 
+<a href="#primary-tags">primary tag</a> such as `@class` or `@method`,
+and zero or more <a href="#secondary-tag">secondary tags</a>
+such as `@param`, `@type`, and `@extends`. 
+Some secondary tags can be used in any comment block, 
+while others only make sense alongside a particular primary tag.</p>
+
+<p>A source tree must contain at least one comment block with a `@module` tag.</p>
+
+<p>Each module must have at least one comment block with a `@class` tag.</p>
+
+<p>Each class may then have zero or more comment blocks with 
+an `attribute`, `@class`, `@event`, `@method`, or `@property` tag.</p>
+
+<h2 id="primary-tags">Primary Tags</h2>
 <p>Each comment block must have one (and only one) of the following tags</p>
 
 <table>
@@ -229,7 +260,7 @@ ATTRS[RENDERED] = {
 </tr>
 </table>
 
-<h2>Secondary tags</h2>
+<h2 id="secondary-tags">Secondary tags</h2>
 <p>
     After choosing one of the five primary tags, you can further document a module, 
     class, method, event or property with one or more of the following secondary tags.
@@ -1072,13 +1103,10 @@ This is what the above would render to:
 ```
 </div>
 
-<h3>Crosslinking</h3>
+<h3>Cross-referencing Modules and Classes</h3>
 
-<p>
-    We have also added a blockHelper in Handlebars that will allow you to "cross-link" your documentation together.
-</p>
-
-<p></p>
+<p>YUIDoc also includes a Handlebars `blockHelper` that enables you to 
+easily cross-reference classes and modules. For example, if you include:</p>
 
 ```
 /**
@@ -1089,11 +1117,12 @@ This module also uses \{{#crossLink Foo}}, where Foo is a class or module name.
 ```
 
 <p>
-This will generate an internal link to the other's API document.
+This automatically generates an internal link to Foo's API reference page:
 </p>
 
 ```
 <p>
-This module also uses <a href="../classes/Foo.html" class="crosslink">Foo</a>, where Foo is a class or module name.
+This module also uses <a href="../classes/Foo.html" class="crosslink">Foo</a>, 
+where Foo is a class or module name.
 </p>
 ```
