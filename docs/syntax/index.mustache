@@ -334,15 +334,20 @@ ATTRS[RENDERED] = {
 ```
    </td>
    <td>
-        <p>Specifies that the class inherents from a parent class. 
+        <p>Specifies that the class inherits members from a parent class, 
+        perhaps using <a href="http://yuilibrary.com/yui/docs/api/classes/YUI.html#method_extend">`Y.extend()`</a>, 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Base.html#method_create">`Y.Base.create()`</a>,
+        or similar methods.
         YUIDoc will generate API documentation for 
         methods, properties, events, and attributes inherited from the parent class,
         and link back to the parent class's documentation.
-        In the default YUIDoc theme, users can toggle whether inherited items display.</p>
+        In the default YUIDoc theme, users can toggle whether inherited members should display.</p>
 
         <p>
             See also:
-            <a href="#class">`@class`</a>.
+            <a href="#class">`@class`</a>,
+            <a href="#extensionfor">`@extensionfor`</a>,
+            <a href="#uses">`@uses`</a>.
         </p>
    </td>
 </tr>
@@ -647,8 +652,8 @@ its class 'FarawayClass'...
 
         <p>
             See also:
-            <a href="#class">`@method`</a>,
-            <a href="#method">`@class`</a>.
+            <a href="#class">`@class`</a>,
+            <a href="#method">`@method`</a>.
         </p>
 </td>
 </tr>
@@ -666,7 +671,19 @@ its class 'FarawayClass'...
 **/
 ```
     </td>
-    <td>For properties, configs and attributes. You can specify a single type, a list of legal types separated by vertical bars, or if you are lazy, "mixed".</td>
+    <td>
+        <p>Specifies the type of a property or attribute.  
+        You can specify a single type, 
+        a list of legal types separated by vertical bars, 
+        or if you are lazy, "any" or "mixed".</p>
+
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#property">`@property`</a>.
+        <p>
+    </td>
 </tr>
 <tr id="private">
     <td>`private`</td>
@@ -681,8 +698,18 @@ instance used to make the queries.
 **/
 ```
     </td>
-    <td>Privates by default are suppressed from the API docs. All methods and properties are 
-    assumed to be public unless marked as private or protected.</td>
+    <td>
+        <p>Indicates a member that should not be used externally. 
+        Although YUIDoc does not generate documentation for `@private` blocks, 
+        YUIDoc comments are still a nice, structured way to document internals in source code.
+        All methods and properties are assumed to be public 
+        unless marked as private or protected.</p>
+
+        <p>
+            See also:
+            <a href="#protected">`@protected`</a>.
+        <p>
+    </td>
 </tr>
 <tr id="protected">
     <td>`protected`</td>
@@ -697,7 +724,17 @@ the DOM and ...
 **/
 ```
     </td>
-    <td>Used to designate members that should not be modified by implementers unless they are creating a subclass.</td>
+    <td>
+        <p>Indicates a member that should not be modified 
+        by implementers unless they are creating a subclass.
+        All methods and properties are assumed to be public 
+        unless marked as private or protected.</p>
+
+        <p>
+            See also:
+            <a href="#private">`@private`</a>.
+        <p>
+    </td>
 </tr>
 <tr id="requires">
     <td>`requires`</td>
@@ -709,7 +746,18 @@ the DOM and ...
 **/
 ```
     </td>
-    <td>Used to identify dependencies in the module declaration.</td>
+    <td>
+        <p>[Uncommon] Identifies one or more dependencies in the module declaration.
+        Can be a single module name or a comma-separated list.</p>
+
+        <p>
+            See also:
+            <a href="#extends">`@extends`</a>,
+            <a href="#extensionfor">`@extensionfor`</a>,
+            <a href="#module">`@module`</a>,
+            <a href="#submodule">`@submodule`</a>.
+        <p>
+    </td>
 </tr>
 <tr id="default">
     <td>`default`</td>
@@ -720,7 +768,18 @@ the DOM and ...
 **/
 ```
     </td>
-    <td>The default value of a property, config or attribute.</td>
+    <td>
+        <p>Specifies the default value of a property or attribute.
+        Should be paired with a <a href="#type">`@type`</a> tag.</p>
+
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#property">`@property`</a>,
+            <a href="#type">`@type`</a>.
+        <p>
+    </td>
+    </td>
 </tr>
 <tr id="uses">
     <td>`*uses`</td>
@@ -736,8 +795,29 @@ the DOM and ...
 **/
 ```
     </td>
-    <td>For classes that use some kind of Object augmentation. If this object is defined and YUIDoc
-    parses it, the properties from the "used" object will be displayed in the output.</td>
+    <td>
+        <p>Specifies that the class has some other class's 
+        properties, methods, and other members mixed into its prototype, 
+        perhaps using <a href="http://yuilibrary.com/yui/docs/api/classes/YUI.html#method_mix">`Y.mix()`</a>, 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Base.html#method_mix">`Y.Base.mix()`</a>,
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Base.html#method_create">`Y.Base.create()`</a>,
+        or similar methods.
+        YUIDoc will generate API documentation for 
+        methods, properties, events, and attributes mixed into the parent class,
+        and link back to the parent class's documentation.
+        In the default YUIDoc theme, users can toggle whether mixed in members should display.</p>
+        
+        <p>Note that `@uses` does not indicate inheritance.
+        To establish an "is a" relationship, use <a href="#extends">`@extends`</a>.
+        Unlike `@extends`, you can provide multiple `@uses` tags. </p>
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#extends">`@extends`</a>,
+            <a href="#extensionfor">`@extensionfor`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="example">
     <td>`*example`</td>
@@ -749,8 +829,16 @@ the DOM and ...
 **/
 ```
     </td>
-    <td>Items with this tag are automatically parsed with the Markdown and Code parser and 
-    displayed below the item. <em>The code is not included raw, only in highlight form</em></td>
+    <td>
+        <p>Indicates a block of example code 
+        to be automatically parsed and displayed with 
+        YUIDoc's Markdown and code highlighting parser.
+        Your code sample should be indented beneath the `@example` tag.
+        YUIDoc displays all examples highlighted with 
+        `<span>` elements and other markup.</p>
+
+        <p>A block may include multiple `@example` tags.</p>
+    </td>
 </tr>
 <tr id="chainable">
     <td>`chainable`</td>
@@ -768,7 +856,14 @@ render: function () {
 **/
 ```
     </td>
-    <td>Method returns itself so you can chain it with other calls on this object.</td>
+    <td>
+        <p>Indicates that a method returns `this` (the parent object), 
+        enabling you to chain it with other calls on the same object.</p>
+
+        <p>
+            See also:
+            <a href="#method">`@method`</a>.
+        </p>
 </tr>
 <tr id="deprecated">
     <td>`deprecated`</td>
@@ -781,7 +876,18 @@ render: function () {
 **/
 ```
     </td>
-    <td>Item is deprecated and will be removed in a future release.</td>
+    <td>
+        <p>Indicates that the module, class, or member is deprecated 
+        and will be removed in a future release.
+        You can optionally supply a string message 
+        describing what to use instead.</p>
+
+        <p>
+            See also:
+            <a href="#beta">`@beta`</a>,
+            <a href="#since">`@since`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="since">
     <td>`since`</td>
@@ -792,7 +898,16 @@ render: function () {
 **/
 ```
     </td>
-    <td>Item was added to the source in this version.</td>
+    <td>
+        <p>Indicates that the module, class, or member 
+        was added to the source at the specified version.</p>
+
+        <p>
+            See also:
+            <a href="#beta">`@beta`</a>,
+            <a href="#deprecated">`@deprecated`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="async">
     <td>`async`</td>
@@ -803,7 +918,10 @@ render: function () {
 **/
 ```
     </td>
-    <td>Method is async and requires a callback. Uncommon.</td>
+    <td>
+        <p>[Uncommon] Indicates that the method is 
+        asynchronous and requires a callback.</p>
+    </td>
 </tr>
 <tr id="beta">
     <td>`beta`</td>
@@ -814,7 +932,16 @@ render: function () {
 **/
 ```
     </td>
-    <td>Item should be marked as in beta. Uncommon.</td>
+    <td>
+        <p>Indicates that the method, class, or member is in beta 
+        and might undergo backwards-incompatible changes in the near future.</p>
+
+        <p>
+            See also:
+            <a href="#deprecated">`@deprecated`</a>,
+            <a href="#since">`@since`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="bubbles">
     <td>`bubbles`</td>
@@ -828,7 +955,16 @@ Handles the mouseup DOM event...
 **/
 ```
     </td>
-    <td>Event bubbles to another target</td>
+    <td>
+        <p>Specifies the default target that a custom event bubbles to.
+        This is a useful tag if your API has a "manager" class that 
+        is responsible for capturing a set of related custom events.</p>
+
+        <p>
+            See also:
+            <a href="#event">`@event`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="extensionfor">
     <td>`extension`<br>`extensionfor`<br>`extension_for`</td>
@@ -840,10 +976,28 @@ Handles the mouseup DOM event...
 **/
 ```
     </td>
-    <td>Item is an extension of passed Item.</td>
+    <td>
+        <p>Indicates that the class is an extension object
+        designed to be optionally mixed into the specified class.</p>
+
+        <p>`@extensionfor` is <em>almost</em> the inverse of <a href="#uses">`@uses`</a>.
+        The key difference is that `@uses` means, 
+        "this class <em>always</em> has the 'used' class mixed into its prototype," 
+        while `@extensionfor` means, 
+        "this class <em>can</em> be mixed into the 'extensionfor' class, 
+        but it isn't baked in by default."</p>
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#extends">`@extends`</a>,
+            <a href="#uses">`@uses`</a>.
+        </p>
+    </td>
 </tr>
 </table>
-<em><strong>*</strong> Denotes that it supports multiple tags in the same doc block.</em>
+
+<p>A <strong>*</strong> indicates that you can supply multiple tags of that type in the same block.</p>
 
 <h3>Parsed but not in the theme yet</h3>
 <p>
