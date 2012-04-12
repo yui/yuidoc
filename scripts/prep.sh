@@ -12,3 +12,7 @@ if [ ! -x ../node_modules/.bin/yuitest ]; then
     cd ../ && npm install --loglevel silent && cd ./scripts
 fi
 
+if [ -d ../tests/out ]; then
+    echo "Prior out directory found, removing."
+    rm -rRf ../tests/out/
+fi
