@@ -11,8 +11,8 @@ process.chdir(__dirname);
 var suite = new YUITest.TestSuite({
     name: 'Parser Test Suite',
     setUp: function() {
-        this.davglass = true;
         var json = (new Y.YUIDoc({
+            quiet: true,
             paths: [ 'input/' ],
             outdir: './out'
         })).run();

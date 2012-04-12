@@ -23,6 +23,6 @@ deploydocs:
 
 test:
 	./scripts/prep.sh
-	./node_modules/.bin/yuitest ./tests/parser.js
+	cd ./tests/ && ../node_modules/.bin/yuitest ./parser.js ./builder.js
 
 .PHONY: docs clean
