@@ -4,18 +4,22 @@ all:
 version:
 	./scripts/versions.js
 
+help:
+	./scripts/help.sh
+
 doc:
-	rm -rRf ./output/*
-	./lib/cli.js --help &> ./docs/args/partials/help.mustache
 	./node_modules/.bin/selleck --out ./output/
+
+clean:
+	rm -rRf ./output/*
 
 api:
 	./lib/cli.js
 
-docs: doc api
+docs: clean help doc api
 
 test:
 	./scripts/prep.sh
 	./node_modules/.bin/yuitest ./tests/parser.js
 
-.PHONY: docs
+.PHONY: docs clean
