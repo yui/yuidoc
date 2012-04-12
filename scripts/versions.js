@@ -5,7 +5,7 @@ var path = require('path'),
     package = require(path.join(__dirname, '../', 'package.json')),
     version = package.version,
     api = path.join(__dirname, '../', 'conf', 'yuidoc.json'),
-    doc = path.join(__dirname, '../', 'conf', 'theme', 'project.json');
+    doc = path.join(__dirname, '../', 'conf', 'docs', 'project.json');
 
 console.log('[version]', version);
 console.log('[api]', api);
