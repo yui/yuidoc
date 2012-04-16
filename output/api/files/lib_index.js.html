@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.39</em>
+            <em>API Docs for: 0.2.40</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -137,7 +137,7 @@ process.on(&#x27;uncaughtException&#x27;, function(msg) {
     Y.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
     Y.log(&#x27;An uncaught YUIDoc error has occurred, stack trace given below&#x27;, &#x27;error&#x27;);
     Y.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
-    Y.log(msg.stack, &#x27;error&#x27;);
+    Y.log(msg.stack || msg.message, &#x27;error&#x27;);
     Y.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
     Y.log(&#x27;Node.js version: &#x27; + process.version, &#x27;error&#x27;);
     Y.log(&#x27;YUI version: &#x27; + YUI.version, &#x27;error&#x27;);

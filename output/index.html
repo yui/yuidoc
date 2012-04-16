@@ -21,29 +21,40 @@
     <div class="yui3-g">
         <div class="yui3-u-3-4">
             <div id="main">
-                <div class="content"><h2 id="welcome-to-yuidoc-0239">Welcome to YUIDoc 0.2.39!</h2>
+                <div class="content"><h2 id="welcome-to-yuidoc-0240">Welcome to YUIDoc 0.2.40!</h2>
 
-<p>
-YUIDoc is a <a href="http://nodejs.org/">Node.js</a> application used at build time to 
-generate API documentation for JavaScript code. YUIDoc is comment-driven and supports a wide 
-range of JavaScript coding styles. The output of YUI Doc is API documentation formatted as a 
-set of HTML pages including information about methods, properties, custom events and 
-inheritance for JavaScript objects. YUIDoc was orignally written for the YUI Project;
-it uses YUI JavaScript and CSS in the generated files and it supports common YUI 
-conventions like Custom Events. That said, it can be used easily and productively on non-YUI code.
+<div class="intro">
+    <p>YUIDoc is a <a href="http://nodejs.org/">Node.js</a> application that
+    generates API documentation from comments in source, using a syntax similar 
+    to tools like Javadoc and Doxygen. YUIDoc provides:</p>
+
+    <ul>
+        <li><b>Live previews.</b> YUIDoc includes a 
+        <a href="./server/index.html">standalone doc server</a>, 
+        making it trivial to preview your docs as you write.</li>
+        <li><b>Modern markup.</b> YUIDoc's generated documentation is an
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Model.html">attractive, 
+        functional web application</a> with real URLs and graceful 
+        fallbacks for spiders and other agents that can't run JavaScript.</li> 
+        <li><b>Wide language support.</b> YUIDoc was originally designed for 
+        the <a href="http:/yuilibrary.com">YUI project</a>, but it is not
+        tied to any particular library or programming language. 
+        You can use it with any language that supports
+        <code>&#x2F;* *&#x2F;</code> comment blocks.</li>
+    </ul>
 </p>
+</div>
 
-<h2 id="installation">Installation</h2>
+<h2 id="#install">Installation and Usage</h2>
 
-<p>
-Download and install <a href="http://nodejs.org/#download">Node.js</a>, then:
-</p>
+<ol>
+    <li>Download and install <a href="http://nodejs.org/#download">Node.js</a></li>
+    <li>Run <code>npm -g install yuidocjs</code>.</li>
+    <li>Run <code>yuidocjs .</code> at the top of your JS source tree.</li>
+</ol>
 
-<pre class="code terminal">npm -g install yuidocjs
-
-cd src&#x2F;
-yuidoc .&#x2F;js&#x2F;</pre>
-
+<p>That's it! For more information about running the <code>yuidoc</code> commandline tool,
+refer to "<a href="./use/index.html">Using YUIDoc</a>".</p>
 
 <h2 id="user-guides">User Guides</h2>
 
@@ -74,6 +85,49 @@ yuidoc .&#x2F;js&#x2F;</pre>
     
   
 </ul>
+
+<p>YUIDoc parses a modified form of JSDoc tags. 
+Here are some example YUIDoc comment blocks with
+some of the more common tags:</p>
+
+<h2 id="example-yuidoc-comment-blocks">Example YUIDoc Comment Blocks</h2>
+
+<p>Here's a taste of some of the more common constructs in YUIDoc.
+For more information, refer to the "<a href="./syntax/index.html">YUIDoc Syntax Reference</a>".</p>
+
+<h3 id="example-class-block">Example Class Block</h3>
+<pre class="code prettyprint">&#x2F;**
+* This is the description for my class.
+*
+* @class MyClass
+* @constructor
+*&#x2F;</pre>
+
+<h3 id="example-method-block">Example Method Block</h3>
+<pre class="code prettyprint">&#x2F;**
+* My method description.  Like other pieces of your comment blocks, 
+* this can span multiple lines.
+*
+* @method methodName
+* @param {String} foo Argument 1
+* @param {Object} config A config object
+* @param {String} config.name The name on the config object
+* @param {Function} config.callback A callback function on the config object
+* @param {Boolean} [extra=false] Do extra, optional work
+* @return {Boolean} Returns true on success
+*&#x2F;</pre>
+
+
+<h3 id="example-property-block">Example Property Block</h3>
+<pre class="code prettyprint">&#x2F;**
+* My property description.  Like other pieces of your comment blocks, 
+* this can span multiple lines.
+* 
+* @property propertyName
+* @type {Object}
+* @default &quot;foo&quot;
+*&#x2F;</pre>
+
 </div>
             </div>
         </div>
@@ -90,13 +144,27 @@ yuidoc .&#x2F;js&#x2F;</pre>
                         <div class="bd">
                             <ul class="toc">
 <li>
-<a href="#welcome-to-yuidoc-0239">Welcome to YUIDoc 0.2.39!</a>
+<a href="#welcome-to-yuidoc-0240">Welcome to YUIDoc 0.2.40!</a>
 </li>
 <li>
-<a href="#installation">Installation</a>
+<a href="##install">Installation and Usage</a>
 </li>
 <li>
 <a href="#user-guides">User Guides</a>
+</li>
+<li>
+<a href="#example-yuidoc-comment-blocks">Example YUIDoc Comment Blocks</a>
+<ul class="toc">
+<li>
+<a href="#example-class-block">Example Class Block</a>
+</li>
+<li>
+<a href="#example-method-block">Example Method Block</a>
+</li>
+<li>
+<a href="#example-property-block">Example Property Block</a>
+</li>
+</ul>
 </li>
 </ul>
                         </div>

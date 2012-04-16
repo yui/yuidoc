@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.39</em>
+            <em>API Docs for: 0.2.40</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -749,7 +749,7 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
             var mod = this.get(CURRENT_CLASS);
             if (mod) {
                 var lastNS = this.get(&#x27;lastnamespace&#x27;);
-                if (lastNS &amp;&amp; lastNS !== value) {
+                if (lastNS &amp;&amp; lastNS !== value &amp;&amp; (value.indexOf(lastNS + &#x27;.&#x27;) !== 0)) {
                     if (this.classes[mod]) {
                         var m = this.classes[mod];
                         delete this.classes[mod];
@@ -762,7 +762,9 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
                 }
                 if (this.classes[mod]) {
                     this.classes[mod].namespace = value;
-                    
+                    if (mod === value) {
+                        return;
+                    }
                     if (mod.indexOf(value + &#x27;.&#x27;) === -1) {
                         if (mod.indexOf(&#x27;.&#x27;) === -1) {
                             var m = this.classes[mod];
