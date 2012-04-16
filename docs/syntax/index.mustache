@@ -1,37 +1,39 @@
-<p>YUIDoc parses a modified form of JSDoc tags, here we will list the most common tags used and how
-they are parsed.</p>
-
 <div class="intro">
-```
-/**
-* This is the description for my class
-* @class MyClass
-* @constructor
-*/
+    <p>YUIDoc's syntax should be familar if you've used 
+    Javadoc, JSDoc, Doxygen, or most other documentation generator tools. 
+    YUIDoc relies on <dfn>tags</dfn> such as `@param` or `@return` embedded in comments blocks 
+    that start with `/**` and end with `*/`. 
+    It includes a small number of tags for documenting specific YUI features, 
+    but most tags are generic enough to use with any object-oriented language.</p>
 
-/**
-* My method description.  Like other pieces of your comment blocks, 
-* this can span multiple lines.
-* @method methodName
-* @param {String} foo Argument 1
-* @param {Object} config A config object
-* @param {String} config.name The name on the config object
-* @param {Function} config.callback A callback function on the config object
-* @param {Boolean} [extra=false] Do extra, optional work
-* @return {Boolean} Returns true on success
-*/
-
-/**
-* My property description.  Like other pieces of your comment blocks, 
-* this can span multiple lines.
-* @property propertyName
-* @type {Object}
-*/
-```
+    <p><b>IMPORTANT:</b> YUIDoc only parses YUIDoc comment blocks, not source code.
+    That this keeps YUIDoc relatively simple and light, 
+    and enables YUIDoc to be language agnostic. 
+    However, it also means you must declare everything to YUIDoc explicitly.
+    YUIDoc cannot determine that a code snippet is
+    a "method" or "class" until you add a comment block
+    and explicitly tag it as such. 
+    A corollary is that YUIDoc will never generate empty, "stub" doc entries
+    for API members that lack comment blocks.</p>
 </div>
 
+<h2>Basic Requirements</h2>
 
-<h2>Primary Tags</h2>
+<p>A given comment block must contain one (and only one) 
+<a href="#primary-tags">primary tag</a> such as `@class` or `@method`,
+and zero or more <a href="#secondary-tag">secondary tags</a>
+such as `@param`, `@type`, and `@extends`. 
+Some secondary tags can be used in any comment block, 
+while others only make sense alongside a particular primary tag.</p>
+
+<p>A source tree must contain at least one comment block with a `@module` tag.</p>
+
+<p>Each module must have at least one comment block with a `@class` tag.</p>
+
+<p>Each class may then have zero or more comment blocks with 
+an `attribute`, `@class`, `@event`, `@method`, or `@property` tag.</p>
+
+<h2 id="primary-tags">Primary Tags</h2>
 <p>Each comment block must have one (and only one) of the following tags</p>
 
 <table>
@@ -51,7 +53,23 @@ Provides the base Widget class...
 **/
 ```
     </td>
-    <td>There must be one module per source tree. By convention, put your module declaration at the top of the file that contains the main class for your module.</td>
+    <td>
+        <p>Indicates that the block describes a group of related classes. 
+        For example, YUI's `app` module includes classes such as `App.Base`, `Model`, and `Router`.
+        You can optionally break modules up into submodules.
+        
+        <p>YUIDoc requires you to provide at least one module per source tree. 
+        Since there isn't always an obvious place to insert module documentation in JavaScript source, 
+        the convention is to declare your module at the top of the file that contains your module's "primary" or "base" class.</p>
+
+        <p>
+            See also: 
+            <a href="#class">`@class`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#main">`@main`</a>,
+            <a href="#submodule">`@submodule`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="class">
     <td>`class`</td>
@@ -66,8 +84,35 @@ A utility that brokers HTTP requests...
 function IO (config) { 
 ```
     </td>
-    <td>The string identifying the functional class on its parent object; 
-        for example, the class for `Y.DD.Drag` would be `Drag` (and its `@namespace` would be `DD`).</td>
+    <td>
+        <p>Indicates that the block describes a class.
+        In JavaScript, this is generally an object with a constructor function. 
+        The value of `@class` should be the string that identifies the functional class on its parent object. 
+        For example, the `@class` for `Y.DD.Drag` would be `Drag` 
+        (and its <a href="#@namespace">`@namespace`</a> would be `DD`).</p>
+        
+        <p>YUIDoc expects methods, properties, attributes, and events to belong to a class, 
+        so in general you must provide at least one class for each module in your source tree. 
+        A `@class` block should reside just above the class's constructor function,
+        and above all methods, events, properties, and attributes that belong to the class.</p>
+
+        <p>A <a href="#class">`@class`</a> tag should be paired with 
+        either a `@constructor` tag or a `@static` tag.</p> 
+
+        <p>
+            See also: 
+            <a href="#constructor">`@constructor`</a>,
+            <a href="#extends">`@extends`</a>,
+            <a href="#extensionfor">`@extensionfor`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#module">`@module`</a>,
+            <a href="#namespace">`@namespace`</a>,
+            <a href="#static">`@static`</a>,
+            <a href="#uses">`@uses`</a>.
+        </p>
+    </td>
+
+    </td>
 </tr>
 <tr id="method">
     <td>`method`</td>
@@ -82,7 +127,29 @@ Returns this model's attributes as...
 toJSON: function () { 
 ```
     </td>
-    <td>The name of a method on the current class.</td>
+    <td>
+        <p>Indicates that the block describes a method for the current class.
+        By default, the "current" class is the last class that YUIDoc parsed, but
+        you can reset this with the <a href="#for">`@for`</a> tag.</p>
+
+        <p>A `@method` block should always reside directly above the method's definition.
+        At a minimum, you should also document any 
+        parameters (<a href="#param">`@param`</a>) and
+        return values (<a href="#return">`@return`</a>).</p>
+
+        <p>
+            See also: 
+            <a href="#chainable">`@chainable`</a>,
+            <a href="#class">`@class`</a>,
+            <a href="#constructor">`@constructor`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#param">`@param`</a>,
+            <a href="#return">`@return`</a>,
+            <a href="#static">`@static`</a>.
+        </p>
+    </td>
+
+    </td>
 </tr>
 <tr id="event">
     <td>`event`</td>
@@ -97,9 +164,28 @@ Fired when an error occurs...
 var EVT_ERROR = 'error',
 ```
     </td>
-    <td>In YUI, events are `Custom Events` fired off programmatically at interesting moments in
-    a component's execution. The event tag is similar to method, but there is no return tag and i
-    ts params are arguments passed to the event listener.</td>
+    <td>
+        <p>Indicates that the block describes a custom event that the class can fire 
+        at some interesting moment of code execution. 
+        An `@event` block is somewhat similar to a <a href="#param">`@method`</a> block, 
+        except that <a href="#return">`@return`</a> is irrelevant, and  
+        <a href="#param">`@param`</a> is used to describe properties hanging off 
+        the event object that callbacks listening for the event receive. </p>
+
+        <p>Ideally, an `@event` block should reside above the code that defines the event, 
+        even if that code is just a simple string declaration.
+        If you find that your `@event` block is "floating in space,"
+        you should at least place it underneath the class that owns the event, 
+        grouped with any other events that the class can fire.</p>
+        
+        <p>
+            See also: 
+            <a href="#bubbles">`@bubbles`</a>,
+            <a href="#class">`@class`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#param">`@param`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="property">
     <td>`property`</td>
@@ -115,11 +201,66 @@ Template for this view's container...
 containerTemplate: '<div/>',
 ```
     </td>
-    <td>The name of a property on the current class.</td>
+    <td>
+        <p>Indicates that the block describes a property belonging to the current class.</p>
+
+        <p>As with methods, a `@property` block should always reside 
+        directly above the point where the property is defined.
+        At a minimum, you should also provide the property's `@type`, 
+        even if the value is `"any"` or `"mixed"`.</p>
+
+        <p>
+            See also: 
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#class">`@class`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#type">`@type`</a>.
+        </p>
+    </td>
+</tr>
+<tr id="attribute">
+    <td>`attribute`</td>
+    <td>
+```
+/**
+* Indicates whether this Widget
+* has been rendered...
+*
+* @attribute rendered
+* @readOnly
+* @default false
+* @type boolean
+*/
+ATTRS[RENDERED] = {
+```
+    </td>
+    <td>
+        <p>[YUI-specific] Indicates that the block describes a managed configuration attribute.  
+        An attribute is an object created and managed by the YUI
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html">`Attribute` API</a>.
+        It is a kind of "super-property", with getters, setters, and other nifty features, 
+        including the ability to automatically fire change events.</p>
+
+        <p>An `@attribute` block should reside directly above the definition of the attribute,
+        whether that is inside a `Y.Base` object's `ATTRS` property or elsewhere.
+        Note that if your `yuidoc.json` file sets `attributesEmit` to `true`, 
+        YUI will automatically generate documentation for the attribute's change events throughout the source tree, 
+        with no extra YUIDoc comments needed from you.</p>
+
+        <p>
+            See also: 
+            <a href="#property">`@property`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#class">`@class`</a>,
+            <a href="#for">`@for`</a>,
+            <a href="#type">`@type`</a>.
+        </p>
+    </td>
 </tr>
 </table>
 
-<h2>Secondary tags</h2>
+<h2 id="secondary-tags">Secondary tags</h2>
 <p>
     After choosing one of the five primary tags, you can further document a module, 
     class, method, event or property with one or more of the following secondary tags.
@@ -140,10 +281,22 @@ containerTemplate: '<div/>',
 **/
 ```
     </td>
-    <td>YUIDoc supports the notion that a module is a submodule of a parent module. For 
-    example, in YUI 3 `anim-scroll` is a submodule of anim. A submodule encompasses a 
-    subset of the parent module's functionality. To use submodule designation, provide 
-    the parent module's name as the module property and the submodule's name in the submodule property.
+    <td>
+        <p>Specifies that the module is actually a submodule of some parent module. 
+        For example, the `app-transitions` module is a submodule of the larger `app` module.</p>
+
+        <p>In YUI, submodules enable you to make very fine-grained choices about loading code.
+        For example, the `foo` module might have a minimal `foo-core` or `foo-base` submodule
+        that supplies `foo`'s basic functionality,
+        plus additional `foo-*` modules that carry optional features.
+        Using the YUI Loader, you can choose to load just `foo-core`, 
+        `foo-core` plus a couple of extra modules, 
+        or the entire `foo` "rollup".</p> 
+
+        <p>
+            See also:
+            <a href="#module">`@module`</a>.
+        </p>
     </td>
 </tr>
 <tr id="namespace">
@@ -155,9 +308,21 @@ containerTemplate: '<div/>',
 **/
 ```
     </td>
-    <td>While it is optional to provide a namespace, it is recommended. This lets you describe 
-    your class just with the name: For example, `Y.DD.Drag` has a namespace of `Y.DD`
-    and a class of `Drag`.</td>
+    <td>
+        <p>Specifies a class's namespace.
+        The `@namespace` should <em>not</em> include the "root" or "global" object 
+        that your entire library hangs off of. 
+        For example, `Y.DD.Drag` has 
+        a <a href="#class">`@class`</a> of `Drag`
+        and a `@namespace` of `DD`, not `Y.DD`.</p> 
+
+        <p>Supplying a `@namespace` enables you to refer to the class in YUIDoc using just the simple class name.</p>
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="extends">
     <td>`extends`</td>
@@ -169,9 +334,24 @@ containerTemplate: '<div/>',
 @extends Base
 **/
 ```
-    </td>
-    <td>Sets up an inheritance relationship between the current class and a parent class; 
-    API docs will show and link to items inherited from the parent class.</td>
+   </td>
+   <td>
+        <p>Specifies that the class inherits members from a parent class, 
+        perhaps using <a href="http://yuilibrary.com/yui/docs/api/classes/YUI.html#method_extend">`Y.extend()`</a>, 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Base.html#method_create">`Y.Base.create()`</a>,
+        or similar methods.
+        YUIDoc will generate API documentation for 
+        methods, properties, events, and attributes inherited from the parent class,
+        and link back to the parent class's documentation.
+        In the default YUIDoc theme, users can toggle whether inherited members should display.</p>
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#extensionfor">`@extensionfor`</a>,
+            <a href="#uses">`@uses`</a>.
+        </p>
+   </td>
 </tr>
 <tr id="config">
     <td>`config`</td>
@@ -183,31 +363,11 @@ containerTemplate: '<div/>',
 **/
 ```
     </td>
-    <td>A config is a managed configuration attribute. In YUI parlance, this is typically
-    an attribute created and managed with the Config class (part of the Container Family).</td>
-</tr>
-<tr id="attribute">
-    <td>`attribute`</td>
     <td>
-```
-/**
-* Indicates whether this Widget
-* has been rendered...
-*
-* @attribute rendered
-* @readOnly
-* @default false
-* @type boolean
-*/
-ATTRS[RENDERED] = {
-```
-    </td>
-    <td>An attribute is a managed configuration attribute. In YUI parlance, this is 
-    typically an attribute created and managed with AttributeProvider 
-    (part of the [YUI Element Utility][[yui-element]]). An attribute is similar
-    to a config, but YUIDoc will autogenerate documentation for the change events 
-    associated with the attribute as provided by Element. (Note: Unless you're using 
-    YUI and referring to an attribute managed by AttributeProvider, you should avoid using this tag.)
+        <p>[YUI-specific] Alias for <a href="#attribute">`@attribute`</a>. 
+        In older versions of YUI, `@config` was a slightly different take on attributes, 
+        but the two concepts have merged.  
+        Modern YUIDoc comments should use `@attribute` instead.</p>
     </td>
 </tr>
 <tr id="constructor">
@@ -220,7 +380,17 @@ ATTRS[RENDERED] = {
 **/
 ```
     </td>
-    <td>The presence of this tag (which requires no description) indicates that this class is instantiable.</td>
+    <td>
+        <p>Indicates that the class is instantiable
+        (you can use it by calling `var foo = new Foo();`).
+        A <a href="#class">`@class`</a> tag should be paired with 
+        either a `@constructor` tag or a `@static` tag.</p> 
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#static">`@static`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="static">
     <td>`static`</td>
@@ -236,15 +406,34 @@ YUI user agent detection...
 
 ```
     </td>
-    <td>If a class does not have a constructor, then the static tag should be present to signal 
-    that it is a static class.</td>
+    <td>
+        <p>Indicates that the method or class is static:</p> 
+        <ul>
+            <li>For methods, indicates that the method is meant to be 
+            called without instantiating the class: 
+            `var node = Y.Node.create('<div/>');`</li>
+            <li>For classes, indicates that you should not 
+            instantiate the class with `new`. 
+            You can call all of the class's methods statically.
+        </ul>    
+        <p>A <a href="#class">`@class`</a> tag should be paired with 
+        either a `@constructor` tag or a `@static` tag.</p> 
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#constructor">`@constructor`</a>,
+            <a href="#method">`@method`</a>.
+        </p>
+    </td>
+</tr>
 </tr>
 <tr id="final">
     <td>`final`</td>
     <td>
 ```
 /**
-Identifies state changes originating...
+Identifies state changes 
+originating from...
 
 @property SRC_REPLACE
 @type String
@@ -253,33 +442,148 @@ Identifies state changes originating...
 **/
 ```
     </td>
-    <td>For constants and for read-only configs and attributes.</td>
+    <td>
+        <p>Indicates that the property or attribute is a constant and should not be changed.</p>
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#property">`@property`</a>,
+            <a href="#readOnly">`@readOnly`</a>,
+            <a href="#writeOnce">`@writeOnce`</a>.
+        </p>
+    </td>
+</tr>
+<tr id="readOnly">
+    <td>`readOnly`</td>
+    <td>
+```
+/**
+The current default button
+as configured through...
+
+@attribute defaultButton
+@type Node
+@default null
+@readOnly
+**/
+```
+    </td>
+    <td>
+        <p>[YUI-specific] Indicates that the attribute is configured with the 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html#method_addAttr">`readOnly`</a> property
+        and cannot be changed by calling the 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html#method_set">`set()`</a> method.
+        Read-only attributes should always document their <a href="#default">`@default`</a> value.</p>
+        
+        <p>Sometimes used with properties, as an alias for <a href="#final">`@final`</a>.</p>
+
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#final">`@final`</a>,
+            <a href="#property">`@property`</a>,
+            <a href="#writeOnce">`@writeOnce`</a>.
+        </p>
+    </td>
+</tr>
+<tr id="writeOnce">
+    <td>`writeOnce`</td>
+    <td>
+```
+/**
+Diameter of the circular 
+background object. Other 
+objects scale accordingly.
+Set this only before 
+rendering.
+
+@attribute diameter
+@type {Number} number of px 
+  in diameter
+@default 100
+@writeOnce
+**/
+```
+    </td>
+    <td>
+        <p>[YUI-specific] Indicates that the attribute is configured with the 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html#method_addAttr">`writeOnce`</a> property
+        and can only be set once --
+        by applying a <a href="#default">`@default`</a>, 
+        by setting the value in the constructior, 
+        or by calling the 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html#method_set">`set()`</a> method
+        for the first time.</p>
+        
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#final">`@final`</a>,
+            <a href="#readOnly">`@readOnly`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="param">
     <td>`*param`</td>
     <td>
 ```
 /**
-@param {String} name Attribute name 
-   or object property path.
+@param {String} name An 
+  Attribute name or 
+  object property path.
 **/
 ```
 
 ```
 /**
-@param {Object} [options] Data to be 
-    mixed into the event facade of the
-    `change` event(s) for these 
-    attributes.
-  @param {Boolean} [options.silent=false] 
-      If `true`, no `change` event will 
-      be fired.
+@param {Object} [options] Data 
+  to be mixed into the event 
+  facade of the `change` 
+  event(s) for these attributes.
+  @param {Boolean} [options.silent]
+    If `true`, no `change` event 
+    will be fired.
 **/
 ```
     </td>
-    <td>Defined as `@param {type} name description` or `@param name {type} description`, params can be used 
-    with classes, methods and events.  Use `[name]` to indicate the param is optional, `name*` to
-    indicate it is a place holder for 1..n arguments, and `[name*]` for 0..n arguments.</td>
+    <td>
+        <p>Defines a parameter for an ordinary <a href="#method">`@method`</a>, 
+        a parameter for a <a href="#constructor">`@constructor`</a>
+        (generally defined inside a <a href="#class">`@class`</a> block),
+        <em>or</em> a property that resides on an <a href="#method">`@event`</a> object.
+        Can take either of the forms:</p>
+
+        <ul>
+            <li>`@param {type} name description`</li> 
+            <li>`@param name {type} description`</li>
+        </ul>
+
+        <p>The `{type}` is optional, but if you include it, 
+        you must surround it in curly braces so that YUIDoc 
+        can distinguish it from the `name`. 
+        The `name` also has optional syntax:</p>
+        <ul>
+            <li>`[name]` &mdash; optional parameter</li>
+            <li>`name=foo` &mdash; default value is foo</li>
+            <li>`name*` &mdash; placeholder for 1..n args</li>
+            <li>`[name*]` &mdash; placeholder for 0..n args</li>
+        </ul>
+
+        <p>As shown in the example, you can also nest `@param` tags. 
+        This enables you to document object parameters that 
+        have their own particular nested structure.</p> 
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#constructor">`@constructor`</a>,
+            <a href="#event">`@event`</a>,
+            <a href="#method">`@method`</a>,
+            <a href="#return">`@return`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="return">
     <td>`return`</td>
@@ -291,29 +595,73 @@ Identifies state changes originating...
 **/
 ```
     </td>
-    <td>Defined as `@return {type} description`.</td>
+    <td>
+        <p>Specifies a method's return value. 
+        A `@return` tag has the structure `@return {type} description`.
+        The `{type}` is optional.</p>
+
+        <p>If a return value is an object with a complex structure,
+        you can <a href="#param">nest `@param` tags</a> 
+        underneath the `@return` value.</p>
+
+        <p>
+            See also:
+            <a href="#method">`@method`</a>,
+            <a href="#param">`@param`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="for">
     <td>`for`</td>
     <td>
 ```
 /**  
-An inner class  
+Some inner class 'foo'...  
+
 @class foo  
 @for OuterClass  
 **/
 ```
-    </td>
-    <td>Used to define an inner class:
-After the class is done, you need to inform the parser to start working on the outer class again:
-
 ```
 /**  
-Another method for the outer class  
+Some method 'bar' 
+disconnected from 
+its class 'FarawayClass'...
+
 @method bar  
-@for OuterClass  
+@for FarawayClass  
 **/
 ```
+    </td>
+    <td>
+        <p>Sets YUIDoc's class scope.</p> 
+
+        <p>Using `@for OuterClass` in a `@class` block creates an inner class.
+        YUIDoc will document methods and other items that follow that block 
+        as belonging to the inner class, but the inner class is correctly 
+        shown as belonging to its parent outer class.</p>
+
+        <p>To close an inner class, add `@for OuterClass` (again!) 
+        to the <em>last</em>
+        `@attribute`, `@event`, `@method`, or `@property` block 
+        in the inner class. 
+        This resets the YUIDoc parser to use `OuterClass` 
+        as the owner of subsequent items.</p>
+
+        <p>If you are not inside an inner class, 
+        using `@for FarawayClass` 
+        in an `@attribute`, `@event`, `@method`, or `@property` block
+        will attach all that item and subsequent items 
+        to the specified faraway class. 
+        This is useful when you have a module that attaches extra
+        methods to a class's prototype, 
+        but the main class definition is in some entirely different file.</p>
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#method">`@method`</a>.
+        </p>
 </td>
 </tr>
 <tr id="type">
@@ -330,7 +678,19 @@ Another method for the outer class
 **/
 ```
     </td>
-    <td>For properties, configs and attributes. You can specify a single type, a list of legal types separated by vertical bars, or if you are lazy, "mixed".</td>
+    <td>
+        <p>Specifies the type of a property or attribute.  
+        You can specify a single type, 
+        a list of legal types separated by vertical bars, 
+        or if you are lazy, "any" or "mixed".</p>
+
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#property">`@property`</a>.
+        <p>
+    </td>
 </tr>
 <tr id="private">
     <td>`private`</td>
@@ -345,8 +705,18 @@ instance used to make the queries.
 **/
 ```
     </td>
-    <td>Privates by default are suppressed from the API docs. All methods and properties are 
-    assumed to be public unless marked as private or protected.</td>
+    <td>
+        <p>Indicates a member that should not be used externally. 
+        Although YUIDoc does not generate documentation for `@private` blocks, 
+        YUIDoc comments are still a nice, structured way to document internals in source code.
+        All methods and properties are assumed to be public 
+        unless marked as private or protected.</p>
+
+        <p>
+            See also:
+            <a href="#protected">`@protected`</a>.
+        <p>
+    </td>
 </tr>
 <tr id="protected">
     <td>`protected`</td>
@@ -361,7 +731,17 @@ the DOM and ...
 **/
 ```
     </td>
-    <td>Used to designate members that should not be modified by implementers unless they are creating a subclass.</td>
+    <td>
+        <p>Indicates a member that should not be modified 
+        by implementers unless they are creating a subclass.
+        All methods and properties are assumed to be public 
+        unless marked as private or protected.</p>
+
+        <p>
+            See also:
+            <a href="#private">`@private`</a>.
+        <p>
+    </td>
 </tr>
 <tr id="requires">
     <td>`requires`</td>
@@ -373,7 +753,18 @@ the DOM and ...
 **/
 ```
     </td>
-    <td>Used to identify dependencies in the module declaration.</td>
+    <td>
+        <p>[Uncommon] Identifies one or more dependencies in the module declaration.
+        Can be a single module name or a comma-separated list.</p>
+
+        <p>
+            See also:
+            <a href="#extends">`@extends`</a>,
+            <a href="#extensionfor">`@extensionfor`</a>,
+            <a href="#module">`@module`</a>,
+            <a href="#submodule">`@submodule`</a>.
+        <p>
+    </td>
 </tr>
 <tr id="default">
     <td>`default`</td>
@@ -384,7 +775,18 @@ the DOM and ...
 **/
 ```
     </td>
-    <td>The default value of a property, config or attribute.</td>
+    <td>
+        <p>Specifies the default value of a property or attribute.
+        Should be paired with a <a href="#type">`@type`</a> tag.</p>
+
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#property">`@property`</a>,
+            <a href="#type">`@type`</a>.
+        <p>
+    </td>
+    </td>
 </tr>
 <tr id="uses">
     <td>`*uses`</td>
@@ -400,8 +802,29 @@ the DOM and ...
 **/
 ```
     </td>
-    <td>For classes that use some kind of Object augmentation. If this object is defined and YUIDoc
-    parses it, the properties from the "used" object will be displayed in the output.</td>
+    <td>
+        <p>Specifies that the class has some other class's 
+        properties, methods, and other members mixed into its prototype, 
+        perhaps using <a href="http://yuilibrary.com/yui/docs/api/classes/YUI.html#method_mix">`Y.mix()`</a>, 
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Base.html#method_mix">`Y.Base.mix()`</a>,
+        <a href="http://yuilibrary.com/yui/docs/api/classes/Base.html#method_create">`Y.Base.create()`</a>,
+        or similar methods.
+        YUIDoc will generate API documentation for 
+        methods, properties, events, and attributes mixed into the parent class,
+        and link back to the parent class's documentation.
+        In the default YUIDoc theme, users can toggle whether mixed in members should display.</p>
+        
+        <p>Note that `@uses` does not indicate inheritance.
+        To establish an "is a" relationship, use <a href="#extends">`@extends`</a>.
+        Unlike `@extends`, you can provide multiple `@uses` tags. </p>
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#extends">`@extends`</a>,
+            <a href="#extensionfor">`@extensionfor`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="example">
     <td>`*example`</td>
@@ -413,8 +836,16 @@ the DOM and ...
 **/
 ```
     </td>
-    <td>Items with this tag are automatically parsed with the Markdown and Code parser and 
-    displayed below the item. <em>The code is not included raw, only in highlight form</em></td>
+    <td>
+        <p>Indicates a block of example code 
+        to be automatically parsed and displayed with 
+        YUIDoc's Markdown and code highlighting parser.
+        Your code sample should be indented beneath the `@example` tag.
+        YUIDoc displays all examples highlighted with 
+        `<span>` elements and other markup.</p>
+
+        <p>A block may include multiple `@example` tags.</p>
+    </td>
 </tr>
 <tr id="chainable">
     <td>`chainable`</td>
@@ -432,7 +863,14 @@ render: function () {
 **/
 ```
     </td>
-    <td>Method returns itself so you can chain it with other calls on this object.</td>
+    <td>
+        <p>Indicates that a method returns `this` (the parent object), 
+        enabling you to chain it with other calls on the same object.</p>
+
+        <p>
+            See also:
+            <a href="#method">`@method`</a>.
+        </p>
 </tr>
 <tr id="deprecated">
     <td>`deprecated`</td>
@@ -441,11 +879,23 @@ render: function () {
 /**
 @property locale
 @type String
-@deprecated Use `config.lang` instead.
+@deprecated Use `config.lang` 
+  instead.
 **/
 ```
     </td>
-    <td>Item is deprecated and will be removed in a future release.</td>
+    <td>
+        <p>Indicates that the module, class, or member is deprecated 
+        and will be removed in a future release.
+        You can optionally supply a string message 
+        describing what to use instead.</p>
+
+        <p>
+            See also:
+            <a href="#beta">`@beta`</a>,
+            <a href="#since">`@since`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="since">
     <td>`since`</td>
@@ -456,7 +906,16 @@ render: function () {
 **/
 ```
     </td>
-    <td>Item was added to the source in this version.</td>
+    <td>
+        <p>Indicates that the module, class, or member 
+        was added to the source at the specified version.</p>
+
+        <p>
+            See also:
+            <a href="#beta">`@beta`</a>,
+            <a href="#deprecated">`@deprecated`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="async">
     <td>`async`</td>
@@ -467,7 +926,10 @@ render: function () {
 **/
 ```
     </td>
-    <td>Method is async and requires a callback. Uncommon.</td>
+    <td>
+        <p>[Uncommon] Indicates that the method is 
+        asynchronous and requires a callback.</p>
+    </td>
 </tr>
 <tr id="beta">
     <td>`beta`</td>
@@ -478,7 +940,16 @@ render: function () {
 **/
 ```
     </td>
-    <td>Item should be marked as in beta. Uncommon.</td>
+    <td>
+        <p>Indicates that the method, class, or member is in beta 
+        and might undergo backwards-incompatible changes in the near future.</p>
+
+        <p>
+            See also:
+            <a href="#deprecated">`@deprecated`</a>,
+            <a href="#since">`@since`</a>.
+        </p>
+    </td>
 </tr>
 <tr id="bubbles">
     <td>`bubbles`</td>
@@ -492,9 +963,18 @@ Handles the mouseup DOM event...
 **/
 ```
     </td>
-    <td>Event bubbles to another target</td>
+    <td>
+        <p>Specifies the default target that a custom event bubbles to.
+        This is a useful tag if your API has a "manager" class that 
+        is responsible for capturing a set of related custom events.</p>
+
+        <p>
+            See also:
+            <a href="#event">`@event`</a>.
+        </p>
+    </td>
 </tr>
-<tr id="extension">
+<tr id="extensionfor">
     <td>`extension`<br>`extensionfor`<br>`extension_for`</td>
     <td>
 ```
@@ -504,10 +984,28 @@ Handles the mouseup DOM event...
 **/
 ```
     </td>
-    <td>Item is an extension of passed Item.</td>
+    <td>
+        <p>Indicates that the class is an extension object
+        designed to be optionally mixed into the specified class.</p>
+
+        <p>`@extensionfor` is <em>almost</em> the inverse of <a href="#uses">`@uses`</a>.
+        The key difference is that `@uses` means, 
+        "this class <em>always</em> has the 'used' class mixed into its prototype," 
+        while `@extensionfor` means, 
+        "this class <em>can</em> be mixed into the 'extensionfor' class, 
+        but it isn't baked in by default."</p>
+
+        <p>
+            See also:
+            <a href="#class">`@class`</a>,
+            <a href="#extends">`@extends`</a>,
+            <a href="#uses">`@uses`</a>.
+        </p>
+    </td>
 </tr>
 </table>
-<em><strong>*</strong> Denotes that it supports multiple tags in the same doc block.</em>
+
+<p>A <strong>*</strong> indicates that you can supply multiple tags of that type in the same block.</p>
 
 <h3>Parsed but not in the theme yet</h3>
 <p>
@@ -605,13 +1103,10 @@ This is what the above would render to:
 ```
 </div>
 
-<h3>Crosslinking</h3>
+<h3>Cross-referencing Modules and Classes</h3>
 
-<p>
-    We have also added a blockHelper in Handlebars that will allow you to "cross-link" your documentation together.
-</p>
-
-<p></p>
+<p>YUIDoc also includes a Handlebars `blockHelper` that enables you to 
+easily cross-reference classes and modules. For example, if you include:</p>
 
 ```
 /**
@@ -622,11 +1117,12 @@ This module also uses \{{#crossLink Foo}}, where Foo is a class or module name.
 ```
 
 <p>
-This will generate an internal link to the other's API document.
+This automatically generates an internal link to Foo's API reference page:
 </p>
 
 ```
 <p>
-This module also uses <a href="../classes/Foo.html" class="crosslink">Foo</a>, where Foo is a class or module name.
+This module also uses <a href="../classes/Foo.html" class="crosslink">Foo</a>, 
+where Foo is a class or module name.
 </p>
 ```
