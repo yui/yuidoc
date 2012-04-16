@@ -301,6 +301,13 @@ suite.add(new YUITest.TestCase({
         item = this.findByName('_positionChangeHandler', 'Axis');
         Assert.isObject(item, 'failed to find item');
         Assert.areEqual(1, item.params.length, 'Failed to replace parma with params');
+    },
+    'test: double namespaces': function() {
+        var cls = this.data.classes;
+        var mod_bad = cls['Foo.Bar.Foo.Bar'];
+        var mod_good = cls['Foo.Bar'];
+        Assert.isUndefined(mod_bad, 'Found class Foo.Bar.Foo.Bar');
+        Assert.isObject(mod_good, 'Failed to parse Foo.Bar namespace');
     }
 }));
 
