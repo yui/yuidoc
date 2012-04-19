@@ -1,7 +1,7 @@
 {
     "name"       : "args",
-    "displayName": "Command Line Arguments",
-    "description": "Command Line Arguments",
+    "displayName": "Command Line Arguments and Usage",
+    "description": "Command Line Arguments and Usage",
     "author"     : "davglass",
     "hideTableOfContents": "true",
     "projectBase": "../"
