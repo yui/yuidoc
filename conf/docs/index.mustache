@@ -7,7 +7,7 @@
 
     <ul>
         <li><b>Live previews.</b> YUIDoc includes a 
-        <a href="./server/index.html">standalone doc server</a>, 
+        <a href="args/index.html#server">standalone doc server</a>, 
         making it trivial to preview your docs as you write.</li>
         <li><b>Modern markup.</b> YUIDoc's generated documentation is an
         <a href="http://yuilibrary.com/yui/docs/api/classes/Model.html">attractive, 
@@ -31,25 +31,22 @@
 </ol>
 
 <p>That's it! For more information about running the `yuidoc` commandline tool,
-refer to "<a href="./use/index.html">Using YUIDoc</a>".</p>
+refer to "<a href="args/index.html">Using YUIDoc</a>".</p>
 
 <h2>User Guides</h2>
 
 <ul>
   {{#components}}
     {{#meta}}
-        <li><a href="{{name}}/index.html">{{displayName}}</a></li>
+    <li><a href="{{name}}/index.html">{{displayName}}</a> &mdash; {{description}}</li>
     {{/meta}}
   {{/components}}
 </ul>
 
-<p>YUIDoc parses a modified form of JSDoc tags. 
-Here are some example YUIDoc comment blocks with
-some of the more common tags:</p>
-
 <h2>Example YUIDoc Comment Blocks</h2>
 
-<p>Here's a taste of some of the more common constructs in YUIDoc.
+<p>YUIDoc parses a modified form of JSDoc tags. 
+This section provides a taste of some of the more common constructs in YUIDoc.
 For more information, refer to the "<a href="./syntax/index.html">YUIDoc Syntax Reference</a>".</p>
 
 <h3>Example Class Block</h3>
