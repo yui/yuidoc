@@ -889,8 +889,14 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 stack = new Y.Parallel();
             stack.html = [];
             stack.view = [];
-
-            Y.log(&#x27;Rendering and writing &#x27; + Object.keys(self.data.modules).length + &#x27; modules pages.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
+            
+            var counter = 0;
+                Object.keys(self.data.modules).forEach(function(k) {
+                    if (!self.data.modules[k].external) {
+                        counter++;
+                    }
+                });
+            Y.log(&#x27;Rendering and writing &#x27; + counter + &#x27; modules pages.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
             Y.each(self.data.modules, function(v) {
                 if (v.external) { return }
                 self.renderModule(function(html, view) {
@@ -1230,7 +1236,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             stack.html = [];
             stack.view = [];
 
-            Y.log(&#x27;Rendering and writing &#x27; + Object.keys(self.data.classes).length + &#x27; class pages.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
+            var counter = 0;
+                Object.keys(self.data.classes).forEach(function(k) {
+                    if (!self.data.classes[k].external) {
+                        counter++;
+                    }
+                });
+            Y.log(&#x27;Rendering and writing &#x27; + counter + &#x27; class pages.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
             Y.each(self.data.classes, function(v) {
                 if (v.external) { return }
                 self.renderClass(stack.add(function(html, view) {
@@ -1282,7 +1294,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             stack.html = [];
             stack.view = [];
 
-            Y.log(&#x27;Rendering and writing &#x27; + Object.keys(self.data.files).length + &#x27; source files.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
+            var counter = 0;
+                Object.keys(self.data.files).forEach(function(k) {
+                    if (!self.data.files[k].external) {
+                        counter++;
+                    }
+                });
+            Y.log(&#x27;Rendering and writing &#x27; + counter + &#x27; source files.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
             Y.each(self.data.files, function(v) {
                 if (v.external) { return }
                 self.renderFile(stack.add(function(html, view, data) {

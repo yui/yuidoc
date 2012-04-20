@@ -639,7 +639,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1119,
+            "line": 1125,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -655,7 +655,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1148,
+            "line": 1160,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -680,7 +680,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1171,
+            "line": 1183,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -696,7 +696,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1275,
+            "line": 1293,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -716,7 +716,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1288,
+            "line": 1306,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
