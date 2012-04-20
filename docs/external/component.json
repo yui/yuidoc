@@ -1,7 +1,0 @@
-{
-    "name"       : "external",
-    "displayName": "External Data",
-    "description": "External Data",
-    "author"     : "davglass",
-    "projectBase": "../"
-}
