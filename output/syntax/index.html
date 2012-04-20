@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>YUIDoc Syntax</title>
+    <title>YUIDoc Syntax Reference</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Maven+Pro:400,700">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -12,11 +12,11 @@
 <body>
 
 <div id="doc">
-    <h1>YUIDoc Syntax</h1>
+    <h1>YUIDoc Syntax Reference</h1>
     
-    <p>
-        <a href="../">Main Page</a> <a name="Arrow">&gt;</a> <a href="../syntax/index.html">YUIDoc Syntax</a>
-    </p>
+    <div class="intro">
+        <a href="../">Main Page</a> <a name="Arrow">&gt;</a> <a href="../syntax/index.html">YUIDoc Syntax Reference</a>
+    </div>
     
     
         <a href="#toc" class="jump">Jump to Table of Contents</a>
@@ -34,12 +34,10 @@
     but most tags are generic enough to use with any object-oriented language.</p>
 
     <p><b>IMPORTANT:</b> YUIDoc only parses YUIDoc comment blocks, not source code.
-    That this keeps YUIDoc relatively simple and light, 
-    and enables YUIDoc to be language agnostic. 
+    This keeps YUIDoc relatively simple and language agnostic. 
     However, it also means you must declare everything to YUIDoc explicitly.
-    YUIDoc cannot determine that a code snippet is
-    a "method" or "class" until you add a comment block
-    and explicitly tag it as such. 
+    A code snippet will not display as a "method" or "class" 
+    until you describe it as such. 
     A corollary is that YUIDoc will never generate empty, "stub" doc entries
     for API members that lack comment blocks.</p>
 </div>
