@@ -14,9 +14,9 @@
 <div id="doc">
     <h1>{{title}}</h1>
     {{#if description}}
-    <p>
-        <a href="{{projectBase}}">Main Page</a> <a name="Arrow">&gt;</a> <a href="{{projectBase}}{{name}}/index.html">{{description}}</a>
-    </p>
+    <div class="intro">
+        <a href="{{projectBase}}">Main Page</a> <a name="Arrow">&gt;</a> <a href="{{projectBase}}{{name}}/index.html">{{title}}</a>
+    </div>
     {{/if}}
     {{^hideTableOfContents}}
         <a href="#toc" class="jump">Jump to Table of Contents</a>
