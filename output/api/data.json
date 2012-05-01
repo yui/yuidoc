@@ -2,7 +2,7 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.2.41",
+        "version": "0.2.42",
         "url": "http://yuilibrary.com/projects/yuidoc",
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
@@ -1391,6 +1391,18 @@
         {
             "file": "lib/server.js",
             "line": 9,
+            "description": "Cache for external mixed in data.",
+            "itemtype": "property",
+            "name": "_externalData",
+            "access": "private",
+            "tagname": "",
+            "type": "Object",
+            "class": "Server",
+            "module": "server"
+        },
+        {
+            "file": "lib/server.js",
+            "line": 16,
             "description": "Middleware to parse the API docs per request",
             "itemtype": "method",
             "name": "parse",
@@ -1416,7 +1428,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 22,
+            "line": 33,
             "description": "Create the routes used to serve YUIDoc files dynamically",
             "itemtype": "method",
             "name": "routes",
@@ -1425,7 +1437,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 70,
+            "line": 81,
             "description": "`/files` endpoint",
             "itemtype": "method",
             "name": "files",
@@ -1446,7 +1458,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 90,
+            "line": 101,
             "description": "`/classes` endpoint",
             "itemtype": "method",
             "name": "clazz",
@@ -1467,7 +1479,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 103,
+            "line": 114,
             "description": "`/modules` endpoint",
             "itemtype": "method",
             "name": "modules",
@@ -1488,7 +1500,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 116,
+            "line": 127,
             "description": "`/` endpoint",
             "itemtype": "method",
             "name": "home",
@@ -1509,7 +1521,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 128,
+            "line": 139,
             "description": "Creates the Express server and prep's YUI for serving",
             "itemtype": "method",
             "name": "init",
@@ -1518,7 +1530,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 148,
+            "line": 156,
             "description": "Start the server with the supplied options.",
             "itemtype": "method",
             "name": "start",
