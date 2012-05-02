@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.42</em>
+            <em>API Docs for: 0.2.43</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -205,6 +205,9 @@ while (args.length &gt; 0) {
         default:
             if (!options.paths) {
                 options.paths = [];
+            }
+            if (v.indexOf(&#x27;-&#x27;) === 0) {
+                throw(&#x27;Unknown option: &#x27; + v);
             }
             options.paths.push(v);
     }
