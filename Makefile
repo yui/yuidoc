@@ -12,6 +12,7 @@ doc:
 
 clean:
 	rm -rRf ./output/*
+	npm update
 
 api:
 	./lib/cli.js
