@@ -1,7 +1,7 @@
 {
     "name": "yuidocjs",
     "version": "0.3.0",
-    "description": "YUI Doc, JavaScript port - This is an alpha release, official releases will be under the yuidoc project name.",
+    "description": "YUIDoc, YUI's JavaScript Documentation engine.",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/yui/yuidoc/issues" },
     "os": ["darwin", "linux", "win32"],
