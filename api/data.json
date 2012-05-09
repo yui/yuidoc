@@ -2,7 +2,7 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.2.44",
+        "version": "0.3.0",
         "url": "http://yuilibrary.com/projects/yuidoc",
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
