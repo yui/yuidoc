@@ -25,7 +25,8 @@ def main():
                            copyrighttag="Yahoo! Inc.",
                            projecturl="http://developer.yahoo.com/yui/",
                            yuiversion=False,
-                           ydn=False
+                           ydn=False,
+                           nocode=False
                            )
     optparser.add_option( "-p", "--parseroutdir",
         action="store", dest="parseroutdir", type="string",
@@ -73,6 +74,10 @@ def main():
         action="store_true", dest="ydn",
         help="Add YDN MyBlogLog intrumentation?" )
 
+    optparser.add_option( "-N", "--nocode",
+        action="store_true", dest="nocode",
+        help="Without source code?" )
+
     (opts, inputdirs) = optparser.parse_args()
 
     if len(inputdirs) > 0:
@@ -81,8 +86,8 @@ def main():
                             opts.parserfile, 
                             opts.extension,
                             opts.version,
-                            opts.yuiversion
-                            )
+                            opts.yuiversion,
+                            opts.nocode)
 
         highlighter = yuidoc_highlight.DocHighlighter( [opts.parseroutdir], 
                             opts.parseroutdir, 
@@ -99,7 +104,8 @@ def main():
                                opts.version,
                                opts.projecturl,
                                opts.ydn,
-                               opts.copyrighttag
+                               opts.copyrighttag,
+                               opts.nocode
                                )
         gen.process()
     else:
