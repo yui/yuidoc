@@ -38,7 +38,8 @@ class DocGenerator(object):
                  projectname='Yahoo! UI Library', 
                  version='', 
                  projecturl='http://developer.yahoo.com/yui/', 
-                 ydn=False, copyrighttag='Yahoo! Inc.'):
+                 ydn=False, copyrighttag='Yahoo! Inc.',
+                 nocode=False):
 
         def _mkdir(newdir):
             if os.path.isdir(newdir): pass
@@ -87,6 +88,7 @@ class DocGenerator(object):
         self.projecturl = projecturl
         self.copyrighttag = copyrighttag
         self.ydn = ydn
+        self.nocode = nocode
         self.version = version 
         self.modulename  = ""
         self.timestamp = "" # if supplied, linked script and css will have a timestamp appended to the url for cache busting
@@ -137,6 +139,7 @@ class DocGenerator(object):
             template.projecturl   = self.projecturl
             template.copyrighttag = self.copyrighttag
             template.ydn          = self.ydn
+            template.nocode       = self.nocode
             template.version      = self.version
             template.modules      = self.modules
             template.modulenames  = self.modulenames
@@ -669,11 +672,12 @@ class DocGenerator(object):
             self.write( t.cleansedmodulename + ".html", t)
 
             # class source view
-            for i in m[FILE_LIST]:
-                log.info("Generating source view for " + i)
-                self.filename = i
-                assignGlobalProperties(t)
-                self.write("%s.html" %(self.filename), t)
+            if not self.nocode:
+                for i in m[FILE_LIST]:
+                    log.info("Generating source view for " + i)
+                    self.filename = i
+                    assignGlobalProperties(t)
+                    self.write("%s.html" %(self.filename), t)
 
 
         #remove dups
@@ -753,7 +757,8 @@ def main():
                            newext=".highlighted", 
                            showprivate=False,
                            project="Yahoo! UI Library",
-                           version=""
+                           version="",
+                           nocode=False
                            )
     optparser.add_option( "-o", "--outputdir",
         action="store", dest="outputdir", type="string",
@@ -789,7 +794,9 @@ def main():
     optparser.add_option( "-y", "--ydn",
         action="store_true", dest="ydn",
         help="Add YDN MyBlogLog intrumentation?" )
-
+    optparser.add_option( "-N", "--nocode",
+        action="store_true", dest="nocode",
+        help="Without source code?" )
 
     (options, inputdirs) = optparser.parse_args()
 
@@ -803,7 +810,8 @@ def main():
                                options.version,
                                options.projecturl,
                                options.ydn,
-                               options.copyrighttag
+                               options.copyrighttag,
+                               options.nocode
                                )
         generator.process()
     else:

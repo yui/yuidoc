@@ -34,8 +34,8 @@ log = logging.getLogger('yuidoc.parse')
 
 class DocParser(object):
 
-    def __init__(self, inputdirs, outputdir, outputfile, extension, version, yuiversion):
-        
+    def __init__(self, inputdirs, outputdir, outputfile, extension, version, yuiversion, nocode):
+
         def _mkdir(newdir):
             if os.path.isdir(newdir): pass
             elif os.path.isfile(newdir):
@@ -54,10 +54,11 @@ class DocParser(object):
             content = "\n/** @%s %s \n*/\n" % (FILE_MARKER, file)
 
             # copy
-            # out = open(os.path.join(self.outputdir, file), "w")
-            out = codecs.open( os.path.join(self.outputdir, file), "w", "utf-8" )
-            out.writelines(fileStr)
-            out.close()
+            if not self.nocode:
+                # out = open(os.path.join(self.outputdir, file), "w")
+                out = codecs.open( os.path.join(self.outputdir, file), "w", "utf-8" )
+                out.writelines(fileStr)
+                out.close()
 
             return content + fileStr
 
@@ -129,6 +130,7 @@ class DocParser(object):
         self.deferredModuleFiles=[]
         self.globals={}
         self.currentGlobal=""
+        self.nocode = nocode
 
         log.info("-------------------------------------------------------")
 
@@ -854,6 +856,9 @@ def main():
     optparser.add_option( "-Y", "--yuiversion",
                           action="store", dest="yuiversion", type="string",
                           help="The version of YUI library used in the project.  This parameter applies to the output for attributes, which differs between YUI2 and YUI3." )
+    optparser.add_option( "-N", "--nocode",
+                          action="store_true", dest="nocode",
+                          help="Without source code?" )
     (opts, inputdirs) = optparser.parse_args()
     if len(inputdirs) > 0:
         docparser = DocParser( inputdirs, 
