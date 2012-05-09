@@ -25,6 +25,7 @@ Documentation
 
    * [User Guides](http://yui.github.com/yuidoc/)
    * [API Docs](http://yui.github.com/yuidoc/api/)
+   * [Support Mailing List](https://groups.google.com/forum/#!forum/yuidoc)
 
 
 Released under the YUI BSD License
