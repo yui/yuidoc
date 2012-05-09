@@ -1,0 +1,46 @@
+{
+    "name": "yuidocjs",
+    "version": "0.2.44",
+    "description": "YUI Doc, JavaScript port - This is an alpha release, official releases will be under the yuidoc project name.",
+    "author": "Dav Glass <davglass@gmail.com>",
+    "bugs": { "url" : "http://github.com/davglass/yuidocjs/issues" },
+    "os": ["darwin", "linux", "win32"],
+    "contributors": [
+        { "name": "Adam Moore", "email": "amoore@gmail.com" },
+        { "name": "Ryan Grove", "email": "ryan@wonko.com" },
+        { "name": "Eric Ferraiuolo", "email": "eferraiuolo@gmail.com" },
+        { "name": "Felipe Gasper", "email": "felipe@cpanel.net" },
+        { "name": "Evan Goer", "email": "evan@goer.org" }
+    ],
+    "engines": {
+        "node" : ">=0.4.0"
+    },
+    "main": "./lib/index",
+    "bin" : { "yuidoc" : "./lib/cli.js" },
+    "dependencies": {
+        "yui": "3.5.1",
+        "rimraf": "~2.0.0",
+        "node-markdown": "~0.1.0",
+        "minimatch": "~0.1.0",
+        "graceful-fs": "1.1.1",
+        "express": ">=2.3.0 <2.6.0"
+    },
+    "devDependencies": {
+        "yuitest": ">=0.7.3",
+        "selleck": "~0.1"
+    },
+    "scripts": {
+        "test": "make test"
+    },
+    "preferGlobal": "true",
+    "licenses":[
+        {
+            "type" : "BSD",
+            "url" : "http://yuilibrary.com/license"
+        }
+    ],
+    "repository": {
+        "type":"git",
+        "url":"http://github.com/davglass/yuidocjs.git"
+    }
+}
