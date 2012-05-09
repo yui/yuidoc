@@ -851,13 +851,17 @@ def main():
     optparser.add_option( "-v", "--version",
                           action="store", dest="version", type="string",
                           help="The version of the project" )
+    optparser.add_option( "-Y", "--yuiversion",
+                          action="store", dest="yuiversion", type="string",
+                          help="The version of YUI library used in the project.  This parameter applies to the output for attributes, which differs between YUI2 and YUI3." )
     (opts, inputdirs) = optparser.parse_args()
     if len(inputdirs) > 0:
         docparser = DocParser( inputdirs, 
                             opts.outputdir, 
                             opts.outputfile, 
                             opts.extension,
-                            opts.version
+                            opts.version,
+                            opts.yuiversion
                             )
     else:
         optparser.error("Incorrect number of arguments")
