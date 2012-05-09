@@ -1,9 +1,9 @@
 {
     "name": "yuidocjs",
-    "version": "0.2.44",
+    "version": "0.3.0",
     "description": "YUI Doc, JavaScript port - This is an alpha release, official releases will be under the yuidoc project name.",
     "author": "Dav Glass <davglass@gmail.com>",
-    "bugs": { "url" : "http://github.com/davglass/yuidocjs/issues" },
+    "bugs": { "url" : "http://github.com/yui/yuidoc/issues" },
     "os": ["darwin", "linux", "win32"],
     "contributors": [
         { "name": "Adam Moore", "email": "amoore@gmail.com" },
@@ -36,11 +36,11 @@
     "licenses":[
         {
             "type" : "BSD",
-            "url" : "http://yuilibrary.com/license"
+            "url" : "https://github.com/yui/yuidoc/blob/master/LICENSE"
         }
     ],
     "repository": {
         "type":"git",
-        "url":"http://github.com/davglass/yuidocjs.git"
+        "url":"http://github.com/yui/yuidoc.git"
     }
 }
