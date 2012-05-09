@@ -12,7 +12,7 @@ conventions like Custom Events. That said, it can be used easily and productivel
 Current Build Status
 --------------------
 
-[![Build Status](https://secure.travis-ci.org/davglass/yuidocjs.png?branch=master)](http://travis-ci.org/davglass/yuidocjs)
+[![Build Status](https://secure.travis-ci.org/yui/yuidoc.png?branch=master)](http://travis-ci.org/yui/yuidoc)
 
 Installation
 ------------
@@ -23,8 +23,8 @@ Installation
 Documentation
 -------------
 
-   * [User Guides](http://davglass.github.com/yuidocjs/)
-   * [API Docs](http://davglass.github.com/yuidocjs/api/)
+   * [User Guides](http://yui.github.com/yuidoc/)
+   * [API Docs](http://yui.github.com/yuidoc/api/)
 
 
 Released under the YUI BSD License

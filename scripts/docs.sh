@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")"
 
-out=../../yuidocjs-pages
+out=../../yuidoc-pages
 
 cd $out
 
