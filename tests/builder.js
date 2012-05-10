@@ -10,6 +10,18 @@ process.chdir(__dirname);
 
 var suite = new YUITest.TestSuite({
     name: 'Builder Test Suite',
+    findByName: function(name, cl) {
+        var items = this.data.classitems,
+            ret;
+
+        items.forEach(function(i) {
+            if (i.name === name && i.class === cl) {
+                ret = i;
+            }
+        });
+
+        return ret;
+    },
     setUp: function() {
         var test = this;
         var options = {
@@ -109,6 +121,19 @@ suite.add(new YUITest.TestCase({
             var p = path.join(__dirname, 'out', 'classes', m.name + '.html');
             Assert.isTrue(exists(p), 'Failed to render: ' + m.name + '.html');
         });
+    }
+}));
+
+suite.add(new YUITest.TestCase({
+    name: 'Builder Augmentation Tests',
+    'test: inherited methods': function() {
+        var item = suite.data.classes['mywidget.SubWidget'];
+        Assert.isObject(item, 'Failed to parse class');
+        suite.builder.renderClass(function(html, view, opts) {
+            var method = opts.meta.methods[0];
+            Assert.isObject(method, 'Failed to find inherited method');
+            Assert.isObject(method.overwritten_from, 'Failed to find overwritten data');
+        }, item);
     }
 }));
 

@@ -308,6 +308,10 @@ suite.add(new YUITest.TestCase({
         var mod_good = cls['Foo.Bar'];
         Assert.isUndefined(mod_bad, 'Found class Foo.Bar.Foo.Bar');
         Assert.isObject(mod_good, 'Failed to parse Foo.Bar namespace');
+    },
+    'test: inherited methods': function() {
+        var item = this.findByName('myMethod', 'mywidget.SubWidget');
+        Assert.isObject(item, 'Failed to parse second method');
     }
 }));
 
