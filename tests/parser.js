@@ -312,6 +312,13 @@ suite.add(new YUITest.TestCase({
     'test: inherited methods': function() {
         var item = this.findByName('myMethod', 'mywidget.SubWidget');
         Assert.isObject(item, 'Failed to parse second method');
+    },
+    'test: case tags': function() {
+        var item = this.findByName('testMethod', 'OtherClass2');
+        Assert.isObject(item, 'Failed to parse second method');
+        Assert.areSame('method', item.itemtype, 'Failed to parse Cased Method tag');
+        Assert.isArray(item.params, 'Failed to parse Cased Params');
+        Assert.areSame(1, item.params.length, 'Failed to parse number of cased params');
     }
 }));
 

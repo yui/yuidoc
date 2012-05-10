@@ -137,3 +137,10 @@ Default options to use for all transactions.
     for detecting CSS load completion in browsers that don't support the `load`
     event on `<link>` nodes.
 **/
+
+
+/**
+This is a test of CASE TaGs
+@MeThod testMethod
+@ParaM {String} foo Foo description
+*/
