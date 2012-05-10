@@ -42,7 +42,7 @@ Command line options always take priority.</p>
 
 <pre class="code terminal">YUI Doc generates API documentation from a modified JavaDoc syntax.
 
-Current version (0.3.2)
+Current version (0.3.4)
 
 Usage: yuidoc &lt;options&gt; &lt;input path&gt;
 
@@ -258,7 +258,11 @@ See below for <a href="#ex-yui3">more</a> <a href="#ex-yuidoc">examples</a>.
 </tr>
 <tr>
     <td><code>ignorePaths</code></th>
-    <td>Specifies an array of string paths to ignore when scanning the source tree.</td>
+    <td>Specifies an array of string paths to ignore when using shell globbing. This only removes top level items from the list to initally scan. Use <code>exclude</code> to remove specific directoies..</td>
+</tr>
+<tr>
+    <td><code>exclude</code></th>
+    <td>Specify a comma separated list of names you want to exclude from parses when YUIDoc recurses the source tree.</td>
 </tr>
 <tr>
     <td><code>paths</code></th>
