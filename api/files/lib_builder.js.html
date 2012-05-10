@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.2</em>
+            <em>API Docs for: 0.3.4</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -920,7 +920,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             });
         },
         hasProperty: function(a, b) {
-            var other;
+            var other = false;
             var h = Y.some(a, function(i, k) {
                 if ((i.itemtype === b.itemtype) &amp;&amp; (i.name === b.name)) {
                     other = k;
@@ -944,7 +944,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     if (hasItems[v.class]) {
                         if (!v.static) {
                             var override = self.hasProperty(classItems, v);
-                            if (!override) {
+                            if (override === false) {
                                 &#x2F;&#x2F;This method was extended from the parent class but not over written
                                 &#x2F;&#x2F;console.error(&#x27;Merging extends from&#x27;, v.class, &#x27;onto&#x27;, info.name);
                                 var q = Y.merge({}, v);
@@ -1223,11 +1223,12 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     self.files++;
                     stack.html = html;
                     stack.view = view;
+                    stack.opts = opts;
                 }));
             });
 
             stack.done(function() {
-                cb(stack.html, stack.view);
+                cb(stack.html, stack.view, stack.opts);
             });
         },
         &#x2F;**

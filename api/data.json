@@ -2,7 +2,7 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.3.2",
+        "version": "0.3.4",
         "url": "http://github.com/yui/yuidoc/issues",
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
@@ -671,7 +671,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1129,
+            "line": 1130,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -687,7 +687,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1164,
+            "line": 1165,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -712,7 +712,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1187,
+            "line": 1188,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -728,7 +728,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1297,
+            "line": 1298,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -748,7 +748,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1310,
+            "line": 1311,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
