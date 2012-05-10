@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.0</em>
+            <em>API Docs for: 0.3.1</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -182,8 +182,10 @@ while (args.length &gt; 0) {
             break;
         case &quot;--server&quot;:
             options.server = true;
-            var p = parseInt(args.shift(), 10);
+            var a = args.shift();
+            var p = parseInt(a, 10);
             if (isNaN(p) || !p) {
+                args.unshift(a);
                 Y.log(&#x27;Failed to extract port, setting to the default :3000&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
             } else {
                 options.port = p;

@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.0</em>
+            <em>API Docs for: 0.3.1</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -396,6 +396,10 @@ Y.getDirs = getDirs;
 *&#x2F;
 
 var validatePaths = function(paths, ignore) {
+    &#x2F;&#x2F;Shortcut the *, . &amp; .&#x2F; shortcuts that shall globbing fixes for us
+    if (paths === &#x27;*&#x27; || paths === &#x27;.&#x27; || paths === &#x27;.&#x2F;&#x27;) {
+        paths = [process.cwd()];
+    }
     if (!paths || !paths.forEach) {
         var glob = paths || &#x27;&#x27;;
 
@@ -429,13 +433,19 @@ var validatePaths = function(paths, ignore) {
         if (!(ignore instanceof Array)) {
             ignore = [ignore];
         }
-        var p = [];
+        var p = [],
+            shouldIgnore = false;
+
         paths.forEach(function(v) {
+            shouldIgnore = false;
             ignore.forEach(function(i) {
-                if (v.indexOf(i) === -1) {
-                    p.push(v);
+                if (!shouldIgnore &amp;&amp; v.indexOf(i) !== -1) {
+                    shouldIgnore = true;
                 }
             });
+            if (!shouldIgnore) {
+                p.push(v);
+            }
         });
         paths = p;
     }
@@ -446,6 +456,7 @@ var validatePaths = function(paths, ignore) {
 Y.validatePaths = validatePaths;
 
 });
+
 
     </pre>
 </div>
