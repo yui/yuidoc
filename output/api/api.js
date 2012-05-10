@@ -1,26 +1,22 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "CLI",
         "DocBuilder",
         "DocParser",
         "DocView",
         "Files",
+        "Help",
+        "Index",
+        "Options",
         "Server",
-        "YUIDoc",
-        "cli",
-        "index",
-        "utils"
+        "Utils",
+        "YUIDoc"
     ],
     "modules": [
-        "server",
         "yuidoc"
     ],
     "allModules": [
-        {
-            "displayName": "server",
-            "name": "server",
-            "description": "Provides the `--server` server option for YUIDoc"
-        },
         {
             "displayName": "yuidoc",
             "name": "yuidoc",

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>lib&#x2F;docview.js - YUIDoc</title>
+    <title>CLI - YUIDoc</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -98,77 +98,66 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: lib&#x2F;docview.js</h1>
+                        <h1>CLI Class</h1>
+<div class="box meta">
+    
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-&#x2F;*
-Copyright (c) 2011, Yahoo! Inc. All rights reserved.
-Code licensed under the BSD License:
-http:&#x2F;&#x2F;yuilibrary.com&#x2F;license&#x2F;
-*&#x2F;
-YUI.add(&#x27;docview&#x27;, function(Y) {
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="..&#x2F;files&#x2F;lib_cli.js.html#l8"><code>lib&#x2F;cli.js:8</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/yuidoc.html">yuidoc</a>
+        
+    
+
+    
+</div>
 
 
-&#x2F;*
-Selleck
-Copyright (c) 2011 Yahoo! Inc.
-Licensed under the BSD License.
-*&#x2F;
 
-    &#x2F;**
-    View class borrowed from [Selleck](https:&#x2F;&#x2F;github.com&#x2F;rgrove&#x2F;selleck)  
-    The view class is a **&#x60;handlebars&#x60;** template helper.
-    @class DocView
-    @constructor
-    @param {Object} data Meta data to use in this template
-    @param {String} templateName The name of the template file to render.
-    *&#x2F;
-    function DocView(data, templateName) {
-        this.templateName = templateName;
-        Y.mix(this, data);
-    }
+<div class="box intro">
+    <p>Parses the arguments, creates the options and passes them to <code>Y.YUIDoc</code> and then <code>Y.DocBuilder</code>.</p>
+</div>
 
-    DocView.prototype = {
-        &#x2F;**
-        * **Mustache** &#x60;lambda&#x60; method for setting the HTML title
-        * @method htmlTitle
-        *&#x2F;
-        htmlTitle: function () {
-            var name  = this.displayName || this.name,
-                title = name;
 
-            if (title) {
-                if (this.projectName) {
-                    title += &#x27; - &#x27; + this.projectName;
-                }
-            } else {
-                title = this.projectName;
-            }
 
-            return title;
-        },
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
 
-        &#x2F;**
-        * **Mustache** &#x60;lambda&#x60; method for setting the title
-        * @method title
-        *&#x2F;
-        title: function () {
-            var name  = this.displayName || this.name,
-                title = this.projectName;
+        
+        
+        
+        
+    </ul>
 
-            if (name) {
-                title += &#x27;: &#x27; + name;
-            }
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
 
-            return title;
-        }
-    };
+            
 
-    Y.DocView = DocView;
-});
+            
 
-    </pre>
+            
+
+            
+        </div>
+
+        
+
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>

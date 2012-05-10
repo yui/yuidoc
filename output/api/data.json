@@ -20,7 +20,7 @@
             "name": "lib/cli.js",
             "modules": {},
             "classes": {
-                "cli": 1
+                "CLI": 1
             },
             "fors": {},
             "namespaces": {}
@@ -54,20 +54,36 @@
             "fors": {},
             "namespaces": {}
         },
+        "lib/help.js": {
+            "name": "lib/help.js",
+            "modules": {},
+            "classes": {
+                "Help": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "lib/index.js": {
             "name": "lib/index.js",
             "modules": {},
             "classes": {
-                "index": 1
+                "Index": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/options.js": {
+            "name": "lib/options.js",
+            "modules": {},
+            "classes": {
+                "Options": 1
             },
             "fors": {},
             "namespaces": {}
         },
         "lib/server.js": {
             "name": "lib/server.js",
-            "modules": {
-                "server": 1
-            },
+            "modules": {},
             "classes": {
                 "Server": 1
             },
@@ -78,7 +94,7 @@
             "name": "lib/utils.js",
             "modules": {},
             "classes": {
-                "utils": 1
+                "Utils": 1
             },
             "fors": {},
             "namespaces": {}
@@ -100,17 +116,18 @@
     "modules": {
         "yuidoc": {
             "name": "yuidoc",
-            "submodules": {
-                "undefined": 1
-            },
+            "submodules": {},
             "classes": {
-                "utils": 1,
                 "DocBuilder": 1,
-                "cli": 1,
+                "CLI": 1,
                 "DocParser": 1,
                 "DocView": 1,
                 "Files": 1,
-                "index": 1,
+                "Help": 1,
+                "Index": 1,
+                "Options": 1,
+                "Server": 1,
+                "Utils": 1,
                 "YUIDoc": 1
             },
             "fors": {
@@ -123,19 +140,6 @@
             "line": 49,
             "description": "This is the __module__ description for the `YUIDoc` module.\n\n    var options = {\n        paths: [ './lib' ],\n        outdir: './out'\n    };\n\n    var Y = require('yuidoc');\n    var json = (new Y.YUIDoc(options)).run();",
             "itemtype": "main"
-        },
-        "server": {
-            "name": "server",
-            "submodules": {},
-            "classes": {
-                "Server": 1
-            },
-            "fors": {},
-            "namespaces": {},
-            "tag": "module",
-            "file": "lib/server.js",
-            "line": 3,
-            "description": "Provides the `--server` server option for YUIDoc"
         }
     },
     "classes": {
@@ -152,9 +156,9 @@
             "line": 45,
             "description": "Takes the `JSON` data from the `DocParser` class, creates and parses markdown and handlebars\nbased templates to generate static HTML content"
         },
-        "cli": {
-            "name": "cli",
-            "shortname": "cli",
+        "CLI": {
+            "name": "CLI",
+            "shortname": "CLI",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -164,7 +168,7 @@
             "namespace": "",
             "file": "lib/cli.js",
             "line": 8,
-            "description": "Parses the arguments, creates the options and passes them to Y.YUIDoc."
+            "description": "Parses the arguments, creates the options and passes them to `Y.YUIDoc` and then `Y.DocBuilder`."
         },
         "DocParser": {
             "name": "DocParser",
@@ -230,9 +234,23 @@
             "line": 3,
             "description": "Ported fileutils methods from [Selleck](http://github.com/rgrove/selleck)"
         },
-        "index": {
-            "name": "index",
-            "shortname": "index",
+        "Help": {
+            "name": "Help",
+            "shortname": "Help",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "yuidoc",
+            "namespace": "",
+            "file": "lib/help.js",
+            "line": 8,
+            "description": "Shows the help text"
+        },
+        "Index": {
+            "name": "Index",
+            "shortname": "Index",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -245,6 +263,20 @@
             "description": "Module creates the YUI instance with the required modules, uses them and exports the **Y** to be used\nby the _CLI class_ or by extenders: `require('yuidocjs');`  \nYou can use it like this:  \n\n    var options = {\n        paths: [ './lib' ],\n        outdir: './out'\n    };\n\n    var Y = require('yuidoc');\n    var json = (new Y.YUIDoc(options)).run();",
             "exports": "{YUI} Y A YUI instance"
         },
+        "Options": {
+            "name": "Options",
+            "shortname": "Options",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "yuidoc",
+            "namespace": "",
+            "file": "lib/options.js",
+            "line": 3,
+            "description": "Handles argument parsing"
+        },
         "Server": {
             "name": "Server",
             "shortname": "Server",
@@ -253,15 +285,15 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "server",
+            "module": "yuidoc",
             "namespace": "",
             "file": "lib/server.js",
             "line": 3,
             "description": "Provides the `--server` server option for YUIDoc"
         },
-        "utils": {
-            "name": "utils",
-            "shortname": "utils",
+        "Utils": {
+            "name": "Utils",
+            "shortname": "Utils",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1389,6 +1421,60 @@
             "module": "yuidoc"
         },
         {
+            "file": "lib/help.js",
+            "line": 14,
+            "description": "The help text to display",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "help",
+            "type": "Array",
+            "class": "Help",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/help.js",
+            "line": 56,
+            "description": "Render the help message as a string",
+            "itemtype": "method",
+            "name": "renderHelp",
+            "return": {
+                "description": "The help screen to display",
+                "type": "String"
+            },
+            "class": "Help",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/help.js",
+            "line": 66,
+            "description": "Display the help message, write it to the screen and exit",
+            "itemtype": "method",
+            "name": "showHelp",
+            "class": "Help",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/options.js",
+            "line": 9,
+            "description": "Parses arguments and returns an Object of config options",
+            "itemtype": "method",
+            "name": "Options",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "Arguments to parse",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "The config object",
+                "type": "Object"
+            },
+            "class": "Options",
+            "module": "yuidoc"
+        },
+        {
             "file": "lib/server.js",
             "line": 9,
             "description": "Cache for external mixed in data.",
@@ -1398,7 +1484,7 @@
             "tagname": "",
             "type": "Object",
             "class": "Server",
-            "module": "server"
+            "module": "yuidoc"
         },
         {
             "file": "lib/server.js",
@@ -1424,7 +1510,7 @@
                 }
             ],
             "class": "Server",
-            "module": "server"
+            "module": "yuidoc"
         },
         {
             "file": "lib/server.js",
@@ -1433,7 +1519,7 @@
             "itemtype": "method",
             "name": "routes",
             "class": "Server",
-            "module": "server"
+            "module": "yuidoc"
         },
         {
             "file": "lib/server.js",
@@ -1454,7 +1540,7 @@
                 }
             ],
             "class": "Server",
-            "module": "server"
+            "module": "yuidoc"
         },
         {
             "file": "lib/server.js",
@@ -1475,7 +1561,7 @@
                 }
             ],
             "class": "Server",
-            "module": "server"
+            "module": "yuidoc"
         },
         {
             "file": "lib/server.js",
@@ -1496,7 +1582,7 @@
                 }
             ],
             "class": "Server",
-            "module": "server"
+            "module": "yuidoc"
         },
         {
             "file": "lib/server.js",
@@ -1517,7 +1603,7 @@
                 }
             ],
             "class": "Server",
-            "module": "server"
+            "module": "yuidoc"
         },
         {
             "file": "lib/server.js",
@@ -1526,7 +1612,7 @@
             "itemtype": "method",
             "name": "init",
             "class": "Server",
-            "module": "server"
+            "module": "yuidoc"
         },
         {
             "file": "lib/server.js",
@@ -1542,7 +1628,7 @@
                 }
             ],
             "class": "Server",
-            "module": "server"
+            "module": "yuidoc"
         },
         {
             "file": "lib/utils.js",
@@ -1561,7 +1647,7 @@
                 "description": "Escaped string.",
                 "type": "String"
             },
-            "class": "utils",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
@@ -1583,7 +1669,7 @@
             },
             "access": "private",
             "tagname": "",
-            "class": "utils",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
@@ -1603,7 +1689,7 @@
                 "description": "Mapping of layout names to layout content.",
                 "type": "Object"
             },
-            "class": "utils",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
@@ -1623,7 +1709,7 @@
                 "description": "Page content, or `null` if not found.",
                 "type": "String|null"
             },
-            "class": "utils",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
@@ -1643,7 +1729,7 @@
                 "description": "Mapping of page names to page content.",
                 "type": "Object"
             },
-            "class": "utils",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
@@ -1663,7 +1749,7 @@
                 "description": "Mapping of partial names to partial content.",
                 "type": "Object"
             },
-            "class": "utils",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
@@ -1701,7 +1787,7 @@
                     ]
                 }
             ],
-            "class": "utils",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
@@ -1719,7 +1805,7 @@
                     "optdefault": "process.cwd()"
                 }
             ],
-            "class": "utils",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
@@ -1739,7 +1825,7 @@
                 "description": "The array of directories..",
                 "type": "Array"
             },
-            "class": "utils",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
@@ -1762,7 +1848,7 @@
                     "optdefault": "false"
                 }
             ],
-            "class": "utils",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
