@@ -90,9 +90,31 @@ Provides the base Widget class...
             See also: 
             <a href="#class"><code>@class</code></a>,
             <a href="#for"><code>@for</code></a>,
-            <a href="#main"><code>@main</code></a>,
+            <a href="#maintag"><code>@main</code></a>,
             <a href="#submodule"><code>@submodule</code></a>.
         </p>
+    </td>
+</tr>
+<tr id="maintag">
+    <td><code>main</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+Provides more functionality for the widget module..
+
+@module widget
+@submodule widget-foo
+@main widget
+**&#x2F;</pre>
+
+    </td>
+    <td>
+    <p>
+        When YUIDoc parses a module's directory, there may be several files in this directory that
+        provides documentation for that module and it's submodules. YUIDoc will attempt to determine
+        which module contains the main description for this module. If it has trouble doing that
+        you can add a <code>@main</code> tag to your module/submodule description and YUIDoc will use that as
+        the main module description on the modules API landing page.
+    </p>
     </td>
 </tr>
 <tr id="class">
