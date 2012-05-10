@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.1</em>
+            <em>API Docs for: 0.3.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -119,11 +119,13 @@ var MD = require(&quot;node-markdown&quot;).Markdown,
     * @return {String} The fixed string
     *&#x2F;
     fixType = function(t) {
-        var firstChar      = t.charAt(0),
-            upperFirstChar = firstChar.toUpperCase();
+        if (t.indexOf(&#x27;.&#x27;) === -1) {
+            var firstChar      = t.charAt(0),
+                upperFirstChar = firstChar.toUpperCase();
 
-        if (firstChar !== upperFirstChar) {
-            return upperFirstChar + t.substring(1);
+            if (firstChar !== upperFirstChar) {
+                return upperFirstChar + t.substring(1);
+            }
         }
 
         return t;
@@ -239,13 +241,15 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
     Y.DocBuilder.prototype = {
         _parseCrossLink: function(item, raw) {
-            item = fixType(item);
             var self = this;
             var base = &#x27;..&#x2F;&#x27;,
                 baseName = item,
                 newWin = false,
                 className = &#x27;crosslink&#x27;;
 
+			if (typeof self.data.classes[item] !== &quot;undefined&quot;) {
+				item = fixType(item);
+			}
 
             item = baseItem = Y.Lang.trim(item.replace(&#x27;{&#x27;, &#x27;&#x27;).replace(&#x27;}&#x27;, &#x27;&#x27;));
             &#x2F;&#x2F;Remove Cruft

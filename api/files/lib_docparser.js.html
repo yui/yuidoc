@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.1</em>
+            <em>API Docs for: 0.3.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -118,11 +118,13 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
     * @return {String} The fixed string
     *&#x2F;
     fixType = function(t) {
-        var firstChar      = t.charAt(0),
-            upperFirstChar = firstChar.toUpperCase();
+        if (t.indexOf(&#x27;.&#x27;) === -1) {
+            var firstChar      = t.charAt(0),
+                upperFirstChar = firstChar.toUpperCase();
 
-        if (firstChar !== upperFirstChar) {
-            return upperFirstChar + t.substring(1);
+            if (firstChar !== upperFirstChar) {
+                return upperFirstChar + t.substring(1);
+            }
         }
 
         return t;
