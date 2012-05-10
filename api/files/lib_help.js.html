@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>lib&#x2F;docview.js - YUIDoc</title>
+    <title>lib&#x2F;help.js - YUIDoc</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -98,7 +98,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: lib&#x2F;docview.js</h1>
+                        <h1 class="file-heading">File: lib&#x2F;help.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -107,65 +107,74 @@ Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http:&#x2F;&#x2F;yuilibrary.com&#x2F;license&#x2F;
 *&#x2F;
-YUI.add(&#x27;docview&#x27;, function(Y) {
-
-
-&#x2F;*
-Selleck
-Copyright (c) 2011 Yahoo! Inc.
-Licensed under the BSD License.
-*&#x2F;
+YUI.add(&#x27;help&#x27;, function(Y) {
+    
+    &#x2F;**
+    * Shows the help text
+    * @module yuidoc
+    * @class Help
+    *&#x2F;
 
     &#x2F;**
-    View class borrowed from [Selleck](https:&#x2F;&#x2F;github.com&#x2F;rgrove&#x2F;selleck)  
-    The view class is a **&#x60;handlebars&#x60;** template helper.
-    @class DocView
-    @constructor
-    @param {Object} data Meta data to use in this template
-    @param {String} templateName The name of the template file to render.
+    * The help text to display
+    * @private
+    * @property help
+    * @type Array
     *&#x2F;
-    function DocView(data, templateName) {
-        this.templateName = templateName;
-        Y.mix(this, data);
-    }
-
-    DocView.prototype = {
-        &#x2F;**
-        * **Mustache** &#x60;lambda&#x60; method for setting the HTML title
-        * @method htmlTitle
-        *&#x2F;
-        htmlTitle: function () {
-            var name  = this.displayName || this.name,
-                title = name;
-
-            if (title) {
-                if (this.projectName) {
-                    title += &#x27; - &#x27; + this.projectName;
-                }
-            } else {
-                title = this.projectName;
-            }
-
-            return title;
-        },
-
-        &#x2F;**
-        * **Mustache** &#x60;lambda&#x60; method for setting the title
-        * @method title
-        *&#x2F;
-        title: function () {
-            var name  = this.displayName || this.name,
-                title = this.projectName;
-
-            if (name) {
-                title += &#x27;: &#x27; + name;
-            }
-
-            return title;
-        }
+    var help = [
+        &quot;&quot;,
+        &quot;YUI Doc generates API documentation from a modified JavaDoc syntax.&quot;,
+        &quot;&quot;,
+        &quot;Current version ({VERSION})&quot;,
+        &quot;&quot;,
+        &quot;Usage: yuidoc &lt;options&gt; &lt;input path&gt;&quot;,
+        &quot;&quot;,
+        &quot;Common Options:&quot;,
+        &quot;  -c, --config, --configfile &lt;filename&gt;  A JSON config file to provide configuration data.&quot;,
+        &quot;           You can also create a yuidoc.json file and place it&quot;,
+        &quot;           anywhere under your source tree and YUI Doc will find it&quot;,
+        &quot;           and use it.&quot;,
+        &quot;  -e, --extension &lt;comma sep list of file extensions&gt; The list of file extensions to parse &quot;,
+        &quot;           for api documentation. (defaults to .js)&quot;,
+        &quot;  -x, --exclude &lt;comma sep list of directories&gt; Directories to exclude from parsing &quot;,
+        &quot;           (defaults to &#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp&#x27;)&quot;,
+        &quot;  -v, --version Show the current YUIDoc version&quot;,
+        &quot;  --project-version Set the doc version for the template&quot;,
+        &quot;  -N, --no-color Turn off terminal colors (for automation)&quot;,
+        &quot;  -C, --no-code Turn off code generation (don&#x27;t include source files in output)&quot;,
+        &quot;  -n, --norecurse Do not recurse directories (default is to recurse)&quot;,
+        &quot;  -S, --selleck Look for Selleck component data and attach to API meta data&quot;,
+        &quot;  -V, --view Dump the Handlebars.js view data instead of writing template files&quot;,
+        &quot;  -p, --parse-only Only parse the API docs and create the JSON data, do not render templates&quot;,
+        &quot;  -o, --out &lt;directory path&gt; Path to put the generated files (defaults to .&#x2F;out)&quot;,
+        &quot;  -t, --themedir &lt;directory path&gt; Path to a custom theme directory containing Handlebars templates&quot;,
+        &quot;  -h, --help Show this help&quot;,
+        &quot;  -q, --quiet Supress logging output&quot;,
+        &quot;  -T, --theme &lt;simple|default&gt; Choose one of the built in themes (default is default)&quot;,
+        &quot;  --server &lt;port&gt; Fire up the YUIDoc server for faster API doc developement. Pass optional port to listen on. (default is 3000)&quot;,
+        &quot;&quot;,
+        &quot;  &lt;input path&gt; Supply a list of paths (shell globbing is handy here)&quot;,
+        &quot;&quot;,
+    ].join(&#x27;\n&#x27;);
+    
+    &#x2F;**
+    * Render the help message as a string
+    * @method renderHelp
+    * @return {String} The help screen to display
+    *&#x2F;
+    Y.renderHelp = function() {
+        return Y.Lang.sub(help, {
+            VERSION: Y.packageInfo.version
+        });
     };
-
-    Y.DocView = DocView;
+    &#x2F;**
+    * Display the help message, write it to the screen and exit
+    * @method showHelp
+    *&#x2F;
+    Y.showHelp = function() {
+        console.error(Y.renderHelp());
+        process.exit(0); &#x2F;&#x2F;Shouldn&#x27;t exit one on help
+    }
 });
 
     </pre>

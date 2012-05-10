@@ -40,7 +40,7 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="..&#x2F;classes/cli.html">cli</a></li>
+                <li><a href="..&#x2F;classes/CLI.html">CLI</a></li>
             
                 <li><a href="..&#x2F;classes/DocBuilder.html">DocBuilder</a></li>
             
@@ -50,19 +50,21 @@
             
                 <li><a href="..&#x2F;classes/Files.html">Files</a></li>
             
-                <li><a href="..&#x2F;classes/index.html">index</a></li>
+                <li><a href="..&#x2F;classes/Help.html">Help</a></li>
+            
+                <li><a href="..&#x2F;classes/Index.html">Index</a></li>
+            
+                <li><a href="..&#x2F;classes/Options.html">Options</a></li>
             
                 <li><a href="..&#x2F;classes/Server.html">Server</a></li>
             
-                <li><a href="..&#x2F;classes/utils.html">utils</a></li>
+                <li><a href="..&#x2F;classes/Utils.html">Utils</a></li>
             
                 <li><a href="..&#x2F;classes/YUIDoc.html">YUIDoc</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
-            
-                <li><a href="..&#x2F;modules/server.html">server</a></li>
             
                 <li><a href="..&#x2F;modules/yuidoc.html">yuidoc</a></li>
             
@@ -108,116 +110,15 @@ http:&#x2F;&#x2F;yuilibrary.com&#x2F;license&#x2F;
 *&#x2F;
 
 &#x2F;**
-* Parses the arguments, creates the options and passes them to Y.YUIDoc.
-* @class cli
+* Parses the arguments, creates the options and passes them to &#x60;Y.YUIDoc&#x60; and then &#x60;Y.DocBuilder&#x60;.
+* @class CLI
 * @module yuidoc
 *&#x2F;
 
 var Y = require(&#x27;.&#x2F;index&#x27;),
     path = require(&#x27;path&#x27;);
 
-var args = Y.Array(process.argv, 2),
-    options = {
-        port: 3000,
-        nocode: false
-    };
-
-while (args.length &gt; 0) {
-    var v = args.shift();
-	&#x2F;&#x2F; options.* defined in .&#x2F;builder.js
-    switch (v) {
-        case &quot;-c&quot;:
-        case &quot;--config&quot;:
-        case &quot;--configfile&quot;:
-            options.configfile = args.shift();
-            break;
-        case &quot;-e&quot;:
-        case &quot;--extension&quot;:
-            options.extension = args.shift();
-            break;
-        case &quot;-x&quot;:
-        case &quot;--exclude&quot;:
-            options.exclude = args.shift();
-            break;
-        case &quot;-v&quot;:
-        case &quot;--version&quot;:
-            console.error(Y.packageInfo.version);
-            process.exit(1);
-            break;
-        case &quot;--project-version&quot;:
-            options.version = args.shift();
-            break;
-        case &quot;-N&quot;:
-        case &quot;--no-color&quot;:
-            Y.config.useColor = false;
-            options.nocolor = true;
-            break;
-        case &quot;-C&quot;:
-        case &quot;--no-code&quot;:
-            options.nocode = true;
-            break;
-        case &quot;-n&quot;:
-        case &quot;--norecurse&quot;:
-            options.norecurse = true;
-            break;
-        case &quot;-S&quot;:
-        case &quot;--selleck&quot;:
-            options.selleck = true;
-            break;
-        case &quot;-V&quot;:
-        case &quot;--view&quot;:
-            options.dumpview = true;
-            break;
-        case &quot;-p&quot;:
-        case &quot;--parse-only&quot;:
-            options.parseOnly = true;
-            break;
-        case &quot;-o&quot;:
-        case &quot;--outdir&quot;:
-            options.outdir = args.shift();
-            break;
-        case &quot;-t&quot;:
-        case &quot;--themedir&quot;:
-			options.themedir = args.shift();
-            break;
-        case &quot;--server&quot;:
-            options.server = true;
-            var a = args.shift();
-            var p = parseInt(a, 10);
-            if (isNaN(p) || !p) {
-                args.unshift(a);
-                Y.log(&#x27;Failed to extract port, setting to the default :3000&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
-            } else {
-                options.port = p;
-            }
-            break;
-        case &quot;-h&quot;:
-        case &quot;--help&quot;:
-            Y.showHelp();
-            break;
-        case &quot;-T&quot;:
-        case &quot;--theme&quot;:
-            var theme = args.shift();
-            options.themedir = path.join(__dirname, &#x27;..&#x2F;&#x27;, &#x27;themes&#x27;, theme);
-            break;
-        case &quot;-q&quot;:
-        case &quot;--quiet&quot;:
-            options.quiet = true;
-            break;
-        default:
-            if (!options.paths) {
-                options.paths = [];
-            }
-            if (v.indexOf(&#x27;-&#x27;) === 0) {
-                throw(&#x27;Unknown option: &#x27; + v);
-            }
-            options.paths.push(v);
-    }
-}
-
-if (options.quiet) {
-    Y.applyConfig({ debug: false });
-}
+var options = Y.Options(Y.Array(process.argv, 2));
 
 Y.log(&#x27;Starting YUIDoc@&#x27; + Y.packageInfo.version + &#x27; using YUI@&#x27; + Y.version + &#x27; with NodeJS@&#x27; + process.versions.node, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
 
