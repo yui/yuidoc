@@ -398,7 +398,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 359,
+            "line": 365,
             "description": "Populate the meta data for classes",
             "itemtype": "method",
             "name": "populateClasses",
@@ -418,7 +418,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 374,
+            "line": 380,
             "description": "Populate the meta data for modules",
             "itemtype": "method",
             "name": "populateModules",
@@ -438,7 +438,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 411,
+            "line": 417,
             "description": "Populate the meta data for files",
             "itemtype": "method",
             "name": "populateFiles",
@@ -458,7 +458,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 470,
+            "line": 476,
             "description": "Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions\nwith the `Markdown Parser`",
             "itemtype": "method",
             "name": "augmentData",
@@ -478,7 +478,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 533,
+            "line": 539,
             "description": "Makes the default directories needed",
             "itemtype": "method",
             "name": "makeDirs",
@@ -494,7 +494,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 574,
+            "line": 580,
             "description": "Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them",
             "itemtype": "method",
             "name": "_parseCode",
@@ -516,7 +516,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 586,
+            "line": 592,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n       that are not parsed by the **Markdown** parser.",
             "itemtype": "method",
             "name": "_inlineCode",
@@ -538,7 +538,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 605,
+            "line": 611,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck)\n       Renders the handlebars templates with the default View class.",
             "itemtype": "method",
             "name": "render",
@@ -590,7 +590,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 655,
+            "line": 661,
             "description": "Render the index file",
             "itemtype": "method",
             "name": "renderIndex",
@@ -618,7 +618,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 680,
+            "line": 686,
             "description": "Generates the index.html file",
             "itemtype": "method",
             "name": "writeIndex",
@@ -634,7 +634,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 763,
+            "line": 769,
             "description": "Generates the module files under \"out\"/modules/",
             "itemtype": "method",
             "name": "writeModules",
@@ -650,7 +650,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1110,
+            "line": 1116,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -666,7 +666,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1145,
+            "line": 1151,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -691,7 +691,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1168,
+            "line": 1174,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -707,7 +707,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1278,
+            "line": 1284,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -727,7 +727,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1291,
+            "line": 1297,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
