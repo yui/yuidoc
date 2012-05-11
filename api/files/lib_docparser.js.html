@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.4</em>
+            <em>API Docs for: 0.3.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -112,26 +112,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
     var Lang = Y.Lang,
     trim = Lang.trim,
     stringify = Y.JSON.stringify,
-    &#x2F;**
-    * Takes a type string and converts it to a &quot;First letter upper cased&quot; type. e.g. &#x60;(string -&gt; String, object -&gt; Object)&#x60;
-    * @method fixType
-    * @private
-    * @param {String} t The type string to convert
-    * @return {String} The fixed string
-    *&#x2F;
-    fixType = function(t) {
-        if (t.indexOf(&#x27;.&#x27;) === -1) {
-            var firstChar      = t.charAt(0),
-                upperFirstChar = firstChar.toUpperCase();
-
-            if (firstChar !== upperFirstChar) {
-                return upperFirstChar + t.substring(1);
-            }
-        }
-
-        return t;
-    },
-
+    fixType = Y.Lang.fixType,
     &#x2F;**
     * Parses the JSON data and formats it into a nice log string for filename and line number:
     &#x60;&#x2F;file&#x2F;name.js:123&#x60;
@@ -616,7 +597,7 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
 
         &#x2F;&#x2F; change &#x27;const&#x27; to final property
         &#x27;const&#x27;: function(tagname, value, target, block) {
-            target.itemtype = property;
+            target.itemtype = &#x27;property&#x27;;
             target.name = value;
             target[&#x27;final&#x27;] = &#x27;&#x27;;
         },

@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.4</em>
+            <em>API Docs for: 0.3.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -456,6 +456,29 @@ var validatePaths = function(paths, ignore) {
 };
 
 Y.validatePaths = validatePaths;
+
+
+
+&#x2F;**
+* Takes a type string and converts it to a &quot;First letter upper cased&quot; type. e.g. &#x60;(string -&gt; String, object -&gt; Object)&#x60;
+* @method fixType
+* @param {String} t The type string to convert
+* @return {String} The fixed string
+*&#x2F;
+var fixType = function(t) {
+    if (t.indexOf(&#x27;.&#x27;) === -1) {
+        var firstChar      = t.charAt(0),
+            upperFirstChar = firstChar.toUpperCase();
+
+        if (firstChar !== upperFirstChar) {
+            return upperFirstChar + t.substring(1);
+        }
+    }
+
+    return t;
+};
+
+Y.Lang.fixType = fixType;
 
 });
 
