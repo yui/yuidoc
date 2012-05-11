@@ -30,6 +30,49 @@ body {
     padding: 0;
 }
 
+
+ul.links {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul.links li {
+    margin-bottom: 8px;
+}
+
+ul.links .button {
+    display: block;
+    text-align: left;
+}
+
+.crumbs {
+    background: whiteSmoke;
+    background: -moz-linear-gradient(top,#DCDBD9 0,#F6F5F3 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#DCDBD9),color-stop(100%,#F6F5F3));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dcdbd9',endColorstr='#F6F5F3',GradientType=0);
+    border-top: 1px solid #DFDFDF;
+    border-bottom: 1px solid #DFDFDF;
+    padding: 0.25em 1.25em 0.25em;
+}
+.crumbs a, .crumbs a:visited {
+    color: #30418C;
+}
+
+#hd {
+    background: whiteSmoke;
+    background: -moz-linear-gradient(top,#DCDBD9 0,#F6F5F3 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#DCDBD9),color-stop(100%,#F6F5F3));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dcdbd9',endColorstr='#F6F5F3',GradientType=0);
+    border-bottom: 1px solid #DFDFDF;
+    padding: 0.75em 0 0.5em;
+    margin-bottom: 15px;
+}
+
+#hd img {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
 /* -- Links ----------------------------------------------------------------- */
 a {
     color: #356de4;
@@ -190,7 +233,6 @@ th {
 /* -- Layout and Content ---------------------------------------------------- */
 #doc {
     margin: auto;
-    max-width: 1200px;
     min-width: 960px;
     padding-bottom: 50px;
 }
