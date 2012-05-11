@@ -4,7 +4,6 @@
     "description": "YUIDoc, YUI's JavaScript Documentation engine.",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/yui/yuidoc/issues" },
-    "os": ["darwin", "linux", "win32"],
     "contributors": [
         { "name": "Adam Moore", "email": "amoore@gmail.com" },
         { "name": "Ryan Grove", "email": "ryan@wonko.com" },
