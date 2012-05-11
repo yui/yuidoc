@@ -18,7 +18,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.4</em>
+            <em>API Docs for: 0.3.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -114,25 +114,6 @@ var MD = require(&quot;node-markdown&quot;).Markdown,
     DEFAULT_RETURN_TAGS = &#x27;code|em|strong|span|a|pre|dl|dd|dt|ul|li|ol&#x27;,
     TEMPLATE,
     &#x2F;**
-    * Takes a type string and converts it to a &quot;First letter upper cased&quot; type. e.g. &#x60;(string -&gt; String, object -&gt; Object)&#x60;
-    * @method fixType
-    * @private
-    * @param {String} t The type string to convert
-    * @return {String} The fixed string
-    *&#x2F;
-    fixType = function(t) {
-        if (t.indexOf(&#x27;.&#x27;) === -1) {
-            var firstChar      = t.charAt(0),
-                upperFirstChar = firstChar.toUpperCase();
-
-            if (firstChar !== upperFirstChar) {
-                return upperFirstChar + t.substring(1);
-            }
-        }
-
-        return t;
-    },
-    &#x2F;**
     * Wrapper around the Markdown parser so it can be normalized or even side stepped
     * @method markdown
     * @private
@@ -155,7 +136,8 @@ based templates to generate static HTML content
 
 YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
-    var print = function(items) {
+    var fixType = Y.Lang.fixType,
+    print = function(items) {
         var out = &#x27;&lt;ul&gt;&#x27;;
 
         Y.each(items, function(i, k) {
@@ -249,9 +231,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 newWin = false,
                 className = &#x27;crosslink&#x27;;
 
-			if (typeof self.data.classes[item] !== &quot;undefined&quot;) {
-				item = fixType(item);
-			}
+			item = fixType(item);
 
             item = baseItem = Y.Lang.trim(item.replace(&#x27;{&#x27;, &#x27;&#x27;).replace(&#x27;}&#x27;, &#x27;&#x27;));
             &#x2F;&#x2F;Remove Cruft
