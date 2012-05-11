@@ -17,6 +17,15 @@
     "engines": {
         "node" : ">=0.4.0"
     },
+    "keywords": [
+        "yui",
+        "jsdoc",
+        "api",
+        "documentation",
+        "javadoc",
+        "docs",
+        "apidocs"
+    ],
     "main": "./lib/index",
     "bin" : { "yuidoc" : "./lib/cli.js" },
     "dependencies": {
