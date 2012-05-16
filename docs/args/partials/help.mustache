@@ -1,7 +1,7 @@
 
 YUI Doc generates API documentation from a modified JavaDoc syntax.
 
-Current version (0.3.5)
+Current version (0.3.6)
 
 Usage: yuidoc <options> <input path>
 
@@ -24,6 +24,7 @@ Common Options:
   -p, --parse-only Only parse the API docs and create the JSON data, do not render templates
   -o, --out <directory path> Path to put the generated files (defaults to ./out)
   -t, --themedir <directory path> Path to a custom theme directory containing Handlebars templates
+  -H, --helpers <comma separated list of paths to files> Require these file and add Handlebars helpers. See docs for more information
   -h, --help Show this help
   -q, --quiet Supress logging output
   -T, --theme <simple|default> Choose one of the built in themes (default is default)

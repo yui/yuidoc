@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.5</em>
+            <em>API Docs for: 0.3.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -198,6 +198,15 @@ YUI.add(&#x27;options&#x27;, function(Y) {
                 case &quot;-h&quot;:
                 case &quot;--help&quot;:
                     Y.showHelp();
+                    break;
+                case &quot;-H&quot;:
+                case &quot;--helpers&quot;:
+                    var list = args.shift();
+                    if (list) {
+                        options.helpers = list.split(&#x27;,&#x27;);
+                    } else {
+                        throw(&#x27;Failed to pass a helper file.&#x27;);
+                    }
                     break;
                 case &quot;-T&quot;:
                 case &quot;--theme&quot;:

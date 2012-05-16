@@ -1121,7 +1121,10 @@ easily cross-reference classes and modules. For example, if you include:</p>
 
 <pre class="code prettyprint">&#x2F;**
 
-This module also uses {{#crossLink Foo}}, where Foo is a class or module name.
+This module also uses {{#crossLink &quot;Foo&quot;}}{{&#x2F;crossLink}}, where Foo is a class name.
+Also see {{#crossLink &quot;myClass&#x2F;Foo&quot;}}{{&#x2F;crossLink}}, where myClass is a class name and Foo is a method on that class.
+
+This module uses {{#crossLinkModule &quot;widget&quot;}}{{&#x2F;crossLinkModule}}, where widget is a module name
 
 *&#x2F;</pre>
 
@@ -1133,6 +1136,49 @@ This automatically generates an internal link to Foo's API reference page:
 <pre class="code prettyprint">&lt;p&gt;
 This module also uses &lt;a href=&quot;..&#x2F;classes&#x2F;Foo.html&quot; class=&quot;crosslink&quot;&gt;Foo&lt;&#x2F;a&gt;, 
 where Foo is a class or module name.
+&lt;&#x2F;p&gt;
+&lt;p&gt;
+Also see &lt;a href=&quot;..&#x2F;classes&#x2F;myClass.html#method_Foo&quot;&gt;Foo&lt;&#x2F;a&gt;, where myClass 
+is a class name and Foo is a method on that class.
+&lt;&#x2F;p&gt;
+&lt;p&gt;
+This module uses &lt;a href=&quot;..&#x2F;modules&#x2F;widget.html&quot;&gt;widget&lt;&#x2F;a&gt;, where widget is a module name
+&lt;&#x2F;p&gt;</pre>
+
+
+<p>
+You can also call <code>crossLinkRaw</code> to retun only the HREF portion of the link, so you can link it
+yourself.
+</p>
+
+<h3 id="using-custom-handlebars-block-helpers">Using custom Handlebars block helpers</h3>
+
+<p>
+You can tell <code>YUIDoc</code> to include custom <code>Y.Handlebars</code> helpers with the <code>-H</code> or <code>--helpers</code> command line arguments
+(or <code>helpers</code> Array in the <code>yuidoc.json</code> file).
+
+Here is an example <code>helper.js</code> file:
+
+<pre class="code prettyprint">module.exports = {
+    davglass: function(item) {
+        return &quot;Dav Glass says: &quot; + item
+    }
+};</pre>
+
+
+<p>
+Now you can use the <code>davglass</code> helper inside your own docs like this:
+</p>
+
+<pre class="code prettyprint">&#x2F;**
+* This is also a test {{#davglass &quot;Foo&quot;}}{{&#x2F;davglass}}
+*&#x2F;</pre>
+
+
+This will output this in your documentation:
+
+<pre class="code prettyprint">&lt;p&gt;
+ This is also a test Dav Glass says: Foo
 &lt;&#x2F;p&gt;</pre>
 
 </div>
@@ -1177,6 +1223,9 @@ where Foo is a class or module name.
 </li>
 <li>
 <a href="#cross-referencing-modules-and-classes">Cross-referencing Modules and Classes</a>
+</li>
+<li>
+<a href="#using-custom-handlebars-block-helpers">Using custom Handlebars block helpers</a>
 </li>
 </ul>
 </li>

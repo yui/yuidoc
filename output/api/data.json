@@ -2,7 +2,7 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.3.5",
+        "version": "0.3.6",
         "url": "http://github.com/yui/yuidoc/issues",
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
@@ -153,7 +153,7 @@
             "extension_for": [],
             "module": "yuidoc",
             "file": "lib/builder.js",
-            "line": 26,
+            "line": 13,
             "description": "Takes the `JSON` data from the `DocParser` class, creates and parses markdown and handlebars\nbased templates to generate static HTML content"
         },
         "CLI": {
@@ -334,7 +334,23 @@
     "classitems": [
         {
             "file": "lib/builder.js",
-            "line": 12,
+            "line": 114,
+            "description": "Register a `Y.Handlebars` helper method",
+            "itemtype": "method",
+            "name": "_addHelpers",
+            "params": [
+                {
+                    "name": "helpers",
+                    "description": "Object containing a hash of names and functions",
+                    "type": "Object"
+                }
+            ],
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 131,
             "description": "Wrapper around the Markdown parser so it can be normalized or even side stepped",
             "itemtype": "method",
             "name": "markdown",
@@ -361,11 +377,107 @@
                 "description": "The rendered HTML",
                 "type": "HTML"
             },
-            "class": "DocBuilder"
+            "class": "DocBuilder",
+            "module": "yuidoc"
         },
         {
             "file": "lib/builder.js",
-            "line": 308,
+            "line": 150,
+            "description": "Parse the item to be cross linked and return an HREF linked to the item",
+            "itemtype": "method",
+            "name": "_parseCrossLink",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "The item to crossLink",
+                    "type": "String"
+                },
+                {
+                    "name": "raw",
+                    "description": "Do not wrap it in HTML",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                }
+            ],
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 236,
+            "description": "List of native types to cross link to MDN",
+            "itemtype": "property",
+            "name": "NATIVES",
+            "type": "Object",
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 275,
+            "description": "Function to link an external type uses `NATIVES` object",
+            "itemtype": "method",
+            "name": "NATIVES_LINKER",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the type to link",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The combined URL",
+                "type": "String"
+            },
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 289,
+            "description": "Mixes the various external data soures together into the local data, augmenting \nit with flags.",
+            "itemtype": "method",
+            "name": "_mixExternal",
+            "access": "private",
+            "tagname": "",
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 337,
+            "description": "Fetches the remote data and fires the callback when it's all complete",
+            "itemtype": "method",
+            "name": "mixExternal",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "The callback to execute when complete",
+                    "type": "Callback"
+                }
+            ],
+            "async": 1,
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 400,
+            "description": "The default tags to use in return descriptions (for Markdown).",
+            "itemtype": "property",
+            "name": "defaultReturnTags",
+            "type": "String",
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 406,
             "description": "The default tags to use in params descriptions (for Markdown).",
             "itemtype": "property",
             "name": "defaultTags",
@@ -375,7 +487,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 315,
+            "line": 412,
             "description": "File counter",
             "itemtype": "property",
             "name": "files",
@@ -385,7 +497,19 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 321,
+            "line": 418,
+            "description": "Holder for project meta data",
+            "itemtype": "property",
+            "name": "_meta",
+            "type": "Object",
+            "access": "private",
+            "tagname": "",
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 425,
             "description": "Prep the meta data to be fed to Selleck",
             "itemtype": "method",
             "name": "getProjectMeta",
@@ -398,7 +522,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 365,
+            "line": 468,
             "description": "Populate the meta data for classes",
             "itemtype": "method",
             "name": "populateClasses",
@@ -418,7 +542,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 380,
+            "line": 483,
             "description": "Populate the meta data for modules",
             "itemtype": "method",
             "name": "populateModules",
@@ -438,7 +562,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 417,
+            "line": 520,
             "description": "Populate the meta data for files",
             "itemtype": "method",
             "name": "populateFiles",
@@ -458,7 +582,27 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 476,
+            "line": 569,
+            "description": "Parses file and line number from an item object and build's an HREF",
+            "itemtype": "method",
+            "name": "addFoundAt",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "The item to parse",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "The parsed HREF",
+                "type": "String"
+            },
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 585,
             "description": "Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions\nwith the `Markdown Parser`",
             "itemtype": "method",
             "name": "augmentData",
@@ -478,7 +622,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 539,
+            "line": 651,
             "description": "Makes the default directories needed",
             "itemtype": "method",
             "name": "makeDirs",
@@ -494,7 +638,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 580,
+            "line": 692,
             "description": "Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them",
             "itemtype": "method",
             "name": "_parseCode",
@@ -516,7 +660,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 592,
+            "line": 704,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n       that are not parsed by the **Markdown** parser.",
             "itemtype": "method",
             "name": "_inlineCode",
@@ -538,7 +682,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 611,
+            "line": 723,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck)\n       Renders the handlebars templates with the default View class.",
             "itemtype": "method",
             "name": "render",
@@ -590,7 +734,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 661,
+            "line": 777,
             "description": "Render the index file",
             "itemtype": "method",
             "name": "renderIndex",
@@ -618,7 +762,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 686,
+            "line": 802,
             "description": "Generates the index.html file",
             "itemtype": "method",
             "name": "writeIndex",
@@ -634,7 +778,35 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 769,
+            "line": 826,
+            "description": "Render a module",
+            "itemtype": "method",
+            "name": "renderModule",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "The callback fired when complete",
+                    "type": "Function",
+                    "props": [
+                        {
+                            "name": "html",
+                            "description": "The HTML to render this view",
+                            "type": "String"
+                        }
+                    ]
+                },
+                {
+                    "name": "cv.view",
+                    "description": "The View Data",
+                    "type": "Object"
+                }
+            ],
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 892,
             "description": "Generates the module files under \"out\"/modules/",
             "itemtype": "method",
             "name": "writeModules",
@@ -650,7 +822,80 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1116,
+            "line": 927,
+            "description": "Checks an array of items (class items) to see if an item is in that list",
+            "itemtype": "method",
+            "name": "hasProperty",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "The Array of items to check",
+                    "type": "Array"
+                },
+                {
+                    "name": "b",
+                    "description": "The object to find",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Boolean"
+            },
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 944,
+            "description": "Merge superclass data into a child class",
+            "itemtype": "method",
+            "name": "mergeExtends",
+            "params": [
+                {
+                    "name": "info",
+                    "description": "The item to extend",
+                    "type": "Object"
+                },
+                {
+                    "name": "classItems",
+                    "description": "The list of items to merge in",
+                    "type": "Array"
+                }
+            ],
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 989,
+            "description": "Render the class file",
+            "itemtype": "method",
+            "name": "renderClass",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "The callback fired when complete",
+                    "type": "Function",
+                    "props": [
+                        {
+                            "name": "html",
+                            "description": "The HTML to render this view",
+                            "type": "String"
+                        }
+                    ]
+                },
+                {
+                    "name": "cv.view",
+                    "description": "The View Data",
+                    "type": "Object"
+                }
+            ],
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 1259,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -666,7 +911,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1151,
+            "line": 1294,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -691,7 +936,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1174,
+            "line": 1317,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -707,7 +952,69 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1284,
+            "line": 1355,
+            "description": "Render the source file",
+            "itemtype": "method",
+            "name": "renderFile",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "The callback fired when complete",
+                    "type": "Function",
+                    "props": [
+                        {
+                            "name": "html",
+                            "description": "The HTML to render this view",
+                            "type": "String"
+                        }
+                    ]
+                },
+                {
+                    "name": "cv.view",
+                    "description": "The View Data",
+                    "type": "Object"
+                }
+            ],
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 1403,
+            "description": "Write the API meta data used for the AutoComplete widget",
+            "itemtype": "method",
+            "name": "writeAPIMeta",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "The callback to execute when complete",
+                    "type": "Callback"
+                }
+            ],
+            "async": 1,
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 1416,
+            "description": "Render the API meta and return the Javascript",
+            "itemtype": "method",
+            "name": "renderAPIMeta",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "The callback",
+                    "type": "Callback"
+                }
+            ],
+            "async": 1,
+            "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/builder.js",
+            "line": 1446,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -727,7 +1034,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1297,
+            "line": 1459,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
@@ -1391,7 +1698,7 @@
         },
         {
             "file": "lib/help.js",
-            "line": 56,
+            "line": 57,
             "description": "Render the help message as a string",
             "itemtype": "method",
             "name": "renderHelp",
@@ -1404,7 +1711,7 @@
         },
         {
             "file": "lib/help.js",
-            "line": 66,
+            "line": 67,
             "description": "Display the help message, write it to the screen and exit",
             "itemtype": "method",
             "name": "showHelp",

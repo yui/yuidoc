@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.5</em>
+            <em>API Docs for: 0.3.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -107,7 +107,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;lib_builder.js.html#l26"><code>lib&#x2F;builder.js:26</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;lib_builder.js.html#l13"><code>lib&#x2F;builder.js:13</code></a>
         </div>
     
 
@@ -153,6 +153,12 @@ based templates to generate static HTML content</p>
 
                     <ul class="index-list methods">
                         
+                            <li class="index-item method">
+                                <a href="#method__addHelpers">_addHelpers</a>
+
+                                
+                            </li>
+                        
                             <li class="index-item method private">
                                 <a href="#method__inlineCode">_inlineCode</a>
 
@@ -160,7 +166,25 @@ based templates to generate static HTML content</p>
                             </li>
                         
                             <li class="index-item method private">
+                                <a href="#method__mixExternal">_mixExternal</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
                                 <a href="#method__parseCode">_parseCode</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__parseCrossLink">_parseCrossLink</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_addFoundAt">addFoundAt</a>
 
                                 
                             </li>
@@ -190,6 +214,12 @@ based templates to generate static HTML content</p>
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_hasProperty">hasProperty</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_makeDirs">makeDirs</a>
 
                                 
@@ -202,7 +232,25 @@ based templates to generate static HTML content</p>
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_mergeExtends">mergeExtends</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_mixExternal">mixExternal</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_nameSort">nameSort</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_NATIVES_LINKER">NATIVES_LINKER</a>
 
                                 
                             </li>
@@ -232,7 +280,37 @@ based templates to generate static HTML content</p>
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_renderAPIMeta">renderAPIMeta</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_renderClass">renderClass</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_renderFile">renderFile</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_renderIndex">renderIndex</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_renderModule">renderModule</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_writeAPIMeta">writeAPIMeta</a>
 
                                 
                             </li>
@@ -271,6 +349,18 @@ based templates to generate static HTML content</p>
 
                     <ul class="index-list properties">
                         
+                            <li class="index-item property private">
+                                <a href="#property__meta">_meta</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_defaultReturnTags">defaultReturnTags</a>
+
+                                
+                            </li>
+                        
                             <li class="index-item property">
                                 <a href="#property_defaultTags">defaultTags</a>
 
@@ -279,6 +369,12 @@ based templates to generate static HTML content</p>
                         
                             <li class="index-item property">
                                 <a href="#property_files">files</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_NATIVES">NATIVES</a>
 
                                 
                             </li>
@@ -295,6 +391,93 @@ based templates to generate static HTML content</p>
         
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method__addHelpers" class="method item">
+    <h3 class="name"><code>_addHelpers</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>helpers</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l114"><code>lib&#x2F;builder.js:114</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Register a <code>Y.Handlebars</code> helper method</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">helpers</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Object containing a hash of names and functions</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
 
                 
                     <div id="method__inlineCode" class="method item private">
@@ -332,6 +515,8 @@ based templates to generate static HTML content</p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -343,7 +528,7 @@ based templates to generate static HTML content</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l592"><code>lib&#x2F;builder.js:592</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l704"><code>lib&#x2F;builder.js:704</code></a>
         
         </p>
 
@@ -402,6 +587,63 @@ based templates to generate static HTML content</p>
 </div>
 
                 
+                    <div id="method__mixExternal" class="method item private">
+    <h3 class="name"><code>_mixExternal</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l289"><code>lib&#x2F;builder.js:289</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Mixes the various external data soures together into the local data, augmenting 
+it with flags.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method__parseCode" class="method item private">
     <h3 class="name"><code>_parseCode</code></h3>
 
@@ -437,6 +679,8 @@ based templates to generate static HTML content</p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -448,7 +692,7 @@ based templates to generate static HTML content</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l580"><code>lib&#x2F;builder.js:580</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l692"><code>lib&#x2F;builder.js:692</code></a>
         
         </p>
 
@@ -506,6 +750,221 @@ based templates to generate static HTML content</p>
 </div>
 
                 
+                    <div id="method__parseCrossLink" class="method item private">
+    <h3 class="name"><code>_parseCrossLink</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>item</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[raw=false]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l150"><code>lib&#x2F;builder.js:150</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Parse the item to be cross linked and return an HREF linked to the item</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">item</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The item to crossLink</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[raw=false]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Do not wrap it in HTML</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_addFoundAt" class="method item">
+    <h3 class="name"><code>addFoundAt</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>a</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l569"><code>lib&#x2F;builder.js:569</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Parses file and line number from an item object and build's an HREF</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">a</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The item to parse</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    The parsed HREF
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_augmentData" class="method item">
     <h3 class="name"><code>augmentData</code></h3>
 
@@ -539,6 +998,8 @@ based templates to generate static HTML content</p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -550,7 +1011,7 @@ based templates to generate static HTML content</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l476"><code>lib&#x2F;builder.js:476</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l585"><code>lib&#x2F;builder.js:585</code></a>
         
         </p>
 
@@ -638,6 +1099,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -649,7 +1112,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1297"><code>lib&#x2F;builder.js:1297</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1459"><code>lib&#x2F;builder.js:1459</code></a>
         
         </p>
 
@@ -727,6 +1190,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -738,7 +1203,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1284"><code>lib&#x2F;builder.js:1284</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1446"><code>lib&#x2F;builder.js:1446</code></a>
         
         </p>
 
@@ -822,6 +1287,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -833,7 +1300,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l321"><code>lib&#x2F;builder.js:321</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l425"><code>lib&#x2F;builder.js:425</code></a>
         
         </p>
 
@@ -859,6 +1326,129 @@ with the <code>Markdown Parser</code></p>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
                     
                     The project metadata
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_hasProperty" class="method item">
+    <h3 class="name"><code>hasProperty</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>a</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>b</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l927"><code>lib&#x2F;builder.js:927</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Checks an array of items (class items) to see if an item is in that list</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">a</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The Array of items to check</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">b</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The object to find</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    Boolean
                 
             </div>
         </div>
@@ -897,6 +1487,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -908,7 +1500,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l539"><code>lib&#x2F;builder.js:539</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l651"><code>lib&#x2F;builder.js:651</code></a>
         
         </p>
 
@@ -1000,6 +1592,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -1011,7 +1605,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l12"><code>lib&#x2F;builder.js:12</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l131"><code>lib&#x2F;builder.js:131</code></a>
         
         </p>
 
@@ -1099,6 +1693,203 @@ with the <code>Markdown Parser</code></p>
 </div>
 
                 
+                    <div id="method_mergeExtends" class="method item">
+    <h3 class="name"><code>mergeExtends</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>info</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>classItems</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l944"><code>lib&#x2F;builder.js:944</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Merge superclass data into a child class</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">info</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The item to extend</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">classItems</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The list of items to merge in</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_mixExternal" class="method item">
+    <h3 class="name"><code>mixExternal</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>cb</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l337"><code>lib&#x2F;builder.js:337</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Fetches the remote data and fires the callback when it's all complete</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">cb</code>
+                        <span class="type">Callback</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The callback to execute when complete</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_nameSort" class="method item">
     <h3 class="name"><code>nameSort</code></h3>
 
@@ -1138,6 +1929,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -1149,7 +1942,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1151"><code>lib&#x2F;builder.js:1151</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1294"><code>lib&#x2F;builder.js:1294</code></a>
         
         </p>
 
@@ -1222,6 +2015,112 @@ with the <code>Markdown Parser</code></p>
 </div>
 
                 
+                    <div id="method_NATIVES_LINKER" class="method item private">
+    <h3 class="name"><code>NATIVES_LINKER</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l275"><code>lib&#x2F;builder.js:275</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Function to link an external type uses <code>NATIVES</code> object</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the type to link</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    The combined URL
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_populateClasses" class="method item">
     <h3 class="name"><code>populateClasses</code></h3>
 
@@ -1255,6 +2154,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -1266,7 +2167,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l365"><code>lib&#x2F;builder.js:365</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l468"><code>lib&#x2F;builder.js:468</code></a>
         
         </p>
 
@@ -1357,6 +2258,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -1368,7 +2271,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l417"><code>lib&#x2F;builder.js:417</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l520"><code>lib&#x2F;builder.js:520</code></a>
         
         </p>
 
@@ -1459,6 +2362,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -1470,7 +2375,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l380"><code>lib&#x2F;builder.js:380</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l483"><code>lib&#x2F;builder.js:483</code></a>
         
         </p>
 
@@ -1581,6 +2486,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -1592,7 +2499,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l611"><code>lib&#x2F;builder.js:611</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l723"><code>lib&#x2F;builder.js:723</code></a>
         
         </p>
 
@@ -1730,6 +2637,345 @@ with the <code>Markdown Parser</code></p>
 </div>
 
                 
+                    <div id="method_renderAPIMeta" class="method item">
+    <h3 class="name"><code>renderAPIMeta</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>cb</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1416"><code>lib&#x2F;builder.js:1416</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Render the API meta and return the Javascript</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">cb</code>
+                        <span class="type">Callback</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The callback</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_renderClass" class="method item">
+    <h3 class="name"><code>renderClass</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>cb</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>cv.view</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l989"><code>lib&#x2F;builder.js:989</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Render the class file</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">cb</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The callback fired when complete</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">html</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The HTML to render this view</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">cv.view</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The View Data</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_renderFile" class="method item">
+    <h3 class="name"><code>renderFile</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>cb</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>cv.view</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1355"><code>lib&#x2F;builder.js:1355</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Render the source file</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">cb</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The callback fired when complete</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">html</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The HTML to render this view</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">cv.view</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The View Data</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_renderIndex" class="method item">
     <h3 class="name"><code>renderIndex</code></h3>
 
@@ -1765,6 +3011,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -1776,7 +3024,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l661"><code>lib&#x2F;builder.js:661</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l777"><code>lib&#x2F;builder.js:777</code></a>
         
         </p>
 
@@ -1853,6 +3101,220 @@ with the <code>Markdown Parser</code></p>
 </div>
 
                 
+                    <div id="method_renderModule" class="method item">
+    <h3 class="name"><code>renderModule</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>cb</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>cv.view</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l826"><code>lib&#x2F;builder.js:826</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Render a module</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">cb</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The callback fired when complete</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">html</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The HTML to render this view</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">cv.view</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The View Data</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_writeAPIMeta" class="method item">
+    <h3 class="name"><code>writeAPIMeta</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>cb</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1403"><code>lib&#x2F;builder.js:1403</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Write the API meta data used for the AutoComplete widget</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">cb</code>
+                        <span class="type">Callback</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The callback to execute when complete</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_writeClasses" class="method item">
     <h3 class="name"><code>writeClasses</code></h3>
 
@@ -1882,6 +3344,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -1893,7 +3357,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1116"><code>lib&#x2F;builder.js:1116</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1259"><code>lib&#x2F;builder.js:1259</code></a>
         
         </p>
 
@@ -1967,6 +3431,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -1978,7 +3444,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1174"><code>lib&#x2F;builder.js:1174</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l1317"><code>lib&#x2F;builder.js:1317</code></a>
         
         </p>
 
@@ -2052,6 +3518,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -2063,7 +3531,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l686"><code>lib&#x2F;builder.js:686</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l802"><code>lib&#x2F;builder.js:802</code></a>
         
         </p>
 
@@ -2137,6 +3605,8 @@ with the <code>Markdown Parser</code></p>
 
     
 
+    
+
     <div class="meta">
         
             
@@ -2148,7 +3618,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l769"><code>lib&#x2F;builder.js:769</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l892"><code>lib&#x2F;builder.js:892</code></a>
         
         </p>
 
@@ -2201,6 +3671,96 @@ with the <code>Markdown Parser</code></p>
                 <h2 class="off-left">Properties</h2>
 
                 
+                    <div id="property__meta" class="property item private">
+    <h3 class="name"><code>_meta</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l418"><code>lib&#x2F;builder.js:418</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Holder for project meta data</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_defaultReturnTags" class="property item">
+    <h3 class="name"><code>defaultReturnTags</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l400"><code>lib&#x2F;builder.js:400</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The default tags to use in return descriptions (for Markdown).</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="property_defaultTags" class="property item">
     <h3 class="name"><code>defaultTags</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
@@ -2224,7 +3784,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l308"><code>lib&#x2F;builder.js:308</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l406"><code>lib&#x2F;builder.js:406</code></a>
         
         </p>
 
@@ -2268,7 +3828,7 @@ with the <code>Markdown Parser</code></p>
             
         
         
-        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l315"><code>lib&#x2F;builder.js:315</code></a>
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l412"><code>lib&#x2F;builder.js:412</code></a>
         
         </p>
 
@@ -2279,6 +3839,50 @@ with the <code>Markdown Parser</code></p>
 
     <div class="description">
         <p>File counter</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_NATIVES" class="property item">
+    <h3 class="name"><code>NATIVES</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;lib_builder.js.html#l236"><code>lib&#x2F;builder.js:236</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>List of native types to cross link to MDN</p>
     </div>
 
     
