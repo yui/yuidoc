@@ -241,6 +241,9 @@ pjax.updateVisibility = function () {
     container.toggleClass('hide-inherited',
             !Y.one('#api-show-inherited').get('checked'));
 
+    container.toggleClass('show-deprecated',
+            Y.one('#api-show-deprecated').get('checked'));
+
     container.toggleClass('show-protected',
             Y.one('#api-show-protected').get('checked'));
 

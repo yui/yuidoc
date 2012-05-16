@@ -94,6 +94,9 @@
                                 {{#if static}}
                                     <span class="flag static">static</span>
                                 {{/if}}
+                                {{#if deprecated}}
+                                    <span class="flag deprecated">deprecated</span>
+                                {{/if}}
                             </li>
                         {{/methods}}
                     </ul>
@@ -111,6 +114,9 @@
 
                                 {{#if static}}
                                     <span class="flag static">static</span>
+                                {{/if}}
+                                {{#if deprecated}}
+                                    <span class="flag deprecated">deprecated</span>
                                 {{/if}}
                             </li>
                         {{/properties}}
@@ -143,6 +149,9 @@
 
                                 {{#if static}}
                                     <span class="flag static">static</span>
+                                {{/if}}
+                                {{#if deprecated}}
+                                    <span class="flag deprecated">deprecated</span>
                                 {{/if}}
                             </li>
                         {{/events}}

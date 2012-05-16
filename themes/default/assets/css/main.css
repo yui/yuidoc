@@ -484,10 +484,13 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .apidocs .item.protected,
 .apidocs .item.private,
 .apidocs .index-item.protected,
+.apidocs .index-item.deprecated,
 .apidocs .index-item.private {
     display: none;
 }
 
+.show-deprecated .item.deprecated,
+.show-deprecated .index-item.deprecated,
 .show-protected .item.protected,
 .show-protected .index-item.protected,
 .show-private .item.private,
