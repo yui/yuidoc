@@ -550,6 +550,7 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .apidocs .flag.chainable { background: #46ca3b; }
 .apidocs .flag.protected { background: #9b86fc; }
 .apidocs .flag.private { background: #fd6b1b; }
+.apidocs .flag.async { background: #356DE4; }
 
 .apidocs .item {
     border-bottom: 1px solid #efefef;
