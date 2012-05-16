@@ -1132,7 +1132,10 @@ easily cross-reference classes and modules. For example, if you include:</p>
 ```
 /**
 
-This module also uses \{{#crossLink Foo}}, where Foo is a class or module name.
+This module also uses \{{#crossLink "Foo"}}\{{/crossLink}}, where Foo is a class name.
+Also see \{{#crossLink "myClass/Foo"}}\{{/crossLink}}, where myClass is a class name and Foo is a method on that class.
+
+This module uses \{{#crossLinkModule "widget"}}\{{/crossLinkModule}}, where widget is a module name
 
 */
 ```
@@ -1145,5 +1148,51 @@ This automatically generates an internal link to Foo's API reference page:
 <p>
 This module also uses <a href="../classes/Foo.html" class="crosslink">Foo</a>, 
 where Foo is a class or module name.
+</p>
+<p>
+Also see <a href="../classes/myClass.html#method_Foo">Foo</a>, where myClass 
+is a class name and Foo is a method on that class.
+</p>
+<p>
+This module uses <a href="../modules/widget.html">widget</a>, where widget is a module name
+</p>
+```
+
+<p>
+You can also call `crossLinkRaw` to retun only the HREF portion of the link, so you can link it
+yourself.
+</p>
+
+<h3>Using custom Handlebars block helpers</h3>
+
+<p>
+You can tell `YUIDoc` to include custom `Y.Handlebars` helpers with the `-H` or `--helpers` command line arguments
+(or `helpers` Array in the `yuidoc.json` file).
+
+Here is an example `helper.js` file:
+
+```
+module.exports = {
+    davglass: function(item) {
+        return "Dav Glass says: " + item
+    }
+};
+```
+
+<p>
+Now you can use the `davglass` helper inside your own docs like this:
+</p>
+
+```
+/**
+* This is also a test \{{#davglass "Foo"}}\{{/davglass}}
+*/
+```
+
+This will output this in your documentation:
+
+```
+<p>
+ This is also a test Dav Glass says: Foo
 </p>
 ```
