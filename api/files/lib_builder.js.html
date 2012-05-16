@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.5</em>
+            <em>API Docs for: 0.3.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -113,20 +113,7 @@ var MD = require(&quot;node-markdown&quot;).Markdown,
     noop = function() {},
     path = require(&#x27;path&#x27;),
     DEFAULT_RETURN_TAGS = &#x27;code|em|strong|span|a|pre|dl|dd|dt|ul|li|ol&#x27;,
-    TEMPLATE,
-    &#x2F;**
-    * Wrapper around the Markdown parser so it can be normalized or even side stepped
-    * @method markdown
-    * @private
-    * @param {String} md The Markdown string to parse
-    * @param {Boolean} def Only allow default set of HTML tags
-    * @param {Array} tags An array of tags to allow
-    * @return {HTML} The rendered HTML
-    *&#x2F;
-    markdown = function(md, def, tags) {
-        html = MD(md, def, tags);
-        return html;
-    };
+    TEMPLATE;
 
 &#x2F;**
 * Takes the &#x60;JSON&#x60; data from the &#x60;DocParser&#x60; class, creates and parses markdown and handlebars
@@ -165,6 +152,9 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
     Y.DocBuilder = function(options, data) {
         this.options = options;
+        if (options.helpers) {
+            this._addHelpers(options.helpers);
+        }
         if (options.themedir) {
             themeDir = options.themedir;
         }
@@ -178,6 +168,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             if (!item) {
                 item = &#x27;&#x27;;
             }
+            &#x2F;&#x2F;console.log(&#x27;CrossLink:&#x27;, item);
             if (item.indexOf(&#x27;|&#x27;) &gt; 0) {
                 var parts = item.split(&#x27;|&#x27;),
                 p = [];
@@ -225,6 +216,49 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
     };
 
     Y.DocBuilder.prototype = {
+        &#x2F;**
+        * Register a &#x60;Y.Handlebars&#x60; helper method
+        * @method _addHelpers
+        * @param {Object} helpers Object containing a hash of names and functions
+        *&#x2F;
+        _addHelpers: function(helpers) {
+            Y.log(&#x27;Importing helpers: &#x27; + helpers, &#x27;info&#x27;, &#x27;builder&#x27;);
+            helpers.forEach(function(imp) {
+                if (!path.existsSync(imp) || path.existsSync(path.join(process.cwd(), imp))) {
+                   imp= path.join(process.cwd(), imp);
+                }
+                var h = require(imp);
+                Object.keys(h).forEach(function(name) {
+                    Y.Handlebars.registerHelper(name, h[name]);
+                });
+            });
+        },
+        &#x2F;**
+        * Wrapper around the Markdown parser so it can be normalized or even side stepped
+        * @method markdown
+        * @private
+        * @param {String} md The Markdown string to parse
+        * @param {Boolean} def Only allow default set of HTML tags
+        * @param {Array} tags An array of tags to allow
+        * @return {HTML} The rendered HTML
+        *&#x2F;
+        markdown: function(md, def, tags) {
+            html = MD(md, def, tags);
+            if (html.indexOf(&#x27;{{#&#x27;) &gt; -1) { &#x2F;&#x2F;Only reprocess with Handlebars if we see a helper
+                &#x2F;&#x2F;console.log(&#x27;MD: &#x27;, html);
+                html = (Y.Handlebars.compile(html))({});
+                &#x2F;&#x2F;console.log(&#x27;HB: &#x27;, html);
+            }
+            return html;
+        },
+        
+        &#x2F;**
+        * Parse the item to be cross linked and return an HREF linked to the item
+        * @method _parseCrossLink
+        * @private
+        * @param {String} item The item to crossLink
+        * @param {Boolean} [raw=false] Do not wrap it in HTML
+        *&#x2F;
         _parseCrossLink: function(item, raw) {
             var self = this;
             var base = &#x27;..&#x2F;&#x27;,
@@ -239,6 +273,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             item = item.replace(&#x27;*&#x27;, &#x27;&#x27;).replace(&#x27;[&#x27;, &#x27;&#x27;).replace(&#x27;]&#x27;, &#x27;&#x27;);
             var link = false,
                 href;
+
             if (self.data.classes[item]) {
                 link = true;
             } else {
@@ -258,18 +293,27 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     }
                 }
             }
-            &#x2F;*
-            if (!link &amp;&amp; self.options.externalData) {
-                var d = self.options.externalData;
-                if (d &amp;&amp; d.classes[item]) {
-                    href = d.classes[item].path;
-                    base = d.base;
-                    className += &#x27; external&#x27;;
-                    newWin = true;
-                    link = true;
+
+            if (item.indexOf(&#x27;&#x2F;&#x27;) &gt; -1) {
+                &#x2F;&#x2F;We have a class + method to parse
+                var parts = item.split(&#x27;&#x2F;&#x27;),
+                    cls = parts[0],
+                    method = parts[1];
+
+                if (cls &amp;&amp; method) {
+                    if (self.data.classes[cls]) {
+                        self.data.classitems.forEach(function(i) {
+                            if (i.itemtype === &#x27;method&#x27; &amp;&amp; i.name === method &amp;&amp; i.class === cls) {
+                                link = true;
+                                baseItem = method;
+                                href = path.join(base, &#x27;classes&#x27;, cls + &#x27;.html#method_&#x27; + method);
+                            }
+                        });
+                    }
                 }
+
             }
-            *&#x2F;
+
             if (item === &#x27;Object&#x27; || item === &#x27;Array&#x27;) {
                 link = false;
             }
@@ -294,6 +338,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             }
             return (raw) ? href : item;
         },
+        &#x2F;**
+        * List of native types to cross link to MDN
+        * @property NATIVES
+        * @type Object
+        *&#x2F;
         NATIVES: {
             &#x27;Array&#x27;: 1,
             &#x27;Boolean&#x27;: 1,
@@ -328,6 +377,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             &#x27;DocumentFragment&#x27;: &#x27;https:&#x2F;&#x27;+&#x27;&#x2F;developer.mozilla.org&#x2F;en&#x2F;Document_Object_Model_(DOM)&#x2F;&#x27;,
             &#x27;HTMLDocument&#x27;: &#x27;https:&#x2F;&#x27;+&#x27;&#x2F;developer.mozilla.org&#x2F;en&#x2F;Document_Object_Model_(DOM)&#x2F;&#x27;
         },
+        &#x2F;**
+        * Function to link an external type uses &#x60;NATIVES&#x60; object
+        * @method NATIVES_LINKER
+        * @private
+        * @param {String} name The name of the type to link
+        * @return {String} The combined URL
+        *&#x2F;
         NATIVES_LINKER: function(name) {
             var url = &#x27;https:&#x2F;&#x27;+&#x27;&#x2F;developer.mozilla.org&#x2F;en&#x2F;JavaScript&#x2F;Reference&#x2F;Global_Objects&#x2F;&#x27;;
             if (this.NATIVES[name] !== 1) {
@@ -335,30 +391,60 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             }
             return url + name;
         },
+        &#x2F;**
+        * Mixes the various external data soures together into the local data, augmenting 
+        * it with flags.
+        * @method _mixExternal
+        * @private
+        *&#x2F;
         _mixExternal: function() {
             var self = this;
             Y.log(&#x27;External data received, mixing&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
-            var exData = self.options.externalData;
+            self.options.externalData.forEach(function(exData) {
             
-            [&#x27;files&#x27;, &#x27;classes&#x27;, &#x27;modules&#x27;].forEach(function(k) {
-                Y.each(exData[k], function(item, key) {
+                [&#x27;files&#x27;, &#x27;classes&#x27;, &#x27;modules&#x27;].forEach(function(k) {
+                    Y.each(exData[k], function(item, key) {
+                        item.external = true;
+                        var file = item.name;
+                        if (!item.file) {
+                            file = self.filterFileName(item.name);
+                        }
+                        
+                        if (item.type) {
+                            item.type = fixType(item.type);
+                        }
+
+                        item.path = exData.base + path.join(k, file + &#x27;.html&#x27;);
+
+                        self.data[k][key] = item;
+                    });
+                });
+                Y.each(exData.classitems, function(item) {
                     item.external = true;
-                    var file = item.name;
-                    if (!item.file) {
-                        file = self.filterFileName(item.name);
+                    item.path = exData.base + path.join(&#x27;files&#x27;, self.filterFileName(item.file) + &#x27;.html&#x27;);
+                    if (item.type) {
+                        item.type = fixType(item.type);
                     }
-
-                    item.path = exData.base + path.join(k, file + &#x27;.html&#x27;);
-
-                    self.data[k][key] = item;
+                    if (item.params) {
+                        item.params.forEach(function(p) {
+                            if (p.type) {
+                                p.type = fixType(p.type);
+                            }
+                        });
+                    }
+                    if (item.return) {
+                        item.return.type = fixType(item.return.type);
+                    }
+                    self.data.classitems.push(item);
                 });
             });
-            Y.each(exData.classitems, function(item) {
-                item.external = true;
-                item.path = exData.base + path.join(&#x27;files&#x27;, self.filterFileName(item.file) + &#x27;.html&#x27;);
-                self.data.classitems.push(item);
-            });
         },
+        &#x2F;**
+        * Fetches the remote data and fires the callback when it&#x27;s all complete
+        * @method mixExternal
+        * @param {Callback} cb The callback to execute when complete
+        * @async
+        *&#x2F;
         mixExternal: function(cb) {
             var self = this,
                 info = self.options.external;
@@ -386,12 +472,18 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 if (i.match(&#x2F;^https?:\&#x2F;\&#x2F;&#x2F;)) {
                     base = i.replace(&#x27;data.json&#x27;, &#x27;&#x27;);
                     Y.use(&#x27;io-base&#x27;, stack.add(function() {
+                        Y.log(&#x27;Fetching: &#x27; + i, &#x27;info&#x27;, &#x27;builder&#x27;);
                         Y.io(i, {
                             on: {
                                 complete: stack.add(function(id, e) {
+                                    Y.log(&#x27;Received: &#x27; + i, &#x27;info&#x27;, &#x27;builder&#x27;);
                                     var data = JSON.parse(e.responseText);
                                     data.base = base;
-                                    self.options.externalData = Y.mix(self.options.externalData || {}, data);
+                                    &#x2F;&#x2F;self.options.externalData = Y.mix(self.options.externalData || {}, data);
+                                    if (!self.options.externalData) {
+                                        self.options.externalData = [];
+                                    }
+                                    self.options.externalData.push(data);
                                 })
                             }
                         });
@@ -411,11 +503,16 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             });
         },
         &#x2F;**
+        * The default tags to use in return descriptions (for Markdown).
+        * @property defaultReturnTags
+        * @type String
+        *&#x2F;
+        defaultReturnTags: DEFAULT_RETURN_TAGS,
+        &#x2F;**
         * The default tags to use in params descriptions (for Markdown).
         * @property defaultTags
         * @type String
         *&#x2F;
-        defaultReturnTags: DEFAULT_RETURN_TAGS,
         defaultTags: &#x27;p|&#x27; + DEFAULT_RETURN_TAGS,
         &#x2F;**
         * File counter
@@ -424,11 +521,17 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         *&#x2F;
         files: null,
         &#x2F;**
+        * Holder for project meta data
+        * @property _meta
+        * @type Object
+        * @private
+        *&#x2F;
+        _meta: null,
+        &#x2F;**
         * Prep the meta data to be fed to Selleck
         * @method getProjectMeta
         * @return {Object} The project metadata
         *&#x2F;
-        _meta: null,
         getProjectMeta: function() {
             var obj = {
                 meta: {
@@ -568,6 +671,12 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
             return opts;
         },
+        &#x2F;**
+        * Parses file and line number from an item object and build&#x27;s an HREF
+        * @method addFoundAt
+        * @param {Object} a The item to parse
+        * @return {String} The parsed HREF
+        *&#x2F;
         addFoundAt: function(a) {
             var self = this;
             if (a.file &amp;&amp; a.line &amp;&amp; !self.options.nocode) {
@@ -603,10 +712,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                         if (!a.description) {
                             a.description = &#x27; &#x27;;
                         } else {
-                            a.description = markdown(a.description, true, self.defaultTags);
+                            &#x2F;&#x2F;a.description = markdown(a.description, true, self.defaultTags);
+                            a.description = self.markdown(a.description);
                         }
                         if (a.example) {
-                            a.example = markdown(a.example, true, self.defaultTags);
+                            a.example = self.markdown(a.example, true, self.defaultTags);
                         }
                         a = self.addFoundAt(a);
 
@@ -627,16 +737,18 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                         }
                         if (k === &#x27;description&#x27; || k === &#x27;example&#x27;) {
                             if (k1 === &#x27;return&#x27;) {
-                                o[k1][k] = markdown(v, true, self.defaultReturnTags);
+                                o[k1][k] = self.markdown(v, true, self.defaultReturnTags);
                             } else if (v.forEach || (v instanceof Object)) {
                                 o[k1][k] = self.augmentData(v);
                             } else {
-                                o[k1][k] = markdown(v, true, self.defaultTags);
+                                &#x2F;&#x2F;o[k1][k] = markdown(v, true, self.defaultTags);
+                                o[k1][k] = self.markdown(v);
                             }
                         }
                     });
                 } else if (k1 === &#x27;description&#x27; || k1 === &#x27;example&#x27;) {
-                    o[k1] = markdown(i, true, self.defaultTags);
+                    &#x2F;&#x2F;o[k1] = markdown(i, true, self.defaultTags);
+                    o[k1] = self.markdown(i);
                 }
             });
             return o;
@@ -759,6 +871,10 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 }
             };
             html = TEMPLATE(_v);
+            &#x2F;&#x2F;html = html.replace(&#x2F;{{&amp;#x2F;&#x2F;g, &#x27;{{&#x2F;&#x27;);
+
+            
+            &#x2F;&#x2F;html = (Y.Handlebars.compile(html))({});
 
             html = this._inlineCode(html);
             callback(null, html);
@@ -812,6 +928,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 cb(stack.html, stack.view);
             });
         },
+        &#x2F;**
+        * Render a module 
+        * @method renderModule
+        * @param {Function} cb The callback fired when complete
+        * @param {String} cb.html The HTML to render this view
+        * @param {Object} cv.view The View Data
+        *&#x2F;
         renderModule: function(cb, data, layout) {
             var self = this;
             var stack = new Y.Parallel();
@@ -825,7 +948,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 opts.meta.title = self.data.project.name;
 
                 opts.meta.moduleName = data.displayName || data.name;
-                opts.meta.moduleDescription = self._parseCode(markdown(data.description || &#x27; &#x27;));
+                opts.meta.moduleDescription = self._parseCode(self.markdown(data.description || &#x27; &#x27;));
                 opts.meta.file = data.file;
                 opts.meta.line = data.line;
                 opts.meta = self.addFoundAt(opts.meta);
@@ -906,6 +1029,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 cb(stack.html, stack.view);
             });
         },
+        &#x2F;**
+        * Checks an array of items (class items) to see if an item is in that list
+        * @method hasProperty
+        * @param {Array} a The Array of items to check
+        * @param {Object} b The object to find
+        * @return Boolean
+        *&#x2F;
         hasProperty: function(a, b) {
             var other = false;
             var h = Y.some(a, function(i, k) {
@@ -916,6 +1046,12 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             });
             return other;
         },
+        &#x2F;**
+        * Merge superclass data into a child class
+        * @method mergeExtends
+        * @param {Object} info The item to extend
+        * @param {Array} classItems The list of items to merge in
+        *&#x2F;
         mergeExtends: function(info, classItems) {
             var self = this;
             if (info.extends || info.uses) {
@@ -955,6 +1091,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             }
             return classItems;
         },
+        &#x2F;**
+        * Render the class file
+        * @method renderClass
+        * @param {Function} cb The callback fired when complete
+        * @param {String} cb.html The HTML to render this view
+        * @param {Object} cv.view The View Data
+        *&#x2F;
         renderClass: function(cb, data, layout) {
             var self = this;
             var stack = new Y.Parallel();
@@ -978,7 +1121,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 opts = self.populateModules(opts);
                 opts = self.populateFiles(opts);
 
-                opts.meta.classDescription = self._parseCode(markdown(data.description || &#x27; &#x27;));
+                opts.meta.classDescription = self._parseCode(self.markdown(data.description || &#x27; &#x27;));
 
                 opts.meta.methods = [];
                 opts.meta.properties = [];
@@ -1055,11 +1198,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                                 if (i.example.forEach) {
                                     var e = &#x27;&#x27;;
                                     i.example.forEach(function(v) {
-                                        e += self._parseCode(markdown(v));
+                                        e += self._parseCode(self.markdown(v));
                                     });
                                     i.example = e;
                                 } else {
-                                    i.example = self._parseCode(markdown(i.example));
+                                    i.example = self._parseCode(self.markdown(i.example));
                                 }
                             }
                             i.hasAccessType = i.access;
@@ -1100,11 +1243,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                                 if (i.example.forEach) {
                                     var e = &#x27;&#x27;;
                                     i.example.forEach(function(v) {
-                                        e += self._parseCode(markdown(v));
+                                        e += self._parseCode(self.markdown(v));
                                     });
                                     i.example = e;
                                 } else {
-                                    i.example = self._parseCode(markdown(i.example));
+                                    i.example = self._parseCode(self.markdown(i.example));
                                 }
                             }
 
@@ -1136,11 +1279,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                                 if (i.example.forEach) {
                                     var e = &#x27;&#x27;;
                                     i.example.forEach(function(v) {
-                                        e += self._parseCode(markdown(v));
+                                        e += self._parseCode(self.markdown(v));
                                     });
                                     i.example = e;
                                 } else {
-                                    i.example = self._parseCode(markdown(i.example));
+                                    i.example = self._parseCode(self.markdown(i.example));
                                 }
                             }
 
@@ -1164,11 +1307,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                                 if (i.example.forEach) {
                                     var e = &#x27;&#x27;;
                                     i.example.forEach(function(v) {
-                                        e += self._parseCode(markdown(v));
+                                        e += self._parseCode(self.markdown(v));
                                     });
                                     i.example = e;
                                 } else {
-                                    i.example = self._parseCode(markdown(i.example));
+                                    i.example = self._parseCode(self.markdown(i.example));
                                 }
                             }
 
@@ -1314,6 +1457,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 cb(stack.html, stack.view);
             });
         },
+        &#x2F;**
+        * Render the source file
+        * @method renderFile
+        * @param {Function} cb The callback fired when complete
+        * @param {String} cb.html The HTML to render this view
+        * @param {Object} cv.view The View Data
+        *&#x2F;
         renderFile: function(cb, data, layout) {
             var self = this;
             
@@ -1355,6 +1505,12 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             });
 
         },
+        &#x2F;**
+        * Write the API meta data used for the AutoComplete widget
+        * @method writeAPIMeta
+        * @param {Callback} cb The callback to execute when complete
+        * @async
+        *&#x2F;
         writeAPIMeta: function(cb) {
             Y.log(&#x27;Writing API Meta Data&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
             var self = this;
@@ -1362,6 +1518,12 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 fs.writeFile(path.join(self.options.outdir, &#x27;api.js&#x27;), js, &#x27;utf8&#x27;, cb);
             });
         },
+        &#x2F;**
+        * Render the API meta and return the Javascript
+        * @method renderAPIMeta
+        * @param {Callback} cb The callback
+        * @async
+        *&#x2F;
         renderAPIMeta: function(cb) {
 
             var opts = { meta: {} }, self = this;
@@ -1417,7 +1579,8 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     }
                     Y.Files.copyAssets([path.join(DEFAULT_THEME, &#x27;assets&#x27;), path.join(themeDir, &#x27;assets&#x27;)], path.join(self.options.outdir, &#x27;assets&#x27;), false, function() {
                         var cstack = new Y.Parallel();
-
+                        
+                        &#x2F;*
                         self.writeModules(cstack.add(function() {
                             self.writeClasses(cstack.add(function() {
                                 if (!self.options.nocode) {
@@ -1425,6 +1588,12 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                                 }
                             }));
                         }));
+                        *&#x2F;
+                        self.writeModules(cstack.add(noop));
+                        self.writeClasses(cstack.add(noop));
+                        if (!self.options.nocode) {
+                            self.writeFiles(cstack.add(noop));
+                        }
                         self.writeIndex(cstack.add(noop));
                         self.writeAPIMeta(cstack.add(noop));
 

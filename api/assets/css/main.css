@@ -329,6 +329,20 @@ ul li p {
     font-size: 110%;
 }
 
+.apidocs .methods .extends .method,
+.apidocs .properties .extends .property,
+.apidocs .attrs .extends .attr,
+.apidocs .events .extends .event {
+    font-weight: bold;
+}
+
+.apidocs .methods .extends .inherited,
+.apidocs .properties .extends .inherited,
+.apidocs .attrs .extends .inherited,
+.apidocs .events .extends .inherited {
+    font-weight: normal;
+}
+
 #hd {
     background: whiteSmoke;
     background: -moz-linear-gradient(top,#DCDBD9 0,#F6F5F3 100%);
@@ -550,6 +564,7 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .apidocs .flag.chainable { background: #46ca3b; }
 .apidocs .flag.protected { background: #9b86fc; }
 .apidocs .flag.private { background: #fd6b1b; }
+.apidocs .flag.async { background: #356DE4; }
 
 .apidocs .item {
     border-bottom: 1px solid #efefef;

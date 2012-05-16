@@ -45,7 +45,7 @@ Command line options always take priority.</p>
 
 <pre class="code terminal">YUI Doc generates API documentation from a modified JavaDoc syntax.
 
-Current version (0.3.5)
+Current version (0.3.6)
 
 Usage: yuidoc &lt;options&gt; &lt;input path&gt;
 
@@ -68,6 +68,7 @@ Common Options:
   -p, --parse-only Only parse the API docs and create the JSON data, do not render templates
   -o, --out &lt;directory path&gt; Path to put the generated files (defaults to .&#x2F;out)
   -t, --themedir &lt;directory path&gt; Path to a custom theme directory containing Handlebars templates
+  -H, --helpers &lt;comma separated list of paths to files&gt; Require these file and add Handlebars helpers. See docs for more information
   -h, --help Show this help
   -q, --quiet Supress logging output
   -T, --theme &lt;simple|default&gt; Choose one of the built in themes (default is default)

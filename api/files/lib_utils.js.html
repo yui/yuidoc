@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.5</em>
+            <em>API Docs for: 0.3.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -467,7 +467,9 @@ Y.validatePaths = validatePaths;
 * @return {String} The fixed string
 *&#x2F;
 var fixType = function(t) {
-    if (t.indexOf(&#x27;.&#x27;) === -1) {
+    
+    if (t &amp;&amp; t.indexOf(&#x27;.&#x27;) === -1) {
+        t = t.replace(&#x2F;{&#x2F;g, &#x27;&#x27;).replace(&#x2F;}&#x2F;g, &#x27;&#x27;);
         var firstChar      = t.charAt(0),
             upperFirstChar = firstChar.toUpperCase();
 
