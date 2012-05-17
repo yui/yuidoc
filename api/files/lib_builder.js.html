@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.7</em>
+            <em>API Docs for: 0.3.8</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -974,6 +974,18 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     });
                     opts.meta.moduleClasses.sort(self.nameSort);
                 }
+                if (data.example &amp;&amp; data.example.length) {
+                    if (data.example.forEach) {
+                        var e = &#x27;&#x27;;
+                        data.example.forEach(function(v) {
+                            e += self._parseCode(self.markdown(v));
+                        });
+                        data.example = e;
+                    } else {
+                        data.example = self._parseCode(self.markdown(i.example));
+                    }
+                    opts.meta.example = data.example;
+                }
                 if (data.submodules &amp;&amp; Object.keys(data.submodules).length) {
                     opts.meta.subModules = [];
                     Y.each(Object.keys(data.submodules), function(name) {
@@ -1181,6 +1193,17 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     }
                     &#x2F;&#x2F;console.error(i);
                     opts.meta.is_constructor = [i];
+                    if (i.example &amp;&amp; i.example.length) {
+                        if (i.example.forEach) {
+                            var e = &#x27;&#x27;;
+                            i.example.forEach(function(v) {
+                                e += self._parseCode(self.markdown(v));
+                            });
+                            i.example = e;
+                        } else {
+                            i.example = self._parseCode(self.markdown(i.example));
+                        }
+                    }
                 }
 
                 classItems.forEach(function(i) {
