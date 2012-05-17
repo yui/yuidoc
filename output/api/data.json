@@ -2,7 +2,7 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.3.7",
+        "version": "0.3.8",
         "url": "http://github.com/yui/yuidoc/issues",
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
@@ -806,7 +806,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 892,
+            "line": 904,
             "description": "Generates the module files under \"out\"/modules/",
             "itemtype": "method",
             "name": "writeModules",
@@ -822,7 +822,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 927,
+            "line": 939,
             "description": "Checks an array of items (class items) to see if an item is in that list",
             "itemtype": "method",
             "name": "hasProperty",
@@ -846,7 +846,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 944,
+            "line": 956,
             "description": "Merge superclass data into a child class",
             "itemtype": "method",
             "name": "mergeExtends",
@@ -867,7 +867,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 989,
+            "line": 1001,
             "description": "Render the class file",
             "itemtype": "method",
             "name": "renderClass",
@@ -895,7 +895,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1259,
+            "line": 1282,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -911,7 +911,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1294,
+            "line": 1317,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -936,7 +936,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1317,
+            "line": 1340,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -952,7 +952,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1355,
+            "line": 1378,
             "description": "Render the source file",
             "itemtype": "method",
             "name": "renderFile",
@@ -980,7 +980,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1403,
+            "line": 1426,
             "description": "Write the API meta data used for the AutoComplete widget",
             "itemtype": "method",
             "name": "writeAPIMeta",
@@ -997,7 +997,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1416,
+            "line": 1439,
             "description": "Render the API meta and return the Javascript",
             "itemtype": "method",
             "name": "renderAPIMeta",
@@ -1014,7 +1014,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1446,
+            "line": 1469,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -1034,7 +1034,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1459,
+            "line": 1482,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
