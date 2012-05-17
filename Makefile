@@ -19,7 +19,7 @@ api:
 
 docs: clean help doc api
 
-deploydocs:
+deploydocs: version
 	./scripts/docs.sh
 
 test:
