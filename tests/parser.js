@@ -331,6 +331,16 @@ suite.add(new YUITest.TestCase({
         Assert.isObject(item, 'Failed to parse attribute');
         Assert.areSame('attribute', item.itemtype, 'Failed to parse itemtype');
         Assert.areSame(1, item.optional, 'Failed to find optional short tag');
+    },
+    'test: module with example meta': function() {
+        var item = this.data.modules.ExampleModule;
+        Assert.isObject(item, 'Failed to parse module');
+        Assert.isArray(item.example, 'Failed to parse module example data');
+    },
+    'test: class with example meta': function() {
+        var item = this.data.classes['mywidget.SuperWidget'];
+        Assert.isObject(item, 'Failed to parse class');
+        Assert.isArray(item.example, 'Failed to parse class example data');
     }
 }));
 
