@@ -484,10 +484,13 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .apidocs .item.protected,
 .apidocs .item.private,
 .apidocs .index-item.protected,
+.apidocs .index-item.deprecated,
 .apidocs .index-item.private {
     display: none;
 }
 
+.show-deprecated .item.deprecated,
+.show-deprecated .index-item.deprecated,
 .show-protected .item.protected,
 .show-protected .index-item.protected,
 .show-private .item.private,
@@ -564,7 +567,8 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .apidocs .flag.chainable { background: #46ca3b; }
 .apidocs .flag.protected { background: #9b86fc; }
 .apidocs .flag.private { background: #fd6b1b; }
-.apidocs .flag.async { background: #356DE4; }
+.apidocs .flag.async { background: #356de4; }
+.apidocs .flag.required { background: #e60923; }
 
 .apidocs .item {
     border-bottom: 1px solid #efefef;

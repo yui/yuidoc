@@ -2,7 +2,7 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.3.6",
+        "version": "0.3.7",
         "url": "http://github.com/yui/yuidoc/issues",
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
@@ -181,7 +181,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/docparser.js",
-            "line": 697,
+            "line": 699,
             "description": "The doc parser accepts a **map** of files to file content.\nOnce `parse()` is called, various properties will be populated\nwith the parsers data (aggregated in the `'data'` property).",
             "extends": "Base",
             "is_constructor": 1,
@@ -1072,7 +1072,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 83,
+            "line": 85,
             "description": "A list of known tags.  This populates a member variable\nduring initialization, and will be updated if additional\ndigesters are added.",
             "itemtype": "property",
             "name": "TAGLIST",
@@ -1083,7 +1083,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 162,
+            "line": 165,
             "description": "Common errors will get scrubbed instead of being ignored.",
             "itemtype": "property",
             "name": "CORRECTIONS",
@@ -1094,7 +1094,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 184,
+            "line": 187,
             "description": "A map of the default tag processors, keyed by the\ntag name.  Multiple tags can use the same digester\nby supplying the string name that points to the\nimplementation rather than a function.",
             "itemtype": "property",
             "name": "DIGESTERS",
@@ -1105,7 +1105,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 717,
+            "line": 719,
             "description": "Digesters process the tag/text pairs found in a\ncomment block.  They are looked up by tag name.\nThe digester gets the tagname, the value, the\ntarget object to apply values to, and the full\nblock that is being processed.  Digesters can\nbe declared as strings instead of a function --\nin that case, the program will try to look up\nthe key listed and use the function there instead\n(it is an alias).  Digesters can return a host\nobject in the case the tag defines a new key\nblock type (modules/classes/methods/events/properties)",
             "itemtype": "attribute",
             "name": "digesters",
@@ -1114,7 +1114,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 739,
+            "line": 741,
             "description": "Emitters will be schemas for the types of payloads\nthe parser will emit.  Not implemented.",
             "itemtype": "attribute",
             "name": "emitters",
@@ -1123,7 +1123,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 750,
+            "line": 752,
             "description": "The map of file names to file content.",
             "itemtype": "attribute",
             "name": "filemap",
@@ -1132,7 +1132,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 758,
+            "line": 760,
             "description": "A map of file names to directory name.  Provided in\ncase this needs to be used to reset the module name\nappropriately -- currently not used",
             "itemtype": "attribute",
             "name": "dirmap",
@@ -1141,7 +1141,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 768,
+            "line": 770,
             "description": "The file currently being parsed",
             "itemtype": "attribute",
             "name": "currentfile",
@@ -1151,7 +1151,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 789,
+            "line": 791,
             "description": "The main documentation block for the module itself.",
             "itemtype": "attribute",
             "name": "mainmodule",
@@ -1161,7 +1161,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 825,
+            "line": 827,
             "description": "The module currently being parsed",
             "itemtype": "attribute",
             "name": "currentmodule",
@@ -1171,7 +1171,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 877,
+            "line": 879,
             "description": "The submodule currently being parsed",
             "itemtype": "attribute",
             "name": "currentsubmodule",
@@ -1181,7 +1181,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 917,
+            "line": 919,
             "description": "The class currently being parsed",
             "itemtype": "attribute",
             "name": "currentclass",
@@ -1191,7 +1191,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 953,
+            "line": 955,
             "description": "Takes a non-namespaced classname and resolves it to a namespace (to support `@for`)",
             "access": "private",
             "tagname": "",
@@ -1213,7 +1213,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1024,
+            "line": 1026,
             "description": "Normalizes the initial indentation of the given _content_ so that the first line\nis unindented, and all other lines are unindented to the same degree as the\nfirst line. So if the first line has four spaces at the beginning, then all\nlines will be unindented four spaces. Ported from [Selleck](https://github.com/rgrove/selleck)",
             "itemtype": "method",
             "name": "unindent",
@@ -1235,7 +1235,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1046,
+            "line": 1048,
             "description": "Transforms a JavaDoc style comment block (less the start\nand end of it) into a list\nof tag/text pairs.  The leading space and '*' are removed,\nbut the remaining whitespace is preserved so that the\noutput should be friendly for both markdown and html\nparsers.",
             "itemtype": "method",
             "name": "handlecomment",
@@ -1261,7 +1261,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1116,
+            "line": 1118,
             "description": "Accepts a map of filenames to file content.  Returns\na map of filenames to an array of API comment block\ntext.  This expects the comment to start with / **\non its own line, and end with * / on its own\nline.  Override this function to provide an\nalternative comment parser.",
             "itemtype": "method",
             "name": "extract",
@@ -1286,7 +1286,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1169,
+            "line": 1171,
             "description": "Processes all the tags in a single comment block",
             "itemtype": "method",
             "name": "processblock",
@@ -1302,7 +1302,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1237,
+            "line": 1239,
             "description": "Transforms a map of filenames to arrays of comment blocks into a\nJSON structure that represents the entire processed API doc info\nand relationships between elements for the entire project.",
             "itemtype": "method",
             "name": "transform",
@@ -1322,7 +1322,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1346,
+            "line": 1348,
             "description": "Extracts and transforms the filemap provided to constructor",
             "itemtype": "method",
             "name": "parse",
