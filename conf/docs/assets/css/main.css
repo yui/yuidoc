@@ -53,6 +53,7 @@ ul.links .button {
     border-top: 1px solid #DFDFDF;
     border-bottom: 1px solid #DFDFDF;
     padding: 0.25em 1.25em 0.25em;
+    margin-bottom: 0.75em;
 }
 .crumbs a, .crumbs a:visited {
     color: #30418C;
