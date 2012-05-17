@@ -130,7 +130,13 @@ suite.add(new YUITest.TestCase({
         var item = suite.data.classes['mywidget.SubWidget'];
         Assert.isObject(item, 'Failed to parse class');
         suite.builder.renderClass(function(html, view, opts) {
-            var method = opts.meta.methods[0];
+            var method;
+            opts.meta.methods.forEach(function(i) {
+                if (i.name === 'myMethod' && i.class === 'mywidget.SubWidget') {
+                    method = i;
+                }
+            });
+
             Assert.isObject(method, 'Failed to find inherited method');
             Assert.isObject(method.overwritten_from, 'Failed to find overwritten data');
         }, item);
