@@ -19,6 +19,14 @@
         <span class="flag static">static</span>
     {{/if}}
 
+    {{#if optional}}
+        <span class="flag optional">optional</span>
+    {{/if}}
+
+    {{#if required}}
+        <span class="flag required">required</span>
+    {{/if}}
+
     <div class="meta">
         {{#if overwritten_from}}
             <p>Inherited from

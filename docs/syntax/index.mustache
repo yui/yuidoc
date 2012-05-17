@@ -275,7 +275,9 @@ ATTRS[RENDERED] = {
             <a href="#default">`@default`</a>,
             <a href="#class">`@class`</a>,
             <a href="#for">`@for`</a>,
-            <a href="#type">`@type`</a>.
+            <a href="#type">`@type`</a>,
+            <a href="#required">`@required`</a>,
+            <a href="#optional">`@optional`</a>.
         </p>
     </td>
 </tr>
@@ -504,6 +506,8 @@ as configured through...
             <a href="#default">`@default`</a>,
             <a href="#final">`@final`</a>,
             <a href="#property">`@property`</a>,
+            <a href="#required">`@required`</a>,
+            <a href="#optional">`@optional`</a>,
             <a href="#writeOnce">`@writeOnce`</a>.
         </p>
     </td>
@@ -542,10 +546,78 @@ rendering.
             <a href="#attribute">`@attribute`</a>,
             <a href="#default">`@default`</a>,
             <a href="#final">`@final`</a>,
+            <a href="#required">`@required`</a>,
+            <a href="#optional">`@optional`</a>,
             <a href="#readOnly">`@readOnly`</a>.
         </p>
     </td>
 </tr>
+<tr id="optional">
+    <td>`optional`</td>
+    <td>
+```
+/**
+An optional attribute, 
+not required for proper
+use.
+
+@attribute extras
+@type {Object} extra data
+@optional
+**/
+```
+    </td>
+    <td>
+        <p>
+        [YUI-specific] Indicates that the attribute is not
+        required to be provided for proper use of this class.
+        </p>
+        
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#final">`@final`</a>,
+            <a href="#required">`@required`</a>,
+            <a href="#readOnly">`@readOnly`</a>.
+        </p>
+    </td>
+</tr>
+
+<tr id="required">
+    <td>`required`</td>
+    <td>
+```
+/**
+A required attribute 
+that is required for proper
+use, module will likely fail
+if this is not provided.
+
+@attribute url
+@type {String} url to fetch remote data from
+@required
+**/
+```
+    </td>
+    <td>
+        <p>
+        [YUI-specific] Indicates that the attribute is
+        required to be provided for proper use of this class.
+        </p>
+        
+        <p>
+            See also:
+            <a href="#attribute">`@attribute`</a>,
+            <a href="#default">`@default`</a>,
+            <a href="#final">`@final`</a>,
+            <a href="#optional">`@optional`</a>,
+            <a href="#readOnly">`@readOnly`</a>.
+        </p>
+    </td>
+</tr>
+
+
 <tr id="param">
     <td>`*param`</td>
     <td>
