@@ -319,6 +319,18 @@ suite.add(new YUITest.TestCase({
         Assert.areSame('method', item.itemtype, 'Failed to parse Cased Method tag');
         Assert.isArray(item.params, 'Failed to parse Cased Params');
         Assert.areSame(1, item.params.length, 'Failed to parse number of cased params');
+    },
+    'test: required attribute': function() {
+        var item = this.findByName('requiredAttr', 'OtherClass2');
+        Assert.isObject(item, 'Failed to parse attribute');
+        Assert.areSame('attribute', item.itemtype, 'Failed to parse itemtype');
+        Assert.areSame(1, item.required, 'Failed to find required short tag');
+    },
+    'test: optional attribute': function() {
+        var item = this.findByName('optionalAttr', 'OtherClass2');
+        Assert.isObject(item, 'Failed to parse attribute');
+        Assert.areSame('attribute', item.itemtype, 'Failed to parse itemtype');
+        Assert.areSame(1, item.optional, 'Failed to find optional short tag');
     }
 }));
 

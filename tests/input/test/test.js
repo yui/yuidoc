@@ -144,3 +144,15 @@ This is a test of CASE TaGs
 @MeThod testMethod
 @ParaM {String} foo Foo description
 */
+
+/**
+This is an optional attribute
+@attribute optionalAttr
+@optional
+*/
+
+/**
+This is a required attribute
+@attribute requiredAttr
+@required
+*/
