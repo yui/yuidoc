@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.6</em>
+            <em>API Docs for: 0.3.7</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -93,6 +93,11 @@
             <input type="checkbox" id="api-show-private">
             Private
         </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
     </div>
 
 
@@ -182,7 +187,9 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
         &#x27;chainable&#x27;: 1,
         &#x27;extends&#x27;: 1,
         &#x27;final&#x27;: 1,
-        &#x27;static&#x27;: 1
+        &#x27;static&#x27;: 1,
+        &#x27;optional&#x27;: 1,
+        &#x27;required&#x27;: 1
     },
 
     &#x2F;**
@@ -237,7 +244,8 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
         &quot;module&quot;, &#x2F;&#x2F; YUI module name
         &quot;main&quot;, &#x2F;&#x2F; Description for the module
         &quot;namespace&quot;, &#x2F;&#x2F; Y.namespace, used to fully qualify class names
-        &quot;optional&quot;, &#x2F;&#x2F; for module requirements (like &#x27;requires&#x27;)
+        &quot;optional&quot;, &#x2F;&#x2F; For optional attributes
+        &quot;required&quot;, &#x2F;&#x2F; For required attributes
         &quot;param&quot;, &#x2F;&#x2F; member param
         &quot;plugin&quot;, &#x2F;&#x2F; this is a plugin for [entityl]
         &quot;preventable&quot;, &#x2F;&#x2F; YUI custom events can be preventable ala DOM events
@@ -691,7 +699,6 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
         &#x27;throws&#x27;: &#x27;todo&#x27;,
         &#x27;requires&#x27;: &#x27;todo&#x27;,
         &#x27;knownissue&#x27;: &#x27;todo&#x27;,
-        &#x27;optional&#x27;: &#x27;todo&#x27;,
         &#x27;uses&#x27;: &#x27;todo&#x27;,
         &#x27;category&#x27;: &#x27;todo&#x27;,
         &#x27;unimplemented&#x27;: &#x27;todo&#x27;,

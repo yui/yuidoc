@@ -298,7 +298,9 @@ ATTRS[RENDERED] = {</pre>
             <a href="#default"><code>@default</code></a>,
             <a href="#class"><code>@class</code></a>,
             <a href="#for"><code>@for</code></a>,
-            <a href="#type"><code>@type</code></a>.
+            <a href="#type"><code>@type</code></a>,
+            <a href="#required"><code>@required</code></a>,
+            <a href="#optional"><code>@optional</code></a>.
         </p>
     </td>
 </tr>
@@ -517,6 +519,8 @@ as configured through...
             <a href="#default"><code>@default</code></a>,
             <a href="#final"><code>@final</code></a>,
             <a href="#property"><code>@property</code></a>,
+            <a href="#required"><code>@required</code></a>,
+            <a href="#optional"><code>@optional</code></a>,
             <a href="#writeOnce"><code>@writeOnce</code></a>.
         </p>
     </td>
@@ -554,10 +558,76 @@ rendering.
             <a href="#attribute"><code>@attribute</code></a>,
             <a href="#default"><code>@default</code></a>,
             <a href="#final"><code>@final</code></a>,
+            <a href="#required"><code>@required</code></a>,
+            <a href="#optional"><code>@optional</code></a>,
             <a href="#readOnly"><code>@readOnly</code></a>.
         </p>
     </td>
 </tr>
+<tr id="optional">
+    <td><code>optional</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+An optional attribute, 
+not required for proper
+use.
+
+@attribute extras
+@type {Object} extra data
+@optional
+**&#x2F;</pre>
+
+    </td>
+    <td>
+        <p>
+        [YUI-specific] Indicates that the attribute is not
+        required to be provided for proper use of this class.
+        </p>
+        
+        <p>
+            See also:
+            <a href="#attribute"><code>@attribute</code></a>,
+            <a href="#default"><code>@default</code></a>,
+            <a href="#final"><code>@final</code></a>,
+            <a href="#required"><code>@required</code></a>,
+            <a href="#readOnly"><code>@readOnly</code></a>.
+        </p>
+    </td>
+</tr>
+
+<tr id="required">
+    <td><code>required</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+A required attribute 
+that is required for proper
+use, module will likely fail
+if this is not provided.
+
+@attribute url
+@type {String} url to fetch remote data from
+@required
+**&#x2F;</pre>
+
+    </td>
+    <td>
+        <p>
+        [YUI-specific] Indicates that the attribute is
+        required to be provided for proper use of this class.
+        </p>
+        
+        <p>
+            See also:
+            <a href="#attribute"><code>@attribute</code></a>,
+            <a href="#default"><code>@default</code></a>,
+            <a href="#final"><code>@final</code></a>,
+            <a href="#optional"><code>@optional</code></a>,
+            <a href="#readOnly"><code>@readOnly</code></a>.
+        </p>
+    </td>
+</tr>
+
+
 <tr id="param">
     <td><code>*param</code></td>
     <td>
