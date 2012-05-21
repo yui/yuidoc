@@ -300,7 +300,13 @@ suite.add(new YUITest.TestCase({
 
         item = this.findByName('_positionChangeHandler', 'Axis');
         Assert.isObject(item, 'failed to find item');
-        Assert.areEqual(1, item.params.length, 'Failed to replace parma with params');
+        Assert.areEqual(1, item.params.length, 'Failed to replace parma with param');
+
+        item = this.findByName('crashTest', 'OtherClass2');
+        Assert.isObject(item, 'failed to find item');
+        Assert.areEqual(1, item.params.length, 'Failed to replace params with param');
+
+        
     },
     'test: double namespaces': function() {
         var cls = this.data.classes;

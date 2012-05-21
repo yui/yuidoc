@@ -156,3 +156,9 @@ This is a required attribute
 @attribute requiredAttr
 @required
 */
+
+/**
+crash test method
+@method crashTest
+@params {String} foo The string to crash the parser
+*/
