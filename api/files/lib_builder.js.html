@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.8</em>
+            <em>API Docs for: 0.3.9</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -1211,7 +1211,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                         case &#x27;method&#x27;:
                             i = self.augmentData(i);
                             i.paramsList = [];
-                            if (i.params) {
+                            if (i.params &amp;&amp; i.params.forEach) {
                                 i.params.forEach(function(p, v) {
                                     var name = p.name;
                                     if (p.optional) {
