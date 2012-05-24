@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.10</em>
+            <em>API Docs for: 0.3.11</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -190,7 +190,8 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         Y.Handlebars.registerHelper(&#x27;crossLinkModule&#x27;, function(item, fn) {
             var str = item;
             if (self.data.modules[item]) {
-                str = &#x27;&lt;a href=&quot;..&#x2F;modules&#x2F;&#x27; + item + &#x27;.html&quot;&gt;&#x27; + item + &#x27;&lt;&#x2F;a&gt;&#x27;;
+                str = &#x27;&lt;a href=&quot;..&#x2F;modules&#x2F;&#x27; + item.replace(&#x27;&#x2F;&#x27;, &#x27;_&#x27;) +
+                      &#x27;.html&quot;&gt;&#x27; + item + &#x27;&lt;&#x2F;a&gt;&#x27;;
             }
             return str;
         });
@@ -271,7 +272,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 newWin = false,
                 className = &#x27;crosslink&#x27;;
 
-			item = fixType(item);
+            item = fixType(item);
 
             item = baseItem = Y.Lang.trim(item.replace(&#x27;{&#x27;, &#x27;&#x27;).replace(&#x27;}&#x27;, &#x27;&#x27;));
             &#x2F;&#x2F;Remove Cruft
@@ -497,7 +498,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     base = path.dirname(path.resolve(i));
                     var data = Y.Files.getJSON(i);
                     data.base = base;
-                    self.options.externalData = Y.mix(self.options.externalData || {}, data);
+                    &#x2F;&#x2F;self.options.externalData = Y.mix(self.options.externalData || {}, data);
+                    if (!self.options.externalData) {
+                        self.options.externalData = [];
+                    }
+                    self.options.externalData.push(data);
                 }
             });
 
