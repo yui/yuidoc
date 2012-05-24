@@ -6,6 +6,17 @@
         {{/selleck}}
     {{/extra}}
 
+    {{#if requires}}
+        <div class="uses">
+            Requires
+            <ul class="inline commas">
+                {{#requires}}
+                    <li>{{#crossLinkModule .}}{{/crossLinkModule}}</li>
+                {{/requires}}
+            </ul>
+        </div>
+    {{/if}}
+
     {{#if foundAt}}
         <div class="foundat">
             Defined in: <a href="{{foundAt}}">`{{{file}}}:{{{line}}}`</a>
