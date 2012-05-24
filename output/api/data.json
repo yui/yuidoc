@@ -2,7 +2,7 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.3.9",
+        "version": "0.3.10",
         "url": "http://github.com/yui/yuidoc/issues",
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
@@ -2074,7 +2074,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 262,
+            "line": 268,
             "description": "Walks the tree from this dir and returns all the subdirs",
             "itemtype": "method",
             "name": "getDirs",
@@ -2094,7 +2094,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 289,
+            "line": 295,
             "description": "Make sure all the paths passed are directories and that they are not in the ignore list.",
             "itemtype": "method",
             "name": "validatePaths",
@@ -2117,7 +2117,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 358,
+            "line": 364,
             "description": "Takes a type string and converts it to a \"First letter upper cased\" type. e.g. `(string -> String, object -> Object)`",
             "itemtype": "method",
             "name": "fixType",
@@ -2293,7 +2293,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 273,
+            "line": 275,
             "description": "Process the config, walk the file tree and write out the JSON data.",
             "itemtype": "method",
             "name": "run",
@@ -2306,7 +2306,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 279,
+            "line": 281,
             "description": "Timestamp holder so we know when YUIDoc started the parse process.",
             "itemtype": "property",
             "name": "starttime",
@@ -2316,7 +2316,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 297,
+            "line": 299,
             "description": "Timestamp holder so we know when YUIDoc has finished the parse process.",
             "itemtype": "property",
             "name": "endtime",

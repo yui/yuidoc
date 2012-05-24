@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.9</em>
+            <em>API Docs for: 0.3.10</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -355,7 +355,13 @@ var getProjectData = function(dir) {
         if (Y.Files.isFile(p)) {
             if (d === &#x27;yuidoc.json&#x27;) {
                 Y.log(&#x27;Loading project data from: &#x27; + p, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
-                projectData = Y.Files.getJSON(p);
+                try {
+                    projectData = Y.Files.getJSON(p);
+                } catch (e) {
+                    var err = &#x27;Failed to parse yuidoc.json file, please make sure it is valid JSON&#x27;;
+                    Y.log(err, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
+                    throw(e+&#x27;&#x27;);
+                }
             }
         }
         if (!projectData &amp;&amp; Y.Files.isDirectory(p)) {
