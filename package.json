@@ -32,8 +32,8 @@
         "rimraf": "~2.0.0",
         "node-markdown": "~0.1.0",
         "minimatch": "~0.1.0",
-        "graceful-fs": "1.1.1",
-        "express": ">=2.3.0 <2.6.0"
+        "graceful-fs": ">=1.1.1",
+        "express": ">=2.3.0"
     },
     "devDependencies": {
         "yuitest": ">=0.7.3",
