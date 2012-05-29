@@ -8,6 +8,8 @@ var YUITest = require('yuitest'),
 //Move to the test dir before running the tests.
 process.chdir(__dirname);
 
+var existsSync = fs.existsSync || path.existsSync;
+
 var suite = new YUITest.TestSuite({
     name: 'Parser Test Suite',
     setUp: function() {
@@ -41,10 +43,10 @@ suite.add(new YUITest.TestCase({
         return ret;
     },
     'test: out directory': function() {
-        Assert.isTrue(path.existsSync(path.join(__dirname, 'out')), 'Out directory was not created');
+        Assert.isTrue(existsSync(path.join(__dirname, 'out')), 'Out directory was not created');
     },
     'test: data.json creation': function() {
-        Assert.isTrue(path.existsSync(path.join(__dirname, 'out', 'data.json')), 'data.json file was not created');
+        Assert.isTrue(existsSync(path.join(__dirname, 'out', 'data.json')), 'data.json file was not created');
     },
     'test: parser': function() {
         var keys = Object.keys(this.data);
