@@ -67,6 +67,9 @@
         {{#if methods}}
             <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
         {{/if}}
+        {{#if callbacks}}
+            <li class="api-class-tab callbacks"><a href="#callbacks">Callbacks</a></li>
+        {{/if}}
         {{#if properties}}
             <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
         {{/if}}
@@ -99,6 +102,27 @@
                                 {{/if}}
                             </li>
                         {{/methods}}
+                    </ul>
+                </div>
+            {{/if}}
+
+            {{#if callbacks}}
+                <div class="index-section callbacks">
+                    <h3>Callbacks</h3>
+
+                    <ul class="index-list callbacks{{#if extends}} extends{{/if}}">
+                        {{#callbacks}}
+                            <li class="index-item callback{{#if access}} {{access}}{{/if}}{{#if deprecated}} deprecated{{/if}}{{#if overwritten_from}} inherited{{/if}}{{#if extended_from}} inherited{{/if}}">
+                                <a href="#callback_{{name}}">{{name}}</a>
+
+                                {{#if static}}
+                                    <span class="flag static">static</span>
+                                {{/if}}
+                                {{#if deprecated}}
+                                    <span class="flag deprecated">deprecated</span>
+                                {{/if}}
+                            </li>
+                        {{/callbacks}}
                     </ul>
                 </div>
             {{/if}}
@@ -167,6 +191,16 @@
                 {{#methods}}
                     {{>method}}
                 {{/methods}}
+            </div>
+        {{/if}}
+
+        {{#if callbacks}}
+            <div id="callbacks" class="api-class-tabpanel">
+                <h2 class="off-left">Callbacks</h2>
+
+                {{#callbacks}}
+                    {{>callback}}
+                {{/callbacks}}
             </div>
         {{/if}}
 
