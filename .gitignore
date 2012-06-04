@@ -3,3 +3,4 @@ out
 node_modules
 ddc
 npm-debug.log
+tests/input/test-linked
