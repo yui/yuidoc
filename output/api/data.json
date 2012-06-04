@@ -1365,7 +1365,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 21,
+            "line": 37,
             "description": "Copy a directory from one location to another",
             "itemtype": "method",
             "name": "copyDirectory",
@@ -1398,7 +1398,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 98,
+            "line": 114,
             "description": "Copy a file from one location to another",
             "itemtype": "method",
             "name": "copyFile",
@@ -1438,7 +1438,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 141,
+            "line": 157,
             "description": "If _source_ is a file, copies it to _dest_. If it's a directory, recursively\ncopies it and all files and directories it contains to _dest_.\n\nNote that when attempting to copy a file into a directory, you should specify\nthe full path to the new file (including the new filename). Otherwise, it will\nbe interpreted as an attempt to copy the _source_ file *over* the _dest_\ndirectory instead of *into* it.\n\nKnown issues:\n- Doesn't preserve ownership or permissions on copied files/directories.",
             "itemtype": "method",
             "name": "copyPath",
@@ -1478,7 +1478,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 188,
+            "line": 204,
             "description": "If _path_ is a file, deletes it. If _path_ is a directory, recursively deletes\nit and all files and directories it contains.\n\nThis method is synchronous.",
             "itemtype": "method",
             "name": "deletePath",
@@ -1494,7 +1494,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 212,
+            "line": 228,
             "description": "Check to see if this is a directory",
             "itemtype": "method",
             "name": "isDirectory",
@@ -1521,7 +1521,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 239,
+            "line": 255,
             "description": "Check to see if this is a File",
             "itemtype": "method",
             "name": "isFile",
@@ -1548,7 +1548,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 265,
+            "line": 281,
             "description": "Check to see if this is a SymLink",
             "itemtype": "method",
             "name": "isSymbolicLink",
@@ -1568,7 +1568,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 277,
+            "line": 293,
             "description": "Like `fs.lstatSync()`, but returns `null` instead of throwing when _path_\ndoesn't exist. Will still throw on other types of errors.",
             "itemtype": "method",
             "name": "lstatSync",
@@ -1588,7 +1588,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 298,
+            "line": 314,
             "description": "Like `fs.statSync()`, but returns `null` instead of throwing when _path_\ndoesn't exist. Will still throw on other types of errors.",
             "itemtype": "method",
             "name": "statSync",
@@ -1608,7 +1608,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 319,
+            "line": 335,
             "description": "Copy the theme assets directory",
             "itemtype": "method",
             "name": "copyAssets",
@@ -1639,7 +1639,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 367,
+            "line": 383,
             "description": "Helper method for getting JSON data from a local file",
             "itemtype": "method",
             "name": "getJSON",
@@ -1659,7 +1659,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 381,
+            "line": 397,
             "description": "Helper method for writing files to disk. It wraps the NodeJS file API",
             "itemtype": "method",
             "name": "writeFile",

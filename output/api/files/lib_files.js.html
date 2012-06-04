@@ -118,6 +118,7 @@ YUI.add(&#x27;files&#x27;, function(Y) {
 
 Y.Files = {};
 
+
 &#x2F;*
 Selleck
 Copyright (c) 2011 Yahoo! Inc.
@@ -126,7 +127,22 @@ Licensed under the BSD License.
 
 var fs = require(&#x27;graceful-fs&#x27;);
     fsPath   = require(&#x27;path&#x27;),
-    nodeUtil = require(&#x27;util&#x27;);
+    nodeUtil = require(&#x27;util&#x27;),
+    useFS = (fs.exists) ? fs : fsPath;
+
+
+
+
+var exists = function(file, cb) {
+    if (cb) {
+        useFS.exists(file, cb);
+    } else {
+        return useFS.existsSync(file);
+    }
+};
+
+Y.Files.exists = exists;
+
 
 &#x2F;**
 * Copy a directory from one location to another
@@ -482,7 +498,7 @@ Y.Files.copyAssets = copyAssets;
 *&#x2F;
 Y.Files.getJSON = function(filename) {
     var data = {};
-    if (fsPath.existsSync(filename)) {
+    if (exists(filename)) {
         data = JSON.parse(fs.readFileSync(filename, &quot;utf8&quot;));
     };
     return data;

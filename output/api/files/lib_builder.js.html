@@ -230,7 +230,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         _addHelpers: function(helpers) {
             Y.log(&#x27;Importing helpers: &#x27; + helpers, &#x27;info&#x27;, &#x27;builder&#x27;);
             helpers.forEach(function(imp) {
-                if (!path.existsSync(imp) || path.existsSync(path.join(process.cwd(), imp))) {
+                if (!Y.Files.exists(imp) || Y.Files.exists(path.join(process.cwd(), imp))) {
                    imp= path.join(process.cwd(), imp);
                 }
                 var h = require(imp);
@@ -553,12 +553,12 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 try {
                     var meta,
                         theme = path.join(themeDir, &#x27;theme.json&#x27;);
-                    if (path.existsSync(theme)) {
+                    if (Y.Files.exists(theme)) {
                         Y.log(&#x27;Loading theme from &#x27; + theme, &#x27;info&#x27;, &#x27;builder&#x27;);
                         meta = Y.Files.getJSON(theme);
                     } else if (DEFAULT_THEME !== themeDir) {
                         theme = path.join(DEFAULT_THEME, &#x27;theme.json&#x27;)
-                        if (path.existsSync(theme)) {
+                        if (Y.Files.exists(theme)) {
                             Y.log(&#x27;Loading theme from &#x27; + theme, &#x27;info&#x27;, &#x27;builder&#x27;);
                             meta = Y.Files.getJSON(theme);
                         }
@@ -775,7 +775,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 dirs.push(&#x27;json&#x27;);
             }
             var writeRedirect = function(dir, file, cb) {
-                path.exists(file, function(x) {
+                Y.Files.exists(file, function(x) {
                     if (x) {
                         var out = path.join(dir, &#x27;index.html&#x27;);
                         fs.createReadStream(file).pipe(fs.createWriteStream(out));
@@ -788,7 +788,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             Y.log(&#x27;Making default directories: &#x27; + dirs.join(&#x27;,&#x27;), &#x27;info&#x27;, &#x27;builder&#x27;);
             dirs.forEach(function(d) {
                 var dir = path.join(self.options.outdir, d);
-                path.exists(dir, stack.add(function(x) {
+                Y.Files.exists(dir, stack.add(function(x) {
                     if (!x) {
                         fs.mkdir(dir, 0777, stack.add(function() {
                             writeRedirect(dir, defaultIndex, stack.add(noop));
