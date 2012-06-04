@@ -2,7 +2,7 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.3.11",
+        "version": "0.3.13",
         "url": "http://github.com/yui/yuidoc/issues",
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
@@ -1521,7 +1521,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 255,
+            "line": 256,
             "description": "Check to see if this is a File",
             "itemtype": "method",
             "name": "isFile",
@@ -1548,7 +1548,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 281,
+            "line": 282,
             "description": "Check to see if this is a SymLink",
             "itemtype": "method",
             "name": "isSymbolicLink",
@@ -1568,7 +1568,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 293,
+            "line": 294,
             "description": "Like `fs.lstatSync()`, but returns `null` instead of throwing when _path_\ndoesn't exist. Will still throw on other types of errors.",
             "itemtype": "method",
             "name": "lstatSync",
@@ -1588,7 +1588,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 314,
+            "line": 315,
             "description": "Like `fs.statSync()`, but returns `null` instead of throwing when _path_\ndoesn't exist. Will still throw on other types of errors.",
             "itemtype": "method",
             "name": "statSync",
@@ -1608,7 +1608,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 335,
+            "line": 336,
             "description": "Copy the theme assets directory",
             "itemtype": "method",
             "name": "copyAssets",
@@ -1639,7 +1639,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 383,
+            "line": 384,
             "description": "Helper method for getting JSON data from a local file",
             "itemtype": "method",
             "name": "getJSON",
@@ -1659,7 +1659,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 397,
+            "line": 398,
             "description": "Helper method for writing files to disk. It wraps the NodeJS file API",
             "itemtype": "method",
             "name": "writeFile",
