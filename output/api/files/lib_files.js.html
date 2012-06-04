@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.11</em>
+            <em>API Docs for: 0.3.13</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -344,6 +344,7 @@ Check to see if this is a directory
 **&#x2F;
 function isDirectory(path, link) {
     var i = false;
+    link = (link === false) ? false : true;
     try {
         var stat = fs.lstatSync(path);
         
