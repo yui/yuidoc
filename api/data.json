@@ -67,7 +67,7 @@
             "name": "lib/index.js",
             "modules": {},
             "classes": {
-                "Index": 1
+                "Main": 1
             },
             "fors": {},
             "namespaces": {}
@@ -124,7 +124,7 @@
                 "DocView": 1,
                 "Files": 1,
                 "Help": 1,
-                "Index": 1,
+                "Main": 1,
                 "Options": 1,
                 "Server": 1,
                 "Utils": 1,
@@ -248,9 +248,9 @@
             "line": 8,
             "description": "Shows the help text"
         },
-        "Index": {
-            "name": "Index",
-            "shortname": "Index",
+        "Main": {
+            "name": "Main",
+            "shortname": "Main",
             "classitems": [],
             "plugins": [],
             "extensions": [],
