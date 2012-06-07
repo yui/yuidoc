@@ -230,7 +230,7 @@ pjax.updateTabState = function (src) {
         if (classTabView.get('rendered')) {
             Y.Widget.getByNode(tab).set('selected', 1);
         } else {
-            tab.addClass('yui3-tab-selected')
+            tab.addClass('yui3-tab-selected');
         }
     }
 };

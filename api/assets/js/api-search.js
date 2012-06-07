@@ -10,7 +10,7 @@ Y.APISearch = Y.Base.create('apiSearch', Y.Base, [Y.AutoCompleteBase], {
         '<li class="result {resultType}">' +
             '<a href="{url}">' +
                 '<h3 class="title">{name}</h3>' +
-                '<span class="type">{resultType}</span>' + 
+                '<span class="type">{resultType}</span>' +
                 '<div class="description">{description}</div>' +
                 '<span class="className">{class}</span>' +
             '</a>' +
