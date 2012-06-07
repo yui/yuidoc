@@ -7,7 +7,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "DocView",
         "Files",
         "Help",
-        "Index",
+        "Main",
         "Options",
         "Server",
         "Utils",
