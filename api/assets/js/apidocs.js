@@ -140,7 +140,7 @@ pjax.initLineNumbers = function () {
 
     // Scroll to the desired line.
     if (hasLines && /^l\d+$/.test(hash)) {
-        if ((node = container.one('#' + hash))) {
+        if ((node = container.getById(hash))) {
             win.scroll(0, node.getY());
         }
     }
@@ -185,7 +185,7 @@ pjax.updateTabState = function (src) {
         setTimeout(function () {
             // For some reason, unless we re-get the node instance here,
             // getY() always returns 0.
-            var node = Y.one('#classdocs #' + hash);
+            var node = Y.one('#classdocs').getById(hash);
             win.scrollTo(0, node.getY() - 70);
         }, 1);
     }
@@ -205,7 +205,7 @@ pjax.updateTabState = function (src) {
         }
     }
 
-    if (hash && (node = Y.one('#classdocs #' + hash))) {
+    if (hash && (node = Y.one('#classdocs').getById(hash))) {
         if ((tabPanel = node.ancestor('.api-class-tabpanel', true))) {
             if ((tab = Y.one('#classdocs .api-class-tab.' + tabPanel.get('id')))) {
                 if (classTabView.get('rendered')) {
