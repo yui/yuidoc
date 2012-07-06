@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.14</em>
+            <em>API Docs for: 0.3.15</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -345,10 +345,14 @@ var getProjectData = function(dir) {
     }
     var dirs = fs.readdirSync(dir);
     dirs.forEach(function(d) {
+        var p = path.join(dir, d);
         if (d.indexOf(&#x27;.&#x27;) === 0) {
             return;
         }
-        var p = path.join(dir, d);
+        if (d === &#x27;node_modules&#x27;) {
+            Y.log(&#x27;Skipping node_modules directory while scanning for yuidoc.json&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
+            return;
+        }
         if (projectData) {
             return;
         }
