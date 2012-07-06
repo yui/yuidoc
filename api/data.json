@@ -2,7 +2,7 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.3.14",
+        "version": "0.3.15",
         "url": "http://github.com/yui/yuidoc/issues",
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
@@ -2074,7 +2074,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 268,
+            "line": 272,
             "description": "Walks the tree from this dir and returns all the subdirs",
             "itemtype": "method",
             "name": "getDirs",
@@ -2094,7 +2094,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 295,
+            "line": 299,
             "description": "Make sure all the paths passed are directories and that they are not in the ignore list.",
             "itemtype": "method",
             "name": "validatePaths",
@@ -2117,7 +2117,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 364,
+            "line": 368,
             "description": "Takes a type string and converts it to a \"First letter upper cased\" type. e.g. `(string -> String, object -> Object)`",
             "itemtype": "method",
             "name": "fixType",
