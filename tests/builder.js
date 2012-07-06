@@ -27,7 +27,10 @@ var suite = new YUITest.TestSuite({
         var options = {
             quiet: true,
             paths: [ 'input/' ],
-            outdir: './out'
+            outdir: './out',
+            helpers: [
+                path.join(__dirname, 'lib/davglass.js')
+            ]
         };
         var json = (new Y.YUIDoc(options)).run();
 
@@ -139,6 +142,21 @@ suite.add(new YUITest.TestCase({
 
             Assert.isObject(method, 'Failed to find inherited method');
             Assert.isObject(method.overwritten_from, 'Failed to find overwritten data');
+        }, item);
+    },
+    'test: helper methods': function() {
+        var item = suite.data.classes['mywidget.SuperWidget'];
+        Assert.isObject(item, 'Failed to parse class');
+        suite.builder.renderClass(function(html, view, opts) {
+            var method;
+            opts.meta.methods.forEach(function(i) {
+                if (i.name === 'getTargets2' && i.class === 'mywidget.SuperWidget') {
+                    method = i;
+                }
+            });
+
+            Assert.isObject(method, 'Failed to find inherited method');
+            Assert.isTrue((method.description.indexOf('DAVGLASS_WAS_HERE::Foo') > 0), 'Helper failed to parse');
         }, item);
     }
 }));
