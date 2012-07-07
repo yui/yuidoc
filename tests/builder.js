@@ -46,7 +46,7 @@ var suite = new YUITest.TestSuite({
 });
 
 
-var exists = fs.existsSync || path.existsSync;
+var exists = fs.existsSync || fs.existsSync;
 
 suite.add(new YUITest.TestCase({
     name: 'Builder setup',
