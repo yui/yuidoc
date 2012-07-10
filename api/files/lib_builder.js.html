@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.15</em>
+            <em>API Docs for: 0.3.16</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -1069,13 +1069,26 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             return other;
         },
         &#x2F;**
+        * Counter for stepping into merges
+        * @private
+        * @property _mergeCounter
+        * @type Number
+        *&#x2F;
+        _mergeCounter: null,
+        &#x2F;**
         * Merge superclass data into a child class
         * @method mergeExtends
         * @param {Object} info The item to extend
         * @param {Array} classItems The list of items to merge in
+        * @param {Boolean} first Set for the first call
         *&#x2F;
-        mergeExtends: function(info, classItems) {
+        mergeExtends: function(info, classItems, first) {
             var self = this;
+            self._mergeCounter = (first) ? 0 : (self._mergeCounter + 1);
+
+            if (self._mergeCounter === 100) {
+                throw(&#x27;YUIDoc detected a loop extending class &#x27; + info.name);
+            }
             if (info.extends || info.uses) {
                 var hasItems = {};
                 hasItems[info.extends] = 1;
@@ -1168,7 +1181,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     }
                 });
 
-                classItems = self.mergeExtends(data, classItems);
+                classItems = self.mergeExtends(data, classItems, true);
 
                 if (data.is_constructor) {
                     var i = Y.mix({}, data);
