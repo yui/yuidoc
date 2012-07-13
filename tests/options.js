@@ -179,6 +179,37 @@ suite.add(new YUITest.TestCase({
         ]);
         
         Assert.isTrue(options.selleck, 'Failed to set selleck');
+    },
+    'test: -T simple': function() {
+        var options = Y.Options([
+            '-T',
+            'simple'
+        ]);
+        var p = path.join(__dirname, '../themes/simple');
+        Assert.areEqual(p, options.themedir);
+    },
+    'test: --theme simple': function() {
+        var options = Y.Options([
+            '--theme',
+            'simple'
+        ]);
+        var p = path.join(__dirname, '../themes/simple');
+        Assert.areEqual(p, options.themedir);
+    },
+    'test: --theme foobar': function() {
+        var options = Y.Options([
+            '--theme',
+            'foobar'
+        ]);
+        var p = path.join(__dirname, '../themes/foobar');
+        Assert.areEqual(p, options.themedir);
+    },
+    'test: --themedir ./foobar': function() {
+        var options = Y.Options([
+            '--themedir',
+            './foobar'
+        ]);
+        Assert.areEqual('./foobar', options.themedir);
     }
 }));
 
