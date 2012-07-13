@@ -2,7 +2,7 @@
     "project": {
         "name": "YUIDoc",
         "description": "YUIDoc documentation tool written in Javascript",
-        "version": "0.3.16",
+        "version": "0.3.17",
         "url": "http://github.com/yui/yuidoc/issues",
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
@@ -274,7 +274,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/options.js",
-            "line": 3,
+            "line": 5,
             "description": "Handles argument parsing"
         },
         "Server": {
@@ -1737,7 +1737,7 @@
         },
         {
             "file": "lib/options.js",
-            "line": 9,
+            "line": 11,
             "description": "Parses arguments and returns an Object of config options",
             "itemtype": "method",
             "name": "Options",
