@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.17</em>
+            <em>API Docs for: 0.3.18</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -130,8 +130,17 @@ You can use it like this:
 @exports {YUI} Y A YUI instance
 @module yuidoc
 *&#x2F;
+&#x2F;&#x2F;Hacking in debug support
+var args = process.argv.slice(2);
+var debug = false;
 
-var YUI = require(&#x27;yui&#x27;).YUI,
+args.forEach(function(item) {
+    if (item.toLowerCase() === &#x27;--debug&#x27;) {
+        debug = true;
+    }
+});
+
+var YUI = require(&#x27;yui&#x27; + (debug ? &#x27;&#x2F;debug&#x27; : &#x27;&#x27;)).YUI,
     path = require(&#x27;path&#x27;),
     fs = require(&#x27;graceful-fs&#x27;),
     metaPath = path.join(__dirname, &#x27;..&#x2F;&#x27;, &#x27;package.json&#x27;);
@@ -195,10 +204,8 @@ var Y = YUI({
         }
     },
     logExclude: {
-        yui: true,
-        get: true,
-        files: true,
-        loader: true
+        attribute: true,
+        handlebars: true
     },
     useSync: true
 }).use(&#x27;utils&#x27;, &#x27;docparser&#x27;, &#x27;yuidoc&#x27;, &#x27;doc-builder&#x27;, &#x27;docview&#x27;, &#x27;files&#x27;, &#x27;help&#x27;, &#x27;options&#x27;, &#x27;server&#x27;, &#x27;project&#x27;);

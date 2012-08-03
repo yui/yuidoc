@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.17</em>
+            <em>API Docs for: 0.3.18</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -135,6 +135,9 @@ YUI.add(&#x27;options&#x27;, function(Y) {
             var v = args.shift();
             &#x2F;&#x2F; options.* defined in .&#x2F;builder.js
             switch (v) {
+                case &quot;--debug&quot;:
+                    Y.applyConfig({ debug: true, filter: &#x27;debug&#x27; });
+                    break;
                 case &quot;-c&quot;:
                 case &quot;--config&quot;:
                 case &quot;--configfile&quot;:
