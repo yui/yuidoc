@@ -210,6 +210,13 @@ suite.add(new YUITest.TestCase({
             './foobar'
         ]);
         Assert.areEqual('./foobar', options.themedir);
+    },
+    'test: --syntaxtype coffee': function() {
+        var options = Y.Options([
+            '--syntaxtype',
+            'coffee'
+        ]);
+        Assert.areEqual('coffee', options.syntaxtype);
     }
 }));
 
