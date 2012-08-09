@@ -1,6 +1,6 @@
 {
     "name": "yuidocjs",
-    "version": "0.3.18",
+    "version": "0.3.19",
     "description": "YUIDoc, YUI's JavaScript Documentation engine.",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/yui/yuidoc/issues" },
@@ -11,7 +11,8 @@
         { "name": "Felipe Gasper", "email": "felipe@cpanel.net" },
         { "name": "Evan Goer", "email": "evan@goer.org" },
         { "name": "Alberto Gragera", "email": "albgra@gmail.com" },
-        { "name": "Pat Cavit", "email": "pcavit@gmail.com" }
+        { "name": "Pat Cavit", "email": "pcavit@gmail.com" },
+        { "name": "Kazuhito Hokamura", "email": "k.hokamura@gmail.com" }
     ],
     "engines": {
         "node" : ">=0.4.0"
@@ -19,6 +20,7 @@
     "keywords": [
         "yui",
         "jsdoc",
+        "coffeescript",
         "api",
         "documentation",
         "javadoc",
