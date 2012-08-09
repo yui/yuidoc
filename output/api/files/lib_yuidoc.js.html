@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.18</em>
+            <em>API Docs for: 0.3.19</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -153,7 +153,8 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
         norecurse: false,
         version: &#x27;0.1.0&#x27;,
         paths: [],
-        themedir: path.join(__dirname,  &#x27;themes&#x27;, &#x27;default&#x27;)
+        themedir: path.join(__dirname,  &#x27;themes&#x27;, &#x27;default&#x27;),
+        syntaxtype: &#x27;js&#x27;
     };
 
     &#x2F;**
@@ -402,6 +403,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
             this.walk();
 
             var json = this.writeJSON(new Y.DocParser({
+                syntaxtype: self.options.syntaxtype,
                 filemap: self.filemap,
                 dirmap: self.dirmap
             }).parse());

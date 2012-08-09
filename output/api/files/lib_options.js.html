@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.18</em>
+            <em>API Docs for: 0.3.19</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -230,6 +230,9 @@ YUI.add(&#x27;options&#x27;, function(Y) {
                 case &quot;-q&quot;:
                 case &quot;--quiet&quot;:
                     options.quiet = true;
+                    break;
+                case &quot;--syntaxtype&quot;:
+                    options.syntaxtype = args.shift();
                     break;
                 default:
                     if (!options.paths) {
