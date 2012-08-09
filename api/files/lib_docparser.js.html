@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.18</em>
+            <em>API Docs for: 0.3.19</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -176,8 +176,18 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
     REGEX_TYPE = &#x2F;(.*?)\{(.*?)\}(.*)&#x2F;,
     REGEX_FIRSTWORD = &#x2F;^\s*?([^\s]+)(.*)&#x2F;,
     REGEX_OPTIONAL = &#x2F;\[(.*?)\]&#x2F;,
-    REGEX_START_COMMENT = &#x2F;^\s*\&#x2F;\*\*&#x2F;,
-    REGEX_END_COMMENT = &#x2F;\*\&#x2F;\s*$&#x2F;,
+    REGEX_START_COMMENT = {
+      js: &#x2F;^\s*\&#x2F;\*\*&#x2F;,
+      coffee: &#x2F;^\s*###\*&#x2F;
+    },
+    REGEX_END_COMMENT = {
+      js: &#x2F;\*\&#x2F;\s*$&#x2F;,
+      coffee: &#x2F;###\s*$&#x2F;
+    },
+    REGEX_LINE_HEAD_CHAR = {
+      js: &#x2F;^\s*\*&#x2F;,
+      coffee: &#x2F;^\s*#&#x2F;
+    },
     REGEX_LINES = &#x2F;\r\n|\n&#x2F;,
     REGEX_GLOBAL_LINES = &#x2F;\r\n|\n&#x2F;g,
 
@@ -861,6 +871,15 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
         },
 
         &#x2F;**
+         * Comment syntax type. 
+         * @attribute syntaxtype
+         * @type String
+         *&#x2F;
+        syntaxtype: {
+            writeOnce: true,
+        },
+
+        &#x2F;**
          * The map of file names to file content.
          * @attribute filemap
          *&#x2F;
@@ -1175,13 +1194,14 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
                 parts, part, peek, skip,
                 results = [{tag: &#x27;file&#x27;, value: file},
                            {tag: &#x27;line&#x27;, value: line}],
-                starRegex = &#x2F;^\s*\*&#x2F;,
-                hasStars  = lines[0] &amp;&amp; starRegex.test(lines[0]);
+                syntaxtype = this.get(&#x27;syntaxtype&#x27;),
+                lineHeadCharRegex = REGEX_LINE_HEAD_CHAR[syntaxtype],
+                hasLineHeadChar  = lines[0] &amp;&amp; lineHeadCharRegex.test(lines[0]);
 
-&#x2F;&#x2F; trim leading stars if there are any
-            if (hasStars) {
+&#x2F;&#x2F; trim leading line head char(star or harp) if there are any
+            if (hasLineHeadChar) {
                 for (i = 0; i &lt; len; i++) {
-                    lines[i] = lines[i].replace(starRegex, &#x27;&#x27;);
+                    lines[i] = lines[i].replace(lineHeadCharRegex, &#x27;&#x27;);
                 }
             }
 
@@ -1242,6 +1262,7 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
         extract: function(filemap, dirmap) {
             filemap = filemap || this.get(&#x27;filemap&#x27;);
             dirmap = dirmap || this.get(&#x27;dirmap&#x27;);
+            var syntaxtype = this.get(&#x27;syntaxtype&#x27;);
             var commentmap = {};
             Y.each(filemap, function(code, filename) {
 
@@ -1251,12 +1272,12 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
 
                 for (i = 0; i &lt; len; i++) {
                     line = lines[i];
-                    if(REGEX_START_COMMENT.test(line)) {
+                    if(REGEX_START_COMMENT[syntaxtype].test(line)) {
                         commentlines = [];
 
                         linenum = i + 1;
 
-                        while (i &lt; len &amp;&amp; (!REGEX_END_COMMENT.test(line))) {
+                        while (i &lt; len &amp;&amp; (!REGEX_END_COMMENT[syntaxtype].test(line))) {
                             commentlines.push(line);
                             i++;
                             line = lines[i];
