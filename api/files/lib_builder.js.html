@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.19</em>
+            <em>API Docs for: 0.3.20</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -1626,7 +1626,6 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     Y.Files.copyAssets([path.join(DEFAULT_THEME, &#x27;assets&#x27;), path.join(themeDir, &#x27;assets&#x27;)], path.join(self.options.outdir, &#x27;assets&#x27;), false, function() {
                         var cstack = new Y.Parallel();
                         
-                        &#x2F;*
                         self.writeModules(cstack.add(function() {
                             self.writeClasses(cstack.add(function() {
                                 if (!self.options.nocode) {
@@ -1634,12 +1633,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                                 }
                             }));
                         }));
-                        *&#x2F;
+                        &#x2F;*
                         self.writeModules(cstack.add(noop));
                         self.writeClasses(cstack.add(noop));
                         if (!self.options.nocode) {
                             self.writeFiles(cstack.add(noop));
                         }
+                        *&#x2F;
                         self.writeIndex(cstack.add(noop));
                         self.writeAPIMeta(cstack.add(noop));
 
