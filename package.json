@@ -1,6 +1,6 @@
 {
     "name": "yuidocjs",
-    "version": "0.3.19",
+    "version": "0.3.20",
     "description": "YUIDoc, YUI's JavaScript Documentation engine.",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/yui/yuidoc/issues" },
@@ -35,7 +35,7 @@
         "node-markdown": "~0.1.0",
         "minimatch": "~0.1.0",
         "graceful-fs": ">=1.1.1",
-        "express": ">=2.3.0"
+        "express": "~2.5.0"
     },
     "devDependencies": {
         "yuitest": ">=0.7.3",
