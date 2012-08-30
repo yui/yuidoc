@@ -168,3 +168,21 @@ crash test method
 * @param ev {EventFacade} containing:
 * @param [ev.name] {String} Name of the field changed
 */
+
+
+
+/**
+This method fires {{#crossLink "OtherClass2/changeWithOptional:event"}}{{/crossLink}}
+@method crossedEvent
+*/
+
+/**
+This method has attr {{#crossLink "OtherClass2/requiredAttr:attribute"}}{{/crossLink}}
+@method crossedAttr
+*/
+
+/**
+This method has attr {{#crossLink "OtherClass2/optionalAttr:attr"}}{{/crossLink}}
+@method crossOptAttr
+*/
+
