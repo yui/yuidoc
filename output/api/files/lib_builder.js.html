@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.21</em>
+            <em>API Docs for: 0.3.22</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -304,15 +304,29 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 &#x2F;&#x2F;We have a class + method to parse
                 var parts = item.split(&#x27;&#x2F;&#x27;),
                     cls = parts[0],
-                    method = parts[1];
+                    method = parts[1],
+                    type = &#x27;method&#x27;;
+
+                if (method.indexOf(&#x27;:&#x27;) &gt; -1) {
+                    parts = method.split(&#x27;:&#x27;);
+                    method = parts[0],
+                    type = parts[1];
+                    if (type.indexOf(&#x27;attr&#x27;) === 0) {
+                        type = &#x27;attribute&#x27;;
+                    }
+                }
 
                 if (cls &amp;&amp; method) {
                     if (self.data.classes[cls]) {
                         self.data.classitems.forEach(function(i) {
-                            if (i.itemtype === &#x27;method&#x27; &amp;&amp; i.name === method &amp;&amp; i.class === cls) {
+                            if (i.itemtype === type &amp;&amp; i.name === method &amp;&amp; i.class === cls) {
                                 link = true;
                                 baseItem = method;
-                                href = path.join(base, &#x27;classes&#x27;, cls + &#x27;.html#method_&#x27; + method);
+                                var t = type;
+                                if (t === &#x27;attribute&#x27;) {
+                                    t = &#x27;attr&#x27;;
+                                }
+                                href = path.join(base, &#x27;classes&#x27;, cls + &#x27;.html#&#x27; + t + &#x27;_&#x27; + method);
                             }
                         });
                     }
@@ -590,7 +604,14 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             opts.meta.classes = [];
             Y.each(this.data.classes, function(v) {
                 if (v.external) { return }
-                opts.meta.classes.push({ displayName: v.name, name: v.name});
+                opts.meta.classes.push({
+                    displayName: v.name,
+                    name: v.name,
+                    namespace: v.namespace,
+                    module: v.module,
+                    description: v.description,
+                    access: v.access || &#x27;public&#x27;
+                });
             });
             opts.meta.classes.sort(this.nameSort);
             return opts;

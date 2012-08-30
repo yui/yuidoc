@@ -12,8 +12,6 @@ doc:
 
 clean:
 	rm -rRf ./output/*
-	npm update
-	npm i selleck
 
 api:
 	./lib/cli.js
