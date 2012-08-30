@@ -87,8 +87,14 @@
                         <ul class="params-list">
                             {{#props}}
                             <li class="param">
-                                <code class="param-name">{{name}}</code>
-                                <span class="type">{{#crossLink type}}{{/crossLink}}</span>
+                                {{#if optional}}
+                                    <code class="param-name optional">[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]</code>
+                                    <span class="type">{{#crossLink type}}{{/crossLink}}</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                {{else}}
+                                    <code class="param-name">{{name}}</code>
+                                    <span class="type">{{#crossLink type}}{{/crossLink}}</span>
+                                {{/if}}
 
                                 <div class="param-description">
                                     {{{description}}}
