@@ -349,6 +349,20 @@ suite.add(new YUITest.TestCase({
         var item = this.data.classes['mywidget.SuperWidget'];
         Assert.isObject(item, 'Failed to parse class');
         Assert.isArray(item.example, 'Failed to parse class example data');
+    },
+    'test: event with optional items': function() {
+        var item = this.findByName('changeWithOptional', 'OtherClass2');
+        Assert.isObject(item, 'Failed to locate event object');
+        var params = item.params;
+        Assert.isArray(params);
+        var ev = params[0];
+        Assert.areSame(ev.name, 'ev');
+        Assert.areSame(ev.type, 'EventFacade');
+        var props = ev.props;
+        Assert.isArray(props);
+        Assert.areSame(props[0].name, 'name');
+        Assert.isTrue(props[0].optional);
+        
     }
 }));
 

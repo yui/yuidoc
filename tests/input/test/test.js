@@ -162,3 +162,9 @@ crash test method
 @method crashTest
 @params {String} foo The string to crash the parser
 */
+
+/**
+* @event changeWithOptional
+* @param ev {EventFacade} containing:
+* @param [ev.name] {String} Name of the field changed
+*/
