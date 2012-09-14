@@ -27,6 +27,10 @@
         <span class="flag required">required</span>
     {{/if}}
 
+    {{#if readonly}}
+        <span class="flag readonly">readonly</span>
+    {{/if}}
+
     <div class="meta">
         {{#if overwritten_from}}
             <p>Inherited from
