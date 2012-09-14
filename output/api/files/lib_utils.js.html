@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.23</em>
+            <em>API Docs for: 0.3.24</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -329,7 +329,7 @@ function prepare(inDirs, options, callback) {
 Y.prepare = prepare;
 
 
-var projectData, dirCount = 0;
+var projectData, packageData, dirCount = 0;
 &#x2F;**
 * Walk the directory tree to locate the yuidoc.json file.
 * @method getProjectData
@@ -367,13 +367,46 @@ var getProjectData = function(dir) {
                     throw(e+&#x27;&#x27;);
                 }
             }
+            if (d === &#x27;package.json&#x27;) {
+                Y.log(&#x27;Loading project data from: &#x27; + p, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
+                try {
+                    packageData = Y.Files.getJSON(p);
+                } catch (e) {
+                    var err = &#x27;Failed to parse package.json file, please make sure it is valid JSON&#x27;;
+                    Y.log(err, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
+                    throw(e+&#x27;&#x27;);
+                }
+            }
         }
         if (!projectData &amp;&amp; Y.Files.isDirectory(p)) {
             dirCount++
             projectData = getProjectData(p);
         }
     });
+    if (packageData &amp;&amp; projectData || (packageData &amp;&amp; packageData.yuidoc)) {
+        projectData = mergeData(packageData, projectData);
+    }
     return projectData;
+};
+
+var mergeData = function(pack, project) {
+    project = project || {};
+
+    if (pack.yuidoc) {
+        Object.keys(pack.yuidoc).forEach(function(key) {
+            if (!project[key]) {
+                project[key] = pack.yuidoc[key];
+            }
+        });
+    }
+
+    [&#x27;name&#x27;, &#x27;description&#x27;, &#x27;version&#x27;, &#x27;url&#x27;, &#x27;logo&#x27;].forEach(function(key) {
+        if (pack[key] &amp;&amp; !project[key]) {
+            project[key] = pack[key];
+        }
+    });
+
+    return project;
 };
 
 Y.getProjectData = getProjectData;
