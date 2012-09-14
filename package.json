@@ -1,6 +1,6 @@
 {
     "name": "yuidocjs",
-    "version": "0.3.23",
+    "version": "0.3.24",
     "description": "YUIDoc, YUI's JavaScript Documentation engine.",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/yui/yuidoc/issues" },
@@ -54,5 +54,20 @@
     "repository": {
         "type":"git",
         "url":"http://github.com/yui/yuidoc.git"
+    },
+    "yuidoc": {
+        "name": "YUIDoc",
+        "logo": "http://yuilibrary.com/img/yui-logo.png",
+        "options": {
+            "external": {
+                "data": "http://yuilibrary.com/yui/docs/api/data.json"
+            },
+            "linkNatives": "true",
+            "attributesEmit": "true",
+            "paths": [
+                "./lib"
+            ],
+            "outdir": "./output/api"
+        }
     }
 }
