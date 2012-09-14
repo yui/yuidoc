@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.22</em>
+            <em>API Docs for: 0.3.23</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -250,9 +250,16 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         *&#x2F;
         markdown: function(md, def, tags) {
             html = MD(md, def, tags);
-            if (html.indexOf(&#x27;{{#&#x27;) &gt; -1) { &#x2F;&#x2F;Only reprocess with Handlebars if we see a helper
+            &#x2F;&#x2F;Only reprocess if helpers were asked for
+            if (this.options.helpers) {
                 &#x2F;&#x2F;console.log(&#x27;MD: &#x27;, html);
-                html = (Y.Handlebars.compile(html))({});
+                try {
+                    html = (Y.Handlebars.compile(html))({});
+                } catch (hError) {
+                    &#x2F;&#x2F;Remove all the extra escapes
+                    html = html.replace(&#x2F;\\{&#x2F;g, &#x27;{&#x27;).replace(&#x2F;\\}&#x2F;g, &#x27;}&#x27;);
+                    Y.log(&#x27;Failed to parse Handlebars, probably an unknown helper, skipping..&#x27;, &#x27;warn&#x27;, &#x27;builder&#x27;);
+                }
                 &#x2F;&#x2F;console.log(&#x27;HB: &#x27;, html);
             }
             return html;
@@ -1340,6 +1347,9 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                                 i.config = true;
                             } else {
                                 i.emit = self.options.attributesEmit;
+                            }
+                            if (i.readonly === &#x27;&#x27;) {
+                                i.readonly = true;
                             }
 
                             if (i.example &amp;&amp; i.example.length) {

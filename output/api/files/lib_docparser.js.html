@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.22</em>
+            <em>API Docs for: 0.3.23</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -1093,7 +1093,7 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
             if (value.indexOf(&#x27;.&#x27;) === -1) {
                 Y.each(this.classes, function(i) {
                     if (i.shortname === value) {
-                        if (i.namespace !== &#x27;&#x27;) {
+                        if (i.namespace) {
                             value = i.namespace + &#x27;.&#x27; + i.shortname;
                         }
                     }
