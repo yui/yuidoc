@@ -186,3 +186,18 @@ This method has attr {{#crossLink "OtherClass2/optionalAttr:attr"}}{{/crossLink}
 @method crossOptAttr
 */
 
+/**
+Test `\{{foobar\}}` `\{{barfoo\}}` 
+@method hbHelper1
+*/
+
+/**
+Test `\{{foobar2\}}` `\{{barfoo2\}}` 
+@method hbHelper2
+*/
+
+/**
+Test `\{{foobar3\}}` `\{{barfoo3\}}` 
+@method hbHelper3
+*/
+
