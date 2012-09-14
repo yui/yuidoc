@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.22</em>
+            <em>API Docs for: 0.3.23</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -149,7 +149,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
         writeJSON: true,
         outdir: path.join(process.cwd(),  &#x27;out&#x27;),
         extension: &#x27;.js&#x27;,
-        exclude: &#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp&#x27;,
+        exclude: &#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp,node_modules&#x27;,
         norecurse: false,
         version: &#x27;0.1.0&#x27;,
         paths: [],
@@ -221,6 +221,20 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
 
     Y.YUIDoc.prototype = {
         &#x2F;**
+         * Always exclude these directories
+         * @method _setDefaultExcludes
+         * @private
+         *&#x2F;
+        _setDefaultExcludes: function() {
+            &#x2F;&#x2F;These should always be excluded
+            var excludes = &#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp,node_modules&#x27;.split(&#x27;,&#x27;),
+                self = this;
+
+            excludes.forEach(function(item) {
+                self.options.excludes[item] = true;
+            });
+        },
+        &#x2F;**
          * Does post process on self.options.
          * @method _processConfig
          * @private
@@ -228,6 +242,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
         _processConfig: function() {
             this.options.extensions = Y.Array.hash(this.options.extension.split(&#x27;,&#x27;));
             this.options.excludes = Y.Array.hash(this.options.exclude.split(&#x27;,&#x27;));
+            this._setDefaultExcludes();
         },
         &#x2F;**
          * Walks the paths and parses the directory contents
@@ -252,6 +267,9 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
             var allfiles = fs.readdirSync(dir), stats,
                 files = [], fullpath, self = this;
 	    
+            if (dir in self.options.excludes) {
+                return;
+            }
             allfiles = allfiles.sort();
 
             Y.each(allfiles, function(filename) {
@@ -267,8 +285,9 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
                     }
                 }
             });
-
-            this.parsefiles(dir, files);
+            if (!(dir in self.options.excludes)) {
+                this.parsefiles(dir, files);
+            }
         },
         &#x2F;**
          * Gathers all the file data and populates the filemap and dirmap hashes.
