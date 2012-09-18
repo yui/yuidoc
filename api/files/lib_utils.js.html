@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>lib&#x2F;utils.js - YUIDoc</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.1&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
-    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.5.1&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
 
@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.24</em>
+            <em>API Docs for: 0.3.25</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -343,46 +343,50 @@ var getProjectData = function(dir) {
     if (!dir) {
         dir = process.cwd();
     }
-    var dirs = fs.readdirSync(dir);
-    dirs.forEach(function(d) {
-        var p = path.join(dir, d);
-        if (d.indexOf(&#x27;.&#x27;) === 0) {
-            return;
-        }
-        if (d === &#x27;node_modules&#x27;) {
-            Y.log(&#x27;Skipping node_modules directory while scanning for yuidoc.json&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
-            return;
-        }
-        if (projectData) {
-            return;
-        }
-        if (Y.Files.isFile(p)) {
-            if (d === &#x27;yuidoc.json&#x27;) {
-                Y.log(&#x27;Loading project data from: &#x27; + p, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
-                try {
-                    projectData = Y.Files.getJSON(p);
-                } catch (e) {
-                    var err = &#x27;Failed to parse yuidoc.json file, please make sure it is valid JSON&#x27;;
-                    Y.log(err, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
-                    throw(e+&#x27;&#x27;);
+    try {
+        var dirs = fs.readdirSync(dir);
+        dirs.forEach(function(d) {
+            var p = path.join(dir, d);
+            if (d.indexOf(&#x27;.&#x27;) === 0) {
+                return;
+            }
+            if (d === &#x27;node_modules&#x27;) {
+                Y.log(&#x27;Skipping node_modules directory while scanning for yuidoc.json&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
+                return;
+            }
+            if (projectData) {
+                return;
+            }
+            if (Y.Files.isFile(p)) {
+                if (d === &#x27;yuidoc.json&#x27;) {
+                    Y.log(&#x27;Loading project data from: &#x27; + p, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
+                    try {
+                        projectData = Y.Files.getJSON(p);
+                    } catch (e) {
+                        var err = &#x27;Failed to parse yuidoc.json file, please make sure it is valid JSON&#x27;;
+                        Y.log(err, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
+                        throw(e+&#x27;&#x27;);
+                    }
+                }
+                if (d === &#x27;package.json&#x27;) {
+                    Y.log(&#x27;Loading project data from: &#x27; + p, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
+                    try {
+                        packageData = Y.Files.getJSON(p);
+                    } catch (e) {
+                        var err = &#x27;Failed to parse package.json file, please make sure it is valid JSON&#x27;;
+                        Y.log(err, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
+                        throw(e+&#x27;&#x27;);
+                    }
                 }
             }
-            if (d === &#x27;package.json&#x27;) {
-                Y.log(&#x27;Loading project data from: &#x27; + p, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
-                try {
-                    packageData = Y.Files.getJSON(p);
-                } catch (e) {
-                    var err = &#x27;Failed to parse package.json file, please make sure it is valid JSON&#x27;;
-                    Y.log(err, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
-                    throw(e+&#x27;&#x27;);
-                }
+            if (!projectData &amp;&amp; Y.Files.isDirectory(p)) {
+                dirCount++
+                projectData = getProjectData(p);
             }
-        }
-        if (!projectData &amp;&amp; Y.Files.isDirectory(p)) {
-            dirCount++
-            projectData = getProjectData(p);
-        }
-    });
+        });
+    } catch (dirPerm) {
+        Y.log(&#x27;Accessing dir (&#x27; + dir + &#x27;) threw an error&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
+    }
     if (packageData &amp;&amp; projectData || (packageData &amp;&amp; packageData.yuidoc)) {
         projectData = mergeData(packageData, projectData);
     }
