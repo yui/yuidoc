@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.29</em>
+            <em>API Docs for: 0.3.30</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -500,7 +500,7 @@ Y.Files.copyAssets = copyAssets;
 Y.Files.getJSON = function(filename) {
     var data = {};
     if (exists(filename)) {
-        data = JSON.parse(fs.readFileSync(filename, &quot;utf8&quot;));
+        data = JSON.parse(fs.readFileSync(filename, &#x27;utf8&#x27;));
     };
     return data;
 };
@@ -518,7 +518,7 @@ var writeFileTimer = 100,
 
 var writeFile = function(file, data, cb) {
     var flags = {
-        flags: &quot;w&quot;, encoding: &quot;utf8&quot;, mode: 0644
+        flags: &quot;w&quot;, encoding: Y.charset, mode: 0644
     }
     var args = arguments;
     if (cb) {

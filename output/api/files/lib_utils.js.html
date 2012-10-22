@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.29</em>
+            <em>API Docs for: 0.3.30</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -125,7 +125,9 @@ var path = require(&#x27;path&#x27;),
 *&#x2F;
 
 YUI.add(&#x27;utils&#x27;, function(Y) {
-    
+ 
+    Y.charset = &#x27;utf8&#x27;;
+
 var HTML_CHARS = {
     &#x27;&amp;&#x27;: &#x27;&amp;amp;&#x27;,
     &#x27;&lt;&#x27;: &#x27;&amp;lt;&#x27;,
@@ -192,7 +194,7 @@ Loads and returns the content of the specified page file.
 **&#x2F;
 function getPage(pagePath) {
     if (!Y.Files.isFile(pagePath)) { return null; }
-    return fs.readFileSync(pagePath, &#x27;utf8&#x27;);
+    return fs.readFileSync(pagePath, Y.charset);
 }
 Y.getPage = getPage;
 
@@ -218,7 +220,7 @@ function getPages(dir) {
         var filePath = path.join(dir, filename);
 
         if (path.extname(filename) === &#x27;.handlebars&#x27; &amp;&amp; Y.Files.isFile(filePath)) {
-            pages[path.basename(filename, &#x27;.handlebars&#x27;)] = fs.readFileSync(filePath, &#x27;utf8&#x27;);
+            pages[path.basename(filename, &#x27;.handlebars&#x27;)] = fs.readFileSync(filePath, Y.charset);
         }
     });
     cache[dir] = pages;
