@@ -3,7 +3,7 @@
         "name": "YUIDoc",
         "logo": "http://yuilibrary.com/img/yui-logo.png",
         "description": "YUIDoc, YUI's JavaScript Documentation engine.",
-        "version": "0.3.29"
+        "version": "0.3.30"
     },
     "files": {
         "lib/builder.js": {
@@ -1724,7 +1724,7 @@
         },
         {
             "file": "lib/help.js",
-            "line": 58,
+            "line": 59,
             "description": "Render the help message as a string",
             "itemtype": "method",
             "name": "renderHelp",
@@ -1737,7 +1737,7 @@
         },
         {
             "file": "lib/help.js",
-            "line": 68,
+            "line": 69,
             "description": "Display the help message, write it to the screen and exit",
             "itemtype": "method",
             "name": "showHelp",
@@ -1922,7 +1922,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 29,
+            "line": 31,
             "description": "Escapes HTML characters in _html_.",
             "itemtype": "method",
             "name": "escapeHTML",
@@ -1942,7 +1942,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 42,
+            "line": 44,
             "description": "Normalizes the initial indentation of the given _content_ so that the first line\nis unindented, and all other lines are unindented to the same degree as the\nfirst line. So if the first line has four spaces at the beginning, then all\nlines will be unindented four spaces.",
             "itemtype": "method",
             "name": "unindent",
@@ -1964,7 +1964,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 63,
+            "line": 65,
             "description": "Like `getPages()`, but returns only the files under the `layout/` subdirectory\nof the specified _dir_.",
             "itemtype": "method",
             "name": "getLayouts",
@@ -1984,7 +1984,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 76,
+            "line": 78,
             "description": "Loads and returns the content of the specified page file.",
             "itemtype": "method",
             "name": "getPage",
@@ -2004,7 +2004,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 89,
+            "line": 91,
             "description": "Loads pages (files with a `.handlebars` extension) in the specified directory and\nreturns an object containing a mapping of page names (the part of the filename)\npreceding the `.handlebars` extension) to page content.",
             "itemtype": "method",
             "name": "getPages",
@@ -2024,7 +2024,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 120,
+            "line": 122,
             "description": "Like `getPages()`, but returns only the files under the `partial/` subdirectory\nof the specified _dir_.",
             "itemtype": "method",
             "name": "getPartials",
@@ -2044,7 +2044,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 134,
+            "line": 136,
             "description": "Mix/merge/munge data into the template.",
             "itemtype": "method",
             "name": "prepare",
@@ -2082,7 +2082,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 223,
+            "line": 225,
             "description": "Walk the directory tree to locate the yuidoc.json file.",
             "itemtype": "method",
             "name": "getProjectData",
@@ -2100,7 +2100,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 309,
+            "line": 311,
             "description": "Walks the tree from this dir and returns all the subdirs",
             "itemtype": "method",
             "name": "getDirs",
@@ -2120,7 +2120,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 336,
+            "line": 338,
             "description": "Make sure all the paths passed are directories and that they are not in the ignore list.",
             "itemtype": "method",
             "name": "validatePaths",
@@ -2143,7 +2143,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 405,
+            "line": 407,
             "description": "Takes a type string and converts it to a \"First letter upper cased\" type. e.g. `(string -> String, object -> Object)`",
             "itemtype": "method",
             "name": "fixType",

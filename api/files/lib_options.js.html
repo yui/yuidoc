@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.29</em>
+            <em>API Docs for: 0.3.30</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -137,6 +137,10 @@ YUI.add(&#x27;options&#x27;, function(Y) {
             switch (v) {
                 case &quot;--debug&quot;:
                     Y.applyConfig({ debug: true, filter: &#x27;debug&#x27; });
+                    break;
+                case &quot;--charset&quot;:
+                    Y.charset = args.shift() || &#x27;utf8&#x27;;
+                    Y.log(&#x27;Setting default charset to &#x27; + Y.charset, &#x27;yuidoc&#x27;, &#x27;warn&#x27;);
                     break;
                 case &quot;-c&quot;:
                 case &quot;--config&quot;:

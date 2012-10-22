@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.29</em>
+            <em>API Docs for: 0.3.30</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -1564,7 +1564,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 opts = self.populateFiles(opts);
 
                 opts.meta.fileName = data.name;
-                fs.readFile(opts.meta.fileName, &#x27;utf8&#x27;, Y.rbind(function(err, str, opts, data) {
+                fs.readFile(opts.meta.fileName, Y.charset, Y.rbind(function(err, str, opts, data) {
                     if (err) {
                         Y.log(err, &#x27;error&#x27;, &#x27;builder&#x27;);
                         cb(err);
@@ -1592,7 +1592,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             Y.log(&#x27;Writing API Meta Data&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
             var self = this;
             this.renderAPIMeta(function(js) {
-                fs.writeFile(path.join(self.options.outdir, &#x27;api.js&#x27;), js, &#x27;utf8&#x27;, cb);
+                fs.writeFile(path.join(self.options.outdir, &#x27;api.js&#x27;), js, Y.charset, cb);
             });
         },
         &#x2F;**

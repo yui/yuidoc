@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.29</em>
+            <em>API Docs for: 0.3.30</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -308,7 +308,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
 
                         if (Y.Files.exists(fullpath)) {
                             self.filecount++;
-                            text = fs.readFileSync(fullpath, &quot;utf8&quot;);
+                            text = fs.readFileSync(fullpath, Y.charset);
 
                             self.filemap[fullpath] = text;
                             self.dirmap[fullpath] = dir;
@@ -394,7 +394,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
                 }
                 
                 out = fs.createWriteStream(file, {
-                        flags: &quot;w&quot;, encoding: &quot;utf8&quot;, mode: 0644
+                        flags: &quot;w&quot;, encoding: Y.charset, mode: 0644
                 });
                 out.write(JSON.stringify(data, null, 4));
                 out.end();
