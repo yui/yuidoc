@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.30</em>
+            <em>API Docs for: 0.3.31</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -353,6 +353,8 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
 
             data = parser.data;
 
+            data.warnings = parser.warnings;
+
             if (self.selleck &amp;&amp; self.options.selleck &amp;&amp; data.files &amp;&amp; data.modules) {
                 Object.keys(self.selleck).forEach(function(file) {
                     Object.keys(data.files).forEach(function(f) {
@@ -402,6 +404,20 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
 
             return data;
         },
+        lint: function(warnings) {
+            var code = 0,
+                count = 0;
+
+            if (warnings &amp;&amp; warnings.length) {
+                code = 1;
+                console.log(&#x27;YUIDoc found&#x27;, warnings.length, &#x27;lint errors in your docs&#x27;);
+                warnings.forEach(function(item) {
+                    count++;
+                    console.log(&#x27;#&#x27; + count, item.message, item.line + &#x27;\n&#x27;);
+                });
+            }
+            process.exit(code);
+        },
         &#x2F;**
          * Process the config, walk the file tree and write out the JSON data.
          * @method run
@@ -426,6 +442,10 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
                 filemap: self.filemap,
                 dirmap: self.dirmap
             }).parse());
+
+            if (this.options.lint) {
+                this.lint(json.warnings);
+            }
 
             &#x2F;**
              * Timestamp holder so we know when YUIDoc has finished the parse process.
