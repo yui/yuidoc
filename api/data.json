@@ -3,7 +3,7 @@
         "name": "YUIDoc",
         "logo": "http://yuilibrary.com/img/yui-logo.png",
         "description": "YUIDoc, YUI's JavaScript Documentation engine.",
-        "version": "0.3.30"
+        "version": "0.3.31"
     },
     "files": {
         "lib/builder.js": {
@@ -180,7 +180,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/docparser.js",
-            "line": 710,
+            "line": 722,
             "description": "The doc parser accepts a **map** of files to file content.\nOnce `parse()` is called, various properties will be populated\nwith the parsers data (aggregated in the `'data'` property).",
             "extends": "Base",
             "is_constructor": 1,
@@ -1121,7 +1121,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 730,
+            "line": 746,
             "description": "Digesters process the tag/text pairs found in a\ncomment block.  They are looked up by tag name.\nThe digester gets the tagname, the value, the\ntarget object to apply values to, and the full\nblock that is being processed.  Digesters can\nbe declared as strings instead of a function --\nin that case, the program will try to look up\nthe key listed and use the function there instead\n(it is an alias).  Digesters can return a host\nobject in the case the tag defines a new key\nblock type (modules/classes/methods/events/properties)",
             "itemtype": "attribute",
             "name": "digesters",
@@ -1130,7 +1130,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 752,
+            "line": 768,
             "description": "Emitters will be schemas for the types of payloads\nthe parser will emit.  Not implemented.",
             "itemtype": "attribute",
             "name": "emitters",
@@ -1139,7 +1139,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 763,
+            "line": 779,
             "description": "Comment syntax type.",
             "itemtype": "attribute",
             "name": "syntaxtype",
@@ -1149,7 +1149,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 772,
+            "line": 788,
             "description": "The map of file names to file content.",
             "itemtype": "attribute",
             "name": "filemap",
@@ -1158,7 +1158,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 780,
+            "line": 796,
             "description": "A map of file names to directory name.  Provided in\ncase this needs to be used to reset the module name\nappropriately -- currently not used",
             "itemtype": "attribute",
             "name": "dirmap",
@@ -1167,7 +1167,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 790,
+            "line": 806,
             "description": "The file currently being parsed",
             "itemtype": "attribute",
             "name": "currentfile",
@@ -1177,7 +1177,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 811,
+            "line": 827,
             "description": "The main documentation block for the module itself.",
             "itemtype": "attribute",
             "name": "mainmodule",
@@ -1187,7 +1187,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 847,
+            "line": 863,
             "description": "The module currently being parsed",
             "itemtype": "attribute",
             "name": "currentmodule",
@@ -1197,7 +1197,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 899,
+            "line": 915,
             "description": "The submodule currently being parsed",
             "itemtype": "attribute",
             "name": "currentsubmodule",
@@ -1207,7 +1207,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 939,
+            "line": 955,
             "description": "The class currently being parsed",
             "itemtype": "attribute",
             "name": "currentclass",
@@ -1217,7 +1217,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 975,
+            "line": 991,
             "description": "Takes a non-namespaced classname and resolves it to a namespace (to support `@for`)",
             "access": "private",
             "tagname": "",
@@ -1239,7 +1239,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1046,
+            "line": 1064,
             "description": "Normalizes the initial indentation of the given _content_ so that the first line\nis unindented, and all other lines are unindented to the same degree as the\nfirst line. So if the first line has four spaces at the beginning, then all\nlines will be unindented four spaces. Ported from [Selleck](https://github.com/rgrove/selleck)",
             "itemtype": "method",
             "name": "unindent",
@@ -1261,7 +1261,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1068,
+            "line": 1086,
             "description": "Transforms a JavaDoc style comment block (less the start\nand end of it) into a list\nof tag/text pairs.  The leading space and '*' are removed,\nbut the remaining whitespace is preserved so that the\noutput should be friendly for both markdown and html\nparsers.",
             "itemtype": "method",
             "name": "handlecomment",
@@ -1287,7 +1287,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1139,
+            "line": 1157,
             "description": "Accepts a map of filenames to file content.  Returns\na map of filenames to an array of API comment block\ntext.  This expects the comment to start with / **\non its own line, and end with * / on its own\nline.  Override this function to provide an\nalternative comment parser.",
             "itemtype": "method",
             "name": "extract",
@@ -1312,7 +1312,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1193,
+            "line": 1211,
             "description": "Processes all the tags in a single comment block",
             "itemtype": "method",
             "name": "processblock",
@@ -1328,7 +1328,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1261,
+            "line": 1285,
             "description": "Transforms a map of filenames to arrays of comment blocks into a\nJSON structure that represents the entire processed API doc info\nand relationships between elements for the entire project.",
             "itemtype": "method",
             "name": "transform",
@@ -1348,7 +1348,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1370,
+            "line": 1398,
             "description": "Extracts and transforms the filemap provided to constructor",
             "itemtype": "method",
             "name": "parse",
@@ -1724,7 +1724,7 @@
         },
         {
             "file": "lib/help.js",
-            "line": 59,
+            "line": 60,
             "description": "Render the help message as a string",
             "itemtype": "method",
             "name": "renderHelp",
@@ -1737,7 +1737,7 @@
         },
         {
             "file": "lib/help.js",
-            "line": 69,
+            "line": 70,
             "description": "Display the help message, write it to the screen and exit",
             "itemtype": "method",
             "name": "showHelp",
@@ -2330,7 +2330,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 295,
+            "line": 311,
             "description": "Process the config, walk the file tree and write out the JSON data.",
             "itemtype": "method",
             "name": "run",
@@ -2343,7 +2343,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 301,
+            "line": 317,
             "description": "Timestamp holder so we know when YUIDoc started the parse process.",
             "itemtype": "property",
             "name": "starttime",
@@ -2353,13 +2353,19 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 320,
+            "line": 340,
             "description": "Timestamp holder so we know when YUIDoc has finished the parse process.",
             "itemtype": "property",
             "name": "endtime",
             "type": "Timestamp",
             "class": "YUIDoc",
             "module": "yuidoc"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: exports",
+            "line": " lib/index.js:6"
         }
     ]
 }

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.30</em>
+            <em>API Docs for: 0.3.31</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -350,7 +350,11 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             target.params = target.params || [];
 
             if (!value) {
-Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
+                this.warnings.push({
+                    message: &#x27;param name&#x2F;type&#x2F;descript missing&#x27;,
+                    line: stringlog(block)
+                });
+                Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
                 return;
             }
 
@@ -374,10 +378,18 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
 
             if (!name) {
                 if (value &amp;&amp; value.match(&#x2F;callback&#x2F;i)) {
+                    this.warnings.push({
+                        message: &#x27;Fixing missing name for callback&#x27;,
+                        line: stringlog(block)
+                    });
                     Y.log(&#x27;Fixing missing name for callback:&#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
                     name = &#x27;callback&#x27;;
                     type = &#x27;Callback&#x27;;
                 } else {
+                    this.warnings.push({
+                        message: &#x27;param name missing: &#x27; + value,
+                        line: stringlog(block)
+                    });
                     Y.log(&#x27;param name missing: &#x27; + value + &#x27;:&#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
                     name = &#x27;UNKNOWN&#x27;;
                 }
@@ -836,6 +848,10 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
     DocParser.NAME = &#x27;DocParser&#x27;;
 
     DocParser.ATTRS = {
+        
+        lint: {
+            value: false
+        },
 
         &#x2F;**
          * Digesters process the tag&#x2F;text pairs found in a
@@ -1104,6 +1120,8 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
 
         initializer: function() {
 
+            this.warnings = [];
+
             var self = this;
             self.after(&#x27;currentfileChange&#x27;, function(e) {
                 &#x2F;*
@@ -1328,12 +1346,18 @@ Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block
 
                     if (!(name in this.knowntags)) {
                         if (name in CORRECTIONS) {
-Y.log(&#x27;replacing incorrect tag: &#x27; + name + &#x27; with &#x27; + CORRECTIONS[name] + &#x27;: &#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
-&#x2F;&#x2F; Y.log(stringify(block, null, 4), &#x27;warn&#x27;);
-
+                            this.warnings.push({
+                                message: &#x27;replacing incorrect tag: &#x27; + name + &#x27; with &#x27; + CORRECTIONS[name],
+                                line: stringlog(block)
+                            });
+                            Y.log(&#x27;replacing incorrect tag: &#x27; + name + &#x27; with &#x27; + CORRECTIONS[name] + &#x27;: &#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
                             name = CORRECTIONS[name];
                         } else {
-Y.log(&#x27;unknown tag: &#x27; + name + &#x27;,&#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
+                            this.warnings.push({
+                                message: &#x27;unknown tag: &#x27; + name,
+                                line: stringlog(block)
+                            });
+                            Y.log(&#x27;unknown tag: &#x27; + name + &#x27;,&#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
                         }
                     }
                     digestname = name;
@@ -1453,9 +1477,13 @@ Y.log(&#x27;unknown tag: &#x27; + name + &#x27;,&#x27; + stringlog(block), &#x27
 
             Y.each(classitems, function(v) {
                 if (!v.itemtype) {
+                    self.warnings.push({
+                        message: &#x27;Missing item type&#x27; + (v.description ? &#x27;\n&#x27; + v.description : &#x27;&#x27;),
+                        line:  stringlog(v)
+                    });
                     Y.log(&#x27;Missing item type: &#x27; + stringlog(v), &#x27;warn&#x27;, &#x27;DocParser&#x27;);
                     if (v.description) {
-                        console.error(&#x27;\t\t&#x27; + v.description);
+                        Y.log(&#x27;\t\t&#x27; + v.description, &#x27;warn&#x27;, &#x27;DocParser&#x27;);
                     }
                 }
                 if (v.itemtype === &#x27;property&#x27; &amp;&amp; v.params) {
