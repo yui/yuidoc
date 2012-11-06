@@ -50,8 +50,8 @@ suite.add(new YUITest.TestCase({
     },
     'test: parser': function() {
         var keys = Object.keys(this.data);
-        Assert.areEqual(5, keys.length, 'Failed to populate all fields');
-        ArrayAssert.itemsAreSame([ 'project', 'files', 'modules', 'classes', 'classitems' ], keys, 'Object keys are wrong');
+        Assert.areEqual(6, keys.length, 'Failed to populate all fields');
+        ArrayAssert.itemsAreSame([ 'project', 'files', 'modules', 'classes', 'classitems', 'warnings' ], keys, 'Object keys are wrong');
     },
     'test: project data': function() {
         Assert.areSame('input/test/test.js', this.project.file, 'Project data loaded from wrong file');
