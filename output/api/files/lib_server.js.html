@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.32</em>
+            <em>API Docs for: 0.3.33</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -110,6 +110,7 @@
     <pre class="code prettyprint linenums">
 YUI.add(&#x27;server&#x27;, function(Y) {
     
+    var path = require(&#x27;path&#x27;);
     &#x2F;**
     * Provides the &#x60;--server&#x60; server option for YUIDoc
     * @class Server
@@ -138,6 +139,7 @@ YUI.add(&#x27;server&#x27;, function(Y) {
                 Server.options.externalData = Server._externalData;
                 Server.builder._mixExternal();
             }
+
             next();
         },
         &#x2F;**
@@ -158,16 +160,16 @@ YUI.add(&#x27;server&#x27;, function(Y) {
             });
 
 
-            app.get(&#x27;&#x2F;classes&#x2F;:class.html&#x27;, Server.parse, function(req, res) {
-                Server.clazz(req, res);
+            app.get(&#x27;&#x2F;classes&#x2F;:class.html&#x27;, Server.parse, function(req, res, next) {
+                Server.clazz(req, res, next);
             });
 
-            app.get(&#x27;&#x2F;modules&#x2F;:module.html&#x27;, Server.parse, function(req, res) {
-                Server.module(req, res);
+            app.get(&#x27;&#x2F;modules&#x2F;:module.html&#x27;, Server.parse, function(req, res, next) {
+                Server.module(req, res, next);
             });
 
-            app.get(&#x27;&#x2F;files&#x2F;:file.html&#x27;, Server.parse, function(req, res) {
-                Server.files(req, res);
+            app.get(&#x27;&#x2F;files&#x2F;:file.html&#x27;, Server.parse, function(req, res, next) {
+                Server.files(req, res, next);
             });
             
             &#x2F;&#x2F;These routes are special catch routes..
@@ -175,16 +177,39 @@ YUI.add(&#x27;server&#x27;, function(Y) {
             app.get(&#x27;&#x2F;&#x2F;api.js&#x27;, function(req, res) {
                 res.redirect(&#x27;&#x2F;api.js&#x27;);
             });
-            app.get(&#x27;&#x2F;&#x2F;classes&#x2F;:class.html&#x27;, Server.parse, function(req, res) {
-                Server.clazz(req, res);
+            app.get(&#x27;&#x2F;&#x2F;classes&#x2F;:class.html&#x27;, Server.parse, function(req, res, next) {
+                Server.clazz(req, res, next);
             });
 
-            app.get(&#x27;&#x2F;&#x2F;modules&#x2F;:module.html&#x27;, Server.parse, function(req, res) {
-                Server.module(req, res);
+            app.get(&#x27;&#x2F;&#x2F;modules&#x2F;:module.html&#x27;, Server.parse, function(req, res, next) {
+                Server.module(req, res, next);
             });
 
-            app.get(&#x27;&#x2F;&#x2F;files&#x2F;:file.html&#x27;, Server.parse, function(req, res) {
-                Server.files(req, res);
+            app.get(&#x27;&#x2F;&#x2F;files&#x2F;:file.html&#x27;, Server.parse, function(req, res, next) {
+                Server.files(req, res, next);
+            });
+
+            app.get(&#x27;*&#x27;, function(req, res) {
+                var type = req.url.split(&#x27;&#x2F;&#x27;)[1],
+                    oType = type;
+                var html = [&#x27;&lt;h1&gt;Item Not Found in internal meta-data&lt;&#x2F;h1&gt;&#x27;];
+
+                if (type === &#x27;class&#x27;) {
+                    type = &#x27;classes&#x27;;
+                }
+                if (Server.builder &amp;&amp; Server.builder.data &amp;&amp; Server.builder.data[type]) {
+                    if (Object.keys(Server.builder.data[type]).length) {
+                        html.push(&#x27;&lt;p&gt;But I know about these? Misname your module?&lt;&#x2F;p&gt;&#x27;);
+                        html.push(&#x27;&lt;ul&gt;&#x27;);
+                        Object.keys(Server.builder.data[type]).forEach(function(item) {
+                            html.push(&#x27;&lt;li&gt;&lt;a href=&quot;..&#x2F;&#x27; + path.dirname(req.url) + &#x27;&#x2F;&#x27; + item + &#x27;.html&quot;&gt;&#x27; + item + &#x27;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;&#x27;);
+                        });
+                        html.push(&#x27;&lt;&#x2F;ul&gt;&#x27;);
+                    }
+                }
+
+
+                res.send(html.join(&#x27;\n&#x27;), 404);
             });
 
         },
@@ -194,7 +219,7 @@ YUI.add(&#x27;server&#x27;, function(Y) {
         * @param {Request} req Express request object
         * @param {Response} res Express response object
         *&#x2F;
-        files: function(req, res) {
+        files: function(req, res, next) {
             var fileName = req.params.file;
             var data;
             Object.keys(Server.builder.data.files).forEach(function(file) {
@@ -202,7 +227,13 @@ YUI.add(&#x27;server&#x27;, function(Y) {
                     data = Server.builder.data.files[file];
                 }
             });
+            
+            if (!data) {
+                return next();
+            }
+
             Y.log(&#x27;Serving &#x2F;files&#x2F;&#x27; + data.name, &#x27;info&#x27;, &#x27;server&#x27;);
+
 
             Server.builder.renderFile(function(html) {
                 res.send(html);
@@ -214,9 +245,12 @@ YUI.add(&#x27;server&#x27;, function(Y) {
         * @param {Request} req Express request object
         * @param {Response} res Express response object
         *&#x2F;
-        clazz: function(req, res) {
+        clazz: function(req, res, next) {
             var className = req.params[&#x27;class&#x27;];
             Y.log(&#x27;Serving &#x2F;classes&#x2F;&#x27; + className + &#x27;.html&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
+            if (!Server.builder.data.classes[className]) {
+                return next();
+            }
             Server.builder.renderClass(function(html) {
                 res.send(html);
             }, Server.builder.data.classes[className], (req.xhr ? &#x27;xhr&#x27; : &#x27;main&#x27;));
@@ -227,9 +261,12 @@ YUI.add(&#x27;server&#x27;, function(Y) {
         * @param {Request} req Express request object
         * @param {Response} res Express response object
         *&#x2F;
-        module: function(req, res) {
+        module: function(req, res, next) {
             var modName = req.params.module;
             Y.log(&#x27;Serving &#x2F;modules&#x2F;&#x27; + modName + &#x27;.html&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
+            if (!Server.builder.data.modules[modName]) {
+                return next();
+            }
             Server.builder.renderModule(function(html) {
                 res.send(html);
             }, Server.builder.data.modules[modName], (req.xhr ? &#x27;xhr&#x27; : &#x27;main&#x27;));
@@ -240,7 +277,7 @@ YUI.add(&#x27;server&#x27;, function(Y) {
         * @param {Request} req Express request object
         * @param {Response} res Express response object
         *&#x2F;
-        home: function(req, res) {
+        home: function(req, res, next) {
             Y.log(&#x27;Serving index.html&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
             Server.builder.renderIndex(function(html) {
                 res.send(html);
