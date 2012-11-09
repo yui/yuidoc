@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.31</em>
+            <em>API Docs for: 0.3.32</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -147,13 +147,15 @@ var YUI = require(&#x27;yui&#x27; + (debug ? &#x27;&#x2F;debug&#x27; : &#x27;&#x
 
 
 process.on(&#x27;uncaughtException&#x27;, function(msg) {
-    var inst = YUI(),
-        meta = JSON.parse(fs.readFileSync(metaPath));
+    var meta = JSON.parse(fs.readFileSync(metaPath)),
+        inst = YUI(),
+        useColor = (Y ? Y.config.useColor : false);
 
     inst.applyConfig({
         debug: true,
-        useColor: Y.config.useColor
-    });
+        useColor: useColor
+    }); 
+
     inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
     inst.log(&#x27;An uncaught YUIDoc error has occurred, stack trace given below&#x27;, &#x27;error&#x27;);
     inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
