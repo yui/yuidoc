@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.33</em>
+            <em>API Docs for: 0.3.34</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -841,7 +841,8 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         *&#x2F;
         _parseCode: function (html) {
             html = html || &#x27;&#x27;;
-            html = html.replace(&#x2F;&lt;pre&gt;&lt;code&gt;&#x2F;g, &#x27;&lt;pre class=&quot;code&quot;&gt;&lt;code class=&quot;prettyprint&quot;&gt;&#x27;);
+            &#x2F;&#x2F;html = html.replace(&#x2F;&lt;pre&gt;&lt;code&gt;&#x2F;g, &#x27;&lt;pre class=&quot;code&quot;&gt;&lt;code class=&quot;prettyprint&quot;&gt;&#x27;);
+            html = html.replace(&#x2F;&lt;pre&gt;&lt;code&gt;&#x2F;g, &#x27;&lt;pre class=&quot;code prettyprint&quot;&gt;&lt;code&gt;&#x27;);
             return html;
         },
         &#x2F;**
