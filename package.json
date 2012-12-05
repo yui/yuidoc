@@ -1,6 +1,6 @@
 {
     "name": "yuidocjs",
-    "version": "0.3.34",
+    "version": "0.3.35",
     "description": "YUIDoc, YUI's JavaScript Documentation engine.",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/yui/yuidoc/issues" },
