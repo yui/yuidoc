@@ -30,7 +30,7 @@
     "main": "./lib/index",
     "bin" : { "yuidoc" : "./lib/cli.js" },
     "dependencies": {
-        "yui": "3.8.0",
+        "yui": "3.9.0pr1",
         "rimraf": "~2.0.0",
         "node-markdown": "~0.1.0",
         "minimatch": "~0.1.0",
