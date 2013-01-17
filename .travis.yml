@@ -1,10 +1,5 @@
 language: node_js
 node_js:
     - 0.6
-    - 0.7
-install:
-    - npm install --production
-    - npm install yuitest
-branches:
-    only:
-    - master
+    - 0.8
+    - 0.9
