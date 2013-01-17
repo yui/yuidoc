@@ -40,7 +40,8 @@
     "devDependencies": {
         "ytestrunner": "~0.3.3",
         "yuitest": ">=0.7.3",
-        "selleck": "~0.1"
+        "selleck": "~0.1",
+        "istanbul": "~0.1.27"
     },
     "scripts": {
         "test": "ytestrunner --coverage --istanbul --save-coverage --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js",
