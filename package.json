@@ -45,8 +45,7 @@
         "istanbul": "~0.1.27"
     },
     "scripts": {
-        "test": "ytestrunner --coverage --istanbul --save-coverage --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js",
-        "posttest": "./scripts/report.js"
+        "test": "istanbul cover --print=both --yui ytestrunner -- --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js"
     },
     "preferGlobal": "true",
     "licenses":[
