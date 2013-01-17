@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>lib&#x2F;builder.js - YUIDoc</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0pr2&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
-    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.8.0pr2&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.8.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
 
@@ -832,6 +832,18 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 }
             });
         },
+
+
+	_resolveUrl: function(url, opts) {
+            if(!url) {
+               return null;
+            }
+            if ( url.indexOf(&quot;:&#x2F;&#x2F;&quot;) &gt;= 0 ) {
+                return url;
+            }
+            return path.join(opts.meta.projectRoot,url);
+        },
+
         &#x2F;**
         * Parses &#x60;&lt;pre&gt;&lt;code&gt;&#x60; tags and adds the __prettyprint__ &#x60;className&#x60; to them
         * @method _parseCode
@@ -932,7 +944,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 opts.meta.title = self.data.project.name;
                 opts.meta.projectRoot = &#x27;.&#x2F;&#x27;;
                 opts.meta.projectAssets = &#x27;.&#x2F;assets&#x27;;
-
+                opts.meta.projectLogo = self._resolveUrl(self.data.project.logo, opts);
                 opts = self.populateClasses(opts);
                 opts = self.populateModules(opts);
 
@@ -993,7 +1005,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 opts.meta = self.addFoundAt(opts.meta);
                 opts.meta.projectRoot = &#x27;..&#x2F;&#x27;;
                 opts.meta.projectAssets = &#x27;..&#x2F;assets&#x27;;
-
+                opts.meta.projectLogo = self._resolveUrl(self.data.project.logo, opts);
                 opts = self.populateClasses(opts);
                 opts = self.populateModules(opts);
                 opts = self.populateFiles(opts);
@@ -1180,6 +1192,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 opts.meta = self.addFoundAt(opts.meta);
                 opts.meta.projectRoot = &#x27;..&#x2F;&#x27;;
                 opts.meta.projectAssets = &#x27;..&#x2F;assets&#x27;;
+                opts.meta.projectLogo = self._resolveUrl(self.data.project.logo, opts);
 
                 opts = self.populateClasses(opts);
                 opts = self.populateModules(opts);
@@ -1559,6 +1572,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 opts.meta.moduleName = data.name;
                 opts.meta.projectRoot = &#x27;..&#x2F;&#x27;;
                 opts.meta.projectAssets = &#x27;..&#x2F;assets&#x27;;
+                opts.meta.projectLogo = self._resolveUrl(self.data.project.logo, opts);
 
                 opts = self.populateClasses(opts);
                 opts = self.populateModules(opts);
