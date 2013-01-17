@@ -38,6 +38,7 @@
         "express": "~2.5.0"
     },
     "devDependencies": {
+        "ytestrunner": "~0.3.3",
         "yuitest": ">=0.7.3",
         "selleck": "~0.1"
     },
