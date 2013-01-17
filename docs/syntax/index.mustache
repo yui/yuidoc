@@ -1199,13 +1199,26 @@ This is what the above would render to:
 <h3>Cross-referencing Modules and Classes</h3>
 
 <p>YUIDoc also includes a Handlebars `blockHelper` that enables you to 
-easily cross-reference classes and modules. For example, if you include:</p>
+easily cross-reference classes and modules. It uses this pattern: 
+</p>
+
+```
+#crossLink "Class/item:type"
+
+#crossLink "Foo/bar:event"
+#crossLink "Foo/bar:attribute"
+#crossLink "Foo/bar:method" --default
+```
+
+<p>
+So, for example, if you include:
+</p>
 
 ```
 /**
 
 This module also uses \{{#crossLink "Foo"}}\{{/crossLink}}, where Foo is a class name.
-Also see \{{#crossLink "myClass/Foo"}}\{{/crossLink}}, where myClass is a class name and Foo is a method on that class.
+Also see \{{#crossLink "myClass/Foo:method"}}\{{/crossLink}}, where myClass is a class name and Foo is a method on that class.
 
 This module uses \{{#crossLinkModule "widget"}}\{{/crossLinkModule}}, where widget is a module name
 
