@@ -12,7 +12,8 @@
         { "name": "Evan Goer", "email": "evan@goer.org" },
         { "name": "Alberto Gragera", "email": "albgra@gmail.com" },
         { "name": "Pat Cavit", "email": "pcavit@gmail.com" },
-        { "name": "Kazuhito Hokamura", "email": "k.hokamura@gmail.com" }
+        { "name": "Kazuhito Hokamura", "email": "k.hokamura@gmail.com" },
+        { "name": "prodaea", "email": "rlee@etherealnation.net" }
     ],
     "engines": {
         "node" : ">=0.4.0"
