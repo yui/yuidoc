@@ -204,6 +204,13 @@ suite.add(new YUITest.TestCase({
         var p = path.join(__dirname, '../themes/foobar');
         Assert.areEqual(p, options.themedir);
     },
+    'test: -t ./foobar': function() {
+        var options = Y.Options([
+            '-t',
+            './foobar'
+        ]);
+        Assert.areEqual('./foobar', options.themedir);
+    },
     'test: --themedir ./foobar': function() {
         var options = Y.Options([
             '--themedir',
@@ -217,6 +224,91 @@ suite.add(new YUITest.TestCase({
             'coffee'
         ]);
         Assert.areEqual('coffee', options.syntaxtype);
+    },
+    'test: --view': function() {
+        var options = Y.Options([
+            '--view'
+        ]);
+        Assert.isTrue(options.dumpview);
+    },
+    'test: -V': function() {
+        var options = Y.Options([
+            '-V'
+        ]);
+        Assert.isTrue(options.dumpview);
+    },
+    'test: -p': function() {
+        var options = Y.Options([
+            '-p'
+        ]);
+        Assert.isTrue(options.parseOnly);
+    },
+    'test: --parse-only': function() {
+        var options = Y.Options([
+            '--parse-only'
+        ]);
+        Assert.isTrue(options.parseOnly);
+    },
+    'test: -o <path>': function() {
+        var options = Y.Options([
+            '-o',
+            '/foo/bar'
+        ]);
+        Assert.areEqual('/foo/bar', options.outdir);
+    },
+    'test: --outdir <path>': function() {
+        var options = Y.Options([
+            '--outdir',
+            '/foo/bar'
+        ]);
+        Assert.areEqual('/foo/bar', options.outdir);
+    },
+    'test: -D': function() {
+        var options = Y.Options([
+            '-D'
+        ]);
+        Assert.isTrue(options.nodeleteout);
+    },
+    'test: --no-delete-out': function() {
+        var options = Y.Options([
+            '--no-delete-out'
+        ]);
+        Assert.isTrue(options.nodeleteout);
+    },
+    'test: --lint': function() {
+        var options = Y.Options([
+            '--lint'
+        ]);
+        Assert.isTrue(options.lint);
+        Assert.isTrue(options.parseOnly);
+        Assert.isTrue(options.quiet);
+        Assert.isFalse(options.writeJSON);
+    },
+    'test --debug': function() {
+        Assert.isFalse(Y.config.debug);
+        var options = Y.Options([
+            '--debug'
+        ]);
+        Assert.isTrue(Y.config.debug);
+        Assert.areEqual('debug', Y.config.filter);
+        Y.applyConfig({
+            debug: false
+        });
+    },
+    'test: --charset': function() {
+        var options = Y.Options([
+            '--charset'
+        ]);
+        Assert.areEqual('utf8', Y.charset);
+        
+    },
+    'test: --charset foo': function() {
+        var options = Y.Options([
+            '--charset',
+            'foo'
+        ]);
+        Assert.areEqual('foo', Y.charset);
+        Y.charset = 'utf8';
     }
 }));
 

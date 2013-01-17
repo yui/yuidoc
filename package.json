@@ -42,7 +42,8 @@
         "selleck": "~0.1"
     },
     "scripts": {
-        "test": "make test"
+        "test": "ytestrunner --coverage --istanbul --save-coverage --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js",
+        "posttest": "./scripts/report.js"
     },
     "preferGlobal": "true",
     "licenses":[
