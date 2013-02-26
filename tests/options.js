@@ -309,6 +309,14 @@ suite.add(new YUITest.TestCase({
         ]);
         Assert.areEqual('foo', Y.charset);
         Y.charset = 'utf8';
+    },
+    'test: --tab-to-space 8': function() {
+        var options = Y.Options([
+            '--tab-to-space',
+            '8'
+        ]);
+        Assert.areEqual(8, options.tabtospace);
+        Assert.areEqual('        ', options.tabspace);
     }
 }));
 
