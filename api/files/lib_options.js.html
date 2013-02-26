@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.36</em>
+            <em>API Docs for: 0.3.37</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -243,6 +243,15 @@ YUI.add(&#x27;options&#x27;, function(Y) {
                     break;
                 case &quot;--syntaxtype&quot;:
                     options.syntaxtype = args.shift();
+                    break;
+                case &quot;--tab-to-space&quot;:
+                    options.tabtospace = parseInt(args.shift());
+                    if (typeof options.tabtospace === &#x27;number&#x27;) {
+                        options.tabspace = &#x27;&#x27;;
+                        for (var s = 0; s &lt; options.tabtospace; s++) {
+                            options.tabspace += &#x27; &#x27;;
+                        }
+                    }
                     break;
                 default:
                     if (!options.paths) {
