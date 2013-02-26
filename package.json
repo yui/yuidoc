@@ -1,6 +1,6 @@
 {
     "name": "yuidocjs",
-    "version": "0.3.36",
+    "version": "0.3.37",
     "description": "YUIDoc, YUI's JavaScript Documentation engine.",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/yui/yuidoc/issues" },
@@ -13,7 +13,8 @@
         { "name": "Alberto Gragera", "email": "albgra@gmail.com" },
         { "name": "Pat Cavit", "email": "pcavit@gmail.com" },
         { "name": "Kazuhito Hokamura", "email": "k.hokamura@gmail.com" },
-        { "name": "prodaea", "email": "rlee@etherealnation.net" }
+        { "name": "prodaea", "email": "rlee@etherealnation.net" },
+        { "name": "Wei Wang", "email": "weiwang85@gmail.com" }
     ],
     "engines": {
         "node" : ">=0.4.0"
