@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.36</em>
+            <em>API Docs for: 0.3.37</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -163,6 +163,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         if (options.themedir) {
             themeDir = options.themedir;
         }
+
         this.data = data;
         Y.log(&#x27;Building..&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
         this.files = 0;
@@ -1585,8 +1586,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                         cb(err);
                         return;
                     }
+
+                    if (typeof self.options.tabspace === &#x27;string&#x27;) {
+                        str = str.replace(&#x2F;\t&#x2F;, self.options.tabspace, &#x27;g&#x27;);
+                    }
+                    
                     opts.meta.fileData = str;
-                    var view   = new Y.DocView(opts.meta, &#x27;index&#x27;);
+                    var view = new Y.DocView(opts.meta, &#x27;index&#x27;);
                     var mainLayout = opts.layouts[layout];
                     self.render(&#x27;{{&gt;files}}&#x27;, view, mainLayout, opts.partials, function(err, html) {
                         self.files++;
