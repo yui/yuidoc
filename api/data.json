@@ -3,7 +3,7 @@
         "name": "YUIDoc",
         "logo": "http://yuilibrary.com/img/yui-logo.png",
         "description": "YUIDoc, YUI's JavaScript Documentation engine.",
-        "version": "0.3.37"
+        "version": "0.3.38"
     },
     "files": {
         "lib/builder.js": {
