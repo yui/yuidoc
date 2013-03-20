@@ -1,9 +1,9 @@
 {
     "project": {
-        "name": "YUIDoc",
+        "name": "yuidoc-root",
         "logo": "http://yuilibrary.com/img/yui-logo.png",
         "description": "YUIDoc, YUI's JavaScript Documentation engine.",
-        "version": "0.3.39"
+        "version": "0.3.40"
     },
     "files": {
         "lib/builder.js": {
@@ -2082,7 +2082,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 225,
+            "line": 223,
             "description": "Walk the directory tree to locate the yuidoc.json file.",
             "itemtype": "method",
             "name": "getProjectData",
@@ -2100,7 +2100,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 311,
+            "line": 336,
             "description": "Walks the tree from this dir and returns all the subdirs",
             "itemtype": "method",
             "name": "getDirs",
@@ -2120,7 +2120,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 338,
+            "line": 363,
             "description": "Make sure all the paths passed are directories and that they are not in the ignore list.",
             "itemtype": "method",
             "name": "validatePaths",
@@ -2143,7 +2143,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 407,
+            "line": 432,
             "description": "Takes a type string and converts it to a \"First letter upper cased\" type. e.g. `(string -> String, object -> Object)`",
             "itemtype": "method",
             "name": "fixType",
