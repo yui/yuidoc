@@ -45,7 +45,7 @@ suite.add(new YUITest.TestCase({
         return ret;
     },
     'test: project data': function() {
-        Assert.areSame('input/coffee/test.coffee', this.project.file, 'Project data loaded from wrong file');
+        Assert.areSame(path.normalize('input/coffee/test.coffee'), this.project.file, 'Project data loaded from wrong file');
         Assert.areSame(2, this.project.line, 'Line number is off');
         Assert.areSame('The test project', this.project.description, 'Description not set properly');
         Assert.areSame('The Tester', this.project.title, 'Title not set');

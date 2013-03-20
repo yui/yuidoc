@@ -54,7 +54,7 @@ suite.add(new YUITest.TestCase({
         ArrayAssert.itemsAreSame([ 'project', 'files', 'modules', 'classes', 'classitems', 'warnings' ], keys, 'Object keys are wrong');
     },
     'test: project data': function() {
-        Assert.areSame('input/test/test.js', this.project.file, 'Project data loaded from wrong file');
+        Assert.areSame(path.normalize('input/test/test.js'), this.project.file, 'Project data loaded from wrong file');
         Assert.areSame(2, this.project.line, 'Line number is off');
         Assert.areSame('The test project', this.project.description, 'Description not set properly');
         Assert.areSame('The Tester', this.project.title, 'Title not set');
@@ -70,32 +70,32 @@ suite.add(new YUITest.TestCase({
         var files = this.data.files;
         
         // 1 module, 3 classes
-        var one = files['input/test/anim.js'];
+        var one = files[path.normalize('input/test/anim.js')];
         Assert.isObject(one, 'Failed to parse input/test/anim.js');
         Assert.areSame(1, Object.keys(one.modules).length, '1 module should be found');
         Assert.areSame(3, Object.keys(one.classes).length, '3 classes should be found');
 
         // 2 modules, 3 classes
-        var two = files['input/test/test.js'];
+        var two = files[path.normalize('input/test/test.js')];
         Assert.isObject(two, 'Failed to parse input/test/test.js');
         Assert.areSame(2, Object.keys(two.modules).length, '2 modules should be found');
         Assert.areSame(3, Object.keys(two.classes).length, '3 classes should be found');
 
         //Module -> class association
-        var three = files['input/test2/dump/dump.js'];
+        var three = files[path.normalize('input/test2/dump/dump.js')];
         Assert.isObject(three, 'Failed to parse input/test2/dump/dump.js');
         Assert.areSame(1, three.modules.dump, 'dump module not found');
         Assert.areSame(1, three.classes['YUI~dump'], 'YUI~dump class not found');
 
         //Module -> class association
-        var four = files['input/test2/oop/oop.js'];
+        var four = files[path.normalize('input/test2/oop/oop.js')];
         Assert.isObject(four, 'Failed to parse input/test2/oop/oop.js');
         Assert.areSame(1, four.modules.oop, 'oop module not found');
         Assert.areSame(1, four.classes['YUI~oop'], 'YUI~oop class not found');
 
     },
     'test: namespace parsing': function() {
-        var item = this.data.files['input/test2/namespace.js'];
+        var item = this.data.files[path.normalize('input/test2/namespace.js')];
         Assert.isObject(item, 'Failed to parse input/test2/namespace.js');
         Assert.areSame(3, Object.keys(item.classes).length, 'Failed to parse all classes');
 
