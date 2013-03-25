@@ -1,7 +1,7 @@
 <div class="intro">
     <p>YUIDoc's syntax should be familiar if you've used 
-    Javadoc, JSDoc, Doxygen, or most other documentation generator tools. 
-    YUIDoc relies on <dfn>tags</dfn> such as `@param` or `@return` embedded in comments blocks 
+    Javadoc, JSDoc, Doxygen, or other documentation generator tools. 
+    YUIDoc relies on <dfn>tags</dfn> such as `@param` or `@return` embedded in comment blocks 
     that start with `/**` and end with `*/`. 
     It includes a small number of tags for documenting specific YUI features, 
     but most tags are generic enough to use with any object-oriented language.</p>
@@ -32,7 +32,7 @@ while others only make sense alongside a particular primary tag.</p>
 an `attribute`, `@class`, `@event`, `@method`, or `@property` tag.</p>
 
 <h2 id="primary-tags">Primary Tags</h2>
-<p>Each comment block must have one (and only one) of the following tags</p>
+<p>Each comment block must have one (and only one) of the following tags:</p>
 
 <table>
 <tr>
@@ -74,7 +74,7 @@ Provides the base Widget class...
     <td>
 ```
 /**
-Provides more functionality for the widget module..
+Provides more features for the widget module...
 
 @module widget
 @submodule widget-foo
@@ -86,8 +86,8 @@ Provides more functionality for the widget module..
     <p>
         When YUIDoc parses a module's directory, there may be several files in this directory that
         provides documentation for that module and it's submodules. YUIDoc will attempt to determine
-        which module contains the main description for this module. If it has trouble doing that
-        you can add a `@main` tag to your module/submodule description and YUIDoc will use that as
+        which module contains the main description for this module. If it has trouble doing that,
+        you can add a `@main` tag to your module/submodule description and YUIDoc will use this block as
         the main module description on the modules API landing page.
     </p>
     </td>
@@ -405,7 +405,7 @@ ATTRS[RENDERED] = {
     </td>
     <td>
         <p>Indicates that the class is instantiable
-        (you can use it by calling `var foo = new Foo();`).
+        (created with the `new` keyword).
         A <a href="#class">`@class`</a> tag should be paired with 
         either a `@constructor` tag or a `@static` tag.</p> 
         <p>
@@ -1158,7 +1158,7 @@ Handles the mouseup DOM event...
 <h3>Markdown and Code Highlighting</h3>
 
 <p>
-Inside any documentation block you may use Markdown or Selleck based markup. If you indent your code snippets
+Inside any documentation block you may use Markdown or Selleck based markup. If you indent your code snippets,
 YUIDoc will automatically wrap them in a code block and syntax highlight them for you.
 </p>
 
@@ -1180,7 +1180,7 @@ This is the __module__ description for the `YUIDoc` module.
 ```
 
 <p>
-This is what the above would render to:
+This would render as:
 </p>
 
 <div class="intro">
