@@ -30,8 +30,8 @@
             <div id="main">
                 <div class="content"><div class="intro">
     <p>YUIDoc's syntax should be familiar if you've used 
-    Javadoc, JSDoc, Doxygen, or most other documentation generator tools. 
-    YUIDoc relies on <dfn>tags</dfn> such as <code>@param</code> or <code>@return</code> embedded in comments blocks 
+    Javadoc, JSDoc, Doxygen, or other documentation generator tools. 
+    YUIDoc relies on <dfn>tags</dfn> such as <code>@param</code> or <code>@return</code> embedded in comment blocks 
     that start with <code>&#x2F;**</code> and end with <code>*&#x2F;</code>. 
     It includes a small number of tags for documenting specific YUI features, 
     but most tags are generic enough to use with any object-oriented language.</p>
@@ -62,7 +62,7 @@ while others only make sense alongside a particular primary tag.</p>
 an <code>attribute</code>, <code>@class</code>, <code>@event</code>, <code>@method</code>, or <code>@property</code> tag.</p>
 
 <h2 id="primary-tags">Primary Tags</h2>
-<p>Each comment block must have one (and only one) of the following tags</p>
+<p>Each comment block must have one (and only one) of the following tags:</p>
 
 <table>
 <tr>
@@ -102,7 +102,7 @@ Provides the base Widget class...
     <td><code>main</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Provides more functionality for the widget module..
+Provides more features for the widget module...
 
 @module widget
 @submodule widget-foo
@@ -114,8 +114,8 @@ Provides more functionality for the widget module..
     <p>
         When YUIDoc parses a module's directory, there may be several files in this directory that
         provides documentation for that module and it's submodules. YUIDoc will attempt to determine
-        which module contains the main description for this module. If it has trouble doing that
-        you can add a <code>@main</code> tag to your module/submodule description and YUIDoc will use that as
+        which module contains the main description for this module. If it has trouble doing that,
+        you can add a <code>@main</code> tag to your module/submodule description and YUIDoc will use this block as
         the main module description on the modules API landing page.
     </p>
     </td>
@@ -423,7 +423,7 @@ ATTRS[RENDERED] = {</pre>
     </td>
     <td>
         <p>Indicates that the class is instantiable
-        (you can use it by calling <code>var foo = new Foo();</code>).
+        (created with the <code>new</code> keyword).
         A <a href="#class"><code>@class</code></a> tag should be paired with 
         either a <code>@constructor</code> tag or a <code>@static</code> tag.</p> 
         <p>
@@ -1148,7 +1148,7 @@ Handles the mouseup DOM event...
 <h3 id="markdown-and-code-highlighting">Markdown and Code Highlighting</h3>
 
 <p>
-Inside any documentation block you may use Markdown or Selleck based markup. If you indent your code snippets
+Inside any documentation block you may use Markdown or Selleck based markup. If you indent your code snippets,
 YUIDoc will automatically wrap them in a code block and syntax highlight them for you.
 </p>
 
@@ -1169,7 +1169,7 @@ This is the __module__ description for the &#x60;YUIDoc&#x60; module.
 
 
 <p>
-This is what the above would render to:
+This would render as:
 </p>
 
 <div class="intro">
