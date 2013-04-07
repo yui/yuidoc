@@ -39,6 +39,57 @@ suite.add(new YUITest.TestCase({
         Assert.areSame(3000, options.port, 'Failed to set default port');
         Assert.isArray(options.paths, 'Failed to set path');
         Assert.areSame('./foo', options.paths[0], 'Failed to set path after empty --server');
+    },
+    'test: tab-to-space': function() {
+        var options, value;
+
+        // Test that --tab-to-space gives the correct number.
+        // It uses parseInt so check numbers which look like octals too.
+
+        value = 12;
+        options = Y.Options([
+            '--tab-to-space',
+            '0' + value
+        ]);
+        Assert.areSame(value, options.tabtospace);
+        Assert.areSame(value, options.tabspace.length);
+
+        options = Y.Options([
+            '--tab-to-space',
+            '' + value
+        ]);
+        Assert.areSame(value, options.tabtospace);
+        Assert.areSame(value, options.tabspace.length);
+
+        options = Y.Options([
+            '--tab-to-space',
+            value
+        ]);
+        Assert.areSame(value, options.tabtospace);
+        Assert.areSame(value, options.tabspace.length);
+
+        value = 10;
+        options = Y.Options([
+            '--tab-to-space',
+            '0' + value
+        ]);
+        Assert.areSame(value, options.tabtospace);
+        Assert.areSame(value, options.tabspace.length);
+
+        options = Y.Options([
+            '--tab-to-space',
+            '' + value
+        ]);
+        Assert.areSame(value, options.tabtospace);
+        Assert.areSame(value, options.tabspace.length);
+
+        options = Y.Options([
+            '--tab-to-space',
+            value
+        ]);
+        Assert.areSame(value, options.tabtospace);
+        Assert.areSame(value, options.tabspace.length);
+
     }
 }));
 
