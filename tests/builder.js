@@ -67,7 +67,7 @@ suite.add(new YUITest.TestCase({
                     Assert.isTrue(suite._setupComplete);
                 });
             }
-        },500);
+        },10);
         this.wait();
     },
     'test: Directories': function() {
