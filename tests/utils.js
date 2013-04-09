@@ -36,4 +36,44 @@ suite.add(new YUITest.TestCase({
   }
 }));
 
+suite.add(new YUITest.TestCase({
+  name: 'validatePaths',
+  'test: path globs': function() {
+        var options;
+
+        process.chdir(path.join(__dirname, 'input/globbing'));
+
+        // Simulate a path provided by a configuration...
+        // first with a String path
+        options = {
+            paths: '**/yui/src/*'
+        };
+        options = Y.Project.init(options);
+
+        Assert.isArray(options.paths, 'Failed to set path');
+        Assert.areSame(3, options.paths.length, 'Failed to retrieve all path options');
+
+        // then with an Array of path
+        options = {
+            paths: [
+                '**/yui/src/*'
+            ]
+        };
+        options = Y.Project.init(options);
+
+        Assert.isArray(options.paths, 'Failed to set path');
+        Assert.areSame(3, options.paths.length, 'Failed to retrieve all path options');
+
+
+        // Test with a path as passed to Y.Options
+        options = Y.Options([
+            '**/yui/src/*'
+        ]);
+        options = Y.Project.init(options);
+
+        Assert.isArray(options.paths, 'Failed to set path');
+        Assert.areSame(3, options.paths.length, 'Failed to retrieve all path options');
+  }
+}));
+
 YUITest.TestRunner.add(suite);
