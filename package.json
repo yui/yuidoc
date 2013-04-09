@@ -35,7 +35,7 @@
         "yui": "3.9.1",
         "rimraf": "~2.0.0",
         "node-markdown": "~0.1.0",
-        "minimatch": "~0.1.0",
+        "minimatch": "~0.2.11",
         "graceful-fs": ">=1.1.1",
         "express": "~2.5.0"
     },
