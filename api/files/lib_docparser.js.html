@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>lib&#x2F;docparser.js - yuidoc-root</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
-    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
-    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
-    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.8.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+    <title>lib/docparser.js - yuidoc-root</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
 
@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="http:&#x2F;&#x2F;yuilibrary.com&#x2F;img&#x2F;yui-logo.png" title="yuidoc-root"></h1>
+                <h1><img src="http://yuilibrary.com/img/yui-logo.png" title="yuidoc-root"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.41</em>
+            <em>API Docs for: 0.3.42</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -41,33 +41,33 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="..&#x2F;classes/CLI.html">CLI</a></li>
+                <li><a href="../classes/CLI.html">CLI</a></li>
             
-                <li><a href="..&#x2F;classes/DocBuilder.html">DocBuilder</a></li>
+                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
             
-                <li><a href="..&#x2F;classes/DocParser.html">DocParser</a></li>
+                <li><a href="../classes/DocParser.html">DocParser</a></li>
             
-                <li><a href="..&#x2F;classes/DocView.html">DocView</a></li>
+                <li><a href="../classes/DocView.html">DocView</a></li>
             
-                <li><a href="..&#x2F;classes/Files.html">Files</a></li>
+                <li><a href="../classes/Files.html">Files</a></li>
             
-                <li><a href="..&#x2F;classes/Help.html">Help</a></li>
+                <li><a href="../classes/Help.html">Help</a></li>
             
-                <li><a href="..&#x2F;classes/Main.html">Main</a></li>
+                <li><a href="../classes/Main.html">Main</a></li>
             
-                <li><a href="..&#x2F;classes/Options.html">Options</a></li>
+                <li><a href="../classes/Options.html">Options</a></li>
             
-                <li><a href="..&#x2F;classes/Server.html">Server</a></li>
+                <li><a href="../classes/Server.html">Server</a></li>
             
-                <li><a href="..&#x2F;classes/Utils.html">Utils</a></li>
+                <li><a href="../classes/Utils.html">Utils</a></li>
             
-                <li><a href="..&#x2F;classes/YUIDoc.html">YUIDoc</a></li>
+                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/yuidoc.html">yuidoc</a></li>
+                <li><a href="../modules/yuidoc.html">yuidoc</a></li>
             
             </ul>
         </div>
@@ -104,30 +104,30 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: lib&#x2F;docparser.js</h1>
+                        <h1 class="file-heading">File: lib/docparser.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-&#x2F;*
+/*
 Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
-http:&#x2F;&#x2F;yuilibrary.com&#x2F;license&#x2F;
-*&#x2F;
+http://yuilibrary.com/license/
+*/
 YUI.add(&#x27;docparser&#x27;, function(Y) {
 
     var Lang = Y.Lang,
     trim = Lang.trim,
     stringify = Y.JSON.stringify,
     fixType = Y.Lang.fixType,
-    &#x2F;**
+    /**
     * Parses the JSON data and formats it into a nice log string for filename and line number:
-    &#x60;&#x2F;file&#x2F;name.js:123&#x60;
+    &#x60;/file/name.js:123&#x60;
     * @method stringlog
     * @private
     * @param {Object} data The data block from the parser
     * @return {String} The formatted string.
     * @for DocParser
-    *&#x2F;
+    */
     stringlog = function(data) {
         var line, file;
         
@@ -146,25 +146,25 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
         }
         return &#x27; &#x27; + file + &#x27;:&#x27; + line;
     },
-    &#x2F;*
+    /*
     * Flatted a string, remove all line breaks and replace them with a token
     * @method implodeString
     * @private
     * @param {String} str The string to operate on
     * @return {String} The modified string
-    *&#x2F;
+    */
     implodeString = function(str) {
         return str.replace(REGEX_GLOBAL_LINES, &#x27;!~YUIDOC_LINE~!&#x27;);
     },
-    &#x2F;*
+    /*
     * Un-flatted a string, replace tokens injected with &#x60;implodeString&#x60;
     * @method implodeString
     * @private
     * @param {String} str The string to operate on
     * @return {String} The modified string
-    *&#x2F;
+    */
     explodeString = function(str) {
-        return str.replace(&#x2F;!~YUIDOC_LINE~!&#x2F;g, &#x27;\n&#x27;);
+        return str.replace(/!~YUIDOC_LINE~!/g, &#x27;\n&#x27;);
     },
     CURRENT_NAMESPACE = &#x27;currentnamespace&#x27;,
     CURRENT_MODULE = &#x27;currentmodule&#x27;,
@@ -173,23 +173,23 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
     CURRENT_FILE = &#x27;currentfile&#x27;,
     CURRENT_CLASS = &#x27;currentclass&#x27;,
 
-    REGEX_TYPE = &#x2F;(.*?)\{(.*?)\}(.*)&#x2F;,
-    REGEX_FIRSTWORD = &#x2F;^\s*?([^\s]+)(.*)&#x2F;,
-    REGEX_OPTIONAL = &#x2F;\[(.*?)\]&#x2F;,
+    REGEX_TYPE = /(.*?)\{(.*?)\}(.*)/,
+    REGEX_FIRSTWORD = /^\s*?([^\s]+)(.*)/,
+    REGEX_OPTIONAL = /\[(.*?)\]/,
     REGEX_START_COMMENT = {
-      js: &#x2F;^\s*\&#x2F;\*\*&#x2F;,
-      coffee: &#x2F;^\s*###\*&#x2F;
+      js: /^\s*\/\*\*/,
+      coffee: /^\s*###\*/
     },
     REGEX_END_COMMENT = {
-      js: &#x2F;\*\&#x2F;\s*$&#x2F;,
-      coffee: &#x2F;###\s*$&#x2F;
+      js: /\*\/\s*$/,
+      coffee: /###\s*$/
     },
     REGEX_LINE_HEAD_CHAR = {
-      js: &#x2F;^\s*\*&#x2F;,
-      coffee: &#x2F;^\s*#&#x2F;
+      js: /^\s*\*/,
+      coffee: /^\s*#/
     },
-    REGEX_LINES = &#x2F;\r\n|\n&#x2F;,
-    REGEX_GLOBAL_LINES = &#x2F;\r\n|\n&#x2F;g,
+    REGEX_LINES = /\r\n|\n/,
+    REGEX_GLOBAL_LINES = /\r\n|\n/g,
 
     SHORT_TAGS = {
         &#x27;async&#x27;: 1,
@@ -202,7 +202,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
         &#x27;required&#x27;: 1
     },
 
-    &#x2F;**
+    /**
      * A list of known tags.  This populates a member variable
      * during initialization, and will be updated if additional
      * digesters are added.
@@ -210,102 +210,102 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
      * @type Array
      * @final
      * @for DocParser
-     *&#x2F;
+     */
     TAGLIST = [
-        &quot;async&quot;,  &#x2F;&#x2F; bool, custom events can fire the listeners in a setTimeout
-        &quot;author&quot;, &#x2F;&#x2F; author best for projects and modules, but can be used anywhere &#x2F;&#x2F; multi
-        &quot;attribute&quot;, &#x2F;&#x2F; YUI attributes -- get&#x2F;set with change notification, etc
-        &quot;beta&quot;,  &#x2F;&#x2F; module maturity identifier
-        &quot;broadcast&quot;,  &#x2F;&#x2F; bool, events
-        &quot;bubbles&quot;, &#x2F;&#x2F; custom events that bubble
-        &quot;category&quot;, &#x2F;&#x2F; modules can be in multiple categories
-        &quot;chainable&quot;, &#x2F;&#x2F; methods that return the host object
-        &quot;class&quot;, &#x2F;&#x2F; pseudo class
-        &quot;conditional&quot;, &#x2F;&#x2F; conditional module
-        &quot;config&quot;, &#x2F;&#x2F; a config param (not an attribute, so no change events)
-        &quot;const&quot;, &#x2F;&#x2F; not standardized yet, converts to final property
-        &quot;constructs&quot;, &#x2F;&#x2F; factory methods (not yet used)
-        &quot;constructor&quot;, &#x2F;&#x2F; this is a constructor
-        &quot;contributor&quot;, &#x2F;&#x2F; like author
-        &quot;default&quot;, &#x2F;&#x2F; property&#x2F;attribute default value
-        &quot;deprecated&quot;, &#x2F;&#x2F; please specify what to use instead
-        &quot;description&quot;, &#x2F;&#x2F; can also be free text at the beginning of a comment is
-        &quot;emitfacade&quot;,  &#x2F;&#x2F; bool, YUI custom event can have a dom-like event facade
-        &quot;event&quot;, &#x2F;&#x2F; YUI custom event
-        &quot;evil&quot;, &#x2F;&#x2F; uses eval
-        &quot;extension&quot;, &#x2F;&#x2F; this is an extension for [entity]
-        &quot;extensionfor&quot;, &#x2F;&#x2F; this is an extension for [entity]
-        &quot;extension_for&quot;, &#x2F;&#x2F; this is an extension for [entity]
-        &quot;example&quot;, &#x2F;&#x2F; 0..n code snippets.  snippets can also be embedded in the desc
-        &quot;experimental&quot;,  &#x2F;&#x2F; module maturity identifier
-        &quot;extends&quot;, &#x2F;&#x2F; pseudo inheritance
-        &quot;file&quot;, &#x2F;&#x2F; file name (used by the parser)
-        &quot;final&quot;, &#x2F;&#x2F; not meant to be changed
-        &quot;fireonce&quot;,  &#x2F;&#x2F; bool, YUI custom event config allows
-        &quot;for&quot;, &#x2F;&#x2F; used to change class context
-        &quot;global&quot;, &#x2F;&#x2F; declare your globals
-        &quot;icon&quot;, &#x2F;&#x2F; project icon(s)
-        &quot;in&quot;, &#x2F;&#x2F; indicates module this lives in (obsolete now)
-        &quot;initonly&quot;, &#x2F;&#x2F; attribute writeonce value
-        &quot;injects&quot;,  &#x2F;&#x2F; injects {HTML|script|CSS}
-        &quot;knownissue&quot;, &#x2F;&#x2F; 0..n known issues for your consumption
-        &quot;line&quot;, &#x2F;&#x2F; line number for the comment block (used by the parser)
-        &quot;method&quot;, &#x2F;&#x2F; a method
-        &quot;module&quot;, &#x2F;&#x2F; YUI module name
-        &quot;main&quot;, &#x2F;&#x2F; Description for the module
-        &quot;namespace&quot;, &#x2F;&#x2F; Y.namespace, used to fully qualify class names
-        &quot;optional&quot;, &#x2F;&#x2F; For optional attributes
-        &quot;required&quot;, &#x2F;&#x2F; For required attributes
-        &quot;param&quot;, &#x2F;&#x2F; member param
-        &quot;plugin&quot;, &#x2F;&#x2F; this is a plugin for [entityl]
-        &quot;preventable&quot;, &#x2F;&#x2F; YUI custom events can be preventable ala DOM events
-        &quot;private&quot;, &#x2F;&#x2F; &gt; access
-        &quot;project&quot;, &#x2F;&#x2F; project definition, one per source tree allowed
-        &quot;property&quot;, &#x2F;&#x2F; a regular-ole property
-        &quot;protected&quot;, &#x2F;&#x2F; &gt; access
-        &quot;public&quot;, &#x2F;&#x2F; &gt; access
-        &quot;queuable&quot;,  &#x2F;&#x2F; bool, events
-        &quot;readonly&quot;, &#x2F;&#x2F; YUI attribute config
-        &quot;requires&quot;, &#x2F;&#x2F; YUI module requirements
-        &quot;return&quot;, &#x2F;&#x2F; {type} return desc -- returns is converted to this
-        &quot;see&quot;, &#x2F;&#x2F; 0..n things to look at
-        &quot;since&quot;, &#x2F;&#x2F; when it was introduced
-        &quot;static&quot;,  &#x2F;&#x2F; static
-        &quot;submodule&quot;, &#x2F;&#x2F; YUI submodule
-        &quot;throws&quot;, &#x2F;&#x2F; {execption type} description
-        &quot;title&quot;, &#x2F;&#x2F; this should be something for the project description
-        &quot;todo&quot;, &#x2F;&#x2F; 0..n things to revisit eventually (hopefully)
-        &quot;type&quot;, &#x2F;&#x2F; the var type
-        &quot;url&quot;, &#x2F;&#x2F; project url(s)
-        &quot;uses&quot;, &#x2F;&#x2F; 0..n compents mixed (usually, via augment) into the prototype
-        &quot;value&quot;, &#x2F;&#x2F; the value of a constant
-        &quot;writeonce&quot; &#x2F;&#x2F; YUI attribute config
+        &quot;async&quot;,  // bool, custom events can fire the listeners in a setTimeout
+        &quot;author&quot;, // author best for projects and modules, but can be used anywhere // multi
+        &quot;attribute&quot;, // YUI attributes -- get/set with change notification, etc
+        &quot;beta&quot;,  // module maturity identifier
+        &quot;broadcast&quot;,  // bool, events
+        &quot;bubbles&quot;, // custom events that bubble
+        &quot;category&quot;, // modules can be in multiple categories
+        &quot;chainable&quot;, // methods that return the host object
+        &quot;class&quot;, // pseudo class
+        &quot;conditional&quot;, // conditional module
+        &quot;config&quot;, // a config param (not an attribute, so no change events)
+        &quot;const&quot;, // not standardized yet, converts to final property
+        &quot;constructs&quot;, // factory methods (not yet used)
+        &quot;constructor&quot;, // this is a constructor
+        &quot;contributor&quot;, // like author
+        &quot;default&quot;, // property/attribute default value
+        &quot;deprecated&quot;, // please specify what to use instead
+        &quot;description&quot;, // can also be free text at the beginning of a comment is
+        &quot;emitfacade&quot;,  // bool, YUI custom event can have a dom-like event facade
+        &quot;event&quot;, // YUI custom event
+        &quot;evil&quot;, // uses eval
+        &quot;extension&quot;, // this is an extension for [entity]
+        &quot;extensionfor&quot;, // this is an extension for [entity]
+        &quot;extension_for&quot;, // this is an extension for [entity]
+        &quot;example&quot;, // 0..n code snippets.  snippets can also be embedded in the desc
+        &quot;experimental&quot;,  // module maturity identifier
+        &quot;extends&quot;, // pseudo inheritance
+        &quot;file&quot;, // file name (used by the parser)
+        &quot;final&quot;, // not meant to be changed
+        &quot;fireonce&quot;,  // bool, YUI custom event config allows
+        &quot;for&quot;, // used to change class context
+        &quot;global&quot;, // declare your globals
+        &quot;icon&quot;, // project icon(s)
+        &quot;in&quot;, // indicates module this lives in (obsolete now)
+        &quot;initonly&quot;, // attribute writeonce value
+        &quot;injects&quot;,  // injects {HTML|script|CSS}
+        &quot;knownissue&quot;, // 0..n known issues for your consumption
+        &quot;line&quot;, // line number for the comment block (used by the parser)
+        &quot;method&quot;, // a method
+        &quot;module&quot;, // YUI module name
+        &quot;main&quot;, // Description for the module
+        &quot;namespace&quot;, // Y.namespace, used to fully qualify class names
+        &quot;optional&quot;, // For optional attributes
+        &quot;required&quot;, // For required attributes
+        &quot;param&quot;, // member param
+        &quot;plugin&quot;, // this is a plugin for [entityl]
+        &quot;preventable&quot;, // YUI custom events can be preventable ala DOM events
+        &quot;private&quot;, // &gt; access
+        &quot;project&quot;, // project definition, one per source tree allowed
+        &quot;property&quot;, // a regular-ole property
+        &quot;protected&quot;, // &gt; access
+        &quot;public&quot;, // &gt; access
+        &quot;queuable&quot;,  // bool, events
+        &quot;readonly&quot;, // YUI attribute config
+        &quot;requires&quot;, // YUI module requirements
+        &quot;return&quot;, // {type} return desc -- returns is converted to this
+        &quot;see&quot;, // 0..n things to look at
+        &quot;since&quot;, // when it was introduced
+        &quot;static&quot;,  // static
+        &quot;submodule&quot;, // YUI submodule
+        &quot;throws&quot;, // {execption type} description
+        &quot;title&quot;, // this should be something for the project description
+        &quot;todo&quot;, // 0..n things to revisit eventually (hopefully)
+        &quot;type&quot;, // the var type
+        &quot;url&quot;, // project url(s)
+        &quot;uses&quot;, // 0..n compents mixed (usually, via augment) into the prototype
+        &quot;value&quot;, // the value of a constant
+        &quot;writeonce&quot; // YUI attribute config
     ],
 
-    &#x2F;**
+    /**
      * Common errors will get scrubbed instead of being ignored.
      * @property CORRECTIONS
      * @type Object
      * @final
      * @for DocParser
-     *&#x2F;
+     */
     CORRECTIONS = {
-        &#x27;augments&#x27;: &#x27;uses&#x27;, &#x2F;&#x2F; YUI convention for prototype mixins
-        &#x27;depreciated&#x27;: &#x27;deprecated&#x27;, &#x2F;&#x2F; subtle difference
-        &#x27;desciption&#x27;: &#x27;description&#x27;, &#x2F;&#x2F; shouldn&#x27;t need the @description tag at all
-        &#x27;extend&#x27;: &#x27;extends&#x27;, &#x2F;&#x2F; typo
-        &#x27;function&#x27;: &#x27;method&#x27;, &#x2F;&#x2F; we may want standalone inner functions at some point
-        &#x27;member&#x27;: &#x27;method&#x27;, &#x2F;&#x2F; probably meant method
-        &#x27;parm&#x27;: &#x27;param&#x27;, &#x2F;&#x2F; typo
-        &#x27;params&#x27;: &#x27;param&#x27;, &#x2F;&#x2F; typo
-        &#x27;pamra&#x27;: &#x27;param&#x27;, &#x2F;&#x2F; typo
-        &#x27;parma&#x27;: &#x27;param&#x27;, &#x2F;&#x2F; typo
-        &#x27;propery&#x27;: &#x27;property&#x27;, &#x2F;&#x2F; typo
-        &#x27;prop&#x27;: &#x27;property&#x27;, &#x2F;&#x2F; probably meant property
-        &#x27;returns&#x27;: &#x27;return&#x27; &#x2F;&#x2F; need to standardize on one or the other
+        &#x27;augments&#x27;: &#x27;uses&#x27;, // YUI convention for prototype mixins
+        &#x27;depreciated&#x27;: &#x27;deprecated&#x27;, // subtle difference
+        &#x27;desciption&#x27;: &#x27;description&#x27;, // shouldn&#x27;t need the @description tag at all
+        &#x27;extend&#x27;: &#x27;extends&#x27;, // typo
+        &#x27;function&#x27;: &#x27;method&#x27;, // we may want standalone inner functions at some point
+        &#x27;member&#x27;: &#x27;method&#x27;, // probably meant method
+        &#x27;parm&#x27;: &#x27;param&#x27;, // typo
+        &#x27;params&#x27;: &#x27;param&#x27;, // typo
+        &#x27;pamra&#x27;: &#x27;param&#x27;, // typo
+        &#x27;parma&#x27;: &#x27;param&#x27;, // typo
+        &#x27;propery&#x27;: &#x27;property&#x27;, // typo
+        &#x27;prop&#x27;: &#x27;property&#x27;, // probably meant property
+        &#x27;returns&#x27;: &#x27;return&#x27; // need to standardize on one or the other
     },
 
-    &#x2F;**
+    /**
      * A map of the default tag processors, keyed by the
      * tag name.  Multiple tags can use the same digester
      * by supplying the string name that points to the
@@ -314,47 +314,47 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
      * @type Object
      * @final
      * @for DocParser
-     *&#x2F;
+     */
     DIGESTERS = {
 
-        &#x2F;&#x2F; &quot;params&quot;: [
-        &#x2F;&#x2F; {
-        &#x2F;&#x2F;   &quot;name&quot;: &quot;optionalandmultiple&quot;,
-        &#x2F;&#x2F;   &quot;description&quot;: &quot;my desc&quot;,
-        &#x2F;&#x2F;   &quot;type&quot;: &quot;string&quot;,
-        &#x2F;&#x2F;   &quot;optional&quot;: true, &#x2F;&#x2F; [surroundedbybrackets]
-        &#x2F;&#x2F;   &quot;optdefault&quot;: &quot;if specified, this is always string to avoid syntax errors @TODO&quot;,
-        &#x2F;&#x2F;   &quot;multiple&quot;: true &#x2F;&#x2F; endswith*
-        &#x2F;&#x2F; }
-        &#x2F;&#x2F; ],
-        &#x2F;&#x2F; @param {type} name description    -or-
-        &#x2F;&#x2F; @param name {type} description
-        &#x2F;&#x2F; #2173362 optional w&#x2F; or w&#x2F;o default
-        &#x2F;&#x2F; @param {type} [optvar=default] description
-        &#x2F;&#x2F; #12 document config objects
-        &#x2F;&#x2F; @param {object|config} config description
-        &#x2F;&#x2F; @param {type} config.prop1 description
-        &#x2F;&#x2F; @param {type} config.prop2 description
-        &#x2F;&#x2F; #11 document callback argument signature
-        &#x2F;&#x2F; @param {callback|function} callback description
-        &#x2F;&#x2F; @param {type} callback.arg1 description
-        &#x2F;&#x2F; @param {type} callback.arg2 description
-        &#x2F;&#x2F; #2173362 document event facade decorations for custom events
-        &#x2F;&#x2F; @param {event} event description
-        &#x2F;&#x2F; @param {type}  event.child description
-        &#x2F;&#x2F; @param {type}  event.index description
-        &#x2F;&#x2F; @param name* {type} 1..n description
-        &#x2F;&#x2F; @param [name]* {type} 0..n description
+        // &quot;params&quot;: [
+        // {
+        //   &quot;name&quot;: &quot;optionalandmultiple&quot;,
+        //   &quot;description&quot;: &quot;my desc&quot;,
+        //   &quot;type&quot;: &quot;string&quot;,
+        //   &quot;optional&quot;: true, // [surroundedbybrackets]
+        //   &quot;optdefault&quot;: &quot;if specified, this is always string to avoid syntax errors @TODO&quot;,
+        //   &quot;multiple&quot;: true // endswith*
+        // }
+        // ],
+        // @param {type} name description    -or-
+        // @param name {type} description
+        // #2173362 optional w/ or w/o default
+        // @param {type} [optvar=default] description
+        // #12 document config objects
+        // @param {object|config} config description
+        // @param {type} config.prop1 description
+        // @param {type} config.prop2 description
+        // #11 document callback argument signature
+        // @param {callback|function} callback description
+        // @param {type} callback.arg1 description
+        // @param {type} callback.arg2 description
+        // #2173362 document event facade decorations for custom events
+        // @param {event} event description
+        // @param {type}  event.child description
+        // @param {type}  event.index description
+        // @param name* {type} 1..n description
+        // @param [name]* {type} 0..n description
         &#x27;param&#x27;: function(tagname, value, target, block) {
-            &#x2F;&#x2F; Y.log(&#x27;param digester&#x27; + value);
+            // Y.log(&#x27;param digester&#x27; + value);
             target.params = target.params || [];
 
             if (!value) {
                 this.warnings.push({
-                    message: &#x27;param name&#x2F;type&#x2F;descript missing&#x27;,
+                    message: &#x27;param name/type/descript missing&#x27;,
                     line: stringlog(block)
                 });
-                Y.log(&#x27;param name&#x2F;type&#x2F;descript missing: &#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
+                Y.log(&#x27;param name/type/descript missing: &#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
                 return;
             }
 
@@ -363,13 +363,13 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 match = REGEX_TYPE.exec(desc),
                 host = target.params;
 
-            &#x2F;&#x2F; Extract {type}
+            // Extract {type}
             if (match) {
                 type = fixType(trim(match[2]));
                 desc = trim(match[1] + match[3]);
             }
 
-            &#x2F;&#x2F; extract the first word, this is the param name
+            // extract the first word, this is the param name
             match = REGEX_FIRSTWORD.exec(desc);
             if (match) {
                 name = trim(match[1]);
@@ -377,7 +377,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             }
 
             if (!name) {
-                if (value &amp;&amp; value.match(&#x2F;callback&#x2F;i)) {
+                if (value &amp;&amp; value.match(/callback/i)) {
                     this.warnings.push({
                         message: &#x27;Fixing missing name for callback&#x27;,
                         line: stringlog(block)
@@ -402,18 +402,18 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 name = name.substr(0, len);
             }
 
-            &#x2F;&#x2F; extract [name], optional param
+            // extract [name], optional param
             if (name.indexOf(&#x27;[&#x27;) &gt; -1) {
                 match = REGEX_OPTIONAL.exec(name);
                 if (match) {
                     optional = true;
                     name = trim(match[1]);
-                    &#x2F;&#x2F; extract optional=defaultvalue
+                    // extract optional=defaultvalue
                     parts = name.split(&#x27;=&#x27;);
                     if (parts.length &gt; 1) {
                         name = parts[0];
                         optdefault = parts[1];
-                        &#x2F;&#x2F;Add some shortcuts for object&#x2F;array defaults
+                        //Add some shortcuts for object/array defaults
                         if (optdefault.toLowerCase() == &#x27;object&#x27;) {
                             optdefault = &#x27;{}&#x27;;
                         }
@@ -424,7 +424,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 }
             }
 
-            &#x2F;&#x2F; parse object.prop, indicating a child property for object
+            // parse object.prop, indicating a child property for object
             if (name.indexOf(&#x27;.&#x27;) &gt; -1) {
                 match = name.split(&#x27;.&#x27;);
                 parent = trim(match[0]);
@@ -479,11 +479,11 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
 
         },
 
-        &#x2F;&#x2F; @return {type} description &#x2F;&#x2F; methods
-        &#x2F;&#x2F; @returns {type} description &#x2F;&#x2F; methods
-        &#x2F;&#x2F; @throws {type} an error #2173342
-        &#x2F;&#x2F; @injects {HTML|CSS|script} description
-        &#x2F;&#x2F; can be used by anthing that has an optional {type} and a description
+        // @return {type} description // methods
+        // @returns {type} description // methods
+        // @throws {type} an error #2173342
+        // @injects {HTML|CSS|script} description
+        // can be used by anthing that has an optional {type} and a description
         &#x27;return&#x27;: function(tagname, value, target, block) {
 
             var desc = implodeString(trim(value)), type,
@@ -508,20 +508,20 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
         &#x27;throws&#x27;: &#x27;return&#x27;,
         &#x27;injects&#x27;: &#x27;return&#x27;,
 
-        &#x2F;&#x2F; trying to overwrite the constructor value is a bad idea
+        // trying to overwrite the constructor value is a bad idea
         &#x27;constructor&#x27;: function(tagname, value, target, block) {
             target.is_constructor = 1;
         },
 
-        &#x2F;&#x2F; @author {twitter: @arthurdent | github: ArthurDent}
-        &#x2F;&#x2F;    Arthur Dent adent@h2g2.earth #23, multiple &#x2F;&#x2F; modules&#x2F;class&#x2F;method
-        &#x2F;&#x2F; &#x27;author&#x27;: function(tagname, value, target, block) {
-        &#x2F;&#x2F;     &#x2F;&#x2F; Y.log(&#x27;author digester&#x27;);
-        &#x2F;&#x2F; },
+        // @author {twitter: @arthurdent | github: ArthurDent}
+        //    Arthur Dent adent@h2g2.earth #23, multiple // modules/class/method
+        // &#x27;author&#x27;: function(tagname, value, target, block) {
+        //     // Y.log(&#x27;author digester&#x27;);
+        // },
 
-        &#x2F;&#x2F; A key bock type for declaring modules and submodules
-        &#x2F;&#x2F; subsequent class and member blocks will be assigned
-        &#x2F;&#x2F; to this module.
+        // A key bock type for declaring modules and submodules
+        // subsequent class and member blocks will be assigned
+        // to this module.
         &#x27;module&#x27;: function(tagname, value, target, block) {
             this.set(CURRENT_MODULE, value);
             var go = true;
@@ -548,7 +548,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             return null;
         },
 
-        &#x2F;&#x2F;Setting the description for the module..
+        //Setting the description for the module..
         &#x27;main&#x27;: function(tagname, value, target, block) {
             var o = target;
             o.mainName = value;
@@ -558,15 +558,15 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             this.set(MAIN_MODULE, o);
         },
 
-        &#x2F;&#x2F; accepts a single project definition for the source tree
+        // accepts a single project definition for the source tree
         &#x27;project&#x27;: function(tagname, value, target, block) {
             return this.project;
         },
 
-        &#x2F;&#x2F; A key bock type for declaring submodules.  subsequent class and
-        &#x2F;&#x2F; member blocks will be assigned to this submodule.
+        // A key bock type for declaring submodules.  subsequent class and
+        // member blocks will be assigned to this submodule.
         &#x27;submodule&#x27;: function(tagname, value, target, block) {
-            &#x2F;&#x2F;console.log(&#x27;Setting current submodule: &#x27;, value, &#x27;on class&#x27;);
+            //console.log(&#x27;Setting current submodule: &#x27;, value, &#x27;on class&#x27;);
             this.set(CURRENT_SUBMODULE, value);
             var host = this.modules[value],
                 clazz = this.get(CURRENT_CLASS),
@@ -575,23 +575,23 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                     host.module = parent;
                 }
                 if (clazz &amp;&amp; this.classes[clazz]) {
-                    &#x2F;&#x2F;console.log(&#x27;Adding submodule&#x27;, value , &#x27;to class&#x27;, clazz, &#x27; it has submodule&#x27;, this.classes[clazz].submodule);
-                    &#x2F;&#x2F;if (!this.classes[clazz].submodule) {
-                        &#x2F;&#x2F;console.log(&#x27;REALLY Adding submodule&#x27;, value , &#x27;to class&#x27;, clazz);
+                    //console.log(&#x27;Adding submodule&#x27;, value , &#x27;to class&#x27;, clazz, &#x27; it has submodule&#x27;, this.classes[clazz].submodule);
+                    //if (!this.classes[clazz].submodule) {
+                        //console.log(&#x27;REALLY Adding submodule&#x27;, value , &#x27;to class&#x27;, clazz);
                         this.classes[clazz].submodule = value;
-                    &#x2F;&#x2F;}
+                    //}
                 }
             return host;
         },
 
-        &#x2F;&#x2F; A key bock type for declaring classes, subsequent
-        &#x2F;&#x2F; member blocks will be assigned to this class
+        // A key bock type for declaring classes, subsequent
+        // member blocks will be assigned to this class
         &#x27;class&#x27;: function(tagname, value, target, block) {
             var _namespace, _value = value;
 
             block.forEach(function(def) {
                 if (def.tag === &#x27;namespace&#x27;) {
-                    &#x2F;&#x2F;We have a namespace, augment the name
+                    //We have a namespace, augment the name
                     var name = trim(def.value) + &#x27;.&#x27; + value;
                     if (value.indexOf(trim(def.value) + &#x27;.&#x27;) === -1) {
                         value = name;
@@ -615,26 +615,26 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 host.module = parent;
             }
 
-            &#x2F;&#x2F;Merge host and target in case the class was defined in a &quot;for&quot; tag
-            &#x2F;&#x2F;before it was defined in a &quot;class&quot; tag
+            //Merge host and target in case the class was defined in a &quot;for&quot; tag
+            //before it was defined in a &quot;class&quot; tag
             host = Y.merge(host, target);
             this.classes[fullname] = host;
             parent = this.get(CURRENT_SUBMODULE);
             if (parent) {
-                &#x2F;&#x2F;this.set(CURRENT_SUBMODULE, parent);
+                //this.set(CURRENT_SUBMODULE, parent);
                 host.submodule = parent;
             }
             return host;
         },
 
-        &#x2F;&#x2F; change &#x27;const&#x27; to final property
+        // change &#x27;const&#x27; to final property
         &#x27;const&#x27;: function(tagname, value, target, block) {
             target.itemtype = &#x27;property&#x27;;
             target.name = value;
             target[&#x27;final&#x27;] = &#x27;&#x27;;
         },
 
-        &#x2F;&#x2F; supported classitems
+        // supported classitems
         &#x27;property&#x27;: function(tagname, value, target, block) {
             var match, name, desc;
 
@@ -644,7 +644,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 desc = implodeString(trim(value)),
                 match = REGEX_TYPE.exec(desc);
                 
-                &#x2F;&#x2F; Extract {type}
+                // Extract {type}
                 if (match) {
                     type = fixType(trim(match[2]));
                     name = trim(match[1] + match[3]);
@@ -668,7 +668,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
         &#x27;config&#x27;: &#x27;property&#x27;,
         &#x27;event&#x27;: &#x27;property&#x27;,
 
-        &#x2F;&#x2F; access fields
+        // access fields
         &#x27;public&#x27;: function(tagname, value, target, block) {
             target.access = tagname;
             target.tagname = value;
@@ -677,12 +677,12 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
         &#x27;protected&#x27;: &#x27;public&#x27;,
         &#x27;inner&#x27;: &#x27;public&#x27;,
 
-        &#x2F;&#x2F; tags that can have multiple occurances in a single block
+        // tags that can have multiple occurances in a single block
         &#x27;todo&#x27;: function(tagname, value, target, block) {
             if (!Lang.isArray(target[tagname])) {
                 target[tagname] = [];
             }
-            &#x2F;&#x2F;If the item is @tag one,two
+            //If the item is @tag one,two
             if (value.indexOf(&#x27;,&#x27;) &gt; -1) {
                 value = value.split(&#x27;,&#x27;);
             } else {
@@ -742,11 +742,11 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             }
         },
 
-        &#x2F;&#x2F; updates the current namespace
+        // updates the current namespace
         &#x27;namespace&#x27;: function(tagname, value, target, block) {
             this.set(CURRENT_NAMESPACE, value);
             if (value === &#x27;&#x27;) {
-                &#x2F;&#x2F;Shortcut this if namespace is an empty string.
+                //Shortcut this if namespace is an empty string.
                 return;
             }
             var file = this.get(CURRENT_FILE);
@@ -805,8 +805,8 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             }
         },
 
-        &#x2F;&#x2F; updates the current class only (doesn&#x27;t create
-        &#x2F;&#x2F; a new class definition)
+        // updates the current class only (doesn&#x27;t create
+        // a new class definition)
         &#x27;for&#x27;: function(tagname, value, target, block) {
             value = this._resolveFor(value);
             this.set(CURRENT_CLASS, value);
@@ -829,7 +829,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
 
     },
 
-    &#x2F;**
+    /**
      * The doc parser accepts a **map** of files to file content.
      * Once &#x60;parse()&#x60; is called, various properties will be populated
      * with the parsers data (aggregated in the &#x60;&#x27;data&#x27;&#x60; property).
@@ -838,7 +838,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
      * @constructor
      * @param {Object} o the config object
      * @module yuidoc
-     *&#x2F;
+     */
     DocParser = function(o) {
         this.digesters = Y.merge(DIGESTERS);
         this.knowntags = Y.Array.hash(TAGLIST);
@@ -853,8 +853,8 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             value: false
         },
 
-        &#x2F;**
-         * Digesters process the tag&#x2F;text pairs found in a
+        /**
+         * Digesters process the tag/text pairs found in a
          * comment block.  They are looked up by tag name.
          * The digester gets the tagname, the value, the
          * target object to apply values to, and the full
@@ -864,9 +864,9 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
          * the key listed and use the function there instead
          * (it is an alias).  Digesters can return a host
          * object in the case the tag defines a new key
-         * block type (modules&#x2F;classes&#x2F;methods&#x2F;events&#x2F;properties)
+         * block type (modules/classes/methods/events/properties)
          * @attribute digesters
-         *&#x2F;
+         */
         digesters: {
             setter: function(val) {
                 Y.mix(this.digesters, val, true);
@@ -875,53 +875,53 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             }
         },
 
-        &#x2F;**
+        /**
          * Emitters will be schemas for the types of payloads
          * the parser will emit.  Not implemented.
          * @attribute emitters
-         *&#x2F;
+         */
         emitters: {
             setter: function(val) {
                 Y.mix(this.emitters, val, true);
             }
         },
 
-        &#x2F;**
+        /**
          * Comment syntax type. 
          * @attribute syntaxtype
          * @type String
-         *&#x2F;
+         */
         syntaxtype: {
             writeOnce: true,
         },
 
-        &#x2F;**
+        /**
          * The map of file names to file content.
          * @attribute filemap
-         *&#x2F;
+         */
         filemap: {
             writeOnce : true
         },
 
-        &#x2F;**
+        /**
          * A map of file names to directory name.  Provided in
          * case this needs to be used to reset the module name
          * appropriately -- currently not used
          * @attribute dirmap
-         *&#x2F;
+         */
         dirmap: {
             writeOnce : true
         },
 
-        &#x2F;**
+        /**
          * The file currently being parsed
          * @attribute currentfile
          * @type String
-         *&#x2F;
+         */
         currentfile: {
             setter: function(val) {
                 val = trim(val);
-                &#x2F;&#x2F; this.set(CURRENT_NAMESPACE, &#x27;&#x27;);
+                // this.set(CURRENT_NAMESPACE, &#x27;&#x27;);
                 if (!(val in this.files)) {
                     this.files[val] = {
                         name: val,
@@ -934,47 +934,47 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 return val;
             }
         },
-        &#x2F;**
+        /**
         * The main documentation block for the module itself.
         * @attribute mainmodule
          * @type String
-        *&#x2F;
+        */
         mainmodule: {
             setter: function(o) {
                 if (!o) {
                     return;
                 }
-		        &#x2F;&#x2F;console.log(&#x27;Main Module Setter: &#x27;, o);
+		        //console.log(&#x27;Main Module Setter: &#x27;, o);
                 var write = true,
                     name = o.mainName || o.name;
                	if (this.get(CURRENT_MODULE) === name) {
 
                     if (name in this.modules) {
-                        &#x2F;&#x2F;console.log(&#x27;In Global Modules&#x27;, this.modules[name]);
+                        //console.log(&#x27;In Global Modules&#x27;, this.modules[name]);
                         if (this.modules[name].tag) {
-                            &#x2F;&#x2F;The main module has already been added, don&#x27;t over write it.
+                            //The main module has already been added, don&#x27;t over write it.
                             if (this.modules[name].tag === &#x27;main&#x27;) {
                                 write = false;
                             }
                         }
                         if (write) {
-			                &#x2F;&#x2F;console.log(&#x27;Writing&#x27;);
+			                //console.log(&#x27;Writing&#x27;);
                             this.modules[name] = Y.merge(this.modules[name], o);
                         }
                     } else {
                         if (o._main) {
-			                &#x2F;&#x2F;console.log(&#x27;Writing&#x27;);
+			                //console.log(&#x27;Writing&#x27;);
                             this.modules[name] = o;
                         }
                     }
                 }
             }
         },
-        &#x2F;**
+        /**
          * The module currently being parsed
          * @attribute currentmodule
          * @type String
-         *&#x2F;
+         */
         currentmodule: {
             setter: function(val) {
                 if (!val) {
@@ -989,7 +989,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
 		        }
                 var clazz = this.classes[this.get(CURRENT_CLASS)];
                 if (clazz) {
-                    &#x2F;&#x2F;Handles case where @module comes after @class in a new directory of files 
+                    //Handles case where @module comes after @class in a new directory of files 
                     if (clazz.module !== val) {
                         if (this.modules[clazz.module]) {
                             delete this.modules[clazz.module].submodules[clazz.submodule];
@@ -1022,11 +1022,11 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             }
         },
 
-        &#x2F;**
+        /**
          * The submodule currently being parsed
          * @attribute currentsubmodule
          * @type String
-         *&#x2F;
+         */
         currentsubmodule: {
             setter: function(val) {
                 if (!val) {
@@ -1046,7 +1046,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                     mod.module = this.get(CURRENT_MODULE);
                     mod.namespace = this.get(CURRENT_NAMESPACE);
                 }
-                &#x2F;&#x2F;console.log(&#x27;SETTING CURRENT SUBMODULE: &#x27;, val, &#x27;ON CLASS&#x27;, this.get(CURRENT_CLASS));
+                //console.log(&#x27;SETTING CURRENT SUBMODULE: &#x27;, val, &#x27;ON CLASS&#x27;, this.get(CURRENT_CLASS));
                 return val;
             }
         },
@@ -1062,11 +1062,11 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
         lastclass: {
 
         },
-        &#x2F;**
+        /**
          * The class currently being parsed
          * @attribute currentclass
          * @type String
-         *&#x2F;
+         */
         currentclass: {
             setter: function(val) {
                 if (!val) {
@@ -1098,13 +1098,13 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
     };
 
     Y.extend(DocParser, Y.Base, {
-        &#x2F;**
+        /**
         * Takes a non-namespaced classname and resolves it to a namespace (to support &#x60;@for&#x60;)
         * @private
         * @method _resolveFor
         * @param {String} value The classname to resolve
         * @return {String} The resolved namespace + classname
-        *&#x2F;
+        */
         _resolveFor: function(value) {
             if (value.indexOf(&#x27;.&#x27;) === -1) {
                 Y.each(this.classes, function(i) {
@@ -1124,11 +1124,11 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
 
             var self = this;
             self.after(&#x27;currentfileChange&#x27;, function(e) {
-                &#x2F;*
+                /*
                 * File changed, so we reset class and submodule.
                 * You should use @for if you want to reference another class
                 * in different file.
-                *&#x2F;
+                */
                 self.set(CURRENT_SUBMODULE, &#x27;&#x27;);
                 self.set(CURRENT_CLASS, &#x27;&#x27;);
             });
@@ -1150,9 +1150,9 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                     parent = self.modules[mod].module;
                     Y.each(classes, function(clazz) {
                         if (!(clazz.submodule)) {
-                            &#x2F;&#x2F;if ((!clazz.module) || clazz.module == parent) {
+                            //if ((!clazz.module) || clazz.module == parent) {
                             if (!clazz.module) {
-                                &#x2F;&#x2F;console.log(&#x27;Adding Submodule: &#x27;, mod, &#x27; to&#x27;, clazz.module, &#x27;with parent&#x27;, parent);
+                                //console.log(&#x27;Adding Submodule: &#x27;, mod, &#x27; to&#x27;, clazz.module, &#x27;with parent&#x27;, parent);
                                 clazz.submodule = mod;
                             }
                         }
@@ -1167,24 +1167,24 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                         item[&quot;class&quot;] = clazz;
                     }
                 });
-                &#x2F;&#x2F; Y.log(self.classitems);
+                // Y.log(self.classitems);
             });
 
         },
-        &#x2F;**
+        /**
         Normalizes the initial indentation of the given _content_ so that the first line
         is unindented, and all other lines are unindented to the same degree as the
         first line. So if the first line has four spaces at the beginning, then all
-        lines will be unindented four spaces. Ported from [Selleck](https:&#x2F;&#x2F;github.com&#x2F;rgrove&#x2F;selleck)
+        lines will be unindented four spaces. Ported from [Selleck](https://github.com/rgrove/selleck)
 
         @method unindent
         @param {String} content Text to unindent.
         @return {String} Unindented text.
         @private
-        **&#x2F;
+        **/
 
         unindent: function(content) {
-            var indent = content.match(&#x2F;^(\s+)&#x2F;);
+            var indent = content.match(/^(\s+)/);
 
             if (indent) {
                 content = content.replace(new RegExp(&#x27;^&#x27; + indent[1], &#x27;gm&#x27;), &#x27;&#x27;);
@@ -1193,10 +1193,10 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             return content;
         },
 
-        &#x2F;**
+        /**
          Transforms a JavaDoc style comment block (less the start
          and end of it) into a list
-         of tag&#x2F;text pairs.  The leading space and &#x27;*&#x27; are removed,
+         of tag/text pairs.  The leading space and &#x27;*&#x27; are removed,
          but the remaining whitespace is preserved so that the
          output should be friendly for both markdown and html
          parsers.
@@ -1205,7 +1205,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
          @param {String} comment The comment to parse
          @param {String} file The file it was parsed from
          @param {String} line The line number it was found on
-         *&#x2F;
+         */
         handlecomment: function(comment, file, line) {
             var lines = comment.split(REGEX_LINES),
                 len = lines.length, i,
@@ -1216,16 +1216,16 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 lineHeadCharRegex = REGEX_LINE_HEAD_CHAR[syntaxtype],
                 hasLineHeadChar  = lines[0] &amp;&amp; lineHeadCharRegex.test(lines[0]);
 
-&#x2F;&#x2F; trim leading line head char(star or harp) if there are any
+// trim leading line head char(star or harp) if there are any
             if (hasLineHeadChar) {
                 for (i = 0; i &lt; len; i++) {
                     lines[i] = lines[i].replace(lineHeadCharRegex, &#x27;&#x27;);
                 }
             }
 
-&#x2F;&#x2F; reconsitute and tokenize the comment block
+// reconsitute and tokenize the comment block
             comment = this.unindent(lines.join(&#x27;\n&#x27;));
-            parts = comment.split(&#x2F;(?:^|\n)\s*(@\w*)&#x2F;);
+            parts = comment.split(/(?:^|\n)\s*(@\w*)/);
             len = parts.length;
             for (i = 0; i &lt; len; i++) {
                 value = &#x27;&#x27;;
@@ -1235,7 +1235,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 }
                 skip = false;
 
-&#x2F;&#x2F; the first token may be the description, otherwise it should be a tag
+// the first token may be the description, otherwise it should be a tag
                 if (i === 0 &amp;&amp; part.substr(0, 1) !== &#x27;@&#x27;) {
                     if (part) {
                         tag = &#x27;@description&#x27;;
@@ -1245,7 +1245,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                     }
                 } else {
                     tag = part;
-                    &#x2F;&#x2F; lookahead for the tag value
+                    // lookahead for the tag value
                     peek = parts[i + 1];
                     if (peek) {
                         value = peek;
@@ -1264,11 +1264,11 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             return results;
         },
 
-        &#x2F;**
+        /**
          * Accepts a map of filenames to file content.  Returns
          * a map of filenames to an array of API comment block
-         * text.  This expects the comment to start with &#x2F; **
-         * on its own line, and end with * &#x2F; on its own
+         * text.  This expects the comment to start with / **
+         * on its own line, and end with * / on its own
          * line.  Override this function to provide an
          * alternative comment parser.
          * @method extract
@@ -1276,7 +1276,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
          * @param {Array} dirmap A map of file names to directory name
          * @return {Object} A map of filenames to an array of extracted
          * comment text.
-         *&#x2F;
+         */
         extract: function(filemap, dirmap) {
             filemap = filemap || this.get(&#x27;filemap&#x27;);
             dirmap = dirmap || this.get(&#x27;dirmap&#x27;);
@@ -1301,10 +1301,10 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                             line = lines[i];
                         }
 
-                        &#x2F;&#x2F; we can look ahead here if we need to guess the
-                        &#x2F;&#x2F; name&#x2F;type like we do in the python version.
+                        // we can look ahead here if we need to guess the
+                        // name/type like we do in the python version.
 
-                        &#x2F;&#x2F; remove &#x2F;**
+                        // remove /**
                         commentlines.shift();
                         comment = commentlines.join(&#x27;\n&#x27;);
                         commentmap[filename] = commentmap[filename] || [];
@@ -1318,11 +1318,11 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             return commentmap;
         },
 
-        &#x2F;**
+        /**
          * Processes all the tags in a single comment block
          * @method processblock
-         * @param {Array} an array of the tag&#x2F;text pairs
-         *&#x2F;
+         * @param {Array} an array of the tag/text pairs
+         */
         processblock: function(block) {
             var target = {},
                 clazz,
@@ -1331,13 +1331,13 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 digestname,
                 digester,
                 host;
-            &#x2F;&#x2F; Y.log(block);
+            // Y.log(block);
             Y.each(block, function(tag) {
                 var name = trim(tag.tag),
                     value = trim(tag.value),
                     parent, ret;
 
-                &#x2F;&#x2F;Convert empty values to a 1 for JSON data parsing later
+                //Convert empty values to a 1 for JSON data parsing later
                 if (SHORT_TAGS[name] &amp;&amp; value === &#x27;&#x27;) {
                     value = 1;
                 }
@@ -1392,14 +1392,14 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             }
         },
 
-        &#x2F;**
+        /**
          * Transforms a map of filenames to arrays of comment blocks into a
          * JSON structure that represents the entire processed API doc info
          * and relationships between elements for the entire project.
          * @method transform
          * @param {object} commentmap The hash of files and parsed comment blocks
          * @return {object} The transformed data for the project
-         *&#x2F;
+         */
         transform: function(commentmap) {
             var self = this,
                 project = self.project = {},
@@ -1417,16 +1417,16 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
 
             commentmap = commentmap || self.commentmap;
 
-            &#x2F;&#x2F; process
+            // process
             Y.each(commentmap, function(blocks, file) {
-                &#x2F;&#x2F;Y.log(&#x27;transform: &#x27; + file, &#x27;info&#x27;, &#x27;docparser&#x27;);
+                //Y.log(&#x27;transform: &#x27; + file, &#x27;info&#x27;, &#x27;docparser&#x27;);
                 self.set(CURRENT_FILE, file);
                 Y.each(blocks, function(block) {
                     self.processblock(block);
                 });
             });
 
-            &#x2F;&#x2F; cross reference
+            // cross reference
             Y.each(modules, function(module, name) {
                 if (module.file) {
                     files[module.file].modules[name] = 1;
@@ -1434,7 +1434,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 if (module.is_submodule) {
                     modules[module.module].submodules[name] = 1;
                 }
-                &#x2F;&#x2F;Clean up processors
+                //Clean up processors
                 delete module.mainName;
                 delete module._main;
             });
@@ -1443,10 +1443,10 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 if (clazz.module) {
                     modules[clazz.module].classes[name] = 1;
                 }
-                &#x2F;&#x2F;console.error(&#x27;------------------------------&#x27;);
-                &#x2F;&#x2F;console.error(clazz);
-                &#x2F;&#x2F;console.error(modules[clazz.submodule]);
-                &#x2F;&#x2F;console.error(&#x27;------------------------------&#x27;);
+                //console.error(&#x27;------------------------------&#x27;);
+                //console.error(clazz);
+                //console.error(modules[clazz.submodule]);
+                //console.error(&#x27;------------------------------&#x27;);
                 if (clazz.submodule) {
                     modules[clazz.submodule].classes[name] = 1;
                     if (!modules[clazz.submodule].description) {
@@ -1489,7 +1489,7 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
                 if (v.itemtype === &#x27;property&#x27; &amp;&amp; v.params) {
                     v.subprops = v.params;
                     v.subprops.forEach(function(i) {
-                        &#x2F;&#x2F;Remove top level prop name from sub props (should have been done in the @param parser
+                        //Remove top level prop name from sub props (should have been done in the @param parser
                         i.name = i.name.replace(v.name + &#x27;.&#x27;, &#x27;&#x27;);
                     });
                     delete v.params;
@@ -1505,14 +1505,14 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
             return self;
         },
 
-        &#x2F;**
+        /**
          * Extracts and transforms the filemap provided to constructor
          * @method parse
          * @param {Array} filemap A map of filenames to file content
          * @param {Array} dirmap A map of file names to directory name
          * @return {DocParser} this parser instance.  The total results
          * are available in parser.data.
-         *&#x2F;
+         */
         parse: function(filemap, dirmap) {
             filemap = filemap || this.get(&#x27;filemap&#x27;);
             dirmap = dirmap || this.get(&#x27;dirmap&#x27;);
@@ -1535,13 +1535,13 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
         </div>
     </div>
 </div>
-<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
-<script src="..&#x2F;assets/js/yui-prettify.js"></script>
-<script src="..&#x2F;assets/../api.js"></script>
-<script src="..&#x2F;assets/js/api-filter.js"></script>
-<script src="..&#x2F;assets/js/api-list.js"></script>
-<script src="..&#x2F;assets/js/api-search.js"></script>
-<script src="..&#x2F;assets/js/apidocs.js"></script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
 </body>
 </html>
