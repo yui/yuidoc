@@ -3,7 +3,7 @@
         "name": "yuidoc-root",
         "logo": "http://yuilibrary.com/img/yui-logo.png",
         "description": "YUIDoc, YUI's JavaScript Documentation engine.",
-        "version": "0.3.41"
+        "version": "0.3.42"
     },
     "files": {
         "lib/builder.js": {
@@ -2149,7 +2149,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 432,
+            "line": 446,
             "description": "Takes a type string and converts it to a \"First letter upper cased\" type. e.g. `(string -> String, object -> Object)`",
             "itemtype": "method",
             "name": "fixType",
