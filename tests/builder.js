@@ -30,7 +30,10 @@ var suite = new YUITest.TestSuite({
             outdir: './out',
             helpers: [
                 path.join(__dirname, 'lib/davglass.js')
-            ]
+            ],
+            markdown: {
+                langPrefix: "language-"
+            }
         };
         var json = (new Y.YUIDoc(options)).run();
 
@@ -157,6 +160,21 @@ suite.add(new YUITest.TestCase({
 
             Assert.isObject(method, 'Failed to find inherited method');
             Assert.isTrue((method.description.indexOf('DAVGLASS_WAS_HERE::Foo') > 0), 'Helper failed to parse');
+        }, item);
+    },
+
+    'test: markdown options': function() {
+        var item = suite.data.classes['mywidget.SuperWidget'];
+        Assert.isObject(item, 'Failed to parse class');
+        suite.builder.renderClass(function(html, view, opts) {
+            var method;
+            opts.meta.methods.forEach(function(i) {
+                if (i.name === 'getTargets3' && i.class === 'mywidget.SuperWidget') {
+                    method = i;
+                }
+            });
+
+            Assert.isTrue((method.description.indexOf('language-javascript') > 0), 'Markdown options were not applied');
         }, item);
     }
 }));
