@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.42</em>
+            <em>API Docs for: 0.3.43</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -292,7 +292,7 @@ YUI.add(&#x27;server&#x27;, function(Y) {
                 path = require(&#x27;path&#x27;);
 
 
-            Server.app = express.createServer();
+            Server.app = express();
             //console.log(Server.options);
             var stat = Server.options.themedir || path.join(__dirname, &#x27;../&#x27;, &#x27;themes&#x27;, &#x27;default&#x27;);
             Server.app.use(express.static(stat));
