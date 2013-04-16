@@ -127,7 +127,6 @@ Licensed under the BSD License.
 
 var fs = require(&#x27;graceful-fs&#x27;);
     fsPath   = require(&#x27;path&#x27;),
-    nodeUtil = require(&#x27;util&#x27;),
     useFS = (fs.exists) ? fs : fsPath;
 
 
@@ -246,6 +245,8 @@ function copyFile(source, dest, overwrite, callback) {
         }
 
         fs.lstat(dest, function (err, destStats) {
+            var rs;
+
             if (err &amp;&amp; err.code !== &#x27;ENOENT&#x27;) { return callback(err); }
 
             if (destStats) {
@@ -257,8 +258,9 @@ function copyFile(source, dest, overwrite, callback) {
                 }
             }
 
-            nodeUtil.pump(fs.createReadStream(source),
-                    fs.createWriteStream(dest, {mode: 0655}), callback);
+            rs = fs.createReadStream(source);
+            rs.pipe(fs.createWriteStream(dest, {mode: 0655}));
+            rs.on(&#x27;end&#x27;, callback);
         });
     });
 }
