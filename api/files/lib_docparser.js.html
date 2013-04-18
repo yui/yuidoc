@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.43</em>
+            <em>API Docs for: 0.3.44</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -840,12 +840,16 @@ YUI.add(&#x27;docparser&#x27;, function(Y) {
      * @module yuidoc
      */
     DocParser = function(o) {
-        this.digesters = Y.merge(DIGESTERS);
-        this.knowntags = Y.Array.hash(TAGLIST);
+        this.digesters = Y.merge(DocParser.DIGESTERS);
+        this.knowntags = Y.Array.hash(DocParser.TAGLIST);
         DocParser.superclass.constructor.apply(this, arguments);
     };
 
     DocParser.NAME = &#x27;DocParser&#x27;;
+
+    DocParser.DIGESTERS = DIGESTERS;
+    DocParser.TAGLIST = TAGLIST;
+    DocParser.CORRECTIONS = CORRECTIONS;
 
     DocParser.ATTRS = {
         
