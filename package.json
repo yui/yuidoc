@@ -14,7 +14,8 @@
         { "name": "Pat Cavit", "email": "pcavit@gmail.com" },
         { "name": "Kazuhito Hokamura", "email": "k.hokamura@gmail.com" },
         { "name": "prodaea", "email": "rlee@etherealnation.net" },
-        { "name": "Wei Wang", "email": "weiwang85@gmail.com" }
+        { "name": "Wei Wang", "email": "weiwang85@gmail.com" },
+        { "name": "Thomas Boyt", "email": "me@thomasboyt.com" }
     ],
     "engines": {
         "node" : ">=0.4.0"
@@ -34,7 +35,7 @@
     "dependencies": {
         "yui": "3.9.1",
         "rimraf": "~2.0.0",
-        "node-markdown": "~0.1.0",
+        "marked": "~0.2.8",
         "minimatch": "~0.2.11",
         "graceful-fs": ">=1.1.1",
         "express": "~3.1.2"
