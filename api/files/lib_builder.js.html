@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.45</em>
+            <em>API Docs for: 0.3.44</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -113,10 +113,11 @@ Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://yuilibrary.com/license/
 */
-var marked = require(&quot;marked&quot;),
+var MD = require(&quot;node-markdown&quot;).Markdown,
     fs = require(&#x27;graceful-fs&#x27;),
     noop = function() {},
     path = require(&#x27;path&#x27;),
+    DEFAULT_RETURN_TAGS = &#x27;code|em|strong|span|a|pre|dl|dd|dt|ul|li|ol&#x27;,
     TEMPLATE;
 
 /**
@@ -248,17 +249,16 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         * @method markdown
         * @private
         * @param {String} md The Markdown string to parse
+        * @param {Boolean} def Only allow default set of HTML tags
+        * @param {Array} tags An array of tags to allow
         * @return {HTML} The rendered HTML
         */
-        markdown: function(md) {
-            html = marked(md, this.options.markdown);
+        markdown: function(md, def, tags) {
+            html = MD(md, def, tags);
             //Only reprocess if helpers were asked for
             if (this.options.helpers || (html.indexOf(&#x27;{{#crossLink&#x27;) &gt; -1)) {
                 //console.log(&#x27;MD: &#x27;, html);
                 try {
-                    // marked auto-escapes quotation marks (and unfortunately
-                    // does not expose the escaping function)
-                    html = html.replace(/&amp;quot;/g, &quot;\&quot;&quot;);
                     html = (Y.Handlebars.compile(html))({});
                 } catch (hError) {
                     //Remove all the extra escapes
@@ -546,6 +546,18 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             });
         },
         /**
+        * The default tags to use in return descriptions (for Markdown).
+        * @property defaultReturnTags
+        * @type String
+        */
+        defaultReturnTags: DEFAULT_RETURN_TAGS,
+        /**
+        * The default tags to use in params descriptions (for Markdown).
+        * @property defaultTags
+        * @type String
+        */
+        defaultTags: &#x27;p|&#x27; + DEFAULT_RETURN_TAGS,
+        /**
         * File counter
         * @property files
         * @type Number
@@ -754,7 +766,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                             a.description = self.markdown(a.description);
                         }
                         if (a.example) {
-                            a.example = self.markdown(a.example);
+                            a.example = self.markdown(a.example, true, self.defaultTags);
                         }
                         a = self.addFoundAt(a);
 
@@ -775,7 +787,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                         }
                         if (k === &#x27;description&#x27; || k === &#x27;example&#x27;) {
                             if (k1 === &#x27;return&#x27;) {
-                                o[k1][k] = self.markdown(v);
+                                o[k1][k] = self.markdown(v, true, self.defaultReturnTags);
                             } else if (v.forEach || (v instanceof Object)) {
                                 o[k1][k] = self.augmentData(v);
                             } else {
