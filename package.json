@@ -1,6 +1,6 @@
 {
     "name": "yuidocjs",
-    "version": "0.3.42",
+    "version": "0.3.44",
     "description": "YUIDoc, YUI's JavaScript Documentation engine.",
     "author": "Dav Glass <davglass@gmail.com>",
     "bugs": { "url" : "http://github.com/yui/yuidoc/issues" },
@@ -38,7 +38,7 @@
         "marked": "~0.2.8",
         "minimatch": "~0.2.11",
         "graceful-fs": ">=1.1.1",
-        "express": "~2.5.0"
+        "express": "~3.1.2"
     },
     "devDependencies": {
         "ytestrunner": "~0.3.3",
@@ -47,7 +47,7 @@
         "istanbul": "~0.1.27"
     },
     "scripts": {
-        "test": "istanbul cover --print=both --yui ytestrunner -- --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js"
+        "test": "istanbul cover --print=both --yui ytestrunner -- --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js --include ./tests/files.js"
     },
     "preferGlobal": "true",
     "licenses":[

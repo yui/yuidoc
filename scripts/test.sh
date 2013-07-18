@@ -13,7 +13,13 @@ ln -sf ./test2 ./test-linked
 wait
 cd ../
 wait
-../node_modules/.bin/yuitest ./parser.js ./parser_coffee.js ./builder.js ./options.js ./utils.js
+../node_modules/.bin/yuitest \
+    ./parser.js \
+    ./parser_coffee.js \
+    ./builder.js \
+    ./options.js \
+    ./utils.js \
+    ./files.js
 
 exit $?
 
