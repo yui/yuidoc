@@ -3,7 +3,7 @@
         "name": "yuidoc-root",
         "logo": "http://yuilibrary.com/img/yui-logo.png",
         "description": "YUIDoc, YUI's JavaScript Documentation engine.",
-        "version": "0.3.44"
+        "version": "0.3.45"
     },
     "files": {
         "lib/builder.js": {
@@ -152,7 +152,7 @@
             "extension_for": [],
             "module": "yuidoc",
             "file": "lib/builder.js",
-            "line": 13,
+            "line": 12,
             "description": "Takes the `JSON` data from the `DocParser` class, creates and parses markdown and handlebars\nbased templates to generate static HTML content"
         },
         "CLI": {
@@ -333,7 +333,7 @@
     "classitems": [
         {
             "file": "lib/builder.js",
-            "line": 120,
+            "line": 119,
             "description": "Register a `Y.Handlebars` helper method",
             "itemtype": "method",
             "name": "_addHelpers",
@@ -349,7 +349,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 137,
+            "line": 136,
             "description": "Wrapper around the Markdown parser so it can be normalized or even side stepped",
             "itemtype": "method",
             "name": "markdown",
@@ -360,16 +360,6 @@
                     "name": "md",
                     "description": "The Markdown string to parse",
                     "type": "String"
-                },
-                {
-                    "name": "def",
-                    "description": "Only allow default set of HTML tags",
-                    "type": "Boolean"
-                },
-                {
-                    "name": "tags",
-                    "description": "An array of tags to allow",
-                    "type": "Array"
                 }
             ],
             "return": {
@@ -473,26 +463,6 @@
         {
             "file": "lib/builder.js",
             "line": 438,
-            "description": "The default tags to use in return descriptions (for Markdown).",
-            "itemtype": "property",
-            "name": "defaultReturnTags",
-            "type": "String",
-            "class": "DocBuilder",
-            "module": "yuidoc"
-        },
-        {
-            "file": "lib/builder.js",
-            "line": 444,
-            "description": "The default tags to use in params descriptions (for Markdown).",
-            "itemtype": "property",
-            "name": "defaultTags",
-            "type": "String",
-            "class": "DocBuilder",
-            "module": "yuidoc"
-        },
-        {
-            "file": "lib/builder.js",
-            "line": 450,
             "description": "File counter",
             "itemtype": "property",
             "name": "files",
@@ -502,7 +472,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 456,
+            "line": 444,
             "description": "Holder for project meta data",
             "itemtype": "property",
             "name": "_meta",
@@ -514,7 +484,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 463,
+            "line": 451,
             "description": "Prep the meta data to be fed to Selleck",
             "itemtype": "method",
             "name": "getProjectMeta",
@@ -527,7 +497,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 506,
+            "line": 494,
             "description": "Populate the meta data for classes",
             "itemtype": "method",
             "name": "populateClasses",
@@ -547,7 +517,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 528,
+            "line": 516,
             "description": "Populate the meta data for modules",
             "itemtype": "method",
             "name": "populateModules",
@@ -567,7 +537,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 565,
+            "line": 553,
             "description": "Populate the meta data for files",
             "itemtype": "method",
             "name": "populateFiles",
@@ -587,7 +557,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 614,
+            "line": 602,
             "description": "Parses file and line number from an item object and build's an HREF",
             "itemtype": "method",
             "name": "addFoundAt",
@@ -607,7 +577,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 630,
+            "line": 618,
             "description": "Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions\nwith the `Markdown Parser`",
             "itemtype": "method",
             "name": "augmentData",
@@ -627,7 +597,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 696,
+            "line": 684,
             "description": "Makes the default directories needed",
             "itemtype": "method",
             "name": "makeDirs",
@@ -643,7 +613,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 749,
+            "line": 737,
             "description": "Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them",
             "itemtype": "method",
             "name": "_parseCode",
@@ -665,7 +635,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 762,
+            "line": 750,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n       that are not parsed by the **Markdown** parser.",
             "itemtype": "method",
             "name": "_inlineCode",
@@ -687,7 +657,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 781,
+            "line": 769,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck)\n       Renders the handlebars templates with the default View class.",
             "itemtype": "method",
             "name": "render",
@@ -739,7 +709,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 835,
+            "line": 823,
             "description": "Render the index file",
             "itemtype": "method",
             "name": "renderIndex",
@@ -767,7 +737,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 860,
+            "line": 848,
             "description": "Generates the index.html file",
             "itemtype": "method",
             "name": "writeIndex",
@@ -783,7 +753,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 884,
+            "line": 872,
             "description": "Render a module",
             "itemtype": "method",
             "name": "renderModule",
@@ -811,7 +781,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 962,
+            "line": 950,
             "description": "Generates the module files under \"out\"/modules/",
             "itemtype": "method",
             "name": "writeModules",
@@ -827,7 +797,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 997,
+            "line": 985,
             "description": "Checks an array of items (class items) to see if an item is in that list",
             "itemtype": "method",
             "name": "hasProperty",
@@ -851,7 +821,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1014,
+            "line": 1002,
             "description": "Counter for stepping into merges",
             "access": "private",
             "tagname": "",
@@ -863,7 +833,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1021,
+            "line": 1009,
             "description": "Merge superclass data into a child class",
             "itemtype": "method",
             "name": "mergeExtends",
@@ -889,7 +859,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1072,
+            "line": 1060,
             "description": "Render the class file",
             "itemtype": "method",
             "name": "renderClass",
@@ -917,7 +887,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1357,
+            "line": 1345,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -933,7 +903,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1392,
+            "line": 1380,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -958,7 +928,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1415,
+            "line": 1403,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -974,7 +944,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1453,
+            "line": 1441,
             "description": "Render the source file",
             "itemtype": "method",
             "name": "renderFile",
@@ -1002,7 +972,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1507,
+            "line": 1495,
             "description": "Write the API meta data used for the AutoComplete widget",
             "itemtype": "method",
             "name": "writeAPIMeta",
@@ -1019,7 +989,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1520,
+            "line": 1508,
             "description": "Render the API meta and return the Javascript",
             "itemtype": "method",
             "name": "renderAPIMeta",
@@ -1036,7 +1006,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1550,
+            "line": 1538,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -1056,7 +1026,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1563,
+            "line": 1551,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
