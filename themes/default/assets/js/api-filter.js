@@ -6,15 +6,21 @@ Y.APIFilter = Y.Base.create('apiFilter', Y.Base, [Y.AutoCompleteBase], {
         this._bindUIACBase();
         this._syncUIACBase();
     },
-    getDisplayName: function(name) {
+    getDisplayName: function(nameHighlighted, name) {
 
+        //displayName defaults to the highlighted name
+        var displayName = nameHighlighted;
+
+        //if there is a module with name then the modules display name is beeing used.
+        //TODO: Compare module name by Display name to use the highlighted version of the 
+        //modules display name!
         Y.each(Y.YUIDoc.meta.allModules, function(i) {
             if (i.name === name && i.displayName) {
-                name = i.displayName;
+                displayName = i.displayName;
             }
         });
 
-        return name;
+        return displayName;
     }
 
 }, {
