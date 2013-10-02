@@ -45,10 +45,10 @@ an `attribute`, `@class`, `@event`, `@method`, or `@property` tag.</p>
     <td>
 ```
 /**
-Provides the base Widget class...
-
-@module widget
-**/
+ * Provides the base Widget class...
+ *
+ * @module widget
+ */
 ```
     </td>
     <td>
@@ -74,12 +74,12 @@ Provides the base Widget class...
     <td>
 ```
 /**
-Provides more features for the widget module...
-
-@module widget
-@submodule widget-foo
-@main widget
-**/
+ * Provides more features for the widget module...
+ *
+ * @module widget
+ * @submodule widget-foo
+ * @main widget
+ */
 ```
     </td>
     <td>
@@ -97,12 +97,12 @@ Provides more features for the widget module...
     <td>
 ```
 /**
-A utility that brokers HTTP requests...
-
-@class IO 
-@constructor
-**/
-function IO (config) { 
+ * A utility that brokers HTTP requests...
+ *
+ * @class IO
+ * @constructor
+ */
+function IO (config) {
 ```
     </td>
     <td>
@@ -140,12 +140,12 @@ function IO (config) {
     <td>
 ```
 /**
-Returns this model's attributes as...
-
-@method toJSON
-@return {Object} Copy of ...
-**/
-toJSON: function () { 
+ * Returns this model's attributes as...
+ *
+ * @method toJSON
+ * @return {Object} Copy of ...
+ */
+toJSON: function () {
 ```
     </td>
     <td>
@@ -177,11 +177,11 @@ toJSON: function () {
     <td>
 ```
 /**
-Fired when an error occurs...
-
-@event error 
-@param {String} msg A description of...
-**/
+ * Fired when an error occurs...
+ *
+ * @event error
+ * @param {String} msg A description of...
+ */
 var EVT_ERROR = 'error',
 ```
     </td>
@@ -213,12 +213,12 @@ var EVT_ERROR = 'error',
     <td>
 ```
 /**
-Template for this view's container...
-
-@property containerTemplate 
-@type String
-@default "<div/>"
-**/
+ * Template for this view's container...
+ *
+ * @property containerTemplate
+ * @type String
+ * @default "<div/>"
+ */
 containerTemplate: '<div/>',
 ```
     </td>
@@ -245,14 +245,14 @@ containerTemplate: '<div/>',
     <td>
 ```
 /**
-* Indicates whether this Widget
-* has been rendered...
-*
-* @attribute rendered
-* @readOnly
-* @default false
-* @type boolean
-*/
+ * Indicates whether this Widget
+ * has been rendered...
+ *
+ * @attribute rendered
+ * @readOnly
+ * @default false
+ * @type boolean
+ */
 ATTRS[RENDERED] = {
 ```
     </td>
@@ -299,9 +299,9 @@ ATTRS[RENDERED] = {
     <td>
 ```
 /**
-@module app
-@submodule view
-**/
+ * @module app
+ * @submodule view
+ */
 ```
     </td>
     <td>
@@ -327,8 +327,8 @@ ATTRS[RENDERED] = {
     <td>
 ```
 /**
-@namespace Test.Mock
-**/
+ * @namespace Test.Mock
+ */
 ```
     </td>
     <td>
@@ -352,10 +352,10 @@ ATTRS[RENDERED] = {
     <td>
 ```
 /**
-@class View
-@constructor
-@extends Base
-**/
+ * @class View
+ * @constructor
+ * @extends Base
+ */
 ```
    </td>
    <td>
@@ -381,9 +381,9 @@ ATTRS[RENDERED] = {
     <td>
 ```
 /**
-@config docScrollX 
-@type Number 
-**/
+ * @config docScrollX
+ * @type Number
+ */
 ```
     </td>
     <td>
@@ -398,9 +398,9 @@ ATTRS[RENDERED] = {
     <td>
 ```
 /**
-@class IO 
-@constructor
-**/
+ * @class IO
+ * @constructor
+ */
 ```
     </td>
     <td>
@@ -420,11 +420,11 @@ ATTRS[RENDERED] = {
     <td>
 ```
 /**
-YUI user agent detection...
-
-@class UA
-@static
-**/
+ * YUI user agent detection...
+ *
+ * @class UA
+ * @static
+ */
 
 
 ```
@@ -455,14 +455,14 @@ YUI user agent detection...
     <td>
 ```
 /**
-Identifies state changes 
-originating from...
-
-@property SRC_REPLACE
-@type String
-@static
-@final
-**/
+ * Identifies state changes
+ * originating from...
+ *
+ * @property SRC_REPLACE
+ * @type String
+ * @static
+ * @final
+ */
 ```
     </td>
     <td>
@@ -481,14 +481,14 @@ originating from...
     <td>
 ```
 /**
-The current default button
-as configured through...
-
-@attribute defaultButton
-@type Node
-@default null
-@readOnly
-**/
+ * The current default button
+ * as configured through...
+ *
+ * @attribute defaultButton
+ * @type Node
+ * @default null
+ * @readOnly
+ */
 ```
     </td>
     <td>
@@ -517,22 +517,22 @@ as configured through...
     <td>
 ```
 /**
-Diameter of the circular 
-background object. Other 
-objects scale accordingly.
-Set this only before 
-rendering.
-
-@attribute diameter
-@type {Number} number of px 
-  in diameter
-@default 100
-@writeOnce
-**/
+ * Diameter of the circular
+ * background object. Other
+ * objects scale accordingly.
+ * Set this only before
+ * rendering.
+ *
+ * @attribute diameter
+ * @type {Number} number of px
+ * in diameter
+ * @default 100
+ * @writeOnce
+ */
 ```
     </td>
     <td>
-        <p>[YUI-specific] Indicates that the attribute is configured with the 
+        <p>[YUI-specific] Indicates that the attribute is configured with the
         <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html#method_addAttr">`writeOnce`</a> property
         and can only be set once --
         by applying a <a href="#default">`@default`</a>, 
@@ -557,14 +557,14 @@ rendering.
     <td>
 ```
 /**
-An optional attribute, 
-not required for proper
-use.
-
-@attribute extras
-@type {Object} extra data
-@optional
-**/
+ * An optional attribute,
+ * not required for proper
+ * use.
+ *
+ * @attribute extras
+ * @type {Object} extra data
+ * @optional
+ */
 ```
     </td>
     <td>
@@ -589,15 +589,15 @@ use.
     <td>
 ```
 /**
-A required attribute 
-that is required for proper
-use, module will likely fail
-if this is not provided.
-
-@attribute url
-@type {String} url to fetch remote data from
-@required
-**/
+ * A required attribute
+ * that is required for proper
+ * use, module will likely fail
+ * if this is not provided.
+ *
+ * @attribute url
+ * @type {String} url to fetch remote data from
+ * @required
+ */
 ```
     </td>
     <td>
@@ -623,22 +623,22 @@ if this is not provided.
     <td>
 ```
 /**
-@param {String} name An 
-  Attribute name or 
-  object property path.
-**/
+ * @param {String} name An
+ * Attribute name or
+ * object property path.
+ */
 ```
 
 ```
 /**
-@param {Object} [options] Data 
-  to be mixed into the event 
-  facade of the `change` 
-  event(s) for these attributes.
-  @param {Boolean} [options.silent]
-    If `true`, no `change` event 
-    will be fired.
-**/
+ * @param {Object} [options] Data
+ * to be mixed into the event
+ * facade of the `change`
+ * event(s) for these attributes.
+ * @param {Boolean} [options.silent]
+ * If `true`, no `change` event
+ * will be fired.
+ */
 ```
     </td>
     <td>
@@ -683,9 +683,9 @@ if this is not provided.
     <td>
 ```
 /**
-@method generateClientId
-@return {String} Unique clientId.
-**/
+ * @method generateClientId
+ * @return {String} Unique clientId.
+ */
 ```
     </td>
     <td>
@@ -708,22 +708,22 @@ if this is not provided.
     <td>`for`</td>
     <td>
 ```
-/**  
-Some inner class 'foo'...  
-
-@class foo  
-@for OuterClass  
-**/
+/**
+ * Some inner class 'foo'...
+ *
+ * @class foo
+ * @for OuterClass
+ */
 ```
 ```
-/**  
-Some method 'bar' 
-disconnected from 
-its class 'FarawayClass'...
-
-@method bar  
-@for FarawayClass  
-**/
+/**
+ * Some method 'bar'
+ * disconnected from
+ * its class 'FarawayClass'...
+ *
+ * @method bar
+ * @for FarawayClass
+ */
 ```
     </td>
     <td>
@@ -762,13 +762,13 @@ its class 'FarawayClass'...
     <td>
 ```
 /**
-@type String
-**/
+ * @type String
+ */
 ```
 ```
 /**
-@type HTMLElement|Node|String 
-**/
+ * @type HTMLElement|Node|String
+ */
 ```
     </td>
     <td>
@@ -790,12 +790,12 @@ its class 'FarawayClass'...
     <td>
 ```
 /**
-Reference to the internal JSONP 
-instance used to make the queries.
-
-@private
-@property _jsonp
-**/
+ * Reference to the internal JSONP
+ * instance used to make the queries.
+ *
+ * @private
+ * @property _jsonp
+ */
 ```
     </td>
     <td>
@@ -816,12 +816,12 @@ instance used to make the queries.
     <td>
 ```
 /**
-Removes the `container` from 
-the DOM and ...
- 
-@method _destroyContainer
-@protected
-**/
+ * Removes the `container` from
+ * the DOM and ...
+ *
+ * @method _destroyContainer
+ * @protected
+ */
 ```
     </td>
     <td>
@@ -841,9 +841,9 @@ the DOM and ...
     <td>
 ```
 /**
-@module event-simulate
-@requires event
-**/
+ * @module event-simulate
+ * @requires event
+ */
 ```
     </td>
     <td>
@@ -864,8 +864,8 @@ the DOM and ...
     <td>
 ```
 /**
-@default false
-**/
+ * @default false
+ */
 ```
     </td>
     <td>
@@ -886,13 +886,13 @@ the DOM and ...
     <td>
 ```
 /**
-@class Panel
-@constructor
-@extends Widget
-@uses WidgetAutohide
-@uses WidgetButtons
+ * @class Panel
+ * @constructor
+ * @extends Widget
+ * @uses WidgetAutohide
+ * @uses WidgetButtons
 ...
-**/
+ */
 ```
     </td>
     <td>
@@ -924,9 +924,9 @@ the DOM and ...
     <td>
 ```
 /**
-@example
-    model.set('foo', 'bar');
-**/
+ * @example
+ *     model.set('foo', 'bar');
+ */
 ```
     </td>
     <td>
@@ -945,15 +945,14 @@ the DOM and ...
     <td>
 ```
 /**
-Renders this view ...
-
-@method render
-@chainable
-**/
+ * Renders this view ...
+ *
+ * @method render
+ * @chainable
+ */
 render: function () {
     return this;
 },
-**/
 ```
     </td>
     <td>
@@ -970,11 +969,11 @@ render: function () {
     <td>
 ```
 /**
-@property locale
-@type String
-@deprecated Use `config.lang` 
-  instead.
-**/
+ * @property locale
+ * @type String
+ * @deprecated Use `config.lang`
+ * instead.
+ */
 ```
     </td>
     <td>
@@ -995,8 +994,8 @@ render: function () {
     <td>
 ```
 /**
-@since 3.4.0
-**/
+ * @since 3.4.0
+ */
 ```
     </td>
     <td>
@@ -1015,8 +1014,8 @@ render: function () {
     <td>
 ```
 /**
-@async
-**/
+ * @async
+ */
 ```
     </td>
     <td>
@@ -1029,8 +1028,8 @@ render: function () {
     <td>
 ```
 /**
-@beta
-**/
+ * @beta
+ */
 ```
     </td>
     <td>
@@ -1049,11 +1048,11 @@ render: function () {
     <td>
 ```
 /**
-Handles the mouseup DOM event...
-
-@event drag:mouseup
-@bubbles DDM
-**/
+ * Handles the mouseup DOM event...
+ *
+ * @event drag:mouseup
+ * @bubbles DDM
+ */
 ```
     </td>
     <td>
@@ -1072,9 +1071,9 @@ Handles the mouseup DOM event...
     <td>
 ```
 /**
-@class PjaxBase
-@extensionfor Router
-**/
+ * @class PjaxBase
+ * @extensionfor Router
+ */
 ```
     </td>
     <td>
@@ -1164,19 +1163,19 @@ YUIDoc will automatically wrap them in a code block and syntax highlight them fo
 
 ```
 /**
-This is the __module__ description for the `YUIDoc` module.
-
-    var options = {
-        paths: [ './lib' ],
-        outdir: './out'
-    };
-
-    var Y = require('yuidoc');
-    var json = (new Y.YUIDoc(options)).run();
-
-@class YUIDoc
-@main yuidoc
-*/
+ * This is the __module__ description for the `YUIDoc` module.
+ *
+ *     var options = {
+ *         paths: [ './lib' ],
+ *         outdir: './out'
+ *     };
+ *
+ *     var Y = require('yuidoc');
+ *     var json = (new Y.YUIDoc(options)).run();
+ *
+ * @class YUIDoc
+ * @main yuidoc
+ */
 ```
 
 <p>
@@ -1216,14 +1215,14 @@ So, for example, if you include:
 
 ```
 /**
-
-This module also uses \{{#crossLink "Foo"}}\{{/crossLink}}, where Foo is a class name.
-Also see \{{#crossLink "myClass/Foo:method"}}\{{/crossLink}}, where myClass is a class name and Foo is a method on that class.
-
-This module uses \{{#crossLinkModule "widget"}}\{{/crossLinkModule}}, where widget is a module name
-
-This module also uses \{{#crossLink "Bar"}} an awesome class \{{/crossLink}} named Bar.
-*/
+ *
+ * This module also uses \{{#crossLink "Foo"}}\{{/crossLink}}, where Foo is a class name.
+ * Also see \{{#crossLink "myClass/Foo:method"}}\{{/crossLink}}, where myClass is a class name and Foo is a method on that class.
+ *
+ * This module uses \{{#crossLinkModule "widget"}}\{{/crossLinkModule}}, where widget is a module name
+ *
+ * This module also uses \{{#crossLink "Bar"}} an awesome class \{{/crossLink}} named Bar.
+ */
 ```
 
 <p>
@@ -1275,8 +1274,8 @@ Now you can use the `davglass` helper inside your own docs like this:
 
 ```
 /**
-* This is also a test \{{#davglass "Foo"}}\{{/davglass}}
-*/
+ * This is also a test \{{#davglass "Foo"}}\{{/davglass}}
+ */
 ```
 
 This will output this in your documentation:
