@@ -2,7 +2,8 @@
     <p>YUIDoc's syntax should be familiar if you've used 
     Javadoc, JSDoc, Doxygen, or other documentation generator tools. 
     YUIDoc relies on <dfn>tags</dfn> such as `@param` or `@return` embedded in comment blocks 
-    that start with `/**` and end with `*/`. 
+    that start with `/**` and end with `*/`. See <a
+    href="#comment-styles">comment styles</a> for more information.
     It includes a small number of tags for documenting specific YUI features, 
     but most tags are generic enough to use with any object-oriented language.</p>
 
@@ -1129,6 +1130,44 @@ render: function () {
     <td>Category to place this item into.</td>
 </tr>
 </table>
+
+<h2 id="comment-styles">Comment Styles</h2>
+<p>
+  The comment blocks can start with any amount of whitespace, and
+  optionally one or more asterisks. Valid examples include:
+</p>
+<p>
+```
+/**
+ * Description
+ * @method description
+ */
+```
+</p>
+<p>
+```
+/**
+ * Description
+ * @method description
+**/
+```
+</p>
+<p>
+```
+/**
+Description
+@method description
+*/
+```
+</p>
+<p>
+```
+/**
+Description
+@method description
+**/
+```
+</p>
 
 <h2>Extra formatting</h2>
 
