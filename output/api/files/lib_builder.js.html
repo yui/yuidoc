@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.45</em>
+            <em>API Docs for: 0.3.46</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -194,7 +194,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 	            if (content === &quot;&quot;) {
 		            content = item;
 	            }
-                str = &#x27;&lt;a href=&quot;../modules/&#x27; + item.replace(&#x27;/&#x27;, &#x27;_&#x27;) +
+                str = &#x27;&lt;a href=&quot;../modules/&#x27; + item.replace(/\//g, &#x27;_&#x27;) +
                       &#x27;.html&quot;&gt;&#x27; + content + &#x27;&lt;/a&gt;&#x27;;
             }
             return str;

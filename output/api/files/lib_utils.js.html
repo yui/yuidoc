@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.45</em>
+            <em>API Docs for: 0.3.46</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -456,7 +456,7 @@ var getDirs = function(dir) {
 
     dirs.forEach(function(d) {
         var _dir = path.join(dir, d),
-            stat = fs.statSync(_dir);
+            stat = fs.lstatSync(_dir);
 
         if (stat.isDirectory()) {
             if (_dir.indexOf(&#x27;.&#x27;) !== 0) {
