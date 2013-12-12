@@ -13,6 +13,12 @@ This will link `yuidoc` into the global `/usr/local/lib/node_modules` folder.
 Now all changes you make to the current source tree are available in the global `yuidoc` executable.
 No need to reinstall the app to test your changes.
 
+How to Run Unit Tests
+---------------------
+    git clone https://github.com/yui/yuidoc.git
+    cd yuidoc
+    ./scripts/test.sh
+
 Server Mode
 -----------
 
