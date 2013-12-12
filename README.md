@@ -26,12 +26,7 @@ Documentation
    * [User Guides](http://yui.github.com/yuidoc/)
    * [API Docs](http://yui.github.com/yuidoc/api/)
    * [Support Mailing List](https://groups.google.com/forum/#!forum/yuidoc)
-
-How to Run Unit Tests
----------------------
-    git clone https://github.com/yui/yuidoc.git
-    cd yuidoc
-    ./scripts/test.sh
+   
 
 Released under the YUI BSD License
 ----------------------------------
