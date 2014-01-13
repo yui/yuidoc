@@ -3,7 +3,7 @@
         "name": "yuidoc-root",
         "logo": "http://yuilibrary.com/img/yui-logo.png",
         "description": "YUIDoc, YUI's JavaScript Documentation engine.",
-        "version": "0.3.46"
+        "version": "0.3.47"
     },
     "files": {
         "lib/builder.js": {
@@ -2329,7 +2329,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 340,
+            "line": 341,
             "description": "Timestamp holder so we know when YUIDoc has finished the parse process.",
             "itemtype": "property",
             "name": "endtime",

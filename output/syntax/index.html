@@ -32,7 +32,8 @@
     <p>YUIDoc's syntax should be familiar if you've used 
     Javadoc, JSDoc, Doxygen, or other documentation generator tools. 
     YUIDoc relies on <dfn>tags</dfn> such as <code>@param</code> or <code>@return</code> embedded in comment blocks 
-    that start with <code>&#x2F;**</code> and end with <code>*&#x2F;</code>. 
+    that start with <code>&#x2F;**</code> and end with <code>*&#x2F;</code>. See <a
+    href="#comment-styles">comment styles</a> for more information.
     It includes a small number of tags for documenting specific YUI features, 
     but most tags are generic enough to use with any object-oriented language.</p>
 
@@ -74,10 +75,10 @@ an <code>attribute</code>, <code>@class</code>, <code>@event</code>, <code>@meth
     <td><code>module</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Provides the base Widget class...
-
-@module widget
-**&#x2F;</pre>
+ * Provides the base Widget class...
+ *
+ * @module widget
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -102,12 +103,12 @@ Provides the base Widget class...
     <td><code>main</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Provides more features for the widget module...
-
-@module widget
-@submodule widget-foo
-@main widget
-**&#x2F;</pre>
+ * Provides more features for the widget module...
+ *
+ * @module widget
+ * @submodule widget-foo
+ * @main widget
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -124,11 +125,11 @@ Provides more features for the widget module...
     <td><code>class</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-A utility that brokers HTTP requests...
-
-@class IO 
-@constructor
-**&#x2F;
+ * A utility that brokers HTTP requests...
+ *
+ * @class IO
+ * @constructor
+ *&#x2F;
 function IO (config) {</pre>
 
     </td>
@@ -166,11 +167,11 @@ function IO (config) {</pre>
     <td><code>method</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Returns this model&#x27;s attributes as...
-
-@method toJSON
-@return {Object} Copy of ...
-**&#x2F;
+ * Returns this model&#x27;s attributes as...
+ *
+ * @method toJSON
+ * @return {Object} Copy of ...
+ *&#x2F;
 toJSON: function () {</pre>
 
     </td>
@@ -202,11 +203,11 @@ toJSON: function () {</pre>
     <td><code>event</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Fired when an error occurs...
-
-@event error 
-@param {String} msg A description of...
-**&#x2F;
+ * Fired when an error occurs...
+ *
+ * @event error
+ * @param {String} msg A description of...
+ *&#x2F;
 var EVT_ERROR = &#x27;error&#x27;,</pre>
 
     </td>
@@ -237,12 +238,12 @@ var EVT_ERROR = &#x27;error&#x27;,</pre>
     <td><code>property</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Template for this view&#x27;s container...
-
-@property containerTemplate 
-@type String
-@default &quot;&lt;div&#x2F;&gt;&quot;
-**&#x2F;
+ * Template for this view&#x27;s container...
+ *
+ * @property containerTemplate
+ * @type String
+ * @default &quot;&lt;div&#x2F;&gt;&quot;
+ *&#x2F;
 containerTemplate: &#x27;&lt;div&#x2F;&gt;&#x27;,</pre>
 
     </td>
@@ -268,14 +269,14 @@ containerTemplate: &#x27;&lt;div&#x2F;&gt;&#x27;,</pre>
     <td><code>attribute</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-* Indicates whether this Widget
-* has been rendered...
-*
-* @attribute rendered
-* @readOnly
-* @default false
-* @type boolean
-*&#x2F;
+ * Indicates whether this Widget
+ * has been rendered...
+ *
+ * @attribute rendered
+ * @readOnly
+ * @default false
+ * @type boolean
+ *&#x2F;
 ATTRS[RENDERED] = {</pre>
 
     </td>
@@ -321,9 +322,9 @@ ATTRS[RENDERED] = {</pre>
     <td><code>submodule</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@module app
-@submodule view
-**&#x2F;</pre>
+ * @module app
+ * @submodule view
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -348,8 +349,8 @@ ATTRS[RENDERED] = {</pre>
     <td><code>namespace</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@namespace Test.Mock
-**&#x2F;</pre>
+ * @namespace Test.Mock
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -372,10 +373,10 @@ ATTRS[RENDERED] = {</pre>
     <td><code>extends</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@class View
-@constructor
-@extends Base
-**&#x2F;</pre>
+ * @class View
+ * @constructor
+ * @extends Base
+ *&#x2F;</pre>
 
    </td>
    <td>
@@ -400,9 +401,9 @@ ATTRS[RENDERED] = {</pre>
     <td><code>config</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@config docScrollX 
-@type Number 
-**&#x2F;</pre>
+ * @config docScrollX
+ * @type Number
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -416,9 +417,9 @@ ATTRS[RENDERED] = {</pre>
     <td><code>constructor</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@class IO 
-@constructor
-**&#x2F;</pre>
+ * @class IO
+ * @constructor
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -437,11 +438,11 @@ ATTRS[RENDERED] = {</pre>
     <td><code>static</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-YUI user agent detection...
-
-@class UA
-@static
-**&#x2F;</pre>
+ * YUI user agent detection...
+ *
+ * @class UA
+ * @static
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -469,14 +470,14 @@ YUI user agent detection...
     <td><code>final</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Identifies state changes 
-originating from...
-
-@property SRC_REPLACE
-@type String
-@static
-@final
-**&#x2F;</pre>
+ * Identifies state changes
+ * originating from...
+ *
+ * @property SRC_REPLACE
+ * @type String
+ * @static
+ * @final
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -494,14 +495,14 @@ originating from...
     <td><code>readOnly</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-The current default button
-as configured through...
-
-@attribute defaultButton
-@type Node
-@default null
-@readOnly
-**&#x2F;</pre>
+ * The current default button
+ * as configured through...
+ *
+ * @attribute defaultButton
+ * @type Node
+ * @default null
+ * @readOnly
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -529,22 +530,22 @@ as configured through...
     <td><code>writeOnce</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Diameter of the circular 
-background object. Other 
-objects scale accordingly.
-Set this only before 
-rendering.
-
-@attribute diameter
-@type {Number} number of px 
-  in diameter
-@default 100
-@writeOnce
-**&#x2F;</pre>
+ * Diameter of the circular
+ * background object. Other
+ * objects scale accordingly.
+ * Set this only before
+ * rendering.
+ *
+ * @attribute diameter
+ * @type {Number} number of px
+ * in diameter
+ * @default 100
+ * @writeOnce
+ *&#x2F;</pre>
 
     </td>
     <td>
-        <p>[YUI-specific] Indicates that the attribute is configured with the 
+        <p>[YUI-specific] Indicates that the attribute is configured with the
         <a href="http://yuilibrary.com/yui/docs/api/classes/Attribute.html#method_addAttr"><code>writeOnce</code></a> property
         and can only be set once --
         by applying a <a href="#default"><code>@default</code></a>, 
@@ -568,14 +569,14 @@ rendering.
     <td><code>optional</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-An optional attribute, 
-not required for proper
-use.
-
-@attribute extras
-@type {Object} extra data
-@optional
-**&#x2F;</pre>
+ * An optional attribute,
+ * not required for proper
+ * use.
+ *
+ * @attribute extras
+ * @type {Object} extra data
+ * @optional
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -599,15 +600,15 @@ use.
     <td><code>required</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-A required attribute 
-that is required for proper
-use, module will likely fail
-if this is not provided.
-
-@attribute url
-@type {String} url to fetch remote data from
-@required
-**&#x2F;</pre>
+ * A required attribute
+ * that is required for proper
+ * use, module will likely fail
+ * if this is not provided.
+ *
+ * @attribute url
+ * @type {String} url to fetch remote data from
+ * @required
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -632,21 +633,21 @@ if this is not provided.
     <td><code>*param</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@param {String} name An 
-  Attribute name or 
-  object property path.
-**&#x2F;</pre>
+ * @param {String} name An
+ * Attribute name or
+ * object property path.
+ *&#x2F;</pre>
 
 
 <pre class="code prettyprint">&#x2F;**
-@param {Object} [options] Data 
-  to be mixed into the event 
-  facade of the &#x60;change&#x60; 
-  event(s) for these attributes.
-  @param {Boolean} [options.silent]
-    If &#x60;true&#x60;, no &#x60;change&#x60; event 
-    will be fired.
-**&#x2F;</pre>
+ * @param {Object} [options] Data
+ * to be mixed into the event
+ * facade of the &#x60;change&#x60;
+ * event(s) for these attributes.
+ * @param {Boolean} [options.silent]
+ * If &#x60;true&#x60;, no &#x60;change&#x60; event
+ * will be fired.
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -690,9 +691,9 @@ if this is not provided.
     <td><code>return</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@method generateClientId
-@return {String} Unique clientId.
-**&#x2F;</pre>
+ * @method generateClientId
+ * @return {String} Unique clientId.
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -714,21 +715,21 @@ if this is not provided.
 <tr id="for">
     <td><code>for</code></td>
     <td>
-<pre class="code prettyprint">&#x2F;**  
-Some inner class &#x27;foo&#x27;...  
+<pre class="code prettyprint">&#x2F;**
+ * Some inner class &#x27;foo&#x27;...
+ *
+ * @class foo
+ * @for OuterClass
+ *&#x2F;</pre>
 
-@class foo  
-@for OuterClass  
-**&#x2F;</pre>
-
-<pre class="code prettyprint">&#x2F;**  
-Some method &#x27;bar&#x27; 
-disconnected from 
-its class &#x27;FarawayClass&#x27;...
-
-@method bar  
-@for FarawayClass  
-**&#x2F;</pre>
+<pre class="code prettyprint">&#x2F;**
+ * Some method &#x27;bar&#x27;
+ * disconnected from
+ * its class &#x27;FarawayClass&#x27;...
+ *
+ * @method bar
+ * @for FarawayClass
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -766,12 +767,12 @@ its class &#x27;FarawayClass&#x27;...
     <td><code>type</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@type String
-**&#x2F;</pre>
+ * @type String
+ *&#x2F;</pre>
 
 <pre class="code prettyprint">&#x2F;**
-@type HTMLElement|Node|String 
-**&#x2F;</pre>
+ * @type HTMLElement|Node|String
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -792,12 +793,12 @@ its class &#x27;FarawayClass&#x27;...
     <td><code>private</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Reference to the internal JSONP 
-instance used to make the queries.
-
-@private
-@property _jsonp
-**&#x2F;</pre>
+ * Reference to the internal JSONP
+ * instance used to make the queries.
+ *
+ * @private
+ * @property _jsonp
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -817,12 +818,12 @@ instance used to make the queries.
     <td><code>protected</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Removes the &#x60;container&#x60; from 
-the DOM and ...
- 
-@method _destroyContainer
-@protected
-**&#x2F;</pre>
+ * Removes the &#x60;container&#x60; from
+ * the DOM and ...
+ *
+ * @method _destroyContainer
+ * @protected
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -841,9 +842,9 @@ the DOM and ...
     <td><code>requires</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@module event-simulate
-@requires event
-**&#x2F;</pre>
+ * @module event-simulate
+ * @requires event
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -863,8 +864,8 @@ the DOM and ...
     <td><code>default</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@default false
-**&#x2F;</pre>
+ * @default false
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -884,13 +885,13 @@ the DOM and ...
     <td><code>*uses</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@class Panel
-@constructor
-@extends Widget
-@uses WidgetAutohide
-@uses WidgetButtons
+ * @class Panel
+ * @constructor
+ * @extends Widget
+ * @uses WidgetAutohide
+ * @uses WidgetButtons
 ...
-**&#x2F;</pre>
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -921,9 +922,9 @@ the DOM and ...
     <td><code>*example</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@example
-    model.set(&#x27;foo&#x27;, &#x27;bar&#x27;);
-**&#x2F;</pre>
+ * @example
+ *     model.set(&#x27;foo&#x27;, &#x27;bar&#x27;);
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -941,15 +942,14 @@ the DOM and ...
     <td><code>chainable</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Renders this view ...
-
-@method render
-@chainable
-**&#x2F;
+ * Renders this view ...
+ *
+ * @method render
+ * @chainable
+ *&#x2F;
 render: function () {
     return this;
-},
-**&#x2F;</pre>
+},</pre>
 
     </td>
     <td>
@@ -965,11 +965,11 @@ render: function () {
     <td><code>deprecated</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@property locale
-@type String
-@deprecated Use &#x60;config.lang&#x60; 
-  instead.
-**&#x2F;</pre>
+ * @property locale
+ * @type String
+ * @deprecated Use &#x60;config.lang&#x60;
+ * instead.
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -989,8 +989,8 @@ render: function () {
     <td><code>since</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@since 3.4.0
-**&#x2F;</pre>
+ * @since 3.4.0
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -1008,8 +1008,8 @@ render: function () {
     <td><code>async</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@async
-**&#x2F;</pre>
+ * @async
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -1021,8 +1021,8 @@ render: function () {
     <td><code>beta</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@beta
-**&#x2F;</pre>
+ * @beta
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -1040,11 +1040,11 @@ render: function () {
     <td><code>bubbles</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-Handles the mouseup DOM event...
-
-@event drag:mouseup
-@bubbles DDM
-**&#x2F;</pre>
+ * Handles the mouseup DOM event...
+ *
+ * @event drag:mouseup
+ * @bubbles DDM
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -1062,9 +1062,9 @@ Handles the mouseup DOM event...
     <td><code>extension</code><br><code>extensionfor</code><br><code>extension_for</code></td>
     <td>
 <pre class="code prettyprint">&#x2F;**
-@class PjaxBase
-@extensionfor Router
-**&#x2F;</pre>
+ * @class PjaxBase
+ * @extensionfor Router
+ *&#x2F;</pre>
 
     </td>
     <td>
@@ -1121,6 +1121,40 @@ Handles the mouseup DOM event...
 </tr>
 </table>
 
+<h2 id="comment-styles">Comment Styles</h2>
+<p>
+  The comment blocks can start with any amount of whitespace, and
+  optionally one or more asterisks. Valid examples include:
+</p>
+<p>
+<pre class="code prettyprint">&#x2F;**
+ * Description
+ * @method description
+ *&#x2F;</pre>
+
+</p>
+<p>
+<pre class="code prettyprint">&#x2F;**
+ * Description
+ * @method description
+**&#x2F;</pre>
+
+</p>
+<p>
+<pre class="code prettyprint">&#x2F;**
+Description
+@method description
+*&#x2F;</pre>
+
+</p>
+<p>
+<pre class="code prettyprint">&#x2F;**
+Description
+@method description
+**&#x2F;</pre>
+
+</p>
+
 <h2 id="extra-formatting">Extra formatting</h2>
 
 <p>
@@ -1153,19 +1187,19 @@ YUIDoc will automatically wrap them in a code block and syntax highlight them fo
 </p>
 
 <pre class="code prettyprint">&#x2F;**
-This is the __module__ description for the &#x60;YUIDoc&#x60; module.
-
-    var options = {
-        paths: [ &#x27;.&#x2F;lib&#x27; ],
-        outdir: &#x27;.&#x2F;out&#x27;
-    };
-
-    var Y = require(&#x27;yuidoc&#x27;);
-    var json = (new Y.YUIDoc(options)).run();
-
-@class YUIDoc
-@main yuidoc
-*&#x2F;</pre>
+ * This is the __module__ description for the &#x60;YUIDoc&#x60; module.
+ *
+ *     var options = {
+ *         paths: [ &#x27;.&#x2F;lib&#x27; ],
+ *         outdir: &#x27;.&#x2F;out&#x27;
+ *     };
+ *
+ *     var Y = require(&#x27;yuidoc&#x27;);
+ *     var json = (new Y.YUIDoc(options)).run();
+ *
+ * @class YUIDoc
+ * @main yuidoc
+ *&#x2F;</pre>
 
 
 <p>
@@ -1202,14 +1236,14 @@ So, for example, if you include:
 </p>
 
 <pre class="code prettyprint">&#x2F;**
-
-This module also uses {{#crossLink &quot;Foo&quot;}}{{&#x2F;crossLink}}, where Foo is a class name.
-Also see {{#crossLink &quot;myClass&#x2F;Foo:method&quot;}}{{&#x2F;crossLink}}, where myClass is a class name and Foo is a method on that class.
-
-This module uses {{#crossLinkModule &quot;widget&quot;}}{{&#x2F;crossLinkModule}}, where widget is a module name
-
-This module also uses {{#crossLink &quot;Bar&quot;}} an awesome class {{&#x2F;crossLink}} named Bar.
-*&#x2F;</pre>
+ *
+ * This module also uses {{#crossLink &quot;Foo&quot;}}{{&#x2F;crossLink}}, where Foo is a class name.
+ * Also see {{#crossLink &quot;myClass&#x2F;Foo:method&quot;}}{{&#x2F;crossLink}}, where myClass is a class name and Foo is a method on that class.
+ *
+ * This module uses {{#crossLinkModule &quot;widget&quot;}}{{&#x2F;crossLinkModule}}, where widget is a module name
+ *
+ * This module also uses {{#crossLink &quot;Bar&quot;}} an awesome class {{&#x2F;crossLink}} named Bar.
+ *&#x2F;</pre>
 
 
 <p>
@@ -1258,8 +1292,8 @@ Now you can use the <code>davglass</code> helper inside your own docs like this:
 </p>
 
 <pre class="code prettyprint">&#x2F;**
-* This is also a test {{#davglass &quot;Foo&quot;}}{{&#x2F;davglass}}
-*&#x2F;</pre>
+ * This is also a test {{#davglass &quot;Foo&quot;}}{{&#x2F;davglass}}
+ *&#x2F;</pre>
 
 
 This will output this in your documentation:
@@ -1310,6 +1344,9 @@ This will output this in your documentation:
 <a href="#parsed-but-not-in-the-theme-yet">Parsed but not in the theme yet</a>
 </li>
 </ul>
+</li>
+<li>
+<a href="#comment-styles">Comment Styles</a>
 </li>
 <li>
 <a href="#extra-formatting">Extra formatting</a>

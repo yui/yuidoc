@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.46</em>
+            <em>API Docs for: 0.3.47</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -144,6 +144,9 @@ if (options.server) {
 } else {
 
     var json = (new Y.YUIDoc(options)).run();
+    if (json === null) {
+        return;
+    }
     options = Y.Project.mix(json, options);
 
     if (!options.parseOnly) {

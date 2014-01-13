@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.46</em>
+            <em>API Docs for: 0.3.47</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -415,8 +415,8 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
                     count++;
                     console.log(&#x27;#&#x27; + count, item.message, item.line + &#x27;\n&#x27;);
                 });
+                process.exit(code);
             }
-            process.exit(code);
         },
         /**
          * Process the config, walk the file tree and write out the JSON data.
@@ -445,6 +445,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
 
             if (this.options.lint) {
                 this.lint(json.warnings);
+                return null;
             }
 
             /**
