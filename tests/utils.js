@@ -1,6 +1,7 @@
+/*global Y:true */
 var YUITest = require('yuitest'),
   Assert = YUITest.Assert,
-  path = require('path')
+  path = require('path'),
   Y = require(path.join(__dirname, '../', 'lib', 'index'))
   ;
 
@@ -9,7 +10,7 @@ var suite = new YUITest.TestSuite({
 });
 
 suite.add(new YUITest.TestCase({
-  name: 'getProjectData Folder Priority', 
+  name: 'getProjectData Folder Priority',
   'test: Nearest Folder Priority': function() {
     var d = Y.getProjectData('input/folders1');
     Assert.areEqual('yuidoc-root', d.name, 'must use nearest yuidoc.json first');

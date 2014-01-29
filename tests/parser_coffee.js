@@ -1,14 +1,11 @@
+/*global Y:true */
 var YUITest = require('yuitest'),
     Assert = YUITest.Assert,
-    ArrayAssert = YUITest.ArrayAssert,
     path = require('path'),
-    fs = require('fs'),
     Y = require(path.join(__dirname, '../', 'lib', 'index'));
 
 //Move to the test dir before running the tests.
 process.chdir(__dirname);
-
-var existsSync = fs.existsSync || path.existsSync;
 
 var suite = new YUITest.TestSuite({
     name: 'Coffee Parser Test Suite',

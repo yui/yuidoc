@@ -1,6 +1,6 @@
+/*global Y:true */
 var YUITest = require('yuitest'),
     Assert = YUITest.Assert,
-    ArrayAssert = YUITest.ArrayAssert,
     path = require('path'),
     fs = require('fs'),
     Y = require(path.join(__dirname, '../', 'lib', 'index'));
@@ -23,8 +23,9 @@ var suite = new YUITest.TestSuite({
         return ret;
     },
     setUp: function() {
-        var test = this;
-        var options = {
+        var options, json, builder;
+
+        options = {
             quiet: true,
             paths: [ 'input/' ],
             outdir: './out',
@@ -35,12 +36,12 @@ var suite = new YUITest.TestSuite({
                 langPrefix: "language-"
             }
         };
-        var json = (new Y.YUIDoc(options)).run();
+        json = (new Y.YUIDoc(options)).run();
 
         this.project = json.project;
         this.data = json;
         
-        var builder = new Y.DocBuilder(options, json);
+        builder = new Y.DocBuilder(options, json);
         builder.compile(function() {
             suite._setupComplete = true;
         });
@@ -62,8 +63,8 @@ suite.add(new YUITest.TestCase({
             so I have to check it in the first test to make sure my
             async task in the setup is complete before I can test against it.
         */
-        var test = this;
-        var timer = setInterval(function() {
+        var test = this,
+        timer = setInterval(function() {
             if (suite._setupComplete) {
                 clearInterval(timer);
                 test.resume(function() {
@@ -91,40 +92,39 @@ suite.add(new YUITest.TestCase({
     },
     'test: index.html': function() {
         var p = path.join(__dirname, 'out', 'index.html');
-        Assert.isTrue(exists(p), 'Failed to find: ' + p)
+        Assert.isTrue(exists(p), 'Failed to find: ' + p);
     },
     'test: data.json': function() {
         var p = path.join(__dirname, 'out', 'data.json');
-        Assert.isTrue(exists(p), 'Failed to find: ' + p)
+        Assert.isTrue(exists(p), 'Failed to find: ' + p);
     },
     'test: api.js': function() {
         var p = path.join(__dirname, 'out', 'api.js');
-        Assert.isTrue(exists(p), 'Failed to find: ' + p)
+        Assert.isTrue(exists(p), 'Failed to find: ' + p);
     },
     'test: classes/JSON.html': function() {
         var p = path.join(__dirname, 'out', 'classes', 'JSON.html');
-        Assert.isTrue(exists(p), 'Failed to find: ' + p)
+        Assert.isTrue(exists(p), 'Failed to find: ' + p);
     },
     'test: files name filter': function() {
         var dir = path.join(__dirname, 'out', 'files');
-        var files = fs.readdirSync(dir);
-        files.forEach(function(file) {
+        fs.readdirSync(dir).forEach(function(file) {
             Assert.isTrue(((file.indexOf('input_') ===0) || file.indexOf('index.html') === 0), 'Filed to parse: ' + file);
         });
     },
     'test: module files': function() {
         var mods = this.data.modules;
         Object.keys(mods).forEach(function(name) {
-            var m = mods[name];
-            var p = path.join(__dirname, 'out', 'modules', m.name + '.html');
+            var m = mods[name],
+                p = path.join(__dirname, 'out', 'modules', m.name + '.html');
             Assert.isTrue(exists(p), 'Failed to render: ' + m.name + '.html');
         });
     },
     'test: class files': function() {
         var mods = this.data.classes;
         Object.keys(mods).forEach(function(name) {
-            var m = mods[name];
-            var p = path.join(__dirname, 'out', 'classes', m.name + '.html');
+            var m = mods[name],
+                p = path.join(__dirname, 'out', 'classes', m.name + '.html');
             Assert.isTrue(exists(p), 'Failed to render: ' + m.name + '.html');
         });
     }

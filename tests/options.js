@@ -1,8 +1,7 @@
+/*global Y:true */
 var YUITest = require('yuitest'),
     Assert = YUITest.Assert,
-    ArrayAssert = YUITest.ArrayAssert,
     path = require('path'),
-    fs = require('fs'),
     Y = require(path.join(__dirname, '../', 'lib', 'index'));
 
 //Move to the test dir before running the tests.
@@ -236,24 +235,21 @@ suite.add(new YUITest.TestCase({
             '-T',
             'simple'
         ]);
-        var p = path.join(__dirname, '../themes/simple');
-        Assert.areEqual(p, options.themedir);
+        Assert.areEqual(path.join(__dirname, '../themes/simple'), options.themedir);
     },
     'test: --theme simple': function() {
         var options = Y.Options([
             '--theme',
             'simple'
         ]);
-        var p = path.join(__dirname, '../themes/simple');
-        Assert.areEqual(p, options.themedir);
+        Assert.areEqual(path.join(__dirname, '../themes/simple'), options.themedir);
     },
     'test: --theme foobar': function() {
         var options = Y.Options([
             '--theme',
             'foobar'
         ]);
-        var p = path.join(__dirname, '../themes/foobar');
-        Assert.areEqual(p, options.themedir);
+        Assert.areEqual(path.join(__dirname, '../themes/foobar'), options.themedir);
     },
     'test: -t ./foobar': function() {
         var options = Y.Options([
@@ -337,7 +333,7 @@ suite.add(new YUITest.TestCase({
     },
     'test --debug': function() {
         Assert.isFalse(Y.config.debug);
-        var options = Y.Options([
+        Y.Options([
             '--debug'
         ]);
         Assert.isTrue(Y.config.debug);
@@ -347,14 +343,14 @@ suite.add(new YUITest.TestCase({
         });
     },
     'test: --charset': function() {
-        var options = Y.Options([
+        Y.Options([
             '--charset'
         ]);
         Assert.areEqual('utf8', Y.charset);
         
     },
     'test: --charset foo': function() {
-        var options = Y.Options([
+        Y.Options([
             '--charset',
             'foo'
         ]);
