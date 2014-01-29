@@ -33,18 +33,18 @@
     "main": "./lib/index",
     "bin" : { "yuidoc" : "./lib/cli.js" },
     "dependencies": {
-        "yui": "3.9.1",
-        "rimraf": "~2.0.0",
-        "marked": "~0.2.8",
-        "minimatch": "~0.2.11",
-        "graceful-fs": ">=1.1.1",
-        "express": "~3.1.2"
+        "yui": "3.14.1",
+        "rimraf": "2.x",
+        "marked": "0.3.x",
+        "minimatch": "0.2.x",
+        "graceful-fs": "2.x",
+        "express": "3.4.x"
     },
     "devDependencies": {
         "ytestrunner": "~0.3.3",
         "yuitest": ">=0.7.3",
         "selleck": "~0.1",
-        "istanbul": "~0.1.27"
+        "istanbul": "0.2.x"
     },
     "scripts": {
         "test": "istanbul cover --print=both --yui ytestrunner -- --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js --include ./tests/files.js"
