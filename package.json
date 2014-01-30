@@ -49,7 +49,7 @@
     },
     "scripts": {
         "pretest": "jshint ./lib/*.js ./tests/*.js",
-        "test": "istanbul cover --print=both --yui ytestrunner -- --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js --include ./tests/files.js"
+        "test": "istanbul cover --print=both --yui ytestrunner -- --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js --include ./tests/files.js --include ./tests/utils.js"
     },
     "preferGlobal": "true",
     "licenses":[
