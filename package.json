@@ -36,7 +36,7 @@
         "yui": "3.14.1",
         "rimraf": "2.x",
         "marked": "0.3.x",
-        "minimatch": "0.2.x",
+        "minimatch": "~0.2.11",
         "graceful-fs": "2.x",
         "express": "3.4.x"
     },
