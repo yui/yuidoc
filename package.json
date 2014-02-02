@@ -38,7 +38,7 @@
         "marked": "~0.2.8",
         "minimatch": "~0.2.11",
         "graceful-fs": "2.x",
-        "express": "3.4.x"
+        "express": "~3.1.2"
     },
     "devDependencies": {
         "ytestrunner": "~0.3.3",
