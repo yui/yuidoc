@@ -4,6 +4,7 @@
  * @module charts
  * @class AxisType
  * @constructor
+ * @abstract
  * @extends Axis
  */
 Y.AxisType = Y.Base.create("baseAxis", Y.Axis, [], {
