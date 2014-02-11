@@ -1,21 +1,18 @@
+/*global Y:true */
 var YUITest = require('yuitest'),
     Assert = YUITest.Assert,
-    ArrayAssert = YUITest.ArrayAssert,
     path = require('path'),
-    fs = require('fs'),
     Y = require(path.join(__dirname, '../', 'lib', 'index'));
 
 //Move to the test dir before running the tests.
 process.chdir(__dirname);
 
-var existsSync = fs.existsSync || path.existsSync;
-
 var suite = new YUITest.TestSuite({
     name: 'Coffee Parser Test Suite',
-    setUp: function() {
+    setUp: function () {
         var json = (new Y.YUIDoc({
             quiet: true,
-            paths: [ 'input/' ],
+            paths: ['input/'],
             outdir: './out',
             extension: '.coffee',
             syntaxtype: 'coffee'
@@ -28,15 +25,15 @@ var suite = new YUITest.TestSuite({
 
 suite.add(new YUITest.TestCase({
     name: "Project Data",
-    setUp: function() {
+    setUp: function () {
         this.project = suite.project;
         this.data = suite.data;
     },
-    findByName: function(name, cl) {
+    findByName: function (name, cl) {
         var items = this.data.classitems,
             ret;
 
-        items.forEach(function(i) {
+        items.forEach(function (i) {
             if (i.name === name && i.class === cl) {
                 ret = i;
             }
@@ -44,7 +41,7 @@ suite.add(new YUITest.TestCase({
 
         return ret;
     },
-    'test: project data': function() {
+    'test: project data': function () {
         Assert.areSame(path.normalize('input/coffee/test.coffee'), this.project.file, 'Project data loaded from wrong file');
         Assert.areSame(2, this.project.line, 'Line number is off');
         Assert.areSame('The test project', this.project.description, 'Description not set properly');

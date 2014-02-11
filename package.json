@@ -41,12 +41,14 @@
         "express": "~3.1.2"
     },
     "devDependencies": {
+        "jshint": "2.4.x",
         "ytestrunner": "~0.3.3",
         "yuitest": ">=0.7.3",
         "selleck": "~0.1",
         "istanbul": "~0.1.27"
     },
     "scripts": {
+        "pretest": "jshint ./lib/*.js ./tests/*.js",
         "test": "istanbul cover --print=both --yui ytestrunner -- --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js --include ./tests/files.js"
     },
     "preferGlobal": "true",
@@ -59,6 +61,27 @@
     "repository": {
         "type":"git",
         "url":"http://github.com/yui/yuidoc.git"
+    },
+    "jshintConfig": {
+        "bitwise"   : true,
+        "browser"   : true,
+        "curly"     : true,
+        "eqeqeq"    : true,
+        "forin"     : true,
+        "immed"     : true,
+        "latedef"   : "nofunc",
+        "laxbreak"  : true,
+        "maxerr"    : 500,
+        "maxlen"    : 150,
+        "newcap"    : true,
+        "noarg"     : true,
+        "node"      : true,
+        "noempty"   : true,
+        "onevar"    : true,
+        "trailing"  : true,
+        "undef"     : true,
+        "unused"    : "vars",
+        "yui"       : true
     },
     "yuidoc": {
         "name": "YUIDoc",

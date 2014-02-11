@@ -1,3 +1,4 @@
+/*global Y:true */
 var YUITest = require('yuitest'),
     Assert = YUITest.Assert,
     path = require('path'),

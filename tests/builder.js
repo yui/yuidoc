@@ -1,6 +1,6 @@
+/*global Y:true */
 var YUITest = require('yuitest'),
     Assert = YUITest.Assert,
-    ArrayAssert = YUITest.ArrayAssert,
     path = require('path'),
     fs = require('fs'),
     Y = require(path.join(__dirname, '../', 'lib', 'index'));
@@ -10,11 +10,11 @@ process.chdir(__dirname);
 
 var suite = new YUITest.TestSuite({
     name: 'Builder Test Suite',
-    findByName: function(name, cl) {
+    findByName: function (name, cl) {
         var items = this.data.classitems,
             ret;
 
-        items.forEach(function(i) {
+        items.forEach(function (i) {
             if (i.name === name && i.class === cl) {
                 ret = i;
             }
@@ -22,11 +22,12 @@ var suite = new YUITest.TestSuite({
 
         return ret;
     },
-    setUp: function() {
-        var test = this;
-        var options = {
+    setUp: function () {
+        var options, json, builder;
+
+        options = {
             quiet: true,
-            paths: [ 'input/' ],
+            paths: ['input/'],
             outdir: './out',
             helpers: [
                 path.join(__dirname, 'lib/davglass.js')
@@ -35,13 +36,13 @@ var suite = new YUITest.TestSuite({
                 langPrefix: "language-"
             }
         };
-        var json = (new Y.YUIDoc(options)).run();
+        json = (new Y.YUIDoc(options)).run();
 
         this.project = json.project;
         this.data = json;
-        
-        var builder = new Y.DocBuilder(options, json);
-        builder.compile(function() {
+
+        builder = new Y.DocBuilder(options, json);
+        builder.compile(function () {
             suite._setupComplete = true;
         });
         this.builder = builder;
@@ -53,7 +54,7 @@ var exists = fs.existsSync || path.existsSync;
 
 suite.add(new YUITest.TestCase({
     name: 'Builder setup',
-    'test: prep': function() {
+    'test: prep': function () {
         this.project = suite.project;
         this.data = suite.data;
         /*
@@ -62,69 +63,68 @@ suite.add(new YUITest.TestCase({
             so I have to check it in the first test to make sure my
             async task in the setup is complete before I can test against it.
         */
-        var test = this;
-        var timer = setInterval(function() {
-            if (suite._setupComplete) {
-                clearInterval(timer);
-                test.resume(function() {
-                    Assert.isTrue(suite._setupComplete);
-                });
-            }
-        },10);
+        var test = this,
+            timer = setInterval(function () {
+                if (suite._setupComplete) {
+                    clearInterval(timer);
+                    test.resume(function () {
+                        Assert.isTrue(suite._setupComplete);
+                    });
+                }
+            }, 10);
         this.wait();
     },
-    'test: Directories': function() {
+    'test: Directories': function () {
         var dirs = ['assets', 'classes', 'files', 'modules'];
-        dirs.forEach(function(d) {
+        dirs.forEach(function (d) {
             var p = path.join(__dirname, 'out', d);
             Assert.isTrue(exists(p), 'Failed to find: ' + p);
         });
 
     },
-    'test: Assets Directories': function() {
+    'test: Assets Directories': function () {
         var dirs = ['css', 'js', 'img', 'vendor', 'index.html'];
-        dirs.forEach(function(d) {
+        dirs.forEach(function (d) {
             var p = path.join(__dirname, 'out', 'assets', d);
             Assert.isTrue(exists(p), 'Failed to find: ' + p);
         });
 
     },
-    'test: index.html': function() {
+    'test: index.html': function () {
         var p = path.join(__dirname, 'out', 'index.html');
-        Assert.isTrue(exists(p), 'Failed to find: ' + p)
+        Assert.isTrue(exists(p), 'Failed to find: ' + p);
     },
-    'test: data.json': function() {
+    'test: data.json': function () {
         var p = path.join(__dirname, 'out', 'data.json');
-        Assert.isTrue(exists(p), 'Failed to find: ' + p)
+        Assert.isTrue(exists(p), 'Failed to find: ' + p);
     },
-    'test: api.js': function() {
+    'test: api.js': function () {
         var p = path.join(__dirname, 'out', 'api.js');
-        Assert.isTrue(exists(p), 'Failed to find: ' + p)
+        Assert.isTrue(exists(p), 'Failed to find: ' + p);
     },
-    'test: classes/JSON.html': function() {
+    'test: classes/JSON.html': function () {
         var p = path.join(__dirname, 'out', 'classes', 'JSON.html');
-        Assert.isTrue(exists(p), 'Failed to find: ' + p)
+        Assert.isTrue(exists(p), 'Failed to find: ' + p);
     },
-    'test: files name filter': function() {
+    'test: files name filter': function () {
         var dir = path.join(__dirname, 'out', 'files');
-        var files = fs.readdirSync(dir);
-        files.forEach(function(file) {
-            Assert.isTrue(((file.indexOf('input_') ===0) || file.indexOf('index.html') === 0), 'Filed to parse: ' + file);
+        fs.readdirSync(dir).forEach(function (file) {
+            Assert.isTrue(((file.indexOf('input_') === 0) || file.indexOf('index.html') === 0), 'Filed to parse: ' + file);
         });
     },
-    'test: module files': function() {
+    'test: module files': function () {
         var mods = this.data.modules;
-        Object.keys(mods).forEach(function(name) {
-            var m = mods[name];
-            var p = path.join(__dirname, 'out', 'modules', m.name + '.html');
+        Object.keys(mods).forEach(function (name) {
+            var m = mods[name],
+                p = path.join(__dirname, 'out', 'modules', m.name + '.html');
             Assert.isTrue(exists(p), 'Failed to render: ' + m.name + '.html');
         });
     },
-    'test: class files': function() {
+    'test: class files': function () {
         var mods = this.data.classes;
-        Object.keys(mods).forEach(function(name) {
-            var m = mods[name];
-            var p = path.join(__dirname, 'out', 'classes', m.name + '.html');
+        Object.keys(mods).forEach(function (name) {
+            var m = mods[name],
+                p = path.join(__dirname, 'out', 'classes', m.name + '.html');
             Assert.isTrue(exists(p), 'Failed to render: ' + m.name + '.html');
         });
     }
@@ -132,12 +132,12 @@ suite.add(new YUITest.TestCase({
 
 suite.add(new YUITest.TestCase({
     name: 'Builder Augmentation Tests',
-    'test: inherited methods': function() {
+    'test: inherited methods': function () {
         var item = suite.data.classes['mywidget.SubWidget'];
         Assert.isObject(item, 'Failed to parse class');
-        suite.builder.renderClass(function(html, view, opts) {
+        suite.builder.renderClass(function (html, view, opts) {
             var method;
-            opts.meta.methods.forEach(function(i) {
+            opts.meta.methods.forEach(function (i) {
                 if (i.name === 'myMethod' && i.class === 'mywidget.SubWidget') {
                     method = i;
                 }
@@ -147,12 +147,12 @@ suite.add(new YUITest.TestCase({
             Assert.isObject(method.overwritten_from, 'Failed to find overwritten data');
         }, item);
     },
-    'test: helper methods': function() {
+    'test: helper methods': function () {
         var item = suite.data.classes['mywidget.SuperWidget'];
         Assert.isObject(item, 'Failed to parse class');
-        suite.builder.renderClass(function(html, view, opts) {
+        suite.builder.renderClass(function (html, view, opts) {
             var method;
-            opts.meta.methods.forEach(function(i) {
+            opts.meta.methods.forEach(function (i) {
                 if (i.name === 'getTargets2' && i.class === 'mywidget.SuperWidget') {
                     method = i;
                 }
@@ -163,12 +163,12 @@ suite.add(new YUITest.TestCase({
         }, item);
     },
 
-    'test: markdown options': function() {
+    'test: markdown options': function () {
         var item = suite.data.classes['mywidget.SuperWidget'];
         Assert.isObject(item, 'Failed to parse class');
-        suite.builder.renderClass(function(html, view, opts) {
+        suite.builder.renderClass(function (html, view, opts) {
             var method;
-            opts.meta.methods.forEach(function(i) {
+            opts.meta.methods.forEach(function (i) {
                 if (i.name === 'getTargets3' && i.class === 'mywidget.SuperWidget') {
                     method = i;
                 }
