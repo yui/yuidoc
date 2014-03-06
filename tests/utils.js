@@ -76,4 +76,20 @@ suite.add(new YUITest.TestCase({
     }
 }));
 
+suite.add(new YUITest.TestCase({
+    name: 'produce valid web urls',
+    'test: Adds paths onto end in sequence' : function() {
+        var url = Y.webpath('foo', 'bar', 'baz');
+        Assert.areEqual('foo/bar/baz', url, 'parts should be added in sequence');
+    },
+    'test: normalises windows paths into web happy urls' : function() {
+        var url = Y.webpath('foo\\bar', 'baz');
+        Assert.areEqual('foo/bar/baz', url, '\\ should be normalised to /');
+    },
+    'test: joins relative paths' : function() {
+        var url = Y.webpath('./foo/bar', './baz/');
+        Assert.areEqual('foo/bar/baz/', url, 'should join relative paths');
+    }
+}));
+
 YUITest.TestRunner.add(suite);
