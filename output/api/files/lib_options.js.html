@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.47</em>
+            <em>API Docs for: 0.3.49</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -108,24 +108,25 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-YUI.add(&#x27;options&#x27;, function(Y) {
-    
+YUI.add(&#x27;options&#x27;, function (Y) {
+
     var path = require(&#x27;path&#x27;);
 
     /**
-    * Handles argument parsing
-    * @module yuidoc
-    * @class Options
-    */
+     * Handles argument parsing
+     * @module yuidoc
+     * @class Options
+     */
 
     /**
-    * Parses arguments and returns an Object of config options
-    * @method Options
-    * @param {Array} args Arguments to parse
-    * @return {Object} The config object
-    */
-    Y.Options = function(args) {
-    
+     * Parses arguments and returns an Object of config options
+     * @method Options
+     * @param {Array} args Arguments to parse
+     * @return {Object} The config object
+     */
+    Y.Options = function (args) {
+        /*jshint onevar:false */
+
         var options = {
             port: 3000,
             nocode: false
@@ -135,141 +136,145 @@ YUI.add(&#x27;options&#x27;, function(Y) {
             var v = args.shift();
             // options.* defined in ./builder.js
             switch (v) {
-                case &#x27;--lint&#x27;:
-                    options.lint = true;
-                    options.parseOnly = true;
-                    options.writeJSON = false;
-                    options.quiet = true;
-                    break;
-                case &quot;--debug&quot;:
-                    Y.applyConfig({ debug: true, filter: &#x27;debug&#x27; });
-                    break;
-                case &quot;--charset&quot;:
-                    Y.charset = args.shift() || &#x27;utf8&#x27;;
-                    Y.log(&#x27;Setting default charset to &#x27; + Y.charset, &#x27;yuidoc&#x27;, &#x27;warn&#x27;);
-                    break;
-                case &quot;-c&quot;:
-                case &quot;--config&quot;:
-                case &quot;--configfile&quot;:
-                    options.configfile = args.shift();
-                    break;
-                case &quot;-e&quot;:
-                case &quot;--extension&quot;:
-                    options.extension = args.shift();
-                    break;
-                case &quot;-x&quot;:
-                case &quot;--exclude&quot;:
-                    options.exclude = args.shift();
-                    break;
-                case &quot;-v&quot;:
-                case &quot;--version&quot;:
-                    console.error(Y.packageInfo.version);
-                    process.exit(1);
-                    break;
-                case &quot;--project-version&quot;:
-                    options.version = args.shift();
-                    break;
-                case &quot;-N&quot;:
-                case &quot;--no-color&quot;:
-                    Y.config.useColor = false;
-                    options.nocolor = true;
-                    break;
-                case &quot;-D&quot;:
-                case &quot;--no-delete-out&quot;:
-                    options.nodeleteout = true;
-                    break;
-                case &quot;-C&quot;:
-                case &quot;--no-code&quot;:
-                    options.nocode = true;
-                    break;
-                case &quot;-n&quot;:
-                case &quot;--norecurse&quot;:
-                    options.norecurse = true;
-                    break;
-                case &quot;-S&quot;:
-                case &quot;--selleck&quot;:
-                    options.selleck = true;
-                    break;
-                case &quot;-V&quot;:
-                case &quot;--view&quot;:
-                    options.dumpview = true;
-                    break;
-                case &quot;-p&quot;:
-                case &quot;--parse-only&quot;:
-                    options.parseOnly = true;
-                    break;
-                case &quot;-o&quot;:
-                case &quot;--outdir&quot;:
-                    options.outdir = args.shift();
-                    break;
-                case &quot;-t&quot;:
-                case &quot;--themedir&quot;:
-                    options.themedir = args.shift();
-                    break;
-                case &quot;--server&quot;:
-                    options.server = true;
-                    var a = args.shift();
-                    var p = parseInt(a, 10);
-                    if (isNaN(p) || !p) {
-                        if (a) {
-                            args.unshift(a);
-                        }
-                        Y.log(&#x27;Failed to extract port, setting to the default :3000&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
-                    } else {
-                        options.port = p;
+            case &#x27;--lint&#x27;:
+                options.lint = true;
+                options.parseOnly = true;
+                options.writeJSON = false;
+                options.quiet = true;
+                break;
+            case &quot;--debug&quot;:
+                Y.applyConfig({
+                    debug: true,
+                    filter: &#x27;debug&#x27;
+                });
+                break;
+            case &quot;--charset&quot;:
+                Y.charset = args.shift() || &#x27;utf8&#x27;;
+                Y.log(&#x27;Setting default charset to &#x27; + Y.charset, &#x27;yuidoc&#x27;, &#x27;warn&#x27;);
+                break;
+            case &quot;-c&quot;:
+            case &quot;--config&quot;:
+            case &quot;--configfile&quot;:
+                options.configfile = args.shift();
+                break;
+            case &quot;-e&quot;:
+            case &quot;--extension&quot;:
+                options.extension = args.shift();
+                break;
+            case &quot;-x&quot;:
+            case &quot;--exclude&quot;:
+                options.exclude = args.shift();
+                break;
+            case &quot;-v&quot;:
+            case &quot;--version&quot;:
+                console.error(Y.packageInfo.version);
+                process.exit(1);
+                break;
+            case &quot;--project-version&quot;:
+                options.version = args.shift();
+                break;
+            case &quot;-N&quot;:
+            case &quot;--no-color&quot;:
+                Y.config.useColor = false;
+                options.nocolor = true;
+                break;
+            case &quot;-D&quot;:
+            case &quot;--no-delete-out&quot;:
+                options.nodeleteout = true;
+                break;
+            case &quot;-C&quot;:
+            case &quot;--no-code&quot;:
+                options.nocode = true;
+                break;
+            case &quot;-n&quot;:
+            case &quot;--norecurse&quot;:
+                options.norecurse = true;
+                break;
+            case &quot;-S&quot;:
+            case &quot;--selleck&quot;:
+                options.selleck = true;
+                break;
+            case &quot;-V&quot;:
+            case &quot;--view&quot;:
+                options.dumpview = true;
+                break;
+            case &quot;-p&quot;:
+            case &quot;--parse-only&quot;:
+                options.parseOnly = true;
+                break;
+            case &quot;-o&quot;:
+            case &quot;--outdir&quot;:
+                options.outdir = args.shift();
+                break;
+            case &quot;-t&quot;:
+            case &quot;--themedir&quot;:
+                options.themedir = args.shift();
+                break;
+            case &quot;--server&quot;:
+                options.server = true;
+                var a = args.shift();
+                var p = parseInt(a, 10);
+                if (isNaN(p) || !p) {
+                    if (a) {
+                        args.unshift(a);
                     }
-                    break;
-                case &quot;-h&quot;:
-                case &quot;--help&quot;:
-                    Y.showHelp();
-                    break;
-                case &quot;-H&quot;:
-                case &quot;--helpers&quot;:
-                    var list = args.shift();
-                    if (list) {
-                        options.helpers = list.split(&#x27;,&#x27;);
-                    } else {
-                        throw(&#x27;Failed to pass a helper file.&#x27;);
+                    Y.log(&#x27;Failed to extract port, setting to the default :3000&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
+                } else {
+                    options.port = p;
+                }
+                break;
+            case &quot;-h&quot;:
+            case &quot;--help&quot;:
+                Y.showHelp();
+                break;
+            case &quot;-H&quot;:
+            case &quot;--helpers&quot;:
+                var list = args.shift();
+                if (list) {
+                    options.helpers = list.split(&#x27;,&#x27;);
+                } else {
+                    throw (&#x27;Failed to pass a helper file.&#x27;);
+                }
+                break;
+            case &quot;-T&quot;:
+            case &quot;--theme&quot;:
+                var theme = args.shift();
+                options.themedir = path.join(__dirname, &#x27;../&#x27;, &#x27;themes&#x27;, theme);
+                break;
+            case &quot;-q&quot;:
+            case &quot;--quiet&quot;:
+                options.quiet = true;
+                break;
+            case &quot;--syntaxtype&quot;:
+                options.syntaxtype = args.shift();
+                break;
+            case &quot;--tab-to-space&quot;:
+                options.tabtospace = parseInt(args.shift(), 10);
+                if (typeof options.tabtospace === &#x27;number&#x27;) {
+                    options.tabspace = &#x27;&#x27;;
+                    for (var s = 0; s &lt; options.tabtospace; s++) {
+                        options.tabspace += &#x27; &#x27;;
                     }
-                    break;
-                case &quot;-T&quot;:
-                case &quot;--theme&quot;:
-                    var theme = args.shift();
-                    options.themedir = path.join(__dirname, &#x27;../&#x27;, &#x27;themes&#x27;, theme);
-                    break;
-                case &quot;-q&quot;:
-                case &quot;--quiet&quot;:
-                    options.quiet = true;
-                    break;
-                case &quot;--syntaxtype&quot;:
-                    options.syntaxtype = args.shift();
-                    break;
-                case &quot;--tab-to-space&quot;:
-                    options.tabtospace = parseInt(args.shift(), 10);
-                    if (typeof options.tabtospace === &#x27;number&#x27;) {
-                        options.tabspace = &#x27;&#x27;;
-                        for (var s = 0; s &lt; options.tabtospace; s++) {
-                            options.tabspace += &#x27; &#x27;;
-                        }
-                    }
-                    break;
-                default:
-                    if (!options.paths) {
-                        options.paths = [];
-                    }
-                    if (v &amp;&amp; v.indexOf(&#x27;-&#x27;) === 0) {
-                        throw(&#x27;Unknown option: &#x27; + v);
-                    }
-                    options.paths.push(v);
+                }
+                break;
+            default:
+                if (!options.paths) {
+                    options.paths = [];
+                }
+                if (v &amp;&amp; v.indexOf(&#x27;-&#x27;) === 0) {
+                    throw (&#x27;Unknown option: &#x27; + v);
+                }
+                options.paths.push(v);
             }
         }
 
         if (options.quiet) {
-            Y.applyConfig({ debug: false });
+            Y.applyConfig({
+                debug: false
+            });
         }
-    
-        return options;
 
+        return options;
     };
 
 });

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.47</em>
+            <em>API Docs for: 0.3.49</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -113,9 +113,9 @@ Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://yuilibrary.com/license/
 */
-var fs = require(&quot;fs&quot;),
+var fs = require(&#x27;graceful-fs&#x27;),
     rimraf = require(&#x27;rimraf&#x27;),
-    path = require(&quot;path&quot;);
+    path = require(&#x27;path&#x27;);
 
 /**
 This is the __module__ description for the &#x60;YUIDoc&#x60; module.
@@ -133,7 +133,7 @@ This is the __module__ description for the &#x60;YUIDoc&#x60; module.
 */
 
 
-YUI.add(&#x27;yuidoc&#x27;, function(Y) {
+YUI.add(&#x27;yuidoc&#x27;, function (Y) {
 
 
     /**
@@ -143,17 +143,16 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
      * @final
      * @for YUIDoc
      */
-
     var OPTIONS = {
         quiet: false,
         writeJSON: true,
-        outdir: path.join(process.cwd(),  &#x27;out&#x27;),
+        outdir: path.join(process.cwd(), &#x27;out&#x27;),
         extension: &#x27;.js&#x27;,
         exclude: &#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp,node_modules&#x27;,
         norecurse: false,
         version: &#x27;0.1.0&#x27;,
         paths: [],
-        themedir: path.join(__dirname,  &#x27;themes&#x27;, &#x27;default&#x27;),
+        themedir: path.join(__dirname, &#x27;themes&#x27;, &#x27;default&#x27;),
         syntaxtype: &#x27;js&#x27;
     };
 
@@ -173,7 +172,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
      * @constructor
      * @param config The config object
      */
-    Y.YUIDoc = function(config) {
+    Y.YUIDoc = function (config) {
         /**
          * Holds the number of files that we are processing.
          * @property filecount
@@ -225,54 +224,61 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
          * @method _setDefaultExcludes
          * @private
          */
-        _setDefaultExcludes: function() {
+        _setDefaultExcludes: function () {
             //These should always be excluded
             var excludes = &#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp,node_modules&#x27;.split(&#x27;,&#x27;),
                 self = this;
 
-            excludes.forEach(function(item) {
+            excludes.forEach(function (item) {
                 self.options.excludes[item] = true;
             });
         },
+
         /**
          * Does post process on self.options.
          * @method _processConfig
          * @private
          */
-        _processConfig: function() {
+        _processConfig: function () {
             this.options.extensions = Y.Array.hash(this.options.extension.split(&#x27;,&#x27;));
             this.options.excludes = Y.Array.hash(this.options.exclude.split(&#x27;,&#x27;));
             this._setDefaultExcludes();
         },
+
         /**
          * Walks the paths and parses the directory contents
          * @method walk
          * @private
          */
-        walk: function() {
-            Y.each(this.options.paths, function(dir) {
+        walk: function () {
+            Y.each(this.options.paths, function (dir) {
                 this.parsedir(dir);
             }, this);
         },
+
         /**
          * Walks the passed directory and grabs all the files recursively.
          * @method parsedir
          * @param {String} dir The directory to parse the contents of.
          * @private
          */
-        parsedir: function(dir) {
+        parsedir: function (dir) {
             if (!Y.Files.isDirectory(dir)) {
-                throw(&#x27;Can not find directory: &#x27; + dir);
+                throw (&#x27;Can not find directory: &#x27; + dir);
             }
-            var allfiles = fs.readdirSync(dir), stats,
-                files = [], fullpath, self = this;
-	    
+
+            var allfiles = fs.readdirSync(dir),
+                stats,
+                files = [],
+                fullpath, self = this;
+
             if (dir in self.options.excludes) {
                 return;
             }
+
             allfiles = allfiles.sort();
 
-            Y.each(allfiles, function(filename) {
+            Y.each(allfiles, function (filename) {
                 if (!(filename in self.options.excludes)) {
                     fullpath = path.join(dir, filename);
 
@@ -285,10 +291,12 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
                     }
                 }
             });
+
             if (!(dir in self.options.excludes)) {
                 this.parsefiles(dir, files);
             }
         },
+
         /**
          * Gathers all the file data and populates the filemap and dirmap hashes.
          * @method parsefiles
@@ -296,11 +304,14 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
          * @param {Array} files List of files to parse.
          * @private
          */
-        parsefiles: function(dir, files) {
+        parsefiles: function (dir, files) {
             var self = this;
-	    files = files.sort();
-            Y.each(files, function(filename) {
-                var ext = path.extname(filename), text, fullpath;
+            files = files.sort();
+
+            Y.each(files, function (filename) {
+                var ext = path.extname(filename),
+                    text,
+                    fullpath;
 
                 if (ext) {
                     if (ext in self.options.extensions) {
@@ -321,9 +332,12 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
                 }
             });
         },
-        getSelleck: function(fullpath) {
+
+        getSelleck: function (fullpath) {
             var self = this,
-                base, comp, json;
+                base,
+                comp,
+                json;
 
             if (self.options.selleck) {
                 base = path.dirname(fullpath);
@@ -331,7 +345,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
                 //Y.log(&#x27;Checking for Selleck data: &#x27; + comp, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
                 if (Y.Files.exists(comp)) {
                     try {
-                        var json = JSON.parse(fs.readFileSync(comp, &#x27;utf8&#x27;));
+                        json = JSON.parse(fs.readFileSync(comp, &#x27;utf8&#x27;));
                         delete json.examples; //Remove the selleck example data, we only want the comp info
                         self.selleck[fullpath] = json;
                     } catch (e) {
@@ -340,6 +354,7 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
                 }
             }
         },
+
         /**
          * Writes the parser JSON data to disk.
          * @method writeJSON
@@ -347,21 +362,23 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
          * @private
          * @return {Object} The JSON data returned from the DocParser
          */
-        writeJSON: function(parser) {
+        writeJSON: function (parser) {
             var self = this,
-            data;
+                data,
+                file,
+                out;
 
             data = parser.data;
 
             data.warnings = parser.warnings;
 
             if (self.selleck &amp;&amp; self.options.selleck &amp;&amp; data.files &amp;&amp; data.modules) {
-                Object.keys(self.selleck).forEach(function(file) {
-                    Object.keys(data.files).forEach(function(f) {
+                Object.keys(self.selleck).forEach(function (file) {
+                    Object.keys(data.files).forEach(function (f) {
                         if (file === f) {
                             var mods = data.files[f].modules;
                             if (mods) {
-                                Object.keys(mods).forEach(function(mod) {
+                                Object.keys(mods).forEach(function (mod) {
                                     if (data.modules[mod]) {
                                         if (!data.modules[mod].extra) {
                                             data.modules[mod].extra = {};
@@ -381,11 +398,13 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
 
             if (self.options.writeJSON) {
                 // Y.log(Y.JSON.stringify(parser.data, null, 4));
-                var file = path.join(self.options.outdir, &#x27;data.json&#x27;), out;
+                file = path.join(self.options.outdir, &#x27;data.json&#x27;);
+
                 if (Y.Files.exists(self.options.outdir) &amp;&amp; !self.options.nodeleteout) {
                     Y.log(&#x27;Found out dir, deleting: &#x27; + self.options.outdir, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
                     rimraf.sync(self.options.outdir);
                 }
+
                 if (!Y.Files.exists(self.options.outdir)) {
                     Y.log(&#x27;Making out dir: &#x27; + self.options.outdir, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
                     try {
@@ -394,9 +413,11 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
                         Y.log(&#x27;Outdir creation failed&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
                     }
                 }
-                
+
                 out = fs.createWriteStream(file, {
-                        flags: &quot;w&quot;, encoding: Y.charset, mode: 0644
+                    flags: &quot;w&quot;,
+                    encoding: Y.charset,
+                    mode: 0644
                 });
                 out.write(JSON.stringify(data, null, 4));
                 out.end();
@@ -404,26 +425,28 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
 
             return data;
         },
-        lint: function(warnings) {
+
+        lint: function (warnings) {
             var code = 0,
                 count = 0;
 
             if (warnings &amp;&amp; warnings.length) {
                 code = 1;
                 console.log(&#x27;YUIDoc found&#x27;, warnings.length, &#x27;lint errors in your docs&#x27;);
-                warnings.forEach(function(item) {
+                warnings.forEach(function (item) {
                     count++;
                     console.log(&#x27;#&#x27; + count, item.message, item.line + &#x27;\n&#x27;);
                 });
                 process.exit(code);
             }
         },
+
         /**
          * Process the config, walk the file tree and write out the JSON data.
          * @method run
          * @return {Object} The JSON data returned from the DocParser
          */
-        run: function() {
+        run: function () {
             /**
              * Timestamp holder so we know when YUIDoc started the parse process.
              * @property starttime
@@ -432,15 +455,13 @@ YUI.add(&#x27;yuidoc&#x27;, function(Y) {
             Y.log(&#x27;YUIDoc Starting from: &#x27; + this.options.paths.join(&#x27;,&#x27;), &#x27;info&#x27;, &#x27;yuidoc&#x27;);
             this.starttime = new Date().getTime();
 
-            var self = this;
-
             this._processConfig();
             this.walk();
 
             var json = this.writeJSON(new Y.DocParser({
-                syntaxtype: self.options.syntaxtype,
-                filemap: self.filemap,
-                dirmap: self.dirmap
+                syntaxtype: this.options.syntaxtype,
+                filemap: this.filemap,
+                dirmap: this.dirmap
             }).parse());
 
             if (this.options.lint) {

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.47</em>
+            <em>API Docs for: 0.3.49</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -116,7 +116,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/lib_docparser.js.html#l722"><code>lib&#x2F;docparser.js:722</code></a>
+            Defined in: <a href="../files/lib_docparser.js.html#l727"><code>lib&#x2F;docparser.js:727</code></a>
         </div>
     
 
@@ -183,7 +183,7 @@ with the parsers data (aggregated in the <code>&#39;data&#39;</code> property).<
             
         
         
-        <a href="../files/lib_docparser.js.html#l722"><code>lib&#x2F;docparser.js:722</code></a>
+        <a href="../files/lib_docparser.js.html#l727"><code>lib&#x2F;docparser.js:727</code></a>
         
         </p>
 
@@ -683,6 +683,20 @@ with the parsers data (aggregated in the <code>&#39;data&#39;</code> property).<
                         
                             <li class="index-item method">
                                 <a href="#method_handlecomment">handlecomment</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_implodeString">implodeString</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_implodeString">implodeString</a>
 
                                 
                                 
@@ -2903,7 +2917,7 @@ provided and the attribute is not read-only.</p>
                 <li class="param">
                     
                         <code class="param-name">attrs</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a> | boolean</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
                     
 
                     
@@ -4906,7 +4920,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
             
         
         
-        <a href="../files/lib_docparser.js.html#l995"><code>lib&#x2F;docparser.js:995</code></a>
+        <a href="../files/lib_docparser.js.html#l1011"><code>lib&#x2F;docparser.js:1011</code></a>
         
         </p>
 
@@ -5483,7 +5497,7 @@ readOnly or writeOnce attributes which have already been set.</p>
 
     
         <span class="returns-inline">
-            <span class="type">Booolean</span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
         </span>
     
 
@@ -5641,7 +5655,7 @@ where the calling method has already obtained the config from state.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type">Booolean</span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
                     
                     <p>true if the new attribute value was stored, false if not.</p>
 
@@ -7075,7 +7089,7 @@ be removed.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l1161"><code>lib&#x2F;docparser.js:1161</code></a>
+        <a href="../files/lib_docparser.js.html#l1182"><code>lib&#x2F;docparser.js:1182</code></a>
         
         </p>
 
@@ -7476,7 +7490,7 @@ dot notation can be used to obtain the value of a property of the object (e.g. <
                 <li class="param">
                     
                         <code class="param-name">attrs</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a> | boolean</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
                     
 
                     
@@ -7763,7 +7777,7 @@ falsy value otherwise</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l1090"><code>lib&#x2F;docparser.js:1090</code></a>
+        <a href="../files/lib_docparser.js.html#l1106"><code>lib&#x2F;docparser.js:1106</code></a>
         
         </p>
 
@@ -7774,12 +7788,10 @@ falsy value otherwise</p>
     </div>
 
     <div class="description">
-        <p>Transforms a JavaDoc style comment block (less the start
-and end of it) into a list
-of tag/text pairs.  The leading space and &#39;*&#39; are removed,
-but the remaining whitespace is preserved so that the
-output should be friendly for both markdown and html
-parsers.</p>
+        <p>Transforms a JavaDoc style comment block (less the start and end of it)
+into a list of tag/text pairs. The leading space and &#39;*&#39; are removed,
+but the remaining whitespace is preserved so that the output should be
+friendly for both markdown and html parsers.</p>
 
     </div>
 
@@ -7841,6 +7853,224 @@ parsers.</p>
         </div>
     
 
+    
+
+    
+</div>
+
+                
+                    <div id="method_implodeString" class="method item private">
+    <h3 class="name"><code>implodeString</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>str</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/lib_docparser.js.html#l38"><code>lib&#x2F;docparser.js:38</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Flatten a string, remove all line breaks and replace them with a token</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">str</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The string to operate on</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    <p>The modified string</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_implodeString" class="method item private">
+    <h3 class="name"><code>implodeString</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>str</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/lib_docparser.js.html#l48"><code>lib&#x2F;docparser.js:48</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Un-flatten a string, replace tokens injected with <code>implodeString</code></p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">str</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The string to operate on</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    <p>The modified string</p>
+
+                
+            </div>
+        </div>
     
 
     
@@ -8660,7 +8890,7 @@ listener is immediatelly detached when it is executed.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l1402"><code>lib&#x2F;docparser.js:1402</code></a>
+        <a href="../files/lib_docparser.js.html#l1424"><code>lib&#x2F;docparser.js:1424</code></a>
         
         </p>
 
@@ -8753,7 +8983,7 @@ are available in parser.data.</p>
             
                 <li class="arg">
                     
-                        <code class="optional">[pre=this._yuievt.config.prefix]</code>
+                        <code class="optional">[pre]</code>
                     
                 </li>
             
@@ -8832,7 +9062,7 @@ is configured with a default prefix.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[pre=this._yuievt.config.prefix]</code>
+                        <code class="param-name optional">[pre]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
                     
@@ -8840,7 +9070,7 @@ is configured with a default prefix.</p>
                     
 
                     <div class="param-description">
-                        <p>the prefix</p>
+                        <p>The prefix. Defaults to this._yuievt.config.prefix</p>
 
                     </div>
 
@@ -8917,7 +9147,7 @@ is configured with a default prefix.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l1215"><code>lib&#x2F;docparser.js:1215</code></a>
+        <a href="../files/lib_docparser.js.html#l1237"><code>lib&#x2F;docparser.js:1237</code></a>
         
         </p>
 
@@ -9760,7 +9990,7 @@ to set the value of a property within the object (e.g. <code>set(&quot;x.y.z&quo
             
         
         
-        <a href="../files/lib_docparser.js.html#l12"><code>lib&#x2F;docparser.js:12</code></a>
+        <a href="../files/lib_docparser.js.html#l11"><code>lib&#x2F;docparser.js:11</code></a>
         
         </p>
 
@@ -9771,8 +10001,8 @@ to set the value of a property within the object (e.g. <code>set(&quot;x.y.z&quo
     </div>
 
     <div class="description">
-        <p>Parses the JSON data and formats it into a nice log string for filename and line number:
-   <code>/file/name.js:123</code></p>
+        <p>Parses the JSON data and formats it into a nice log string for
+filename and line number: <code>/file/name.js:123</code></p>
 
     </div>
 
@@ -9995,7 +10225,7 @@ and the instance guid, if set.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l1289"><code>lib&#x2F;docparser.js:1289</code></a>
+        <a href="../files/lib_docparser.js.html#l1310"><code>lib&#x2F;docparser.js:1310</code></a>
         
         </p>
 
@@ -10106,7 +10336,7 @@ and relationships between elements for the entire project.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l1068"><code>lib&#x2F;docparser.js:1068</code></a>
+        <a href="../files/lib_docparser.js.html#l1085"><code>lib&#x2F;docparser.js:1085</code></a>
         
         </p>
 
@@ -10401,7 +10631,7 @@ not handled by the MyClass._NON_ATTRS_CFG</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l175"><code>lib&#x2F;docparser.js:175</code></a>
+        <a href="../files/lib_docparser.js.html#l174"><code>lib&#x2F;docparser.js:174</code></a>
         
         </p>
 
@@ -10448,7 +10678,7 @@ not handled by the MyClass._NON_ATTRS_CFG</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l198"><code>lib&#x2F;docparser.js:198</code></a>
+        <a href="../files/lib_docparser.js.html#l197"><code>lib&#x2F;docparser.js:197</code></a>
         
         </p>
 
@@ -10544,7 +10774,7 @@ implementation rather than a function.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l95"><code>lib&#x2F;docparser.js:95</code></a>
+        <a href="../files/lib_docparser.js.html#l94"><code>lib&#x2F;docparser.js:94</code></a>
         
         </p>
 
@@ -10606,7 +10836,7 @@ digesters are added.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l959"><code>lib&#x2F;docparser.js:959</code></a>
+        <a href="../files/lib_docparser.js.html#l971"><code>lib&#x2F;docparser.js:971</code></a>
         
         </p>
 
@@ -10709,7 +10939,7 @@ digesters are added.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l810"><code>lib&#x2F;docparser.js:810</code></a>
+        <a href="../files/lib_docparser.js.html#l815"><code>lib&#x2F;docparser.js:815</code></a>
         
         </p>
 
@@ -10812,7 +11042,7 @@ digesters are added.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l867"><code>lib&#x2F;docparser.js:867</code></a>
+        <a href="../files/lib_docparser.js.html#l872"><code>lib&#x2F;docparser.js:872</code></a>
         
         </p>
 
@@ -10915,7 +11145,7 @@ digesters are added.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l919"><code>lib&#x2F;docparser.js:919</code></a>
+        <a href="../files/lib_docparser.js.html#l931"><code>lib&#x2F;docparser.js:931</code></a>
         
         </p>
 
@@ -11123,7 +11353,7 @@ has been through the destroy lifecycle phase.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l750"><code>lib&#x2F;docparser.js:750</code></a>
+        <a href="../files/lib_docparser.js.html#l755"><code>lib&#x2F;docparser.js:755</code></a>
         
         </p>
 
@@ -11236,7 +11466,7 @@ block type (modules/classes/methods/events/properties)</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l800"><code>lib&#x2F;docparser.js:800</code></a>
+        <a href="../files/lib_docparser.js.html#l805"><code>lib&#x2F;docparser.js:805</code></a>
         
         </p>
 
@@ -11341,7 +11571,7 @@ appropriately -- currently not used</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l772"><code>lib&#x2F;docparser.js:772</code></a>
+        <a href="../files/lib_docparser.js.html#l777"><code>lib&#x2F;docparser.js:777</code></a>
         
         </p>
 
@@ -11445,7 +11675,7 @@ the parser will emit.  Not implemented.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l792"><code>lib&#x2F;docparser.js:792</code></a>
+        <a href="../files/lib_docparser.js.html#l797"><code>lib&#x2F;docparser.js:797</code></a>
         
         </p>
 
@@ -11653,7 +11883,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l831"><code>lib&#x2F;docparser.js:831</code></a>
+        <a href="../files/lib_docparser.js.html#l836"><code>lib&#x2F;docparser.js:836</code></a>
         
         </p>
 
@@ -11756,7 +11986,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../files/lib_docparser.js.html#l783"><code>lib&#x2F;docparser.js:783</code></a>
+        <a href="../files/lib_docparser.js.html#l788"><code>lib&#x2F;docparser.js:788</code></a>
         
         </p>
 

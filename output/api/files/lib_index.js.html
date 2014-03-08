@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.47</em>
+            <em>API Docs for: 0.3.49</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -113,6 +113,7 @@ Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://yuilibrary.com/license/
 */
+/*global YUI:true, Y:true */
 /**
 Module creates the YUI instance with the required modules, uses them and exports the **Y** to be used
 by the _CLI class_ or by extenders: &#x60;require(&#x27;yuidocjs&#x27;);&#x60;  
@@ -134,7 +135,7 @@ You can use it like this:
 var args = process.argv.slice(2);
 var debug = false;
 
-args.forEach(function(item) {
+args.forEach(function (item) {
     if (item.toLowerCase() === &#x27;--debug&#x27;) {
         debug = true;
     }
@@ -146,7 +147,7 @@ var YUI = require(&#x27;yui&#x27; + (debug ? &#x27;/debug&#x27; : &#x27;&#x27;))
     metaPath = path.join(__dirname, &#x27;../&#x27;, &#x27;package.json&#x27;);
 
 
-process.on(&#x27;uncaughtException&#x27;, function(msg) {
+process.on(&#x27;uncaughtException&#x27;, function (msg) {
     var meta = JSON.parse(fs.readFileSync(metaPath)),
         inst = YUI(),
         useColor = (Y ? Y.config.useColor : false);
@@ -154,7 +155,7 @@ process.on(&#x27;uncaughtException&#x27;, function(msg) {
     inst.applyConfig({
         debug: true,
         useColor: useColor
-    }); 
+    });
 
     inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
     inst.log(&#x27;An uncaught YUIDoc error has occurred, stack trace given below&#x27;, &#x27;error&#x27;);

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.47</em>
+            <em>API Docs for: 0.3.49</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -109,6 +109,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 #!/usr/bin/env node
+
 /*
 Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
@@ -116,19 +117,19 @@ http://yuilibrary.com/license/
 */
 
 /**
-* Parses the arguments, creates the options and passes them to &#x60;Y.YUIDoc&#x60; and then &#x60;Y.DocBuilder&#x60;.
-* @class CLI
-* @module yuidoc
-*/
+ * Parses the arguments, creates the options and passes them to &#x60;Y.YUIDoc&#x60; and then &#x60;Y.DocBuilder&#x60;.
+ * @class CLI
+ * @module yuidoc
+ */
 
-var Y = require(&#x27;./index&#x27;),
-    path = require(&#x27;path&#x27;);
+/*global Y:true */
+var Y = require(&#x27;./index&#x27;);
 
 var options = Y.Options(Y.Array(process.argv, 2));
 
 Y.log(&#x27;Starting YUIDoc@&#x27; + Y.packageInfo.version + &#x27; using YUI@&#x27; + Y.version + &#x27; with NodeJS@&#x27; + process.versions.node, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
 
-var starttime = (new Date).getTime();
+var starttime = (new Date()).getTime();
 
 options = Y.Project.init(options);
 
@@ -142,7 +143,6 @@ Y.log(opts, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
 if (options.server) {
     Y.Server.start(options);
 } else {
-
     var json = (new Y.YUIDoc(options)).run();
     if (json === null) {
         return;
@@ -151,9 +151,9 @@ if (options.server) {
 
     if (!options.parseOnly) {
         var builder = new Y.DocBuilder(options, json);
-        builder.compile(function() {
-            var endtime = (new Date).getTime();
-            Y.log(&#x27;Completed in &#x27; + ((endtime - starttime) / 1000) + &#x27; seconds&#x27; , &#x27;info&#x27;, &#x27;yuidoc&#x27;);
+        builder.compile(function () {
+            var endtime = (new Date()).getTime();
+            Y.log(&#x27;Completed in &#x27; + ((endtime - starttime) / 1000) + &#x27; seconds&#x27;, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
         });
     }
 }

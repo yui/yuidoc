@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.47</em>
+            <em>API Docs for: 0.3.49</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -113,9 +113,9 @@ Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://yuilibrary.com/license/
 */
-var marked = require(&quot;marked&quot;),
+var marked = require(&#x27;marked&#x27;),
     fs = require(&#x27;graceful-fs&#x27;),
-    noop = function() {},
+    noop = function () {},
     path = require(&#x27;path&#x27;),
     TEMPLATE;
 
@@ -126,35 +126,37 @@ based templates to generate static HTML content
 * @module yuidoc
 */
 
-YUI.add(&#x27;doc-builder&#x27;, function(Y) {
+YUI.add(&#x27;doc-builder&#x27;, function (Y) {
+    /*jshint onevar:false */
 
     var fixType = Y.Lang.fixType,
-    print = function(items) {
-        var out = &#x27;&lt;ul&gt;&#x27;;
+        print = function (items) {
+            var out = &#x27;&lt;ul&gt;&#x27;;
 
-        Y.each(items, function(i, k) {
-            out += &#x27;&lt;li&gt;&#x27;;
-            if (Y.Lang.isObject(i)) {
-                if (!i.path) {
-                    out += k + &#x27;/&#x27; + print(i);
-                } else {
-                    out += &#x27;&lt;a href=&quot;../files/&#x27; + i.name + &#x27;.html&quot;&gt;&#x27; + k + &#x27;&lt;/a&gt;&#x27;;
+            Y.each(items, function (i, k) {
+                out += &#x27;&lt;li&gt;&#x27;;
+                if (Y.Lang.isObject(i)) {
+                    if (!i.path) {
+                        out += k + &#x27;/&#x27; + print(i);
+                    } else {
+                        out += &#x27;&lt;a href=&quot;../files/&#x27; + i.name + &#x27;.html&quot;&gt;&#x27; + k + &#x27;&lt;/a&gt;&#x27;;
+                    }
                 }
-            }
-            out += &#x27;&lt;/li&gt;&#x27;;
-        });
+                out += &#x27;&lt;/li&gt;&#x27;;
+            });
 
-        out += &#x27;&lt;/ul&gt;&#x27;;
-        return out;
-    };
+            out += &#x27;&lt;/ul&gt;&#x27;;
+            return out;
+        };
 
-    Y.Handlebars.registerHelper(&#x27;buildFileTree&#x27;, function(items, fn) {
+    Y.Handlebars.registerHelper(&#x27;buildFileTree&#x27;, function (items) {
         return print(items);
     });
 
-    var DEFAULT_THEME = themeDir = path.join(__dirname, &#x27;../&#x27;, &#x27;themes&#x27;, &#x27;default&#x27;);
+    var DEFAULT_THEME = path.join(__dirname, &#x27;../&#x27;, &#x27;themes&#x27;, &#x27;default&#x27;),
+        themeDir = DEFAULT_THEME;
 
-    Y.DocBuilder = function(options, data) {
+    Y.DocBuilder = function (options, data) {
         this.options = options;
         if (options.helpers) {
             this._addHelpers(options.helpers);
@@ -168,7 +170,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         this.files = 0;
         var self = this;
 
-        Y.Handlebars.registerHelper(&#x27;crossLink&#x27;, function(item, options) {
+        Y.Handlebars.registerHelper(&#x27;crossLink&#x27;, function (item, options) {
             var str = &#x27;&#x27;;
             if (!item) {
                 item = &#x27;&#x27;;
@@ -176,8 +178,8 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             //console.log(&#x27;CrossLink:&#x27;, item);
             if (item.indexOf(&#x27;|&#x27;) &gt; 0) {
                 var parts = item.split(&#x27;|&#x27;),
-                p = [];
-                Y.each(parts, function(i) {
+                    p = [];
+                Y.each(parts, function (i) {
                     p.push(self._parseCrossLink.call(self, i));
                 });
                 str = p.join(&#x27; | &#x27;);
@@ -187,28 +189,28 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             return str;
         });
 
-        Y.Handlebars.registerHelper(&#x27;crossLinkModule&#x27;, function(item, options) {
+        Y.Handlebars.registerHelper(&#x27;crossLinkModule&#x27;, function (item, options) {
             var str = item;
             if (self.data.modules[item]) {
-	            var content = options.fn(this);
-	            if (content === &quot;&quot;) {
-		            content = item;
-	            }
+                var content = options.fn(this);
+                if (content === &quot;&quot;) {
+                    content = item;
+                }
                 str = &#x27;&lt;a href=&quot;../modules/&#x27; + item.replace(/\//g, &#x27;_&#x27;) +
-                      &#x27;.html&quot;&gt;&#x27; + content + &#x27;&lt;/a&gt;&#x27;;
+                    &#x27;.html&quot;&gt;&#x27; + content + &#x27;&lt;/a&gt;&#x27;;
             }
             return str;
         });
 
-        Y.Handlebars.registerHelper(&#x27;crossLinkRaw&#x27;, function(item, fn) {
+        Y.Handlebars.registerHelper(&#x27;crossLinkRaw&#x27;, function (item) {
             var str = &#x27;&#x27;;
             if (!item) {
                 item = &#x27;&#x27;;
             }
             if (item.indexOf(&#x27;|&#x27;) &gt; 0) {
                 var parts = item.split(&#x27;|&#x27;),
-                p = [];
-                Y.each(parts, function(i) {
+                    p = [];
+                Y.each(parts, function (i) {
                     p.push(self._parseCrossLink.call(self, i, true));
                 });
                 str = p.join(&#x27; | &#x27;);
@@ -222,36 +224,35 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         if (options.cacheTemplates === false) {
             this.cacheTemplates = false;
         }
-
     };
 
     Y.DocBuilder.prototype = {
         /**
-        * Register a &#x60;Y.Handlebars&#x60; helper method
-        * @method _addHelpers
-        * @param {Object} helpers Object containing a hash of names and functions
-        */
-        _addHelpers: function(helpers) {
+         * Register a &#x60;Y.Handlebars&#x60; helper method
+         * @method _addHelpers
+         * @param {Object} helpers Object containing a hash of names and functions
+         */
+        _addHelpers: function (helpers) {
             Y.log(&#x27;Importing helpers: &#x27; + helpers, &#x27;info&#x27;, &#x27;builder&#x27;);
-            helpers.forEach(function(imp) {
+            helpers.forEach(function (imp) {
                 if (!Y.Files.exists(imp) || Y.Files.exists(path.join(process.cwd(), imp))) {
-                   imp= path.join(process.cwd(), imp);
+                    imp = path.join(process.cwd(), imp);
                 }
                 var h = require(imp);
-                Object.keys(h).forEach(function(name) {
+                Object.keys(h).forEach(function (name) {
                     Y.Handlebars.registerHelper(name, h[name]);
                 });
             });
         },
         /**
-        * Wrapper around the Markdown parser so it can be normalized or even side stepped
-        * @method markdown
-        * @private
-        * @param {String} md The Markdown string to parse
-        * @return {HTML} The rendered HTML
-        */
-        markdown: function(md) {
-            html = marked(md, this.options.markdown);
+         * Wrapper around the Markdown parser so it can be normalized or even side stepped
+         * @method markdown
+         * @private
+         * @param {String} md The Markdown string to parse
+         * @return {HTML} The rendered HTML
+         */
+        markdown: function (md) {
+            var html = marked(md, this.options.markdown);
             //Only reprocess if helpers were asked for
             if (this.options.helpers || (html.indexOf(&#x27;{{#crossLink&#x27;) &gt; -1)) {
                 //console.log(&#x27;MD: &#x27;, html);
@@ -269,19 +270,19 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             }
             return html;
         },
-        
+
         /**
-        * Parse the item to be cross linked and return an HREF linked to the item
-        * @method _parseCrossLink
-        * @private
-        * @param {String} item The item to crossLink
-        * @param {Boolean} [raw=false] Do not wrap it in HTML
-        * @param {String} [content] crossLink helper content
-        */
-        _parseCrossLink: function(item, raw, content) {
+         * Parse the item to be cross linked and return an HREF linked to the item
+         * @method _parseCrossLink
+         * @private
+         * @param {String} item The item to crossLink
+         * @param {Boolean} [raw=false] Do not wrap it in HTML
+         * @param {String} [content] crossLink helper content
+         */
+        _parseCrossLink: function (item, raw, content) {
             var self = this;
             var base = &#x27;../&#x27;,
-                baseName = item,
+                baseItem,
                 newWin = false,
                 className = &#x27;crosslink&#x27;;
 
@@ -322,7 +323,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
                 if (method.indexOf(&#x27;:&#x27;) &gt; -1) {
                     parts = method.split(&#x27;:&#x27;);
-                    method = parts[0],
+                    method = parts[0];
                     type = parts[1];
                     if (type.indexOf(&#x27;attr&#x27;) === 0) {
                         type = &#x27;attribute&#x27;;
@@ -331,7 +332,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
                 if (cls &amp;&amp; method) {
                     if (self.data.classes[cls]) {
-                        self.data.classitems.forEach(function(i) {
+                        self.data.classitems.forEach(function (i) {
                             if (i.itemtype === type &amp;&amp; i.name === method &amp;&amp; i.class === cls) {
                                 link = true;
                                 baseItem = method;
@@ -339,7 +340,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                                 if (t === &#x27;attribute&#x27;) {
                                     t = &#x27;attr&#x27;;
                                 }
-                                href = path.join(base, &#x27;classes&#x27;, cls + &#x27;.html#&#x27; + t + &#x27;_&#x27; + method);
+                                href = Y.webpath(base, &#x27;classes&#x27;, cls + &#x27;.html#&#x27; + t + &#x27;_&#x27; + method);
                             }
                         });
                     }
@@ -351,9 +352,9 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 link = false;
             }
             if (!href) {
-                href = path.join(base, &#x27;classes&#x27;, item + &#x27;.html&#x27;);
+                href = Y.webpath(base, &#x27;classes&#x27;, item + &#x27;.html&#x27;);
                 if (base.match(/^https?:\/\//)) {
-                    href = base + path.join(&#x27;classes&#x27;, item + &#x27;.html&#x27;);
+                    href = base + Y.webpath(&#x27;classes&#x27;, item + &#x27;.html&#x27;);
                 }
             }
             if (!link &amp;&amp; self.options.linkNatives) {
@@ -367,21 +368,21 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 }
             }
             if (link) {
-	            if (content !== undefined) {
-	                content = content.trim();
-	            }
-	            if (!content) {
-		            content = baseItem;
-	            }
+                if (content !== undefined) {
+                    content = content.trim();
+                }
+                if (!content) {
+                    content = baseItem;
+                }
                 item = &#x27;&lt;a href=&quot;&#x27; + href + &#x27;&quot; class=&quot;&#x27; + className + &#x27;&quot;&#x27; + ((newWin) ? &#x27; target=&quot;_blank&quot;&#x27; : &#x27;&#x27;) + &#x27;&gt;&#x27; + content + &#x27;&lt;/a&gt;&#x27;;
             }
             return (raw) ? href : item;
         },
         /**
-        * List of native types to cross link to MDN
-        * @property NATIVES
-        * @type Object
-        */
+         * List of native types to cross link to MDN
+         * @property NATIVES
+         * @type Object
+         */
         NATIVES: {
             &#x27;Array&#x27;: 1,
             &#x27;Boolean&#x27;: 1,
@@ -411,44 +412,44 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             &#x27;TypeError&#x27;: 1,
             &#x27;undefined&#x27;: 1,
             &#x27;URIError&#x27;: 1,
-            &#x27;HTMLElement&#x27;: &#x27;https:/&#x27;+&#x27;/developer.mozilla.org/en/Document_Object_Model_(DOM)/&#x27;,
-            &#x27;HTMLCollection&#x27;: &#x27;https:/&#x27;+&#x27;/developer.mozilla.org/en/Document_Object_Model_(DOM)/&#x27;,
-            &#x27;DocumentFragment&#x27;: &#x27;https:/&#x27;+&#x27;/developer.mozilla.org/en/Document_Object_Model_(DOM)/&#x27;,
-            &#x27;HTMLDocument&#x27;: &#x27;https:/&#x27;+&#x27;/developer.mozilla.org/en/Document_Object_Model_(DOM)/&#x27;
+            &#x27;HTMLElement&#x27;: &#x27;https:/&#x27; + &#x27;/developer.mozilla.org/en/Document_Object_Model_(DOM)/&#x27;,
+            &#x27;HTMLCollection&#x27;: &#x27;https:/&#x27; + &#x27;/developer.mozilla.org/en/Document_Object_Model_(DOM)/&#x27;,
+            &#x27;DocumentFragment&#x27;: &#x27;https:/&#x27; + &#x27;/developer.mozilla.org/en/Document_Object_Model_(DOM)/&#x27;,
+            &#x27;HTMLDocument&#x27;: &#x27;https:/&#x27; + &#x27;/developer.mozilla.org/en/Document_Object_Model_(DOM)/&#x27;
         },
         /**
-        * Function to link an external type uses &#x60;NATIVES&#x60; object
-        * @method NATIVES_LINKER
-        * @private
-        * @param {String} name The name of the type to link
-        * @return {String} The combined URL
-        */
-        NATIVES_LINKER: function(name) {
-            var url = &#x27;https:/&#x27;+&#x27;/developer.mozilla.org/en/JavaScript/Reference/Global_Objects/&#x27;;
+         * Function to link an external type uses &#x60;NATIVES&#x60; object
+         * @method NATIVES_LINKER
+         * @private
+         * @param {String} name The name of the type to link
+         * @return {String} The combined URL
+         */
+        NATIVES_LINKER: function (name) {
+            var url = &#x27;https:/&#x27; + &#x27;/developer.mozilla.org/en/JavaScript/Reference/Global_Objects/&#x27;;
             if (this.NATIVES[name] !== 1) {
                 url = this.NATIVES[name];
             }
             return url + name;
         },
         /**
-        * Mixes the various external data soures together into the local data, augmenting 
-        * it with flags.
-        * @method _mixExternal
-        * @private
-        */
-        _mixExternal: function() {
+         * Mixes the various external data soures together into the local data, augmenting
+         * it with flags.
+         * @method _mixExternal
+         * @private
+         */
+        _mixExternal: function () {
             var self = this;
             Y.log(&#x27;External data received, mixing&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
-            self.options.externalData.forEach(function(exData) {
-            
-                [&#x27;files&#x27;, &#x27;classes&#x27;, &#x27;modules&#x27;].forEach(function(k) {
-                    Y.each(exData[k], function(item, key) {
+            self.options.externalData.forEach(function (exData) {
+
+                [&#x27;files&#x27;, &#x27;classes&#x27;, &#x27;modules&#x27;].forEach(function (k) {
+                    Y.each(exData[k], function (item, key) {
                         item.external = true;
                         var file = item.name;
                         if (!item.file) {
                             file = self.filterFileName(item.name);
                         }
-                        
+
                         if (item.type) {
                             item.type = fixType(item.type);
                         }
@@ -458,33 +459,33 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                         self.data[k][key] = item;
                     });
                 });
-                Y.each(exData.classitems, function(item) {
+                Y.each(exData.classitems, function (item) {
                     item.external = true;
                     item.path = exData.base + path.join(&#x27;files&#x27;, self.filterFileName(item.file) + &#x27;.html&#x27;);
                     if (item.type) {
                         item.type = fixType(item.type);
                     }
                     if (item.params) {
-                        item.params.forEach(function(p) {
+                        item.params.forEach(function (p) {
                             if (p.type) {
                                 p.type = fixType(p.type);
                             }
                         });
                     }
-                    if (item.return) {
-                        item.return.type = fixType(item.return.type);
+                    if (item[&quot;return&quot;]) {
+                        item[&quot;return&quot;].type = fixType(item[&quot;return&quot;].type);
                     }
                     self.data.classitems.push(item);
                 });
             });
         },
         /**
-        * Fetches the remote data and fires the callback when it&#x27;s all complete
-        * @method mixExternal
-        * @param {Callback} cb The callback to execute when complete
-        * @async
-        */
-        mixExternal: function(cb) {
+         * Fetches the remote data and fires the callback when it&#x27;s all complete
+         * @method mixExternal
+         * @param {Callback} cb The callback to execute when complete
+         * @async
+         */
+        mixExternal: function (cb) {
             var self = this,
                 info = self.options.external;
 
@@ -501,20 +502,20 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 return;
             }
             if (!Y.Lang.isArray(info.data)) {
-                info.data = [ info.data ];
+                info.data = [info.data];
             }
             Y.log(&#x27;Importing external documentation data.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
-            
+
             var stack = new Y.Parallel();
-            info.data.forEach(function(i) {
+            info.data.forEach(function (i) {
                 var base;
                 if (i.match(/^https?:\/\//)) {
                     base = i.replace(&#x27;data.json&#x27;, &#x27;&#x27;);
-                    Y.use(&#x27;io-base&#x27;, stack.add(function() {
+                    Y.use(&#x27;io-base&#x27;, stack.add(function () {
                         Y.log(&#x27;Fetching: &#x27; + i, &#x27;info&#x27;, &#x27;builder&#x27;);
                         Y.io(i, {
                             on: {
-                                complete: stack.add(function(id, e) {
+                                complete: stack.add(function (id, e) {
                                     Y.log(&#x27;Received: &#x27; + i, &#x27;info&#x27;, &#x27;builder&#x27;);
                                     var data = JSON.parse(e.responseText);
                                     data.base = base;
@@ -539,31 +540,31 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 }
             });
 
-            stack.done(function() {
+            stack.done(function () {
                 Y.log(&#x27;Finished fetching remote data&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
                 self._mixExternal();
                 cb();
             });
         },
         /**
-        * File counter
-        * @property files
-        * @type Number
-        */
+         * File counter
+         * @property files
+         * @type Number
+         */
         files: null,
         /**
-        * Holder for project meta data
-        * @property _meta
-        * @type Object
-        * @private
-        */
+         * Holder for project meta data
+         * @property _meta
+         * @type Object
+         * @private
+         */
         _meta: null,
         /**
-        * Prep the meta data to be fed to Selleck
-        * @method getProjectMeta
-        * @return {Object} The project metadata
-        */
-        getProjectMeta: function() {
+         * Prep the meta data to be fed to Selleck
+         * @method getProjectMeta
+         * @return {Object} The project metadata
+         */
+        getProjectMeta: function () {
             var obj = {
                 meta: {
                     yuiSeedUrl: &#x27;http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js&#x27;,
@@ -578,7 +579,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                         Y.log(&#x27;Loading theme from &#x27; + theme, &#x27;info&#x27;, &#x27;builder&#x27;);
                         meta = Y.Files.getJSON(theme);
                     } else if (DEFAULT_THEME !== themeDir) {
-                        theme = path.join(DEFAULT_THEME, &#x27;theme.json&#x27;)
+                        theme = path.join(DEFAULT_THEME, &#x27;theme.json&#x27;);
                         if (Y.Files.exists(theme)) {
                             Y.log(&#x27;Loading theme from &#x27; + theme, &#x27;info&#x27;, &#x27;builder&#x27;);
                             meta = Y.Files.getJSON(theme);
@@ -595,22 +596,24 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             } else {
                 obj.meta = this._meta;
             }
-            Y.each(this.data.project, function(v, k) {
+            Y.each(this.data.project, function (v, k) {
                 var key = k.substring(0, 1).toUpperCase() + k.substring(1, k.length);
                 obj.meta[&#x27;project&#x27; + key] = v;
             });
-            return obj
+            return obj;
         },
         /**
-        * Populate the meta data for classes
-        * @method populateClasses
-        * @param {Object} opts The original options
-        * @return {Object} The modified options
-        */
-        populateClasses: function(opts) {
+         * Populate the meta data for classes
+         * @method populateClasses
+         * @param {Object} opts The original options
+         * @return {Object} The modified options
+         */
+        populateClasses: function (opts) {
             opts.meta.classes = [];
-            Y.each(this.data.classes, function(v) {
-                if (v.external) { return }
+            Y.each(this.data.classes, function (v) {
+                if (v.external) {
+                    return;
+                }
                 opts.meta.classes.push({
                     displayName: v.name,
                     name: v.name,
@@ -624,31 +627,40 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             return opts;
         },
         /**
-        * Populate the meta data for modules
-        * @method populateModules
-        * @param {Object} opts The original options
-        * @return {Object} The modified options
-        */
-        populateModules: function(opts) {
+         * Populate the meta data for modules
+         * @method populateModules
+         * @param {Object} opts The original options
+         * @return {Object} The modified options
+         */
+        populateModules: function (opts) {
             var self = this;
             opts.meta.modules = [];
             opts.meta.allModules = [];
-            Y.each(this.data.modules, function(v) {
-                if (v.external) { return }
-                opts.meta.allModules.push({ displayName: v.displayName || v.name, name: self.filterFileName(v.name), description: v.description });
+            Y.each(this.data.modules, function (v) {
+                if (v.external) {
+                    return;
+                }
+                opts.meta.allModules.push({
+                    displayName: v.displayName || v.name,
+                    name: self.filterFileName(v.name),
+                    description: v.description
+                });
                 if (!v.is_submodule) {
-                    var o = { displayName: v.displayName || v.name, name: self.filterFileName(v.name) };
+                    var o = {
+                        displayName: v.displayName || v.name,
+                        name: self.filterFileName(v.name)
+                    };
                     if (v.submodules) {
                         o.submodules = [];
-                        Y.each(v.submodules, function(i, k) {
-                            moddef = self.data.modules[k];
+                        Y.each(v.submodules, function (i, k) {
+                            var moddef = self.data.modules[k];
                             if (moddef) {
                                 o.submodules.push({
                                     displayName: k,
                                     description: moddef.description
                                 });
-                            } else {
-                                //Y.log(&#x27;Submodule data missing: &#x27; + k + &#x27; for &#x27; + v.name, &#x27;warn&#x27;, &#x27;builder&#x27;);
+                                // } else {
+                                //     Y.log(&#x27;Submodule data missing: &#x27; + k + &#x27; for &#x27; + v.name, &#x27;warn&#x27;, &#x27;builder&#x27;);
                             }
                         });
                         o.submodules.sort(self.nameSort);
@@ -661,30 +673,38 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             return opts;
         },
         /**
-        * Populate the meta data for files
-        * @method populateFiles
-        * @param {Object} opts The original options
-        * @return {Object} The modified options
-        */
-        populateFiles: function(opts) {
+         * Populate the meta data for files
+         * @method populateFiles
+         * @param {Object} opts The original options
+         * @return {Object} The modified options
+         */
+        populateFiles: function (opts) {
             var self = this;
             opts.meta.files = [];
-            Y.each(this.data.files, function(v) {
-                if (v.external) { return }
-                opts.meta.files.push({ displayName: v.name, name: self.filterFileName(v.name), path: v.path || v.name });
+            Y.each(this.data.files, function (v) {
+                if (v.external) {
+                    return;
+                }
+                opts.meta.files.push({
+                    displayName: v.name,
+                    name: self.filterFileName(v.name),
+                    path: v.path || v.name
+                });
             });
 
             var tree = {};
             var files = [];
-            Y.each(this.data.files, function(v) {
-                if (v.external) { return }
+            Y.each(this.data.files, function (v) {
+                if (v.external) {
+                    return;
+                }
                 files.push(v.name);
             });
             files.sort();
-            Y.each(files, function(v) {
+            Y.each(files, function (v) {
                 var p = v.split(&#x27;/&#x27;),
                     par;
-                p.forEach(function(i, k) {
+                p.forEach(function (i, k) {
                     if (!par) {
                         if (!tree[i]) {
                             tree[i] = {};
@@ -710,34 +730,34 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             return opts;
         },
         /**
-        * Parses file and line number from an item object and build&#x27;s an HREF
-        * @method addFoundAt
-        * @param {Object} a The item to parse
-        * @return {String} The parsed HREF
-        */
-        addFoundAt: function(a) {
+         * Parses file and line number from an item object and build&#x27;s an HREF
+         * @method addFoundAt
+         * @param {Object} a The item to parse
+         * @return {String} The parsed HREF
+         */
+        addFoundAt: function (a) {
             var self = this;
             if (a.file &amp;&amp; a.line &amp;&amp; !self.options.nocode) {
                 a.foundAt = &#x27;../files/&#x27; + self.filterFileName(a.file) + &#x27;.html#l&#x27; + a.line;
                 if (a.path) {
-                    a.foundAt = a.path + &#x27;#l&#x27; + a.line;   
+                    a.foundAt = a.path + &#x27;#l&#x27; + a.line;
                 }
             }
             return a;
         },
         /**
-        * Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions
-        * with the &#x60;Markdown Parser&#x60;
-        * @method augmentData
-        * @param {Object} o The object to recurse and augment
-        * @return {Object} The augmented object
-        */
-        augmentData: function(o) {
+         * Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions
+         * with the &#x60;Markdown Parser&#x60;
+         * @method augmentData
+         * @param {Object} o The object to recurse and augment
+         * @return {Object} The augmented object
+         */
+        augmentData: function (o) {
             var self = this;
             o = self.addFoundAt(o);
-            Y.each(o, function(i, k1) {
+            Y.each(o, function (i, k1) {
                 if (i &amp;&amp; i.forEach) {
-                    Y.each(i, function(a, k) {
+                    Y.each(i, function (a, k) {
                         if (!(a instanceof Object)) {
                             return;
                         }
@@ -758,7 +778,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                         }
                         a = self.addFoundAt(a);
 
-                        Y.each(a, function(c, d) {
+                        Y.each(a, function (c, d) {
                             if (c.forEach || (c instanceof Object)) {
                                 c = self.augmentData(c);
                                 a[d] = c;
@@ -769,7 +789,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     });
                 } else if (i instanceof Object) {
                     i = self.addFoundAt(i);
-                    Y.each(i, function(v, k) {
+                    Y.each(i, function (v, k) {
                         if (k === &#x27;final&#x27;) {
                             o[k1][k] = true;
                         }
@@ -792,18 +812,18 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             return o;
         },
         /**
-        * Makes the default directories needed
-        * @method makeDirs
-        * @param {Callback} cb The callback to execute after it&#x27;s completed
-        */
-        makeDirs: function(cb) {
+         * Makes the default directories needed
+         * @method makeDirs
+         * @param {Callback} cb The callback to execute after it&#x27;s completed
+         */
+        makeDirs: function (cb) {
             var self = this;
             var dirs = [&#x27;classes&#x27;, &#x27;modules&#x27;, &#x27;files&#x27;];
             if (self.options.dumpview) {
                 dirs.push(&#x27;json&#x27;);
             }
-            var writeRedirect = function(dir, file, cb) {
-                Y.Files.exists(file, function(x) {
+            var writeRedirect = function (dir, file, cb) {
+                Y.Files.exists(file, function (x) {
                     if (x) {
                         var out = path.join(dir, &#x27;index.html&#x27;);
                         fs.createReadStream(file).pipe(fs.createWriteStream(out));
@@ -814,11 +834,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             var defaultIndex = path.join(themeDir, &#x27;assets&#x27;, &#x27;index.html&#x27;);
             var stack = new Y.Parallel();
             Y.log(&#x27;Making default directories: &#x27; + dirs.join(&#x27;,&#x27;), &#x27;info&#x27;, &#x27;builder&#x27;);
-            dirs.forEach(function(d) {
+            dirs.forEach(function (d) {
                 var dir = path.join(self.options.outdir, d);
-                Y.Files.exists(dir, stack.add(function(x) {
+                Y.Files.exists(dir, stack.add(function (x) {
                     if (!x) {
-                        fs.mkdir(dir, 0777, stack.add(function() {
+                        fs.mkdir(dir, 0777, stack.add(function () {
                             writeRedirect(dir, defaultIndex, stack.add(noop));
                         }));
                     } else {
@@ -826,7 +846,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     }
                 }));
             });
-            stack.done(function() {
+            stack.done(function () {
                 if (cb) {
                     cb();
                 }
@@ -834,23 +854,23 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         },
 
 
-	_resolveUrl: function(url, opts) {
-            if(!url) {
-               return null;
+        _resolveUrl: function (url, opts) {
+            if (!url) {
+                return null;
             }
-            if ( url.indexOf(&quot;://&quot;) &gt;= 0 ) {
+            if (url.indexOf(&quot;://&quot;) &gt;= 0) {
                 return url;
             }
-            return path.join(opts.meta.projectRoot,url);
+            return path.join(opts.meta.projectRoot, url);
         },
 
         /**
-        * Parses &#x60;&lt;pre&gt;&lt;code&gt;&#x60; tags and adds the __prettyprint__ &#x60;className&#x60; to them
-        * @method _parseCode
-        * @private
-        * @param {HTML} html The HTML to parse
-        * @return {HTML} The parsed HTML
-        */
+         * Parses &#x60;&lt;pre&gt;&lt;code&gt;&#x60; tags and adds the __prettyprint__ &#x60;className&#x60; to them
+         * @method _parseCode
+         * @private
+         * @param {HTML} html The HTML to parse
+         * @return {HTML} The parsed HTML
+         */
         _parseCode: function (html) {
             html = html || &#x27;&#x27;;
             //html = html.replace(/&lt;pre&gt;&lt;code&gt;/g, &#x27;&lt;pre class=&quot;code&quot;&gt;&lt;code class=&quot;prettyprint&quot;&gt;&#x27;);
@@ -865,7 +885,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         * @param {HTML} html The HTML to parse
         * @return {HTML} The parsed HTML
         */
-        _inlineCode: function(html) {
+        _inlineCode: function (html) {
             html = html.replace(/\\&#x60;/g, &#x27;`&#x27;);
 
             html = html.replace(/&#x60;(.+?)&#x60;/g, function (match, code) {
@@ -888,12 +908,12 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
         * @param {Error} callback.err
         * @param {HTML} callback.html The assembled template markup
         */
-        render: function(source, view, layout, partials, callback) {
+        render: function (source, view, layout, partials, callback) {
             var html = [];
 
-            function buffer(line) {
-                html.push(line);
-            }
+            // function buffer(line) {
+            //     html.push(line);
+            // }
 
             // Allow callback as third or fourth param.
             if (typeof partials === &#x27;function&#x27;) {
@@ -903,8 +923,10 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 callback = layout;
                 layout = null;
             }
-            var parts = Y.merge(partials || {}, { layout_content: source });
-            Y.each(parts, function(source, name) {
+            var parts = Y.merge(partials || {}, {
+                layout_content: source
+            });
+            Y.each(parts, function (source, name) {
                 Y.Handlebars.registerPartial(name, source);
             });
 
@@ -920,27 +942,27 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 } else {
                     _v[k] = view[k];
                 }
-            };
+            }
             html = TEMPLATE(_v);
             //html = html.replace(/{{&amp;#x2F;/g, &#x27;{{/&#x27;);
 
-            
+
             //html = (Y.Handlebars.compile(html))({});
 
             html = this._inlineCode(html);
             callback(null, html);
         },
         /**
-        * Render the index file
-        * @method renderIndex
-        * @param {Function} cb The callback fired when complete
-        * @param {String} cb.html The HTML to render this view
-        * @param {Object} cv.view The View Data
-        */
-        renderIndex: function(cb) {
+         * Render the index file
+         * @method renderIndex
+         * @param {Function} cb The callback fired when complete
+         * @param {String} cb.html The HTML to render this view
+         * @param {Object} cv.view The View Data
+         */
+        renderIndex: function (cb) {
             var self = this;
 
-            Y.prepare([DEFAULT_THEME, themeDir], self.getProjectMeta(), function(err, opts) {
+            Y.prepare([DEFAULT_THEME, themeDir], self.getProjectMeta(), function (err, opts) {
                 opts.meta.title = self.data.project.name;
                 opts.meta.projectRoot = &#x27;./&#x27;;
                 opts.meta.projectAssets = &#x27;./assets&#x27;;
@@ -948,24 +970,24 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 opts = self.populateClasses(opts);
                 opts = self.populateModules(opts);
 
-                var view   = new Y.DocView(opts.meta);
-                self.render(&#x27;{{&gt;index}}&#x27;, view, opts.layouts.main, opts.partials, function(err, html) {
+                var view = new Y.DocView(opts.meta);
+                self.render(&#x27;{{&gt;index}}&#x27;, view, opts.layouts.main, opts.partials, function (err, html) {
                     self.files++;
                     cb(html, view);
                 });
             });
         },
         /**
-        * Generates the index.html file
-        * @method writeIndex
-        * @param {Callback} cb The callback to execute after it&#x27;s completed
-        */
-        writeIndex: function(cb) {
+         * Generates the index.html file
+         * @method writeIndex
+         * @param {Callback} cb The callback to execute after it&#x27;s completed
+         */
+        writeIndex: function (cb) {
             var self = this,
                 stack = new Y.Parallel();
 
             Y.log(&#x27;Preparing index.html&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
-            self.renderIndex(stack.add(function(html, view) {
+            self.renderIndex(stack.add(function (html, view) {
                 stack.html = html;
                 stack.view = view;
                 if (self.options.dumpview) {
@@ -974,25 +996,25 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 Y.Files.writeFile(path.join(self.options.outdir, &#x27;index.html&#x27;), html, stack.add(noop));
             }));
 
-            stack.done(function(html, view) {
+            stack.done(function ( /* html, view */ ) {
                 Y.log(&#x27;Writing index.html&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
                 cb(stack.html, stack.view);
             });
         },
         /**
-        * Render a module 
-        * @method renderModule
-        * @param {Function} cb The callback fired when complete
-        * @param {String} cb.html The HTML to render this view
-        * @param {Object} cv.view The View Data
-        */
-        renderModule: function(cb, data, layout) {
+         * Render a module
+         * @method renderModule
+         * @param {Function} cb The callback fired when complete
+         * @param {String} cb.html The HTML to render this view
+         * @param {Object} cv.view The View Data
+         */
+        renderModule: function (cb, data, layout) {
             var self = this;
             var stack = new Y.Parallel();
 
             data.displayName = data.name;
             data.name = self.filterFileName(data.name);
-            Y.prepare([DEFAULT_THEME, themeDir], self.getProjectMeta(), function(err, opts) {
+            Y.prepare([DEFAULT_THEME, themeDir], self.getProjectMeta(), function (err, opts) {
                 opts.meta = Y.merge(opts.meta, data);
 
                 //opts.meta.htmlTitle = v.name + &#x27;: &#x27; + self.data.project.name;
@@ -1012,10 +1034,13 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
                 if (data.classes &amp;&amp; Object.keys(data.classes).length) {
                     opts.meta.moduleClasses = [];
-                    Y.each(Object.keys(data.classes), function(name) {
+                    Y.each(Object.keys(data.classes), function (name) {
                         var i = self.data.classes[name];
                         if (i) {
-                            opts.meta.moduleClasses.push({ name: i.name, displayName: i.name });
+                            opts.meta.moduleClasses.push({
+                                name: i.name,
+                                displayName: i.name
+                            });
                         }
                     });
                     opts.meta.moduleClasses.sort(self.nameSort);
@@ -1023,85 +1048,94 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 if (data.example &amp;&amp; data.example.length) {
                     if (data.example.forEach) {
                         var e = &#x27;&#x27;;
-                        data.example.forEach(function(v) {
+                        data.example.forEach(function (v) {
                             e += self._parseCode(self.markdown(v));
                         });
                         data.example = e;
                     } else {
-                        data.example = self._parseCode(self.markdown(i.example));
+                        data.example = self._parseCode(self.markdown(data.example));
                     }
                     opts.meta.example = data.example;
                 }
                 if (data.submodules &amp;&amp; Object.keys(data.submodules).length) {
                     opts.meta.subModules = [];
-                    Y.each(Object.keys(data.submodules), function(name) {
+                    Y.each(Object.keys(data.submodules), function (name) {
                         var i = self.data.modules[name];
                         if (i) {
-                            opts.meta.subModules.push({ name: i.name, displayName: i.name, description: i.description });
+                            opts.meta.subModules.push({
+                                name: i.name,
+                                displayName: i.name,
+                                description: i.description
+                            });
                         }
                     });
                     opts.meta.subModules.sort(self.nameSort);
                 }
 
-                var view   = new Y.DocView(opts.meta);
+                var view = new Y.DocView(opts.meta);
                 var mainLayout = opts.layouts[layout];
-                self.render(&#x27;{{&gt;module}}&#x27;, view, mainLayout, opts.partials, stack.add(function(err, html) {
+                self.render(&#x27;{{&gt;module}}&#x27;, view, mainLayout, opts.partials, stack.add(function (err, html) {
                     self.files++;
                     stack.html = html;
                     stack.view = view;
                 }));
             });
 
-            stack.done(function() {
+            stack.done(function () {
                 cb(stack.html, stack.view);
             });
-
         },
         /**
-        * Generates the module files under &quot;out&quot;/modules/
-        * @method writeModules
-        * @param {Callback} cb The callback to execute after it&#x27;s completed
-        */
-        writeModules: function(cb, layout) {
+         * Generates the module files under &quot;out&quot;/modules/
+         * @method writeModules
+         * @param {Callback} cb The callback to execute after it&#x27;s completed
+         */
+        writeModules: function (cb, layout) {
             layout = layout || &#x27;main&#x27;;
             var self = this,
                 stack = new Y.Parallel();
             stack.html = [];
             stack.view = [];
-            
+
             var counter = 0;
-                Object.keys(self.data.modules).forEach(function(k) {
-                    if (!self.data.modules[k].external) {
-                        counter++;
-                    }
-                });
+            Object.keys(self.data.modules).forEach(function (k) {
+                if (!self.data.modules[k].external) {
+                    counter++;
+                }
+            });
             Y.log(&#x27;Rendering and writing &#x27; + counter + &#x27; modules pages.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
-            Y.each(self.data.modules, function(v) {
-                if (v.external) { return }
-                self.renderModule(function(html, view) {
+            Y.each(self.data.modules, function (v) {
+                if (v.external) {
+                    return;
+                }
+                self.renderModule(function (html, view) {
                     stack.html.push(html);
                     stack.view.push(view);
                     if (self.options.dumpview) {
-                        Y.Files.writeFile(path.join(self.options.outdir, &#x27;json&#x27;, &#x27;module_&#x27; + v.name + &#x27;.json&#x27;), JSON.stringify(view), stack.add(noop));
+                        Y.Files.writeFile(
+                            path.join(self.options.outdir, &#x27;json&#x27;, &#x27;module_&#x27; + v.name + &#x27;.json&#x27;),
+                            JSON.stringify(view),
+                            stack.add(noop)
+                        );
                     }
                     Y.Files.writeFile(path.join(self.options.outdir, &#x27;modules&#x27;, v.name + &#x27;.html&#x27;), html, stack.add(noop));
                 }, v, layout);
             });
-            stack.done(function() {
+            stack.done(function () {
                 Y.log(&#x27;Finished writing module files&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
                 cb(stack.html, stack.view);
             });
         },
         /**
-        * Checks an array of items (class items) to see if an item is in that list
-        * @method hasProperty
-        * @param {Array} a The Array of items to check
-        * @param {Object} b The object to find
-        * @return Boolean
-        */
-        hasProperty: function(a, b) {
+         * Checks an array of items (class items) to see if an item is in that list
+         * @method hasProperty
+         * @param {Array} a The Array of items to check
+         * @param {Object} b The object to find
+         * @return Boolean
+         */
+        hasProperty: function (a, b) {
             var other = false;
-            var h = Y.some(a, function(i, k) {
+            Y.some(a, function (i, k) {
                 if ((i.itemtype === b.itemtype) &amp;&amp; (i.name === b.name)) {
                     other = k;
                     return true;
@@ -1110,48 +1144,49 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             return other;
         },
         /**
-        * Counter for stepping into merges
-        * @private
-        * @property _mergeCounter
-        * @type Number
-        */
+         * Counter for stepping into merges
+         * @private
+         * @property _mergeCounter
+         * @type Number
+         */
         _mergeCounter: null,
         /**
-        * Merge superclass data into a child class
-        * @method mergeExtends
-        * @param {Object} info The item to extend
-        * @param {Array} classItems The list of items to merge in
-        * @param {Boolean} first Set for the first call
-        */
-        mergeExtends: function(info, classItems, first) {
+         * Merge superclass data into a child class
+         * @method mergeExtends
+         * @param {Object} info The item to extend
+         * @param {Array} classItems The list of items to merge in
+         * @param {Boolean} first Set for the first call
+         */
+        mergeExtends: function (info, classItems, first) {
             var self = this;
             self._mergeCounter = (first) ? 0 : (self._mergeCounter + 1);
 
             if (self._mergeCounter === 100) {
-                throw(&#x27;YUIDoc detected a loop extending class &#x27; + info.name);
+                throw (&#x27;YUIDoc detected a loop extending class &#x27; + info.name);
             }
             if (info.extends || info.uses) {
                 var hasItems = {};
                 hasItems[info.extends] = 1;
                 if (info.uses) {
-                    info.uses.forEach(function(v) {
+                    info.uses.forEach(function (v) {
                         hasItems[v] = 1;
                     });
                 }
-                self.data.classitems.forEach(function(v) {
+                self.data.classitems.forEach(function (v) {
                     //console.error(v.class, &#x27;==&#x27;, info.extends);
                     if (hasItems[v.class]) {
                         if (!v.static) {
-                            var override = self.hasProperty(classItems, v);
+                            var q,
+                                override = self.hasProperty(classItems, v);
                             if (override === false) {
                                 //This method was extended from the parent class but not over written
                                 //console.error(&#x27;Merging extends from&#x27;, v.class, &#x27;onto&#x27;, info.name);
-                                var q = Y.merge({}, v);
+                                q = Y.merge({}, v);
                                 q.extended_from = v.class;
                                 classItems.push(q);
                             } else {
                                 //This method was extended from the parent and overwritten in this class
-                                var q = Y.merge({}, v);
+                                q = Y.merge({}, v);
                                 q = self.augmentData(q);
                                 classItems[override].overwritten_from = q;
                             }
@@ -1168,17 +1203,17 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             return classItems;
         },
         /**
-        * Render the class file
-        * @method renderClass
-        * @param {Function} cb The callback fired when complete
-        * @param {String} cb.html The HTML to render this view
-        * @param {Object} cv.view The View Data
-        */
-        renderClass: function(cb, data, layout) {
+         * Render the class file
+         * @method renderClass
+         * @param {Function} cb The callback fired when complete
+         * @param {String} cb.html The HTML to render this view
+         * @param {Object} cv.view The View Data
+         */
+        renderClass: function (cb, data, layout) {
             var self = this;
             var stack = new Y.Parallel();
 
-            Y.prepare([DEFAULT_THEME, themeDir], self.getProjectMeta(), function(err, opts) {
+            Y.prepare([DEFAULT_THEME, themeDir], self.getProjectMeta(), function (err, opts) {
                 //console.log(opts);
                 if (err) {
                     console.log(err);
@@ -1217,7 +1252,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 }
 
                 var classItems = [];
-                self.data.classitems.forEach(function(i) {
+                self.data.classitems.forEach(function (i) {
                     if (i.class === data.name) {
                         classItems.push(i);
                     }
@@ -1230,10 +1265,10 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     i = self.augmentData(i);
                     i.paramsList = [];
                     if (i.params) {
-                        i.params.forEach(function(p, v) {
+                        i.params.forEach(function (p) {
                             var name = p.name;
                             if (p.optional) {
-                                name = &#x27;[&#x27; + name + ((p.optdefault) ? &#x27;=&#x27; + p.optdefault : &#x27;&#x27;) + &#x27;]&#x27;
+                                name = &#x27;[&#x27; + name + ((p.optdefault) ? &#x27;=&#x27; + p.optdefault : &#x27;&#x27;) + &#x27;]&#x27;;
                             }
                             i.paramsList.push(name);
                         });
@@ -1247,16 +1282,16 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                         i.paramsList = &#x27; &#x27;;
                     }
                     i.returnType = &#x27; &#x27;;
-                    if (i.return) {
+                    if (i[&quot;return&quot;]) {
                         i.hasReturn = true;
-                        i.returnType = i.return.type;
+                        i.returnType = i[&quot;return&quot;].type;
                     }
                     //console.error(i);
                     opts.meta.is_constructor = [i];
                     if (i.example &amp;&amp; i.example.length) {
                         if (i.example.forEach) {
                             var e = &#x27;&#x27;;
-                            i.example.forEach(function(v) {
+                            i.example.forEach(function (v) {
                                 e += self._parseCode(self.markdown(v));
                             });
                             i.example = e;
@@ -1266,157 +1301,158 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     }
                 }
 
-                classItems.forEach(function(i) {
+                classItems.forEach(function (i) {
+                    var e;
                     switch (i.itemtype) {
-                        case &#x27;method&#x27;:
-                            i = self.augmentData(i);
-                            i.paramsList = [];
-                            if (i.params &amp;&amp; i.params.forEach) {
-                                i.params.forEach(function(p, v) {
-                                    var name = p.name;
-                                    if (p.optional) {
-                                        name = &#x27;[&#x27; + name + ((p.optdefault) ? &#x27;=&#x27; + p.optdefault : &#x27;&#x27;) + &#x27;]&#x27;
-                                    }
-                                    i.paramsList.push(name);
+                    case &#x27;method&#x27;:
+                        i = self.augmentData(i);
+                        i.paramsList = [];
+                        if (i.params &amp;&amp; i.params.forEach) {
+                            i.params.forEach(function (p) {
+                                var name = p.name;
+                                if (p.optional) {
+                                    name = &#x27;[&#x27; + name + ((p.optdefault) ? &#x27;=&#x27; + p.optdefault : &#x27;&#x27;) + &#x27;]&#x27;;
+                                }
+                                i.paramsList.push(name);
+                            });
+                        }
+                        //i.methodDescription = self._parseCode(markdown(i.description || &#x27;&#x27;));
+                        i.methodDescription = self._parseCode(i.description);
+                        if (i.example &amp;&amp; i.example.length) {
+                            if (i.example.forEach) {
+                                e = &#x27;&#x27;;
+                                i.example.forEach(function (v) {
+                                    e += self._parseCode(self.markdown(v));
                                 });
-                            }
-                            //i.methodDescription = self._parseCode(markdown(i.description || &#x27;&#x27;));
-                            i.methodDescription = self._parseCode(i.description);
-                            if (i.example &amp;&amp; i.example.length) {
-                                if (i.example.forEach) {
-                                    var e = &#x27;&#x27;;
-                                    i.example.forEach(function(v) {
-                                        e += self._parseCode(self.markdown(v));
-                                    });
-                                    i.example = e;
-                                } else {
-                                    i.example = self._parseCode(self.markdown(i.example));
-                                }
-                            }
-                            i.hasAccessType = i.access;
-                            i.hasParams = i.paramsList.length;
-                            if (i.paramsList.length) {
-                                i.paramsList = i.paramsList.join(&#x27;, &#x27;);
+                                i.example = e;
                             } else {
-                                i.paramsList = &#x27; &#x27;;
+                                i.example = self._parseCode(self.markdown(i.example));
                             }
-                            i.returnType = &#x27; &#x27;;
-                            if (i.return) {
-                                i.hasReturn = true;
-                                i.returnType = i.return.type;
-                            }
+                        }
+                        i.hasAccessType = i.access;
+                        i.hasParams = i.paramsList.length;
+                        if (i.paramsList.length) {
+                            i.paramsList = i.paramsList.join(&#x27;, &#x27;);
+                        } else {
+                            i.paramsList = &#x27; &#x27;;
+                        }
+                        i.returnType = &#x27; &#x27;;
+                        if (i[&quot;return&quot;]) {
+                            i.hasReturn = true;
+                            i.returnType = i[&quot;return&quot;].type;
+                        }
 
-                            // If this item is provided by a module other
-                            // than the module that provided the original
-                            // class, add the original module name to the
-                            // item&#x27;s &#x60;providedBy&#x60; property so we can
-                            // indicate the relationship.
-                            if ((i.submodule || i.module) !== (data.submodule || data.module)) {
-                                i.providedBy = (i.submodule || i.module);
-                            }
+                        // If this item is provided by a module other
+                        // than the module that provided the original
+                        // class, add the original module name to the
+                        // item&#x27;s &#x60;providedBy&#x60; property so we can
+                        // indicate the relationship.
+                        if ((i.submodule || i.module) !== (data.submodule || data.module)) {
+                            i.providedBy = (i.submodule || i.module);
+                        }
 
-                            opts.meta.methods.push(i);
-                            break;
-                        case &#x27;property&#x27;:
-                            i = self.augmentData(i);
-                            //i.propertyDescription = self._parseCode(markdown(i.description || &#x27;&#x27;));
-                            i.propertyDescription = self._parseCode(i.description);
-                            if (!i.type) {
-                                i.type = &#x27;unknown&#x27;;
-                            }
-                            if (i.final === &#x27;&#x27;) {
-                                i.final = true;
-                            }
-                            if (i.example &amp;&amp; i.example.length) {
-                                if (i.example.forEach) {
-                                    var e = &#x27;&#x27;;
-                                    i.example.forEach(function(v) {
-                                        e += self._parseCode(self.markdown(v));
-                                    });
-                                    i.example = e;
-                                } else {
-                                    i.example = self._parseCode(self.markdown(i.example));
-                                }
-                            }
-
-                            // If this item is provided by a module other
-                            // than the module that provided the original
-                            // class, add the original module name to the
-                            // item&#x27;s &#x60;providedBy&#x60; property so we can
-                            // indicate the relationship.
-                            if ((i.submodule || i.module) !== (data.submodule || data.module)) {
-                                i.providedBy = (i.submodule || i.module);
-                            }
-
-                            opts.meta.properties.push(i);
-                            break;
-
-                        case &#x27;attribute&#x27;: // fallthru
-                        case &#x27;config&#x27;:
-                            i = self.augmentData(i);
-                            //i.attrDescription = self._parseCode(markdown(i.description || &#x27;&#x27;));
-                            i.attrDescription = self._parseCode(i.description);
-
-                            if (i.itemtype === &#x27;config&#x27;) {
-                                i.config = true;
+                        opts.meta.methods.push(i);
+                        break;
+                    case &#x27;property&#x27;:
+                        i = self.augmentData(i);
+                        //i.propertyDescription = self._parseCode(markdown(i.description || &#x27;&#x27;));
+                        i.propertyDescription = self._parseCode(i.description);
+                        if (!i.type) {
+                            i.type = &#x27;unknown&#x27;;
+                        }
+                        if (i.final === &#x27;&#x27;) {
+                            i.final = true;
+                        }
+                        if (i.example &amp;&amp; i.example.length) {
+                            if (i.example.forEach) {
+                                e = &#x27;&#x27;;
+                                i.example.forEach(function (v) {
+                                    e += self._parseCode(self.markdown(v));
+                                });
+                                i.example = e;
                             } else {
-                                i.emit = self.options.attributesEmit;
+                                i.example = self._parseCode(self.markdown(i.example));
                             }
-                            if (i.readonly === &#x27;&#x27;) {
-                                i.readonly = true;
+                        }
+
+                        // If this item is provided by a module other
+                        // than the module that provided the original
+                        // class, add the original module name to the
+                        // item&#x27;s &#x60;providedBy&#x60; property so we can
+                        // indicate the relationship.
+                        if ((i.submodule || i.module) !== (data.submodule || data.module)) {
+                            i.providedBy = (i.submodule || i.module);
+                        }
+
+                        opts.meta.properties.push(i);
+                        break;
+
+                    case &#x27;attribute&#x27;: // fallthru
+                    case &#x27;config&#x27;:
+                        i = self.augmentData(i);
+                        //i.attrDescription = self._parseCode(markdown(i.description || &#x27;&#x27;));
+                        i.attrDescription = self._parseCode(i.description);
+
+                        if (i.itemtype === &#x27;config&#x27;) {
+                            i.config = true;
+                        } else {
+                            i.emit = self.options.attributesEmit;
+                        }
+                        if (i.readonly === &#x27;&#x27;) {
+                            i.readonly = true;
+                        }
+
+                        if (i.example &amp;&amp; i.example.length) {
+                            if (i.example.forEach) {
+                                e = &#x27;&#x27;;
+                                i.example.forEach(function (v) {
+                                    e += self._parseCode(self.markdown(v));
+                                });
+                                i.example = e;
+                            } else {
+                                i.example = self._parseCode(self.markdown(i.example));
                             }
+                        }
 
-                            if (i.example &amp;&amp; i.example.length) {
-                                if (i.example.forEach) {
-                                    var e = &#x27;&#x27;;
-                                    i.example.forEach(function(v) {
-                                        e += self._parseCode(self.markdown(v));
-                                    });
-                                    i.example = e;
-                                } else {
-                                    i.example = self._parseCode(self.markdown(i.example));
-                                }
+                        // If this item is provided by a module other
+                        // than the module that provided the original
+                        // class, add the original module name to the
+                        // item&#x27;s &#x60;providedBy&#x60; property so we can
+                        // indicate the relationship.
+                        if ((i.submodule || i.module) !== (data.submodule || data.module)) {
+                            i.providedBy = (i.submodule || i.module);
+                        }
+
+                        opts.meta.attrs.push(i);
+                        break;
+                    case &#x27;event&#x27;:
+                        i = self.augmentData(i);
+                        //i.eventDescription = self._parseCode(markdown(i.description || &#x27;&#x27;));
+                        i.eventDescription = self._parseCode(i.description);
+
+                        if (i.example &amp;&amp; i.example.length) {
+                            if (i.example.forEach) {
+                                e = &#x27;&#x27;;
+                                i.example.forEach(function (v) {
+                                    e += self._parseCode(self.markdown(v));
+                                });
+                                i.example = e;
+                            } else {
+                                i.example = self._parseCode(self.markdown(i.example));
                             }
+                        }
 
-                            // If this item is provided by a module other
-                            // than the module that provided the original
-                            // class, add the original module name to the
-                            // item&#x27;s &#x60;providedBy&#x60; property so we can
-                            // indicate the relationship.
-                            if ((i.submodule || i.module) !== (data.submodule || data.module)) {
-                                i.providedBy = (i.submodule || i.module);
-                            }
+                        // If this item is provided by a module other
+                        // than the module that provided the original
+                        // class, add the original module name to the
+                        // item&#x27;s &#x60;providedBy&#x60; property so we can
+                        // indicate the relationship.
+                        if ((i.submodule || i.module) !== (data.submodule || data.module)) {
+                            i.providedBy = (i.submodule || i.module);
+                        }
 
-                            opts.meta.attrs.push(i);
-                            break;
-                        case &#x27;event&#x27;:
-                            i = self.augmentData(i);
-                            //i.eventDescription = self._parseCode(markdown(i.description || &#x27;&#x27;));
-                            i.eventDescription = self._parseCode(i.description);
-
-                            if (i.example &amp;&amp; i.example.length) {
-                                if (i.example.forEach) {
-                                    var e = &#x27;&#x27;;
-                                    i.example.forEach(function(v) {
-                                        e += self._parseCode(self.markdown(v));
-                                    });
-                                    i.example = e;
-                                } else {
-                                    i.example = self._parseCode(self.markdown(i.example));
-                                }
-                            }
-
-                            // If this item is provided by a module other
-                            // than the module that provided the original
-                            // class, add the original module name to the
-                            // item&#x27;s &#x60;providedBy&#x60; property so we can
-                            // indicate the relationship.
-                            if ((i.submodule || i.module) !== (data.submodule || data.module)) {
-                                i.providedBy = (i.submodule || i.module);
-                            }
-
-                            opts.meta.events.push(i);
-                            break;
+                        opts.meta.events.push(i);
+                        break;
                     }
                 });
 
@@ -1438,9 +1474,9 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     delete opts.meta.events;
                 }
 
-                var view   = new Y.DocView(opts.meta);
+                var view = new Y.DocView(opts.meta);
                 var mainLayout = opts.layouts[layout];
-                self.render(&#x27;{{&gt;classes}}&#x27;, view, mainLayout, opts.partials, stack.add(function(err, html) {
+                self.render(&#x27;{{&gt;classes}}&#x27;, view, mainLayout, opts.partials, stack.add(function (err, html) {
                     self.files++;
                     stack.html = html;
                     stack.view = view;
@@ -1448,16 +1484,16 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 }));
             });
 
-            stack.done(function() {
+            stack.done(function () {
                 cb(stack.html, stack.view, stack.opts);
             });
         },
         /**
-        * Generates the class files under &quot;out&quot;/classes/
-        * @method writeClasses
-        * @param {Callback} cb The callback to execute after it&#x27;s completed
-        */
-        writeClasses: function(cb, layout) {
+         * Generates the class files under &quot;out&quot;/classes/
+         * @method writeClasses
+         * @param {Callback} cb The callback to execute after it&#x27;s completed
+         */
+        writeClasses: function (cb, layout) {
             layout = layout || &#x27;main&#x27;;
             var self = this,
                 stack = new Y.Parallel();
@@ -1465,36 +1501,42 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             stack.view = [];
 
             var counter = 0;
-                Object.keys(self.data.classes).forEach(function(k) {
-                    if (!self.data.classes[k].external) {
-                        counter++;
-                    }
-                });
+            Object.keys(self.data.classes).forEach(function (k) {
+                if (!self.data.classes[k].external) {
+                    counter++;
+                }
+            });
             Y.log(&#x27;Rendering and writing &#x27; + counter + &#x27; class pages.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
-            Y.each(self.data.classes, function(v) {
-                if (v.external) { return }
-                self.renderClass(stack.add(function(html, view) {
+            Y.each(self.data.classes, function (v) {
+                if (v.external) {
+                    return;
+                }
+                self.renderClass(stack.add(function (html, view) {
                     stack.html.push(html);
                     stack.view.push(view);
                     if (self.options.dumpview) {
-                        Y.Files.writeFile(path.join(self.options.outdir, &#x27;json&#x27;, &#x27;classes_&#x27; + v.name + &#x27;.json&#x27;), JSON.stringify(view), stack.add(noop));
+                        Y.Files.writeFile(
+                            path.join(self.options.outdir, &#x27;json&#x27;, &#x27;classes_&#x27; + v.name + &#x27;.json&#x27;),
+                            JSON.stringify(view),
+                            stack.add(noop)
+                        );
                     }
                     Y.Files.writeFile(path.join(self.options.outdir, &#x27;classes&#x27;, v.name + &#x27;.html&#x27;), html, stack.add(noop));
                 }), v, layout);
             });
-            stack.done(function() {
+            stack.done(function () {
                 Y.log(&#x27;Finished writing class files&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
                 cb(stack.html, stack.view);
             });
         },
         /**
-        * Sort method of array of objects with a property called __name__
-        * @method nameSort
-        * @param {Object} a First object to compare
-        * @param {Object} b Second object to compare
-        * @return {Number} 1, -1 or 0 for sorting.
-        */
-        nameSort: function(a, b) {
+         * Sort method of array of objects with a property called __name__
+         * @method nameSort
+         * @param {Object} a First object to compare
+         * @param {Object} b Second object to compare
+         * @return {Number} 1, -1 or 0 for sorting.
+         */
+        nameSort: function (a, b) {
             if (!a.name || !b.name) {
                 return 0;
             }
@@ -1506,16 +1548,16 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 ret = -1;
             }
             if (an &gt; bn) {
-                ret =  1
+                ret = 1;
             }
             return ret;
         },
         /**
-        * Generates the syntax files under &#x60;&quot;out&quot;/files/&#x60;
-        * @method writeFiles
-        * @param {Callback} cb The callback to execute after it&#x27;s completed
-        */
-        writeFiles: function(cb, layout) {
+         * Generates the syntax files under &#x60;&quot;out&quot;/files/&#x60;
+         * @method writeFiles
+         * @param {Callback} cb The callback to execute after it&#x27;s completed
+         */
+        writeFiles: function (cb, layout) {
             layout = layout || &#x27;main&#x27;;
             var self = this,
                 stack = new Y.Parallel();
@@ -1523,42 +1565,52 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             stack.view = [];
 
             var counter = 0;
-                Object.keys(self.data.files).forEach(function(k) {
-                    if (!self.data.files[k].external) {
-                        counter++;
-                    }
-                });
+            Object.keys(self.data.files).forEach(function (k) {
+                if (!self.data.files[k].external) {
+                    counter++;
+                }
+            });
             Y.log(&#x27;Rendering and writing &#x27; + counter + &#x27; source files.&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
-            Y.each(self.data.files, function(v) {
-                if (v.external) { return }
-                self.renderFile(stack.add(function(html, view, data) {
+            Y.each(self.data.files, function (v) {
+                if (v.external) {
+                    return;
+                }
+                self.renderFile(stack.add(function (html, view, data) {
                     if (!view || !data) {
                         return;
                     }
                     stack.html.push(html);
                     stack.view.push(view);
                     if (self.options.dumpview) {
-                        Y.Files.writeFile(path.join(self.options.outdir, &#x27;json&#x27;, &#x27;files_&#x27; + self.filterFileName(data.name) + &#x27;.json&#x27;), JSON.stringify(view), stack.add(noop));
+                        Y.Files.writeFile(
+                            path.join(self.options.outdir, &#x27;json&#x27;, &#x27;files_&#x27; + self.filterFileName(data.name) + &#x27;.json&#x27;),
+                            JSON.stringify(view),
+                            stack.add(noop)
+                        );
                     }
-                    Y.Files.writeFile(path.join(self.options.outdir, &#x27;files&#x27;, self.filterFileName(data.name) + &#x27;.html&#x27;), html, stack.add(noop));
+                    Y.Files.writeFile(
+                        path.join(self.options.outdir, &#x27;files&#x27;, self.filterFileName(data.name) + &#x27;.html&#x27;),
+                        html,
+                        stack.add(noop)
+                    );
                 }), v, layout);
             });
-            stack.done(function() {
+            stack.done(function () {
                 Y.log(&#x27;Finished writing source files&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
                 cb(stack.html, stack.view);
             });
         },
         /**
-        * Render the source file
-        * @method renderFile
-        * @param {Function} cb The callback fired when complete
-        * @param {String} cb.html The HTML to render this view
-        * @param {Object} cv.view The View Data
-        */
-        renderFile: function(cb, data, layout) {
+         * Render the source file
+         * @method renderFile
+         * @param {Function} cb The callback fired when complete
+         * @param {String} cb.html The HTML to render this view
+         * @param {Object} cv.view The View Data
+         */
+        renderFile: function (cb, data, layout) {
             var self = this;
-            
-            Y.prepare([DEFAULT_THEME, themeDir], self.getProjectMeta(), function(err, opts) {
+
+            Y.prepare([DEFAULT_THEME, themeDir], self.getProjectMeta(), function (err, opts) {
                 if (err) {
                     console.log(err);
                 }
@@ -1579,7 +1631,7 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                 opts = self.populateFiles(opts);
 
                 opts.meta.fileName = data.name;
-                fs.readFile(opts.meta.fileName, Y.charset, Y.rbind(function(err, str, opts, data) {
+                fs.readFile(opts.meta.fileName, Y.charset, Y.rbind(function (err, str, opts, data) {
                     if (err) {
                         Y.log(err, &#x27;error&#x27;, &#x27;builder&#x27;);
                         cb(err);
@@ -1589,11 +1641,11 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
                     if (typeof self.options.tabspace === &#x27;string&#x27;) {
                         str = str.replace(/\t/g, self.options.tabspace);
                     }
-                    
+
                     opts.meta.fileData = str;
                     var view = new Y.DocView(opts.meta, &#x27;index&#x27;);
                     var mainLayout = opts.layouts[layout];
-                    self.render(&#x27;{{&gt;files}}&#x27;, view, mainLayout, opts.partials, function(err, html) {
+                    self.render(&#x27;{{&gt;files}}&#x27;, view, mainLayout, opts.partials, function (err, html) {
                         self.files++;
                         cb(html, view, data);
                     });
@@ -1603,42 +1655,44 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
 
         },
         /**
-        * Write the API meta data used for the AutoComplete widget
-        * @method writeAPIMeta
-        * @param {Callback} cb The callback to execute when complete
-        * @async
-        */
-        writeAPIMeta: function(cb) {
+         * Write the API meta data used for the AutoComplete widget
+         * @method writeAPIMeta
+         * @param {Callback} cb The callback to execute when complete
+         * @async
+         */
+        writeAPIMeta: function (cb) {
             Y.log(&#x27;Writing API Meta Data&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
             var self = this;
-            this.renderAPIMeta(function(js) {
+            this.renderAPIMeta(function (js) {
                 fs.writeFile(path.join(self.options.outdir, &#x27;api.js&#x27;), js, Y.charset, cb);
             });
         },
         /**
-        * Render the API meta and return the Javascript
-        * @method renderAPIMeta
-        * @param {Callback} cb The callback
-        * @async
-        */
-        renderAPIMeta: function(cb) {
+         * Render the API meta and return the Javascript
+         * @method renderAPIMeta
+         * @param {Callback} cb The callback
+         * @async
+         */
+        renderAPIMeta: function (cb) {
 
-            var opts = { meta: {} }, self = this;
+            var opts = {
+                meta: {}
+            };
             opts = this.populateClasses(opts);
             opts = this.populateModules(opts);
 
-            [&#x27;classes&#x27;, &#x27;modules&#x27;].forEach(function(id) {
-                opts.meta[id].forEach(function(v, k) {
+            [&#x27;classes&#x27;, &#x27;modules&#x27;].forEach(function (id) {
+                opts.meta[id].forEach(function (v, k) {
                     opts.meta[id][k] = v.name;
                     if (v.submodules) {
-                        v.submodules.forEach(function(s) {
+                        v.submodules.forEach(function (s) {
                             opts.meta[id].push(s.displayName);
                         });
                     }
                 });
                 opts.meta[id].sort();
             });
-            
+
             var apijs = &#x27;YUI.add(&quot;yuidoc-meta&quot;, function(Y) {\n&#x27; +
                 &#x27;   Y.YUIDoc = { meta: &#x27; + JSON.stringify(opts.meta, null, 4) + &#x27; };\n&#x27; +
                 &#x27;});&#x27;;
@@ -1646,65 +1700,73 @@ YUI.add(&#x27;doc-builder&#x27;, function(Y) {
             cb(apijs);
         },
         /**
-        * Normalizes a file path to a writable filename:
-        *
-        *    var path = &#x27;lib/file.js&#x27;;
-        *    returns &#x27;lib_file.js&#x27;;
-        *
-        * @method filterFileName
-        * @param {String} f The filename to normalize
-        * @return {String} The filtered file path
-        */
-        filterFileName: function(f) {
+         * Normalizes a file path to a writable filename:
+         *
+         *    var path = &#x27;lib/file.js&#x27;;
+         *    returns &#x27;lib_file.js&#x27;;
+         *
+         * @method filterFileName
+         * @param {String} f The filename to normalize
+         * @return {String} The filtered file path
+         */
+        filterFileName: function (f) {
             return f.replace(/[\/\\]/g, &#x27;_&#x27;);
         },
         /**
-        * Compiles the templates from the meta-data provided by DocParser
-        * @method compile
-        * @param {Callback} cb The callback to execute after it&#x27;s completed
-        */
-        compile: function(cb) {
+         * Compiles the templates from the meta-data provided by DocParser
+         * @method compile
+         * @param {Callback} cb The callback to execute after it&#x27;s completed
+         */
+        compile: function (cb) {
             var self = this;
             var starttime = (new Date()).getTime();
             Y.log(&#x27;Compiling Templates&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
 
-            this.mixExternal(function() {
-                self.makeDirs(function() {
+            this.mixExternal(function () {
+                self.makeDirs(function () {
                     Y.log(&#x27;Copying Assets&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
                     if (!Y.Files.isDirectory(path.join(self.options.outdir, &#x27;assets&#x27;))) {
                         fs.mkdirSync(path.join(self.options.outdir, &#x27;assets&#x27;), 0777);
                     }
-                    Y.Files.copyAssets([path.join(DEFAULT_THEME, &#x27;assets&#x27;), path.join(themeDir, &#x27;assets&#x27;)], path.join(self.options.outdir, &#x27;assets&#x27;), false, function() {
-                        var cstack = new Y.Parallel();
-                        
-                        self.writeModules(cstack.add(function() {
-                            self.writeClasses(cstack.add(function() {
-                                if (!self.options.nocode) {
-                                    self.writeFiles(cstack.add(noop));
-                                }
+                    Y.Files.copyAssets([
+                            path.join(DEFAULT_THEME, &#x27;assets&#x27;),
+                            path.join(themeDir, &#x27;assets&#x27;)
+                        ],
+                        path.join(self.options.outdir, &#x27;assets&#x27;),
+                        false,
+                        function () {
+                            var cstack = new Y.Parallel();
+
+                            self.writeModules(cstack.add(function () {
+                                self.writeClasses(cstack.add(function () {
+                                    if (!self.options.nocode) {
+                                        self.writeFiles(cstack.add(noop));
+                                    }
+                                }));
                             }));
-                        }));
-                        /*
+                            /*
                         self.writeModules(cstack.add(noop));
                         self.writeClasses(cstack.add(noop));
                         if (!self.options.nocode) {
                             self.writeFiles(cstack.add(noop));
                         }
                         */
-                        self.writeIndex(cstack.add(noop));
-                        self.writeAPIMeta(cstack.add(noop));
+                            self.writeIndex(cstack.add(noop));
+                            self.writeAPIMeta(cstack.add(noop));
 
-                        cstack.done(function() {
-                            var endtime = (new Date()).getTime();
-                            var timer = ((endtime - starttime) / 1000) + &#x27; seconds&#x27;;
-                            Y.log(&#x27;Finished writing &#x27; + self.files + &#x27; files in &#x27; + timer, &#x27;info&#x27;, &#x27;builder&#x27;);
-                            if (cb) { cb(); }
+                            cstack.done(function () {
+                                var endtime = (new Date()).getTime();
+                                var timer = ((endtime - starttime) / 1000) + &#x27; seconds&#x27;;
+                                Y.log(&#x27;Finished writing &#x27; + self.files + &#x27; files in &#x27; + timer, &#x27;info&#x27;, &#x27;builder&#x27;);
+                                if (cb) {
+                                    cb();
+                                }
+                            });
                         });
-                    });
                 });
             });
         }
-    }
+    };
 });
 
     </pre>

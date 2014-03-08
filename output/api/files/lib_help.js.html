@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.47</em>
+            <em>API Docs for: 0.3.49</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -113,20 +113,20 @@ Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://yuilibrary.com/license/
 */
-YUI.add(&#x27;help&#x27;, function(Y) {
-    
-    /**
-    * Shows the help text
-    * @module yuidoc
-    * @class Help
-    */
+YUI.add(&#x27;help&#x27;, function (Y) {
 
     /**
-    * The help text to display
-    * @private
-    * @property help
-    * @type Array
-    */
+     * Shows the help text
+     * @module yuidoc
+     * @class Help
+     */
+
+    /**
+     * The help text to display
+     * @private
+     * @property help
+     * @type Array
+     */
     var help = [
         &quot;&quot;,
         &quot;YUI Doc generates API documentation from a modified JavaDoc syntax.&quot;,
@@ -166,25 +166,25 @@ YUI.add(&#x27;help&#x27;, function(Y) {
         &quot;  &lt;input path&gt; Supply a list of paths (shell globbing is handy here)&quot;,
         &quot;&quot;,
     ].join(&#x27;\n&#x27;);
-    
+
     /**
-    * Render the help message as a string
-    * @method renderHelp
-    * @return {String} The help screen to display
-    */
-    Y.renderHelp = function() {
+     * Render the help message as a string
+     * @method renderHelp
+     * @return {String} The help screen to display
+     */
+    Y.renderHelp = function () {
         return Y.Lang.sub(help, {
             VERSION: Y.packageInfo.version
         });
     };
     /**
-    * Display the help message, write it to the screen and exit
-    * @method showHelp
-    */
-    Y.showHelp = function() {
+     * Display the help message, write it to the screen and exit
+     * @method showHelp
+     */
+    Y.showHelp = function () {
         console.error(Y.renderHelp());
         process.exit(0); //Shouldn&#x27;t exit one on help
-    }
+    };
 });
 
     </pre>

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.47</em>
+            <em>API Docs for: 0.3.49</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -108,231 +108,233 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-YUI.add(&#x27;server&#x27;, function(Y) {
-    
-    var path = require(&#x27;path&#x27;);
-    /**
-    * Provides the &#x60;--server&#x60; server option for YUIDoc
-    * @class Server
-    * @module yuidoc
-    */
-    var Server = {
+YUI.add(&#x27;server&#x27;, function (Y) {
+
+    var path = require(&#x27;path&#x27;),
         /**
-        * Cache for external mixed in data.
-        * @property _externalData
-        * @private
-        * @type Object
-        */
-        _externalData: null,
-        /**
-        * Middleware to parse the API docs per request
-        * @method parse
-        * @param {Request} req Express request object
-        * @param {Response} res Express response object
-        * @param {Function} next Express next callback
-        */
-        parse: function(req, res, next) {
-            var json = (new Y.YUIDoc(Server.options)).run();
-            Server.options = Y.Project.mix(json, Server.options);
-            Server.builder = new Y.DocBuilder(Server.options, json);
-            if (Server._externalData) {
-                Server.options.externalData = Server._externalData;
-                Server.builder._mixExternal();
-            }
-
-            next();
-        },
-        /**
-        * Create the routes used to serve YUIDoc files dynamically
-        * @method routes
-        */
-        routes: function() {
-            var app = Server.app;
-
-            app.get(&#x27;/&#x27;, Server.parse, function(req, res) {
-                Server.home(req, res);
-            });
-            app.get(&#x27;/api.js&#x27;, function(req, res) {
-                Server.builder.renderAPIMeta(function(js) {
-                    res.contentType(&#x27;.js&#x27;);
-                    res.send(js);
-                });
-            });
-
-
-            app.get(&#x27;/classes/:class.html&#x27;, Server.parse, function(req, res, next) {
-                Server.clazz(req, res, next);
-            });
-
-            app.get(&#x27;/modules/:module.html&#x27;, Server.parse, function(req, res, next) {
-                Server.module(req, res, next);
-            });
-
-            app.get(&#x27;/files/:file.html&#x27;, Server.parse, function(req, res, next) {
-                Server.files(req, res, next);
-            });
-            
-            //These routes are special catch routes..
-
-            app.get(&#x27;//api.js&#x27;, function(req, res) {
-                res.redirect(&#x27;/api.js&#x27;);
-            });
-            app.get(&#x27;//classes/:class.html&#x27;, Server.parse, function(req, res, next) {
-                Server.clazz(req, res, next);
-            });
-
-            app.get(&#x27;//modules/:module.html&#x27;, Server.parse, function(req, res, next) {
-                Server.module(req, res, next);
-            });
-
-            app.get(&#x27;//files/:file.html&#x27;, Server.parse, function(req, res, next) {
-                Server.files(req, res, next);
-            });
-
-            app.get(&#x27;*&#x27;, function(req, res) {
-                var type = req.url.split(&#x27;/&#x27;)[1],
-                    oType = type;
-                var html = [&#x27;&lt;h1&gt;Item Not Found in internal meta-data&lt;/h1&gt;&#x27;];
-
-                if (type === &#x27;class&#x27;) {
-                    type = &#x27;classes&#x27;;
-                }
-                if (Server.builder &amp;&amp; Server.builder.data &amp;&amp; Server.builder.data[type]) {
-                    if (Object.keys(Server.builder.data[type]).length) {
-                        html.push(&#x27;&lt;p&gt;But I know about these? Misname your module?&lt;/p&gt;&#x27;);
-                        html.push(&#x27;&lt;ul&gt;&#x27;);
-                        Object.keys(Server.builder.data[type]).forEach(function(item) {
-                            html.push(&#x27;&lt;li&gt;&lt;a href=&quot;../&#x27; + path.dirname(req.url) + &#x27;/&#x27; + item + &#x27;.html&quot;&gt;&#x27; + item + &#x27;&lt;/a&gt;&lt;/li&gt;&#x27;);
-                        });
-                        html.push(&#x27;&lt;/ul&gt;&#x27;);
-                    }
-                }
-
-
-                res.send(html.join(&#x27;\n&#x27;), 404);
-            });
-
-        },
-        /**
-        * &#x60;/files&#x60; endpoint
-        * @method files
-        * @param {Request} req Express request object
-        * @param {Response} res Express response object
-        */
-        files: function(req, res, next) {
-            var fileName = req.params.file;
-            var data;
-            Object.keys(Server.builder.data.files).forEach(function(file) {
-                if (fileName === Server.builder.filterFileName(file)) {
-                    data = Server.builder.data.files[file];
-                }
-            });
-            
-            if (!data) {
-                return next();
-            }
-
-            Y.log(&#x27;Serving /files/&#x27; + data.name, &#x27;info&#x27;, &#x27;server&#x27;);
-
-
-            Server.builder.renderFile(function(html) {
-                res.send(html);
-            }, data, (req.xhr ? &#x27;xhr&#x27; : &#x27;main&#x27;));
-        },
-        /**
-        * &#x60;/classes&#x60; endpoint
-        * @method clazz
-        * @param {Request} req Express request object
-        * @param {Response} res Express response object
-        */
-        clazz: function(req, res, next) {
-            var className = req.params[&#x27;class&#x27;];
-            Y.log(&#x27;Serving /classes/&#x27; + className + &#x27;.html&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
-            if (!Server.builder.data.classes[className]) {
-                return next();
-            }
-            Server.builder.renderClass(function(html) {
-                res.send(html);
-            }, Server.builder.data.classes[className], (req.xhr ? &#x27;xhr&#x27; : &#x27;main&#x27;));
-        },
-        /**
-        * &#x60;/modules&#x60; endpoint
-        * @method modules
-        * @param {Request} req Express request object
-        * @param {Response} res Express response object
-        */
-        module: function(req, res, next) {
-            var modName = req.params.module;
-            Y.log(&#x27;Serving /modules/&#x27; + modName + &#x27;.html&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
-            if (!Server.builder.data.modules[modName]) {
-                return next();
-            }
-            Server.builder.renderModule(function(html) {
-                res.send(html);
-            }, Server.builder.data.modules[modName], (req.xhr ? &#x27;xhr&#x27; : &#x27;main&#x27;));
-        },
-        /**
-        * &#x60;/&#x60; endpoint
-        * @method home
-        * @param {Request} req Express request object
-        * @param {Response} res Express response object
-        */
-        home: function(req, res, next) {
-            Y.log(&#x27;Serving index.html&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
-            Server.builder.renderIndex(function(html) {
-                res.send(html);
-            });
-        },
-        /**
-        * Creates the Express server and prep&#x27;s YUI for serving
-        * @method init
-        */
-        init: function() {
-            var express = require(&#x27;express&#x27;),
-                path = require(&#x27;path&#x27;);
-
-
-            Server.app = express();
-            //console.log(Server.options);
-            var stat = Server.options.themedir || path.join(__dirname, &#x27;../&#x27;, &#x27;themes&#x27;, &#x27;default&#x27;);
-            Server.app.use(express.static(stat));
-            Server.routes();
-            Server.app.listen(Server.options.port);
-
-            Y.log(&#x27;Starting server: http:/&#x27;+&#x27;/127.0.0.1:&#x27; + Server.options.port, &#x27;info&#x27;, &#x27;server&#x27;);
-        },
-        /**
-        * Start the server with the supplied options.
-        * @method start
-        * @param {Object} options Server options
-        */
-        start: function(options) {
-            options = Y.Project.init(options);
-            Server.options = options;
-            
-            Server.options.cacheTemplates = false; //Don&#x27;t cache the Handlebars templates
-            Server.options.writeJSON = false; //Don&#x27;t write the JSON file out
-
-            Y.config.logExclude.yuidoc = true;
-            Y.config.logExclude.docparser = true;
-            Y.config.logExclude.builder = true;
-
-            if (Server.options.external) {
-                Y.log(&#x27;Fetching external data, this may take a minute&#x27;, &#x27;warn&#x27;, &#x27;server&#x27;);
+         * Provides the &#x60;--server&#x60; server option for YUIDoc
+         * @class Server
+         * @module yuidoc
+         */
+        Server = {
+            /**
+             * Cache for external mixed in data.
+             * @property _externalData
+             * @private
+             * @type Object
+             */
+            _externalData: null,
+            /**
+             * Middleware to parse the API docs per request
+             * @method parse
+             * @param {Request} req Express request object
+             * @param {Response} res Express response object
+             * @param {Function} next Express next callback
+             */
+            parse: function (req, res, next) {
                 var json = (new Y.YUIDoc(Server.options)).run();
                 Server.options = Y.Project.mix(json, Server.options);
-                var builder = new Y.DocBuilder(Server.options, json);
-                builder.mixExternal(function() {
-                    Y.log(&#x27;External data fetched, launching server..&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
-                    Server._externalData = builder.options.externalData;
-                    Server.init();
+                Server.builder = new Y.DocBuilder(Server.options, json);
+                if (Server._externalData) {
+                    Server.options.externalData = Server._externalData;
+                    Server.builder._mixExternal();
+                }
+
+                next();
+            },
+            /**
+             * Create the routes used to serve YUIDoc files dynamically
+             * @method routes
+             */
+            routes: function () {
+                var app = Server.app;
+
+                app.get(&#x27;/&#x27;, Server.parse, function (req, res) {
+                    Server.home(req, res);
+                });
+                app.get(&#x27;/api.js&#x27;, function (req, res) {
+                    Server.builder.renderAPIMeta(function (js) {
+                        res.contentType(&#x27;.js&#x27;);
+                        res.send(js);
+                    });
                 });
 
-            } else {
-                Server.init();
+
+                app.get(&#x27;/classes/:class.html&#x27;, Server.parse, function (req, res, next) {
+                    Server.clazz(req, res, next);
+                });
+
+                app.get(&#x27;/modules/:module.html&#x27;, Server.parse, function (req, res, next) {
+                    Server.module(req, res, next);
+                });
+
+                app.get(&#x27;/files/:file.html&#x27;, Server.parse, function (req, res, next) {
+                    Server.files(req, res, next);
+                });
+
+                //These routes are special catch routes..
+
+                app.get(&#x27;//api.js&#x27;, function (req, res) {
+                    res.redirect(&#x27;/api.js&#x27;);
+                });
+                app.get(&#x27;//classes/:class.html&#x27;, Server.parse, function (req, res, next) {
+                    Server.clazz(req, res, next);
+                });
+
+                app.get(&#x27;//modules/:module.html&#x27;, Server.parse, function (req, res, next) {
+                    Server.module(req, res, next);
+                });
+
+                app.get(&#x27;//files/:file.html&#x27;, Server.parse, function (req, res, next) {
+                    Server.files(req, res, next);
+                });
+
+                app.get(&#x27;*&#x27;, function (req, res) {
+                    var type = req.url.split(&#x27;/&#x27;)[1],
+                        html = [&#x27;&lt;h1&gt;Item Not Found in internal meta-data&lt;/h1&gt;&#x27;];
+
+                    if (type === &#x27;class&#x27;) {
+                        type = &#x27;classes&#x27;;
+                    }
+                    if (Server.builder &amp;&amp; Server.builder.data &amp;&amp; Server.builder.data[type]) {
+                        if (Object.keys(Server.builder.data[type]).length) {
+                            html.push(&#x27;&lt;p&gt;But I know about these? Misname your module?&lt;/p&gt;&#x27;);
+                            html.push(&#x27;&lt;ul&gt;&#x27;);
+                            Object.keys(Server.builder.data[type]).forEach(function (item) {
+                                html.push(&#x27;&lt;li&gt;&lt;a href=&quot;../&#x27; + path.dirname(req.url) + &#x27;/&#x27; + item + &#x27;.html&quot;&gt;&#x27; + item + &#x27;&lt;/a&gt;&lt;/li&gt;&#x27;);
+                            });
+                            html.push(&#x27;&lt;/ul&gt;&#x27;);
+                        }
+                    }
+
+
+                    res.send(html.join(&#x27;\n&#x27;), 404);
+                });
+
+            },
+            /**
+             * &#x60;/files&#x60; endpoint
+             * @method files
+             * @param {Request} req Express request object
+             * @param {Response} res Express response object
+             */
+            files: function (req, res, next) {
+                var fileName = req.params.file,
+                    data;
+                Object.keys(Server.builder.data.files).forEach(function (file) {
+                    if (fileName === Server.builder.filterFileName(file)) {
+                        data = Server.builder.data.files[file];
+                    }
+                });
+
+                if (!data) {
+                    return next();
+                }
+
+                Y.log(&#x27;Serving /files/&#x27; + data.name, &#x27;info&#x27;, &#x27;server&#x27;);
+
+
+                Server.builder.renderFile(function (html) {
+                    res.send(html);
+                }, data, (req.xhr ? &#x27;xhr&#x27; : &#x27;main&#x27;));
+            },
+            /**
+             * &#x60;/classes&#x60; endpoint
+             * @method clazz
+             * @param {Request} req Express request object
+             * @param {Response} res Express response object
+             */
+            clazz: function (req, res, next) {
+                var className = req.params[&#x27;class&#x27;];
+                Y.log(&#x27;Serving /classes/&#x27; + className + &#x27;.html&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
+                if (!Server.builder.data.classes[className]) {
+                    return next();
+                }
+                Server.builder.renderClass(function (html) {
+                    res.send(html);
+                }, Server.builder.data.classes[className], (req.xhr ? &#x27;xhr&#x27; : &#x27;main&#x27;));
+            },
+            /**
+             * &#x60;/modules&#x60; endpoint
+             * @method modules
+             * @param {Request} req Express request object
+             * @param {Response} res Express response object
+             */
+            module: function (req, res, next) {
+                var modName = req.params.module;
+                Y.log(&#x27;Serving /modules/&#x27; + modName + &#x27;.html&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
+                if (!Server.builder.data.modules[modName]) {
+                    return next();
+                }
+                Server.builder.renderModule(function (html) {
+                    res.send(html);
+                }, Server.builder.data.modules[modName], (req.xhr ? &#x27;xhr&#x27; : &#x27;main&#x27;));
+            },
+            /**
+             * &#x60;/&#x60; endpoint
+             * @method home
+             * @param {Request} req Express request object
+             * @param {Response} res Express response object
+             */
+            home: function (req, res, next) {
+                Y.log(&#x27;Serving index.html&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
+                Server.builder.renderIndex(function (html) {
+                    res.send(html);
+                });
+            },
+            /**
+             * Creates the Express server and prep&#x27;s YUI for serving
+             * @method init
+             */
+            init: function () {
+                var express = require(&#x27;express&#x27;),
+                    path = require(&#x27;path&#x27;),
+                    stat;
+
+                Server.app = express();
+                //console.log(Server.options);
+                stat = Server.options.themedir || path.join(__dirname, &#x27;../&#x27;, &#x27;themes&#x27;, &#x27;default&#x27;);
+                Server.app.use(express.static(stat));
+                Server.routes();
+                Server.app.listen(Server.options.port);
+
+                Y.log(&#x27;Starting server: http:/&#x27; + &#x27;/127.0.0.1:&#x27; + Server.options.port, &#x27;info&#x27;, &#x27;server&#x27;);
+            },
+            /**
+             * Start the server with the supplied options.
+             * @method start
+             * @param {Object} options Server options
+             */
+            start: function (options) {
+                options = Y.Project.init(options);
+                Server.options = options;
+
+                Server.options.cacheTemplates = false; //Don&#x27;t cache the Handlebars templates
+                Server.options.writeJSON = false; //Don&#x27;t write the JSON file out
+
+                Y.config.logExclude.yuidoc = true;
+                Y.config.logExclude.docparser = true;
+                Y.config.logExclude.builder = true;
+
+                if (Server.options.external) {
+                    Y.log(&#x27;Fetching external data, this may take a minute&#x27;, &#x27;warn&#x27;, &#x27;server&#x27;);
+                    var json, builder;
+
+                    json = (new Y.YUIDoc(Server.options)).run();
+                    Server.options = Y.Project.mix(json, Server.options);
+
+                    builder = new Y.DocBuilder(Server.options, json);
+                    builder.mixExternal(function () {
+                        Y.log(&#x27;External data fetched, launching server..&#x27;, &#x27;info&#x27;, &#x27;server&#x27;);
+                        Server._externalData = builder.options.externalData;
+                        Server.init();
+                    });
+
+                } else {
+                    Server.init();
+                }
             }
-        }
-    };
+        };
 
     Y.Server = Server;
 });

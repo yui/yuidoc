@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.47</em>
+            <em>API Docs for: 0.3.49</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -113,14 +113,13 @@ Copyright (c) 2011, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://yuilibrary.com/license/
 */
-YUI.add(&#x27;docview&#x27;, function(Y) {
+YUI.add(&#x27;docview&#x27;, function (Y) {
 
-
-/*
-Selleck
-Copyright (c) 2011 Yahoo! Inc.
-Licensed under the BSD License.
-*/
+    /*
+    Selleck
+    Copyright (c) 2011 Yahoo! Inc.
+    Licensed under the BSD License.
+    */
 
     /**
     View class borrowed from [Selleck](https://github.com/rgrove/selleck)  
@@ -129,7 +128,7 @@ Licensed under the BSD License.
     @constructor
     @param {Object} data Meta data to use in this template
     @param {String} templateName The name of the template file to render.
-    */
+    **/
     function DocView(data, templateName) {
         this.templateName = templateName;
         Y.mix(this, data);
@@ -137,11 +136,11 @@ Licensed under the BSD License.
 
     DocView.prototype = {
         /**
-        * **Mustache** &#x60;lambda&#x60; method for setting the HTML title
-        * @method htmlTitle
-        */
+         * **Mustache** &#x60;lambda&#x60; method for setting the HTML title
+         * @method htmlTitle
+         */
         htmlTitle: function () {
-            var name  = this.displayName || this.name,
+            var name = this.displayName || this.name,
                 title = name;
 
             if (title) {
@@ -156,11 +155,11 @@ Licensed under the BSD License.
         },
 
         /**
-        * **Mustache** &#x60;lambda&#x60; method for setting the title
-        * @method title
-        */
+         * **Mustache** &#x60;lambda&#x60; method for setting the title
+         * @method title
+         */
         title: function () {
-            var name  = this.displayName || this.name,
+            var name = this.displayName || this.name,
                 title = this.projectName;
 
             if (name) {
