@@ -26,6 +26,7 @@ suite.add(new YUITest.TestCase({
             preprocessor: 'lib/testpreprocessor.js'
         })).run();
 
+        Assert.isObject(json);
         Assert.areSame(global.testPreprocessorCallCount,1,"the preprocessor was not called");
     },
     'test: single preprocessor with absolute path': function () {
@@ -38,6 +39,7 @@ suite.add(new YUITest.TestCase({
             preprocessor: path.join(process.cwd(),'lib/testpreprocessor.js')
         })).run();
 
+        Assert.isObject(json);
         Assert.areSame(global.testPreprocessorCallCount,1,"the preprocessor was not called when an absolute path was used");
     },
     'test: several preprocessors': function () {
@@ -50,7 +52,8 @@ suite.add(new YUITest.TestCase({
             preprocessor: ['lib/testpreprocessor.js','./lib/testpreprocessor']
         })).run();
 
-        Assert.areSame(global.testPreprocessorCallCount,2,"the preprocessor was not called twice");
+       Assert.isObject(json);
+       Assert.areSame(global.testPreprocessorCallCount,2,"the preprocessor was not called twice");
     },
     'test: the test preprocessor does its job': function () {
         var json = (new Y.YUIDoc({
@@ -60,6 +63,7 @@ suite.add(new YUITest.TestCase({
             preprocessor: 'lib/testpreprocessor.js'
         })).run();
 
+        Assert.isObject(json);
         Assert.areSame(json.classes.TestPreprocessor.customtagPlusStar,"hello*","the preprocessor did not modify the data");
     }
 }));
