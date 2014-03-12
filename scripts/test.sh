@@ -19,7 +19,8 @@ wait
     ./builder.js \
     ./options.js \
     ./utils.js \
-    ./files.js
+    ./files.js \
+    ./preprocessor.js
 
 exit $?
 
