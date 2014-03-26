@@ -781,3 +781,11 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     font-weight: bold;
 }
 
+/* -- Platform/OS-specific Styles ------------------------------------------- */
+.mac-only, .pc-only { visibility: hidden; }
+
+.pc .mac-only,
+.mac .pc-only { display: none; }
+
+.mac .mac-only,
+.pc .pc-only { visibility: visible; }
