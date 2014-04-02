@@ -294,6 +294,33 @@ suite.add(new YUITest.TestCase({
         Assert.isTrue(item2.params[0].multiple, 'Multiple not set');
         Assert.isUndefined(item2["return"].type, 'Type should be missing');
 
+        item = this.findByName('testNewlineBeforeDescription', 'myclass');
+        Assert.isArray(item.params, 'Params should be an array.');
+        Assert.areSame(2, item.params.length, 'Should parse two params.');
+        Assert.areSame('foo', item.params[0].name, 'Param 0 should have the correct name.');
+        Assert.areSame('bar', item.params[1].name, 'Param 1 should have the correct name.');
+
+        Assert.areSame(
+            'This parameter is foo.',
+            item.params[0].description,
+            'Param 0 should have the correct description.'
+        );
+
+        Assert.areSame(
+            'This parameter is bar.\n\n    It does useful things.',
+            item.params[1].description,
+            'Param 1 should have the correct description.'
+        );
+    },
+    'test: indented return description': function () {
+        var item = this.findByName('testNewlineBeforeDescription', 'myclass');
+
+        Assert.areSame('Boolean', item.return.type, 'Type should be correct.');
+        Assert.areSame(
+            'Sometimes true, sometimes false.\nNobody knows!',
+            item.return.description,
+            'Description indentation should be normalized to the first line.'
+        );
     },
     'test: object parameters': function () {
         var item, props;
