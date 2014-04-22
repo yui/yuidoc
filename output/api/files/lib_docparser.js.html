@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.49</em>
+            <em>API Docs for: 0.3.50</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -370,7 +370,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                 // extract the first word, this is the param name
                 match = REGEX_FIRSTWORD.exec(desc);
                 if (match) {
-                    name = trim(match[1]);
+                    name = trim(explodeString(match[1]));
                     desc = trim(match[2]);
                 }
 
@@ -493,7 +493,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                 }
 
                 result = {
-                    description: explodeString(desc)
+                    description: Y.unindent(explodeString(desc))
                 };
 
                 if (type) {

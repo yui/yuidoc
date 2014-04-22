@@ -3,7 +3,7 @@
         "name": "yuidoc-root",
         "logo": "http://yuilibrary.com/img/yui-logo.png",
         "description": "YUIDoc, YUI's JavaScript Documentation engine.",
-        "version": "0.3.49"
+        "version": "0.3.50"
     },
     "files": {
         "lib/builder.js": {
@@ -2349,7 +2349,22 @@
         {
             "file": "lib/yuidoc.js",
             "line": 248,
-            "description": "Writes the parser JSON data to disk.",
+            "description": "Applies preprocessors to the data tree. \nThis function first clones the data and operates on the clone.",
+            "itemtype": "method",
+            "name": "runPreprocessors",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "The mutated data",
+                "type": "Object"
+            },
+            "class": "YUIDoc",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/yuidoc.js",
+            "line": 287,
+            "description": "Writes the parser JSON data to disk.\nApplies preprocessors, if any.",
             "itemtype": "method",
             "name": "writeJSON",
             "params": [
@@ -2370,7 +2385,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 334,
+            "line": 376,
             "description": "Process the config, walk the file tree and write out the JSON data.",
             "itemtype": "method",
             "name": "run",
@@ -2383,7 +2398,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 340,
+            "line": 382,
             "description": "Timestamp holder so we know when YUIDoc started the parse process.",
             "itemtype": "property",
             "name": "starttime",
@@ -2393,7 +2408,7 @@
         },
         {
             "file": "lib/yuidoc.js",
-            "line": 362,
+            "line": 404,
             "description": "Timestamp holder so we know when YUIDoc has finished the parse process.",
             "itemtype": "property",
             "name": "endtime",

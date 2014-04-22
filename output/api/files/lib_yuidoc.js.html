@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.49</em>
+            <em>API Docs for: 0.3.50</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -356,7 +356,47 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
         },
 
         /**
+         * Applies preprocessors to the data tree. 
+         * This function first clones the data and operates on the clone. 
+         * @method runPreprocessors
+         * @private
+         * @return {Object} The mutated data
+         */
+        runPreprocessors: function (data) {
+            var self = this,
+                preprocessors,
+                preprocessorsRelativeTo;
+
+            // We will try to load the preprocessors as npm modules, but we will also 
+            // search for them relative to the process working directory.
+            // The latter is consistent with how other paths are treated by yuidoc, 
+            // such as the config options &#x27;paths&#x27; and &#x27;outdir&#x27;.
+            preprocessorsRelativeTo = process.cwd();
+
+            if (self.options.preprocessor) {
+                data=JSON.parse(JSON.stringify(data));
+
+                preprocessors = [].concat(self.options.preprocessor);
+
+                preprocessors.forEach(function (preprocessor) {
+                    var preprocessorModule;
+
+                    try {
+                        preprocessorModule = require(preprocessor);
+                    } catch (e) {
+                        preprocessorModule = require(path.resolve(preprocessorsRelativeTo, preprocessor));
+                    }
+
+                    preprocessorModule(data, self.options);
+                });
+            }
+
+            return data;
+        },
+
+        /**
          * Writes the parser JSON data to disk.
+         * Applies preprocessors, if any.
          * @method writeJSON
          * @param {Object} parser The DocParser instance to use
          * @private
@@ -371,6 +411,8 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
             data = parser.data;
 
             data.warnings = parser.warnings;
+
+            data = this.runPreprocessors(data);
 
             if (self.selleck &amp;&amp; self.options.selleck &amp;&amp; data.files &amp;&amp; data.modules) {
                 Object.keys(self.selleck).forEach(function (file) {
