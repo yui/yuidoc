@@ -76,14 +76,33 @@
  * @returns something without a type
  */
 
+/**
+Test newlines before descriptions.
+
+@method testNewlineBeforeDescription
+
+@param {String} foo
+    This parameter is foo.
+
+@param {String} bar
+    This parameter is bar.
+
+    It does useful things.
+
+@return {Boolean}
+    Sometimes true, sometimes false.
+
+    Nobody knows!
+**/
+
     /**
      * Testing really long param description paring
      * @method reallyLongParamDesc
-     * @param {Object} config Object with configuration property name/value pairs. The object can be 
+     * @param {Object} config Object with configuration property name/value pairs. The object can be
      * used to provide default values for the objects published attributes.
      *
      * <p>
-     * The config object can also contain the following non-attribute properties, providing a convenient 
+     * The config object can also contain the following non-attribute properties, providing a convenient
      * way to configure events listeners and plugins for the instance, as part of the constructor call:
      * </p>
      *
@@ -187,17 +206,17 @@ This method has attr {{#crossLink "OtherClass2/optionalAttr:attr"}}{{/crossLink}
 */
 
 /**
-Test `\{{foobar\}}` `\{{barfoo\}}` 
+Test `\{{foobar\}}` `\{{barfoo\}}`
 @method hbHelper1
 */
 
 /**
-Test `\{{foobar2\}}` `\{{barfoo2\}}` 
+Test `\{{foobar2\}}` `\{{barfoo2\}}`
 @method hbHelper2
 */
 
 /**
-Test `\{{foobar3\}}` `\{{barfoo3\}}` 
+Test `\{{foobar3\}}` `\{{barfoo3\}}`
 @method hbHelper3
 */
 
