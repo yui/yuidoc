@@ -1,3 +1,8 @@
+Fork notes
+=================
+This fork adds support for passing in an options object to the DocParser class. Options object contains "ignoreTags" array which tells the parser to ignore certain @ tags.
+
+
 YUIDoc Doc parser
 =================
 
