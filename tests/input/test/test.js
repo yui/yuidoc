@@ -63,6 +63,12 @@
  */
 
 /**
+* test param type with angled brackets
+* @method testparamtypewithangledbrackets
+* @param MyObjects {List<MyObject>} a list of MyObjects
+*/
+
+/**
  * test 0..n param
  * @method test0ton
  * @param {string} [optionalandmultiple]* my desc
@@ -219,4 +225,3 @@ Test `\{{foobar2\}}` `\{{barfoo2\}}`
 Test `\{{foobar3\}}` `\{{barfoo3\}}`
 @method hbHelper3
 */
-

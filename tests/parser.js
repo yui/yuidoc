@@ -343,6 +343,16 @@ suite.add(new YUITest.TestCase({
         Assert.areSame('prop2', props[1].description, 'Invalid item');
         Assert.areSame('Bool', props[1].type, 'Invalid item');
     },
+    'test: param types with angled brackets': function () {
+        var item;
+
+        item = this.findByName('testparamtypewithangledbrackets', 'myclass');
+        Assert.areSame('testparamtypewithangledbrackets', item.name, 'Failed to find item: testparamtypewithangledbrackets');
+        Assert.areSame(1, item.params.length, 'More than one param found');
+
+        console.log(item.params);
+        Assert.areSame('List<MyObject>', item.params[0].type, 'Item type not parsed correctly');
+    },
     'test: tag fixing': function () {
         var item = this.findByName('testoptional', 'myclass');
 
