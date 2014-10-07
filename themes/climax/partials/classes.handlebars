@@ -1,11 +1,11 @@
-<h4>Class: {{moduleName}}</h4>
+<h4>{{moduleName}}</h4>
 
 {{#if classDescription}}
 <div class="intro">{{{classDescription}}}</div>
 {{/if}}
 
 <p>
-  <span class="foundat">Source: <a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span><br>
+  <!-- <span class="foundat">Source: <a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span><br> -->
   {{#if extends}}
       Extends: {{#crossLink extends}}{{/crossLink}}<br>
   {{/if}}

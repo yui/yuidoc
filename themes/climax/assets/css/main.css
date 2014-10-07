@@ -19,388 +19,398 @@ Here's a quick lookup table:
 */
 
 html {
-    background: #fff;
-    color: #333;
-    overflow-y: scroll;
+  background: #fff;
+  color: #333;
+  overflow-y: scroll;
 }
-
 body {
-    font: 13px/1.4 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
+  font-size: 13px;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
 }
-
 /* -- Links ----------------------------------------------------------------- */
+
 a {
-    color: #356de4;
-    text-decoration: none;
+  color: rgb(0, 132, 180);
+  text-decoration: none;
 }
-
-a:hover { text-decoration: underline; }
-
+a: hover {
+  text-decoration: underline;
+}
 /* "Jump to Table of Contents" link is shown to assistive tools, but hidden from
    sight until it's focused. */
+
 .jump {
-    position: absolute;
-    padding: 3px 6px;
-    left: -99999px;
-    top: 0;
+  position: absolute;
+  padding: 3px 6px;
+  left: -99999px;
+  top: 0;
 }
-
-.jump:focus { left: 40%; }
-
+.jump: focus {
+  left: 40%;
+}
 /* -- Paragraphs ------------------------------------------------------------ */
-p { margin: 1.3em 0; }
-dd p, td p { margin-bottom: 0; }
-dd p:first-child, td p:first-child { margin-top: 0; }
 
+p {
+  margin: 1.3em 0;
+}
+dd p,
+td p {
+  margin-bottom: 0;
+}
+dd p: first-child, td p: first-child {
+  margin-top: 0;
+}
 /* -- Headings -------------------------------------------------------------- */
-h1, h2, h3, h4, h5, h6 {
-    color: #333;
-    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    font-weight: bold;
-    line-height: 1.1;
-    margin: 1.1em 0 0.5em;
-}
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #333;
+  line-height: 1.1;
+  margin: 1.1em 0 0.5em;
+}
 h1 {
-    font-size: 184.6%;
-    margin: 0.75em 0 0.5em;
+  font-size: 184.6%;
+  margin: 0.75em 0 0.5em;
 }
-
 h2 {
-    font-size: 153.846%;
+  font-size: 153.846%;
 }
-
-h3 { font-size: 138.462%; }
-
+h3 {
+  font-size: 138.462%;
+}
 h4 {
-    border-bottom: 1px solid #DBDFEA;
-    font-size: 115.385%;
-    font-weight: normal;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+  border-bottom: 1px solid #DBDFEA;
+  font-size: 115.385%;
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
-
-h5, h6 { font-size: 107.692%; }
-
+h5,
+h6 {
+  font-size: 107.692%;
+}
 /* -- Code and examples ----------------------------------------------------- */
-code, kbd, pre, samp, .code {
-    font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', Courier, monospace;
-    font-size: 92.308%;
-    line-height: 1.35;
+
+code,
+kbd,
+pre,
+samp,
+.code {
+  font-family: 'Consolas', 'Menlo', 'Monaco', 'Courier New', Courier, monospace;
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 92.308%;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
 }
-
-p code, p kbd, p samp, li code {
-    background: #FCFBFA;
-    border: 1px solid #EFEEED;
-    padding: 0 3px;
+code: before, code: after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
 }
-
-a code, a kbd, a samp,
-pre code, pre kbd, pre samp,
-table code, table kbd, table samp,
-.intro code, .intro kbd, .intro samp,
-.toc code, .toc kbd, .toc samp {
-    background: none;
-    border: none;
-    padding: 0;
+pre.code,
+pre.terminal,
+pre.cmd {
+  padding: 16px;
+  overflow: auto;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+  margin-bottom: 10px;
 }
-
-pre.code, pre.terminal, pre.cmd {
-    overflow-x: auto;
-    *overflow-x: scroll;
-    padding: 0.3em 0.6em;
+pre code {
+  background-color: transparent;
+  border-radius: none;
 }
-
-pre.code {
-    background: #FCFBFA;
-    border: 1px solid #EFEEED;
-    border-left-width: 5px;
+pre.prettyprint {
+  border: 0;
 }
-
-pre.terminal, pre.cmd {
-    background: #F0EFFC;
-    border: 1px solid #D0CBFB;
-    border-left: 5px solid #D0CBFB;
-}
-
-/* Don't reduce the font size of <code>/<kbd>/<samp> elements inside <pre>
-   blocks. */
-pre code, pre kbd, pre samp { font-size: 100%; }
-
 /* Used to denote text that shouldn't be selectable, such as line numbers or
    shell prompts. Guess which browser this doesn't work in. */
+
 .noselect {
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
-
 /* -- Lists ----------------------------------------------------------------- */
-dd { margin: 0.2em 0 0.7em 1em; }
-dl { margin: 1em 0; }
-dt { font-weight: bold; }
 
+dd {
+  margin: 0.2em 0 0.7em 1em;
+}
+dl {
+  margin: 1em 0;
+}
+dt {
+  font-weight: bold;
+}
 /* -- Tables ---------------------------------------------------------------- */
-caption, th { text-align: left; }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #fff;
-    padding: 5px 12px;
-    vertical-align: top;
-}
-
-td { background: #E6E9F5; }
-td dl { margin: 0; }
-td dl dl { margin: 1em 0; }
-td pre:first-child { margin-top: 0; }
-
+caption,
 th {
-    background: #D2D7E6;/*#97A0BF*/
-    border-bottom: none;
-    border-top: none;
-    color: #000;/*#FFF1D5*/
-    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    font-weight: bold;
-    line-height: 1.3;
-    white-space: nowrap;
+  text-align: left;
 }
-
-
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td,
+th {
+  border: 1px solid #fff;
+  padding: 5px 12px;
+  vertical-align: top;
+}
+td {
+  background: #E6E9F5;
+}
+td dl {
+  margin: 0;
+}
+td dl dl {
+  margin: 1em 0;
+}
+td pre: first-child {
+  margin-top: 0;
+}
+th {
+  background: #D2D7E6;
+  /*#97A0BF*/
+  border-bottom: none;
+  border-top: none;
+  color: #000;
+  /*#FFF1D5*/
+  font-weight: bold;
+  line-height: 1.3;
+  white-space: nowrap;
+}
 /* -- Layout and Content ---------------------------------------------------- */
+
 #doc {
-  margin: auto;
-  min-width: 1024px;
 }
-
 #main {
-  width: 80%;
 }
-
 #sidebar {
-  width: 20%;
-  background: #F9F9FC;/*E6E9F5*/
+  width: 200px;
+  background: #fff;
+  /*E6E9F5*/
   border-right: 1px solid #D4D8EB;
-  border-bottom: 1px solid #D4D8EB;
+  min-height: 623px;
 }
-
-.content { padding: 0 20px 0 25px; }
-
+.content {
+  padding: 0 20px 0 25px;
+}
 /* -- Sidebar --------------------------------------------------------------- */
+
 .sidebox {
-  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   padding-bottom: 1px;
 }
-
 .sidebox h2 {
-    background: #E5E6F1;
-    color: #333;
-    font-weight: bold;
-    font-size: 107.692%;
-    margin: 0;
-    padding: 10px 0 10px 10px;
+  color: #999;
+  margin: 0;
+  font-size: 92.308%;
+  font-weight: 400;
+  padding: 8px 0;
+  margin-left: 10px;
+  text-transform: uppercase;
 }
-
 .sidebox .bd {
-    font-size: 100%;
-    padding: 0 5px 0 8px;
+  font-size: 100%;
+  padding: 0 5px 0 8px;
 }
-
 .sidebox li {
   padding: 3px 0;
 }
-
-.sidebox ol, .sidebox ul {
-    margin-left: 0;
-    padding-left: 16px;
+.sidebox li > a {} .sidebox ol,
+.sidebox ul {
+  margin: 0;
+  padding-left: 10px;
+  list-style: none;
 }
-
-.sidebox ol ol, .sidebox ol ul,
-.sidebox ul ol, .sidebox ul ul {
-    margin: 0;
-    padding-left: 16px;
+.sidebox ol ol,
+.sidebox ol ul,
+.sidebox ul ol,
+.sidebox ul ul {
+  margin: 0;
+  padding-left: 10px;
 }
-
 /* -- Table of Contents ----------------------------------------------------- */
 
 /* The #toc id refers to the single global table of contents, while the .toc
    class refers to generic TOC lists that could be used throughout the page. */
 
-.toc code, .toc kbd, .toc samp { font-size: 100%; }
-.toc li { font-weight: bold; }
-.toc li li { font-weight: normal; }
-
+.toc code,
+.toc kbd,
+.toc samp {
+  font-size: 100%;
+}
+.toc li {
+  font-weight: bold;
+}
+.toc li li {
+  font-weight: normal;
+}
 /* -- Intro and Example Boxes ----------------------------------------------- */
-.intro, .example { margin-bottom: 2em; }
 
+.intro,
 .example {
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    -moz-box-shadow: 0 0 5px #bfbfbf;
-    -webkit-box-shadow: 0 0 5px #bfbfbf;
-    box-shadow: 0 0 5px #bfbfbf;
-    padding: 1em;
+  margin-bottom: 2em;
 }
-
+.example {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: 0 0 5px #bfbfbf;
+  -webkit-box-shadow: 0 0 5px #bfbfbf;
+  box-shadow: 0 0 5px #bfbfbf;
+  padding: 1em;
+}
 .intro {
-    background: none repeat scroll 0 0 #F0F1F8; border: 1px solid #D4D8EB; padding: 0 1em;
+  color: #555;
 }
-
 /* -- Other Styles ---------------------------------------------------------- */
 
 /* These are probably YUI-specific, and should be moved out of Selleck's default
    theme. */
 
 .button {
-    border: 1px solid #dadada;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    color: #444;
-    display: inline-block;
-    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    font-size: 92.308%;
-    font-weight: bold;
-    padding: 4px 13px 3px;
-    -moz-text-shadow: 1px 1px 0 #fff;
-    -webkit-text-shadow: 1px 1px 0 #fff;
-    text-shadow: 1px 1px 0 #fff;
-    white-space: nowrap;
-
-    background: #EFEFEF; /* old browsers */
-    background: -moz-linear-gradient(top, #f5f5f5 0%, #efefef 50%, #e5e5e5 51%, #dfdfdf 100%); /* firefox */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(50%,#efefef), color-stop(51%,#e5e5e5), color-stop(100%,#dfdfdf)); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#dfdfdf',GradientType=0 ); /* ie */
+  border: 1px solid #dadada;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: #444;
+  display: inline-block;
+  font-size: 92.308%;
+  font-weight: bold;
+  padding: 4px 13px 3px;
+  -moz-text-shadow: 1px 1px 0 #fff;
+  -webkit-text-shadow: 1px 1px 0 #fff;
+  text-shadow: 1px 1px 0 #fff;
+  white-space: nowrap;
+  background: #EFEFEF;
+  /* old browsers */
+  background: -moz-linear-gradient(top, #f5f5f5 0%, #efefef 50%, #e5e5e5 51%, #dfdfdf 100%);
+  /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(50%, #efefef), color-stop(51%, #e5e5e5), color-stop(100%, #dfdfdf));
+  /* webkit */
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#dfdfdf', GradientType=0);
+  /* ie */
 }
-
-.button:hover {
-    border-color: #466899;
-    color: #fff;
-    text-decoration: none;
-    -moz-text-shadow: 1px 1px 0 #222;
-    -webkit-text-shadow: 1px 1px 0 #222;
-    text-shadow: 1px 1px 0 #222;
-
-    background: #6396D8; /* old browsers */
-    background: -moz-linear-gradient(top, #6396D8 0%, #5A83BC 50%, #547AB7 51%, #466899 100%); /* firefox */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6396D8), color-stop(50%,#5A83BC), color-stop(51%,#547AB7), color-stop(100%,#466899)); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6396D8', endColorstr='#466899',GradientType=0 ); /* ie */
+.button: hover {
+  border-color: #466899;
+  color: #fff;
+  text-decoration: none;
+  -moz-text-shadow: 1px 1px 0 #222;
+  -webkit-text-shadow: 1px 1px 0 #222;
+  text-shadow: 1px 1px 0 #222;
+  background: #6396D8;
+  /* old browsers */
+  background: -moz-linear-gradient(top, #6396D8 0%, #5A83BC 50%, #547AB7 51%, #466899 100%);
+  /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6396D8), color-stop(50%, #5A83BC), color-stop(51%, #547AB7), color-stop(100%, #466899));
+  /* webkit */
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#6396D8', endColorstr='#466899', GradientType=0);
+  /* ie */
 }
-
-.newwindow { text-align: center; }
-
+.newwindow {
+  text-align: center;
+}
 .header .version em {
-    display: block;
-    text-align: right;
+  display: block;
+  text-align: right;
 }
-
 .yui3-skin-sam #classdocs .yui3-tabview-panel {
-    background-color: transparent;
+  background-color: transparent;
 }
-
 .yui3-skin-sam #classdocs .yui3-tabview-panel {
-    border: none;
+  border: none;
 }
-
 .yui3-skin-sam .yui3-tabview .yui3-tab,
 .yui3-skin-sam .yui3-tabview .yui3-tab-selected,
 .yui3-skin-sam .yui3-tabview .yui3-tab-hover {
-    background: -moz-linear-gradient(center top , #F4F0EC 0%, #D6D2CE 100%) repeat scroll 0 0 transparent;
-    border-bottom: 1px solid #DEDCD9;
-    border-right: 1px solid #CDCBC8;
-    border-left: 1px solid #CDCBC8;
-    border-top: 1px solid #DADADA;
-    color: #333333;
-    text-decoration: none;
+  background: -moz-linear-gradient(center top, #F4F0EC 0%, #D6D2CE 100%) repeat scroll 0 0 transparent;
+  border-bottom: 1px solid #DEDCD9;
+  border-right: 1px solid #CDCBC8;
+  border-left: 1px solid #CDCBC8;
+  border-top: 1px solid #DADADA;
+  color: #333333;
+  text-decoration: none;
 }
 .yui3-skin-sam .yui3-tabview .yui3-tab-label,
 .yui3-skin-sam .yui3-tabview .yui3-tab-selected .yui3-tab-label {
-    border: none;
-    background: none;
-    font-size: 100%;
-    color: #000;
+  border: none;
+  background: none;
+  font-size: 100%;
+  color: #000;
 }
-
 .yui3-skin-sam .yui3-tabview .yui3-tab-selected,
 .yui3-skin-sam .yui3-tabview .yui3-tab-hover {
-    background: none;
-    background-color: #fff;
-    border-bottom-color: #FFFFFF;
-    border-top: 2px solid #8193C9;
-    font-weight: bold;
-    color: #000;
-
+  background: none;
+  background-color: #fff;
+  border-bottom-color: #FFFFFF;
+  border-top: 2px solid #8193C9;
+  font-weight: bold;
+  color: #000;
 }
-
 .yui3-skin-sam .yui3-tabview-list {
-    border-color: #DFDFDF;
-    border-width: 0 0 1px;
+  border-color: #DFDFDF;
+  border-width: 0 0 1px;
 }
-
-
 a.external {
-    background-image: url(external-small.png);
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    padding-left: 16px;
+  background-image: url(external-small.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  padding-left: 16px;
 }
-
 #classdocs {
   margin-top: 15px;
 }
-
 #classdocs .item {
-    border-bottom: 1px solid #466899;
-    margin: 1em 0;
-    padding: 0.5em 0;
+  border-bottom: 1px solid #466899;
+  margin: 1em 0;
+  padding: 0.5em 0;
 }
-
 #classdocs .item .params p,
-    #classdocs .item .returns p,{
-    display: inline;
+#classdocs .item .returns p,
+{
+  display: inline;
 }
-
 #classdocs .item .prop-type {
-    padding-left: 10px;
-    color: #999;
-    font-size: 80%;
+  padding-left: 10px;
+  color: #999;
+  font-size: 80%;
 }
-
-#classdocs .item em code, #classdocs .item em.comment {
-    color: green;
+#classdocs .item em code,
+#classdocs .item em.comment {
+  color: green;
 }
-
 #classdocs .item em.comment a {
-    color: green;
-    text-decoration: underline;
+  color: green;
+  text-decoration: underline;
 }
-
 #classdocs .foundat {
-    font-size: 11px;
-    font-style: normal;
+  font-size: 11px;
+  font-style: normal;
 }
-
 .attrs .emits {
-    margin-left: 2em;
-    padding: .5em;
-    border-left: 1px dashed #ccc;
+  margin-left: 2em;
+  padding: .5em;
+  border-left: 1px dashed #ccc;
 }
-
 abbr {
-    border-bottom: 1px dashed #ccc;
-    font-size: 80%;
-    cursor: help;
+  border-bottom: 1px dashed #ccc;
+  font-size: 80%;
+  cursor: help;
 }
-
 .prettyprint li.L0,
 .prettyprint li.L1,
 .prettyprint li.L2,
@@ -409,35 +419,29 @@ abbr {
 .prettyprint li.L6,
 .prettyprint li.L7,
 .prettyprint li.L8 {
-    list-style: decimal;
+  list-style: decimal;
 }
-
 ul li p {
-    margin-top: 0;
+  margin-top: 0;
 }
-
 .method .name {
-    font-size: 110%;
+  font-size: 110%;
 }
-
 #hd {
-    background: -moz-linear-gradient(center top , #DCDBD9 0%, #F6F5F3 100%) repeat scroll 0 0 transparent;
-    border-bottom: 1px solid #DFDFDF;
-    padding: 15px;
+  background: -moz-linear-gradient(center top, #DCDBD9 0%, #F6F5F3 100%) repeat scroll 0 0 transparent;
+  border-bottom: 1px solid #DFDFDF;
+  padding: 15px;
 }
-
 #hd a {
   float: left;
   margin-right: 20px;
 }
-
 #hd h1 {
   margin: 0;
   padding: 0;
   color: #666;
   line-height: 50px;
 }
-
 #hd img {
   vertical-align: middle;
   height: 50px;
