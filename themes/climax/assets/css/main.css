@@ -446,3 +446,12 @@ ul li p {
   vertical-align: middle;
   height: 50px;
 }
+
+.flag {
+  background: #bababa;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 11px;
+  margin: 0 0.5em;
+  padding: 2px 4px 1px;
+}
