@@ -1,0 +1,82 @@
+<h4>{{moduleName}}</h4>
+
+{{#if classDescription}}
+<div class="intro">{{{classDescription}}}</div>
+{{/if}}
+
+<p>
+  <!-- <span class="foundat">Source: <a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span><br> -->
+  {{#if extends}}
+      Extends: {{#crossLink extends}}{{/crossLink}}<br>
+  {{/if}}
+
+
+{{#if uses}}
+    Uses:
+    {{#each uses}}
+        <a href="{{this}}.html">{{this}}</a>
+    {{/each}}
+    <br>
+{{/if}}
+{{#if extension_for}}
+    Extension For:
+    {{#each extension_for}}
+        <a href="{{this}}.html">{{this}}</a>
+    {{/each}}
+    <br>
+{{/if}}
+
+</p>
+
+{{#if is_constructor}}
+    {{#is_constructor}}
+    {{>method}}
+    {{/is_constructor}}
+{{/if}}
+
+<div id="classdocs">
+    <ul>
+        {{#if methods}}
+        <li><a href="#methods">Methods</a></li>
+        {{/if}}
+        {{#if properties}}
+        <li><a href="#props">Properties</a></li>
+        {{/if}}
+        {{#if attrs}}
+        <li><a href="#attrs">Attributes</a></li>
+        {{/if}}
+        {{#if events}}
+        <li><a href="#events">Events</a></li>
+        {{/if}}
+    </ul>
+    <div>
+        {{#if methods}}
+            <div id="methods">
+            {{#methods}}
+                {{>method}}
+            {{/methods}}
+            </div>
+        {{/if}}
+        {{#if properties}}
+            <div id="props">
+            {{#properties}}
+                {{>props}}
+            {{/properties}}
+            </div>
+        {{/if}}
+        {{#if attrs}}
+            <div id="attrs">
+            {{#attrs}}
+                {{>attrs}}
+            {{/attrs}}
+            </div>
+        {{/if}}
+        {{#if events}}
+            <div id="events">
+            {{#events}}
+                {{>events}}
+            {{/events}}
+            </div>
+        {{/if}}
+    </div>
+</div>
