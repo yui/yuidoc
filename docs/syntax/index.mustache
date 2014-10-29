@@ -20,7 +20,7 @@
 
 <p>A given comment block must contain one (and only one) 
 <a href="#primary-tags">primary tag</a> such as `@class` or `@method`,
-and zero or more <a href="#secondary-tag">secondary tags</a>
+and zero or more <a href="#secondary-tags">secondary tags</a>
 such as `@param`, `@type`, and `@extends`. 
 Some secondary tags can be used in any comment block, 
 while others only make sense alongside a particular primary tag.</p>
@@ -133,8 +133,6 @@ function IO (config) {
             <a href="#uses">`@uses`</a>.
         </p>
     </td>
-
-    </td>
 </tr>
 <tr id="method">
     <td>`method`</td>
@@ -169,8 +167,6 @@ toJSON: function () {
             <a href="#return">`@return`</a>,
             <a href="#static">`@static`</a>.
         </p>
-    </td>
-
     </td>
 </tr>
 <tr id="event">
@@ -449,7 +445,6 @@ ATTRS[RENDERED] = {
             <a href="#method">`@method`</a>.
         </p>
     </td>
-</tr>
 </tr>
 <tr id="final">
     <td>`final`</td>
@@ -880,7 +875,6 @@ ATTRS[RENDERED] = {
             <a href="#type">`@type`</a>.
         <p>
     </td>
-    </td>
 </tr>
 <tr id="uses">
     <td>`*uses`</td>
@@ -1287,7 +1281,7 @@ named Bar.
 ```
 
 <p>
-You can also call `crossLinkRaw` to retun only the HREF portion of the link, so you can link it
+You can also call `crossLinkRaw` to return only the HREF portion of the link, so you can link it
 yourself.
 </p>
 
