@@ -260,7 +260,7 @@ suite.add(new YUITest.TestCase({
         Assert.areSame('String', item2["return"].type, 'Type should not be missing');
     },
     'test: parameter parsing': function () {
-        var item, item2;
+        var item, item2, item3, item4;
         item = this.findByName('testoptional', 'myclass');
         Assert.isArray(item.params, 'Params should be an array');
         Assert.areSame(5, item.params.length, 'Failed to parse all 5 parameters');
@@ -294,6 +294,20 @@ suite.add(new YUITest.TestCase({
         Assert.isTrue(item2.params[0].multiple, 'Multiple not set');
         Assert.isUndefined(item2["return"].type, 'Type should be missing');
 
+        item3 = this.findByName('testrestparam0n', 'myclass');
+        Assert.isArray(item3.params, 'Params should be an array');
+        Assert.areSame(1, item3.params.length, 'Failed to parse all 5 parameters');
+        Assert.isTrue(item3.params[0].optional, 'Optional not set');
+        Assert.isTrue(item3.params[0].multiple, 'Multiple not set');
+        Assert.isUndefined(item3['return'].type, 'Type should be missing');
+
+        item4 = this.findByName('testrestparam1n', 'myclass');
+        Assert.isArray(item4.params, 'Params should be an array');
+        Assert.areSame(1, item4.params.length, 'Failed to parse all 5 parameters');
+        Assert.isUndefined(item4.params[0].optional, 'Optional should not be set');
+        Assert.isTrue(item4.params[0].multiple, 'Multiple not set');
+        Assert.isUndefined(item4['return'].type, 'Type should be missing');
+
         item = this.findByName('testNewlineBeforeDescription', 'myclass');
         Assert.isArray(item.params, 'Params should be an array.');
         Assert.areSame(2, item.params.length, 'Should parse two params.');
@@ -315,10 +329,10 @@ suite.add(new YUITest.TestCase({
     'test: indented return description': function () {
         var item = this.findByName('testNewlineBeforeDescription', 'myclass');
 
-        Assert.areSame('Boolean', item.return.type, 'Type should be correct.');
+        Assert.areSame('Boolean', item['return'].type, 'Type should be correct.');
         Assert.areSame(
             'Sometimes true, sometimes false.\nNobody knows!',
-            item.return.description,
+            item['return'].description,
             'Description indentation should be normalized to the first line.'
         );
     },
