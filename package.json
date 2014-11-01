@@ -70,7 +70,7 @@
     "yuidoc": "./lib/cli.js"
   },
   "dependencies": {
-    "express": "~3.1.2",
+    "express": "^4.10.1",
     "graceful-fs": "2.x",
     "marked": "^0.3.2",
     "minimatch": "^1.0.0",
