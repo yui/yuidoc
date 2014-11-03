@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "express": "~3.1.2",
-    "graceful-fs": "2.x",
+    "graceful-fs": "^3.0.4",
     "marked": "^0.3.2",
     "minimatch": "^1.0.0",
     "rimraf": "2.x",
