@@ -104,6 +104,29 @@ and reproduce the external API right along with your own.
 ```
 
 <p>
+    Also, you are able to give `base` data within `external` for external base URLs.
+</p>
+
+```
+{
+  "options": {
+    "external": {
+      "data": [
+        {
+          "base": "http://emberjs.com/api/",
+          "json": "http://builds.emberjs.com/tags/v1.5.1/ember-docs.json"
+        },
+        {
+          "base": "http://emberjs.com/api/",
+          "json": "http://builds.emberjs.com/tags/v1.0.0-beta.6/ember-data-docs.json"
+        }
+      ]
+    }
+  }
+}
+```
+
+<p>
 <strong>NOTE:</strong> YUIDoc currently fetches external data on each run with no caching. 
 </p>
 
