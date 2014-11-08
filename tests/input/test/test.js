@@ -42,7 +42,8 @@
  * @param {int} namesecond my desc
  * @param namefirst {string} my desc
  * @param [optionalvar] {bool} my desc
- * @param {string} [optionalwithdefault="defaultval"] my desc
+ * @param {string} [optionalDefault1="defaultVal"] my desc
+ * @param {string} [optionalDefault2="defaultVal1 defaultVal2"] my desc
  * @evil
  * @injects {HTML} uses a string parameter to populate innerHTML
  * @returns something without a type
