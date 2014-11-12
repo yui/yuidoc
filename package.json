@@ -75,7 +75,7 @@
     "marked": "^0.3.2",
     "minimatch": "^1.0.0",
     "rimraf": "2.x",
-    "yui": "3.14.1"
+    "yui": "^3.14.1"
   },
   "devDependencies": {
     "jshint": "2.4.x",
