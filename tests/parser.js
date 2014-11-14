@@ -263,7 +263,7 @@ suite.add(new YUITest.TestCase({
         var item, item2, item3, item4;
         item = this.findByName('testoptional', 'myclass');
         Assert.isArray(item.params, 'Params should be an array');
-        Assert.areSame(5, item.params.length, 'Failed to parse all 5 parameters');
+        Assert.areSame(6, item.params.length, 'Failed to parse all 6 parameters');
 
         Assert.areSame('notype', item.params[0].name, 'Name missing');
         Assert.isUndefined(item.params[0].type, 'Type should be missing');
@@ -275,10 +275,13 @@ suite.add(new YUITest.TestCase({
         Assert.isTrue(item.params[3].optional, 'Parameter should be optional');
         Assert.isUndefined(item.params[3].optdefault, 'Optional Default value should be undefined');
 
-
-        Assert.areSame('optionalwithdefault', item.params[4].name, 'Name missing');
+        Assert.areSame('optionalDefault1', item.params[4].name, 'Name missing');
         Assert.isTrue(item.params[4].optional, 'Parameter should be optional');
-        Assert.areSame('"defaultval"', item.params[4].optdefault, 'Optional Default value is incorrect');
+        Assert.areSame('"defaultVal"', item.params[4].optdefault, 'Optional Default value is incorrect');
+
+        Assert.areSame('optionalDefault2', item.params[5].name, 'Name missing');
+        Assert.isTrue(item.params[5].optional, 'Parameter should be optional');
+        Assert.areSame('"defaultVal1 defaultVal2"', item.params[5].optdefault, 'Optional Default value is incorrect');
 
         item2 = this.findByName('test0ton', 'myclass');
         Assert.isArray(item2.params, 'Params should be an array');
