@@ -200,6 +200,12 @@ suite.add(new YUITest.TestCase({
         ]);
         Assert.isTrue(options.norecurse, 'Failed to set norecurse');
     },
+    'test: --no-sort': function () {
+        var options = Y.Options([
+            '--no-sort'
+        ]);
+        Assert.isTrue(options.dontsortfields, 'Failed to set dontsortfields');
+    },
     'test: --selleck': function () {
         var options = Y.Options([
             '--selleck',
