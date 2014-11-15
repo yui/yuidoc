@@ -164,39 +164,39 @@ suite.add(new YUITest.TestCase({
     },
     'test: --no-color': function () {
         var options = Y.Options([
-            '--no-color',
+            '--no-color'
         ]);
         Assert.isTrue(options.nocolor, 'Failed to set nocolor');
         Assert.isFalse(Y.config.useColor, 'Failed to set Y.config.useColor');
     },
     'test: -N': function () {
         var options = Y.Options([
-            '-N',
+            '-N'
         ]);
         Assert.isTrue(options.nocolor, 'Failed to set nocolor');
         Assert.isFalse(Y.config.useColor, 'Failed to set Y.config.useColor');
     },
     'test: --no-code': function () {
         var options = Y.Options([
-            '--no-code',
+            '--no-code'
         ]);
         Assert.isTrue(options.nocode, 'Failed to set nocode');
     },
     'test: -C': function () {
         var options = Y.Options([
-            '-C',
+            '-C'
         ]);
         Assert.isTrue(options.nocode, 'Failed to set nocode');
     },
     'test: --norecurse': function () {
         var options = Y.Options([
-            '--norecurse',
+            '--norecurse'
         ]);
         Assert.isTrue(options.norecurse, 'Failed to set norecurse');
     },
     'test: -n': function () {
         var options = Y.Options([
-            '-n',
+            '-n'
         ]);
         Assert.isTrue(options.norecurse, 'Failed to set norecurse');
     },
@@ -208,13 +208,13 @@ suite.add(new YUITest.TestCase({
     },
     'test: --selleck': function () {
         var options = Y.Options([
-            '--selleck',
+            '--selleck'
         ]);
         Assert.isTrue(options.selleck, 'Failed to set selleck');
     },
     'test: -S': function () {
         var options = Y.Options([
-            '-S',
+            '-S'
         ]);
         Assert.isTrue(options.selleck, 'Failed to set selleck');
     },
