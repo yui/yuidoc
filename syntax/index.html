@@ -50,7 +50,7 @@
 
 <p>A given comment block must contain one (and only one) 
 <a href="#primary-tags">primary tag</a> such as <code>@class</code> or <code>@method</code>,
-and zero or more <a href="#secondary-tag">secondary tags</a>
+and zero or more <a href="#secondary-tags">secondary tags</a>
 such as <code>@param</code>, <code>@type</code>, and <code>@extends</code>. 
 Some secondary tags can be used in any comment block, 
 while others only make sense alongside a particular primary tag.</p>
@@ -138,7 +138,7 @@ function IO (config) {</pre>
         In JavaScript, this is generally an object with a constructor function. 
         The value of <code>@class</code> should be the string that identifies the functional class on its parent object. 
         For example, the <code>@class</code> for <code>Y.DD.Drag</code> would be <code>Drag</code> 
-        (and its <a href="#@namespace"><code>@namespace</code></a> would be <code>DD</code>).</p>
+        (and its <a href="#namespace"><code>@namespace</code></a> would be <code>DD</code>).</p>
         
         <p>YUIDoc expects methods, properties, attributes, and events to belong to a class, 
         so in general you must provide at least one class for each module in your source tree. 
@@ -159,8 +159,6 @@ function IO (config) {</pre>
             <a href="#static"><code>@static</code></a>,
             <a href="#uses"><code>@uses</code></a>.
         </p>
-    </td>
-
     </td>
 </tr>
 <tr id="method">
@@ -195,8 +193,6 @@ toJSON: function () {</pre>
             <a href="#return"><code>@return</code></a>,
             <a href="#static"><code>@static</code></a>.
         </p>
-    </td>
-
     </td>
 </tr>
 <tr id="event">
@@ -465,7 +461,6 @@ ATTRS[RENDERED] = {</pre>
         </p>
     </td>
 </tr>
-</tr>
 <tr id="final">
     <td><code>final</code></td>
     <td>
@@ -669,8 +664,8 @@ ATTRS[RENDERED] = {</pre>
         <ul>
             <li><code>[name]</code> &mdash; optional parameter</li>
             <li><code>[name=foo]</code> &mdash; default value is foo</li>
-            <li><code>name*</code> &mdash; placeholder for 1..n args</li>
-            <li><code>[name]*</code> &mdash; placeholder for 0..n args</li>
+            <li><code>...name</code> &mdash; placeholder for 1..n args</li>
+            <li><code>[...name]</code> &mdash; placeholder for 0..n args</li>
         </ul>
 
         <p>As shown in the example, you can also nest <code>@param</code> tags. 
@@ -878,7 +873,6 @@ ATTRS[RENDERED] = {</pre>
             <a href="#property"><code>@property</code></a>,
             <a href="#type"><code>@type</code></a>.
         <p>
-    </td>
     </td>
 </tr>
 <tr id="uses">
@@ -1268,7 +1262,7 @@ named Bar.
 
 
 <p>
-You can also call <code>crossLinkRaw</code> to retun only the HREF portion of the link, so you can link it
+You can also call <code>crossLinkRaw</code> to return only the HREF portion of the link, so you can link it
 yourself.
 </p>
 
