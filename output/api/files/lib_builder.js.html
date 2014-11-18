@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.50</em>
+            <em>API Docs for: 0.4.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -509,8 +509,14 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
             var stack = new Y.Parallel();
             info.data.forEach(function (i) {
                 var base;
+                if (typeof i === &#x27;object&#x27;) {
+                    base = i.base;
+                    i = i.json;
+                }
                 if (i.match(/^https?:\/\//)) {
-                    base = i.replace(&#x27;data.json&#x27;, &#x27;&#x27;);
+                    if (!base) {
+                        base = i.replace(&#x27;data.json&#x27;, &#x27;&#x27;);
+                    }
                     Y.use(&#x27;io-base&#x27;, stack.add(function () {
                         Y.log(&#x27;Fetching: &#x27; + i, &#x27;info&#x27;, &#x27;builder&#x27;);
                         Y.io(i, {
@@ -529,7 +535,9 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
                         });
                     }));
                 } else {
-                    base = path.dirname(path.resolve(i));
+                    if (!base) {
+                        base = path.dirname(path.resolve(i));
+                    }
                     var data = Y.Files.getJSON(i);
                     data.base = base;
                     //self.options.externalData = Y.mix(self.options.externalData || {}, data);
@@ -1456,10 +1464,12 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
                     }
                 });
 
-                opts.meta.attrs.sort(self.nameSort);
-                opts.meta.events.sort(self.nameSort);
-                opts.meta.methods.sort(self.nameSort);
-                opts.meta.properties.sort(self.nameSort);
+                if (!self.options.dontsortfields) {
+                    opts.meta.attrs.sort(self.nameSort);
+                    opts.meta.events.sort(self.nameSort);
+                    opts.meta.methods.sort(self.nameSort);
+                    opts.meta.properties.sort(self.nameSort);
+                }
 
                 if (!opts.meta.methods.length) {
                     delete opts.meta.methods;

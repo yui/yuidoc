@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.50</em>
+            <em>API Docs for: 0.4.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -256,6 +256,9 @@ YUI.add(&#x27;options&#x27;, function (Y) {
                         options.tabspace += &#x27; &#x27;;
                     }
                 }
+                break;
+            case &quot;--no-sort&quot;:
+                options.dontsortfields = true;
                 break;
             default:
                 if (!options.paths) {

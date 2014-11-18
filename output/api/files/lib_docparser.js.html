@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.50</em>
+            <em>API Docs for: 0.4.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -173,8 +173,8 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
         CURRENT_CLASS = &#x27;currentclass&#x27;,
 
         REGEX_TYPE = /(.*?)\{(.*?)\}(.*)/,
-        REGEX_FIRSTWORD = /^\s*?([^\s]+)(.*)/,
-        REGEX_OPTIONAL = /\[(.*?)\]/,
+        REGEX_FIRSTWORD = /^\s*?(\[.+\]\*?|[^\s]+)(.*)/,
+        REGEX_OPTIONAL = /^\[(.*)\]$/,
         REGEX_START_COMMENT = {
             js: /^\s*\/\*\*/,
             coffee: /^\s*###\*/
@@ -322,7 +322,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             //   &quot;type&quot;: &quot;string&quot;,
             //   &quot;optional&quot;: true, // [surroundedbybrackets]
             //   &quot;optdefault&quot;: &quot;if specified, this is always string to avoid syntax errors @TODO&quot;,
-            //   &quot;multiple&quot;: true // endswith*
+            //   &quot;multiple&quot;: true // endswith* or ...startswith
             // }
             // ],
             // @param {type} name description    -or-
@@ -420,6 +420,14 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                             }
                         }
                     }
+                }
+
+                // This should run after the check for optional parameters
+                // and before the check for child parameters
+                // because the signature for 0..n params is [...args]
+                if (name.substr(0, 3) === &#x27;...&#x27;) {
+                    multiple = true;
+                    name = name.substr(3);
                 }
 
                 // parse object.prop, indicating a child property for object

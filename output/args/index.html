@@ -45,7 +45,7 @@ Command line options always take priority.</p>
 
 <pre class="code terminal">YUI Doc generates API documentation from a modified JavaDoc syntax.
 
-Current version (0.3.50)
+Current version (0.4.0)
 
 Usage: yuidoc &lt;options&gt; &lt;input path&gt;
 
@@ -63,6 +63,7 @@ Common Options:
   -N, --no-color Turn off terminal colors (for automation)
   -C, --no-code Turn off code generation (don&#x27;t include source files in output)
   -n, --norecurse Do not recurse directories (default is to recurse)
+  --no-sort Do not alphabetical sorting of attributes, events, methods, and properties
   -S, --selleck Look for Selleck component data and attach to API meta data
   -V, --view Dump the Handlebars.js view data instead of writing template files
   -p, --parse-only Only parse the API docs and create the JSON data, do not render templates
@@ -157,6 +158,28 @@ and reproduce the external API right along with your own.
   &quot;options&quot;: {
     &quot;external&quot;: {
       &quot;data&quot;: &quot;http:&#x2F;&#x2F;yuilibrary.com&#x2F;yui&#x2F;docs&#x2F;api&#x2F;data.json&quot;
+    }
+  }
+}</pre>
+
+
+<p>
+    Also, you are able to give <code>base</code> data within <code>external</code> for external base URLs.
+</p>
+
+<pre class="code prettyprint">{
+  &quot;options&quot;: {
+    &quot;external&quot;: {
+      &quot;data&quot;: [
+        {
+          &quot;base&quot;: &quot;http:&#x2F;&#x2F;emberjs.com&#x2F;api&#x2F;&quot;,
+          &quot;json&quot;: &quot;http:&#x2F;&#x2F;builds.emberjs.com&#x2F;tags&#x2F;v1.5.1&#x2F;ember-docs.json&quot;
+        },
+        {
+          &quot;base&quot;: &quot;http:&#x2F;&#x2F;emberjs.com&#x2F;api&#x2F;&quot;,
+          &quot;json&quot;: &quot;http:&#x2F;&#x2F;builds.emberjs.com&#x2F;tags&#x2F;v1.0.0-beta.6&#x2F;ember-data-docs.json&quot;
+        }
+      ]
     }
   }
 }</pre>
