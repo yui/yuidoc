@@ -33,6 +33,11 @@ Documentation
 * [API Docs](http://yui.github.io/yuidoc/api/)
 * [Mailing List](https://groups.google.com/forum/#!forum/yuidoc)
 
+Contributing
+------------
+
+Please see the [CONTRIBUTING.md](CONTRIBUTING.md).
+
 License
 -------
 
