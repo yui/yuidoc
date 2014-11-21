@@ -22,6 +22,6 @@ deploydocs: version
 	./scripts/docs.sh
 
 test:
-	./scripts/test.sh
+	npm test
 
 .PHONY: docs clean

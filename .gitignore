@@ -4,4 +4,3 @@ node_modules
 coverage
 ddc
 npm-debug.log
-tests/input/test-linked
