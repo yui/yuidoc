@@ -122,7 +122,6 @@
   },
   "yuidoc": {
     "name": "YUIDoc",
-    "logo": "http://yuilibrary.com/img/yui-logo.png",
     "options": {
       "external": {
         "data": "http://yuilibrary.com/yui/docs/api/data.json"
