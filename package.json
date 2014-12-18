@@ -73,7 +73,7 @@
     "express": "^4.10.1",
     "graceful-fs": "2.x",
     "marked": "^0.3.2",
-    "minimatch": "^1.0.0",
+    "minimatch": "^2.0.1",
     "rimraf": "2.x",
     "yui": "^3.18.1"
   },
