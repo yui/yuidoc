@@ -47,6 +47,7 @@
  * @evil
  * @injects {HTML} uses a string parameter to populate innerHTML
  * @returns something without a type
+ * @throw throw error without a type
  * @example
  *      This is code
  * @example
@@ -61,6 +62,7 @@
  * @param {string} anobject.prop1 prop1
  * @param {bool} anobject.prop2 prop2
  * @return {string} something with a type
+ * @throws {error} error with a type
  */
 
 /**
@@ -68,6 +70,7 @@
  * @method test0ton
  * @param {string} [optionalandmultiple]* my desc
  * @returns something without a type
+ * @throw throw error without a type
  */
 
 /**
@@ -75,6 +78,7 @@
  * @method test1ton
  * @param {string} multiple* my desc
  * @returns something without a type
+ * @throw throw error without a type
  */
 
 /**
@@ -83,6 +87,7 @@ test alternative 1..n param with ...args
 @method testrestparam1n
 @param {String} ...multiple my desc
 @returns something without a type
+@throw throw error without a type
 **/
 
 /**
@@ -91,6 +96,7 @@ test alternative 0..n param with ...args
 @method testrestparam0n
 @param {String} [...multiple] my desc
 @returns something without a type
+@throw throw error without a type
 **/
 
 /**
@@ -110,6 +116,11 @@ Test newlines before descriptions.
     Sometimes true, sometimes false.
 
     Nobody knows!
+
+@throws {Error}
+    Throws an error.
+
+    Catch me.
 **/
 
     /**
