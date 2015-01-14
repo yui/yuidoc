@@ -47,7 +47,7 @@
  * @evil
  * @injects {HTML} uses a string parameter to populate innerHTML
  * @returns something without a type
- * @throw throw error without a type
+ * @throws throw error without a type
  * @example
  *      This is code
  * @example
@@ -70,7 +70,7 @@
  * @method test0ton
  * @param {string} [optionalandmultiple]* my desc
  * @returns something without a type
- * @throw throw error without a type
+ * @throws throw error without a type
  */
 
 /**
@@ -78,7 +78,7 @@
  * @method test1ton
  * @param {string} multiple* my desc
  * @returns something without a type
- * @throw throw error without a type
+ * @throws throw error without a type
  */
 
 /**
@@ -87,7 +87,7 @@ test alternative 1..n param with ...args
 @method testrestparam1n
 @param {String} ...multiple my desc
 @returns something without a type
-@throw throw error without a type
+@throws throw error without a type
 **/
 
 /**
@@ -96,7 +96,7 @@ test alternative 0..n param with ...args
 @method testrestparam0n
 @param {String} [...multiple] my desc
 @returns something without a type
-@throw throw error without a type
+@throws throw error without a type
 **/
 
 /**
