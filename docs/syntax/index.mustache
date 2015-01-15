@@ -165,6 +165,7 @@ toJSON: function () {
             <a href="#for">`@for`</a>,
             <a href="#param">`@param`</a>,
             <a href="#return">`@return`</a>,
+            <a href="#throws">`@throws`</a>,
             <a href="#static">`@static`</a>.
         </p>
     </td>
@@ -697,6 +698,27 @@ ATTRS[RENDERED] = {
             See also:
             <a href="#method">`@method`</a>,
             <a href="#param">`@param`</a>.
+        </p>
+    </td>
+</tr>
+<tr id="throws">
+    <td>`throws`</td>
+    <td>
+```
+/**
+ * @method generateClientId
+ * @throws {Error} An error.
+ */
+```
+    </td>
+    <td>
+        <p>Specifies an error which method throws.
+        A `@throws` tag has the structure `@throws {type} description`.
+        The `{type}` is optional.</p>
+        <p>
+            See also:
+            <a href="#method">`@method`</a>,
+            <a href="#return">`@return`</a>.
         </p>
     </td>
 </tr>

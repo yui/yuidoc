@@ -49,6 +49,11 @@
     <br><div class="returns"><strong>Returns:</strong> {{#if type}}&lt;{{#crossLink type}}{{/crossLink}}&gt; {{/if}}{{{description}}}</div>
     {{/return}}
     {{/if}}
+    {{#if throws}}
+    {{#throws}}
+    <br><div class="throws"><strong>Throws:</strong> {{#if type}}&lt;{{#crossLink type}}{{/crossLink}}&gt; {{/if}}{{{description}}}</div>
+    {{/throws}}
+    {{/if}}
     {{#if example}}
         <h5>Example</h5>
         {{{example}}}

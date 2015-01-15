@@ -242,6 +242,7 @@ suite.add(new YUITest.TestCase({
             'evil',
             'injects',
             'return',
+            'throws',
             'example',
             'class',
             'module',
@@ -254,10 +255,12 @@ suite.add(new YUITest.TestCase({
         Assert.areSame('HTML', item.injects.type, 'Injection type not found');
 
         Assert.isUndefined(item["return"].type, 'Type should be missing');
+        Assert.isUndefined(item.throws.type, 'Type should be missing');
         Assert.areSame(2, item.example.length, 'Should have 2 example snippets');
 
         item2 = this.findByName('testobjectparam', 'myclass');
         Assert.areSame('String', item2["return"].type, 'Type should not be missing');
+        Assert.areSame('Error', item2.throws.type, 'Type should not be missing');
     },
     'test: parameter parsing': function () {
         var item, item2, item3, item4;
@@ -289,6 +292,7 @@ suite.add(new YUITest.TestCase({
         Assert.isTrue(item2.params[0].optional, 'Optional not set');
         Assert.isTrue(item2.params[0].multiple, 'Multiple not set');
         Assert.isUndefined(item2["return"].type, 'Type should be missing');
+        Assert.isUndefined(item2.throws.type, 'Type should be missing');
 
         item2 = this.findByName('test1ton', 'myclass');
         Assert.isArray(item2.params, 'Params should be an array');
@@ -296,6 +300,7 @@ suite.add(new YUITest.TestCase({
         Assert.isUndefined(item2.params[0].optional, 'Optional should not be set');
         Assert.isTrue(item2.params[0].multiple, 'Multiple not set');
         Assert.isUndefined(item2["return"].type, 'Type should be missing');
+        Assert.isUndefined(item2.throws.type, 'Type should be missing');
 
         item3 = this.findByName('testrestparam0n', 'myclass');
         Assert.isArray(item3.params, 'Params should be an array');
@@ -303,6 +308,7 @@ suite.add(new YUITest.TestCase({
         Assert.isTrue(item3.params[0].optional, 'Optional not set');
         Assert.isTrue(item3.params[0].multiple, 'Multiple not set');
         Assert.isUndefined(item3['return'].type, 'Type should be missing');
+        Assert.isUndefined(item3.throws.type, 'Type should be missing');
 
         item4 = this.findByName('testrestparam1n', 'myclass');
         Assert.isArray(item4.params, 'Params should be an array');
@@ -310,6 +316,7 @@ suite.add(new YUITest.TestCase({
         Assert.isUndefined(item4.params[0].optional, 'Optional should not be set');
         Assert.isTrue(item4.params[0].multiple, 'Multiple not set');
         Assert.isUndefined(item4['return'].type, 'Type should be missing');
+        Assert.isUndefined(item4.throws.type, 'Type should be missing');
 
         item = this.findByName('testNewlineBeforeDescription', 'myclass');
         Assert.isArray(item.params, 'Params should be an array.');
@@ -329,13 +336,19 @@ suite.add(new YUITest.TestCase({
             'Param 1 should have the correct description.'
         );
     },
-    'test: indented return description': function () {
+    'test: indented description': function () {
         var item = this.findByName('testNewlineBeforeDescription', 'myclass');
 
         Assert.areSame('Boolean', item['return'].type, 'Type should be correct.');
         Assert.areSame(
             'Sometimes true, sometimes false.\nNobody knows!',
             item['return'].description,
+            'Description indentation should be normalized to the first line.'
+        );
+        Assert.areSame('Error', item.throws.type, 'Type should be correct.');
+        Assert.areSame(
+            'Throws an error.\nCatch me.',
+            item.throws.description,
             'Description indentation should be normalized to the first line.'
         );
     },
