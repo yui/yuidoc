@@ -1,9 +1,8 @@
 {
     "project": {
         "name": "yuidoc-root",
-        "logo": "http://yuilibrary.com/img/yui-logo.png",
         "description": "YUIDoc, YUI's JavaScript Documentation engine.",
-        "version": "0.4.0"
+        "version": "0.5.0"
     },
     "files": {
         "lib/builder.js": {
@@ -77,6 +76,13 @@
             "classes": {
                 "Options": 1
             },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/project.js": {
+            "name": "lib/project.js",
+            "modules": {},
+            "classes": {},
             "fors": {},
             "namespaces": {}
         },
@@ -180,7 +186,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/docparser.js",
-            "line": 735,
+            "line": 737,
             "description": "The doc parser accepts a **map** of files to file content.\nOnce `parse()` is called, various properties will be populated\nwith the parsers data (aggregated in the `'data'` property).",
             "extends": "Base",
             "is_constructor": 1,
@@ -230,7 +236,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/files.js",
-            "line": 3,
+            "line": 8,
             "description": "Ported fileutils methods from [Selleck](http://github.com/rgrove/selleck)"
         },
         "Help": {
@@ -273,7 +279,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/options.js",
-            "line": 5,
+            "line": 10,
             "description": "Handles argument parsing"
         },
         "Server": {
@@ -287,7 +293,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/server.js",
-            "line": 4,
+            "line": 9,
             "description": "Provides the `--server` server option for YUIDoc"
         },
         "Utils": {
@@ -331,6 +337,12 @@
         }
     },
     "classitems": [
+        {
+            "file": "lib/builder.js",
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "DocBuilder"
+        },
         {
             "file": "lib/builder.js",
             "line": 120,
@@ -597,7 +609,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 712,
+            "line": 707,
             "description": "Makes the default directories needed",
             "itemtype": "method",
             "name": "makeDirs",
@@ -613,7 +625,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 765,
+            "line": 760,
             "description": "Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them",
             "itemtype": "method",
             "name": "_parseCode",
@@ -635,7 +647,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 778,
+            "line": 773,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n       that are not parsed by the **Markdown** parser.",
             "itemtype": "method",
             "name": "_inlineCode",
@@ -657,7 +669,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 797,
+            "line": 792,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck)\n       Renders the handlebars templates with the default View class.",
             "itemtype": "method",
             "name": "render",
@@ -709,7 +721,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 853,
+            "line": 848,
             "description": "Render the index file",
             "itemtype": "method",
             "name": "renderIndex",
@@ -723,13 +735,13 @@
                             "name": "html",
                             "description": "The HTML to render this view",
                             "type": "String"
+                        },
+                        {
+                            "name": "view",
+                            "description": "The View Data",
+                            "type": "Object"
                         }
                     ]
-                },
-                {
-                    "name": "cv.view",
-                    "description": "The View Data",
-                    "type": "Object"
                 }
             ],
             "class": "DocBuilder",
@@ -737,7 +749,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 878,
+            "line": 873,
             "description": "Generates the index.html file",
             "itemtype": "method",
             "name": "writeIndex",
@@ -745,7 +757,19 @@
                 {
                     "name": "cb",
                     "description": "The callback to execute after it's completed",
-                    "type": "Callback"
+                    "type": "Callback",
+                    "props": [
+                        {
+                            "name": "html",
+                            "description": "The HTML to write index view",
+                            "type": "String"
+                        },
+                        {
+                            "name": "view",
+                            "description": "The View Data",
+                            "type": "Object"
+                        }
+                    ]
                 }
             ],
             "class": "DocBuilder",
@@ -753,7 +777,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 902,
+            "line": 899,
             "description": "Render a module",
             "itemtype": "method",
             "name": "renderModule",
@@ -767,13 +791,13 @@
                             "name": "html",
                             "description": "The HTML to render this view",
                             "type": "String"
+                        },
+                        {
+                            "name": "view",
+                            "description": "The View Data",
+                            "type": "Object"
                         }
                     ]
-                },
-                {
-                    "name": "cv.view",
-                    "description": "The View Data",
-                    "type": "Object"
                 }
             ],
             "class": "DocBuilder",
@@ -781,7 +805,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 986,
+            "line": 983,
             "description": "Generates the module files under \"out\"/modules/",
             "itemtype": "method",
             "name": "writeModules",
@@ -789,7 +813,19 @@
                 {
                     "name": "cb",
                     "description": "The callback to execute after it's completed",
-                    "type": "Callback"
+                    "type": "Callback",
+                    "props": [
+                        {
+                            "name": "html",
+                            "description": "The HTML to write module view",
+                            "type": "String"
+                        },
+                        {
+                            "name": "view",
+                            "description": "The View Data",
+                            "type": "Object"
+                        }
+                    ]
                 }
             ],
             "class": "DocBuilder",
@@ -797,7 +833,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1027,
+            "line": 1026,
             "description": "Checks an array of items (class items) to see if an item is in that list",
             "itemtype": "method",
             "name": "hasProperty",
@@ -821,7 +857,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1044,
+            "line": 1043,
             "description": "Counter for stepping into merges",
             "access": "private",
             "tagname": "",
@@ -833,7 +869,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1051,
+            "line": 1050,
             "description": "Merge superclass data into a child class",
             "itemtype": "method",
             "name": "mergeExtends",
@@ -859,7 +895,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1103,
+            "line": 1102,
             "description": "Render the class file",
             "itemtype": "method",
             "name": "renderClass",
@@ -873,13 +909,13 @@
                             "name": "html",
                             "description": "The HTML to render this view",
                             "type": "String"
+                        },
+                        {
+                            "name": "view",
+                            "description": "The View Data",
+                            "type": "Object"
                         }
                     ]
-                },
-                {
-                    "name": "cv.view",
-                    "description": "The View Data",
-                    "type": "Object"
                 }
             ],
             "class": "DocBuilder",
@@ -887,7 +923,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1391,
+            "line": 1390,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -895,7 +931,19 @@
                 {
                     "name": "cb",
                     "description": "The callback to execute after it's completed",
-                    "type": "Callback"
+                    "type": "Callback",
+                    "props": [
+                        {
+                            "name": "html",
+                            "description": "The HTML to write class view",
+                            "type": "String"
+                        },
+                        {
+                            "name": "view",
+                            "description": "The View Data",
+                            "type": "Object"
+                        }
+                    ]
                 }
             ],
             "class": "DocBuilder",
@@ -903,7 +951,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1432,
+            "line": 1433,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -928,7 +976,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1455,
+            "line": 1456,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -936,7 +984,19 @@
                 {
                     "name": "cb",
                     "description": "The callback to execute after it's completed",
-                    "type": "Callback"
+                    "type": "Callback",
+                    "props": [
+                        {
+                            "name": "html",
+                            "description": "The HTML to write file view",
+                            "type": "String"
+                        },
+                        {
+                            "name": "view",
+                            "description": "The View Data",
+                            "type": "Object"
+                        }
+                    ]
                 }
             ],
             "class": "DocBuilder",
@@ -944,7 +1004,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1503,
+            "line": 1506,
             "description": "Render the source file",
             "itemtype": "method",
             "name": "renderFile",
@@ -958,13 +1018,13 @@
                             "name": "html",
                             "description": "The HTML to render this view",
                             "type": "String"
+                        },
+                        {
+                            "name": "view",
+                            "description": "The View Data",
+                            "type": "Object"
                         }
                     ]
-                },
-                {
-                    "name": "cv.view",
-                    "description": "The View Data",
-                    "type": "Object"
                 }
             ],
             "class": "DocBuilder",
@@ -972,7 +1032,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1557,
+            "line": 1560,
             "description": "Write the API meta data used for the AutoComplete widget",
             "itemtype": "method",
             "name": "writeAPIMeta",
@@ -989,15 +1049,22 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1570,
-            "description": "Render the API meta and return the Javascript",
+            "line": 1573,
+            "description": "Render the API meta and return the JavaScript",
             "itemtype": "method",
             "name": "renderAPIMeta",
             "params": [
                 {
                     "name": "cb",
                     "description": "The callback",
-                    "type": "Callback"
+                    "type": "Callback",
+                    "props": [
+                        {
+                            "name": "apijs",
+                            "description": "The JavaScript code to write API meta data",
+                            "type": "String"
+                        }
+                    ]
                 }
             ],
             "async": 1,
@@ -1006,7 +1073,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1602,
+            "line": 1606,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -1026,7 +1093,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1615,
+            "line": 1619,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
@@ -1038,6 +1105,20 @@
                 }
             ],
             "class": "DocBuilder",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/cli.js",
+            "line": 3,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "CLI",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/docparser.js",
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "DocParser",
             "module": "yuidoc"
         },
         {
@@ -1141,7 +1222,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 763,
+            "line": 765,
             "description": "Digesters process the tag/text pairs found in a\ncomment block.  They are looked up by tag name.\nThe digester gets the tagname, the value, the\ntarget object to apply values to, and the full\nblock that is being processed.  Digesters can\nbe declared as strings instead of a function --\nin that case, the program will try to look up\nthe key listed and use the function there instead\n(it is an alias).  Digesters can return a host\nobject in the case the tag defines a new key\nblock type (modules/classes/methods/events/properties)",
             "itemtype": "attribute",
             "name": "digesters",
@@ -1150,7 +1231,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 785,
+            "line": 787,
             "description": "Emitters will be schemas for the types of payloads\nthe parser will emit.  Not implemented.",
             "itemtype": "attribute",
             "name": "emitters",
@@ -1159,7 +1240,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 796,
+            "line": 798,
             "description": "Comment syntax type.",
             "itemtype": "attribute",
             "name": "syntaxtype",
@@ -1169,7 +1250,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 805,
+            "line": 807,
             "description": "The map of file names to file content.",
             "itemtype": "attribute",
             "name": "filemap",
@@ -1178,7 +1259,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 813,
+            "line": 815,
             "description": "A map of file names to directory name.  Provided in\ncase this needs to be used to reset the module name\nappropriately -- currently not used",
             "itemtype": "attribute",
             "name": "dirmap",
@@ -1187,7 +1268,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 823,
+            "line": 825,
             "description": "The file currently being parsed",
             "itemtype": "attribute",
             "name": "currentfile",
@@ -1197,7 +1278,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 844,
+            "line": 846,
             "description": "The main documentation block for the module itself.",
             "itemtype": "attribute",
             "name": "mainmodule",
@@ -1207,7 +1288,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 880,
+            "line": 882,
             "description": "The module currently being parsed",
             "itemtype": "attribute",
             "name": "currentmodule",
@@ -1217,7 +1298,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 939,
+            "line": 941,
             "description": "The submodule currently being parsed",
             "itemtype": "attribute",
             "name": "currentsubmodule",
@@ -1227,7 +1308,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 979,
+            "line": 981,
             "description": "The class currently being parsed",
             "itemtype": "attribute",
             "name": "currentclass",
@@ -1237,7 +1318,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1019,
+            "line": 1021,
             "description": "Takes a non-namespaced classname and resolves it to a namespace (to support `@for`)",
             "access": "private",
             "tagname": "",
@@ -1259,7 +1340,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1093,
+            "line": 1095,
             "description": "Normalizes the initial indentation of the given _content_ so that the first line\nis unindented, and all other lines are unindented to the same degree as the\nfirst line. So if the first line has four spaces at the beginning, then all\nlines will be unindented four spaces. Ported from [Selleck](https://github.com/rgrove/selleck)",
             "itemtype": "method",
             "name": "unindent",
@@ -1281,7 +1362,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1114,
+            "line": 1116,
             "description": "Transforms a JavaDoc style comment block (less the start and end of it)\ninto a list of tag/text pairs. The leading space and '*' are removed,\nbut the remaining whitespace is preserved so that the output should be\nfriendly for both markdown and html parsers.",
             "itemtype": "method",
             "name": "handlecomment",
@@ -1307,7 +1388,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1190,
+            "line": 1192,
             "description": "Accepts a map of filenames to file content.  Returns\na map of filenames to an array of API comment block\ntext.  This expects the comment to start with / **\non its own line, and end with * / on its own\nline.  Override this function to provide an\nalternative comment parser.",
             "itemtype": "method",
             "name": "extract",
@@ -1332,7 +1413,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1245,
+            "line": 1247,
             "description": "Processes all the tags in a single comment block",
             "itemtype": "method",
             "name": "processblock",
@@ -1348,7 +1429,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1318,
+            "line": 1320,
             "description": "Transforms a map of filenames to arrays of comment blocks into a\nJSON structure that represents the entire processed API doc info\nand relationships between elements for the entire project.",
             "itemtype": "method",
             "name": "transform",
@@ -1368,7 +1449,7 @@
         },
         {
             "file": "lib/docparser.js",
-            "line": 1432,
+            "line": 1434,
             "description": "Extracts and transforms the filemap provided to constructor",
             "itemtype": "method",
             "name": "parse",
@@ -1393,6 +1474,13 @@
         },
         {
             "file": "lib/docview.js",
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "DocView",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/docview.js",
             "line": 28,
             "description": "**Mustache** `lambda` method for setting the HTML title",
             "itemtype": "method",
@@ -1411,7 +1499,14 @@
         },
         {
             "file": "lib/files.js",
-            "line": 32,
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/files.js",
+            "line": 37,
             "description": "Copy a directory from one location to another",
             "itemtype": "method",
             "name": "copyDirectory",
@@ -1444,7 +1539,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 122,
+            "line": 127,
             "description": "Copy a file from one location to another",
             "itemtype": "method",
             "name": "copyFile",
@@ -1484,7 +1579,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 175,
+            "line": 180,
             "description": "If _source_ is a file, copies it to _dest_. If it's a directory, recursively\ncopies it and all files and directories it contains to _dest_.\n\nNote that when attempting to copy a file into a directory, you should specify\nthe full path to the new file (including the new filename). Otherwise, it will\nbe interpreted as an attempt to copy the _source_ file *over* the _dest_\ndirectory instead of *into* it.\n\nKnown issues:\n- Doesn't preserve ownership or permissions on copied files/directories.",
             "itemtype": "method",
             "name": "copyPath",
@@ -1524,7 +1619,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 221,
+            "line": 226,
             "description": "If _path_ is a file, deletes it. If _path_ is a directory, recursively deletes\nit and all files and directories it contains.\n\nThis method is synchronous.",
             "itemtype": "method",
             "name": "deletePath",
@@ -1540,7 +1635,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 246,
+            "line": 251,
             "description": "Check to see if this is a directory",
             "itemtype": "method",
             "name": "isDirectory",
@@ -1567,7 +1662,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 277,
+            "line": 282,
             "description": "Check to see if this is a File",
             "itemtype": "method",
             "name": "isFile",
@@ -1594,7 +1689,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 306,
+            "line": 311,
             "description": "Check to see if this is a SymLink",
             "itemtype": "method",
             "name": "isSymbolicLink",
@@ -1614,7 +1709,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 320,
+            "line": 325,
             "description": "Like `fs.lstatSync()`, but returns `null` instead of throwing when _path_\ndoesn't exist. Will still throw on other types of errors.",
             "itemtype": "method",
             "name": "lstatSync",
@@ -1634,7 +1729,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 342,
+            "line": 347,
             "description": "Like `fs.statSync()`, but returns `null` instead of throwing when _path_\ndoesn't exist. Will still throw on other types of errors.",
             "itemtype": "method",
             "name": "statSync",
@@ -1654,7 +1749,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 363,
+            "line": 368,
             "description": "Copy the theme assets directory",
             "itemtype": "method",
             "name": "copyAssets",
@@ -1685,7 +1780,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 411,
+            "line": 416,
             "description": "Helper method for getting JSON data from a local file",
             "itemtype": "method",
             "name": "getJSON",
@@ -1705,7 +1800,7 @@
         },
         {
             "file": "lib/files.js",
-            "line": 426,
+            "line": 431,
             "description": "Helper method for writing files to disk. It wraps the NodeJS file API",
             "itemtype": "method",
             "name": "writeFile",
@@ -1728,6 +1823,13 @@
                 }
             ],
             "class": "Files",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/help.js",
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "Help",
             "module": "yuidoc"
         },
         {
@@ -1765,8 +1867,22 @@
             "module": "yuidoc"
         },
         {
+            "file": "lib/index.js",
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "Main",
+            "module": "yuidoc"
+        },
+        {
             "file": "lib/options.js",
-            "line": 11,
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "Options",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/options.js",
+            "line": 16,
             "description": "Parses arguments and returns an Object of config options",
             "itemtype": "method",
             "name": "Options",
@@ -1785,8 +1901,22 @@
             "module": "yuidoc"
         },
         {
+            "file": "lib/project.js",
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "Server",
+            "module": "yuidoc"
+        },
+        {
             "file": "lib/server.js",
-            "line": 10,
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "Server",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/server.js",
+            "line": 15,
             "description": "Cache for external mixed in data.",
             "itemtype": "property",
             "name": "_externalData",
@@ -1798,7 +1928,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 17,
+            "line": 22,
             "description": "Middleware to parse the API docs per request",
             "itemtype": "method",
             "name": "parse",
@@ -1824,7 +1954,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 35,
+            "line": 40,
             "description": "Create the routes used to serve YUIDoc files dynamically",
             "itemtype": "method",
             "name": "routes",
@@ -1833,7 +1963,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 105,
+            "line": 110,
             "description": "`/files` endpoint",
             "itemtype": "method",
             "name": "files",
@@ -1854,7 +1984,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 131,
+            "line": 136,
             "description": "`/classes` endpoint",
             "itemtype": "method",
             "name": "clazz",
@@ -1875,7 +2005,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 147,
+            "line": 152,
             "description": "`/modules` endpoint",
             "itemtype": "method",
             "name": "modules",
@@ -1896,7 +2026,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 163,
+            "line": 168,
             "description": "`/` endpoint",
             "itemtype": "method",
             "name": "home",
@@ -1917,7 +2047,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 175,
+            "line": 180,
             "description": "Creates the Express server and prep's YUI for serving",
             "itemtype": "method",
             "name": "init",
@@ -1926,7 +2056,7 @@
         },
         {
             "file": "lib/server.js",
-            "line": 193,
+            "line": 198,
             "description": "Start the server with the supplied options.",
             "itemtype": "method",
             "name": "start",
@@ -1938,6 +2068,13 @@
                 }
             ],
             "class": "Server",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/utils.js",
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "Utils",
             "module": "yuidoc"
         },
         {
@@ -2203,6 +2340,13 @@
         },
         {
             "file": "lib/yuidoc.js",
+            "line": 1,
+            "description": "Copyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "class": "YUIDoc",
+            "module": "yuidoc"
+        },
+        {
+            "file": "lib/yuidoc.js",
             "line": 29,
             "description": "The default list of configuration options",
             "itemtype": "property",
@@ -2421,6 +2565,54 @@
         {
             "message": "unknown tag: exports",
             "line": " lib/index.js:7"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/builder.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/cli.js:3"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/docparser.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/docview.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/files.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/help.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/index.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/options.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/project.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/server.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/utils.js:1"
+        },
+        {
+            "message": "Missing item type\nCopyright (c) 2011, Yahoo! Inc. All rights reserved.\nCode licensed under the BSD License:\nhttps://github.com/yui/yuidoc/blob/master/LICENSE",
+            "line": " lib/yuidoc.js:1"
         }
     ]
 }

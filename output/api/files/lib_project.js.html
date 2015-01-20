@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>CLI - yuidoc-root</title>
+    <title>lib/project.js - yuidoc-root</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -86,44 +86,79 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>CLI Class</h1>
-<div class="box meta">
+<h1 class="file-heading">File: lib/project.js</h1>
 
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * Copyright (c) 2011, Yahoo! Inc. All rights reserved.
+ * Code licensed under the BSD License:
+ * https://github.com/yui/yuidoc/blob/master/LICENSE
+ */
+YUI.add(&#x27;project&#x27;, function (Y) {
 
-        <div class="foundat">
-            Defined in: <a href="../files/lib_cli.js.html#l9"><code>lib&#x2F;cli.js:9</code></a>
-        </div>
+    Y.Project = {
+        mix: function (json, options) {
+            if (json.project) {
+                options = Y.merge(options, json.project);
+            }
 
-            Module: <a href="../modules/yuidoc.html">yuidoc</a>
+            if (options.title &amp;&amp; !options.name) {
+                options.name = options.title;
+            }
 
-</div>
+            return options;
+        },
+        init: function (options) {
+            var project = {};
+            if (options.configfile) {
+                project = Y.Files.getJSON(options.configfile);
+            } else {
+                Y.log(&#x27;Scanning for yuidoc.json file.&#x27;, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
+                project = Y.getProjectData();
+                if (!project) {
+                    project = {};
+                }
+            }
 
+            if (project.options &amp;&amp; Object.keys(project.options).length) {
+                options = Y.merge(project.options, options);
+                delete project.options;
+                options.project = project;
+            }
 
-<div class="box intro">
-    <p>Parses the arguments, creates the options and passes them to <code>Y.YUIDoc</code> and then <code>Y.DocBuilder</code>.</p>
+            if (options.version &amp;&amp; options.project) {
+                options.project.version = options.version;
+                delete options.version;
+            }
 
-</div>
+            if (!options.outdir) {
+                options.outdir = &#x27;./out&#x27;;
+            }
 
+            options.paths = Y.validatePaths(options.paths, options.ignorePaths);
 
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
+            if (!options.paths.length) {
+                Y.log(&#x27;Paths argument was empty&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
+                Y.showHelp();
+                process.exit(1);
+            }
 
-    </ul>
+            if (typeof options.tabtospace === &#x27;number&#x27;) {
+                /*jshint onevar:false */
+                options.tabspace = &#x27;&#x27;;
+                for (var s = 0; s &lt; options.tabtospace; s++) {
+                    options.tabspace += &#x27; &#x27;;
+                }
+            }
 
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
+            return options;
+        }
+    };
 
+});
 
-
-
-        </div>
-
-
-
-
-    </div>
+    </pre>
 </div>
                     </div>
                 </div>

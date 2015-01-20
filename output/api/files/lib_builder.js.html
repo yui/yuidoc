@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <link rel="icon" href="../assets/favicon.ico">
     <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
@@ -14,12 +14,10 @@
 <div id="doc">
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
-            
-                <h1><img src="http://yuilibrary.com/img/yui-logo.png" title="yuidoc-root"></h1>
-            
+                <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.4.0</em>
+            <em>API Docs for: 0.5.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -27,92 +25,76 @@
         <div class="yui3-u-1-4">
             <div id="docs-sidebar" class="sidebar apidocs">
                 <div id="api-list">
-    <h2 class="off-left">APIs</h2>
-    <div id="api-tabview" class="tabview">
-        <ul class="tabs">
-            <li><a href="#api-classes">Classes</a></li>
-            <li><a href="#api-modules">Modules</a></li>
-        </ul>
-
-        <div id="api-tabview-filter">
-            <input type="search" id="api-filter" placeholder="Type to filter APIs">
-        </div>
-
-        <div id="api-tabview-panel">
-            <ul id="api-classes" class="apis classes">
-            
-                <li><a href="../classes/CLI.html">CLI</a></li>
-            
-                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
-            
-                <li><a href="../classes/DocParser.html">DocParser</a></li>
-            
-                <li><a href="../classes/DocView.html">DocView</a></li>
-            
-                <li><a href="../classes/Files.html">Files</a></li>
-            
-                <li><a href="../classes/Help.html">Help</a></li>
-            
-                <li><a href="../classes/Main.html">Main</a></li>
-            
-                <li><a href="../classes/Options.html">Options</a></li>
-            
-                <li><a href="../classes/Server.html">Server</a></li>
-            
-                <li><a href="../classes/Utils.html">Utils</a></li>
-            
-                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
-            
-            </ul>
-
-            <ul id="api-modules" class="apis modules">
-            
-                <li><a href="../modules/yuidoc.html">yuidoc</a></li>
-            
-            </ul>
-        </div>
-    </div>
-</div>
-
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/CLI.html">CLI</a></li>
+                                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
+                                <li><a href="../classes/DocParser.html">DocParser</a></li>
+                                <li><a href="../classes/DocView.html">DocView</a></li>
+                                <li><a href="../classes/Files.html">Files</a></li>
+                                <li><a href="../classes/Help.html">Help</a></li>
+                                <li><a href="../classes/Main.html">Main</a></li>
+                                <li><a href="../classes/Options.html">Options</a></li>
+                                <li><a href="../classes/Server.html">Server</a></li>
+                                <li><a href="../classes/Utils.html">Utils</a></li>
+                                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/yuidoc.html">yuidoc</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="yui3-u-3-4">
                 <div id="api-options">
-        Show:
-        <label for="api-show-inherited">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </div>
-
-
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: lib/builder.js</h1>
+<h1 class="file-heading">File: lib/builder.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-/*
-Copyright (c) 2011, Yahoo! Inc. All rights reserved.
-Code licensed under the BSD License:
-http://yuilibrary.com/license/
-*/
+/**
+ * Copyright (c) 2011, Yahoo! Inc. All rights reserved.
+ * Code licensed under the BSD License:
+ * https://github.com/yui/yuidoc/blob/master/LICENSE
+ */
 var marked = require(&#x27;marked&#x27;),
     fs = require(&#x27;graceful-fs&#x27;),
     noop = function () {},
@@ -800,20 +782,15 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
                     Y.each(i, function (v, k) {
                         if (k === &#x27;final&#x27;) {
                             o[k1][k] = true;
-                        }
-                        if (k === &#x27;description&#x27; || k === &#x27;example&#x27;) {
-                            if (k1 === &#x27;return&#x27;) {
-                                o[k1][k] = self.markdown(v);
-                            } else if (v.forEach || (v instanceof Object)) {
+                        } else if (k === &#x27;description&#x27; || k === &#x27;example&#x27;) {
+                            if (v.forEach || (v instanceof Object)) {
                                 o[k1][k] = self.augmentData(v);
                             } else {
-                                //o[k1][k] = markdown(v, true, self.defaultTags);
                                 o[k1][k] = self.markdown(v);
                             }
                         }
                     });
                 } else if (k1 === &#x27;description&#x27; || k1 === &#x27;example&#x27;) {
-                    //o[k1] = markdown(i, true, self.defaultTags);
                     o[k1] = self.markdown(i);
                 }
             });
@@ -965,7 +942,7 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
          * @method renderIndex
          * @param {Function} cb The callback fired when complete
          * @param {String} cb.html The HTML to render this view
-         * @param {Object} cv.view The View Data
+         * @param {Object} cb.view The View Data
          */
         renderIndex: function (cb) {
             var self = this;
@@ -989,6 +966,8 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
          * Generates the index.html file
          * @method writeIndex
          * @param {Callback} cb The callback to execute after it&#x27;s completed
+         * @param {String} cb.html The HTML to write index view
+         * @param {Object} cb.view The View Data
          */
         writeIndex: function (cb) {
             var self = this,
@@ -1014,7 +993,7 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
          * @method renderModule
          * @param {Function} cb The callback fired when complete
          * @param {String} cb.html The HTML to render this view
-         * @param {Object} cv.view The View Data
+         * @param {Object} cb.view The View Data
          */
         renderModule: function (cb, data, layout) {
             var self = this;
@@ -1097,6 +1076,8 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
          * Generates the module files under &quot;out&quot;/modules/
          * @method writeModules
          * @param {Callback} cb The callback to execute after it&#x27;s completed
+         * @param {String} cb.html The HTML to write module view
+         * @param {Object} cb.view The View Data
          */
         writeModules: function (cb, layout) {
             layout = layout || &#x27;main&#x27;;
@@ -1215,7 +1196,7 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
          * @method renderClass
          * @param {Function} cb The callback fired when complete
          * @param {String} cb.html The HTML to render this view
-         * @param {Object} cv.view The View Data
+         * @param {Object} cb.view The View Data
          */
         renderClass: function (cb, data, layout) {
             var self = this;
@@ -1502,6 +1483,8 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
          * Generates the class files under &quot;out&quot;/classes/
          * @method writeClasses
          * @param {Callback} cb The callback to execute after it&#x27;s completed
+         * @param {String} cb.html The HTML to write class view
+         * @param {Object} cb.view The View Data
          */
         writeClasses: function (cb, layout) {
             layout = layout || &#x27;main&#x27;;
@@ -1566,6 +1549,8 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
          * Generates the syntax files under &#x60;&quot;out&quot;/files/&#x60;
          * @method writeFiles
          * @param {Callback} cb The callback to execute after it&#x27;s completed
+         * @param {String} cb.html The HTML to write file view
+         * @param {Object} cb.view The View Data
          */
         writeFiles: function (cb, layout) {
             layout = layout || &#x27;main&#x27;;
@@ -1615,7 +1600,7 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
          * @method renderFile
          * @param {Function} cb The callback fired when complete
          * @param {String} cb.html The HTML to render this view
-         * @param {Object} cv.view The View Data
+         * @param {Object} cb.view The View Data
          */
         renderFile: function (cb, data, layout) {
             var self = this;
@@ -1678,9 +1663,10 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
             });
         },
         /**
-         * Render the API meta and return the Javascript
+         * Render the API meta and return the JavaScript
          * @method renderAPIMeta
          * @param {Callback} cb The callback
+         * @param {String} cb.apijs The JavaScript code to write API meta data
          * @async
          */
         renderAPIMeta: function (cb) {
@@ -1781,7 +1767,6 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
 
     </pre>
 </div>
-
                     </div>
                 </div>
             </div>
