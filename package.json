@@ -81,7 +81,7 @@
     "istanbul": "^0.3.5",
     "jshint": "^2.6.0",
     "selleck": "^0.1.18",
-    "ytestrunner": "~0.3.3",
+    "ytestrunner": "^0.3.3",
     "yuitest": ">=0.7.3"
   },
   "scripts": {
