@@ -82,7 +82,7 @@
     "jshint": "^2.6.0",
     "selleck": "^0.1.18",
     "ytestrunner": "^0.3.3",
-    "yuitest": ">=0.7.3"
+    "yuitest": "^0.7.9"
   },
   "scripts": {
     "pretest": "jshint ./lib/*.js ./tests/*.js",
