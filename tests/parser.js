@@ -440,6 +440,10 @@ suite.add(new YUITest.TestCase({
         Assert.areSame(item.params[0].props[0].name, 'name');
         Assert.isTrue(item.params[0].props[0].optional);
 
+    },
+    'test: markdown example': function () {
+        var item = this.findByName('foo2', 'myclass');
+        Assert.areSame(item.example[0], '\n    @media screen and (max-width: 767px) {\n    }');
     }
 }));
 

@@ -159,6 +159,13 @@ This is the description
 **/
 
 /**
+@method foo2
+@example
+    @media screen and (max-width: 767px) {
+    }
+*/
+
+/**
 Other Class
 @class OtherClass
 @extensionfor myclass
