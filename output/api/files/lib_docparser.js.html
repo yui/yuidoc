@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.5.0</em>
+            <em>API Docs for: 0.6.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -261,6 +261,18 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             &quot;uses&quot;,         // 0..n compents mixed (usually, via augment) into the prototype
             &quot;value&quot;,        // the value of a constant
             &quot;writeonce&quot;     // YUI attribute config
+        ],
+
+        /**
+         * A list of ignored tags. These tags should be ignored because there is
+         * likely to be used for purposes other than JSDoc tags in JavaScript comments.
+         * @property IGNORE_TAGLIST
+         * @type Array
+         * @final
+         * @for DocParser
+         */
+        IGNORE_TAGLIST = [
+            &quot;media&quot;
         ],
 
         /**
@@ -1220,6 +1232,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             var lines = comment.split(REGEX_LINES),
                 len = lines.length,
                 i,
+                regex,
                 parts, part, peek, skip,
                 tag, value,
                 results = [{
@@ -1242,7 +1255,8 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
 
             // reconsitute and tokenize the comment block
             comment = this.unindent(lines.join(&#x27;\n&#x27;));
-            parts = comment.split(/(?:^|\n)\s*(@\w*)/);
+            regex = new RegExp(&#x27;(?:^|\\n)\\s*((?!@&#x27; + IGNORE_TAGLIST.join(&#x27;)(?!@&#x27;) + &#x27;)@\\w*)&#x27;);
+            parts = comment.split(regex);
             len = parts.length;
             for (i = 0; i &lt; len; i++) {
                 value = &#x27;&#x27;;

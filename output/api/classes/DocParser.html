@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.5.0</em>
+            <em>API Docs for: 0.6.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -94,7 +94,7 @@
         </div>
 
         <div class="foundat">
-            Defined in: <a href="../files/lib_docparser.js.html#l737"><code>lib&#x2F;docparser.js:737</code></a>
+            Defined in: <a href="../files/lib_docparser.js.html#l749"><code>lib&#x2F;docparser.js:749</code></a>
         </div>
 
             Module: <a href="../modules/yuidoc.html">yuidoc</a>
@@ -105,7 +105,7 @@
 <div class="box intro">
     <p>The doc parser accepts a <strong>map</strong> of files to file content.
 Once <code>parse()</code> is called, various properties will be populated
-with the parsers data (aggregated in the <code>&#39;data&#39;</code> property).</p>
+with the parsers data (aggregated in the <code>'data'</code> property).</p>
 
 </div>
 
@@ -132,7 +132,7 @@ with the parsers data (aggregated in the <code>&#39;data&#39;</code> property).<
             <div class="meta">
                         <p>
                         Defined in
-                <a href="../files/lib_docparser.js.html#l737"><code>lib&#x2F;docparser.js:737</code></a>
+                <a href="../files/lib_docparser.js.html#l749"><code>lib&#x2F;docparser.js:749</code></a>
                 </p>
         
         
@@ -543,6 +543,10 @@ with the parsers data (aggregated in the <code>&#39;data&#39;</code> property).<
                                 <a href="#property_DIGESTERS">DIGESTERS</a>
 
                             </li>
+                            <li class="index-item property">
+                                <a href="#property_IGNORE_TAGLIST">IGNORE_TAGLIST</a>
+
+                            </li>
                             <li class="index-item property deprecated inherited">
                                 <a href="#property_name">name</a>
 
@@ -655,7 +659,7 @@ with the parsers data (aggregated in the <code>&#39;data&#39;</code> property).<
     <div class="description">
         <p>Implementation behind the public addAttrs method.</p>
 <p>This method is invoked directly by get if it encounters a scenario
-in which an attribute&#39;s valueFn attempts to obtain the
+in which an attribute's valueFn attempts to obtain the
 value an attribute in the same group of attributes, which has not yet
 been added (on demand initialization).</p>
 
@@ -696,7 +700,7 @@ Values defined in the cfgs argument will be over-written by values in this argum
                     <div class="param-description">
                         <p>Whether or not to delay the intialization of these attributes until the first call to get/set.
 Individual attributes can over-ride this behavior by defining a lazyAdd configuration property in their configuration.
-See <a href="#method_addAttr">addAttr</a>.</p>
+See &lt;a href=&quot;#method_addAttr&quot;&gt;addAttr&lt;/a&gt;.</p>
 
                     </div>
 
@@ -824,8 +828,8 @@ encountered out of order when calling addAttrs().</p>
      bar: {
          value: ...
      }
-});
-</code></pre>
+});</code></pre>
+
     </div>
 
         <div class="params">
@@ -1060,7 +1064,7 @@ this class for iteration performance reasons.</p>
 
     <div class="description">
         <p>This method assumes that the value has already been checked to be an object.
-Since it&#39;s on a critical path, we don&#39;t want to re-do the check.</p>
+Since it's on a critical path, we don't want to re-do the check.</p>
 
     </div>
 
@@ -1142,7 +1146,7 @@ Since it&#39;s on a critical path, we don&#39;t want to re-do the check.</p>
 
 
                     <div class="param-description">
-                        <p>Whether or not we&#39;re using this as a fast path in the case of no listeners or not</p>
+                        <p>Whether or not we're using this as a fast path in the case of no listeners or not</p>
 
                     </div>
 
@@ -1484,7 +1488,7 @@ if this is a sub-attribute value being change. Otherwise null.</p>
 
 
                     <div class="param-description">
-                        <p>Any additional event data to mix into the attribute change event&#39;s event facade.</p>
+                        <p>Any additional event data to mix into the attribute change event's event facade.</p>
 
                     </div>
 
@@ -1543,7 +1547,7 @@ if this is a sub-attribute value being change. Otherwise null.</p>
     <div class="description">
         <p>Provides the common implementation for the public get method,
 allowing Attribute hosts to over-ride either method.</p>
-<p>See <a href="#method_get">get</a> for argument details.</p>
+<p>See &lt;a href=&quot;#method_get&quot;&gt;get&lt;/a&gt; for argument details.</p>
 
     </div>
 
@@ -2282,8 +2286,8 @@ constructor.</p>
 
 
                     <div class="param-description">
-                        <p>The attributes to add during construction (passed through to <a href="#method_addAttrs">addAttrs</a>).
-       These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.</p>
+                        <p>The attributes to add during construction (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).
+These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.</p>
 
                     </div>
 
@@ -2294,8 +2298,8 @@ constructor.</p>
 
 
                     <div class="param-description">
-                        <p>The initial attribute values to apply (passed through to <a href="#method_addAttrs">addAttrs</a>).
-       These are not merged/cloned. The caller is responsible for isolating user provided values if required.</p>
+                        <p>The initial attribute values to apply (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).
+These are not merged/cloned. The caller is responsible for isolating user provided values if required.</p>
 
                     </div>
 
@@ -2306,7 +2310,7 @@ constructor.</p>
 
 
                     <div class="param-description">
-                        <p>Whether or not to add attributes lazily (passed through to <a href="#method_addAttrs">addAttrs</a>).</p>
+                        <p>Whether or not to add attributes lazily (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).</p>
 
                     </div>
 
@@ -2403,8 +2407,8 @@ either through the constructor.ATTRS property, or explicitly passed in.</p>
 
 
                     <div class="param-description">
-                        <p>The attributes to add during construction (passed through to <a href="#method_addAttrs">addAttrs</a>).
-       These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.</p>
+                        <p>The attributes to add during construction (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).
+These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.</p>
 
                     </div>
 
@@ -2415,8 +2419,8 @@ either through the constructor.ATTRS property, or explicitly passed in.</p>
 
 
                     <div class="param-description">
-                        <p>The initial attribute values to apply (passed through to <a href="#method_addAttrs">addAttrs</a>).
-       These are not merged/cloned. The caller is responsible for isolating user provided values if required.</p>
+                        <p>The initial attribute values to apply (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).
+These are not merged/cloned. The caller is responsible for isolating user provided values if required.</p>
 
                     </div>
 
@@ -2427,7 +2431,7 @@ either through the constructor.ATTRS property, or explicitly passed in.</p>
 
 
                     <div class="param-description">
-                        <p>Whether or not to add attributes lazily (passed through to <a href="#method_addAttrs">addAttrs</a>).</p>
+                        <p>Whether or not to add attributes lazily (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).</p>
 
                     </div>
 
@@ -2524,8 +2528,8 @@ either through the constructor.ATTRS property, or explicitly passed in.</p>
 
     <div class="description">
         <p>Initializes the class hierarchy for the instance, which includes
-initializing attributes for each class defined in the class&#39;s
-static <a href="#property_BaseCore.ATTRS">ATTRS</a> property and
+initializing attributes for each class defined in the class's
+static &lt;a href=&quot;#property_BaseCore.ATTRS&quot;&gt;ATTRS&lt;/a&gt; property and
 invoking the initializer method on the prototype of each class in the hierarchy.</p>
 
     </div>
@@ -2646,7 +2650,7 @@ added lazily and still requires initialization.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    <p>true if it&#39;s a lazily added attribute, false otherwise.</p>
+                    <p>true if it's a lazily added attribute, false otherwise.</p>
 
             </div>
         </div>
@@ -2690,13 +2694,13 @@ added lazily and still requires initialization.</p>
 
     <div class="description">
         <p>This is the entry point for the event monitoring system.
-You can monitor &#39;attach&#39;, &#39;detach&#39;, &#39;fire&#39;, and &#39;publish&#39;.
+You can monitor 'attach', 'detach', 'fire', and 'publish'.
 When configured, these events generate an event.  click -&gt;
 click_attach, click_detach, click_publish -- these can
 be subscribed to like other events to monitor the event
 system.  Inividual published events can have monitoring
-turned on or off (publish can&#39;t be turned off before it
-it published) by setting the events &#39;monitor&#39; config.</p>
+turned on or off (publish can't be turned off before it
+it published) by setting the events 'monitor' config.</p>
 
     </div>
 
@@ -2710,7 +2714,7 @@ it published) by setting the events &#39;monitor&#39; config.</p>
 
 
                     <div class="param-description">
-                        <p>&#39;attach&#39;, &#39;detach&#39;, &#39;fire&#39;, or &#39;publish&#39;</p>
+                        <p>'attach', 'detach', 'fire', or 'publish'</p>
 
                     </div>
 
@@ -2733,7 +2737,7 @@ it published) by setting the events &#39;monitor&#39; config.</p>
 
                     <div class="param-description">
                         <p>Information about the event interaction, such as
-                 fire() args, subscription category, publish config</p>
+fire() args, subscription category, publish config</p>
 
                     </div>
 
@@ -2840,7 +2844,7 @@ by the top level attribute name, or null, if valueHash is falsey.</p>
     <div class="description">
         <p>Returns an array with the detach key (if provided),
 and the prefixed event name from _getType
-Y.on(&#39;detachcategory| menu:click&#39;, fn)</p>
+Y.on('detachcategory| menu:click', fn)</p>
 
     </div>
 
@@ -3018,7 +3022,7 @@ attr config objects.</p>
 
     <div class="description">
         <p>The low level event publish implementation. It expects all the massaging to have been done
-outside of this method. e.g. the <code>type</code> to <code>fullType</code> conversion. It&#39;s designed to be a fast
+outside of this method. e.g. the <code>type</code> to <code>fullType</code> conversion. It's designed to be a fast
 path publish, which can be used by critical code paths to improve performance.</p>
 
     </div>
@@ -3101,7 +3105,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/lib_docparser.js.html#l1021"><code>lib&#x2F;docparser.js:1021</code></a>
+        <a href="../files/lib_docparser.js.html#l1033"><code>lib&#x2F;docparser.js:1033</code></a>
         </p>
 
 
@@ -3186,7 +3190,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
     </div>
 
     <div class="description">
-        <p>Allows setting of readOnly/writeOnce attributes. See <a href="#method_set">set</a> for argument details.</p>
+        <p>Allows setting of readOnly/writeOnce attributes. See &lt;a href=&quot;#method_set&quot;&gt;set&lt;/a&gt; for argument details.</p>
 
     </div>
 
@@ -3287,7 +3291,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
 
     <div class="description">
         <p>Provides the common implementation for the public set and protected _set methods.</p>
-<p>See <a href="#method_set">set</a> for argument details.</p>
+<p>See &lt;a href=&quot;#method_set&quot;&gt;set&lt;/a&gt; for argument details.</p>
 
     </div>
 
@@ -3692,86 +3696,72 @@ internal state object, or the state proxy if it exits</p>
     </div>
 
     <div class="description">
-        <p>
+        <p>&lt;p&gt;
 Adds an attribute with the provided configuration to the host object.
-</p>
-<p>
+&lt;/p&gt;
+&lt;p&gt;
 The config argument object supports the following properties:
-</p>
+&lt;/p&gt;</p>
+<p>&lt;dl&gt;
+&lt;dt&gt;value &lt;Any&gt;&lt;/dt&gt;
+&lt;dd&gt;The initial value to set on the attribute&lt;/dd&gt;</p>
+<p>&lt;dt&gt;valueFn &lt;Function | String&gt;&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;A function, which will return the initial value to set on the attribute. This is useful
+for cases where the attribute configuration is defined statically, but needs to
+reference the host instance (&quot;this&quot;) to obtain an initial value. If both the value and valueFn properties are defined,
+the value returned by the valueFn has precedence over the value property, unless it returns undefined, in which
+case the value property is used.&lt;/p&gt;</p>
+<p>&lt;p&gt;valueFn can also be set to a string, representing the name of the instance method to be used to retrieve the value.&lt;/p&gt;
+&lt;/dd&gt;</p>
+<p>&lt;dt&gt;readOnly &lt;boolean&gt;&lt;/dt&gt;
+&lt;dd&gt;Whether or not the attribute is read only. Attributes having readOnly set to true
+cannot be modified by invoking the set method.&lt;/dd&gt;</p>
+<p>&lt;dt&gt;writeOnce &lt;boolean&gt; or &lt;string&gt;&lt;/dt&gt;
+&lt;dd&gt;
+Whether or not the attribute is &quot;write once&quot;. Attributes having writeOnce set to true,
+can only have their values set once, be it through the default configuration,
+constructor configuration arguments, or by invoking set.
+&lt;p&gt;The writeOnce attribute can also be set to the string &quot;initOnly&quot;,
+in which case the attribute can only be set during initialization
+(when used with Base, this means it can only be set during construction)&lt;/p&gt;
+&lt;/dd&gt;</p>
+<p>&lt;dt&gt;setter &lt;Function | String&gt;&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;The setter function used to massage or normalize the value passed to the set method for the attribute.
+The value returned by the setter will be the final stored value. Returning
+&lt;a href=&quot;#property_Attribute.INVALID_VALUE&quot;&gt;Attribute.INVALID_VALUE&lt;/a&gt;, from the setter will prevent
+the value from being stored.
+&lt;/p&gt;</p>
+<p>&lt;p&gt;setter can also be set to a string, representing the name of the instance method to be used as the setter function.&lt;/p&gt;
+&lt;/dd&gt;</p>
+<p>&lt;dt&gt;getter &lt;Function | String&gt;&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;
+The getter function used to massage or normalize the value returned by the get method for the attribute.
+The value returned by the getter function is the value which will be returned to the user when they
+invoke get.
+&lt;/p&gt;</p>
+<p>&lt;p&gt;getter can also be set to a string, representing the name of the instance method to be used as the getter function.&lt;/p&gt;
+&lt;/dd&gt;</p>
+<p>&lt;dt&gt;validator &lt;Function | String&gt;&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;
+The validator function invoked prior to setting the stored value. Returning
+false from the validator function will prevent the value from being stored.
+&lt;/p&gt;</p>
+<p>&lt;p&gt;validator can also be set to a string, representing the name of the instance method to be used as the validator function.&lt;/p&gt;
+&lt;/dd&gt;</p>
+<p>&lt;dt&gt;lazyAdd &lt;boolean&gt;&lt;/dt&gt;
+&lt;dd&gt;Whether or not to delay initialization of the attribute until the first call to get/set it.
+This flag can be used to over-ride lazy initialization on a per attribute basis, when adding multiple attributes through
+the &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt; method.&lt;/dd&gt;</p>
+<p>&lt;/dl&gt;</p>
+<p>&lt;p&gt;The setter, getter and validator are invoked with the value and name passed in as the first and second arguments, and with
+the context (&quot;this&quot;) set to the host object.&lt;/p&gt;</p>
+<p>&lt;p&gt;Configuration properties outside of the list mentioned above are considered private properties used internally by attribute,
+and are not intended for public use.&lt;/p&gt;</p>
 
-<dl>
-   <dt>value &#60;Any&#62;</dt>
-   <dd>The initial value to set on the attribute</dd>
-
-   <dt>valueFn &#60;Function | String&#62;</dt>
-   <dd>
-   <p>A function, which will return the initial value to set on the attribute. This is useful
-   for cases where the attribute configuration is defined statically, but needs to
-   reference the host instance (&quot;this&quot;) to obtain an initial value. If both the value and valueFn properties are defined,
-   the value returned by the valueFn has precedence over the value property, unless it returns undefined, in which
-   case the value property is used.</p>
-
-   <p>valueFn can also be set to a string, representing the name of the instance method to be used to retrieve the value.</p>
-   </dd>
-
-   <dt>readOnly &#60;boolean&#62;</dt>
-   <dd>Whether or not the attribute is read only. Attributes having readOnly set to true
-       cannot be modified by invoking the set method.</dd>
-
-   <dt>writeOnce &#60;boolean&#62; or &#60;string&#62;</dt>
-   <dd>
-       Whether or not the attribute is &quot;write once&quot;. Attributes having writeOnce set to true,
-       can only have their values set once, be it through the default configuration,
-       constructor configuration arguments, or by invoking set.
-       <p>The writeOnce attribute can also be set to the string &quot;initOnly&quot;,
-        in which case the attribute can only be set during initialization
-       (when used with Base, this means it can only be set during construction)</p>
-   </dd>
-
-   <dt>setter &#60;Function | String&#62;</dt>
-   <dd>
-   <p>The setter function used to massage or normalize the value passed to the set method for the attribute.
-   The value returned by the setter will be the final stored value. Returning
-   <a href="#property_Attribute.INVALID_VALUE">Attribute.INVALID_VALUE</a>, from the setter will prevent
-   the value from being stored.
-   </p>
-
-   <p>setter can also be set to a string, representing the name of the instance method to be used as the setter function.</p>
-   </dd>
-
-   <dt>getter &#60;Function | String&#62;</dt>
-   <dd>
-   <p>
-   The getter function used to massage or normalize the value returned by the get method for the attribute.
-   The value returned by the getter function is the value which will be returned to the user when they
-   invoke get.
-   </p>
-
-   <p>getter can also be set to a string, representing the name of the instance method to be used as the getter function.</p>
-   </dd>
-
-   <dt>validator &#60;Function | String&#62;</dt>
-   <dd>
-   <p>
-   The validator function invoked prior to setting the stored value. Returning
-   false from the validator function will prevent the value from being stored.
-   </p>
-
-   <p>validator can also be set to a string, representing the name of the instance method to be used as the validator function.</p>
-   </dd>
-
-   <dt>lazyAdd &#60;boolean&#62;</dt>
-   <dd>Whether or not to delay initialization of the attribute until the first call to get/set it.
-   This flag can be used to over-ride lazy initialization on a per attribute basis, when adding multiple attributes through
-   the <a href="#method_addAttrs">addAttrs</a> method.</dd>
-
-</dl>
-
-<p>The setter, getter and validator are invoked with the value and name passed in as the first and second arguments, and with
-the context (&quot;this&quot;) set to the host object.</p>
-
-<p>Configuration properties outside of the list mentioned above are considered private properties used internally by attribute,
-and are not intended for public use.</p>
     </div>
 
         <div class="params">
@@ -3796,10 +3786,11 @@ and are not intended for public use.</p>
 
                     <div class="param-description">
                         <p>An object with attribute configuration property/value pairs, specifying the configuration for the attribute.</p>
-<p>
-<strong>NOTE:</strong> The configuration object is modified when adding an attribute, so if you need
+<p>&lt;p&gt;
+&lt;strong&gt;NOTE:&lt;/strong&gt; The configuration object is modified when adding an attribute, so if you need
 to protect the original values, you will need to merge the object.
-</p>
+&lt;/p&gt;</p>
+
                     </div>
 
                 </li>
@@ -3869,10 +3860,11 @@ to protect the original values, you will need to merge the object.
 
     <div class="description">
         <p>Configures a group of attributes, and sets initial values.</p>
-<p>
-<strong>NOTE:</strong> This method does not isolate the configuration object by merging/cloning.
+<p>&lt;p&gt;
+&lt;strong&gt;NOTE:&lt;/strong&gt; This method does not isolate the configuration object by merging/cloning.
 The caller is responsible for merging/cloning the configuration object if required.
-</p>
+&lt;/p&gt;</p>
+
     </div>
 
         <div class="params">
@@ -3910,7 +3902,7 @@ Values defined in the cfgs argument will be over-written by values in this argum
                     <div class="param-description">
                         <p>Whether or not to delay the intialization of these attributes until the first call to get/set.
 Individual attributes can over-ride this behavior by defining a lazyAdd configuration property in their configuration.
-See <a href="#method_addAttr">addAttr</a>.</p>
+See &lt;a href=&quot;#method_addAttr&quot;&gt;addAttr&lt;/a&gt;.</p>
 
                     </div>
 
@@ -4096,7 +4088,7 @@ if configured for the event, has executed.</p>
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/EventHandle.html" class="crosslink external" target="_blank">EventHandle</a></span>:
                     <p>A subscription handle capable of detaching the
-                      subscription</p>
+subscription</p>
 
             </div>
         </div>
@@ -4162,8 +4154,8 @@ if configured for the event, has executed.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    <p>true if an attribute with the given name has been added, false if it hasn&#39;t.
-        This method will return true for lazily added attributes.</p>
+                    <p>true if an attribute with the given name has been added, false if it hasn't.
+This method will return true for lazily added attributes.</p>
 
             </div>
         </div>
@@ -4385,9 +4377,9 @@ callback, object (method host), methodName, context, 0-n arguments</p>
 
                     <div class="param-description">
                         <p>Either the handle to the subscriber or the
-                       type of event.  If the type
-                       is not specified, it will attempt to remove
-                       the listener from all hosted events.</p>
+type of event.  If the type
+is not specified, it will attempt to remove
+the listener from all hosted events.</p>
 
                     </div>
 
@@ -4399,7 +4391,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
 
                     <div class="param-description">
                         <p>The subscribed function to unsubscribe, if not
-                         supplied, all subscribers will be removed.</p>
+supplied, all subscribers will be removed.</p>
 
                     </div>
 
@@ -4411,10 +4403,10 @@ callback, object (method host), methodName, context, 0-n arguments</p>
 
                     <div class="param-description">
                         <p>The custom object passed to subscribe.  This is
-                       optional, but if supplied will be used to
-                       disambiguate multiple listeners that are the same
-                       (e.g., you subscribe many object using a function
-                       that lives on the prototype)</p>
+optional, but if supplied will be used to
+disambiguate multiple listeners that are the same
+(e.g., you subscribe many object using a function
+that lives on the prototype)</p>
 
                     </div>
 
@@ -4517,7 +4509,7 @@ be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/lib_docparser.js.html#l1192"><code>lib&#x2F;docparser.js:1192</code></a>
+        <a href="../files/lib_docparser.js.html#l1206"><code>lib&#x2F;docparser.js:1206</code></a>
         </p>
 
 
@@ -4527,8 +4519,8 @@ be removed.</p>
     <div class="description">
         <p>Accepts a map of filenames to file content.  Returns
 a map of filenames to an array of API comment block
-text.  This expects the comment to start with / <em>*
-on its own line, and end with </em> / on its own
+text.  This expects the comment to start with / **
+on its own line, and end with * / on its own
 line.  Override this function to provide an
 alternative comment parser.</p>
 
@@ -4619,9 +4611,9 @@ passed to the listeners as parameters.  If the first of these is an
 object literal, and the event is configured to emit an event facade,
 that object is mixed into the event facade and the facade is provided
 in place of the original object.</p>
-<p>If the custom event object hasn&#39;t been created, then the event hasn&#39;t
+<p>If the custom event object hasn't been created, then the event hasn't
 been published and it has no subscribers.  For performance sake, we
-immediate exit in this case.  This means the event won&#39;t bubble, so
+immediate exit in this case.  This means the event won't bubble, so
 if the intention is that a bubble target be notified, the event must
 be published on this object first.</p>
 
@@ -4638,7 +4630,7 @@ be published on this object first.</p>
 
                     <div class="param-description">
                         <p>The type of the event, or an object that contains
-a &#39;type&#39; property.</p>
+a 'type' property.</p>
 
                     </div>
 
@@ -4707,8 +4699,8 @@ false if at any point the event propagation was halted.</p>
 
     <div class="description">
         <p>Returns the current value of the attribute. If the attribute
-has been configured with a &#39;getter&#39; function, this method will delegate
-to the &#39;getter&#39; to obtain the value of the attribute.</p>
+has been configured with a 'getter' function, this method will delegate
+to the 'getter' to obtain the value of the attribute.</p>
 
     </div>
 
@@ -4723,7 +4715,7 @@ to the &#39;getter&#39; to obtain the value of the attribute.</p>
 
                     <div class="param-description">
                         <p>The name of the attribute. If the value of the attribute is an Object,
-dot notation can be used to obtain the value of a property of the object (e.g. <code>get(&quot;x.y.z&quot;)</code>)</p>
+dot notation can be used to obtain the value of a property of the object (e.g. &lt;code&gt;get(&quot;x.y.z&quot;)&lt;/code&gt;)</p>
 
                     </div>
 
@@ -4960,7 +4952,7 @@ falsy value otherwise</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/lib_docparser.js.html#l1116"><code>lib&#x2F;docparser.js:1116</code></a>
+        <a href="../files/lib_docparser.js.html#l1128"><code>lib&#x2F;docparser.js:1128</code></a>
         </p>
 
 
@@ -4969,7 +4961,7 @@ falsy value otherwise</p>
 
     <div class="description">
         <p>Transforms a JavaDoc style comment block (less the start and end of it)
-into a list of tag/text pairs. The leading space and &#39;*&#39; are removed,
+into a list of tag/text pairs. The leading space and '*' are removed,
 but the remaining whitespace is preserved so that the output should be
 friendly for both markdown and html parsers.</p>
 
@@ -5255,25 +5247,26 @@ and invokes initializers for the class hierarchy.</p>
     </div>
 
     <div class="description">
-        <p>Updates the configuration of an attribute which has already been added.</p>
-<p>
+        <p>Updates the configuration of an attribute which has already been added.
+&lt;p&gt;
 The properties which can be modified through this interface are limited
 to the following subset of attributes, which can be safely modified
 after a value has already been set on the attribute:
-</p>
-<dl>
- <dt>readOnly;</dt>
- <dt>writeOnce;</dt>
- <dt>broadcast; and</dt>
- <dt>getter.</dt>
-</dl>
-<p>
+&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;readOnly;&lt;/dt&gt;
+&lt;dt&gt;writeOnce;&lt;/dt&gt;
+&lt;dt&gt;broadcast; and&lt;/dt&gt;
+&lt;dt&gt;getter.&lt;/dt&gt;
+&lt;/dl&gt;
+&lt;p&gt;
 Note: New attributes cannot be added using this interface. New attributes must be
 added using <a href="../classes/AttributeCore.html#method_addAttr" class="crosslink">addAttr</a>, or an
 appropriate manner for a class which utilises Attributes (e.g. the
 <a href="../classes/Base.html#property_ATTRS" class="crosslink">ATTRS</a> property in
 <a href="http://yuilibrary.com/yui/docs/api/classes/Base.html" class="crosslink external" target="_blank">Base</a>).
-</p>
+&lt;/p&gt;</p>
+
     </div>
 
         <div class="params">
@@ -5352,10 +5345,11 @@ appropriate manner for a class which utilises Attributes (e.g. the
         <p>Subscribe a callback function to a custom event fired by this object or
 from an object that bubbles its events to this object.</p>
 <pre class="code prettyprint"><code> this.on(&quot;change&quot;, this._onChange, this);
-</code></pre><p>Callback functions for events published with <code>emitFacade = true</code> will
+</code></pre>
+<p>Callback functions for events published with <code>emitFacade = true</code> will
 receive an <code>EventFacade</code> as the first argument (typically named &quot;e&quot;).
 These callbacks can then call <code>e.preventDefault()</code> to disable the
-behavior published to that event&#39;s <code>defaultFn</code>.  See the <code>EventFacade</code>
+behavior published to that event's <code>defaultFn</code>.  See the <code>EventFacade</code>
 API for all available properties and methods. Subscribers to
 non-<code>emitFacade</code> events will receive the arguments passed to <code>fire()</code>
 after the event name.</p>
@@ -5365,10 +5359,12 @@ argument, where the key:value pairs correspond to the eventName:callback.</p>
      &quot;attrChange&quot; : this._onAttrChange,
      &quot;change&quot;     : this._onChange
  });
-</code></pre><p>You can also pass an array of event names as the first argument to
+</code></pre>
+<p>You can also pass an array of event names as the first argument to
 subscribe to all listed events with the same callback.</p>
 <pre class="code prettyprint"><code> this.on([ &quot;change&quot;, &quot;attrChange&quot; ], this._onChange);
-</code></pre><p>Returning <code>false</code> from a callback is supported as an alternative to
+</code></pre>
+<p>Returning <code>false</code> from a callback is supported as an alternative to
 calling <code>e.preventDefault(); e.stopPropagation();</code>.  However, it is
 recommended to use the event methods whenever possible.</p>
 
@@ -5433,7 +5429,7 @@ recommended to use the event methods whenever possible.</p>
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/EventHandle.html" class="crosslink external" target="_blank">EventHandle</a></span>:
                     <p>A subscription handle capable of detaching that
-                      subscription</p>
+subscription</p>
 
             </div>
         </div>
@@ -5482,7 +5478,7 @@ recommended to use the event methods whenever possible.</p>
 
     <div class="description">
         <p>Listen to a custom event hosted by this object one time.
-This is the equivalent to <code>on</code> except the
+This is the equivalent to &lt;code&gt;on&lt;/code&gt; except the
 listener is immediatelly detached when it is executed.</p>
 
     </div>
@@ -5546,7 +5542,7 @@ listener is immediatelly detached when it is executed.</p>
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/EventHandle.html" class="crosslink external" target="_blank">EventHandle</a></span>:
                     <p>A subscription handle capable of detaching the
-                      subscription</p>
+subscription</p>
 
             </div>
         </div>
@@ -5595,7 +5591,7 @@ listener is immediatelly detached when it is executed.</p>
 
     <div class="description">
         <p>Listen to a custom event hosted by this object one time.
-This is the equivalent to <code>after</code> except the
+This is the equivalent to &lt;code&gt;after&lt;/code&gt; except the
 listener is immediatelly detached when it is executed.</p>
 
     </div>
@@ -5659,7 +5655,7 @@ listener is immediatelly detached when it is executed.</p>
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/EventHandle.html" class="crosslink external" target="_blank">EventHandle</a></span>:
                     <p>A subscription handle capable of detaching that
-                      subscription</p>
+subscription</p>
 
             </div>
         </div>
@@ -5693,7 +5689,7 @@ listener is immediatelly detached when it is executed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/lib_docparser.js.html#l1434"><code>lib&#x2F;docparser.js:1434</code></a>
+        <a href="../files/lib_docparser.js.html#l1448"><code>lib&#x2F;docparser.js:1448</code></a>
         </p>
 
 
@@ -5783,7 +5779,7 @@ are available in parser.data.</p>
     </div>
 
     <div class="description">
-        <p>Takes the type parameter passed to &#39;on&#39; and parses out the
+        <p>Takes the type parameter passed to 'on' and parses out the
 various pieces that could be included in the type.  If the
 event type is passed without a prefix, it will be expanded
 to include the prefix one is supplied or the event target
@@ -5860,7 +5856,7 @@ is configured with a default prefix.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/lib_docparser.js.html#l1247"><code>lib&#x2F;docparser.js:1247</code></a>
+        <a href="../files/lib_docparser.js.html#l1261"><code>lib&#x2F;docparser.js:1261</code></a>
         </p>
 
 
@@ -5967,7 +5963,7 @@ case the custom event is returned.</p>
 
                                 <div class="param-description">
                                     <p>whether or not the YUI instance and YUI global
-     are notified when the event is fired.</p>
+are notified when the event is fired.</p>
 
                                 </div>
 
@@ -5979,7 +5975,7 @@ case the custom event is returned.</p>
 
                                 <div class="param-description">
                                     <p>Whether or not this event bubbles. Events can
-     only bubble if <code>emitFacade</code> is true.</p>
+only bubble if <code>emitFacade</code> is true.</p>
 
                                 </div>
 
@@ -6002,7 +5998,7 @@ case the custom event is returned.</p>
 
                                 <div class="param-description">
                                     <p>the default function to execute when this event
-     fires if preventDefault was not called.</p>
+fires if preventDefault was not called.</p>
 
                                 </div>
 
@@ -6024,7 +6020,7 @@ case the custom event is returned.</p>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
 
                                 <div class="param-description">
-                                    <p>the prefix for this targets events, e.g., &#39;menu&#39; in &#39;menu:click&#39;.</p>
+                                    <p>the prefix for this targets events, e.g., 'menu' in 'menu:click'.</p>
 
                                 </div>
 
@@ -6036,7 +6032,7 @@ case the custom event is returned.</p>
 
                                 <div class="param-description">
                                     <p>if an event is configured to fire once,
-     new subscribers after the fire will be notified immediately.</p>
+new subscribers after the fire will be notified immediately.</p>
 
                                 </div>
 
@@ -6048,7 +6044,7 @@ case the custom event is returned.</p>
 
                                 <div class="param-description">
                                     <p>fireOnce event listeners will fire synchronously
-     if the event has already fired unless <code>async</code> is <code>true</code>.</p>
+if the event has already fired unless <code>async</code> is <code>true</code>.</p>
 
                                 </div>
 
@@ -6115,7 +6111,7 @@ case the custom event is returned.</p>
 
                                 <div class="param-description">
                                     <p>specifies whether or not this event should send notifications about
-     when the event has been attached, detached, or published.</p>
+when the event has been attached, detached, or published.</p>
 
                                 </div>
 
@@ -6383,7 +6379,7 @@ the attribute is not readOnly, or writeOnce.</p>
                     <div class="param-description">
                         <p>The name of the attribute. If the
 current value of the attribute is an Object, dot notation can be used
-to set the value of a property within the object (e.g. <code>set(&quot;x.y.z&quot;, 5)</code>).</p>
+to set the value of a property within the object (e.g. &lt;code&gt;set(&quot;x.y.z&quot;, 5)&lt;/code&gt;).</p>
 
                     </div>
 
@@ -6680,7 +6676,7 @@ and the instance guid, if set.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/lib_docparser.js.html#l1320"><code>lib&#x2F;docparser.js:1320</code></a>
+        <a href="../files/lib_docparser.js.html#l1334"><code>lib&#x2F;docparser.js:1334</code></a>
         </p>
 
 
@@ -6749,7 +6745,7 @@ and relationships between elements for the entire project.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/lib_docparser.js.html#l1095"><code>lib&#x2F;docparser.js:1095</code></a>
+        <a href="../files/lib_docparser.js.html#l1107"><code>lib&#x2F;docparser.js:1107</code></a>
         </p>
 
 
@@ -6933,7 +6929,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l174"><code>lib&#x2F;docparser.js:174</code></a>
+                            <a href="../files/lib_docparser.js.html#l186"><code>lib&#x2F;docparser.js:186</code></a>
                             </p>
                     
                     
@@ -6959,7 +6955,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l197"><code>lib&#x2F;docparser.js:197</code></a>
+                            <a href="../files/lib_docparser.js.html#l209"><code>lib&#x2F;docparser.js:209</code></a>
                             </p>
                     
                     
@@ -6970,6 +6966,33 @@ be removed.</p>
                     tag name.  Multiple tags can use the same digester
                     by supplying the string name that points to the
                     implementation rather than a function.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="property_IGNORE_TAGLIST" class="property item">
+                        <h3 class="name"><code>IGNORE_TAGLIST</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a></span>
+                    
+                    
+                    
+                            <span class="flag final">final</span>
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/lib_docparser.js.html#l174"><code>lib&#x2F;docparser.js:174</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>A list of ignored tags. These tags should be ignored because there is
+                    likely to be used for purposes other than JSDoc tags in JavaScript comments.</p>
                     
                         </div>
                     
@@ -7051,7 +7074,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l981"><code>lib&#x2F;docparser.js:981</code></a>
+                            <a href="../files/lib_docparser.js.html#l993"><code>lib&#x2F;docparser.js:993</code></a>
                             </p>
                     
                     
@@ -7130,7 +7153,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l825"><code>lib&#x2F;docparser.js:825</code></a>
+                            <a href="../files/lib_docparser.js.html#l837"><code>lib&#x2F;docparser.js:837</code></a>
                             </p>
                     
                     
@@ -7209,7 +7232,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l882"><code>lib&#x2F;docparser.js:882</code></a>
+                            <a href="../files/lib_docparser.js.html#l894"><code>lib&#x2F;docparser.js:894</code></a>
                             </p>
                     
                     
@@ -7288,7 +7311,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l941"><code>lib&#x2F;docparser.js:941</code></a>
+                            <a href="../files/lib_docparser.js.html#l953"><code>lib&#x2F;docparser.js:953</code></a>
                             </p>
                     
                     
@@ -7449,7 +7472,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l765"><code>lib&#x2F;docparser.js:765</code></a>
+                            <a href="../files/lib_docparser.js.html#l777"><code>lib&#x2F;docparser.js:777</code></a>
                             </p>
                     
                     
@@ -7538,7 +7561,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l815"><code>lib&#x2F;docparser.js:815</code></a>
+                            <a href="../files/lib_docparser.js.html#l827"><code>lib&#x2F;docparser.js:827</code></a>
                             </p>
                     
                     
@@ -7619,7 +7642,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l787"><code>lib&#x2F;docparser.js:787</code></a>
+                            <a href="../files/lib_docparser.js.html#l799"><code>lib&#x2F;docparser.js:799</code></a>
                             </p>
                     
                     
@@ -7699,7 +7722,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l807"><code>lib&#x2F;docparser.js:807</code></a>
+                            <a href="../files/lib_docparser.js.html#l819"><code>lib&#x2F;docparser.js:819</code></a>
                             </p>
                     
                     
@@ -7860,7 +7883,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l846"><code>lib&#x2F;docparser.js:846</code></a>
+                            <a href="../files/lib_docparser.js.html#l858"><code>lib&#x2F;docparser.js:858</code></a>
                             </p>
                     
                     
@@ -7939,7 +7962,7 @@ be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/lib_docparser.js.html#l798"><code>lib&#x2F;docparser.js:798</code></a>
+                            <a href="../files/lib_docparser.js.html#l810"><code>lib&#x2F;docparser.js:810</code></a>
                             </p>
                     
                     
@@ -8026,17 +8049,18 @@ be removed.</p>
                         </div>
                     
                         <div class="description">
-                            <p>
+                            <p>&lt;p&gt;
                     Lifecycle event for the destroy phase,
                     fired prior to destruction. Invoking the preventDefault
                     method on the event object provided to subscribers will
                     prevent destruction from proceeding.
-                    </p>
-                    <p>
+                    &lt;/p&gt;
+                    &lt;p&gt;
                     Subscribers to the &quot;after&quot; moment of this event, will be notified
                     after destruction is complete (and as a result cannot prevent
                     destruction).
-                    </p>
+                    &lt;/p&gt;</p>
+                    
                         </div>
                     
                             <div class="params">
@@ -8077,16 +8101,17 @@ be removed.</p>
                         </div>
                     
                         <div class="description">
-                            <p>
+                            <p>&lt;p&gt;
                     Lifecycle event for the init phase, fired prior to initialization.
                     Invoking the preventDefault() method on the event object provided
                     to subscribers will prevent initialization from occuring.
-                    </p>
-                    <p>
+                    &lt;/p&gt;
+                    &lt;p&gt;
                     Subscribers to the &quot;after&quot; momemt of this event, will be notified
                     after initialization of the object is complete (and therefore
                     cannot prevent initialization).
-                    </p>
+                    &lt;/p&gt;</p>
+                    
                         </div>
                     
                             <div class="params">
