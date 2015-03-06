@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.5.0</em>
+            <em>API Docs for: 0.6.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,7 +95,7 @@
  * Code licensed under the BSD License:
  * https://github.com/yui/yuidoc/blob/master/LICENSE
  */
-var marked = require(&#x27;marked&#x27;),
+var MarkdownIt = require(&#x27;markdown-it&#x27;),
     fs = require(&#x27;graceful-fs&#x27;),
     noop = function () {},
     path = require(&#x27;path&#x27;),
@@ -146,7 +146,7 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
         if (options.themedir) {
             themeDir = options.themedir;
         }
-
+        this.md = new MarkdownIt(options.markdown);
         this.data = data;
         Y.log(&#x27;Building..&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
         this.files = 0;
@@ -230,16 +230,15 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
          * Wrapper around the Markdown parser so it can be normalized or even side stepped
          * @method markdown
          * @private
-         * @param {String} md The Markdown string to parse
+         * @param {String} data The Markdown string to parse
          * @return {HTML} The rendered HTML
          */
-        markdown: function (md) {
-            var html = marked(md, this.options.markdown);
+        markdown: function (data) {
+            var html = this.md.render(data);
             //Only reprocess if helpers were asked for
             if (this.options.helpers || (html.indexOf(&#x27;{{#crossLink&#x27;) &gt; -1)) {
-                //console.log(&#x27;MD: &#x27;, html);
                 try {
-                    // marked auto-escapes quotation marks (and unfortunately
+                    // markdown-it auto-escapes quotation marks (and unfortunately
                     // does not expose the escaping function)
                     html = html.replace(/&amp;quot;/g, &quot;\&quot;&quot;);
                     html = (Y.Handlebars.compile(html))({});
@@ -248,7 +247,6 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
                     html = html.replace(/\\{/g, &#x27;{&#x27;).replace(/\\}/g, &#x27;}&#x27;);
                     Y.log(&#x27;Failed to parse Handlebars, probably an unknown helper, skipping..&#x27;, &#x27;warn&#x27;, &#x27;builder&#x27;);
                 }
-                //console.log(&#x27;HB: &#x27;, html);
             }
             return html;
         },
