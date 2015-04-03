@@ -72,7 +72,7 @@
   "dependencies": {
     "express": "^4.10.1",
     "graceful-fs": "2.x",
-    "markdown-it": "^4.0.1",
+    "markdown-it": "^4.1.0",
     "minimatch": "^2.0.1",
     "rimraf": "2.x",
     "yui": "^3.18.1"
