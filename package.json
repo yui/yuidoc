@@ -114,8 +114,6 @@
     "noarg": true,
     "node": true,
     "noempty": true,
-    "onevar": true,
-    "trailing": true,
     "undef": true,
     "unused": "vars",
     "yui": true
