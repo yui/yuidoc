@@ -111,59 +111,59 @@ with the parsers data (aggregated in the <code>'data'</code> property).</p>
 
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_DocParser" class="method item">
-            <h3 class="name"><code>DocParser</code></h3>
-        
-                <div class="args">
-                    <span class="paren">(</span><ul class="args-list inline commas">
-                        <li class="arg">
-                                <code>o</code>
-                        </li>
-                    </ul><span class="paren">)</span>
-                </div>
-        
-        
-        
-        
-        
-        
-        
-        
-            <div class="meta">
-                        <p>
-                        Defined in
-                <a href="../files/lib_docparser.js.html#l749"><code>lib&#x2F;docparser.js:749</code></a>
-                </p>
-        
-        
-        
-            </div>
-        
-            <div class="description">
-                
-            </div>
-        
-                <div class="params">
-                    <h4>Parameters:</h4>
-        
-                    <ul class="params-list">
-                        <li class="param">
-                                <code class="param-name">o</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
-        
-        
-                            <div class="param-description">
-                                <p>the config object</p>
-        
-                            </div>
-        
-                        </li>
-                    </ul>
-                </div>
-        
-        
-        
+<div id="method_DocParser" class="method item">
+    <h3 class="name"><code>DocParser</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>o</code>
+                </li>
+            </ul><span class="paren">)</span>
         </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/lib_docparser.js.html#l749"><code>lib&#x2F;docparser.js:749</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">o</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>the config object</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
     </div>
 
 <div id="classdocs" class="tabview">
@@ -657,12 +657,12 @@ with the parsers data (aggregated in the <code>'data'</code> property).</p>
     </div>
 
     <div class="description">
-        <p>Implementation behind the public addAttrs method.</p>
-<p>This method is invoked directly by get if it encounters a scenario
+        Implementation behind the public addAttrs method.
+
+This method is invoked directly by get if it encounters a scenario
 in which an attribute's valueFn attempts to obtain the
 value an attribute in the same group of attributes, which has not yet
-been added (on demand initialization).</p>
-
+been added (on demand initialization).
     </div>
 
         <div class="params">
@@ -675,8 +675,7 @@ been added (on demand initialization).</p>
 
 
                     <div class="param-description">
-                        <p>An object with attribute name/configuration pairs.</p>
-
+                        An object with attribute name/configuration pairs.
                     </div>
 
                 </li>
@@ -686,9 +685,8 @@ been added (on demand initialization).</p>
 
 
                     <div class="param-description">
-                        <p>An object with attribute name/value pairs, defining the initial values to apply.
-Values defined in the cfgs argument will be over-written by values in this argument unless defined as read only.</p>
-
+                        An object with attribute name/value pairs, defining the initial values to apply.
+Values defined in the cfgs argument will be over-written by values in this argument unless defined as read only.
                     </div>
 
                 </li>
@@ -698,10 +696,9 @@ Values defined in the cfgs argument will be over-written by values in this argum
 
 
                     <div class="param-description">
-                        <p>Whether or not to delay the intialization of these attributes until the first call to get/set.
+                        Whether or not to delay the intialization of these attributes until the first call to get/set.
 Individual attributes can over-ride this behavior by defining a lazyAdd configuration property in their configuration.
-See &lt;a href=&quot;#method_addAttr&quot;&gt;addAttr&lt;/a&gt;.</p>
-
+See <a href="#method_addAttr">addAttr</a>.
                     </div>
 
                 </li>
@@ -744,8 +741,7 @@ See &lt;a href=&quot;#method_addAttr&quot;&gt;addAttr&lt;/a&gt;.</p>
     </div>
 
     <div class="description">
-        <p>Finishes initializing an attribute which has been lazily added.</p>
-
+        Finishes initializing an attribute which has been lazily added.
     </div>
 
         <div class="params">
@@ -758,8 +754,7 @@ See &lt;a href=&quot;#method_addAttr&quot;&gt;addAttr&lt;/a&gt;.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute</p>
-
+                        The name of the attribute
                     </div>
 
                 </li>
@@ -770,9 +765,8 @@ See &lt;a href=&quot;#method_addAttr&quot;&gt;addAttr&lt;/a&gt;.</p>
 
 
                     <div class="param-description">
-                        <p>Optional config hash for the attribute. This is added for performance
-along the critical path, where the calling method has already obtained lazy config from state.</p>
-
+                        Optional config hash for the attribute. This is added for performance
+along the critical path, where the calling method has already obtained lazy config from state.
                     </div>
 
                 </li>
@@ -815,21 +809,22 @@ along the critical path, where the calling method has already obtained lazy conf
     </div>
 
     <div class="description">
-        <p>Utility method used by get/set to add attributes
-encountered out of order when calling addAttrs().</p>
-<p>For example, if:</p>
-<pre class="code prettyprint"><code>this.addAttrs({
-     foo: {
-         setter: function() {
-            // make sure this bar is available when foo is added
-            this.get(&quot;bar&quot;);
-         }
-     },
-     bar: {
-         value: ...
-     }
-});</code></pre>
+        Utility method used by get/set to add attributes
+encountered out of order when calling addAttrs().
 
+For example, if:
+
+    this.addAttrs({
+         foo: {
+             setter: function() {
+                // make sure this bar is available when foo is added
+                this.get("bar");
+             }
+         },
+         bar: {
+             value: ...
+         }
+    });
     </div>
 
         <div class="params">
@@ -842,8 +837,7 @@ encountered out of order when calling addAttrs().</p>
 
 
                     <div class="param-description">
-                        <p>attribute name</p>
-
+                        attribute name
                     </div>
 
                 </li>
@@ -853,8 +847,7 @@ encountered out of order when calling addAttrs().</p>
 
 
                     <div class="param-description">
-                        <p>attribute configuration</p>
-
+                        attribute configuration
                     </div>
 
                 </li>
@@ -897,12 +890,12 @@ encountered out of order when calling addAttrs().</p>
     </div>
 
     <div class="description">
-        <p>A helper method, used by _initHierarchyData to aggregate
-attribute configuration across the instances class hierarchy.</p>
-<p>The method will protect the attribute configuration value to protect the statically defined
-default value in ATTRS if required (if the value is an object literal, array or the
-attribute configuration has cloneDefaultValue set to shallow or deep).</p>
+        A helper method, used by _initHierarchyData to aggregate
+attribute configuration across the instances class hierarchy.
 
+The method will protect the attribute configuration value to protect the statically defined
+default value in ATTRS if required (if the value is an object literal, array or the
+attribute configuration has cloneDefaultValue set to shallow or deep).
     </div>
 
         <div class="params">
@@ -915,9 +908,8 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
 
 
                     <div class="param-description">
-                        <p>An array of ATTRS definitions across classes in the hierarchy
-(subclass first, Base last)</p>
-
+                        An array of ATTRS definitions across classes in the hierarchy
+(subclass first, Base last)
                     </div>
 
                 </li>
@@ -929,8 +921,7 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>The aggregate set of ATTRS definitions for the instance</p>
-
+                    The aggregate set of ATTRS definitions for the instance
             </div>
         </div>
 
@@ -960,9 +951,8 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
     </div>
 
     <div class="description">
-        <p>Utility method to define the attribute hash used to filter/whitelist property mixes for
-this class for iteration performance reasons.</p>
-
+        Utility method to define the attribute hash used to filter/whitelist property mixes for
+this class for iteration performance reasons.
     </div>
 
 
@@ -993,8 +983,7 @@ this class for iteration performance reasons.</p>
     </div>
 
     <div class="description">
-        <p>Internal destroy implementation for BaseCore</p>
-
+        Internal destroy implementation for BaseCore
     </div>
 
 
@@ -1025,8 +1014,7 @@ this class for iteration performance reasons.</p>
     </div>
 
     <div class="description">
-        <p>Internal initialization implementation for BaseCore</p>
-
+        Internal initialization implementation for BaseCore
     </div>
 
 
@@ -1063,9 +1051,8 @@ this class for iteration performance reasons.</p>
     </div>
 
     <div class="description">
-        <p>This method assumes that the value has already been checked to be an object.
-Since it's on a critical path, we don't want to re-do the check.</p>
-
+        This method assumes that the value has already been checked to be an object.
+Since it's on a critical path, we don't want to re-do the check.
     </div>
 
         <div class="params">
@@ -1121,8 +1108,7 @@ Since it's on a critical path, we don't want to re-do the check.</p>
     </div>
 
     <div class="description">
-        <p>Default function for attribute change events.</p>
-
+        Default function for attribute change events.
     </div>
 
         <div class="params">
@@ -1135,8 +1121,7 @@ Since it's on a critical path, we don't want to re-do the check.</p>
 
 
                     <div class="param-description">
-                        <p>The event object for attribute change events.</p>
-
+                        The event object for attribute change events.
                     </div>
 
                 </li>
@@ -1146,8 +1131,7 @@ Since it's on a critical path, we don't want to re-do the check.</p>
 
 
                     <div class="param-description">
-                        <p>Whether or not we're using this as a fast path in the case of no listeners or not</p>
-
+                        Whether or not we're using this as a fast path in the case of no listeners or not
                     </div>
 
                 </li>
@@ -1187,8 +1171,7 @@ Since it's on a critical path, we don't want to re-do the check.</p>
     </div>
 
     <div class="description">
-        <p>Default destroy event handler</p>
-
+        Default destroy event handler
     </div>
 
         <div class="params">
@@ -1201,8 +1184,7 @@ Since it's on a critical path, we don't want to re-do the check.</p>
 
 
                     <div class="param-description">
-                        <p>Event object</p>
-
+                        Event object
                     </div>
 
                 </li>
@@ -1242,8 +1224,7 @@ Since it's on a critical path, we don't want to re-do the check.</p>
     </div>
 
     <div class="description">
-        <p>Default init event handler</p>
-
+        Default init event handler
     </div>
 
         <div class="params">
@@ -1256,9 +1237,8 @@ Since it's on a critical path, we don't want to re-do the check.</p>
 
 
                     <div class="param-description">
-                        <p>Event object, with a cfg property which
-refers to the configuration object passed to the constructor.</p>
-
+                        Event object, with a cfg property which
+refers to the configuration object passed to the constructor.
                     </div>
 
                 </li>
@@ -1292,9 +1272,8 @@ refers to the configuration object passed to the constructor.</p>
     </div>
 
     <div class="description">
-        <p>Destroys the class hierarchy for this instance by invoking
-the destructor method on the prototype of each class in the hierarchy.</p>
-
+        Destroys the class hierarchy for this instance by invoking
+the destructor method on the prototype of each class in the hierarchy.
     </div>
 
 
@@ -1350,10 +1329,9 @@ the destructor method on the prototype of each class in the hierarchy.</p>
 
 
                     <div class="param-description">
-                        <p>The set of all attribute configurations for this instance.
+                        The set of all attribute configurations for this instance.
 Attributes will be removed from this set, if they belong to the filtered class, so
-that by the time all classes are processed, allCfgs will be empty.</p>
-
+that by the time all classes are processed, allCfgs will be empty.
                     </div>
 
                 </li>
@@ -1363,8 +1341,7 @@ that by the time all classes are processed, allCfgs will be empty.</p>
 
 
                     <div class="param-description">
-                        <p>The config object passed in by the user, from which adhoc attrs are to be filtered.</p>
-
+                        The config object passed in by the user, from which adhoc attrs are to be filtered.
                     </div>
 
                 </li>
@@ -1376,9 +1353,8 @@ that by the time all classes are processed, allCfgs will be empty.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>The set of adhoc attributes passed in, in the form
-of an object with attribute name/configuration pairs.</p>
-
+                    The set of adhoc attributes passed in, in the form
+of an object with attribute name/configuration pairs.
             </div>
         </div>
 
@@ -1429,8 +1405,7 @@ of an object with attribute name/configuration pairs.</p>
     </div>
 
     <div class="description">
-        <p>Utility method to help setup the event payload and fire the attribute change event.</p>
-
+        Utility method to help setup the event payload and fire the attribute change event.
     </div>
 
         <div class="params">
@@ -1443,8 +1418,7 @@ of an object with attribute name/configuration pairs.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute</p>
-
+                        The name of the attribute
                     </div>
 
                 </li>
@@ -1454,9 +1428,8 @@ of an object with attribute name/configuration pairs.</p>
 
 
                     <div class="param-description">
-                        <p>The full path of the property being changed,
-if this is a sub-attribute value being change. Otherwise null.</p>
-
+                        The full path of the property being changed,
+if this is a sub-attribute value being change. Otherwise null.
                     </div>
 
                 </li>
@@ -1466,8 +1439,7 @@ if this is a sub-attribute value being change. Otherwise null.</p>
 
 
                     <div class="param-description">
-                        <p>The current value of the attribute</p>
-
+                        The current value of the attribute
                     </div>
 
                 </li>
@@ -1477,8 +1449,7 @@ if this is a sub-attribute value being change. Otherwise null.</p>
 
 
                     <div class="param-description">
-                        <p>The new value of the attribute</p>
-
+                        The new value of the attribute
                     </div>
 
                 </li>
@@ -1488,8 +1459,7 @@ if this is a sub-attribute value being change. Otherwise null.</p>
 
 
                     <div class="param-description">
-                        <p>Any additional event data to mix into the attribute change event's event facade.</p>
-
+                        Any additional event data to mix into the attribute change event's event facade.
                     </div>
 
                 </li>
@@ -1500,8 +1470,7 @@ if this is a sub-attribute value being change. Otherwise null.</p>
 
 
                     <div class="param-description">
-                        <p>The attribute config stored in State, if already available.</p>
-
+                        The attribute config stored in State, if already available.
                     </div>
 
                 </li>
@@ -1545,10 +1514,10 @@ if this is a sub-attribute value being change. Otherwise null.</p>
     </div>
 
     <div class="description">
-        <p>Provides the common implementation for the public get method,
-allowing Attribute hosts to over-ride either method.</p>
-<p>See &lt;a href=&quot;#method_get&quot;&gt;get&lt;/a&gt; for argument details.</p>
+        Provides the common implementation for the public get method,
+allowing Attribute hosts to over-ride either method.
 
+See <a href="#method_get">get</a> for argument details.
     </div>
 
         <div class="params">
@@ -1561,8 +1530,7 @@ allowing Attribute hosts to over-ride either method.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute.</p>
-
+                        The name of the attribute.
                     </div>
 
                 </li>
@@ -1574,8 +1542,7 @@ allowing Attribute hosts to over-ride either method.</p>
 
             <div class="returns-description">
                         <span class="type">Any</span>:
-                    <p>The value of the attribute.</p>
-
+                    The value of the attribute.
             </div>
         </div>
 
@@ -1614,10 +1581,9 @@ allowing Attribute hosts to over-ride either method.</p>
     </div>
 
     <div class="description">
-        <p>Returns an object with the configuration properties (and value)
+        Returns an object with the configuration properties (and value)
 for the given attribute. If attrName is not provided, returns the
-configuration properties for all attributes.</p>
-
+configuration properties for all attributes.
     </div>
 
         <div class="params">
@@ -1630,8 +1596,7 @@ configuration properties for all attributes.</p>
 
 
                     <div class="param-description">
-                        <p>Optional. The attribute name. If not provided, the method will return the configuration for all attributes.</p>
-
+                        Optional. The attribute name. If not provided, the method will return the configuration for all attributes.
                     </div>
 
                 </li>
@@ -1643,8 +1608,7 @@ configuration properties for all attributes.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>The configuration properties for the given attribute, or all attributes.</p>
-
+                    The configuration properties for the given attribute, or all attributes.
             </div>
         </div>
 
@@ -1677,9 +1641,8 @@ configuration properties for all attributes.</p>
     </div>
 
     <div class="description">
-        <p>Returns an aggregated set of attribute configurations, by traversing
-the class hierarchy.</p>
-
+        Returns an aggregated set of attribute configurations, by traversing
+the class hierarchy.
     </div>
 
 
@@ -1688,10 +1651,9 @@ the class hierarchy.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>The hash of attribute configurations, aggregated across classes in the hierarchy
+                    The hash of attribute configurations, aggregated across classes in the hierarchy
 This value is cached the first time the method, or _getClasses, is invoked. Subsequent invocations return
-the cached value.</p>
-
+the cached value.
             </div>
         </div>
 
@@ -1736,11 +1698,10 @@ the cached value.</p>
     </div>
 
     <div class="description">
-        <p>Returns the initial value of the given attribute from
+        Returns the initial value of the given attribute from
 either the default configuration provided, or the
 over-ridden value if it exists in the set of initValues
-provided and the attribute is not read-only.</p>
-
+provided and the attribute is not read-only.
     </div>
 
         <div class="params">
@@ -1753,8 +1714,7 @@ provided and the attribute is not read-only.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute</p>
-
+                        The name of the attribute
                     </div>
 
                 </li>
@@ -1764,8 +1724,7 @@ provided and the attribute is not read-only.</p>
 
 
                     <div class="param-description">
-                        <p>The attribute configuration object</p>
-
+                        The attribute configuration object
                     </div>
 
                 </li>
@@ -1775,8 +1734,7 @@ provided and the attribute is not read-only.</p>
 
 
                     <div class="param-description">
-                        <p>The object with simple and complex attribute name/value pairs returned from _normAttrVals</p>
-
+                        The object with simple and complex attribute name/value pairs returned from _normAttrVals
                     </div>
 
                 </li>
@@ -1788,8 +1746,7 @@ provided and the attribute is not read-only.</p>
 
             <div class="returns-description">
                         <span class="type">Any</span>:
-                    <p>The initial value of the attribute.</p>
-
+                    The initial value of the attribute.
             </div>
         </div>
 
@@ -1828,8 +1785,7 @@ provided and the attribute is not read-only.</p>
     </div>
 
     <div class="description">
-        <p>Implementation behind the public getAttrs method, to get multiple attribute values.</p>
-
+        Implementation behind the public getAttrs method, to get multiple attribute values.
     </div>
 
         <div class="params">
@@ -1842,9 +1798,8 @@ provided and the attribute is not read-only.</p>
 
 
                     <div class="param-description">
-                        <p>Optional. An array of attribute names. If omitted, all attribute values are
-returned. If set to true, all attributes modified from their initial values are returned.</p>
-
+                        Optional. An array of attribute names. If omitted, all attribute values are
+returned. If set to true, all attributes modified from their initial values are returned.
                     </div>
 
                 </li>
@@ -1856,8 +1811,7 @@ returned. If set to true, all attributes modified from their initial values are 
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>An object with attribute name/value pairs.</p>
-
+                    An object with attribute name/value pairs.
             </div>
         </div>
 
@@ -1890,8 +1844,7 @@ returned. If set to true, all attributes modified from their initial values are 
     </div>
 
     <div class="description">
-        <p>Returns the class hierarchy for this object, with BaseCore being the last class in the array.</p>
-
+        Returns the class hierarchy for this object, with BaseCore being the last class in the array.
     </div>
 
 
@@ -1900,10 +1853,9 @@ returned. If set to true, all attributes modified from their initial values are 
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function[]</a></span>:
-                    <p>An array of classes (constructor functions), making up the class hierarchy for this object.
+                    An array of classes (constructor functions), making up the class hierarchy for this object.
 This value is cached the first time the method, or _getAttrCfgs, is invoked. Subsequent invocations return the
-cached value.</p>
-
+cached value.
             </div>
         </div>
 
@@ -1942,12 +1894,12 @@ cached value.</p>
     </div>
 
     <div class="description">
-        <p>Returns the fully qualified type, given a short type string.
-That is, returns &quot;foo:bar&quot; when given &quot;bar&quot; if &quot;foo&quot; is the configured prefix.</p>
-<p>NOTE: This method, unlike _getType, does no checking of the value passed in, and
-is designed to be used with the low level _publish() method, for critical path
-implementations which need to fast-track publish for performance reasons.</p>
+        Returns the fully qualified type, given a short type string.
+That is, returns "foo:bar" when given "bar" if "foo" is the configured prefix.
 
+NOTE: This method, unlike _getType, does no checking of the value passed in, and
+is designed to be used with the low level _publish() method, for critical path
+implementations which need to fast-track publish for performance reasons.
     </div>
 
         <div class="params">
@@ -1960,8 +1912,7 @@ implementations which need to fast-track publish for performance reasons.</p>
 
 
                     <div class="param-description">
-                        <p>The short type to prefix</p>
-
+                        The short type to prefix
                     </div>
 
                 </li>
@@ -1973,8 +1924,7 @@ implementations which need to fast-track publish for performance reasons.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    <p>The prefixed type, if a prefix is set, otherwise the type passed in</p>
-
+                    The prefixed type, if a prefix is set, otherwise the type passed in
             </div>
         </div>
 
@@ -2013,9 +1963,8 @@ implementations which need to fast-track publish for performance reasons.</p>
     </div>
 
     <div class="description">
-        <p>A helper method used to isolate the attrs config for this instance to pass to <code>addAttrs</code>,
-from the static cached ATTRS for the class.</p>
-
+        A helper method used to isolate the attrs config for this instance to pass to <code>addAttrs</code>,
+from the static cached ATTRS for the class.
     </div>
 
         <div class="params">
@@ -2028,10 +1977,9 @@ from the static cached ATTRS for the class.</p>
 
 
                     <div class="param-description">
-                        <p>The set of all attribute configurations for this instance.
+                        The set of all attribute configurations for this instance.
 Attributes will be removed from this set, if they belong to the filtered class, so
-that by the time all classes are processed, allCfgs will be empty.</p>
-
+that by the time all classes are processed, allCfgs will be empty.
                     </div>
 
                 </li>
@@ -2043,9 +1991,8 @@ that by the time all classes are processed, allCfgs will be empty.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>The set of attributes to be added for this instance, suitable
-for passing through to <code>addAttrs</code>.</p>
-
+                    The set of attributes to be added for this instance, suitable
+for passing through to <code>addAttrs</code>.
             </div>
         </div>
 
@@ -2087,9 +2034,8 @@ for passing through to <code>addAttrs</code>.</p>
     </div>
 
     <div class="description">
-        <p>Gets the stored value for the attribute, from either the
-internal state object, or the state proxy if it exits</p>
-
+        Gets the stored value for the attribute, from either the
+internal state object, or the state proxy if it exits
     </div>
 
         <div class="params">
@@ -2102,8 +2048,7 @@ internal state object, or the state proxy if it exits</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute</p>
-
+                        The name of the attribute
                     </div>
 
                 </li>
@@ -2114,9 +2059,8 @@ internal state object, or the state proxy if it exits</p>
 
 
                     <div class="param-description">
-                        <p>Optional config hash for the attribute. This is added for performance along the critical path,
-where the calling method has already obtained the config from state.</p>
-
+                        Optional config hash for the attribute. This is added for performance along the critical path,
+where the calling method has already obtained the config from state.
                     </div>
 
                 </li>
@@ -2128,8 +2072,7 @@ where the calling method has already obtained the config from state.</p>
 
             <div class="returns-description">
                         <span class="type">Any</span>:
-                    <p>The stored value of the attribute</p>
-
+                    The stored value of the attribute
             </div>
         </div>
 
@@ -2159,10 +2102,9 @@ where the calling method has already obtained the config from state.</p>
     </div>
 
     <div class="description">
-        <p>If the instance has a prefix attribute and the
+        If the instance has a prefix attribute and the
 event type is not prefixed, the instance prefix is
-applied to the supplied type.</p>
-
+applied to the supplied type.
     </div>
 
 
@@ -2215,8 +2157,7 @@ applied to the supplied type.</p>
 
 
                     <div class="param-description">
-                        <p>The fully prefixed type name</p>
-
+                        The fully prefixed type name
                     </div>
 
                 </li>
@@ -2228,8 +2169,7 @@ applied to the supplied type.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    <p>Whether the event has potential subscribers or not</p>
-
+                    Whether the event has potential subscribers or not
             </div>
         </div>
 
@@ -2271,9 +2211,8 @@ applied to the supplied type.</p>
     </div>
 
     <div class="description">
-        <p>Constructor logic for attributes. Initializes the host state, and sets up the inital attributes passed to the
-constructor.</p>
-
+        Constructor logic for attributes. Initializes the host state, and sets up the inital attributes passed to the
+constructor.
     </div>
 
         <div class="params">
@@ -2286,9 +2225,8 @@ constructor.</p>
 
 
                     <div class="param-description">
-                        <p>The attributes to add during construction (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).
-These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.</p>
-
+                        The attributes to add during construction (passed through to <a href="#method_addAttrs">addAttrs</a>).
+       These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.
                     </div>
 
                 </li>
@@ -2298,9 +2236,8 @@ These can also be defined on the constructor being augmented with Attribute by d
 
 
                     <div class="param-description">
-                        <p>The initial attribute values to apply (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).
-These are not merged/cloned. The caller is responsible for isolating user provided values if required.</p>
-
+                        The initial attribute values to apply (passed through to <a href="#method_addAttrs">addAttrs</a>).
+       These are not merged/cloned. The caller is responsible for isolating user provided values if required.
                     </div>
 
                 </li>
@@ -2310,8 +2247,7 @@ These are not merged/cloned. The caller is responsible for isolating user provid
 
 
                     <div class="param-description">
-                        <p>Whether or not to add attributes lazily (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).</p>
-
+                        Whether or not to add attributes lazily (passed through to <a href="#method_addAttrs">addAttrs</a>).
                     </div>
 
                 </li>
@@ -2348,8 +2284,7 @@ These are not merged/cloned. The caller is responsible for isolating user provid
     </div>
 
     <div class="description">
-        <p>Initializes AttributeCore</p>
-
+        Initializes AttributeCore
     </div>
 
 
@@ -2392,9 +2327,8 @@ These are not merged/cloned. The caller is responsible for isolating user provid
     </div>
 
     <div class="description">
-        <p>Utility method to set up initial attributes defined during construction,
-either through the constructor.ATTRS property, or explicitly passed in.</p>
-
+        Utility method to set up initial attributes defined during construction,
+either through the constructor.ATTRS property, or explicitly passed in.
     </div>
 
         <div class="params">
@@ -2407,9 +2341,8 @@ either through the constructor.ATTRS property, or explicitly passed in.</p>
 
 
                     <div class="param-description">
-                        <p>The attributes to add during construction (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).
-These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.</p>
-
+                        The attributes to add during construction (passed through to <a href="#method_addAttrs">addAttrs</a>).
+       These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.
                     </div>
 
                 </li>
@@ -2419,9 +2352,8 @@ These can also be defined on the constructor being augmented with Attribute by d
 
 
                     <div class="param-description">
-                        <p>The initial attribute values to apply (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).
-These are not merged/cloned. The caller is responsible for isolating user provided values if required.</p>
-
+                        The initial attribute values to apply (passed through to <a href="#method_addAttrs">addAttrs</a>).
+       These are not merged/cloned. The caller is responsible for isolating user provided values if required.
                     </div>
 
                 </li>
@@ -2431,8 +2363,7 @@ These are not merged/cloned. The caller is responsible for isolating user provid
 
 
                     <div class="param-description">
-                        <p>Whether or not to add attributes lazily (passed through to &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt;).</p>
-
+                        Whether or not to add attributes lazily (passed through to <a href="#method_addAttrs">addAttrs</a>).
                     </div>
 
                 </li>
@@ -2472,8 +2403,7 @@ These are not merged/cloned. The caller is responsible for isolating user provid
     </div>
 
     <div class="description">
-        <p>Internal construction logic for BaseCore.</p>
-
+        Internal construction logic for BaseCore.
     </div>
 
         <div class="params">
@@ -2486,8 +2416,7 @@ These are not merged/cloned. The caller is responsible for isolating user provid
 
 
                     <div class="param-description">
-                        <p>The constructor configuration object</p>
-
+                        The constructor configuration object
                     </div>
 
                 </li>
@@ -2527,11 +2456,10 @@ These are not merged/cloned. The caller is responsible for isolating user provid
     </div>
 
     <div class="description">
-        <p>Initializes the class hierarchy for the instance, which includes
+        Initializes the class hierarchy for the instance, which includes
 initializing attributes for each class defined in the class's
-static &lt;a href=&quot;#property_BaseCore.ATTRS&quot;&gt;ATTRS&lt;/a&gt; property and
-invoking the initializer method on the prototype of each class in the hierarchy.</p>
-
+static <a href="#property_BaseCore.ATTRS">ATTRS</a> property and
+invoking the initializer method on the prototype of each class in the hierarchy.
     </div>
 
         <div class="params">
@@ -2544,8 +2472,7 @@ invoking the initializer method on the prototype of each class in the hierarchy.
 
 
                     <div class="param-description">
-                        <p>Object with configuration property name/value pairs</p>
-
+                        Object with configuration property name/value pairs
                     </div>
 
                 </li>
@@ -2579,10 +2506,9 @@ invoking the initializer method on the prototype of each class in the hierarchy.
     </div>
 
     <div class="description">
-        <p>A helper method used by _getClasses and _getAttrCfgs, which determines both
+        A helper method used by _getClasses and _getAttrCfgs, which determines both
 the array of classes and aggregate set of attribute configurations
-across the class hierarchy for the instance.</p>
-
+across the class hierarchy for the instance.
     </div>
 
 
@@ -2622,9 +2548,8 @@ across the class hierarchy for the instance.</p>
     </div>
 
     <div class="description">
-        <p>Checks whether or not the attribute is one which has been
-added lazily and still requires initialization.</p>
-
+        Checks whether or not the attribute is one which has been
+added lazily and still requires initialization.
     </div>
 
         <div class="params">
@@ -2637,8 +2562,7 @@ added lazily and still requires initialization.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute</p>
-
+                        The name of the attribute
                     </div>
 
                 </li>
@@ -2650,8 +2574,7 @@ added lazily and still requires initialization.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    <p>true if it's a lazily added attribute, false otherwise.</p>
-
+                    true if it's a lazily added attribute, false otherwise.
             </div>
         </div>
 
@@ -2693,15 +2616,14 @@ added lazily and still requires initialization.</p>
     </div>
 
     <div class="description">
-        <p>This is the entry point for the event monitoring system.
+        This is the entry point for the event monitoring system.
 You can monitor 'attach', 'detach', 'fire', and 'publish'.
-When configured, these events generate an event.  click -&gt;
+When configured, these events generate an event.  click ->
 click_attach, click_detach, click_publish -- these can
 be subscribed to like other events to monitor the event
 system.  Inividual published events can have monitoring
 turned on or off (publish can't be turned off before it
-it published) by setting the events 'monitor' config.</p>
-
+it published) by setting the events 'monitor' config.
     </div>
 
         <div class="params">
@@ -2714,8 +2636,7 @@ it published) by setting the events 'monitor' config.</p>
 
 
                     <div class="param-description">
-                        <p>'attach', 'detach', 'fire', or 'publish'</p>
-
+                        'attach', 'detach', 'fire', or 'publish'
                     </div>
 
                 </li>
@@ -2725,8 +2646,7 @@ it published) by setting the events 'monitor' config.</p>
 
 
                     <div class="param-description">
-                        <p>The prefixed name of the event being monitored, or the CustomEvent object.</p>
-
+                        The prefixed name of the event being monitored, or the CustomEvent object.
                     </div>
 
                 </li>
@@ -2736,9 +2656,8 @@ it published) by setting the events 'monitor' config.</p>
 
 
                     <div class="param-description">
-                        <p>Information about the event interaction, such as
-fire() args, subscription category, publish config</p>
-
+                        Information about the event interaction, such as
+                 fire() args, subscription category, publish config
                     </div>
 
                 </li>
@@ -2781,9 +2700,8 @@ fire() args, subscription category, publish config</p>
     </div>
 
     <div class="description">
-        <p>Utility method to normalize attribute values. The base implementation
-simply merges the hash to protect the original.</p>
-
+        Utility method to normalize attribute values. The base implementation
+simply merges the hash to protect the original.
     </div>
 
         <div class="params">
@@ -2796,8 +2714,7 @@ simply merges the hash to protect the original.</p>
 
 
                     <div class="param-description">
-                        <p>An object with attribute name/value pairs</p>
-
+                        An object with attribute name/value pairs
                     </div>
 
                 </li>
@@ -2809,10 +2726,9 @@ simply merges the hash to protect the original.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>An object literal with 2 properties - &quot;simple&quot; and &quot;complex&quot;,
+                    An object literal with 2 properties - "simple" and "complex",
 containing simple and complex attribute values respectively keyed
-by the top level attribute name, or null, if valueHash is falsey.</p>
-
+by the top level attribute name, or null, if valueHash is falsey.
             </div>
         </div>
 
@@ -2842,10 +2758,9 @@ by the top level attribute name, or null, if valueHash is falsey.</p>
     </div>
 
     <div class="description">
-        <p>Returns an array with the detach key (if provided),
+        Returns an array with the detach key (if provided),
 and the prefixed event name from _getType
-Y.on('detachcategory| menu:click', fn)</p>
-
+Y.on('detachcategory| menu:click', fn)
     </div>
 
 
@@ -2882,10 +2797,9 @@ Y.on('detachcategory| menu:click', fn)</p>
     </div>
 
     <div class="description">
-        <p>Handles the special on, after and target properties which allow the user to
+        Handles the special on, after and target properties which allow the user to
 easily configure on and after listeners as well as bubble targets during
-construction, prior to init.</p>
-
+construction, prior to init.
     </div>
 
         <div class="params">
@@ -2898,8 +2812,7 @@ construction, prior to init.</p>
 
 
                     <div class="param-description">
-                        <p>The user configuration object</p>
-
+                        The user configuration object
                     </div>
 
                 </li>
@@ -2946,10 +2859,9 @@ construction, prior to init.</p>
     </div>
 
     <div class="description">
-        <p>Utility method to protect an attribute configuration
+        Utility method to protect an attribute configuration
 hash, by merging the entire object and the individual
-attr config objects.</p>
-
+attr config objects.
     </div>
 
         <div class="params">
@@ -2962,8 +2874,7 @@ attr config objects.</p>
 
 
                     <div class="param-description">
-                        <p>A hash of attribute to configuration object pairs.</p>
-
+                        A hash of attribute to configuration object pairs.
                     </div>
 
                 </li>
@@ -2975,8 +2886,7 @@ attr config objects.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>A protected version of the attrs argument.</p>
-
+                    A protected version of the attrs argument.
             </div>
         </div>
 
@@ -3021,10 +2931,9 @@ attr config objects.</p>
     </div>
 
     <div class="description">
-        <p>The low level event publish implementation. It expects all the massaging to have been done
+        The low level event publish implementation. It expects all the massaging to have been done
 outside of this method. e.g. the <code>type</code> to <code>fullType</code> conversion. It's designed to be a fast
-path publish, which can be used by critical code paths to improve performance.</p>
-
+path publish, which can be used by critical code paths to improve performance.
     </div>
 
         <div class="params">
@@ -3037,8 +2946,7 @@ path publish, which can be used by critical code paths to improve performance.</
 
 
                     <div class="param-description">
-                        <p>The prefixed type of the event to publish.</p>
-
+                        The prefixed type of the event to publish.
                     </div>
 
                 </li>
@@ -3048,8 +2956,7 @@ path publish, which can be used by critical code paths to improve performance.</
 
 
                     <div class="param-description">
-                        <p>The EventTarget specific configuration to mix into the published event.</p>
-
+                        The EventTarget specific configuration to mix into the published event.
                     </div>
 
                 </li>
@@ -3059,8 +2966,7 @@ path publish, which can be used by critical code paths to improve performance.</
 
 
                     <div class="param-description">
-                        <p>The publish specific configuration to mix into the published event.</p>
-
+                        The publish specific configuration to mix into the published event.
                     </div>
 
                 </li>
@@ -3072,9 +2978,8 @@ path publish, which can be used by critical code paths to improve performance.</
 
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/CustomEvent.html" class="crosslink external" target="_blank">CustomEvent</a></span>:
-                    <p>The published event. If called without <code>etOpts</code> or <code>ceOpts</code>, this will
-be the default <code>CustomEvent</code> instance, and can be configured independently.</p>
-
+                    The published event. If called without <code>etOpts</code> or <code>ceOpts</code>, this will
+be the default <code>CustomEvent</code> instance, and can be configured independently.
             </div>
         </div>
 
@@ -3190,8 +3095,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
     </div>
 
     <div class="description">
-        <p>Allows setting of readOnly/writeOnce attributes. See &lt;a href=&quot;#method_set&quot;&gt;set&lt;/a&gt; for argument details.</p>
-
+        Allows setting of readOnly/writeOnce attributes. See <a href="#method_set">set</a> for argument details.
     </div>
 
         <div class="params">
@@ -3204,8 +3108,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
 
 
                     <div class="param-description">
-                        <p>The name of the attribute.</p>
-
+                        The name of the attribute.
                     </div>
 
                 </li>
@@ -3215,8 +3118,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
 
 
                     <div class="param-description">
-                        <p>The value to set the attribute to.</p>
-
+                        The value to set the attribute to.
                     </div>
 
                 </li>
@@ -3227,8 +3129,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
 
 
                     <div class="param-description">
-                        <p>Optional data providing the circumstances for the change.</p>
-
+                        Optional data providing the circumstances for the change.
                     </div>
 
                 </li>
@@ -3240,8 +3141,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>A reference to the host object.</p>
-
+                    A reference to the host object.
             </div>
         </div>
 
@@ -3290,9 +3190,9 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
     </div>
 
     <div class="description">
-        <p>Provides the common implementation for the public set and protected _set methods.</p>
-<p>See &lt;a href=&quot;#method_set&quot;&gt;set&lt;/a&gt; for argument details.</p>
+        Provides the common implementation for the public set and protected _set methods.
 
+See <a href="#method_set">set</a> for argument details.
     </div>
 
         <div class="params">
@@ -3305,8 +3205,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
 
 
                     <div class="param-description">
-                        <p>The name of the attribute.</p>
-
+                        The name of the attribute.
                     </div>
 
                 </li>
@@ -3316,8 +3215,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
 
 
                     <div class="param-description">
-                        <p>The value to set the attribute to.</p>
-
+                        The value to set the attribute to.
                     </div>
 
                 </li>
@@ -3328,8 +3226,7 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
 
 
                     <div class="param-description">
-                        <p>Optional data providing the circumstances for the change.</p>
-
+                        Optional data providing the circumstances for the change.
                     </div>
 
                 </li>
@@ -3339,9 +3236,8 @@ be the default <code>CustomEvent</code> instance, and can be configured independ
 
 
                     <div class="param-description">
-                        <p>If true, allows the caller to set values for
-readOnly or writeOnce attributes which have already been set.</p>
-
+                        If true, allows the caller to set values for
+readOnly or writeOnce attributes which have already been set.
                     </div>
 
                 </li>
@@ -3353,8 +3249,7 @@ readOnly or writeOnce attributes which have already been set.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>A reference to the host object.</p>
-
+                    A reference to the host object.
             </div>
         </div>
 
@@ -3400,8 +3295,7 @@ readOnly or writeOnce attributes which have already been set.</p>
     </div>
 
     <div class="description">
-        <p>Implementation behind the public setAttrs method, to set multiple attribute values.</p>
-
+        Implementation behind the public setAttrs method, to set multiple attribute values.
     </div>
 
         <div class="params">
@@ -3414,8 +3308,7 @@ readOnly or writeOnce attributes which have already been set.</p>
 
 
                     <div class="param-description">
-                        <p>An object with attributes name/value pairs.</p>
-
+                        An object with attributes name/value pairs.
                     </div>
 
                 </li>
@@ -3426,8 +3319,7 @@ readOnly or writeOnce attributes which have already been set.</p>
 
 
                     <div class="param-description">
-                        <p>Optional data providing the circumstances for the change</p>
-
+                        Optional data providing the circumstances for the change
                     </div>
 
                 </li>
@@ -3439,8 +3331,7 @@ readOnly or writeOnce attributes which have already been set.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>A reference to the host object.</p>
-
+                    A reference to the host object.
             </div>
         </div>
 
@@ -3494,9 +3385,8 @@ readOnly or writeOnce attributes which have already been set.</p>
     </div>
 
     <div class="description">
-        <p>Updates the stored value of the attribute in the privately held State object,
-if validation and setter passes.</p>
-
+        Updates the stored value of the attribute in the privately held State object,
+if validation and setter passes.
     </div>
 
         <div class="params">
@@ -3509,8 +3399,7 @@ if validation and setter passes.</p>
 
 
                     <div class="param-description">
-                        <p>The attribute name.</p>
-
+                        The attribute name.
                     </div>
 
                 </li>
@@ -3520,8 +3409,7 @@ if validation and setter passes.</p>
 
 
                     <div class="param-description">
-                        <p>The sub-attribute name, if setting a sub-attribute property (&quot;x.y.z&quot;).</p>
-
+                        The sub-attribute name, if setting a sub-attribute property ("x.y.z").
                     </div>
 
                 </li>
@@ -3531,8 +3419,7 @@ if validation and setter passes.</p>
 
 
                     <div class="param-description">
-                        <p>The currently stored value of the attribute.</p>
-
+                        The currently stored value of the attribute.
                     </div>
 
                 </li>
@@ -3542,8 +3429,7 @@ if validation and setter passes.</p>
 
 
                     <div class="param-description">
-                        <p>The value which is going to be stored.</p>
-
+                        The value which is going to be stored.
                     </div>
 
                 </li>
@@ -3554,8 +3440,7 @@ if validation and setter passes.</p>
 
 
                     <div class="param-description">
-                        <p>Optional data providing the circumstances for the change.</p>
-
+                        Optional data providing the circumstances for the change.
                     </div>
 
                 </li>
@@ -3566,9 +3451,8 @@ if validation and setter passes.</p>
 
 
                     <div class="param-description">
-                        <p>Optional config hash for the attribute. This is added for performance along the critical path,
-where the calling method has already obtained the config from state.</p>
-
+                        Optional config hash for the attribute. This is added for performance along the critical path,
+where the calling method has already obtained the config from state.
                     </div>
 
                 </li>
@@ -3580,8 +3464,7 @@ where the calling method has already obtained the config from state.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    <p>true if the new attribute value was stored, false if not.</p>
-
+                    true if the new attribute value was stored, false if not.
             </div>
         </div>
 
@@ -3620,9 +3503,8 @@ where the calling method has already obtained the config from state.</p>
     </div>
 
     <div class="description">
-        <p>Sets the stored value for the attribute, in either the
-internal state object, or the state proxy if it exits</p>
-
+        Sets the stored value for the attribute, in either the
+internal state object, or the state proxy if it exits
     </div>
 
         <div class="params">
@@ -3635,8 +3517,7 @@ internal state object, or the state proxy if it exits</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute</p>
-
+                        The name of the attribute
                     </div>
 
                 </li>
@@ -3646,8 +3527,7 @@ internal state object, or the state proxy if it exits</p>
 
 
                     <div class="param-description">
-                        <p>The value of the attribute</p>
-
+                        The value of the attribute
                     </div>
 
                 </li>
@@ -3696,72 +3576,86 @@ internal state object, or the state proxy if it exits</p>
     </div>
 
     <div class="description">
-        <p>&lt;p&gt;
+        <p>
 Adds an attribute with the provided configuration to the host object.
-&lt;/p&gt;
-&lt;p&gt;
+</p>
+<p>
 The config argument object supports the following properties:
-&lt;/p&gt;</p>
-<p>&lt;dl&gt;
-&lt;dt&gt;value &lt;Any&gt;&lt;/dt&gt;
-&lt;dd&gt;The initial value to set on the attribute&lt;/dd&gt;</p>
-<p>&lt;dt&gt;valueFn &lt;Function | String&gt;&lt;/dt&gt;
-&lt;dd&gt;
-&lt;p&gt;A function, which will return the initial value to set on the attribute. This is useful
-for cases where the attribute configuration is defined statically, but needs to
-reference the host instance (&quot;this&quot;) to obtain an initial value. If both the value and valueFn properties are defined,
-the value returned by the valueFn has precedence over the value property, unless it returns undefined, in which
-case the value property is used.&lt;/p&gt;</p>
-<p>&lt;p&gt;valueFn can also be set to a string, representing the name of the instance method to be used to retrieve the value.&lt;/p&gt;
-&lt;/dd&gt;</p>
-<p>&lt;dt&gt;readOnly &lt;boolean&gt;&lt;/dt&gt;
-&lt;dd&gt;Whether or not the attribute is read only. Attributes having readOnly set to true
-cannot be modified by invoking the set method.&lt;/dd&gt;</p>
-<p>&lt;dt&gt;writeOnce &lt;boolean&gt; or &lt;string&gt;&lt;/dt&gt;
-&lt;dd&gt;
-Whether or not the attribute is &quot;write once&quot;. Attributes having writeOnce set to true,
-can only have their values set once, be it through the default configuration,
-constructor configuration arguments, or by invoking set.
-&lt;p&gt;The writeOnce attribute can also be set to the string &quot;initOnly&quot;,
-in which case the attribute can only be set during initialization
-(when used with Base, this means it can only be set during construction)&lt;/p&gt;
-&lt;/dd&gt;</p>
-<p>&lt;dt&gt;setter &lt;Function | String&gt;&lt;/dt&gt;
-&lt;dd&gt;
-&lt;p&gt;The setter function used to massage or normalize the value passed to the set method for the attribute.
-The value returned by the setter will be the final stored value. Returning
-&lt;a href=&quot;#property_Attribute.INVALID_VALUE&quot;&gt;Attribute.INVALID_VALUE&lt;/a&gt;, from the setter will prevent
-the value from being stored.
-&lt;/p&gt;</p>
-<p>&lt;p&gt;setter can also be set to a string, representing the name of the instance method to be used as the setter function.&lt;/p&gt;
-&lt;/dd&gt;</p>
-<p>&lt;dt&gt;getter &lt;Function | String&gt;&lt;/dt&gt;
-&lt;dd&gt;
-&lt;p&gt;
-The getter function used to massage or normalize the value returned by the get method for the attribute.
-The value returned by the getter function is the value which will be returned to the user when they
-invoke get.
-&lt;/p&gt;</p>
-<p>&lt;p&gt;getter can also be set to a string, representing the name of the instance method to be used as the getter function.&lt;/p&gt;
-&lt;/dd&gt;</p>
-<p>&lt;dt&gt;validator &lt;Function | String&gt;&lt;/dt&gt;
-&lt;dd&gt;
-&lt;p&gt;
-The validator function invoked prior to setting the stored value. Returning
-false from the validator function will prevent the value from being stored.
-&lt;/p&gt;</p>
-<p>&lt;p&gt;validator can also be set to a string, representing the name of the instance method to be used as the validator function.&lt;/p&gt;
-&lt;/dd&gt;</p>
-<p>&lt;dt&gt;lazyAdd &lt;boolean&gt;&lt;/dt&gt;
-&lt;dd&gt;Whether or not to delay initialization of the attribute until the first call to get/set it.
-This flag can be used to over-ride lazy initialization on a per attribute basis, when adding multiple attributes through
-the &lt;a href=&quot;#method_addAttrs&quot;&gt;addAttrs&lt;/a&gt; method.&lt;/dd&gt;</p>
-<p>&lt;/dl&gt;</p>
-<p>&lt;p&gt;The setter, getter and validator are invoked with the value and name passed in as the first and second arguments, and with
-the context (&quot;this&quot;) set to the host object.&lt;/p&gt;</p>
-<p>&lt;p&gt;Configuration properties outside of the list mentioned above are considered private properties used internally by attribute,
-and are not intended for public use.&lt;/p&gt;</p>
+</p>
 
+<dl>
+   <dt>value &#60;Any&#62;</dt>
+   <dd>The initial value to set on the attribute</dd>
+
+   <dt>valueFn &#60;Function | String&#62;</dt>
+   <dd>
+   <p>A function, which will return the initial value to set on the attribute. This is useful
+   for cases where the attribute configuration is defined statically, but needs to
+   reference the host instance ("this") to obtain an initial value. If both the value and valueFn properties are defined,
+   the value returned by the valueFn has precedence over the value property, unless it returns undefined, in which
+   case the value property is used.</p>
+
+   <p>valueFn can also be set to a string, representing the name of the instance method to be used to retrieve the value.</p>
+   </dd>
+
+   <dt>readOnly &#60;boolean&#62;</dt>
+   <dd>Whether or not the attribute is read only. Attributes having readOnly set to true
+       cannot be modified by invoking the set method.</dd>
+
+   <dt>writeOnce &#60;boolean&#62; or &#60;string&#62;</dt>
+   <dd>
+       Whether or not the attribute is "write once". Attributes having writeOnce set to true,
+       can only have their values set once, be it through the default configuration,
+       constructor configuration arguments, or by invoking set.
+       <p>The writeOnce attribute can also be set to the string "initOnly",
+        in which case the attribute can only be set during initialization
+       (when used with Base, this means it can only be set during construction)</p>
+   </dd>
+
+   <dt>setter &#60;Function | String&#62;</dt>
+   <dd>
+   <p>The setter function used to massage or normalize the value passed to the set method for the attribute.
+   The value returned by the setter will be the final stored value. Returning
+   <a href="#property_Attribute.INVALID_VALUE">Attribute.INVALID_VALUE</a>, from the setter will prevent
+   the value from being stored.
+   </p>
+
+   <p>setter can also be set to a string, representing the name of the instance method to be used as the setter function.</p>
+   </dd>
+
+   <dt>getter &#60;Function | String&#62;</dt>
+   <dd>
+   <p>
+   The getter function used to massage or normalize the value returned by the get method for the attribute.
+   The value returned by the getter function is the value which will be returned to the user when they
+   invoke get.
+   </p>
+
+   <p>getter can also be set to a string, representing the name of the instance method to be used as the getter function.</p>
+   </dd>
+
+   <dt>validator &#60;Function | String&#62;</dt>
+   <dd>
+   <p>
+   The validator function invoked prior to setting the stored value. Returning
+   false from the validator function will prevent the value from being stored.
+   </p>
+
+   <p>validator can also be set to a string, representing the name of the instance method to be used as the validator function.</p>
+   </dd>
+
+   <dt>lazyAdd &#60;boolean&#62;</dt>
+   <dd>Whether or not to delay initialization of the attribute until the first call to get/set it.
+   This flag can be used to over-ride lazy initialization on a per attribute basis, when adding multiple attributes through
+   the <a href="#method_addAttrs">addAttrs</a> method.</dd>
+
+</dl>
+
+<p>The setter, getter and validator are invoked with the value and name passed in as the first and second arguments, and with
+the context ("this") set to the host object.</p>
+
+<p>Configuration properties outside of the list mentioned above are considered private properties used internally by attribute,
+and are not intended for public use.</p>
     </div>
 
         <div class="params">
@@ -3774,8 +3668,7 @@ and are not intended for public use.&lt;/p&gt;</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute.</p>
-
+                        The name of the attribute.
                     </div>
 
                 </li>
@@ -3785,12 +3678,12 @@ and are not intended for public use.&lt;/p&gt;</p>
 
 
                     <div class="param-description">
-                        <p>An object with attribute configuration property/value pairs, specifying the configuration for the attribute.</p>
-<p>&lt;p&gt;
-&lt;strong&gt;NOTE:&lt;/strong&gt; The configuration object is modified when adding an attribute, so if you need
-to protect the original values, you will need to merge the object.
-&lt;/p&gt;</p>
+                        An object with attribute configuration property/value pairs, specifying the configuration for the attribute.
 
+<p>
+<strong>NOTE:</strong> The configuration object is modified when adding an attribute, so if you need
+to protect the original values, you will need to merge the object.
+</p>
                     </div>
 
                 </li>
@@ -3800,8 +3693,7 @@ to protect the original values, you will need to merge the object.
 
 
                     <div class="param-description">
-                        <p>(optional) Whether or not to add this attribute lazily (on the first call to get/set).</p>
-
+                        (optional) Whether or not to add this attribute lazily (on the first call to get/set).
                     </div>
 
                 </li>
@@ -3813,8 +3705,7 @@ to protect the original values, you will need to merge the object.
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>A reference to the host object.</p>
-
+                    A reference to the host object.
             </div>
         </div>
 
@@ -3859,12 +3750,12 @@ to protect the original values, you will need to merge the object.
     </div>
 
     <div class="description">
-        <p>Configures a group of attributes, and sets initial values.</p>
-<p>&lt;p&gt;
-&lt;strong&gt;NOTE:&lt;/strong&gt; This method does not isolate the configuration object by merging/cloning.
-The caller is responsible for merging/cloning the configuration object if required.
-&lt;/p&gt;</p>
+        Configures a group of attributes, and sets initial values.
 
+<p>
+<strong>NOTE:</strong> This method does not isolate the configuration object by merging/cloning.
+The caller is responsible for merging/cloning the configuration object if required.
+</p>
     </div>
 
         <div class="params">
@@ -3877,8 +3768,7 @@ The caller is responsible for merging/cloning the configuration object if requir
 
 
                     <div class="param-description">
-                        <p>An object with attribute name/configuration pairs.</p>
-
+                        An object with attribute name/configuration pairs.
                     </div>
 
                 </li>
@@ -3888,9 +3778,8 @@ The caller is responsible for merging/cloning the configuration object if requir
 
 
                     <div class="param-description">
-                        <p>An object with attribute name/value pairs, defining the initial values to apply.
-Values defined in the cfgs argument will be over-written by values in this argument unless defined as read only.</p>
-
+                        An object with attribute name/value pairs, defining the initial values to apply.
+Values defined in the cfgs argument will be over-written by values in this argument unless defined as read only.
                     </div>
 
                 </li>
@@ -3900,10 +3789,9 @@ Values defined in the cfgs argument will be over-written by values in this argum
 
 
                     <div class="param-description">
-                        <p>Whether or not to delay the intialization of these attributes until the first call to get/set.
+                        Whether or not to delay the intialization of these attributes until the first call to get/set.
 Individual attributes can over-ride this behavior by defining a lazyAdd configuration property in their configuration.
-See &lt;a href=&quot;#method_addAttr&quot;&gt;addAttr&lt;/a&gt;.</p>
-
+See <a href="#method_addAttr">addAttr</a>.
                     </div>
 
                 </li>
@@ -3915,8 +3803,7 @@ See &lt;a href=&quot;#method_addAttr&quot;&gt;addAttr&lt;/a&gt;.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>A reference to the host object.</p>
-
+                    A reference to the host object.
             </div>
         </div>
 
@@ -3952,12 +3839,13 @@ See &lt;a href=&quot;#method_addAttr&quot;&gt;addAttr&lt;/a&gt;.</p>
     </div>
 
     <div class="description">
-        <p>Registers another EventTarget as a bubble target.  Bubble order
+        Registers another EventTarget as a bubble target.  Bubble order
 is determined by the order registered.  Multiple targets can
-be specified.</p>
-<p>Events can only bubble if emitFacade is true.</p>
-<p>Included in the event-custom-complex submodule.</p>
+be specified.
 
+Events can only bubble if emitFacade is true.
+
+Included in the event-custom-complex submodule.
     </div>
 
         <div class="params">
@@ -3970,8 +3858,7 @@ be specified.</p>
 
 
                     <div class="param-description">
-                        <p>the target to add</p>
-
+                        the target to add
                     </div>
 
                 </li>
@@ -4022,11 +3909,10 @@ be specified.</p>
     </div>
 
     <div class="description">
-        <p>Subscribe to a custom event hosted by this object.  The
+        Subscribe to a custom event hosted by this object.  The
 supplied callback will execute after any listeners add
 via the subscribe method, and after the default function,
-if configured for the event, has executed.</p>
-
+if configured for the event, has executed.
     </div>
 
         <div class="params">
@@ -4039,8 +3925,7 @@ if configured for the event, has executed.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the event</p>
-
+                        The name of the event
                     </div>
 
                 </li>
@@ -4050,8 +3935,7 @@ if configured for the event, has executed.</p>
 
 
                     <div class="param-description">
-                        <p>The callback to execute in response to the event</p>
-
+                        The callback to execute in response to the event
                     </div>
 
                 </li>
@@ -4062,8 +3946,7 @@ if configured for the event, has executed.</p>
 
 
                     <div class="param-description">
-                        <p>Override <code>this</code> object in callback</p>
-
+                        Override <code>this</code> object in callback
                     </div>
 
                 </li>
@@ -4074,8 +3957,7 @@ if configured for the event, has executed.</p>
 
 
                     <div class="param-description">
-                        <p>0..n additional arguments to supply to the subscriber</p>
-
+                        0..n additional arguments to supply to the subscriber
                     </div>
 
                 </li>
@@ -4087,9 +3969,8 @@ if configured for the event, has executed.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/EventHandle.html" class="crosslink external" target="_blank">EventHandle</a></span>:
-                    <p>A subscription handle capable of detaching the
-subscription</p>
-
+                    A subscription handle capable of detaching the
+                      subscription
             </div>
         </div>
 
@@ -4127,8 +4008,7 @@ subscription</p>
     </div>
 
     <div class="description">
-        <p>Checks if the given attribute has been added to the host</p>
-
+        Checks if the given attribute has been added to the host
     </div>
 
         <div class="params">
@@ -4141,8 +4021,7 @@ subscription</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute to check.</p>
-
+                        The name of the attribute to check.
                     </div>
 
                 </li>
@@ -4154,9 +4033,8 @@ subscription</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    <p>true if an attribute with the given name has been added, false if it hasn't.
-This method will return true for lazily added attributes.</p>
-
+                    true if an attribute with the given name has been added, false if it hasn't.
+        This method will return true for lazily added attributes.
             </div>
         </div>
 
@@ -4188,15 +4066,16 @@ This method will return true for lazily added attributes.</p>
     </div>
 
     <div class="description">
-        <p>Executes the callback before a DOM event, custom event
+        Executes the callback before a DOM event, custom event
 or method.  If the first argument is a function, it
 is assumed the target is a method.  For DOM and custom
-events, this is an alias for Y.on.</p>
-<p>For DOM and custom events:
-type, callback, context, 0-n arguments</p>
-<p>For methods:
-callback, object (method host), methodName, context, 0-n arguments</p>
+events, this is an alias for Y.on.
 
+For DOM and custom events:
+type, callback, context, 0-n arguments
+
+For methods:
+callback, object (method host), methodName, context, 0-n arguments
     </div>
 
 
@@ -4204,8 +4083,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                    <p>detach handle</p>
-
+                    detach handle
             </div>
         </div>
 
@@ -4243,8 +4121,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
     </div>
 
     <div class="description">
-        <p>Propagate an event.  Requires the event-custom-complex module.</p>
-
+        Propagate an event.  Requires the event-custom-complex module.
     </div>
 
         <div class="params">
@@ -4257,8 +4134,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
 
 
                     <div class="param-description">
-                        <p>the custom event to propagate</p>
-
+                        the custom event to propagate
                     </div>
 
                 </li>
@@ -4270,8 +4146,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    <p>the aggregated return value from Event.Custom.fire</p>
-
+                    the aggregated return value from Event.Custom.fire
             </div>
         </div>
 
@@ -4307,8 +4182,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
     </div>
 
     <div class="description">
-        <p>Destroy lifecycle method. Invokes destructors for the class hierarchy.</p>
-
+        Destroy lifecycle method. Invokes destructors for the class hierarchy.
     </div>
 
 
@@ -4317,8 +4191,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
 
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/BaseCore.html" class="crosslink external" target="_blank">BaseCore</a></span>:
-                    <p>A reference to this object</p>
-
+                    A reference to this object
             </div>
         </div>
 
@@ -4362,8 +4235,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
     </div>
 
     <div class="description">
-        <p>Detach one or more listeners the from the specified event</p>
-
+        Detach one or more listeners the from the specified event
     </div>
 
         <div class="params">
@@ -4376,11 +4248,10 @@ callback, object (method host), methodName, context, 0-n arguments</p>
 
 
                     <div class="param-description">
-                        <p>Either the handle to the subscriber or the
-type of event.  If the type
-is not specified, it will attempt to remove
-the listener from all hosted events.</p>
-
+                        Either the handle to the subscriber or the
+                       type of event.  If the type
+                       is not specified, it will attempt to remove
+                       the listener from all hosted events.
                     </div>
 
                 </li>
@@ -4390,9 +4261,8 @@ the listener from all hosted events.</p>
 
 
                     <div class="param-description">
-                        <p>The subscribed function to unsubscribe, if not
-supplied, all subscribers will be removed.</p>
-
+                        The subscribed function to unsubscribe, if not
+                         supplied, all subscribers will be removed.
                     </div>
 
                 </li>
@@ -4402,12 +4272,11 @@ supplied, all subscribers will be removed.</p>
 
 
                     <div class="param-description">
-                        <p>The custom object passed to subscribe.  This is
-optional, but if supplied will be used to
-disambiguate multiple listeners that are the same
-(e.g., you subscribe many object using a function
-that lives on the prototype)</p>
-
+                        The custom object passed to subscribe.  This is
+                       optional, but if supplied will be used to
+                       disambiguate multiple listeners that are the same
+                       (e.g., you subscribe many object using a function
+                       that lives on the prototype)
                     </div>
 
                 </li>
@@ -4419,8 +4288,7 @@ that lives on the prototype)</p>
 
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/EventTarget.html" class="crosslink external" target="_blank">EventTarget</a></span>:
-                    <p>the host</p>
-
+                    the host
             </div>
         </div>
 
@@ -4455,10 +4323,9 @@ that lives on the prototype)</p>
     </div>
 
     <div class="description">
-        <p>Removes all listeners from the specified event.  If the event type
+        Removes all listeners from the specified event.  If the event type
 is not specified, all listeners from all hosted custom events will
-be removed.</p>
-
+be removed.
     </div>
 
         <div class="params">
@@ -4471,8 +4338,7 @@ be removed.</p>
 
 
                     <div class="param-description">
-                        <p>The type, or name of the event</p>
-
+                        The type, or name of the event
                     </div>
 
                 </li>
@@ -4603,20 +4469,21 @@ comment text.</p>
     </div>
 
     <div class="description">
-        <p>Fire a custom event by name.  The callback functions will be executed
+        Fire a custom event by name.  The callback functions will be executed
 from the context specified when the event was created, and with the
-following parameters.</p>
-<p>The first argument is the event type, and any additional arguments are
+following parameters.
+
+The first argument is the event type, and any additional arguments are
 passed to the listeners as parameters.  If the first of these is an
 object literal, and the event is configured to emit an event facade,
 that object is mixed into the event facade and the facade is provided
-in place of the original object.</p>
-<p>If the custom event object hasn't been created, then the event hasn't
+in place of the original object.
+
+If the custom event object hasn't been created, then the event hasn't
 been published and it has no subscribers.  For performance sake, we
 immediate exit in this case.  This means the event won't bubble, so
 if the intention is that a bubble target be notified, the event must
-be published on this object first.</p>
-
+be published on this object first.
     </div>
 
         <div class="params">
@@ -4629,9 +4496,8 @@ be published on this object first.</p>
 
 
                     <div class="param-description">
-                        <p>The type of the event, or an object that contains
-a 'type' property.</p>
-
+                        The type of the event, or an object that contains
+a 'type' property.
                     </div>
 
                 </li>
@@ -4641,12 +4507,11 @@ a 'type' property.</p>
 
 
                     <div class="param-description">
-                        <p>an arbitrary set of parameters to pass to
+                        an arbitrary set of parameters to pass to
 the handler.  If the first of these is an object literal and the event is
 configured to emit an event facade, the event facade will replace that
 parameter after the properties the object literal contains are copied to
-the event facade.</p>
-
+the event facade.
                     </div>
 
                 </li>
@@ -4658,9 +4523,8 @@ the event facade.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    <p>True if the whole lifecycle of the event went through,
-false if at any point the event propagation was halted.</p>
-
+                    True if the whole lifecycle of the event went through,
+false if at any point the event propagation was halted.
             </div>
         </div>
 
@@ -4698,10 +4562,9 @@ false if at any point the event propagation was halted.</p>
     </div>
 
     <div class="description">
-        <p>Returns the current value of the attribute. If the attribute
+        Returns the current value of the attribute. If the attribute
 has been configured with a 'getter' function, this method will delegate
-to the 'getter' to obtain the value of the attribute.</p>
-
+to the 'getter' to obtain the value of the attribute.
     </div>
 
         <div class="params">
@@ -4714,9 +4577,8 @@ to the 'getter' to obtain the value of the attribute.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute. If the value of the attribute is an Object,
-dot notation can be used to obtain the value of a property of the object (e.g. &lt;code&gt;get(&quot;x.y.z&quot;)&lt;/code&gt;)</p>
-
+                        The name of the attribute. If the value of the attribute is an Object,
+dot notation can be used to obtain the value of a property of the object (e.g. <code>get("x.y.z")</code>)
                     </div>
 
                 </li>
@@ -4728,8 +4590,7 @@ dot notation can be used to obtain the value of a property of the object (e.g. &
 
             <div class="returns-description">
                         <span class="type">Any</span>:
-                    <p>The value of the attribute</p>
-
+                    The value of the attribute
             </div>
         </div>
 
@@ -4767,8 +4628,7 @@ dot notation can be used to obtain the value of a property of the object (e.g. &
     </div>
 
     <div class="description">
-        <p>Gets multiple attribute values.</p>
-
+        Gets multiple attribute values.
     </div>
 
         <div class="params">
@@ -4781,9 +4641,8 @@ dot notation can be used to obtain the value of a property of the object (e.g. &
 
 
                     <div class="param-description">
-                        <p>Optional. An array of attribute names. If omitted, all attribute values are
-returned. If set to true, all attributes modified from their initial values are returned.</p>
-
+                        Optional. An array of attribute names. If omitted, all attribute values are
+returned. If set to true, all attributes modified from their initial values are returned.
                     </div>
 
                 </li>
@@ -4795,8 +4654,7 @@ returned. If set to true, all attributes modified from their initial values are 
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>An object with attribute name/value pairs.</p>
-
+                    An object with attribute name/value pairs.
             </div>
         </div>
 
@@ -4837,9 +4695,8 @@ returned. If set to true, all attributes modified from their initial values are 
     </div>
 
     <div class="description">
-        <p>Returns the custom event of the provided type has been created, a
-falsy value otherwise</p>
-
+        Returns the custom event of the provided type has been created, a
+falsy value otherwise
     </div>
 
         <div class="params">
@@ -4852,8 +4709,7 @@ falsy value otherwise</p>
 
 
                     <div class="param-description">
-                        <p>the type, or name of the event</p>
-
+                        the type, or name of the event
                     </div>
 
                 </li>
@@ -4863,8 +4719,7 @@ falsy value otherwise</p>
 
 
                     <div class="param-description">
-                        <p>if true, the type is prefixed already</p>
-
+                        if true, the type is prefixed already
                     </div>
 
                 </li>
@@ -4876,8 +4731,7 @@ falsy value otherwise</p>
 
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/CustomEvent.html" class="crosslink external" target="_blank">CustomEvent</a></span>:
-                    <p>the custom event or null</p>
-
+                    the custom event or null
             </div>
         </div>
 
@@ -4909,8 +4763,7 @@ falsy value otherwise</p>
     </div>
 
     <div class="description">
-        <p>Returns an array of bubble targets for this object.</p>
-
+        Returns an array of bubble targets for this object.
     </div>
 
 
@@ -4918,8 +4771,7 @@ falsy value otherwise</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                    <p>EventTarget[]</p>
-
+                    EventTarget[]
             </div>
         </div>
 
@@ -5180,9 +5032,8 @@ friendly for both markdown and html parsers.</p>
     </div>
 
     <div class="description">
-        <p>Init lifecycle method, invoked during construction. Sets up attributes
-and invokes initializers for the class hierarchy.</p>
-
+        Init lifecycle method, invoked during construction. Sets up attributes
+and invokes initializers for the class hierarchy.
     </div>
 
         <div class="params">
@@ -5195,8 +5046,7 @@ and invokes initializers for the class hierarchy.</p>
 
 
                     <div class="param-description">
-                        <p>Object with configuration property name/value pairs</p>
-
+                        Object with configuration property name/value pairs
                     </div>
 
                 </li>
@@ -5208,8 +5058,7 @@ and invokes initializers for the class hierarchy.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/BaseCore.html" class="crosslink external" target="_blank">BaseCore</a></span>:
-                    <p>A reference to this object</p>
-
+                    A reference to this object
             </div>
         </div>
 
@@ -5247,26 +5096,25 @@ and invokes initializers for the class hierarchy.</p>
     </div>
 
     <div class="description">
-        <p>Updates the configuration of an attribute which has already been added.
-&lt;p&gt;
+        Updates the configuration of an attribute which has already been added.
+<p>
 The properties which can be modified through this interface are limited
 to the following subset of attributes, which can be safely modified
 after a value has already been set on the attribute:
-&lt;/p&gt;
-&lt;dl&gt;
-&lt;dt&gt;readOnly;&lt;/dt&gt;
-&lt;dt&gt;writeOnce;&lt;/dt&gt;
-&lt;dt&gt;broadcast; and&lt;/dt&gt;
-&lt;dt&gt;getter.&lt;/dt&gt;
-&lt;/dl&gt;
-&lt;p&gt;
+</p>
+<dl>
+ <dt>readOnly;</dt>
+ <dt>writeOnce;</dt>
+ <dt>broadcast; and</dt>
+ <dt>getter.</dt>
+</dl>
+<p>
 Note: New attributes cannot be added using this interface. New attributes must be
-added using <a href="../classes/AttributeCore.html#method_addAttr" class="crosslink">addAttr</a>, or an
+added using {{#crossLink "AttributeCore/addAttr:method"}}addAttr{{/crossLink}}, or an
 appropriate manner for a class which utilises Attributes (e.g. the
-<a href="../classes/Base.html#property_ATTRS" class="crosslink">ATTRS</a> property in
-<a href="http://yuilibrary.com/yui/docs/api/classes/Base.html" class="crosslink external" target="_blank">Base</a>).
-&lt;/p&gt;</p>
-
+{{#crossLink "Base/ATTRS:property"}}ATTRS{{/crossLink}} property in
+{{#crossLink "Base"}}Base{{/crossLink}}).
+</p>
     </div>
 
         <div class="params">
@@ -5279,8 +5127,7 @@ appropriate manner for a class which utilises Attributes (e.g. the
 
 
                     <div class="param-description">
-                        <p>The name of the attribute whose configuration is to be updated.</p>
-
+                        The name of the attribute whose configuration is to be updated.
                     </div>
 
                 </li>
@@ -5290,8 +5137,7 @@ appropriate manner for a class which utilises Attributes (e.g. the
 
 
                     <div class="param-description">
-                        <p>An object with configuration property/value pairs, specifying the configuration properties to modify.</p>
-
+                        An object with configuration property/value pairs, specifying the configuration properties to modify.
                     </div>
 
                 </li>
@@ -5342,32 +5188,35 @@ appropriate manner for a class which utilises Attributes (e.g. the
     </div>
 
     <div class="description">
-        <p>Subscribe a callback function to a custom event fired by this object or
-from an object that bubbles its events to this object.</p>
-<pre class="code prettyprint"><code> this.on(&quot;change&quot;, this._onChange, this);
-</code></pre>
-<p>Callback functions for events published with <code>emitFacade = true</code> will
-receive an <code>EventFacade</code> as the first argument (typically named &quot;e&quot;).
+        Subscribe a callback function to a custom event fired by this object or
+from an object that bubbles its events to this object.
+
+     this.on("change", this._onChange, this);
+
+Callback functions for events published with <code>emitFacade = true</code> will
+receive an <code>EventFacade</code> as the first argument (typically named "e").
 These callbacks can then call <code>e.preventDefault()</code> to disable the
 behavior published to that event's <code>defaultFn</code>.  See the <code>EventFacade</code>
 API for all available properties and methods. Subscribers to
 non-<code>emitFacade</code> events will receive the arguments passed to <code>fire()</code>
-after the event name.</p>
-<p>To subscribe to multiple events at once, pass an object as the first
-argument, where the key:value pairs correspond to the eventName:callback.</p>
-<pre class="code prettyprint"><code> this.on({
-     &quot;attrChange&quot; : this._onAttrChange,
-     &quot;change&quot;     : this._onChange
- });
-</code></pre>
-<p>You can also pass an array of event names as the first argument to
-subscribe to all listed events with the same callback.</p>
-<pre class="code prettyprint"><code> this.on([ &quot;change&quot;, &quot;attrChange&quot; ], this._onChange);
-</code></pre>
-<p>Returning <code>false</code> from a callback is supported as an alternative to
-calling <code>e.preventDefault(); e.stopPropagation();</code>.  However, it is
-recommended to use the event methods whenever possible.</p>
+after the event name.
 
+To subscribe to multiple events at once, pass an object as the first
+argument, where the key:value pairs correspond to the eventName:callback.
+
+     this.on({
+         "attrChange" : this._onAttrChange,
+         "change"     : this._onChange
+     });
+
+You can also pass an array of event names as the first argument to
+subscribe to all listed events with the same callback.
+
+     this.on([ "change", "attrChange" ], this._onChange);
+
+Returning <code>false</code> from a callback is supported as an alternative to
+calling <code>e.preventDefault(); e.stopPropagation();</code>.  However, it is
+recommended to use the event methods whenever possible.
     </div>
 
         <div class="params">
@@ -5380,8 +5229,7 @@ recommended to use the event methods whenever possible.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the event</p>
-
+                        The name of the event
                     </div>
 
                 </li>
@@ -5391,8 +5239,7 @@ recommended to use the event methods whenever possible.</p>
 
 
                     <div class="param-description">
-                        <p>The callback to execute in response to the event</p>
-
+                        The callback to execute in response to the event
                     </div>
 
                 </li>
@@ -5403,8 +5250,7 @@ recommended to use the event methods whenever possible.</p>
 
 
                     <div class="param-description">
-                        <p>Override <code>this</code> object in callback</p>
-
+                        Override <code>this</code> object in callback
                     </div>
 
                 </li>
@@ -5415,8 +5261,7 @@ recommended to use the event methods whenever possible.</p>
 
 
                     <div class="param-description">
-                        <p>0..n additional arguments to supply to the subscriber</p>
-
+                        0..n additional arguments to supply to the subscriber
                     </div>
 
                 </li>
@@ -5428,9 +5273,8 @@ recommended to use the event methods whenever possible.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/EventHandle.html" class="crosslink external" target="_blank">EventHandle</a></span>:
-                    <p>A subscription handle capable of detaching that
-subscription</p>
-
+                    A subscription handle capable of detaching that
+                      subscription
             </div>
         </div>
 
@@ -5477,10 +5321,9 @@ subscription</p>
     </div>
 
     <div class="description">
-        <p>Listen to a custom event hosted by this object one time.
-This is the equivalent to &lt;code&gt;on&lt;/code&gt; except the
-listener is immediatelly detached when it is executed.</p>
-
+        Listen to a custom event hosted by this object one time.
+This is the equivalent to <code>on</code> except the
+listener is immediatelly detached when it is executed.
     </div>
 
         <div class="params">
@@ -5493,8 +5336,7 @@ listener is immediatelly detached when it is executed.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the event</p>
-
+                        The name of the event
                     </div>
 
                 </li>
@@ -5504,8 +5346,7 @@ listener is immediatelly detached when it is executed.</p>
 
 
                     <div class="param-description">
-                        <p>The callback to execute in response to the event</p>
-
+                        The callback to execute in response to the event
                     </div>
 
                 </li>
@@ -5516,8 +5357,7 @@ listener is immediatelly detached when it is executed.</p>
 
 
                     <div class="param-description">
-                        <p>Override <code>this</code> object in callback</p>
-
+                        Override <code>this</code> object in callback
                     </div>
 
                 </li>
@@ -5528,8 +5368,7 @@ listener is immediatelly detached when it is executed.</p>
 
 
                     <div class="param-description">
-                        <p>0..n additional arguments to supply to the subscriber</p>
-
+                        0..n additional arguments to supply to the subscriber
                     </div>
 
                 </li>
@@ -5541,9 +5380,8 @@ listener is immediatelly detached when it is executed.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/EventHandle.html" class="crosslink external" target="_blank">EventHandle</a></span>:
-                    <p>A subscription handle capable of detaching the
-subscription</p>
-
+                    A subscription handle capable of detaching the
+                      subscription
             </div>
         </div>
 
@@ -5590,10 +5428,9 @@ subscription</p>
     </div>
 
     <div class="description">
-        <p>Listen to a custom event hosted by this object one time.
-This is the equivalent to &lt;code&gt;after&lt;/code&gt; except the
-listener is immediatelly detached when it is executed.</p>
-
+        Listen to a custom event hosted by this object one time.
+This is the equivalent to <code>after</code> except the
+listener is immediatelly detached when it is executed.
     </div>
 
         <div class="params">
@@ -5606,8 +5443,7 @@ listener is immediatelly detached when it is executed.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the event</p>
-
+                        The name of the event
                     </div>
 
                 </li>
@@ -5617,8 +5453,7 @@ listener is immediatelly detached when it is executed.</p>
 
 
                     <div class="param-description">
-                        <p>The callback to execute in response to the event</p>
-
+                        The callback to execute in response to the event
                     </div>
 
                 </li>
@@ -5629,8 +5464,7 @@ listener is immediatelly detached when it is executed.</p>
 
 
                     <div class="param-description">
-                        <p>Override <code>this</code> object in callback</p>
-
+                        Override <code>this</code> object in callback
                     </div>
 
                 </li>
@@ -5641,8 +5475,7 @@ listener is immediatelly detached when it is executed.</p>
 
 
                     <div class="param-description">
-                        <p>0..n additional arguments to supply to the subscriber</p>
-
+                        0..n additional arguments to supply to the subscriber
                     </div>
 
                 </li>
@@ -5654,9 +5487,8 @@ listener is immediatelly detached when it is executed.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/EventHandle.html" class="crosslink external" target="_blank">EventHandle</a></span>:
-                    <p>A subscription handle capable of detaching that
-subscription</p>
-
+                    A subscription handle capable of detaching that
+                      subscription
             </div>
         </div>
 
@@ -5779,12 +5611,11 @@ are available in parser.data.</p>
     </div>
 
     <div class="description">
-        <p>Takes the type parameter passed to 'on' and parses out the
+        Takes the type parameter passed to 'on' and parses out the
 various pieces that could be included in the type.  If the
 event type is passed without a prefix, it will be expanded
 to include the prefix one is supplied or the event target
-is configured with a default prefix.</p>
-
+is configured with a default prefix.
     </div>
 
         <div class="params">
@@ -5797,8 +5628,7 @@ is configured with a default prefix.</p>
 
 
                     <div class="param-description">
-                        <p>the type</p>
-
+                        the type
                     </div>
 
                 </li>
@@ -5809,8 +5639,7 @@ is configured with a default prefix.</p>
 
 
                     <div class="param-description">
-                        <p>The prefix. Defaults to this._yuievt.config.prefix</p>
-
+                        The prefix. Defaults to this._yuievt.config.prefix
                     </div>
 
                 </li>
@@ -5822,14 +5651,11 @@ is configured with a default prefix.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a></span>:
-                    <p>an array containing:</p>
-<ul>
-<li>the detach category, if supplied,</li>
-<li>the prefixed event type,</li>
-<li>whether or not this is an after listener,</li>
-<li>the supplied event type</li>
-</ul>
-
+                    an array containing:
+ * the detach category, if supplied,
+ * the prefixed event type,
+ * whether or not this is an after listener,
+ * the supplied event type
             </div>
         </div>
 
@@ -5924,10 +5750,9 @@ is configured with a default prefix.</p>
     </div>
 
     <div class="description">
-        <p>Creates a new custom event of the specified type.  If a custom event
+        Creates a new custom event of the specified type.  If a custom event
 by that name already exists, it will not be re-created.  In either
-case the custom event is returned.</p>
-
+case the custom event is returned.
     </div>
 
         <div class="params">
@@ -5940,8 +5765,7 @@ case the custom event is returned.</p>
 
 
                     <div class="param-description">
-                        <p>the type, or name of the event</p>
-
+                        the type, or name of the event
                     </div>
 
                 </li>
@@ -5951,8 +5775,7 @@ case the custom event is returned.</p>
 
 
                     <div class="param-description">
-                        <p>optional config params.  Valid properties are:</p>
-
+                        optional config params.  Valid properties are:
                     </div>
 
                         <ul class="params-list">
@@ -6137,8 +5960,7 @@ when the event has been attached, detached, or published.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="http://yuilibrary.com/yui/docs/api/classes/CustomEvent.html" class="crosslink external" target="_blank">CustomEvent</a></span>:
-                    <p>the custom event</p>
-
+                    the custom event
             </div>
         </div>
 
@@ -6173,8 +5995,7 @@ when the event has been attached, detached, or published.</p>
     </div>
 
     <div class="description">
-        <p>Removes an attribute from the host object</p>
-
+        Removes an attribute from the host object
     </div>
 
         <div class="params">
@@ -6187,8 +6008,7 @@ when the event has been attached, detached, or published.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute to be removed.</p>
-
+                        The name of the attribute to be removed.
                     </div>
 
                 </li>
@@ -6228,8 +6048,7 @@ when the event has been attached, detached, or published.</p>
     </div>
 
     <div class="description">
-        <p>Removes a bubble target</p>
-
+        Removes a bubble target
     </div>
 
         <div class="params">
@@ -6242,8 +6061,7 @@ when the event has been attached, detached, or published.</p>
 
 
                     <div class="param-description">
-                        <p>the target to remove</p>
-
+                        the target to remove
                     </div>
 
                 </li>
@@ -6286,9 +6104,8 @@ when the event has been attached, detached, or published.</p>
     </div>
 
     <div class="description">
-        <p>Resets the attribute (or all attributes) to its initial value, as long as
-the attribute is not readOnly, or writeOnce.</p>
-
+        Resets the attribute (or all attributes) to its initial value, as long as
+the attribute is not readOnly, or writeOnce.
     </div>
 
         <div class="params">
@@ -6301,8 +6118,7 @@ the attribute is not readOnly, or writeOnce.</p>
 
 
                     <div class="param-description">
-                        <p>Optional. The name of the attribute to reset.  If omitted, all attributes are reset.</p>
-
+                        Optional. The name of the attribute to reset.  If omitted, all attributes are reset.
                     </div>
 
                 </li>
@@ -6314,8 +6130,7 @@ the attribute is not readOnly, or writeOnce.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>A reference to the host object.</p>
-
+                    A reference to the host object.
             </div>
         </div>
 
@@ -6363,8 +6178,7 @@ the attribute is not readOnly, or writeOnce.</p>
     </div>
 
     <div class="description">
-        <p>Sets the value of an attribute.</p>
-
+        Sets the value of an attribute.
     </div>
 
         <div class="params">
@@ -6377,10 +6191,9 @@ the attribute is not readOnly, or writeOnce.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the attribute. If the
+                        The name of the attribute. If the
 current value of the attribute is an Object, dot notation can be used
-to set the value of a property within the object (e.g. &lt;code&gt;set(&quot;x.y.z&quot;, 5)&lt;/code&gt;).</p>
-
+to set the value of a property within the object (e.g. <code>set("x.y.z", 5)</code>).
                     </div>
 
                 </li>
@@ -6390,8 +6203,7 @@ to set the value of a property within the object (e.g. &lt;code&gt;set(&quot;x.y
 
 
                     <div class="param-description">
-                        <p>The value to set the attribute to.</p>
-
+                        The value to set the attribute to.
                     </div>
 
                 </li>
@@ -6402,8 +6214,7 @@ to set the value of a property within the object (e.g. &lt;code&gt;set(&quot;x.y
 
 
                     <div class="param-description">
-                        <p>Optional data providing the circumstances for the change.</p>
-
+                        Optional data providing the circumstances for the change.
                     </div>
 
                 </li>
@@ -6415,8 +6226,7 @@ to set the value of a property within the object (e.g. &lt;code&gt;set(&quot;x.y
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>A reference to the host object.</p>
-
+                    A reference to the host object.
             </div>
         </div>
 
@@ -6461,8 +6271,7 @@ to set the value of a property within the object (e.g. &lt;code&gt;set(&quot;x.y
     </div>
 
     <div class="description">
-        <p>Sets multiple attribute values.</p>
-
+        Sets multiple attribute values.
     </div>
 
         <div class="params">
@@ -6475,8 +6284,7 @@ to set the value of a property within the object (e.g. &lt;code&gt;set(&quot;x.y
 
 
                     <div class="param-description">
-                        <p>An object with attributes name/value pairs.</p>
-
+                        An object with attributes name/value pairs.
                     </div>
 
                 </li>
@@ -6487,8 +6295,7 @@ to set the value of a property within the object (e.g. &lt;code&gt;set(&quot;x.y
 
 
                     <div class="param-description">
-                        <p>Optional data providing the circumstances for the change.</p>
-
+                        Optional data providing the circumstances for the change.
                     </div>
 
                 </li>
@@ -6500,8 +6307,7 @@ to set the value of a property within the object (e.g. &lt;code&gt;set(&quot;x.y
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
-                    <p>A reference to the host object.</p>
-
+                    A reference to the host object.
             </div>
         </div>
 
@@ -6600,8 +6406,7 @@ filename and line number: <code>/file/name.js:123</code></p>
     </div>
 
     <div class="description">
-        <p>subscribe to an event</p>
-
+        subscribe to an event
     </div>
 
 
@@ -6634,9 +6439,8 @@ filename and line number: <code>/file/name.js:123</code></p>
     </div>
 
     <div class="description">
-        <p>Default toString implementation. Provides the constructor NAME
-and the instance guid, if set.</p>
-
+        Default toString implementation. Provides the constructor NAME
+and the instance guid, if set.
     </div>
 
 
@@ -6645,8 +6449,7 @@ and the instance guid, if set.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    <p>String representation for this object</p>
-
+                    String representation for this object
             </div>
         </div>
 
@@ -6815,8 +6618,7 @@ lines will be unindented four spaces. Ported from <a href="https://github.com/rg
     </div>
 
     <div class="description">
-        <p>detach a listener</p>
-
+        detach a listener
     </div>
 
 
@@ -6854,10 +6656,9 @@ lines will be unindented four spaces. Ported from <a href="https://github.com/rg
     </div>
 
     <div class="description">
-        <p>Removes all listeners from the specified event.  If the event type
+        Removes all listeners from the specified event.  If the event type
 is not specified, all listeners from all hosted custom events will
-be removed.</p>
-
+be removed.
     </div>
 
         <div class="params">
@@ -6870,8 +6671,7 @@ be removed.</p>
 
 
                     <div class="param-description">
-                        <p>The type, or name of the event</p>
-
+                        The type, or name of the event
                     </div>
 
                 </li>
@@ -6905,12 +6705,12 @@ be removed.</p>
                         </div>
                     
                         <div class="description">
-                            <p>This property controls whether or not instances of this class should
+                            This property controls whether or not instances of this class should
                     allow users to add ad-hoc attributes through the constructor configuration
-                    hash.</p>
-                    <p>AdHoc attributes are attributes which are not defined by the class, and are
-                    not handled by the MyClass._NON_ATTRS_CFG</p>
+                    hash.
                     
+                    AdHoc attributes are attributes which are not defined by the class, and are
+                    not handled by the MyClass._NON_ATTRS_CFG
                         </div>
                     
                             <p><strong>Default:</strong> undefined (false)</p>
@@ -7019,8 +6819,7 @@ be removed.</p>
                         </div>
                     
                         <div class="description">
-                            <p>The string used to identify the class of this object.</p>
-                    
+                            The string used to identify the class of this object.
                         </div>
                     
                     
@@ -7398,9 +7197,8 @@ be removed.</p>
                         </div>
                     
                         <div class="description">
-                            <p>Flag indicating whether or not this object
-                    has been through the destroy lifecycle phase.</p>
-                    
+                            Flag indicating whether or not this object
+                    has been through the destroy lifecycle phase.
                         </div>
                     
                             <p><strong>Default:</strong> false</p>
@@ -7809,9 +7607,8 @@ be removed.</p>
                         </div>
                     
                         <div class="description">
-                            <p>Flag indicating whether or not this object
-                    has been through the init lifecycle phase.</p>
-                    
+                            Flag indicating whether or not this object
+                    has been through the init lifecycle phase.
                         </div>
                     
                             <p><strong>Default:</strong> false</p>
@@ -8049,18 +7846,17 @@ be removed.</p>
                         </div>
                     
                         <div class="description">
-                            <p>&lt;p&gt;
+                            <p>
                     Lifecycle event for the destroy phase,
                     fired prior to destruction. Invoking the preventDefault
                     method on the event object provided to subscribers will
                     prevent destruction from proceeding.
-                    &lt;/p&gt;
-                    &lt;p&gt;
-                    Subscribers to the &quot;after&quot; moment of this event, will be notified
+                    </p>
+                    <p>
+                    Subscribers to the "after" moment of this event, will be notified
                     after destruction is complete (and as a result cannot prevent
                     destruction).
-                    &lt;/p&gt;</p>
-                    
+                    </p>
                         </div>
                     
                             <div class="params">
@@ -8073,8 +7869,7 @@ be removed.</p>
                     
                     
                                         <div class="param-description">
-                                            <p>Event object</p>
-                    
+                                            Event object
                                         </div>
                     
                                     </li>
@@ -8101,17 +7896,16 @@ be removed.</p>
                         </div>
                     
                         <div class="description">
-                            <p>&lt;p&gt;
+                            <p>
                     Lifecycle event for the init phase, fired prior to initialization.
                     Invoking the preventDefault() method on the event object provided
                     to subscribers will prevent initialization from occuring.
-                    &lt;/p&gt;
-                    &lt;p&gt;
-                    Subscribers to the &quot;after&quot; momemt of this event, will be notified
+                    </p>
+                    <p>
+                    Subscribers to the "after" momemt of this event, will be notified
                     after initialization of the object is complete (and therefore
                     cannot prevent initialization).
-                    &lt;/p&gt;</p>
-                    
+                    </p>
                         </div>
                     
                             <div class="params">
@@ -8124,9 +7918,8 @@ be removed.</p>
                     
                     
                                         <div class="param-description">
-                                            <p>Event object, with a cfg property which
-                    refers to the configuration object passed to the constructor.</p>
-                    
+                                            Event object, with a cfg property which
+                    refers to the configuration object passed to the constructor.
                                         </div>
                     
                                     </li>

@@ -109,7 +109,10 @@ based templates to generate static HTML content
 */
 
 YUI.add(&#x27;doc-builder&#x27;, function (Y) {
-    /*jshint onevar:false */
+    var defaultMarkdownOption = {
+        html: true,
+        linkify: true
+    };
 
     var fixType = Y.Lang.fixType,
         print = function (items) {
@@ -146,7 +149,7 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
         if (options.themedir) {
             themeDir = options.themedir;
         }
-        this.md = new MarkdownIt(options.markdown);
+        this.md = new MarkdownIt(Y.merge(defaultMarkdownOption, options.markdown));
         this.data = data;
         Y.log(&#x27;Building..&#x27;, &#x27;info&#x27;, &#x27;builder&#x27;);
         this.files = 0;
@@ -757,11 +760,10 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
                         }
                         if (!a.description) {
                             a.description = &#x27; &#x27;;
-                        } else {
-                            //a.description = markdown(a.description, true, self.defaultTags);
+                        } else if (!o.extended_from) {
                             a.description = self.markdown(a.description);
                         }
-                        if (a.example) {
+                        if (a.example &amp;&amp; !o.extended_from) {
                             a.example = self.markdown(a.example);
                         }
                         a = self.addFoundAt(a);
@@ -784,12 +786,12 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
                             if (v.forEach || (v instanceof Object)) {
                                 o[k1][k] = self.augmentData(v);
                             } else {
-                                o[k1][k] = self.markdown(v);
+                                o[k1][k] = o.extended_from ? v : self.markdown(v);
                             }
                         }
                     });
                 } else if (k1 === &#x27;description&#x27; || k1 === &#x27;example&#x27;) {
-                    o[k1] = self.markdown(i);
+                    o[k1] = o.extended_from ? i : self.markdown(i);
                 }
             });
             return o;
@@ -1303,7 +1305,6 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
                                 i.paramsList.push(name);
                             });
                         }
-                        //i.methodDescription = self._parseCode(markdown(i.description || &#x27;&#x27;));
                         i.methodDescription = self._parseCode(i.description);
                         if (i.example &amp;&amp; i.example.length) {
                             if (i.example.forEach) {
@@ -1312,7 +1313,7 @@ YUI.add(&#x27;doc-builder&#x27;, function (Y) {
                                     e += self._parseCode(self.markdown(v));
                                 });
                                 i.example = e;
-                            } else {
+                            } else if (!i.extended_from) {
                                 i.example = self._parseCode(self.markdown(i.example));
                             }
                         }

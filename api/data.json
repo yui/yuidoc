@@ -307,7 +307,7 @@
             "module": "yuidoc",
             "namespace": "",
             "file": "lib/utils.js",
-            "line": 11,
+            "line": 10,
             "description": "Utilities Class"
         },
         "YUIDoc": {
@@ -345,7 +345,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 120,
+            "line": 123,
             "description": "Register a `Y.Handlebars` helper method",
             "itemtype": "method",
             "name": "_addHelpers",
@@ -361,7 +361,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 137,
+            "line": 140,
             "description": "Wrapper around the Markdown parser so it can be normalized or even side stepped",
             "itemtype": "method",
             "name": "markdown",
@@ -383,7 +383,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 162,
+            "line": 165,
             "description": "Parse the item to be cross linked and return an HREF linked to the item",
             "itemtype": "method",
             "name": "_parseCrossLink",
@@ -414,7 +414,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 269,
+            "line": 272,
             "description": "List of native types to cross link to MDN",
             "itemtype": "property",
             "name": "NATIVES",
@@ -424,7 +424,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 308,
+            "line": 311,
             "description": "Function to link an external type uses `NATIVES` object",
             "itemtype": "method",
             "name": "NATIVES_LINKER",
@@ -446,7 +446,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 322,
+            "line": 325,
             "description": "Mixes the various external data soures together into the local data, augmenting\nit with flags.",
             "itemtype": "method",
             "name": "_mixExternal",
@@ -457,7 +457,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 370,
+            "line": 373,
             "description": "Fetches the remote data and fires the callback when it's all complete",
             "itemtype": "method",
             "name": "mixExternal",
@@ -474,7 +474,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 445,
+            "line": 448,
             "description": "File counter",
             "itemtype": "property",
             "name": "files",
@@ -484,7 +484,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 451,
+            "line": 454,
             "description": "Holder for project meta data",
             "itemtype": "property",
             "name": "_meta",
@@ -496,7 +496,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 458,
+            "line": 461,
             "description": "Prep the meta data to be fed to Selleck",
             "itemtype": "method",
             "name": "getProjectMeta",
@@ -509,7 +509,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 501,
+            "line": 504,
             "description": "Populate the meta data for classes",
             "itemtype": "method",
             "name": "populateClasses",
@@ -529,7 +529,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 525,
+            "line": 528,
             "description": "Populate the meta data for modules",
             "itemtype": "method",
             "name": "populateModules",
@@ -549,7 +549,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 571,
+            "line": 574,
             "description": "Populate the meta data for files",
             "itemtype": "method",
             "name": "populateFiles",
@@ -569,7 +569,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 628,
+            "line": 631,
             "description": "Parses file and line number from an item object and build's an HREF",
             "itemtype": "method",
             "name": "addFoundAt",
@@ -589,7 +589,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 644,
+            "line": 647,
             "description": "Augments the **DocParser** meta data to provide default values for certain keys as well as parses all descriptions\nwith the `Markdown Parser`",
             "itemtype": "method",
             "name": "augmentData",
@@ -609,7 +609,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 705,
+            "line": 707,
             "description": "Makes the default directories needed",
             "itemtype": "method",
             "name": "makeDirs",
@@ -625,7 +625,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 758,
+            "line": 760,
             "description": "Parses `<pre><code>` tags and adds the __prettyprint__ `className` to them",
             "itemtype": "method",
             "name": "_parseCode",
@@ -647,7 +647,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 771,
+            "line": 773,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck), this handles ```'s in fields\n       that are not parsed by the **Markdown** parser.",
             "itemtype": "method",
             "name": "_inlineCode",
@@ -669,7 +669,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 790,
+            "line": 792,
             "description": "Ported from [Selleck](https://github.com/rgrove/selleck)\n       Renders the handlebars templates with the default View class.",
             "itemtype": "method",
             "name": "render",
@@ -721,7 +721,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 846,
+            "line": 848,
             "description": "Render the index file",
             "itemtype": "method",
             "name": "renderIndex",
@@ -749,7 +749,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 871,
+            "line": 873,
             "description": "Generates the index.html file",
             "itemtype": "method",
             "name": "writeIndex",
@@ -777,7 +777,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 897,
+            "line": 899,
             "description": "Render a module",
             "itemtype": "method",
             "name": "renderModule",
@@ -805,7 +805,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 981,
+            "line": 983,
             "description": "Generates the module files under \"out\"/modules/",
             "itemtype": "method",
             "name": "writeModules",
@@ -833,7 +833,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1024,
+            "line": 1026,
             "description": "Checks an array of items (class items) to see if an item is in that list",
             "itemtype": "method",
             "name": "hasProperty",
@@ -857,7 +857,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1041,
+            "line": 1043,
             "description": "Counter for stepping into merges",
             "access": "private",
             "tagname": "",
@@ -869,7 +869,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1048,
+            "line": 1050,
             "description": "Merge superclass data into a child class",
             "itemtype": "method",
             "name": "mergeExtends",
@@ -895,7 +895,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1100,
+            "line": 1102,
             "description": "Render the class file",
             "itemtype": "method",
             "name": "renderClass",
@@ -923,7 +923,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1388,
+            "line": 1389,
             "description": "Generates the class files under \"out\"/classes/",
             "itemtype": "method",
             "name": "writeClasses",
@@ -951,7 +951,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1431,
+            "line": 1432,
             "description": "Sort method of array of objects with a property called __name__",
             "itemtype": "method",
             "name": "nameSort",
@@ -976,7 +976,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1454,
+            "line": 1455,
             "description": "Generates the syntax files under `\"out\"/files/`",
             "itemtype": "method",
             "name": "writeFiles",
@@ -1004,7 +1004,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1504,
+            "line": 1505,
             "description": "Render the source file",
             "itemtype": "method",
             "name": "renderFile",
@@ -1032,7 +1032,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1558,
+            "line": 1559,
             "description": "Write the API meta data used for the AutoComplete widget",
             "itemtype": "method",
             "name": "writeAPIMeta",
@@ -1049,7 +1049,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1571,
+            "line": 1572,
             "description": "Render the API meta and return the JavaScript",
             "itemtype": "method",
             "name": "renderAPIMeta",
@@ -1073,7 +1073,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1604,
+            "line": 1605,
             "description": "Normalizes a file path to a writable filename:\n\n   var path = 'lib/file.js';\n   returns 'lib_file.js';",
             "itemtype": "method",
             "name": "filterFileName",
@@ -1093,7 +1093,7 @@
         },
         {
             "file": "lib/builder.js",
-            "line": 1617,
+            "line": 1618,
             "description": "Compiles the templates from the meta-data provided by DocParser",
             "itemtype": "method",
             "name": "compile",
@@ -2090,7 +2090,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 31,
+            "line": 30,
             "description": "Escapes HTML characters in _html_.",
             "itemtype": "method",
             "name": "escapeHTML",
@@ -2110,7 +2110,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 44,
+            "line": 43,
             "description": "Normalizes the initial indentation of the given _content_ so that the first line\nis unindented, and all other lines are unindented to the same degree as the\nfirst line. So if the first line has four spaces at the beginning, then all\nlines will be unindented four spaces.",
             "itemtype": "method",
             "name": "unindent",
@@ -2132,7 +2132,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 65,
+            "line": 64,
             "description": "Like `getPages()`, but returns only the files under the `layout/` subdirectory\nof the specified _dir_.",
             "itemtype": "method",
             "name": "getLayouts",
@@ -2152,7 +2152,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 78,
+            "line": 77,
             "description": "Loads and returns the content of the specified page file.",
             "itemtype": "method",
             "name": "getPage",
@@ -2172,7 +2172,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 93,
+            "line": 92,
             "description": "Loads pages (files with a `.handlebars` extension) in the specified directory and\nreturns an object containing a mapping of page names (the part of the filename)\npreceding the `.handlebars` extension) to page content.",
             "itemtype": "method",
             "name": "getPages",
@@ -2192,7 +2192,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 126,
+            "line": 125,
             "description": "Like `getPages()`, but returns only the files under the `partial/` subdirectory\nof the specified _dir_.",
             "itemtype": "method",
             "name": "getPartials",
@@ -2212,7 +2212,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 140,
+            "line": 139,
             "description": "Mix/merge/munge data into the template.",
             "itemtype": "method",
             "name": "prepare",
@@ -2250,7 +2250,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 226,
+            "line": 225,
             "description": "Walk the directory tree to locate the yuidoc.json file.",
             "itemtype": "method",
             "name": "getProjectData",
@@ -2268,7 +2268,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 340,
+            "line": 339,
             "description": "Walks the tree from this dir and returns all the subdirs",
             "itemtype": "method",
             "name": "getDirs",
@@ -2288,7 +2288,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 366,
+            "line": 365,
             "description": "Make sure all the paths passed are directories and that they are not in the ignore list.",
             "itemtype": "method",
             "name": "validatePaths",
@@ -2311,7 +2311,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 454,
+            "line": 453,
             "description": "Takes a type string and converts it to a \"First letter upper cased\" type. e.g. `(string -> String, object -> Object)`",
             "itemtype": "method",
             "name": "fixType",
@@ -2331,7 +2331,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 476,
+            "line": 475,
             "description": "Produces a normalized web path by joining all the parts and normalizing the\nfilesystem-like path into web compatible url.\nSupports relative and absolute paths.\nCourtesy of [Mojito's utils](https://github.com/yahoo/mojito/)",
             "itemtype": "method",
             "name": "webpath",
