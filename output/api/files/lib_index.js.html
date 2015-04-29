@@ -128,6 +128,17 @@ var YUI = require(&#x27;yui&#x27; + (debug ? &#x27;/debug&#x27; : &#x27;&#x27;))
     fs = require(&#x27;graceful-fs&#x27;),
     metaPath = path.join(__dirname, &#x27;../&#x27;, &#x27;package.json&#x27;);
 
+function log (message, level) {
+    if (!message || !level || typeof console[level] !== &#x27;function&#x27;) {
+        return;
+    }
+
+    if (typeof message === &#x27;object&#x27;) {
+        message = JSON.stringify(message);
+    }
+
+    console[level](&#x27;%s: %s&#x27;, level, message);
+}
 
 process.on(&#x27;uncaughtException&#x27;, function (msg) {
     var meta = JSON.parse(fs.readFileSync(metaPath)),
@@ -136,6 +147,7 @@ process.on(&#x27;uncaughtException&#x27;, function (msg) {
 
     inst.applyConfig({
         debug: true,
+        logFn: log,
         useColor: useColor
     });
 
@@ -192,6 +204,7 @@ var Y = YUI({
         attribute: true,
         handlebars: true
     },
+    logFn: log,
     useSync: true
 }).use(&#x27;utils&#x27;, &#x27;docparser&#x27;, &#x27;yuidoc&#x27;, &#x27;doc-builder&#x27;, &#x27;docview&#x27;, &#x27;files&#x27;, &#x27;help&#x27;, &#x27;options&#x27;, &#x27;server&#x27;, &#x27;project&#x27;);
 
