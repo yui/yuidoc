@@ -1,8 +1,9 @@
-/*global Y:true */
-var YUITest = require('yuitest'),
-    Assert = YUITest.Assert,
-    path = require('path'),
-    Y = require(path.join(__dirname, '../', 'lib', 'index'));
+'use strict';
+
+var YUITest = require('yuitest');
+var Assert = YUITest.Assert;
+var path = require('path');
+var Y = require(path.join(__dirname, '../', 'lib', 'index'));
 
 //Move to the test dir before running the tests.
 process.chdir(__dirname);

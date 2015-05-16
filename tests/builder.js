@@ -1,9 +1,10 @@
-/*global Y:true */
-var YUITest = require('yuitest'),
-    Assert = YUITest.Assert,
-    path = require('path'),
-    fs = require('fs'),
-    Y = require(path.join(__dirname, '../', 'lib', 'index'));
+'use strict';
+
+var YUITest = require('yuitest');
+var Assert = YUITest.Assert;
+var path = require('path');
+var fs = require('fs');
+var Y = require(path.join(__dirname, '../', 'lib', 'index'));
 
 //Move to the test dir before running the tests.
 process.chdir(__dirname);
@@ -33,7 +34,7 @@ var suite = new YUITest.TestSuite({
                 path.join(__dirname, 'lib/davglass.js')
             ],
             markdown: {
-                langPrefix: "language-"
+                langPrefix: 'language-'
             }
         };
         json = (new Y.YUIDoc(options)).run();
