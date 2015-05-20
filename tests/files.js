@@ -1,9 +1,10 @@
-/*global Y:true */
-var YUITest = require('yuitest'),
-    Assert = YUITest.Assert,
-    path = require('path'),
-    fs = require('fs'),
-    Y = require(path.join(__dirname, '../', 'lib', 'index'));
+'use strict';
+
+var YUITest = require('yuitest');
+var Assert = YUITest.Assert;
+var path = require('path');
+var fs = require('fs');
+var Y = require(path.join(__dirname, '../', 'lib', 'index'));
 
 //Move to the test dir before running the tests.
 process.chdir(__dirname);
@@ -168,7 +169,7 @@ suite.add(new YUITest.TestCase({
     },
     'test: readFile': function () {
         var test = this;
-        Y.Files.readFile('input/test/test.js', 'utf8', function (err, data) {
+        Y.Files.readFile('input/test/test.js', 'utf8', function (err) {
             test.resume(function () {
                 Assert.isNull(err);
             });

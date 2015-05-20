@@ -1,8 +1,9 @@
-/*global Y:true */
-var YUITest = require('yuitest'),
-    Assert = YUITest.Assert,
-    path = require('path'),
-    Y = require(path.join(__dirname, '../', 'lib', 'index'));
+'use strict';
+
+var YUITest = require('yuitest');
+var Assert = YUITest.Assert;
+var path = require('path');
+var Y = require(path.join(__dirname, '../', 'lib', 'index'));
 
 var suite = new YUITest.TestSuite({
     name: 'Utils Test Suite'
@@ -78,15 +79,15 @@ suite.add(new YUITest.TestCase({
 
 suite.add(new YUITest.TestCase({
     name: 'produce valid web urls',
-    'test: Adds paths onto end in sequence' : function() {
+    'test: Adds paths onto end in sequence': function() {
         var url = Y.webpath('foo', 'bar', 'baz');
         Assert.areEqual('foo/bar/baz', url, 'parts should be added in sequence');
     },
-    'test: normalises windows paths into web happy urls' : function() {
+    'test: normalises windows paths into web happy urls': function() {
         var url = Y.webpath('foo\\bar', 'baz');
         Assert.areEqual('foo/bar/baz', url, '\\ should be normalised to /');
     },
-    'test: joins relative paths' : function() {
+    'test: joins relative paths': function() {
         var url = Y.webpath('./foo/bar', './baz/');
         Assert.areEqual('foo/bar/baz/', url, 'should join relative paths');
     }
