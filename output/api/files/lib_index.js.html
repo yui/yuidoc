@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>./lib/docview.js - yuidoc-root</title>
+    <title>lib/index.js - yuidoc-root</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -86,7 +86,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: ./lib/docview.js</h1>
+<h1 class="file-heading">File: lib/index.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -97,65 +97,121 @@
  */
 &#x27;use strict&#x27;;
 
-YUI.add(&#x27;docview&#x27;, function (Y) {
+/**
+Module creates the YUI instance with the required modules, uses them and exports the **Y** to be used
+by the _CLI class_ or by extenders: &#x60;require(&#x27;yuidocjs&#x27;);&#x60;
+You can use it like this:
 
-    /*
-    Selleck
-    Copyright (c) 2011 Yahoo! Inc.
-    Licensed under the BSD License.
-    */
-
-    /**
-    View class borrowed from [Selleck](https://github.com/rgrove/selleck)
-    The view class is a **&#x60;handlebars&#x60;** template helper.
-    @class DocView
-    @constructor
-    @param {Object} data Meta data to use in this template
-    @param {String} templateName The name of the template file to render.
-    **/
-    function DocView(data, templateName) {
-        this.templateName = templateName;
-        Y.mix(this, data);
-    }
-
-    DocView.prototype = {
-        /**
-         * **Mustache** &#x60;lambda&#x60; method for setting the HTML title
-         * @method htmlTitle
-         */
-        htmlTitle: function () {
-            var name = this.displayName || this.name,
-                title = name;
-
-            if (title) {
-                if (this.projectName) {
-                    title += &#x27; - &#x27; + this.projectName;
-                }
-            } else {
-                title = this.projectName;
-            }
-
-            return title;
-        },
-
-        /**
-         * **Mustache** &#x60;lambda&#x60; method for setting the title
-         * @method title
-         */
-        title: function () {
-            var name = this.displayName || this.name,
-                title = this.projectName;
-
-            if (name) {
-                title += &#x27;: &#x27; + name;
-            }
-
-            return title;
-        }
+    var options = {
+        paths: [ &#x27;./lib&#x27; ],
+        outdir: &#x27;./out&#x27;
     };
 
-    Y.DocView = DocView;
+    var Y = require(&#x27;yuidocjs&#x27;);
+    var json = (new Y.YUIDoc(options)).run();
+
+@class Main
+@exports {YUI} Y A YUI instance
+@module yuidoc
+*/
+//Hacking in debug support
+var args = process.argv.slice(2);
+var debug = false;
+
+args.forEach(function (item) {
+    if (item.toLowerCase() === &#x27;--debug&#x27;) {
+        debug = true;
+    }
 });
+
+var YUI = require(&#x27;yui&#x27; + (debug ? &#x27;/debug&#x27; : &#x27;&#x27;)).YUI;
+var path = require(&#x27;path&#x27;);
+var fs = require(&#x27;graceful-fs&#x27;);
+var metaPath = path.join(__dirname, &#x27;../&#x27;, &#x27;package.json&#x27;);
+
+function log (message, level) {
+    if (!message || !level || typeof console[level] !== &#x27;function&#x27;) {
+        return;
+    }
+
+    if (typeof message === &#x27;object&#x27;) {
+        message = JSON.stringify(message);
+    }
+
+    console[level](&#x27;%s: %s&#x27;, level, message);
+}
+
+process.on(&#x27;uncaughtException&#x27;, function (msg) {
+    var meta = JSON.parse(fs.readFileSync(metaPath)),
+        inst = YUI(),
+        useColor = (Y ? Y.config.useColor : false);
+
+    inst.applyConfig({
+        debug: true,
+        logFn: log,
+        useColor: useColor
+    });
+
+    inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
+    inst.log(&#x27;An uncaught YUIDoc error has occurred, stack trace given below&#x27;, &#x27;error&#x27;);
+    inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
+    inst.log(msg.stack || msg.message || msg, &#x27;error&#x27;);
+    inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
+    inst.log(&#x27;Node.js version: &#x27; + process.version, &#x27;error&#x27;);
+    inst.log(&#x27;YUI version: &#x27; + YUI.version, &#x27;error&#x27;);
+    inst.log(&#x27;YUIDoc version: &#x27; + meta.version, &#x27;error&#x27;);
+    inst.log(&#x27;Please file all tickets here: &#x27; + meta.bugs.url, &#x27;error&#x27;);
+    inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
+
+    process.exit(1);
+});
+
+var Y = YUI({
+    modules: {
+        help: {
+            fullpath: path.join(__dirname, &#x27;help.js&#x27;)
+        },
+        options: {
+            fullpath: path.join(__dirname, &#x27;options.js&#x27;)
+        },
+        docparser: {
+            fullpath: path.join(__dirname, &#x27;docparser.js&#x27;),
+            requires: [&#x27;base-base&#x27;, &#x27;json-stringify&#x27;]
+        },
+        yuidoc: {
+            fullpath: path.join(__dirname, &#x27;yuidoc.js&#x27;)
+        },
+        &#x27;doc-builder&#x27;: {
+            fullpath: path.join(__dirname, &#x27;builder.js&#x27;),
+            requires: [&#x27;parallel&#x27;, &#x27;handlebars&#x27;]
+        },
+        utils: {
+            fullpath: path.join(__dirname, &#x27;utils.js&#x27;)
+        },
+        files: {
+            fullpath: path.join(__dirname, &#x27;files.js&#x27;)
+        },
+        docview: {
+            fullpath: path.join(__dirname, &#x27;docview.js&#x27;)
+        },
+        server: {
+            fullpath: path.join(__dirname, &#x27;server.js&#x27;)
+        },
+        project: {
+            fullpath: path.join(__dirname, &#x27;project.js&#x27;)
+        }
+    },
+    logExclude: {
+        attribute: true,
+        handlebars: true
+    },
+    logFn: log,
+    useSync: true
+}).use(&#x27;utils&#x27;, &#x27;docparser&#x27;, &#x27;yuidoc&#x27;, &#x27;doc-builder&#x27;, &#x27;docview&#x27;, &#x27;files&#x27;, &#x27;help&#x27;, &#x27;options&#x27;, &#x27;server&#x27;, &#x27;project&#x27;);
+
+Y.packageInfo = Y.Files.getJSON(metaPath);
+
+module.exports = Y;
 
     </pre>
 </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>./lib/index.js - yuidoc-root</title>
+    <title>lib/help.js - yuidoc-root</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -86,7 +86,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: ./lib/index.js</h1>
+<h1 class="file-heading">File: lib/help.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -97,121 +97,80 @@
  */
 &#x27;use strict&#x27;;
 
-/**
-Module creates the YUI instance with the required modules, uses them and exports the **Y** to be used
-by the _CLI class_ or by extenders: &#x60;require(&#x27;yuidocjs&#x27;);&#x60;
-You can use it like this:
+YUI.add(&#x27;help&#x27;, function (Y) {
 
-    var options = {
-        paths: [ &#x27;./lib&#x27; ],
-        outdir: &#x27;./out&#x27;
+    /**
+     * Shows the help text
+     * @module yuidoc
+     * @class Help
+     */
+
+    /**
+     * The help text to display
+     * @private
+     * @property help
+     * @type Array
+     */
+    var help = [
+        &#x27;&#x27;,
+        &#x27;YUI Doc generates API documentation from a modified JavaDoc syntax.&#x27;,
+        &#x27;&#x27;,
+        &#x27;Current version ({VERSION})&#x27;,
+        &#x27;&#x27;,
+        &#x27;Usage: yuidoc &lt;options&gt; &lt;input path&gt;&#x27;,
+        &#x27;&#x27;,
+        &#x27;Common Options:&#x27;,
+        &#x27;  -c, --config, --configfile &lt;filename&gt;  A JSON config file to provide configuration data.&#x27;,
+        &#x27;           You can also create a yuidoc.json file and place it&#x27;,
+        &#x27;           anywhere under your source tree and YUI Doc will find it&#x27;,
+        &#x27;           and use it.&#x27;,
+        &#x27;  -e, --extension &lt;comma sep list of file extensions&gt; The list of file extensions to parse &#x27;,
+        &#x27;           for api documentation. (defaults to .js)&#x27;,
+        &#x27;  -x, --exclude &lt;comma sep list of directories&gt; Directories to exclude from parsing &#x27;,
+        &#x27;           (defaults to \&#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp\&#x27;)&#x27;,
+        &#x27;  -v, --version Show the current YUIDoc version&#x27;,
+        &#x27;  --project-version Set the doc version for the template&#x27;,
+        &#x27;  -N, --no-color Turn off terminal colors (for automation)&#x27;,
+        &#x27;  -C, --no-code Turn off code generation (don\&#x27;t include source files in output)&#x27;,
+        &#x27;  -n, --norecurse Do not recurse directories (default is to recurse)&#x27;,
+        &#x27;  --no-sort Do not alphabetical sorting of attributes, events, methods, and properties&#x27;,
+        &#x27;  -S, --selleck Look for Selleck component data and attach to API meta data&#x27;,
+        &#x27;  -V, --view Dump the Handlebars.js view data instead of writing template files&#x27;,
+        &#x27;  -p, --parse-only Only parse the API docs and create the JSON data, do not render templates&#x27;,
+        &#x27;  -o, --outdir &lt;directory path&gt; Path to put the generated files (defaults to ./out)&#x27;,
+        &#x27;  -t, --themedir &lt;directory path&gt; Path to a custom theme directory containing Handlebars templates&#x27;,
+        &#x27;  -H, --helpers &lt;comma separated list of paths to files&gt; Require these file and add Handlebars helpers. See docs for more information&#x27;,
+        &#x27;  --charset CHARSET Use this as the default charset for all file operations. Defaults to \&#x27;utf8\&#x27;&#x27;,
+        &#x27;  -h, --help Show this help&#x27;,
+        &#x27;  -q, --quiet Supress logging output&#x27;,
+        &#x27;  -T, --theme &lt;simple|default&gt; Choose one of the built in themes (default is default)&#x27;,
+        &#x27;  --syntaxtype &lt;js|coffee&gt; Choose comment syntax type (default is js)&#x27;,
+        &#x27;  --server &lt;port&gt; Fire up the YUIDoc server for faster API doc developement. Pass optional port to listen on. (default is 3000)&#x27;,
+        &#x27;  --lint Lint your docs, will print parser warnings and exit code 1 if there are any&#x27;,
+        &#x27;&#x27;,
+        &#x27;  &lt;input path&gt; Supply a list of paths (shell globbing is handy here)&#x27;,
+        &#x27;&#x27;
+    ].join(&#x27;\n&#x27;);
+
+    /**
+     * Render the help message as a string
+     * @method renderHelp
+     * @return {String} The help screen to display
+     */
+    Y.renderHelp = function () {
+        return Y.Lang.sub(help, {
+            VERSION: Y.packageInfo.version
+        });
     };
-
-    var Y = require(&#x27;yuidocjs&#x27;);
-    var json = (new Y.YUIDoc(options)).run();
-
-@class Main
-@exports {YUI} Y A YUI instance
-@module yuidoc
-*/
-//Hacking in debug support
-var args = process.argv.slice(2);
-var debug = false;
-
-args.forEach(function (item) {
-    if (item.toLowerCase() === &#x27;--debug&#x27;) {
-        debug = true;
-    }
+    /**
+     * Display the help message, write it to the screen and exit
+     * @method showHelp
+     */
+    Y.showHelp = function () {
+        console.error(Y.renderHelp());
+        process.exit(0); //Shouldn&#x27;t exit one on help
+    };
 });
-
-var YUI = require(&#x27;yui&#x27; + (debug ? &#x27;/debug&#x27; : &#x27;&#x27;)).YUI;
-var path = require(&#x27;path&#x27;);
-var fs = require(&#x27;graceful-fs&#x27;);
-var metaPath = path.join(__dirname, &#x27;../&#x27;, &#x27;package.json&#x27;);
-
-function log (message, level) {
-    if (!message || !level || typeof console[level] !== &#x27;function&#x27;) {
-        return;
-    }
-
-    if (typeof message === &#x27;object&#x27;) {
-        message = JSON.stringify(message);
-    }
-
-    console[level](&#x27;%s: %s&#x27;, level, message);
-}
-
-process.on(&#x27;uncaughtException&#x27;, function (msg) {
-    var meta = JSON.parse(fs.readFileSync(metaPath)),
-        inst = YUI(),
-        useColor = (Y ? Y.config.useColor : false);
-
-    inst.applyConfig({
-        debug: true,
-        logFn: log,
-        useColor: useColor
-    });
-
-    inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
-    inst.log(&#x27;An uncaught YUIDoc error has occurred, stack trace given below&#x27;, &#x27;error&#x27;);
-    inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
-    inst.log(msg.stack || msg.message || msg, &#x27;error&#x27;);
-    inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
-    inst.log(&#x27;Node.js version: &#x27; + process.version, &#x27;error&#x27;);
-    inst.log(&#x27;YUI version: &#x27; + YUI.version, &#x27;error&#x27;);
-    inst.log(&#x27;YUIDoc version: &#x27; + meta.version, &#x27;error&#x27;);
-    inst.log(&#x27;Please file all tickets here: &#x27; + meta.bugs.url, &#x27;error&#x27;);
-    inst.log(&#x27;--------------------------------------------------------------------------&#x27;, &#x27;error&#x27;);
-
-    process.exit(1);
-});
-
-var Y = YUI({
-    modules: {
-        help: {
-            fullpath: path.join(__dirname, &#x27;help.js&#x27;)
-        },
-        options: {
-            fullpath: path.join(__dirname, &#x27;options.js&#x27;)
-        },
-        docparser: {
-            fullpath: path.join(__dirname, &#x27;docparser.js&#x27;),
-            requires: [&#x27;base-base&#x27;, &#x27;json-stringify&#x27;]
-        },
-        yuidoc: {
-            fullpath: path.join(__dirname, &#x27;yuidoc.js&#x27;)
-        },
-        &#x27;doc-builder&#x27;: {
-            fullpath: path.join(__dirname, &#x27;builder.js&#x27;),
-            requires: [&#x27;parallel&#x27;, &#x27;handlebars&#x27;]
-        },
-        utils: {
-            fullpath: path.join(__dirname, &#x27;utils.js&#x27;)
-        },
-        files: {
-            fullpath: path.join(__dirname, &#x27;files.js&#x27;)
-        },
-        docview: {
-            fullpath: path.join(__dirname, &#x27;docview.js&#x27;)
-        },
-        server: {
-            fullpath: path.join(__dirname, &#x27;server.js&#x27;)
-        },
-        project: {
-            fullpath: path.join(__dirname, &#x27;project.js&#x27;)
-        }
-    },
-    logExclude: {
-        attribute: true,
-        handlebars: true
-    },
-    logFn: log,
-    useSync: true
-}).use(&#x27;utils&#x27;, &#x27;docparser&#x27;, &#x27;yuidoc&#x27;, &#x27;doc-builder&#x27;, &#x27;docview&#x27;, &#x27;files&#x27;, &#x27;help&#x27;, &#x27;options&#x27;, &#x27;server&#x27;, &#x27;project&#x27;);
-
-Y.packageInfo = Y.Files.getJSON(metaPath);
-
-module.exports = Y;
 
     </pre>
 </div>

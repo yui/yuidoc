@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>./lib/project.js - yuidoc-root</title>
+    <title>lib/docview.js - yuidoc-root</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -86,7 +86,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: ./lib/project.js</h1>
+<h1 class="file-heading">File: lib/docview.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -97,66 +97,64 @@
  */
 &#x27;use strict&#x27;;
 
-YUI.add(&#x27;project&#x27;, function (Y) {
+YUI.add(&#x27;docview&#x27;, function (Y) {
 
-    Y.Project = {
-        mix: function (json, options) {
-            if (json.project) {
-                options = Y.merge(options, json.project);
-            }
+    /*
+    Selleck
+    Copyright (c) 2011 Yahoo! Inc.
+    Licensed under the BSD License.
+    */
 
-            if (options.title &amp;&amp; !options.name) {
-                options.name = options.title;
-            }
+    /**
+    View class borrowed from [Selleck](https://github.com/rgrove/selleck)
+    The view class is a **&#x60;handlebars&#x60;** template helper.
+    @class DocView
+    @constructor
+    @param {Object} data Meta data to use in this template
+    @param {String} templateName The name of the template file to render.
+    **/
+    function DocView(data, templateName) {
+        this.templateName = templateName;
+        Y.mix(this, data);
+    }
 
-            return options;
-        },
-        init: function (options) {
-            var project = {};
-            if (options.configfile) {
-                project = Y.Files.getJSON(options.configfile);
+    DocView.prototype = {
+        /**
+         * **Mustache** &#x60;lambda&#x60; method for setting the HTML title
+         * @method htmlTitle
+         */
+        htmlTitle: function () {
+            var name = this.displayName || this.name,
+                title = name;
+
+            if (title) {
+                if (this.projectName) {
+                    title += &#x27; - &#x27; + this.projectName;
+                }
             } else {
-                Y.log(&#x27;Scanning for yuidoc.json file.&#x27;, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
-                project = Y.getProjectData();
-                if (!project) {
-                    project = {};
-                }
+                title = this.projectName;
             }
 
-            if (project.options &amp;&amp; Object.keys(project.options).length) {
-                options = Y.merge(project.options, options);
-                delete project.options;
-                options.project = project;
+            return title;
+        },
+
+        /**
+         * **Mustache** &#x60;lambda&#x60; method for setting the title
+         * @method title
+         */
+        title: function () {
+            var name = this.displayName || this.name,
+                title = this.projectName;
+
+            if (name) {
+                title += &#x27;: &#x27; + name;
             }
 
-            if (options.version &amp;&amp; options.project) {
-                options.project.version = options.version;
-                delete options.version;
-            }
-
-            if (!options.outdir) {
-                options.outdir = &#x27;./out&#x27;;
-            }
-
-            options.paths = Y.validatePaths(options.paths, options.ignorePaths);
-
-            if (!options.paths.length) {
-                Y.log(&#x27;Paths argument was empty&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
-                Y.showHelp();
-                process.exit(1);
-            }
-
-            if (typeof options.tabtospace === &#x27;number&#x27;) {
-                options.tabspace = &#x27;&#x27;;
-                for (var s = 0; s &lt; options.tabtospace; s++) {
-                    options.tabspace += &#x27; &#x27;;
-                }
-            }
-
-            return options;
+            return title;
         }
     };
 
+    Y.DocView = DocView;
 });
 
     </pre>
