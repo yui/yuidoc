@@ -264,7 +264,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/lib_utils.js.html#l360"><code>lib&#x2F;utils.js:360</code></a>
+        <a href="../files/lib_utils.js.html#l361"><code>lib&#x2F;utils.js:361</code></a>
         </p>
 
 
@@ -808,7 +808,7 @@ lines will be unindented four spaces.</p>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>paths</code>
+                        <code>globpaths</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[ignore=false]</code>
@@ -834,7 +834,8 @@ lines will be unindented four spaces.</p>
     </div>
 
     <div class="description">
-        <p>Make sure all the paths passed are directories and that they are not in the ignore list.</p>
+        <p>globpaths and ignore are both arrays of globs or a globstring. They should resolve to the actual files
+you want yuidoc to parse.</p>
 
     </div>
 
@@ -843,12 +844,12 @@ lines will be unindented four spaces.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">paths</code>
+                        <code class="param-name">globpaths</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external external" target="_blank">Array</a></span>
 
 
                     <div class="param-description">
-                        <p>The array of paths to validate</p>
+                        <p>The array of globs to expand and validate</p>
 
                     </div>
 
@@ -860,7 +861,7 @@ lines will be unindented four spaces.</p>
 
 
                     <div class="param-description">
-                        <p>A string to call <code>.indexOf</code> on a path to determine if it should be ignored</p>
+                        <p>array of globs to expand and filter paths array by</p>
 
                     </div>
 
@@ -895,7 +896,7 @@ lines will be unindented four spaces.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/lib_utils.js.html#l382"><code>lib&#x2F;utils.js:382</code></a>
+        <a href="../files/lib_utils.js.html#l383"><code>lib&#x2F;utils.js:383</code></a>
         </p>
 
 

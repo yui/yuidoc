@@ -2269,18 +2269,18 @@
         {
             "file": "lib/utils.js",
             "line": 340,
-            "description": "Make sure all the paths passed are directories and that they are not in the ignore list.",
+            "description": "globpaths and ignore are both arrays of globs or a globstring. They should resolve to the actual files\nyou want yuidoc to parse.",
             "itemtype": "method",
             "name": "validatePaths",
             "params": [
                 {
-                    "name": "paths",
-                    "description": "The array of paths to validate",
+                    "name": "globpaths",
+                    "description": "The array of globs to expand and validate",
                     "type": "Array"
                 },
                 {
                     "name": "ignore",
-                    "description": "A string to call `.indexOf` on a path to determine if it should be ignored",
+                    "description": "array of globs to expand and filter paths array by",
                     "type": "String",
                     "optional": true,
                     "optdefault": "false"
@@ -2291,7 +2291,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 360,
+            "line": 361,
             "description": "Takes a type string and converts it to a \"First letter upper cased\" type. e.g. `(string -> String, object -> Object)`",
             "itemtype": "method",
             "name": "fixType",
@@ -2311,7 +2311,7 @@
         },
         {
             "file": "lib/utils.js",
-            "line": 382,
+            "line": 383,
             "description": "Produces a normalized web path by joining all the parts and normalizing the\nfilesystem-like path into web compatible url.\nSupports relative and absolute paths.\nCourtesy of [Mojito's utils](https://github.com/yahoo/mojito/)",
             "itemtype": "method",
             "name": "webpath",
