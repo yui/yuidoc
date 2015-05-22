@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "express": "^4.12.3",
+    "glob": "^5.0.7",
     "graceful-fs": "2.x",
     "markdown-it": "^4.1.0",
     "minimatch": "^2.0.1",
