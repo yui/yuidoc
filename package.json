@@ -109,7 +109,7 @@
       "linkNatives": "true",
       "attributesEmit": "true",
       "paths": [
-        "./lib"
+        "./lib/**"
       ],
       "outdir": "./output/api"
     }
