@@ -89,12 +89,7 @@
     "test": "istanbul cover --print=both --yui ytestrunner -- --include ./tests/options.js --include ./tests/builder.js --include ./tests/parser.js --include ./tests/parser_coffee.js --include ./tests/files.js --include ./tests/utils.js --include ./tests/preprocessor.js"
   },
   "preferGlobal": "true",
-  "licenses": [
-    {
-      "type": "BSD",
-      "url": "https://github.com/yui/yuidoc/blob/master/LICENSE"
-    }
-  ],
+  "licenses": "BSD-3-Clause",
   "repository": {
     "type": "git",
     "url": "http://github.com/yui/yuidoc.git"
