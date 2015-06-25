@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.0</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,7 +95,10 @@
  * Code licensed under the BSD License:
  * https://github.com/yui/yuidoc/blob/master/LICENSE
  */
+&#x27;use strict&#x27;;
+
 var path = require(&#x27;path&#x27;),
+    glob = require(&#x27;glob&#x27;),
     minimatch = require(&#x27;minimatch&#x27;),
     fs = require(&#x27;graceful-fs&#x27;);
 
@@ -114,7 +117,7 @@ YUI.add(&#x27;utils&#x27;, function (Y) {
         &#x27;&lt;&#x27;: &#x27;&amp;lt;&#x27;,
         &#x27;&gt;&#x27;: &#x27;&amp;gt;&#x27;,
         &#x27;&quot;&#x27;: &#x27;&amp;quot;&#x27;,
-        &quot;&#x27;&quot;: &#x27;&amp;#x27;&#x27;,
+        &#x27;\&#x27;&#x27;: &#x27;&amp;#x27;&#x27;,
         &#x27;/&#x27;: &#x27;&amp;#x2F;&#x27;,
         &#x27;&#x60;&#x27;: &#x27;&amp;#x60;&#x27;
     };
@@ -317,18 +320,17 @@ YUI.add(&#x27;utils&#x27;, function (Y) {
     /**
      * Walk the directory tree to locate the yuidoc.json file.
      * @method getProjectData
-     * @param {Path} [dir=process.cwd()] The directory to start from
+     * @param {Path} [directory=process.cwd()] The directory to start from
      */
-    var getProjectData = function (dir) {
-        var dirs = [dir || process.cwd()];
+    var getProjectData = function (directory) {
+        var dirs = [directory || process.cwd()];
         var projectData, packageData;
         var dirCount = 0;
-        // keep looping until 
+        // keep looping until
         //  * data is found
         //  * there are no more dirs to process
         //  * we abort due to failsafe
         while (dirs.length &amp;&amp; !projectData) {
-            /*jshint loopfunc:true */
             if (dirCount++ &gt; 5000) {
                 Y.log(&#x27;Scanned &#x27; + dirCount + &#x27; directories looking for a yuidoc.json file, something is probably wrong here..&#x27;, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
                 process.exit(1);
@@ -427,117 +429,23 @@ YUI.add(&#x27;utils&#x27;, function (Y) {
 
     Y.getProjectData = getProjectData;
 
-
     /**
-     * Walks the tree from this dir and returns all the subdirs
-     * @method getDirs
-     * @param {String} dir The dir to begin at
-     * @return {Array} The array of directories..
-     */
-    var getDirs = function (dir) {
-        var dirs = fs.readdirSync(dir),
-            paths = [];
-
-        dirs.forEach(function (d) {
-            var _dir = path.join(dir, d),
-                stat = fs.lstatSync(_dir);
-
-            if (stat.isDirectory()) {
-                if (_dir.indexOf(&#x27;.&#x27;) !== 0) {
-                    paths = [].concat(paths, _dir, getDirs(_dir));
-                }
-            }
-        });
-
-        return paths;
-    };
-
-    Y.getDirs = getDirs;
-
-    /**
-     * Make sure all the paths passed are directories and that they are not in the ignore list.
+		 * globpaths and ignore are both arrays of globs or a globstring. They should resolve to the actual files
+		 * you want yuidoc to parse.
      * @method validatePaths
-     * @param {Array} paths The array of paths to validate
-     * @param {String} [ignore=false] A string to call &#x60;.indexOf&#x60; on a path to determine if it should be ignored
+     * @param {Array} globpaths The array of globs to expand and validate
+     * @param {String} [ignore=false] array of globs to expand and filter paths array by
      */
-    var validatePaths = function (paths, ignore) {
-        var newpaths = [];
-        //Shortcut the *, . &amp; ./ shortcuts that shall globbing fixes for us
-        if (paths === &#x27;*&#x27; || paths === &#x27;.&#x27; || paths === &#x27;./&#x27;) {
-            paths = [process.cwd()];
-        }
-
-        // Ensure that we always have an array of some kind.
-        paths = paths || [];
-        if (!Y.Lang.isArray(paths)) {
-            paths = [paths];
-        }
-        paths.forEach(function (path) {
-            var glob = path || &#x27;&#x27;;
-
-            if (process.platform === &#x27;win32&#x27;) {
-                glob = path.replace(/\//g, &#x27;\\\\&#x27;);
-            }
-
-            var glob_paths = getDirs(&#x27;.&#x27;),
-                is_globbed = false;
-
-            glob_paths.forEach(function (dir) {
-                //Don&#x27;t scan things in node_modules
-                if (dir.indexOf(&#x27;node_modules&#x27;) &gt; -1) {
-                    return;
-                }
-                if (minimatch(dir, glob, {
-                    period: true
-                })) {
-                    newpaths.push(dir);
-                    is_globbed = true;
-                }
+    var validatePaths = function(globpaths, ignore) {
+        ignore = [].concat(ignore || []);
+        return [].concat(globpaths || process.cwd())
+            .reduce(function(filepaths, globpath){ return filepaths.concat(glob.sync(globpath)); }, [])
+            .filter(function(filepath){
+                return !ignore.filter(function(ignoreGlob){ return minimatch(filepath, ignoreGlob); }).length;
+            })
+            .filter(function(filepath, i, filepaths){
+                return !filepaths.slice(i + 1).filter(function(filepath2){ return filepath === filepath2; }).length;
             });
-
-            if (!is_globbed &amp;&amp; (Y.Files.isDirectory(glob))) {
-                //If minimatch fails, check to see if it&#x27;s a relative directory
-                // if it is, add it directly
-                newpaths.push(glob);
-            }
-        });
-
-        paths = newpaths;
-        paths.forEach(function (p) {
-            try {
-                if (!Y.Files.isDirectory(p)) {
-                    throw (&#x27;Path not a directory: &#x27; + p);
-                }
-            } catch (e) {}
-        });
-
-        if (!paths || !paths.forEach) {
-            throw (&#x27;Paths should be an array of paths&#x27;);
-        }
-
-        if (ignore) {
-            if (!(ignore instanceof Array)) {
-                ignore = [ignore];
-            }
-            var p = [],
-                shouldIgnore = false;
-
-            paths.forEach(function (v) {
-                shouldIgnore = false;
-                ignore.forEach(function (i) {
-                    if (!shouldIgnore &amp;&amp; v.indexOf(i) !== -1) {
-                        shouldIgnore = true;
-                    }
-                });
-                if (!shouldIgnore) {
-                    p.push(v);
-                }
-            });
-            paths = p;
-        }
-
-        paths = paths.sort();
-        return paths;
     };
 
     Y.validatePaths = validatePaths;
@@ -574,7 +482,7 @@ YUI.add(&#x27;utils&#x27;, function (Y) {
      * @param {Array|String*} url the list of parts to be joined and normalized
      * @return {String} The joined and normalized url
      **/
-    function webpath(url) {
+    function webpath() {
         var args = [].concat.apply([], arguments),
             parts = path.join.apply(path, args).split(/[\\\/]/);
         return parts.join(&#x27;/&#x27;);

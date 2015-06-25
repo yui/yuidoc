@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.0</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,9 +95,11 @@
  * Code licensed under the BSD License:
  * https://github.com/yui/yuidoc/blob/master/LICENSE
  */
-var fs = require(&#x27;graceful-fs&#x27;),
-    rimraf = require(&#x27;rimraf&#x27;),
-    path = require(&#x27;path&#x27;);
+&#x27;use strict&#x27;;
+
+var fs = require(&#x27;graceful-fs&#x27;);
+var rimraf = require(&#x27;rimraf&#x27;);
+var path = require(&#x27;path&#x27;);
 
 /**
 This is the __module__ description for the &#x60;YUIDoc&#x60; module.
@@ -148,7 +150,7 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
 
         var Y = require(&#x27;yuidoc&#x27;);
         var json = (new Y.YUIDoc(options)).run();
-     
+
      * @class YUIDoc
      * @module yuidoc
      * @constructor
@@ -176,13 +178,6 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
          * @private
          */
         this.filemap = {};
-        /**
-         * Holder for the list of directories we are processing.
-         * @property dirmap
-         * @type Object
-         * @private
-         */
-        this.dirmap = {};
 
         /**
          * Internal holder for configuration options.
@@ -228,87 +223,30 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
         },
 
         /**
-         * Walks the paths and parses the directory contents
-         * @method walk
-         * @private
-         */
-        walk: function () {
-            Y.each(this.options.paths, function (dir) {
-                this.parsedir(dir);
-            }, this);
-        },
-
-        /**
-         * Walks the passed directory and grabs all the files recursively.
-         * @method parsedir
-         * @param {String} dir The directory to parse the contents of.
-         * @private
-         */
-        parsedir: function (dir) {
-            if (!Y.Files.isDirectory(dir)) {
-                throw (&#x27;Can not find directory: &#x27; + dir);
-            }
-
-            var allfiles = fs.readdirSync(dir),
-                stats,
-                files = [],
-                fullpath, self = this;
-
-            if (dir in self.options.excludes) {
-                return;
-            }
-
-            allfiles = allfiles.sort();
-
-            Y.each(allfiles, function (filename) {
-                if (!(filename in self.options.excludes)) {
-                    fullpath = path.join(dir, filename);
-
-                    stats = fs.statSync(fullpath);
-
-                    if (stats.isDirectory() &amp;&amp; !self.options.norecurse) {
-                        self.parsedir(fullpath);
-                    } else {
-                        files.push(filename);
-                    }
-                }
-            });
-
-            if (!(dir in self.options.excludes)) {
-                this.parsefiles(dir, files);
-            }
-        },
-
-        /**
-         * Gathers all the file data and populates the filemap and dirmap hashes.
+         * Gathers all the file data and populates the filemap and.
          * @method parsefiles
-         * @param {String} dir The directory to start from.
          * @param {Array} files List of files to parse.
          * @private
          */
-        parsefiles: function (dir, files) {
+        parsefiles: function (files) {
             var self = this;
             files = files.sort();
 
             Y.each(files, function (filename) {
                 var ext = path.extname(filename),
-                    text,
-                    fullpath;
+                    text;
 
                 if (ext) {
                     if (ext in self.options.extensions) {
-                        fullpath = path.join(dir, filename);
-
-                        if (Y.Files.exists(fullpath)) {
+                        if (Y.Files.exists(filename)) {
                             self.filecount++;
-                            text = fs.readFileSync(fullpath, Y.charset);
+                            text = fs.readFileSync(filename, Y.charset);
 
-                            self.filemap[fullpath] = text.replace(/\r?\n|\r/g, &#x27;\n&#x27;);
-                            self.dirmap[fullpath] = dir;
-                            self.getSelleck(fullpath);
+                            self.filemap[filename] = text.replace(/\r?\n|\r/g, &#x27;\n&#x27;);
+                            self.getSelleck(filename);
 
                         } else {
-                            Y.log(&#x27;File skipped: &#x27; + fullpath, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
+                            Y.log(&#x27;File skipped: &#x27; + filename, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
                         }
                     }
                 }
@@ -338,8 +276,8 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
         },
 
         /**
-         * Applies preprocessors to the data tree. 
-         * This function first clones the data and operates on the clone. 
+         * Applies preprocessors to the data tree.
+         * This function first clones the data and operates on the clone.
          * @method runPreprocessors
          * @private
          * @return {Object} The mutated data
@@ -349,14 +287,14 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
                 preprocessors,
                 preprocessorsRelativeTo;
 
-            // We will try to load the preprocessors as npm modules, but we will also 
+            // We will try to load the preprocessors as npm modules, but we will also
             // search for them relative to the process working directory.
-            // The latter is consistent with how other paths are treated by yuidoc, 
+            // The latter is consistent with how other paths are treated by yuidoc,
             // such as the config options &#x27;paths&#x27; and &#x27;outdir&#x27;.
             preprocessorsRelativeTo = process.cwd();
 
             if (self.options.preprocessor) {
-                data=JSON.parse(JSON.stringify(data));
+                data = JSON.parse(JSON.stringify(data));
 
                 preprocessors = [].concat(self.options.preprocessor);
 
@@ -397,9 +335,9 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
             data = this.runPreprocessors(data);
 
             if (self.selleck &amp;&amp; self.options.selleck &amp;&amp; data.files &amp;&amp; data.modules) {
-                Object.keys(self.selleck).forEach(function (file) {
+                Object.keys(self.selleck).forEach(function (selleckFile) {
                     Object.keys(data.files).forEach(function (f) {
-                        if (file === f) {
+                        if (selleckFile === f) {
                             var mods = data.files[f].modules;
                             if (mods) {
                                 Object.keys(mods).forEach(function (mod) {
@@ -407,7 +345,7 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
                                         if (!data.modules[mod].extra) {
                                             data.modules[mod].extra = {};
                                         }
-                                        data.modules[mod].extra.selleck = self.selleck[file];
+                                        data.modules[mod].extra.selleck = self.selleck[selleckFile];
                                     }
                                 });
                             }
@@ -432,16 +370,16 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
                 if (!Y.Files.exists(self.options.outdir)) {
                     Y.log(&#x27;Making out dir: &#x27; + self.options.outdir, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
                     try {
-                        fs.mkdirSync(self.options.outdir, 0777);
+                        fs.mkdirSync(self.options.outdir, &#x27;0777&#x27;);
                     } catch (e) {
                         Y.log(&#x27;Outdir creation failed&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
                     }
                 }
 
                 out = fs.createWriteStream(file, {
-                    flags: &quot;w&quot;,
+                    flags: &#x27;w&#x27;,
                     encoding: Y.charset,
-                    mode: 0644
+                    mode: &#x27;0644&#x27;
                 });
                 out.write(JSON.stringify(data, null, 4));
                 out.end();
@@ -480,12 +418,11 @@ YUI.add(&#x27;yuidoc&#x27;, function (Y) {
             this.starttime = new Date().getTime();
 
             this._processConfig();
-            this.walk();
+            this.parsefiles(this.options.paths);
 
             var json = this.writeJSON(new Y.DocParser({
                 syntaxtype: this.options.syntaxtype,
-                filemap: this.filemap,
-                dirmap: this.dirmap
+                filemap: this.filemap
             }).parse());
 
             if (this.options.lint) {

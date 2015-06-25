@@ -1,6 +1,6 @@
 {
   "name": "yuidocjs",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "YUIDoc, YUI's JavaScript Documentation engine.",
   "author": "Dav Glass <davglass@gmail.com>",
   "bugs": {
@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "express": "^4.12.3",
+    "glob": "^5.0.7",
     "graceful-fs": "2.x",
     "markdown-it": "^4.1.0",
     "minimatch": "^2.0.1",
@@ -103,7 +104,7 @@
       "linkNatives": "true",
       "attributesEmit": "true",
       "paths": [
-        "./lib"
+        "lib/**"
       ],
       "outdir": "./output/api"
     }
