@@ -73,6 +73,7 @@
     "express": "^4.13.0",
     "graceful-fs": "^4.1.2",
     "markdown-it": "^4.2.2",
+    "mdn-links": "^0.1.0",
     "minimatch": "^2.0.8",
     "rimraf": "2.x",
     "yui": "^3.18.1"
