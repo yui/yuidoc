@@ -70,16 +70,16 @@
     "yuidoc": "./lib/cli.js"
   },
   "dependencies": {
-    "express": "^4.13.0",
+    "express": "^4.13.1",
     "graceful-fs": "^4.1.2",
-    "markdown-it": "^4.2.2",
+    "markdown-it": "^4.3.0",
     "mdn-links": "^0.1.0",
     "minimatch": "^2.0.8",
-    "rimraf": "2.x",
+    "rimraf": "^2.4.1",
     "yui": "^3.18.1"
   },
   "devDependencies": {
-    "eslint": "^0.23.0",
+    "eslint": "^0.24.0",
     "istanbul": "^0.3.16",
     "selleck": "^0.1.18",
     "ytestrunner": "^0.3.3",
