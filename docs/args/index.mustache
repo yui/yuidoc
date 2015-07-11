@@ -265,6 +265,13 @@ See below for <a href="#ex-yui3">more</a> <a href="#ex-yuidoc">examples</a>.
         See the <a href="https://markdown-it.github.io/markdown-it/#MarkdownIt.new">markdown-it API</a> for details.
     </td>
 </tr>
+<tr>
+    <td>`preprocessor`</td>
+    <td>
+        Specifies the array of your preprocessor script or npm package like `yuidoc-preprocessor-foo`
+        that implements a preprocessor. See the <a href="#ex-preprocessor">example used preprocessor</a>.
+    </td>
+</tr>
 </table>
 
 <h3 id="ex-yui3">Example: YUI 3 Library API </h3>
@@ -312,6 +319,21 @@ project:
       "./lib"
     ],
     "outdir": "./output/api"
+  }
+}
+```
+
+<h3 id="ex-preprocessor">Example: Using preprocessor</h3>
+
+<p>This sample `yuidoc.json` file used preprocessor option:</p>
+
+```
+{
+  "name": "My Project",
+  "version": "1.0.0",
+  "options": {
+    "paths": "src",
+    "preprocessor": ["./path/to/custom_doc_preprocessor.js", "yuidoc-preprocessor-foo"]
   }
 }
 ```
