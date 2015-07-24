@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.0</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,6 +95,8 @@
  * Code licensed under the BSD License:
  * https://github.com/yui/yuidoc/blob/master/LICENSE
  */
+&#x27;use strict&#x27;;
+
 YUI.add(&#x27;files&#x27;, function (Y) {
 
     /**
@@ -111,9 +113,9 @@ YUI.add(&#x27;files&#x27;, function (Y) {
     Licensed under the BSD License.
     */
 
-    var fs = require(&#x27;graceful-fs&#x27;),
-        fsPath = require(&#x27;path&#x27;),
-        useFS = (fs.exists) ? fs : fsPath;
+    var fs = require(&#x27;graceful-fs&#x27;);
+    var fsPath = require(&#x27;path&#x27;);
+    var useFS = (fs.exists) ? fs : fsPath;
 
 
     function exists(file, cb) {
@@ -150,7 +152,7 @@ YUI.add(&#x27;files&#x27;, function (Y) {
             }
 
             if (!stats.isDirectory()) {
-                return callback(new Error(&quot;Source is not a directory: &quot; + source));
+                return callback(new Error(&#x27;Source is not a directory: &#x27; + source));
             }
 
             fs.lstat(dest, afterDestStat);
@@ -162,20 +164,20 @@ YUI.add(&#x27;files&#x27;, function (Y) {
             }
 
             if (stats) {
-                // If the destination is a file or a link, either delete it or 
+                // If the destination is a file or a link, either delete it or
                 // bubble an error if overwrite isn&#x27;t true.
                 if (stats.isFile() || stats.isSymbolicLink()) {
                     if (overwrite) {
                         deletePath(dest); // TODO: make this async
                     } else {
-                        callback(new Error(&quot;Destination already exists: &quot; + dest));
-                        return;
+                        callback(new Error(&#x27;Destination already exists: &#x27; + dest));
+                        return undefined;
                     }
                 }
 
                 afterMkDir();
             } else {
-                fs.mkdir(dest, 0755, afterMkDir);
+                fs.mkdir(dest, &#x27;0755&#x27;, afterMkDir);
             }
         }
 
@@ -199,10 +201,9 @@ YUI.add(&#x27;files&#x27;, function (Y) {
             }
 
             while ((filename = files.shift())) {
-                /*jshint loopfunc:true */
-                copyPath(fsPath.join(source, filename), fsPath.join(dest, filename), overwrite, function (err) {
-                    if (err) {
-                        return callback(err);
+                copyPath(fsPath.join(source, filename), fsPath.join(dest, filename), overwrite, function (copyPathErr) {
+                    if (copyPathErr) {
+                        return callback(copyPathErr);
                     }
 
                     pending -= 1;
@@ -239,28 +240,28 @@ YUI.add(&#x27;files&#x27;, function (Y) {
             }
 
             if (!sourceStats.isFile()) {
-                return callback(new Error(&quot;Source is not a file: &quot; + source));
+                return callback(new Error(&#x27;Source is not a file: &#x27; + source));
             }
 
-            fs.lstat(dest, function (err, destStats) {
+            fs.lstat(dest, function (destStatsErr, destStats) {
                 var rs;
 
-                if (err &amp;&amp; err.code !== &#x27;ENOENT&#x27;) {
-                    return callback(err);
+                if (destStatsErr &amp;&amp; destStatsErr.code !== &#x27;ENOENT&#x27;) {
+                    return callback(destStatsErr);
                 }
 
                 if (destStats) {
                     if (overwrite) {
                         deletePath(dest); // TODO: make this async
                     } else {
-                        callback(new Error(&quot;Destination already exists: &quot; + dest));
-                        return;
+                        callback(new Error(&#x27;Destination already exists: &#x27; + dest));
+                        return undefined;
                     }
                 }
 
                 rs = fs.createReadStream(source);
                 rs.pipe(fs.createWriteStream(dest, {
-                    mode: 0655
+                    mode: &#x27;0655&#x27;
                 }));
                 rs.on(&#x27;end&#x27;, callback);
             });
@@ -299,7 +300,7 @@ YUI.add(&#x27;files&#x27;, function (Y) {
         }
 
         if (!sourceStats) {
-            callback(new Error(&quot;Source not found: &quot; + source));
+            callback(new Error(&#x27;Source not found: &#x27; + source));
             return;
         }
 
@@ -308,7 +309,7 @@ YUI.add(&#x27;files&#x27;, function (Y) {
         } else if (sourceStats.isDirectory()) {
             copyDirectory(source, dest, overwrite, callback);
         } else {
-            callback(new Error(&quot;Source is neither a file nor a directory: &quot; + source));
+            callback(new Error(&#x27;Source is neither a file nor a directory: &#x27; + source));
         }
     }
     Y.Files.copyPath = copyPath;
@@ -532,9 +533,9 @@ YUI.add(&#x27;files&#x27;, function (Y) {
         var out,
             args = arguments,
             flags = {
-                flags: &quot;w&quot;,
+                flags: &#x27;w&#x27;,
                 encoding: Y.charset,
-                mode: 0644
+                mode: &#x27;0644&#x27;
             };
 
         if (cb) {

@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.0</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -91,6 +91,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 #!/usr/bin/env node
+&#x27;use strict&#x27;;
 
 /**
  * Copyright (c) 2011, Yahoo! Inc. All rights reserved.
@@ -104,7 +105,6 @@
  * @module yuidoc
  */
 
-/*global Y:true */
 var Y = require(&#x27;./index&#x27;);
 
 var options = Y.Options(Y.Array(process.argv, 2));
@@ -127,7 +127,7 @@ if (options.server) {
 } else {
     var json = (new Y.YUIDoc(options)).run();
     if (json === null) {
-        return;
+        throw new Error(&#x27;Running YUIDoc returns null.&#x27;);
     }
     options = Y.Project.mix(json, options);
 

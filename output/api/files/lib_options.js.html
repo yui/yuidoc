@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.0</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,6 +95,8 @@
  * Code licensed under the BSD License:
  * https://github.com/yui/yuidoc/blob/master/LICENSE
  */
+&#x27;use strict&#x27;;
+
 YUI.add(&#x27;options&#x27;, function (Y) {
 
     var path = require(&#x27;path&#x27;);
@@ -127,75 +129,75 @@ YUI.add(&#x27;options&#x27;, function (Y) {
                 options.writeJSON = false;
                 options.quiet = true;
                 break;
-            case &quot;--debug&quot;:
+            case &#x27;--debug&#x27;:
                 Y.applyConfig({
                     debug: true,
                     filter: &#x27;debug&#x27;
                 });
                 break;
-            case &quot;--charset&quot;:
+            case &#x27;--charset&#x27;:
                 Y.charset = args.shift() || &#x27;utf8&#x27;;
                 Y.log(&#x27;Setting default charset to &#x27; + Y.charset, &#x27;yuidoc&#x27;, &#x27;warn&#x27;);
                 break;
-            case &quot;-c&quot;:
-            case &quot;--config&quot;:
-            case &quot;--configfile&quot;:
+            case &#x27;-c&#x27;:
+            case &#x27;--config&#x27;:
+            case &#x27;--configfile&#x27;:
                 options.configfile = args.shift();
                 break;
-            case &quot;-e&quot;:
-            case &quot;--extension&quot;:
+            case &#x27;-e&#x27;:
+            case &#x27;--extension&#x27;:
                 options.extension = args.shift();
                 break;
-            case &quot;-x&quot;:
-            case &quot;--exclude&quot;:
+            case &#x27;-x&#x27;:
+            case &#x27;--exclude&#x27;:
                 options.exclude = args.shift();
                 break;
-            case &quot;-v&quot;:
-            case &quot;--version&quot;:
+            case &#x27;-v&#x27;:
+            case &#x27;--version&#x27;:
                 console.error(Y.packageInfo.version);
                 process.exit(1);
                 break;
-            case &quot;--project-version&quot;:
+            case &#x27;--project-version&#x27;:
                 options.version = args.shift();
                 break;
-            case &quot;-N&quot;:
-            case &quot;--no-color&quot;:
+            case &#x27;-N&#x27;:
+            case &#x27;--no-color&#x27;:
                 Y.config.useColor = false;
                 options.nocolor = true;
                 break;
-            case &quot;-D&quot;:
-            case &quot;--no-delete-out&quot;:
+            case &#x27;-D&#x27;:
+            case &#x27;--no-delete-out&#x27;:
                 options.nodeleteout = true;
                 break;
-            case &quot;-C&quot;:
-            case &quot;--no-code&quot;:
+            case &#x27;-C&#x27;:
+            case &#x27;--no-code&#x27;:
                 options.nocode = true;
                 break;
-            case &quot;-n&quot;:
-            case &quot;--norecurse&quot;:
+            case &#x27;-n&#x27;:
+            case &#x27;--norecurse&#x27;:
                 options.norecurse = true;
                 break;
-            case &quot;-S&quot;:
-            case &quot;--selleck&quot;:
+            case &#x27;-S&#x27;:
+            case &#x27;--selleck&#x27;:
                 options.selleck = true;
                 break;
-            case &quot;-V&quot;:
-            case &quot;--view&quot;:
+            case &#x27;-V&#x27;:
+            case &#x27;--view&#x27;:
                 options.dumpview = true;
                 break;
-            case &quot;-p&quot;:
-            case &quot;--parse-only&quot;:
+            case &#x27;-p&#x27;:
+            case &#x27;--parse-only&#x27;:
                 options.parseOnly = true;
                 break;
-            case &quot;-o&quot;:
-            case &quot;--outdir&quot;:
+            case &#x27;-o&#x27;:
+            case &#x27;--outdir&#x27;:
                 options.outdir = args.shift();
                 break;
-            case &quot;-t&quot;:
-            case &quot;--themedir&quot;:
+            case &#x27;-t&#x27;:
+            case &#x27;--themedir&#x27;:
                 options.themedir = args.shift();
                 break;
-            case &quot;--server&quot;:
+            case &#x27;--server&#x27;:
                 options.server = true;
                 var a = args.shift();
                 var p = parseInt(a, 10);
@@ -208,12 +210,12 @@ YUI.add(&#x27;options&#x27;, function (Y) {
                     options.port = p;
                 }
                 break;
-            case &quot;-h&quot;:
-            case &quot;--help&quot;:
+            case &#x27;-h&#x27;:
+            case &#x27;--help&#x27;:
                 Y.showHelp();
                 break;
-            case &quot;-H&quot;:
-            case &quot;--helpers&quot;:
+            case &#x27;-H&#x27;:
+            case &#x27;--helpers&#x27;:
                 var list = args.shift();
                 if (list) {
                     options.helpers = list.split(&#x27;,&#x27;);
@@ -221,19 +223,19 @@ YUI.add(&#x27;options&#x27;, function (Y) {
                     throw (&#x27;Failed to pass a helper file.&#x27;);
                 }
                 break;
-            case &quot;-T&quot;:
-            case &quot;--theme&quot;:
+            case &#x27;-T&#x27;:
+            case &#x27;--theme&#x27;:
                 var theme = args.shift();
                 options.themedir = path.join(__dirname, &#x27;../&#x27;, &#x27;themes&#x27;, theme);
                 break;
-            case &quot;-q&quot;:
-            case &quot;--quiet&quot;:
+            case &#x27;-q&#x27;:
+            case &#x27;--quiet&#x27;:
                 options.quiet = true;
                 break;
-            case &quot;--syntaxtype&quot;:
+            case &#x27;--syntaxtype&#x27;:
                 options.syntaxtype = args.shift();
                 break;
-            case &quot;--tab-to-space&quot;:
+            case &#x27;--tab-to-space&#x27;:
                 options.tabtospace = parseInt(args.shift(), 10);
                 if (typeof options.tabtospace === &#x27;number&#x27;) {
                     options.tabspace = &#x27;&#x27;;
@@ -242,7 +244,7 @@ YUI.add(&#x27;options&#x27;, function (Y) {
                     }
                 }
                 break;
-            case &quot;--no-sort&quot;:
+            case &#x27;--no-sort&#x27;:
                 options.dontsortfields = true;
                 break;
             default:

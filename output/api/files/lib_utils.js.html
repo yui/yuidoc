@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.0</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,6 +95,8 @@
  * Code licensed under the BSD License:
  * https://github.com/yui/yuidoc/blob/master/LICENSE
  */
+&#x27;use strict&#x27;;
+
 var path = require(&#x27;path&#x27;),
     minimatch = require(&#x27;minimatch&#x27;),
     fs = require(&#x27;graceful-fs&#x27;);
@@ -114,7 +116,7 @@ YUI.add(&#x27;utils&#x27;, function (Y) {
         &#x27;&lt;&#x27;: &#x27;&amp;lt;&#x27;,
         &#x27;&gt;&#x27;: &#x27;&amp;gt;&#x27;,
         &#x27;&quot;&#x27;: &#x27;&amp;quot;&#x27;,
-        &quot;&#x27;&quot;: &#x27;&amp;#x27;&#x27;,
+        &#x27;\&#x27;&#x27;: &#x27;&amp;#x27;&#x27;,
         &#x27;/&#x27;: &#x27;&amp;#x2F;&#x27;,
         &#x27;&#x60;&#x27;: &#x27;&amp;#x60;&#x27;
     };
@@ -317,18 +319,17 @@ YUI.add(&#x27;utils&#x27;, function (Y) {
     /**
      * Walk the directory tree to locate the yuidoc.json file.
      * @method getProjectData
-     * @param {Path} [dir=process.cwd()] The directory to start from
+     * @param {Path} [directory=process.cwd()] The directory to start from
      */
-    var getProjectData = function (dir) {
-        var dirs = [dir || process.cwd()];
+    var getProjectData = function (directory) {
+        var dirs = [directory || process.cwd()];
         var projectData, packageData;
         var dirCount = 0;
-        // keep looping until 
+        // keep looping until
         //  * data is found
         //  * there are no more dirs to process
         //  * we abort due to failsafe
         while (dirs.length &amp;&amp; !projectData) {
-            /*jshint loopfunc:true */
             if (dirCount++ &gt; 5000) {
                 Y.log(&#x27;Scanned &#x27; + dirCount + &#x27; directories looking for a yuidoc.json file, something is probably wrong here..&#x27;, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
                 process.exit(1);
@@ -472,11 +473,11 @@ YUI.add(&#x27;utils&#x27;, function (Y) {
         if (!Y.Lang.isArray(paths)) {
             paths = [paths];
         }
-        paths.forEach(function (path) {
-            var glob = path || &#x27;&#x27;;
+        paths.forEach(function (validatePath) {
+            var glob = validatePath || &#x27;&#x27;;
 
             if (process.platform === &#x27;win32&#x27;) {
-                glob = path.replace(/\//g, &#x27;\\\\&#x27;);
+                glob = validatePath.replace(/\//g, &#x27;\\\\&#x27;);
             }
 
             var glob_paths = getDirs(&#x27;.&#x27;),
@@ -503,12 +504,14 @@ YUI.add(&#x27;utils&#x27;, function (Y) {
         });
 
         paths = newpaths;
-        paths.forEach(function (p) {
+        paths.forEach(function (newPath) {
             try {
-                if (!Y.Files.isDirectory(p)) {
-                    throw (&#x27;Path not a directory: &#x27; + p);
+                if (!Y.Files.isDirectory(newPath)) {
+                    throw (&#x27;Path not a directory: &#x27; + newPath);
                 }
-            } catch (e) {}
+            } catch (e) {
+                throw new Error(e.message);
+            }
         });
 
         if (!paths || !paths.forEach) {
@@ -574,7 +577,7 @@ YUI.add(&#x27;utils&#x27;, function (Y) {
      * @param {Array|String*} url the list of parts to be joined and normalized
      * @return {String} The joined and normalized url
      **/
-    function webpath(url) {
+    function webpath() {
         var args = [].concat.apply([], arguments),
             parts = path.join.apply(path, args).split(/[\\\/]/);
         return parts.join(&#x27;/&#x27;);

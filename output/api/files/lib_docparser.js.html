@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.0</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,6 +95,8 @@
  * Code licensed under the BSD License:
  * https://github.com/yui/yuidoc/blob/master/LICENSE
  */
+&#x27;use strict&#x27;;
+
 YUI.add(&#x27;docparser&#x27;, function (Y) {
 
     var Lang = Y.Lang,
@@ -193,74 +195,76 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
          * @for DocParser
          */
         TAGLIST = [
-            &quot;async&quot;,        // bool, custom events can fire the listeners in a setTimeout
-            &quot;author&quot;,       // author best for projects and modules, but can be used anywhere // multi
-            &quot;attribute&quot;,    // YUI attributes -- get/set with change notification, etc
-            &quot;beta&quot;,         // module maturity identifier
-            &quot;broadcast&quot;,    // bool, events
-            &quot;bubbles&quot;,      // custom events that bubble
-            &quot;category&quot;,     // modules can be in multiple categories
-            &quot;chainable&quot;,    // methods that return the host object
-            &quot;class&quot;,        // pseudo class
-            &quot;conditional&quot;,  // conditional module
-            &quot;config&quot;,       // a config param (not an attribute, so no change events)
-            &quot;const&quot;,        // not standardized yet, converts to final property
-            &quot;constructs&quot;,   // factory methods (not yet used)
-            &quot;constructor&quot;,  // this is a constructor
-            &quot;contributor&quot;,  // like author
-            &quot;default&quot;,      // property/attribute default value
-            &quot;deprecated&quot;,   // please specify what to use instead
-            &quot;description&quot;,  // can also be free text at the beginning of a comment is
-            &quot;emitfacade&quot;,   // bool, YUI custom event can have a dom-like event facade
-            &quot;event&quot;,        // YUI custom event
-            &quot;evil&quot;,         // uses eval
-            &quot;extension&quot;,    // this is an extension for [entity]
-            &quot;extensionfor&quot;, // this is an extension for [entity]
-            &quot;extension_for&quot;,// this is an extension for [entity]
-            &quot;example&quot;,      // 0..n code snippets.  snippets can also be embedded in the desc
-            &quot;experimental&quot;, // module maturity identifier
-            &quot;extends&quot;,      // pseudo inheritance
-            &quot;file&quot;,         // file name (used by the parser)
-            &quot;final&quot;,        // not meant to be changed
-            &quot;fireonce&quot;,     // bool, YUI custom event config allows
-            &quot;for&quot;,          // used to change class context
-            &quot;global&quot;,       // declare your globals
-            &quot;icon&quot;,         // project icon(s)
-            &quot;in&quot;,           // indicates module this lives in (obsolete now)
-            &quot;initonly&quot;,     // attribute writeonce value
-            &quot;injects&quot;,      // injects {HTML|script|CSS}
-            &quot;knownissue&quot;,   // 0..n known issues for your consumption
-            &quot;line&quot;,         // line number for the comment block (used by the parser)
-            &quot;method&quot;,       // a method
-            &quot;module&quot;,       // YUI module name
-            &quot;main&quot;,         // Description for the module
-            &quot;namespace&quot;,    // Y.namespace, used to fully qualify class names
-            &quot;optional&quot;,     // For optional attributes
-            &quot;required&quot;,     // For required attributes
-            &quot;param&quot;,        // member param
-            &quot;plugin&quot;,       // this is a plugin for [entityl]
-            &quot;preventable&quot;,  // YUI custom events can be preventable ala DOM events
-            &quot;private&quot;,      // &gt; access
-            &quot;project&quot;,      // project definition, one per source tree allowed
-            &quot;property&quot;,     // a regular-ole property
-            &quot;protected&quot;,    // &gt; access
-            &quot;public&quot;,       // &gt; access
-            &quot;queuable&quot;,     // bool, events
-            &quot;readonly&quot;,     // YUI attribute config
-            &quot;requires&quot;,     // YUI module requirements
-            &quot;return&quot;,       // {type} return desc -- returns is converted to this
-            &quot;see&quot;,          // 0..n things to look at
-            &quot;since&quot;,        // when it was introduced
-            &quot;static&quot;,       // static
-            &quot;submodule&quot;,    // YUI submodule
-            &quot;throws&quot;,       // {execption type} description
-            &quot;title&quot;,        // this should be something for the project description
-            &quot;todo&quot;,         // 0..n things to revisit eventually (hopefully)
-            &quot;type&quot;,         // the var type
-            &quot;url&quot;,          // project url(s)
-            &quot;uses&quot;,         // 0..n compents mixed (usually, via augment) into the prototype
-            &quot;value&quot;,        // the value of a constant
-            &quot;writeonce&quot;     // YUI attribute config
+            &#x27;async&#x27;,        // bool, custom events can fire the listeners in a setTimeout
+            &#x27;author&#x27;,       // author best for projects and modules, but can be used anywhere // multi
+            &#x27;attribute&#x27;,    // YUI attributes -- get/set with change notification, etc
+            &#x27;beta&#x27;,         // module maturity identifier
+            &#x27;broadcast&#x27;,    // bool, events
+            &#x27;bubbles&#x27;,      // custom events that bubble
+            &#x27;category&#x27;,     // modules can be in multiple categories
+            &#x27;chainable&#x27;,    // methods that return the host object
+            &#x27;class&#x27;,        // pseudo class
+            &#x27;conditional&#x27;,  // conditional module
+            &#x27;config&#x27;,       // a config param (not an attribute, so no change events)
+            &#x27;const&#x27;,        // not standardized yet, converts to final property
+            &#x27;constructs&#x27;,   // factory methods (not yet used)
+            &#x27;constructor&#x27;,  // this is a constructor
+            &#x27;contributor&#x27;,  // like author
+            &#x27;default&#x27;,      // property/attribute default value
+            &#x27;deprecated&#x27;,   // please specify what to use instead
+            &#x27;description&#x27;,  // can also be free text at the beginning of a comment is
+            &#x27;emitfacade&#x27;,   // bool, YUI custom event can have a dom-like event facade
+            &#x27;event&#x27;,        // YUI custom event
+            &#x27;evil&#x27;,         // uses eval
+            &#x27;extension&#x27;,    // this is an extension for [entity]
+            &#x27;extensionfor&#x27;, // this is an extension for [entity]
+            &#x27;extension_for&#x27;,// this is an extension for [entity]
+            &#x27;example&#x27;,      // 0..n code snippets.  snippets can also be embedded in the desc
+            &#x27;experimental&#x27;, // module maturity identifier
+            &#x27;extends&#x27;,      // pseudo inheritance
+            &#x27;file&#x27;,         // file name (used by the parser)
+            &#x27;final&#x27;,        // not meant to be changed
+            &#x27;fireonce&#x27;,     // bool, YUI custom event config allows
+            &#x27;for&#x27;,          // used to change class context
+            &#x27;global&#x27;,       // declare your globals
+            &#x27;icon&#x27;,         // project icon(s)
+            &#x27;implements&#x27;,   // Implements Interface
+            &#x27;in&#x27;,           // indicates module this lives in (obsolete now)
+            &#x27;initonly&#x27;,     // attribute writeonce value
+            &#x27;injects&#x27;,      // injects {HTML|script|CSS}
+            &#x27;interface&#x27;,    // Is Interface
+            &#x27;knownissue&#x27;,   // 0..n known issues for your consumption
+            &#x27;line&#x27;,         // line number for the comment block (used by the parser)
+            &#x27;method&#x27;,       // a method
+            &#x27;module&#x27;,       // YUI module name
+            &#x27;main&#x27;,         // Description for the module
+            &#x27;namespace&#x27;,    // Y.namespace, used to fully qualify class names
+            &#x27;optional&#x27;,     // For optional attributes
+            &#x27;required&#x27;,     // For required attributes
+            &#x27;param&#x27;,        // member param
+            &#x27;plugin&#x27;,       // this is a plugin for [entityl]
+            &#x27;preventable&#x27;,  // YUI custom events can be preventable ala DOM events
+            &#x27;private&#x27;,      // &gt; access
+            &#x27;project&#x27;,      // project definition, one per source tree allowed
+            &#x27;property&#x27;,     // a regular-ole property
+            &#x27;protected&#x27;,    // &gt; access
+            &#x27;public&#x27;,       // &gt; access
+            &#x27;queuable&#x27;,     // bool, events
+            &#x27;readonly&#x27;,     // YUI attribute config
+            &#x27;requires&#x27;,     // YUI module requirements
+            &#x27;return&#x27;,       // {type} return desc -- returns is converted to this
+            &#x27;see&#x27;,          // 0..n things to look at
+            &#x27;since&#x27;,        // when it was introduced
+            &#x27;static&#x27;,       // static
+            &#x27;submodule&#x27;,    // YUI submodule
+            &#x27;throws&#x27;,       // {execption type} description
+            &#x27;title&#x27;,        // this should be something for the project description
+            &#x27;todo&#x27;,         // 0..n things to revisit eventually (hopefully)
+            &#x27;type&#x27;,         // the var type
+            &#x27;url&#x27;,          // project url(s)
+            &#x27;uses&#x27;,         // 0..n compents mixed (usually, via augment) into the prototype
+            &#x27;value&#x27;,        // the value of a constant
+            &#x27;writeonce&#x27;     // YUI attribute config
         ],
 
         /**
@@ -272,7 +276,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
          * @for DocParser
          */
         IGNORE_TAGLIST = [
-            &quot;media&quot;
+            &#x27;media&#x27;
         ],
 
         /**
@@ -482,7 +486,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             // @returns {type} description // methods
             // @injects {HTML|CSS|script} description
             // can be used by anthing that has an optional {type} and a description
-            &#x27;return&#x27;: function (tagname, value, target, block) {
+            &#x27;return&#x27;: function (tagname, value, target) {
 
                 var desc = implodeString(trim(value)),
                     type,
@@ -511,7 +515,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             &#x27;injects&#x27;: &#x27;return&#x27;,
 
             // trying to overwrite the constructor value is a bad idea
-            &#x27;constructor&#x27;: function (tagname, value, target, block) {
+            &#x27;constructor&#x27;: function (tagname, value, target) {
                 target.is_constructor = 1;
             },
 
@@ -549,7 +553,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             },
 
             //Setting the description for the module..
-            &#x27;main&#x27;: function (tagname, value, target, block) {
+            &#x27;main&#x27;: function (tagname, value, target) {
                 var o = target;
                 o.mainName = value;
                 o.tag = tagname;
@@ -559,13 +563,13 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             },
 
             // accepts a single project definition for the source tree
-            &#x27;project&#x27;: function (tagname, value, target, block) {
+            &#x27;project&#x27;: function () {
                 return this.project;
             },
 
             // A key bock type for declaring submodules.  subsequent class and
             // member blocks will be assigned to this submodule.
-            &#x27;submodule&#x27;: function (tagname, value, target, block) {
+            &#x27;submodule&#x27;: function (tagname, value) {
                 //console.log(&#x27;Setting current submodule: &#x27;, value, &#x27;on class&#x27;);
                 this.set(CURRENT_SUBMODULE, value);
                 var host = this.modules[value],
@@ -629,11 +633,10 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             },
 
             // change &#x27;const&#x27; to final property
-            &#x27;const&#x27;: function (tagname, value, target, block) {
+            &#x27;const&#x27;: function (tagname, value, target) {
                 target.itemtype = &#x27;property&#x27;;
                 target.name = value;
-                /*jshint sub:true */
-                target[&#x27;final&#x27;] = &#x27;&#x27;;
+                target.final = &#x27;&#x27;;
             },
 
             // supported classitems
@@ -671,7 +674,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             &#x27;event&#x27;: &#x27;property&#x27;,
 
             // access fields
-            &#x27;public&#x27;: function (tagname, value, target, block) {
+            &#x27;public&#x27;: function (tagname, value, target) {
                 target.access = tagname;
                 target.tagname = value;
             },
@@ -680,7 +683,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             &#x27;inner&#x27;: &#x27;public&#x27;,
 
             // tags that can have multiple occurances in a single block
-            &#x27;todo&#x27;: function (tagname, value, target, block) {
+            &#x27;todo&#x27;: function (tagname, value, target) {
                 if (!Lang.isArray(target[tagname])) {
                     target[tagname] = [];
                 }
@@ -697,7 +700,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                 });
             },
             &#x27;extension_for&#x27;: &#x27;extensionfor&#x27;,
-            &#x27;extensionfor&#x27;: function (tagname, value, target, block) {
+            &#x27;extensionfor&#x27;: function (tagname, value) {
                 if (this.classes[this.get(CURRENT_CLASS)]) {
                     this.classes[this.get(CURRENT_CLASS)].extension_for.push(value);
                 }
@@ -727,7 +730,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             &#x27;category&#x27;: &#x27;todo&#x27;,
             &#x27;unimplemented&#x27;: &#x27;todo&#x27;,
 
-            genericValueTag: function (tagname, value, target, block) {
+            genericValueTag: function (tagname, value, target) {
                 target[tagname] = value;
             },
 
@@ -735,7 +738,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             &#x27;contributor&#x27;: &#x27;genericValueTag&#x27;,
             &#x27;since&#x27;: &#x27;genericValueTag&#x27;,
 
-            &#x27;deprecated&#x27;: function (tagname, value, target, block) {
+            &#x27;deprecated&#x27;: function (tagname, value, target) {
                 target.deprecated = true;
 
                 if (typeof value === &#x27;string&#x27; &amp;&amp; value.length) {
@@ -744,7 +747,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             },
 
             // updates the current namespace
-            &#x27;namespace&#x27;: function (tagname, value, target, block) {
+            &#x27;namespace&#x27;: function (tagname, value) {
                 this.set(CURRENT_NAMESPACE, value);
                 if (value === &#x27;&#x27;) {
                     //Shortcut this if namespace is an empty string.
@@ -812,7 +815,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
 
             // updates the current class only (doesn&#x27;t create
             // a new class definition)
-            &#x27;for&#x27;: function (tagname, value, target, block) {
+            &#x27;for&#x27;: function (tagname, value) {
                 var ns, file, mod;
 
                 value = this._resolveFor(value);
@@ -848,7 +851,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
          * @param {Object} o the config object
          * @module yuidoc
          */
-        DocParser = function (o) {
+        DocParser = function () {
             this.digesters = Y.merge(DocParser.DIGESTERS);
             this.knowntags = Y.Array.hash(DocParser.TAGLIST);
             DocParser.superclass.constructor.apply(this, arguments);
@@ -1007,7 +1010,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
 
                 clazz = this.classes[this.get(CURRENT_CLASS)];
                 if (clazz) {
-                    //Handles case where @module comes after @class in a new directory of files 
+                    //Handles case where @module comes after @class in a new directory of files
                     if (clazz.module !== val) {
                         if (this.modules[clazz.module]) {
                             delete this.modules[clazz.module].submodules[clazz.submodule];
@@ -1146,7 +1149,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             this.warnings = [];
 
             var self = this;
-            self.after(&#x27;currentfileChange&#x27;, function (e) {
+            self.after(&#x27;currentfileChange&#x27;, function () {
                 /*
                  * File changed, so we reset class and submodule.
                  * You should use @for if you want to reference another class
@@ -1168,16 +1171,12 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
 
             self.after(&#x27;currentsubmoduleChange&#x27;, function (e) {
                 var mod = e.newVal,
-                    classes = self.classes,
-                    parent;
+                    classes = self.classes;
 
                 if (mod) {
-                    parent = self.modules[mod].module;
                     Y.each(classes, function (clazz) {
                         if (!(clazz.submodule)) {
-                            //if ((!clazz.module) || clazz.module == parent) {
                             if (!clazz.module) {
-                                //console.log(&#x27;Adding Submodule: &#x27;, mod, &#x27; to&#x27;, clazz.module, &#x27;with parent&#x27;, parent);
                                 clazz.submodule = mod;
                             }
                         }
@@ -1188,8 +1187,8 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             self.after(&#x27;currentclassChange&#x27;, function (e) {
                 var clazz = e.newVal;
                 Y.each(self.classitems, function (item) {
-                    if (!(item[&quot;class&quot;])) {
-                        item[&quot;class&quot;] = clazz;
+                    if (!(item.class)) {
+                        item.class = clazz;
                     }
                 });
                 // Y.log(self.classitems);
@@ -1408,7 +1407,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                 Y.mix(host, target);
             } else {
                 this.classitems.push(target);
-                target[&#x27;class&#x27;] = this.get(CURRENT_CLASS);
+                target.class = this.get(CURRENT_CLASS);
                 target.module = this.get(CURRENT_MODULE);
 
                 host = this.get(CURRENT_SUBMODULE);

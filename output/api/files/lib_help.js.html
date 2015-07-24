@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.0</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,6 +95,8 @@
  * Code licensed under the BSD License:
  * https://github.com/yui/yuidoc/blob/master/LICENSE
  */
+&#x27;use strict&#x27;;
+
 YUI.add(&#x27;help&#x27;, function (Y) {
 
     /**
@@ -110,44 +112,44 @@ YUI.add(&#x27;help&#x27;, function (Y) {
      * @type Array
      */
     var help = [
-        &quot;&quot;,
-        &quot;YUI Doc generates API documentation from a modified JavaDoc syntax.&quot;,
-        &quot;&quot;,
-        &quot;Current version ({VERSION})&quot;,
-        &quot;&quot;,
-        &quot;Usage: yuidoc &lt;options&gt; &lt;input path&gt;&quot;,
-        &quot;&quot;,
-        &quot;Common Options:&quot;,
-        &quot;  -c, --config, --configfile &lt;filename&gt;  A JSON config file to provide configuration data.&quot;,
-        &quot;           You can also create a yuidoc.json file and place it&quot;,
-        &quot;           anywhere under your source tree and YUI Doc will find it&quot;,
-        &quot;           and use it.&quot;,
-        &quot;  -e, --extension &lt;comma sep list of file extensions&gt; The list of file extensions to parse &quot;,
-        &quot;           for api documentation. (defaults to .js)&quot;,
-        &quot;  -x, --exclude &lt;comma sep list of directories&gt; Directories to exclude from parsing &quot;,
-        &quot;           (defaults to &#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp&#x27;)&quot;,
-        &quot;  -v, --version Show the current YUIDoc version&quot;,
-        &quot;  --project-version Set the doc version for the template&quot;,
-        &quot;  -N, --no-color Turn off terminal colors (for automation)&quot;,
-        &quot;  -C, --no-code Turn off code generation (don&#x27;t include source files in output)&quot;,
-        &quot;  -n, --norecurse Do not recurse directories (default is to recurse)&quot;,
-        &quot;  --no-sort Do not alphabetical sorting of attributes, events, methods, and properties&quot;,
-        &quot;  -S, --selleck Look for Selleck component data and attach to API meta data&quot;,
-        &quot;  -V, --view Dump the Handlebars.js view data instead of writing template files&quot;,
-        &quot;  -p, --parse-only Only parse the API docs and create the JSON data, do not render templates&quot;,
-        &quot;  -o, --outdir &lt;directory path&gt; Path to put the generated files (defaults to ./out)&quot;,
-        &quot;  -t, --themedir &lt;directory path&gt; Path to a custom theme directory containing Handlebars templates&quot;,
-        &quot;  -H, --helpers &lt;comma separated list of paths to files&gt; Require these file and add Handlebars helpers. See docs for more information&quot;,
-        &quot;  --charset CHARSET Use this as the default charset for all file operations. Defaults to &#x27;utf8&#x27;&quot;,
-        &quot;  -h, --help Show this help&quot;,
-        &quot;  -q, --quiet Supress logging output&quot;,
-        &quot;  -T, --theme &lt;simple|default&gt; Choose one of the built in themes (default is default)&quot;,
-        &quot;  --syntaxtype &lt;js|coffee&gt; Choose comment syntax type (default is js)&quot;,
-        &quot;  --server &lt;port&gt; Fire up the YUIDoc server for faster API doc developement. Pass optional port to listen on. (default is 3000)&quot;,
-        &quot;  --lint Lint your docs, will print parser warnings and exit code 1 if there are any&quot;,
-        &quot;&quot;,
-        &quot;  &lt;input path&gt; Supply a list of paths (shell globbing is handy here)&quot;,
-        &quot;&quot;,
+        &#x27;&#x27;,
+        &#x27;YUI Doc generates API documentation from a modified JavaDoc syntax.&#x27;,
+        &#x27;&#x27;,
+        &#x27;Current version ({VERSION})&#x27;,
+        &#x27;&#x27;,
+        &#x27;Usage: yuidoc &lt;options&gt; &lt;input path&gt;&#x27;,
+        &#x27;&#x27;,
+        &#x27;Common Options:&#x27;,
+        &#x27;  -c, --config, --configfile &lt;filename&gt;  A JSON config file to provide configuration data.&#x27;,
+        &#x27;           You can also create a yuidoc.json file and place it&#x27;,
+        &#x27;           anywhere under your source tree and YUI Doc will find it&#x27;,
+        &#x27;           and use it.&#x27;,
+        &#x27;  -e, --extension &lt;comma sep list of file extensions&gt; The list of file extensions to parse &#x27;,
+        &#x27;           for api documentation. (defaults to .js)&#x27;,
+        &#x27;  -x, --exclude &lt;comma sep list of directories&gt; Directories to exclude from parsing &#x27;,
+        &#x27;           (defaults to \&#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp\&#x27;)&#x27;,
+        &#x27;  -v, --version Show the current YUIDoc version&#x27;,
+        &#x27;  --project-version Set the doc version for the template&#x27;,
+        &#x27;  -N, --no-color Turn off terminal colors (for automation)&#x27;,
+        &#x27;  -C, --no-code Turn off code generation (don\&#x27;t include source files in output)&#x27;,
+        &#x27;  -n, --norecurse Do not recurse directories (default is to recurse)&#x27;,
+        &#x27;  --no-sort Do not alphabetical sorting of attributes, events, methods, and properties&#x27;,
+        &#x27;  -S, --selleck Look for Selleck component data and attach to API meta data&#x27;,
+        &#x27;  -V, --view Dump the Handlebars.js view data instead of writing template files&#x27;,
+        &#x27;  -p, --parse-only Only parse the API docs and create the JSON data, do not render templates&#x27;,
+        &#x27;  -o, --outdir &lt;directory path&gt; Path to put the generated files (defaults to ./out)&#x27;,
+        &#x27;  -t, --themedir &lt;directory path&gt; Path to a custom theme directory containing Handlebars templates&#x27;,
+        &#x27;  -H, --helpers &lt;comma separated list of paths to files&gt; Require these file and add Handlebars helpers. See docs for more information&#x27;,
+        &#x27;  --charset CHARSET Use this as the default charset for all file operations. Defaults to \&#x27;utf8\&#x27;&#x27;,
+        &#x27;  -h, --help Show this help&#x27;,
+        &#x27;  -q, --quiet Supress logging output&#x27;,
+        &#x27;  -T, --theme &lt;simple|default&gt; Choose one of the built in themes (default is default)&#x27;,
+        &#x27;  --syntaxtype &lt;js|coffee&gt; Choose comment syntax type (default is js)&#x27;,
+        &#x27;  --server &lt;port&gt; Fire up the YUIDoc server for faster API doc developement. Pass optional port to listen on. (default is 3000)&#x27;,
+        &#x27;  --lint Lint your docs, will print parser warnings and exit code 1 if there are any&#x27;,
+        &#x27;&#x27;,
+        &#x27;  &lt;input path&gt; Supply a list of paths (shell globbing is handy here)&#x27;,
+        &#x27;&#x27;
     ].join(&#x27;\n&#x27;);
 
     /**
