@@ -45,7 +45,7 @@ Command line options always take priority.</p>
 
 <pre class="code terminal">YUI Doc generates API documentation from a modified JavaDoc syntax.
 
-Current version (0.7.0)
+Current version (0.8.0)
 
 Usage: yuidoc &lt;options&gt; &lt;input path&gt;
 
@@ -323,6 +323,13 @@ See below for <a href="#ex-yui3">more</a> <a href="#ex-yuidoc">examples</a>.
         See the <a href="https://markdown-it.github.io/markdown-it/#MarkdownIt.new">markdown-it API</a> for details.
     </td>
 </tr>
+<tr>
+    <td><code>preprocessor</code></td>
+    <td>
+        Specifies the array of your preprocessor script or npm package like <code>yuidoc-preprocessor-foo</code>
+        that implements a preprocessor. See the <a href="#ex-preprocessor">example used preprocessor</a>.
+    </td>
+</tr>
 </table>
 
 <h3 id="ex-yui3">Example: YUI 3 Library API </h3>
@@ -368,6 +375,20 @@ project:
       &quot;.&#x2F;lib&quot;
     ],
     &quot;outdir&quot;: &quot;.&#x2F;output&#x2F;api&quot;
+  }
+}</pre>
+
+
+<h3 id="ex-preprocessor">Example: Using preprocessor</h3>
+
+<p>This sample <code>yuidoc.json</code> file used preprocessor option:</p>
+
+<pre class="code prettyprint">{
+  &quot;name&quot;: &quot;My Project&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;options&quot;: {
+    &quot;paths&quot;: &quot;src&quot;,
+    &quot;preprocessor&quot;: [&quot;.&#x2F;path&#x2F;to&#x2F;custom_doc_preprocessor.js&quot;, &quot;yuidoc-preprocessor-foo&quot;]
   }
 }</pre>
 
@@ -435,6 +456,9 @@ project:
 </li>
 <li>
 <a href="#ex-yuidoc">Example: YUIDoc API</a>
+</li>
+<li>
+<a href="#ex-preprocessor">Example: Using preprocessor</a>
 </li>
 </ul>
 </li>
