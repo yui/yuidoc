@@ -255,3 +255,23 @@ Test `\{{foobar3\}}` `\{{barfoo3\}}`
 @method hbHelper3
 */
 
+/**
+ * Element 3
+ *
+ * @element x-baz
+ * @parents <body>, <x-foo>
+ * @contents <x-bar>
+ * @interface XBazElement
+ *
+ * @attribute first     first attribute test
+ * @attribute second    second attribute
+ *                      test
+ */
+
+/**
+ * third
+ * attribute
+ * test
+ *
+ * @attribute third
+ */
