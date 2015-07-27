@@ -76,7 +76,7 @@ suite.add(new YUITest.TestCase({
         this.wait();
     },
     'test: Directories': function () {
-        var dirs = ['assets', 'classes', 'files', 'modules'];
+        var dirs = ['assets', 'classes', 'files', 'modules', 'elements'];
         dirs.forEach(function (d) {
             var p = path.join(__dirname, 'out', d);
             Assert.isTrue(exists(p), 'Failed to find: ' + p);
@@ -126,6 +126,14 @@ suite.add(new YUITest.TestCase({
         Object.keys(mods).forEach(function (name) {
             var m = mods[name],
                 p = path.join(__dirname, 'out', 'classes', m.name + '.html');
+            Assert.isTrue(exists(p), 'Failed to render: ' + m.name + '.html');
+        });
+    },
+    'test: element files': function () {
+        var mods = this.data.elements;
+        Object.keys(mods).forEach(function (name) {
+            var m = mods[name],
+                p = path.join(__dirname, 'out', 'elements', m.name + '.html');
             Assert.isTrue(exists(p), 'Failed to render: ' + m.name + '.html');
         });
     }
