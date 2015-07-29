@@ -14,6 +14,16 @@
         {{/if}}
     </div>
     <div class="yui3-u-1-2">
+        {{#if moduleElements}}
+        <p>This module has the following elements:</p>
+        <ul>
+        {{#moduleElements}}
+            <li><a href="{{../projectRoot}}elements/{{name}}.html">{{displayName}}</a></li>
+        {{/moduleElements}}
+        </ul>
+        {{/if}}
+    </div>
+    <div class="yui3-u-1-2">
         {{#if subModules}}
         <p>This module has the following submodules:</p>
         <ul>

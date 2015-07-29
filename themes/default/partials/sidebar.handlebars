@@ -3,6 +3,9 @@
     <div id="api-tabview" class="tabview">
         <ul class="tabs">
             <li><a href="#api-classes">Classes</a></li>
+            {{#if elements}}
+            <li><a href="#api-elements">Elements</a></li>
+            {{/if}}
             <li><a href="#api-modules">Modules</a></li>
         </ul>
 
@@ -16,6 +19,14 @@
                 <li><a href="{{../projectRoot}}classes/{{name}}.html">{{displayName}}</a></li>
             {{/classes}}
             </ul>
+
+            {{#if elements}}
+                <ul id="api-elements" class="apis elements">
+                {{#elements}}
+                    <li><a href="{{../projectRoot}}elements/{{name}}.html">{{displayName}}</a></li>
+                {{/elements}}
+                </ul>
+            {{/if}}
 
             <ul id="api-modules" class="apis modules">
             {{#allModules}}
