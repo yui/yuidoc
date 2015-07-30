@@ -2,7 +2,7 @@
     "project": {
         "name": "yuidoc-root",
         "description": "YUIDoc, YUI's JavaScript Documentation engine.",
-        "version": "0.8.0"
+        "version": "0.8.1"
     },
     "files": {
         "lib/builder.js": {
