@@ -54,7 +54,7 @@
 {{/example}}
 
 <div class="yui3-g">
-    <div class="yui3-u-1-2">
+    <div class="yui3-u-1-{{#if moduleElements}}3{{else}}2{{/if}}">
         {{#if moduleClasses}}
             <p>This module provides the following classes:</p>
 
@@ -70,7 +70,23 @@
         {{/if}}
     </div>
 
-    <div class="yui3-u-1-2">
+    {{#if moduleElements}}
+    <div class="yui3-u-1-3">
+        <p>This module provides the following elements:</p>
+
+        <ul class="module-elements">
+        {{#moduleElements}}
+            <li class="module-element">
+                <a href="{{../projectRoot}}elements/{{name}}.html">
+                    &lt;{{displayName}}&gt;
+                </a>
+            </li>
+        {{/moduleElements}}
+        </ul>
+    </div>
+    {{/if}}
+
+    <div class="yui3-u-1-{{#if moduleElements}}3{{else}}2{{/if}}">
         {{#if subModules}}
             <p>This module is a rollup of the following modules:</p>
 

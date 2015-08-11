@@ -32,6 +32,19 @@
     </div>
 </div>
 
+<div id="elements" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Elements</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            {{#elements}}
+                <li><a href="{{../projectRoot}}elements/{{name}}.html">{{displayName}}</a></li>
+            {{/elements}}
+        </ul>
+    </div>
+</div>
+
 {{#if methods}}
 <div id="methods-on-page" class="sidebox on-page">
     <div class="hd">
@@ -69,9 +82,9 @@
     </div>
     <div class="bd">
         <ul>
-            {{#events}}
+            {{#properties}}
                 <li><a href="#props_{{name}}">{{name}}</a></li>
-            {{/events}}
+            {{/properties}}
         </ul>
     </div>
 </div>
@@ -84,9 +97,9 @@
     </div>
     <div class="bd">
         <ul>
-            {{#events}}
+            {{#attributes}}
                 <li><a href="#attrs_{{name}}">{{name}}</a></li>
-            {{/events}}
+            {{/attributes}}
         </ul>
     </div>
 </div>

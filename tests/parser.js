@@ -52,8 +52,8 @@ suite.add(new YUITest.TestCase({
     },
     'test: parser': function () {
         var keys = Object.keys(this.data);
-        Assert.areEqual(6, keys.length, 'Failed to populate all fields');
-        ArrayAssert.itemsAreSame(['project', 'files', 'modules', 'classes', 'classitems', 'warnings'], keys, 'Object keys are wrong');
+        Assert.areEqual(7, keys.length, 'Failed to populate all fields');
+        ArrayAssert.itemsAreSame(['project', 'files', 'modules', 'classes', 'elements', 'classitems', 'warnings'], keys, 'Object keys are wrong');
     },
     'test: project data': function () {
         Assert.areSame(path.normalize('input/test/test.js'), this.project.file, 'Project data loaded from wrong file');
@@ -180,6 +180,44 @@ suite.add(new YUITest.TestCase({
         ArrayAssert.itemsAreSame(['P.storage.Store', 'P.storage.LocalStore', 'P.storage'], Object.keys(m.classes), 'Failed to parse classes');
         ArrayAssert.itemsAreSame(['P.storage', 'P'], Object.keys(m.namespaces), 'Namespace failed to parse');
 
+    },
+    'test: element parsing': function () {
+        var els = this.data.elements,
+            foo = els['x-foo'],
+            bar = els['x-bar'];
+
+        Assert.isObject(foo, 'Failed to find <x-foo> element');
+        Assert.areSame('x-foo', foo.name, 'Failed to set name');
+        Assert.areSame('anim', foo.module, 'Failed to set module');
+
+        Assert.isObject(bar, 'Failed to find <x-bar> element');
+        Assert.areSame('x-bar', bar.name, 'Failed to set name');
+        Assert.areSame('anim', bar.module, 'Failed to set module');
+    },
+    'test: element details parsing': function () {
+        var baz = this.data.elements['x-baz'];
+
+        Assert.isObject(baz, 'Failed to find <x-baz> element');
+        Assert.areSame('x-baz', baz.name, 'Failed to set name');
+        Assert.areSame('Element 3', baz.description, 'Failed to set description');
+        Assert.areSame('<body>, <x-foo>', baz.parents, 'Failed to set parents');
+        Assert.areSame('<x-bar>', baz.contents, 'Failed to set contents');
+        Assert.areSame('XBazElement', baz.interface, 'Failed to set interface');
+    },
+    'test: element attributes parsing': function () {
+        var baz = this.data.elements['x-baz'];
+
+        Assert.isObject(baz, 'Failed to find <x-baz> element');
+        Assert.areSame(3, baz.attributes.length, 'Failed to parse all the attributes');
+
+        Assert.areSame('first', baz.attributes[0].name, 'Failed to set first attribute name');
+        Assert.areSame('first attribute test', baz.attributes[0].description, 'Failed to set first attribute description');
+
+        Assert.areSame('second', baz.attributes[1].name, 'Failed to set second attribute name');
+        Assert.areSame('second attribute test', baz.attributes[1].description.replace(/\s+/g, ' '), 'Failed to set second attribute description');
+
+        Assert.areSame('third', baz.attributes[2].name, 'Failed to set third attribute name');
+        Assert.areSame('third attribute test', baz.attributes[2].description.replace(/\s+/g, ' '), 'Failed to set third attribute description');
     },
     'test: class parsing': function () {
         var cl = this.data.classes,
