@@ -161,6 +161,32 @@ function IO (config) {</pre>
         </p>
     </td>
 </tr>
+<tr id="element">
+    <td><code>element</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+ * This is the foo element description...
+ *
+ * @element x-foo
+ *&#x2F;</pre>
+
+    </td>
+    <td>
+        <p>Indicates that the block describes a Custom Element.
+        The <a href="#attribute"><code>@attribute</code></a> tag works as a attribute of the element
+        when you specify a <code>@element</code> tag. You can also specify the
+        <a href="#parents"><code>@parents</code></a>, <a href="#contents"><code>@contents</code></a>,
+        and <a href="#interface"><code>@interface</code></a> tag for the element.</p>
+
+        <p>
+            See also:
+            <a href="#attribute"><code>@attribute</code></a>,
+            <a href="#parents"><code>@parents</code></a>,
+            <a href="#contents"><code>@contents</code></a>,
+            <a href="#interface"><code>@interface</code></a>.
+        </p>
+    </td>
+</tr>
 <tr id="method">
     <td><code>method</code></td>
     <td>
@@ -290,8 +316,11 @@ ATTRS[RENDERED] = {</pre>
         YUI will automatically generate documentation for the attribute's change events throughout the source tree, 
         with no extra YUIDoc comments needed from you.</p>
 
+        <p>If you specify a <a href="#element"><code>@element</code></a> tag, the <code>@attribute</code> tag works as
+        a attribute of the element.</p>
+
         <p>
-            See also: 
+            See also: <a href="#element"><code>@element</code></a>,
             <a href="#property"><code>@property</code></a>,
             <a href="#default"><code>@default</code></a>,
             <a href="#class"><code>@class</code></a>,
@@ -1098,6 +1127,72 @@ render: function () {
             <a href="#class"><code>@class</code></a>,
             <a href="#extends"><code>@extends</code></a>,
             <a href="#uses"><code>@uses</code></a>.
+        </p>
+    </td>
+</tr>
+<tr id="parents">
+    <td><code>parents</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+ * @element x-foo
+ * @parents &lt;body&gt;
+ *&#x2F;</pre>
+
+    </td>
+    <td>
+        <p>It's a secondary tag for the <a href="#element"><code>@element</code></a> tag.
+        Indicates that the parent element of the element you specified.</p>
+
+        <p>
+            See also:
+            <a href="#element"><code>@element</code></a>,
+            <a href="#attribute"><code>@attribute</code></a>,
+            <a href="#contents"><code>@contents</code></a>,
+            <a href="#interface"><code>@interface</code></a>.
+        </p>
+    </td>
+</tr>
+<tr id="contents">
+    <td><code>contents</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+ * @element x-foo
+ * @contents &lt;x-bar&gt;
+ *&#x2F;</pre>
+
+    </td>
+    <td>
+        <p>It's a secondary tag for the <a href="#element"><code>@element</code></a> tag.
+        Indicates that the element contains in the element you specified.</p>
+
+        <p>
+            See also:
+            <a href="#element"><code>@element</code></a>,
+            <a href="#attribute"><code>@attribute</code></a>,
+            <a href="#parents"><code>@parents</code></a>,
+            <a href="#interface"><code>@interface</code></a>.
+        </p>
+    </td>
+</tr>
+<tr id="interface">
+    <td><code>interface</code></td>
+    <td>
+<pre class="code prettyprint">&#x2F;**
+ * @element x-foo
+ * @interface XFooElement
+ *&#x2F;</pre>
+
+    </td>
+    <td>
+        <p>It's a secondary tag for the <a href="#element"><code>@element</code></a> tag.
+        Indicates that the interface for the element you specified.</p>
+
+        <p>
+            See also:
+            <a href="#element"><code>@element</code></a>,
+            <a href="#attribute"><code>@attribute</code></a>,
+            <a href="#parents"><code>@parents</code></a>,
+            <a href="#contents"><code>@contents</code></a>.
         </p>
     </td>
 </tr>
