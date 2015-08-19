@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.8.1</em>
+            <em>API Docs for: 0.9.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -50,6 +50,7 @@
                                 <li><a href="../classes/Utils.html">Utils</a></li>
                                 <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
                             </ul>
+                
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/yuidoc.html">yuidoc</a></li>
@@ -155,6 +156,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
         CURRENT_SUBMODULE = &#x27;currentsubmodule&#x27;,
         CURRENT_FILE = &#x27;currentfile&#x27;,
         CURRENT_CLASS = &#x27;currentclass&#x27;,
+        CURRENT_ELEMENT = &#x27;currentelement&#x27;,
 
         REGEX_TYPE = /(.*?)\{(.*?)\}(.*)/,
         REGEX_FIRSTWORD = /^\s*?(\[.+\]\*?|[^\s]+)(.*)/,
@@ -197,7 +199,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
         TAGLIST = [
             &#x27;async&#x27;,        // bool, custom events can fire the listeners in a setTimeout
             &#x27;author&#x27;,       // author best for projects and modules, but can be used anywhere // multi
-            &#x27;attribute&#x27;,    // YUI attributes -- get/set with change notification, etc
+            &#x27;attribute&#x27;,    // YUI attributes / custom element attributes
             &#x27;beta&#x27;,         // module maturity identifier
             &#x27;broadcast&#x27;,    // bool, events
             &#x27;bubbles&#x27;,      // custom events that bubble
@@ -209,11 +211,13 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             &#x27;const&#x27;,        // not standardized yet, converts to final property
             &#x27;constructs&#x27;,   // factory methods (not yet used)
             &#x27;constructor&#x27;,  // this is a constructor
+            &#x27;content&#x27;,      // permitted content for an @element
             &#x27;contributor&#x27;,  // like author
             &#x27;default&#x27;,      // property/attribute default value
             &#x27;deprecated&#x27;,   // please specify what to use instead
             &#x27;description&#x27;,  // can also be free text at the beginning of a comment is
             &#x27;emitfacade&#x27;,   // bool, YUI custom event can have a dom-like event facade
+            &#x27;element&#x27;,      // Web Components custom element
             &#x27;event&#x27;,        // YUI custom event
             &#x27;evil&#x27;,         // uses eval
             &#x27;extension&#x27;,    // this is an extension for [entity]
@@ -232,7 +236,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             &#x27;in&#x27;,           // indicates module this lives in (obsolete now)
             &#x27;initonly&#x27;,     // attribute writeonce value
             &#x27;injects&#x27;,      // injects {HTML|script|CSS}
-            &#x27;interface&#x27;,    // Is Interface
+            &#x27;interface&#x27;,    // Is Interface / Interface for an @element
             &#x27;knownissue&#x27;,   // 0..n known issues for your consumption
             &#x27;line&#x27;,         // line number for the comment block (used by the parser)
             &#x27;method&#x27;,       // a method
@@ -242,6 +246,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
             &#x27;optional&#x27;,     // For optional attributes
             &#x27;required&#x27;,     // For required attributes
             &#x27;param&#x27;,        // member param
+            &#x27;parents&#x27;,      // permitted parents for an @element
             &#x27;plugin&#x27;,       // this is a plugin for [entityl]
             &#x27;preventable&#x27;,  // YUI custom events can be preventable ala DOM events
             &#x27;private&#x27;,      // &gt; access
@@ -632,6 +637,27 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                 return host;
             },
 
+            // A key bock type for declaring custom elements
+            &#x27;element&#x27;: function (tagname, value) {
+                var name, parent, host;
+
+                name = value.split(/\s+/)[0];
+                this.set(CURRENT_ELEMENT, name);
+                host = this.elements[name];
+
+                parent = this.get(CURRENT_MODULE);
+                if (parent) {
+                    host.module = parent;
+                }
+
+                parent = this.get(CURRENT_SUBMODULE);
+                if (parent) {
+                    host.submodule = parent;
+                }
+
+                return host;
+            },
+
             // change &#x27;const&#x27; to final property
             &#x27;const&#x27;: function (tagname, value, target) {
                 target.itemtype = &#x27;property&#x27;;
@@ -669,9 +695,26 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                 }
             },
             &#x27;method&#x27;: &#x27;property&#x27;,
-            &#x27;attribute&#x27;: &#x27;property&#x27;,
             &#x27;config&#x27;: &#x27;property&#x27;,
             &#x27;event&#x27;: &#x27;property&#x27;,
+
+            &#x27;attribute&#x27;: function (tagname, value, target) {
+                // Use &#x27;property&#x27; if not currently parsing an element
+                if (!this.get(CURRENT_ELEMENT)) {
+                    return DIGESTERS.property.apply(this, arguments);
+                }
+
+                var nameVal = value.split(/\s+([\s\S]*$)/),
+                    desc = nameVal[1] || target.description || &#x27;&#x27;;
+
+                if (!target.attributes) {
+                    target.attributes = [];
+                }
+                target.attributes.push({
+                    name: nameVal[0],
+                    description: desc
+                });
+            },
 
             // access fields
             &#x27;public&#x27;: function (tagname, value, target) {
@@ -1035,6 +1078,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                     this.modules[val] = {
                         name: val,
                         submodules: {},
+                        elements: {},
                         classes: {},
                         fors: {},
                         namespaces: {}
@@ -1060,6 +1104,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                     var mod = this.modules[val] = {
                         name: val,
                         submodules: {},
+                        elements: {},
                         classes: {},
                         fors: {},
                         is_submodule: 1,
@@ -1121,6 +1166,36 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                 }
                 return name;
             }
+        },
+        lastelement: {
+
+        },
+        /**
+         * The element currently being parsed
+         * @attribute currentelement
+         * @type String
+         */
+        currentelement: {
+            setter: function (val) {
+                if (!val) {
+                    return val;
+                }
+                this.set(&#x27;lastelement&#x27;, this.get(CURRENT_ELEMENT));
+                val = trim(val);
+                var name = val,
+                    el;
+                if (!(val in this.elements)) {
+                    el = this.elements[name] = {
+                        name: name,
+                        attributes: []
+                    };
+                    el.module = this.get(CURRENT_MODULE);
+                    if (this.get(CURRENT_SUBMODULE)) {
+                        el.submodule = this.get(CURRENT_SUBMODULE);
+                    }
+                }
+                return name;
+            }
         }
     };
 
@@ -1157,30 +1232,38 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                  */
                 self.set(CURRENT_SUBMODULE, &#x27;&#x27;);
                 self.set(CURRENT_CLASS, &#x27;&#x27;);
+                self.set(CURRENT_ELEMENT, &#x27;&#x27;);
             });
 
             self.after(&#x27;currentmoduleChange&#x27;, function (e) {
                 var mod = e.newVal,
-                    classes = self.classes;
-                Y.each(classes, function (clazz) {
-                    if (!(clazz.module)) {
-                        clazz.module = mod;
-                    }
-                });
+                    elements = self.elements,
+                    classes = self.classes,
+                    addModule = function (c) {
+                        if (!(c.module)) {
+                            c.module = mod;
+                        }
+                    };
+
+                Y.each(classes, addModule);
+                Y.each(elements, addModule);
             });
 
             self.after(&#x27;currentsubmoduleChange&#x27;, function (e) {
                 var mod = e.newVal,
-                    classes = self.classes;
-
-                if (mod) {
-                    Y.each(classes, function (clazz) {
-                        if (!(clazz.submodule)) {
-                            if (!clazz.module) {
-                                clazz.submodule = mod;
+                    classes = self.classes,
+                    elements = self.elements,
+                    addModule = function (c) {
+                        if (!(c.submodule)) {
+                            if (!c.module) {
+                                c.submodule = mod;
                             }
                         }
-                    });
+                    };
+
+                if (mod) {
+                    Y.each(classes, addModule);
+                    Y.each(elements, addModule);
                 }
             });
 
@@ -1405,6 +1488,24 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
 
             if (host) {
                 Y.mix(host, target);
+
+                if (host.attributes &amp;&amp; target.attributes) {
+                    host.attributes.push.apply(host.attributes, target.attributes);
+                }
+            } else if (target.attributes) {
+                host = this.elements[this.get(CURRENT_ELEMENT)];
+                if (host) {
+                    if (target.deprecated) {
+                        target.attributes.forEach(function (a) {
+                            a.deprecated = target.deprecated;
+
+                            if (target.deprecationMessage) {
+                                a.deprecationMessage = target.deprecationMessage;
+                            }
+                        });
+                    }
+                    host.attributes.push.apply(host.attributes, target.attributes);
+                }
             } else {
                 this.classitems.push(target);
                 target.class = this.get(CURRENT_CLASS);
@@ -1436,6 +1537,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                 files = self.files = {},
                 modules = self.modules = {},
                 classes = self.classes = {},
+                elements = self.elements = {},
                 classitems = self.classitems = [];
 
             self.data = {
@@ -1443,6 +1545,7 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                 files: files,
                 modules: modules,
                 classes: classes,
+                elements: elements,
                 classitems: classitems
             };
 
@@ -1503,6 +1606,19 @@ YUI.add(&#x27;docparser&#x27;, function (Y) {
                             c.extension_for.push(clazz.name);
                         }
                     });
+                }
+            });
+
+            Y.each(elements, function (el, name) {
+                if (el.module) {
+                    modules[el.module].elements[name] = 1;
+                }
+
+                if (el.submodule) {
+                    modules[el.submodule].elements[name] = 1;
+                    if (!modules[el.submodule].description) {
+                        modules[el.submodule].description = el.description;
+                    }
                 }
             });
 

@@ -22,6 +22,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "yuidoc",
             "description": "This is the __module__ description for the `YUIDoc` module.\n\n    var options = {\n        paths: [ './lib' ],\n        outdir: './out'\n    };\n\n    var Y = require('yuidocjs');\n    var json = (new Y.YUIDoc(options)).run();"
         }
-    ]
+    ],
+    "elements": []
 } };
 });
