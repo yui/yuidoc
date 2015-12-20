@@ -79,7 +79,7 @@
     "yui": "^3.18.1"
   },
   "devDependencies": {
-    "eslint": "^1.2.1",
+    "eslint": "^1.10.3",
     "istanbul": "^0.3.16",
     "selleck": "^0.1.18",
     "ytestrunner": "^0.3.3",
