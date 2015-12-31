@@ -170,8 +170,9 @@ suite.add(new YUITest.TestCase({
     'test: readFile': function () {
         var test = this;
         Y.Files.readFile('input/test/test.js', 'utf8', function (err) {
+
             test.resume(function () {
-                Assert.isNull(err);
+                Assert.isFalse(!!err);
             });
         });
         test.wait(100);
