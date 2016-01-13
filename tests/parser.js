@@ -15,9 +15,16 @@ var existsSync = fs.existsSync || path.existsSync;
 var suite = new YUITest.TestSuite({
     name: 'Parser Test Suite',
     setUp: function () {
+        process.chdir(__dirname);
         var json = (new Y.YUIDoc({
             quiet: true,
-            paths: ['input/'],
+            paths: [
+                'input/charts',
+                'input/inherit',
+                'input/namespace',
+                'input/test',
+                'input/test2'
+            ],
             outdir: './out'
         })).run();
 

@@ -28,7 +28,11 @@ var suite = new YUITest.TestSuite({
 
         options = {
             quiet: true,
-            paths: ['input/'],
+            paths: [
+                'input/inherit',
+                'input/json',
+                'input/test'
+            ],
             outdir: './out',
             helpers: [
                 path.join(__dirname, 'lib/davglass.js')
@@ -37,6 +41,7 @@ var suite = new YUITest.TestSuite({
                 langPrefix: 'language-'
             }
         };
+        process.chdir(__dirname);
         json = (new Y.YUIDoc(options)).run();
 
         this.project = json.project;
