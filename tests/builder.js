@@ -178,7 +178,7 @@ suite.add(new YUITest.TestCase({
 
         suite.builder.renderElement(function(html) {
             Assert.isTrue(/Element 3 <a.*?href=".*?elements\/x-foo.*>[^<]/.test(html), 'Failed to parse unescaped custom html element string');
-        }, suite.data.elements['x-baz'])
+        }, suite.data.elements['x-baz']);
     },
 
     'test: markdown options': function () {
