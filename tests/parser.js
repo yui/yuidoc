@@ -206,7 +206,7 @@ suite.add(new YUITest.TestCase({
 
         Assert.isObject(baz, 'Failed to find <x-baz> element');
         Assert.areSame('x-baz', baz.name, 'Failed to set name');
-        Assert.areSame('Element 3', baz.description, 'Failed to set description');
+        Assert.areSame('Element 3 {{#crossLink "<x-foo>"}}{{/crossLink}}', baz.description, 'Failed to set description');
         Assert.areSame('<body>, <x-foo>', baz.parents, 'Failed to set parents');
         Assert.areSame('<x-bar>', baz.contents, 'Failed to set contents');
         Assert.areSame('XBazElement', baz.interface, 'Failed to set interface');

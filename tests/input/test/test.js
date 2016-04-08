@@ -256,7 +256,7 @@ Test `\{{foobar3\}}` `\{{barfoo3\}}`
 */
 
 /**
- * Element 3
+ * Element 3 {{#crossLink "<x-foo>"}}{{/crossLink}}
  *
  * @element x-baz
  * @parents <body>, <x-foo>
@@ -267,6 +267,7 @@ Test `\{{foobar3\}}` `\{{barfoo3\}}`
  * @attribute second    second attribute
  *                      test
  */
+
 
 /**
  * third
