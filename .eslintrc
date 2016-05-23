@@ -1,0 +1,13 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "globals": {
+    "YUI": true
+  },
+  "rules": {
+    "no-console": 0,
+    "quotes": [2, "single"]
+  }
+}
