@@ -50,9 +50,14 @@
     {{/return}}
     {{/if}}
     {{#if throws}}
-    {{#throws}}
-    <br><div class="throws"><strong>Throws:</strong> {{#if type}}&lt;{{#crossLink type}}{{/crossLink}}&gt; {{/if}}{{{description}}}</div>
-    {{/throws}}
+        <br><strong>Throws:</strong>
+        <ul class="throws">
+        {{#throws}}
+            <li>
+                {{#if type}}&lt;{{#crossLink type}}{{/crossLink}}&gt; {{/if}}{{{description}}}
+            </li>
+        {{/throws}}
+        </ul>
     {{/if}}
     {{#if example}}
         <h5>Example</h5>

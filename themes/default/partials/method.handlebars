@@ -181,24 +181,25 @@
         </div>
     {{/return}}
 
-    {{#throws}}
+    {{#if throws}}
         <div class="throws">
             <h4>Throws:</h4>
 
-            <div class="throws-description">
-                {{#if description}}
+            <ul class="params-list">
+            {{#throws}}
+                <li class="param">
                     {{#if type}}
-                        <span class="type">{{#crossLink type}}{{/crossLink}}</span>:
+                        <span class="type">{{#crossLink type}}{{/crossLink}}</span>
                     {{/if}}
-                    {{{description}}}
-                {{else}}
-                    {{#if type}}
-                        <span class="type">{{#crossLink type}}{{/crossLink}}</span>:
-                    {{/if}}
-                {{/if}}
-            </div>
+
+                    <div class="param-description">
+                        {{{description}}}
+                    </div>
+                </li>
+            {{/throws}}
+            </ul>
         </div>
-    {{/throws}}
+    {{/if}}
 
     {{#example}}
         <div class="example">
