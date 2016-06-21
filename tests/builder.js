@@ -161,6 +161,15 @@ suite.add(new YUITest.TestCase({
             Assert.isObject(method.overwritten_from, 'Failed to find overwritten data');
         }, item);
     },
+    'test: extension_for': function() {
+      var item = suite.data.classes['mywidget.SubWidget'];
+      Assert.isObject(item, 'Failed to parse class');
+      suite.builder.renderClass(function (html, view, opts) {
+          var extension_for = opts.meta.extension_for;
+          Assert.isObject(extension_for, 'Failed to assign extension_for');
+          Assert.areSame(1, extension_for.length, 'Failed to assign extension_for');
+      }, item);
+    },
     'test: helper methods': function () {
         var item = suite.data.classes['mywidget.SuperWidget'];
         Assert.isObject(item, 'Failed to parse class');
