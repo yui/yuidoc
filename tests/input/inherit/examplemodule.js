@@ -9,10 +9,10 @@
 
 YUI.add('examplemodule', function (Y) {
         Y.namespace('mywidget');
-
+        
         /**
          * <b>Superclass</b> description.<br>This is a second line too.
-         *
+         * 
          * @constructor
          * @class SuperWidget
          * @extends Widget
@@ -23,15 +23,15 @@ YUI.add('examplemodule', function (Y) {
          *
          */
         Y.mywidget.superwidget = Y.Base.create("mysuperwidget", Y.Widget, [], {
-
+                
                 /**
                  * <b>Supermethod</b> description.<br>This is a second line.
-                 *
+                 * 
                  * @method myMethod
                  * @async
                  */
                 myMethod: function () {}
-
+                
                 /**
                 * Overwritten method see {{#crossLink "mywidget.SuperWidget"}}{{/crossLink}}
                 * also see {{#crossLink "mywidget.SuperWidget/myMethod"}}{{/crossLink}}
@@ -83,37 +83,36 @@ YUI.add('examplemodule', function (Y) {
                 * Override Event
                 * @event init2
                 */
-
+                 
         }, {
-
+        
         });
-
+        
         /**
          * Subclass description.
-         *
+         * 
          * @constructor
          * @namespace mywidget
          * @class SubWidget
          * @extends mywidget.SuperWidget
-         * @extensionfor mywidget.SuperWidget
          */
         Y.mywidget.superwidget = Y.Base.create("mysuperwidget", Y.mywidget.superwidget, [], {
-
+                
                 /**
                  * Submethod description.
-                 *
+                 * 
                  * @method myMethod
                  * @param {boolean} d Foo
                  */
                 myMethod: function () {}
-
+                 
         }, {
-
+        
         });
 
         /**
          * Subclass description.
-         *
+         * 
          * @constructor
          * @namespace mywidget
          * @class SubWidget2
