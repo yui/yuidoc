@@ -74,7 +74,7 @@
     "graceful-fs": "^4.1.2",
     "markdown-it": "^4.3.0",
     "mdn-links": "^0.1.0",
-    "minimatch": "^3.0.0",
+    "minimatch": "^3.0.2",
     "rimraf": "^2.4.1",
     "yui": "^3.18.1"
   },
