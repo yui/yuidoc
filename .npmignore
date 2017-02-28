@@ -1,2 +1,6 @@
 .git
 sandbox
+
+/tests
+/docs
+/output
