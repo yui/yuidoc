@@ -10,7 +10,7 @@ var Y = require(path.join(__dirname, '../', 'lib', 'index'));
 //Move to the test dir before running the tests.
 process.chdir(__dirname);
 
-var existsSync = fs.existsSync || path.existsSync;
+var existsSync = fs.existsSync || fs.existsSync;
 
 var suite = new YUITest.TestSuite({
     name: 'Parser Test Suite',
