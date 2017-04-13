@@ -1,6 +1,6 @@
 {
   "name": "yuidocjs",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "YUIDoc, YUI's JavaScript Documentation engine.",
   "author": "Dav Glass <davglass@gmail.com>",
   "bugs": {
@@ -99,7 +99,7 @@
     "name": "YUIDoc",
     "options": {
       "external": {
-        "data": "http://yuilibrary.com/yui/docs/api/data.json"
+        "data": "https://yuilibrary.com/yui/docs/api/data.json"
       },
       "linkNatives": "true",
       "attributesEmit": "true",
